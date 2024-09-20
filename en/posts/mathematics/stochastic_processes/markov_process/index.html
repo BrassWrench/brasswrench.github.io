@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="A memoryless stochastic process">
+<title>Random Process (Ⅳ): Markov Process</title>
+
+<link rel='canonical' href='https://www.brasswrench.cn/en/posts/mathematics/stochastic_processes/markov_process/'>
+
+<link rel="stylesheet" href="/scss/style.min.a172b9d2f6cb26adafb030a3b0aa213d38e675ee32ea7d95c0a581b0f8653329.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        
+        $(window).on('scroll', function() {
+            if ($(this).scrollTop() > 0) { 
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+
+        
+        $('#back-to-top').on('click', function(e) {
+            e.preventDefault(); 
+            $('html, body').animate({scrollTop: 0}, 1000);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        
+        function hasScrollbar() {
+            return $(document).height() > $(window).height();
+        }
+
+        
+        $(window).on('scroll', function() {
+            if (hasScrollbar()) { 
+                if ($(window).scrollTop() + $(window).height() >= $(document).height() - 1) {
+                    $('#scroll-to-bottom').fadeOut(); 
+                } else {
+                    $('#scroll-to-bottom').fadeIn(); 
+                }
+            } else {
+                $('#scroll-to-bottom').fadeOut(); 
+            }
+        });
+
+        
+        if (hasScrollbar()) {
+            $('#scroll-to-bottom').fadeIn();
+        } else {
+            $('#scroll-to-bottom').fadeOut();
+        }
+
+        
+        $('#scroll-to-bottom').on('click', function(e) {
+            e.preventDefault(); 
+            $('html, body').animate({scrollTop: $(document).height()}, 1000);
+        });
+    });
+</script><meta property='og:title' content="Random Process (Ⅳ): Markov Process">
+<meta property='og:description' content="A memoryless stochastic process">
+<meta property='og:url' content='https://www.brasswrench.cn/en/posts/mathematics/stochastic_processes/markov_process/'>
+<meta property='og:site_name' content='Brass Wrench&#39;s Library'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov Process' /><meta property='article:tag' content='Markov Chain' /><meta property='article:tag' content='C-K Equation' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-20T16:37:22&#43;00:00'/>
+<meta name="twitter:title" content="Random Process (Ⅳ): Markov Process">
+<meta name="twitter:description" content="A memoryless stochastic process">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-3M2EFBT99V"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3M2EFBT99V');
+        }
+      </script><style>
+    :root {
+        --sys-font-family: "Noto Serif SC", serif;
+        --zh-font-family: "Noto Serif SC", serif;
+        --base-font-family: "Noto Serif SC", serif;
+        --article-font-family: "Noto Serif SC", serif;
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href =
+            "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    })();
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/en/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8106917112022902457.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🤔</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/en">Brass Wrench&#39;s Library</a></h1>
+            <h2 class="site-description">A quiet and peaceful place</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/170572166'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-bilibili" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" />
+    <path d="M8 3l2 3" />
+    <path d="M16 3l-2 3" />
+    <path d="M9 13v-2" />
+    <path d="M15 11v2" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/BrassWrench'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='mailto:592831064@qq.com'
+                        target="_blank"
+                        title="Mail"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+    <path d="M3 7l9 6l9 -6" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://center.mcmod.cn/274250/'
+                        target="_blank"
+                        title="MCmod"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-minecraft" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M21 16.008v-8.018a1.98 1.98 0 0 0 -1 -1.717l-7 -4.008a2.016 2.016 0 0 0 -2 0l-7 4.008c-.619 .355 -1 1.01 -1 1.718v8.018c0 .709 .381 1.363 1 1.717l7 4.008c.62 .354 1.38 .354 2 0l7 -4.008c.619 -.355 1 -1.01 1 -1.718z" />
+    <path d="M12 22v-10" />
+    <path d="M12 12l8.73 -5.04" />
+    <path d="M3.27 6.96l8.73 5.04" />
+    <path d="M12 17l3.003 -1.668m3 -1.667l2.997 -1.665m-9 5l-9 -5" />
+    <path d="M15 17l3 -1.67v-3l-3 1.67z" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://steamcommunity.com/profiles/76561199192063849/'
+                        target="_blank"
+                        title="Steam"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-steam" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M16.5 5a4.5 4.5 0 1 1 -.653 8.953l-4.347 3.009l0 .038a3 3 0 0 1 -2.824 3l-.176 0a3 3 0 0 1 -2.94 -2.402l-2.56 -1.098v-3.5l3.51 1.755a2.989 2.989 0 0 1 2.834 -.635l2.727 -3.818a4.5 4.5 0 0 1 4.429 -5.302z" />
+    <circle cx="16.5" cy="9.5" r="1" fill="currentColor" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/en/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/categories/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/tagcloud/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Link</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/en/message/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-message" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M8 9h8" />
+    <path d="M8 13h6" />
+    <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
+</svg>
+                
+                <span>Message</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select class = "language_select" name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://www.brasswrench.cn/en/" selected>English</option>
+                                
+                                    <option value="https://www.brasswrench.cn/" >简体中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
+    <path d="M6.343 17.657l-1.414 1.414" />
+    <path d="M6.343 6.343l-1.414 -1.414" />
+    <path d="M17.657 6.343l1.414 -1.414" />
+    <path d="M17.657 17.657l1.414 1.414" />
+    <path d="M4 12h-2" />
+    <path d="M12 4v-2" />
+    <path d="M20 12h2" />
+    <path d="M12 20v2" />
+</svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+    <path d="M19 11h2m-1 -1v2" />
+</svg>
+                        <span>Dark Mode</span>
+                    </li>
+                
+
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/en/search/" class="search-form widget" >
+        <p>
+            <label>Search</label>
+            <input name="keyword" required placeholder="Type something..." />
+        
+            <button title="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#basic-concepts">Basic Concepts</a>
+      <ol>
+        <li><a href="#definition-of-markov-chain">Definition of Markov Chain</a>
+          <ol>
+            <li><a href="#markov-chain">Markov Chain</a></li>
+            <li><a href="#markov-property">Markov Property</a></li>
+          </ol>
+        </li>
+        <li><a href="#transition-probability">Transition Probability</a>
+          <ol>
+            <li><a href="#transition-probability-1">Transition Probability</a></li>
+            <li><a href="#time-homogeneous-markov-chain">Time-Homogeneous Markov Chain</a></li>
+            <li><a href="#finite-chain-and-infinite-chain">Finite Chain and Infinite Chain</a></li>
+          </ol>
+        </li>
+        <li><a href="#n-step-transition-probability-and-c-k-equation">n-Step Transition Probability and C-K Equation</a>
+          <ol>
+            <li><a href="#n-step-transition-probability">n-Step Transition Probability</a></li>
+            <li><a href="#c-k-equation">C-K Equation</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#classification-and-properties-of-states">Classification and Properties of States</a>
+      <ol>
+        <li><a href="#reachable-communicating-class-reducible">Reachable, Communicating, Class, Reducible</a></li>
+        <li><a href="#period">Period</a></li>
+        <li><a href="#recurrence">Recurrence</a>
+          <ol>
+            <li><a href="#recurrence-and-transience">Recurrence and Transience</a></li>
+            <li><a href="#positive-recurrence-null-recurrence-ergodicity-absorption">Positive Recurrence, Null Recurrence, Ergodicity, Absorption</a></li>
+          </ol>
+        </li>
+        <li><a href="#proofs-of-some-properties">Proofs of Some Properties</a>
+          <ol>
+            <li><a href="#recurrence-limits-determination">Recurrence Limits Determination</a></li>
+            <li><a href="#communicating-recurrent-states-are-achievable">Communicating Recurrent States are Achievable</a></li>
+            <li><a href="#recurrence-is-a-class-property">Recurrence is a Class Property</a></li>
+            <li><a href="#state-space-decomposition-theorem">State Space Decomposition Theorem</a></li>
+            <li><a href="#irreducible-markov-chain-transitions">Irreducible Markov Chain Transitions</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#limit-theorem-and-invariant-distribution">Limit Theorem and Invariant Distribution</a>
+      <ol>
+        <li><a href="#limit-theorem">Limit Theorem</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+
+        
+        <a id="back-to-top" href="#">
+            <img src="/img/up.svg" />
+        </a>
+
+        
+        <a id="scroll-to-bottom" href="#">
+            <img src="/img/down.svg" />
+        </a>
+
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+        <header class="article-category">
+            
+            
+            
+            
+            
+            
+                 
+
+                     
+
+                    
+                
+            
+                 
+
+                     
+                        
+                        
+                        
+                        
+                            
+                        
+                        <a href="/categories/mathematics/" ZgotmplZ>Mathematics</a>
+
+                    
+                
+            
+                 
+
+                     
+                        
+                             
+                        
+                         
+                        
+                        
+                        
+                            
+                        
+                        <a href="/posts/mathematics/stochastic_processes/" ZgotmplZ>Stochastic Processes</a>
+
+                    
+                
+            
+                
+            
+                
+            
+        </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/en/posts/mathematics/stochastic_processes/markov_process/">Random Process (Ⅳ): Markov Process</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            A memoryless stochastic process
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 14, 2024 21:05 &#43;0800</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    20 minutes to read
+                </time>
+            </div>
+        
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+    <path d="M9 8l1 8l2 -5l2 5l1 -8" />
+</svg>
+
+            <time class="article-words">
+                4185 Words
+            </time>
+        </div>
+
+    </footer>
+    
+
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="https://www.brasswrench.cn/posts/mathematics/stochastic_processes/markov_process/" class="link">简体中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    <div style="text-align: justify">
+        
+        
+        
+
+
+
+
+
+
+
+<iframe
+  class="netease-cloud-music-frame"
+  title="song&#39;s 1968959950"
+  frameborder="no"
+  border="0"
+  marginwidth="0"
+  marginheight="0"
+  width="100%"
+  height="86"
+  loading="lazy"
+  src="https://music.163.com/outchain/player?type=2&amp;id=1968959950&amp;auto=0&amp;height=66">
+</iframe>
+
+<h1 id="markov-process">Markov Process
+</h1><h2 id="introduction">Introduction
+</h2><p>  There is a class of stochastic processes that possesses the so-called &ldquo;memoryless property&rdquo; (Markov property), which means to determine the future state of the process, knowing its current state is sufficient without needing to know its past states. Such processes are called Markov processes. This article will introduce the two simplest types of Markov processes: the discrete-time Markov chain (abbreviated as Markov chain) and the continuous-time Markov chain.</p>
+<h2 id="basic-concepts">Basic Concepts
+</h2><h3 id="definition-of-markov-chain">Definition of Markov Chain
+</h3><h4 id="markov-chain">Markov Chain
+</h4><p>  <strong>Definition 1</strong>: Given a stochastic process \( \{X_n, n=0,1,2,\cdots\} \), if it takes only a finite or countably infinite set of values \( E_0, E_1, E_2, \cdots \) (we label \( E_0, E_1, E_2 \) as \( \{0, 1, 2, \cdots\} \) and call them the states of the process, the set \( \{0, 1, 2 \cdots\} \) or its subset is referred to as the <strong>state space</strong>). If for \( \{X_n, n=0,1,2,\cdots\} \) (generally considering its states are non-negative integers) and any \( n \geq 0 \) and states \( i, j, i_0, i_1 \cdots, i_{n-1} \), we have</p>
+$$
+\begin{aligned}
+&P\{X_{n+1}=j \;|\; X_0=i_0, X_1=i_1, X_2=i_2, \cdots, X_{n-1}=i_{n-1}, X_n=i\}\\[5pt]
+=&P\{X_{n+1}=j \;|\; X_n=i\}
+\end{aligned}
+$$<p>  then the stochastic process \( \{X_n, n=0,1,2,\cdots\} \) is called a <strong>Markov chain</strong>.</p>
+<h4 id="markov-property">Markov Property
+</h4><p>  <a class="link" href="#markov-chain" >Definition 1</a> characterizes the property of the Markov chain, thus called the <strong>Markov property</strong>.</p>
+<h3 id="transition-probability">Transition Probability
+</h3><h4 id="transition-probability-1">Transition Probability
+</h4><p>  <strong>Definition 2</strong>: The conditional probability \( P\{X_{n+1}=j\;|\;X_n=i\} \) in <a class="link" href="#markov-chain" >Definition 1</a> is called the <strong>one-step transition probability</strong> of the Markov chain \( \{X_n,n=0,1,2,\cdots\} \), abbreviated as <strong>transition probability</strong>.<br>
+  In general, the transition probability depends on states \( i, j \) and time \( n \).</p>
+<h4 id="time-homogeneous-markov-chain">Time-Homogeneous Markov Chain
+</h4><p>  <strong>Definition 3</strong>: If the transition probability of a Markov chain depends only on states \( i, j \) and not on \( n \), the Markov chain is called <strong>time-homogeneous</strong>, denoted as \( p_{ij}=P\{X_{n+1}=j\;|\;X_n=i\} (n \geq 0) \); otherwise, it is called <strong>non-time-homogeneous</strong>.<br>
+  This article only discusses time-homogeneous Markov chains and refers to them simply as Markov chains.</p>
+<h4 id="finite-chain-and-infinite-chain">Finite Chain and Infinite Chain
+</h4><p>  When the states of a Markov chain are finite, it is called a <strong>finite chain</strong>; otherwise, it is called an <strong>infinite chain</strong>. In either case, we can arrange \( p_{ij} (i,j \in S) \) in the form of a matrix, denoted as</p>
+$$
+\mathbf{P}=(p_{ij})=
+\begin{pmatrix}
+p_{00} & p_{01} & p_{02} & p_{03} & \cdots \\
+p_{10} & p_{11} & p_{12} & p_{13} & \cdots \\
+p_{20} & p_{21} & p_{22} & p_{23} & \cdots \\
+p_{30} & p_{31} & p_{32} & p_{33} & \cdots \\
+\vdots & \vdots & \vdots & \vdots & \ddots \\
+\end{pmatrix}
+$$<p>  then \( \mathbf{P} \) is called the <strong>transition probability matrix</strong>, often referred to as the <strong>transition matrix</strong>. It is evident that \( p_{ij} (i,j \in S) \) has the properties</p>
+$$
+\begin{aligned}
+&(1)\; p_{ij} \geq 0, \;i,j\in S \\[5pt]
+&(2)\; \sum_{j \in S}{p_{ij}} = 1, \forall i \in S
+\end{aligned}
+$$<h3 id="n-step-transition-probability-and-c-k-equation">n-Step Transition Probability and C-K Equation
+</h3><h4 id="n-step-transition-probability">n-Step Transition Probability
+</h4><p>  <strong>Definition 4</strong>: The conditional probability</p>
+$$
+p_{ij}^{(n)}=P\{X_{m+n}=j\;|\;X_m=i\}\quad i,j\in S,m \geq 0, n \geq 1
+$$<p>is called the <strong>n-step transition probability</strong> of the Markov chain, and the corresponding \( \mathbf{P}^{(n)}=(p_{ij}^{(n)}) \) is called the <strong>n-step transition matrix</strong>.<br>
+  When \( n=1 \), \( p_{ij}^{(1)}=p_{ij} \), \( \mathbf{P}^{(1)}=\mathbf{P} \). Moreover, it is stipulated that</p>
+$$
+p_{ij}^{(0)}=
+\begin{cases}
+0, \quad i \neq j\\[5pt]
+1, \quad i=j
+\end{cases}
+$$<p>  Clearly, the n-step transition probability \( p_{ij}^{(n)} \) refers to the probability of the system transitioning from state \( i \) to state \( j \) after \( n \) steps, regardless of the intermediate states in the \( n-1 \) steps. The following theorem gives the relationship between \( p_{ij}^{(n)} \) and \( p_{ij} \).</p>
+<h4 id="c-k-equation">C-K Equation
+</h4><p>  <strong>Theorem 1 (Chapman-Kolmogorov Equation, abbreviated C-K Equation)</strong>: For all \( n,m \geq 0 \), \( i,j \in S \),</p>
+<p>  ①</p>
+$$
+p_{ij}^{(m+n)}=\sum_{k \in S}{p_{ik}^{(m)} p_{kj}^{(n)}}
+$$<p>  ②</p>
+$$
+\mathbf{P}^{(n)}=\mathbf{P} \cdot \mathbf{P}^{(n-1)} = \mathbf{P} \cdot \mathbf{P} \cdot \mathbf{P}^{(n-2)} = \cdots = \mathbf{P}^n
+$$<p>  <strong>Proof (Theorem 1)</strong>: By the <a class="link" onclick="alert('Sorry, \u0027Probability Theory and Mathematical Statistics\u0027 is not yet available~')">law of total probability</a>, we have</p>
+$$
+\begin{aligned}
+p_{ij}^{(m+n)}&=P\{X_{m+n}=j\;|\;X_0=i\}\\[5pt]
+&=\frac{P\{X_{m+n}=j, X_0=i\}}{P\{X_0=i\}}\\[10pt]
+&=\sum_{k \in S}{\frac{P\{X_{m+n}=j,X_m=k,X_0=i\}}{P\{X_0=i\}}} \text{(law of total probability)}\\
+&=\sum_{k \in S}{\frac{P\{X_{m+n}=j,X_m=k,X_0=i\}}{P\{X_m=k,X_0=i\}}\frac{P\{X_m=k,X_0=i\}}{P\{X_0=i\}}}\\
+&=\sum_{k \in S}{P\{X_{m+n}=j\;|\;X_m=k,X_0=i\}}P\{X_m=k\;|\;X_0=i\}\\
+&=\sum_{k \in S}{p_{kj}^{(n)} p_{ik}^{(m)}}\\
+&=\sum_{k \in S}{p_{ik}^{(m)} p_{kj}^{(n)}}
+\end{aligned}
+$$<p>  From matrix multiplication, it is easy to see that ② is a matrix form of ①.</p>
+<h2 id="classification-and-properties-of-states">Classification and Properties of States
+</h2><h3 id="reachable-communicating-class-reducible">Reachable, Communicating, Class, Reducible
+</h3><p>  <strong>Definition 5</strong>: A state \( i \) is said to <strong>reach</strong> state \( j \) (\( i,j \in S \)) if there exists \( n \geq 0 \) such that \( p_{ij}^{(n)} \geq 0 \), denoted as \( i \rightarrow j \). If there is also \( j \rightarrow i \), then \( i \) and \( j \) are said to <strong>communicate</strong>, denoted as \( i \leftrightarrow j \).</p>
+<p>  <strong>Theorem 2</strong>: Communication is an equivalence relation, which satisfies:<br>
+  ① Reflexivity: \( i \leftrightarrow i \);<br>
+  ② Symmetry: \( i \leftrightarrow j \), then \( j \leftrightarrow i \);<br>
+  ③ Transitivity: \( i \leftrightarrow j \), \( j \leftrightarrow k \), then \( i \leftrightarrow k \).</p>
+<p>  <strong>Proof (Theorem 2)</strong>: It is obvious that ① and ② are true from the definition of communication, so we only need to prove ③. It follows from \( i \rightarrow j \), \( j \rightarrow k \) that there exist \( m, n \geq 0 \) such that \( p_{ij}^{(m)} > 0 \) and \( p_{jk}^{(n)} > 0 \). Since</p>
+$$
+p_{ik}^{(m+n)} \geq p_{ij}^{(m)} p_{jk}^{(n)}
+$$<p>we have \( p_{ik}^{(m+n)} > 0 \), which means \( i \rightarrow k \). The proof for \( k \rightarrow i \) is similar, completing the proof of ③, thus proving Theorem 2.</p>
+<p>  We classify any two communicating states into one <strong>class</strong>. According to the above theorem, states in the same class should communicate with each other, and any state cannot belong to two different classes simultaneously.</p>
+<p>  <strong>Definition 6</strong>: A Markov chain is called <strong>irreducible</strong> if it has only one class. Otherwise, it is called <strong>reducible</strong>.</p>
+<h3 id="period">Period
+</h3><p>  <strong>Definition 7</strong>: If the set \( \{n \mid n \ge 1, p_{ii}^{(n)} \ge 0\} \) exists, then the greatest common divisor \( d=d(i) \) of this set is called the <strong>period</strong> of state \( i \). If \( d \ge 1 \), then \( i \) is <strong>periodic</strong>; if \( d=1 \), then \( i \) is <strong>aperiodic</strong>. It is specially stipulated that when the above set is empty, the period of \( i \) is said to be <strong>infinite</strong>.</p>
+<p>  <strong>Note</strong>: Although \( i \) has a period \( d \), it does not mean that \( p_{ii}^{(nd)} \) is greater than \( 0 \) for all \( n \). However, it can be proven that \( p_{ii}^{(nd)}>0 \) when \( n \) is sufficiently large (see <a class="link" onclick="alert('Sorry, the related proof is not yet available~')"> proof </a>).</p>
+<p><span id="Theorem 3"></span>
+  <strong>Theorem 3</strong>: If states \( i \) and \( j \) belong to the same class, then \( d(i)=d(j) \).</p>
+<p>  <strong>Proof (Theorem 3)</strong>: From the definition of <a class="link" href="#reachable-communicating-class-reducible" >class</a>, we know \( i \leftrightarrow j \), which means there exist \( m, n \) such that \( p_{ij}^{(m)}>0 \) and \( p_{ji}^{(n)}>0 \). Therefore, by the <a class="link" href="#c-k-equation" >C-K equation</a> and <a class="link" onclick="alert('Sorry, \u0027Probability Theory and Mathematical Statistics\u0027 is not yet available~')"> the non-negativity of probability </a>, we have \( p_{ii}^{(m+n)}=\sum_{k \in S}{p_{ik}^{(m)} p_{ki}^{(n)}} \geq p_{ij}^{(m)}p_{ji}^{(n)}>0 \). Also, for all \( s \) such that \( p_{jj}^{(s)}>0 \), we have \( p_{ii}^{(m+s+n)}=\sum_{k \in S}{p_{ik}^{(m)}p_{ki}^{(s+n)}}=\sum_{k \in S, l \in S}{p_{ik}^{(m)}p_{kl}^{(s)}p_{li}^{(n)}} \geq p_{ij}^{(m)}p_{jj}^{(s)}p_{ji}^{(n)}>0 \). According to the <a class="link" href="#period" >period</a> definition, since \( p_{ii}^{(m+n)}>0 \) and \( p_{ii}^{(m+s+n)}>0 \), \( d(i) \) must divide both \( n+m \) and \( n+m+s \), and thus \( d(i) \) must also divide \( s \) (see <a class="link" onclick="alert('Sorry, \u0027Elementary Number Theory\u0027 is not yet available~')"> the basic properties of divisibility </a>). Note that we have assumed \( p_{jj}^{(s)}>0 \), so \( d(j) \) must also divide \( s \). Considering the arbitrariness of \( s \), we can directly set \( s=d(j) \), thus obtaining that \( d(i) \) divides \( d(j) \). By swapping the roles of \( i \) and \( j \) in the above proof, we can also obtain that \( d(j) \) divides \( d(i) \), hence \( d(i)=d(j) \) (see <a class="link" onclick="alert('Sorry, 'Elementary Number Theory' is not yet available~')">the basic properties of divisibility</a>).</p>
+<h3 id="recurrence">Recurrence
+</h3><h4 id="recurrence-and-transience">Recurrence and Transience
+</h4><p>  <strong>Definition 8</strong>: For any states \( i,j \), let \( f_{ij}^{(n)} \) denote the probability that starting from \( i \), the process reaches \( j \) for the first time in \( n \) steps. Then,</p>
+$$
+f_{ij}^{(n)}=
+\begin{cases}
+0 & n=0 \\[5pt]
+P\{X_n=j,\; X_k \ne j \text{ for } k=1,2,\cdots ,n-1 \mid X_0=i\} & n \ge 1
+\end{cases}
+$$<p>  Let \( f_{ij}=\sum_{n=1}^{\infty}{f_{ij}^{(n)}} \). If \( f_{jj}=1 \), then state \( j \) is called a <strong>recurrent state</strong>; if \( f_{jj}<1 \), then \( j \) is called a <strong>transient state</strong>.<br>
+   The meaning of \( f_{ij} \) can be derived as follows: From the definition of the set \( A_n \), \( A_n=\{X_n=j,\; X_k \ne j \text{ for } k=1,2,\cdots ,n-1 \mid X_0=i\} \), we know that different \( A_n \) are disjoint. The event \( \bigcup_{n=1}^{\infty}{A_n} \) represents the event that there is always at least one \( n \) such that the process reaches \( j \) from \( i \) in \( n \) steps. By the additivity of probabilities of disjoint events, we get:</p>
+$$
+P(\bigcup_{n=1}^{\infty}{A_n})=\sum_{n=1}^{\infty}{P(A_n)}=\sum_{n=1}^{\infty}f_{ij}^{(n)}=f_{ij}
+$$<p>  Therefore, \( f_{ij} \) represents the probability that the process can reach \( j \) from \( i \) within a finite number of steps. When \( i \) is a recurrent state, starting from \( i \), it will return to \( i \) with probability 1 within a finite number of steps. When \( i \) is a transient state, starting from \( i \), it will with probability \( 1-f_{ii} \) never return to \( i \) (i.e., it will pass through \( i \)).<br>
+   For a recurrent state \( i \), define</p>
+$$
+\mu_i=\sum_{n=1}^{\infty}{nf_{ii}^{(n)}}
+$$<p>  which represents the expected number of steps (time) needed to return to \( i \) starting from \( i \).</p>
+<h4 id="positive-recurrence-null-recurrence-ergodicity-absorption">Positive Recurrence, Null Recurrence, Ergodicity, Absorption
+</h4><p>  <strong>Definition 9</strong>: For a recurrent state \( i \), if \( \mu_i<+\infty \), then \( i \) is called a <strong>positive recurrent state</strong>; if \( \mu_i=+\infty \), then \( i \) is called a <strong>null recurrent state</strong>. Specifically, if \( i \) is positively recurrent and <a class="link" href="#period" >aperiodic</a>, then it is called an <strong>ergodic state</strong>. If \( i \) is an ergodic state and \( f_{ii}^{(1)}=1 \), it is called an <strong>absorbing state</strong>. In this case, it is clear that \( \mu_i=1 \).</p>
+<h3 id="proofs-of-some-properties">Proofs of Some Properties
+</h3><h4 id="recurrence-limits-determination">Recurrence Limits Determination
+</h4><p><span id="Theorem 4"></span>
+  <strong>Theorem 4</strong>: State $i$ is a recurrent state if and only if $\displaystyle\sum_{n=0}^{\infty}{p_{ii}^{(n)}}=+\infty$ . When state $i$ is transient,</p>
+$$
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}=\frac{1}{1-f_{ii}}
+$$<p>  Thus, we have $\lim_{n \rightarrow \infty}p_{ii}^{(n)}=0$ in this case.</p>
+<p>  To prove <a class="link" href="#theorem4" ><strong>Theorem 4</strong></a>, we need to first prove <a class="link" href="#conclusion1" >Conclusion 1</a> and <a class="link" href="#lemma1" >Lemma 1</a>.</p>
+<p><span id="Conclusion 1"></span>
+  <strong>Conclusion 1</strong>: For any states $i,j$,</p>
+$$
+f_{ij}^{(l+1)}=\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
+$$<p>  <strong>Proof (Conclusion 1)</strong>: By the <a class="link" href="#recurrence" >definition of $f_{ij}^{(n)}$</a>, <a class="link" href="#markov-property" >Markov property</a>, <a class="link" href="#time-homogeneous-markov-chain" >time-homogeneity</a>, and the Total Probability Theorem,</p>
+$$
+\begin{aligned}
+f_{ij}^{(l+1)}=&P\{X_{l+1}=j, X_m \ne j (m=1,2,\cdots ,l) \;|\; X_0=i\}\quad (\text{definition of } f_{ij}^{(n)})\\[5pt]
+=&\sum_{k \ne j,\, k \in S}{P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l), X_1=k \;|\; X_0=i\}} \, (\text{Total Probability Theorem})\\
+=&\sum_{k \ne j,\, k \in S}{\frac{P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l), X_1=k, X_0=i\}}{P\{X_0=i\}}}\\
+=&\sum_{k \ne j,\, k \in S}{\frac{P\{X_1=k, X_0=i\}}{P\{X_0=i\}}\frac{P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l), X_1=k, X_0=i\}}{P\{X_1=k, X_0=i\}}}\\
+=&\sum_{k \ne j,\, k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l)\;|\;X_1=k, X_0=i\}}\\
+=&\sum_{k \ne j,\, k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l)\;|\;X_1=k\}} \, (\text{Markov property})\\
+=&\sum_{k \ne j,\, k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_l=j, X_m \ne j (m=1,\cdots ,l-1)\;|\;X_0=k\}} \, (\text{time-homogeneity})\\
+=&\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
+\end{aligned}
+$$<p><span id="Lemma 1"></span>
+  <strong>Lemma 1</strong>: For any states $i,j$ and $1 \le n &lt; \infty$,</p>
+$$
+p_{ij}^{(n)}=\sum_{l=1}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}
+$$<p>  <strong>Proof (Lemma 1)</strong>: Using mathematical induction. For $n=1$, since $p_{ij}^{(1)}=f_{ij}^{(1)}$, it is easy to prove that <a class="link" href="#theorem4" >Equation (14)</a> holds.<br>
+  Assuming for $n-1$, we have $p_{ij}^{(n-1)}=\displaystyle\sum_{l=1}^{n-1}{f_{ij}^{(l)}p_{jj}^{(n-1-l)}}$.<br>
+  When $n$ is taken, using the <a class="link" href="#c-k-equation" >C-K equation</a>, the inductive hypothesis, and <a class="link" href="#conclusion1" >Conclusion 1</a>, we can derive</p>
+$$
+\begin{aligned}
+p_{ij}^{(n)}&=\sum_{k \in S}{p_{ik}^{(1)}p_{kj}^{(n-1)}} \quad (\text{C-K equation})\\
+&=p_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\, k \in S}{p_{ik}^{(1)}p_{kj}^{(n-1)}}\\
+&=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}p_{kj}^{(n-1)}} \, (\text{for } n=1)\\
+&=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}\left(\sum_{l=1}^{n-1}{f_{kj}^{(l)}p_{jj}^{(n-1-l)}}\right)} \, (\text{inductive hypothesis for } n-1)\\
+&=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{\left(\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}\right)p_{jj}^{(n-1-l)}}\\
+&=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{f_{ij}^{(l+1)}p_{jj}^{(n-1-l)}} \, (\text{Lemma 1)}\\
+&=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=2}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}\\
+&=\sum_{l=1}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}
+\end{aligned}
+$$<p>  Now, we can use <a class="link" href="#lemma1" >Lemma 1</a> to prove <a class="link" href="#theorem4" ><strong>Theorem 4</strong></a>.</p>
+<p>  <strong>Proof (Theorem 4)</strong>:</p>
+$$
+\begin{aligned}
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}=&\:p_{ii}^{(0)}+\sum_{n=1}^{\infty}{p_{ii}^{(n)}}\\
+=&\:1+\sum_{n=1}^{\infty}\left(\sum_{l=1}^{n}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\right) \, (\text{Lemma 1})\\
+=&\:1+\sum_{l=1}^{\infty}\sum_{n=l}^{\infty}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\\
+=&\:1+\sum_{l=1}^{\infty}\sum_{m=0}^{\infty}{f_{ii}^{(l)}p_{ii}^{(m)}}\\
+=&\:1+\left(\sum_{l=1}^{\infty}{f_{ii}^{(l)}}\right)\left(\sum_{n=0}^{\infty}{p_{ii}^{(n)}}\right)\\
+=&\:1+f_{ii}\left(\sum_{n=0}^{\infty}{p_{ii}^{(n)}}\right)
+\end{aligned}
+$$<p>  With the same term on both sides, $\displaystyle\sum_{n=0}^{\infty}{p_{ii}^{(n)}}$, we solve the equation to get</p>
+$$
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}=\frac{1}{1-f_{ii}}
+$$<p>  Therefore,</p>
+$$
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}\text{ converges if and only if } f_{ii}<1\text{;}
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}\text{ diverges iff } f_{ii}=1
+$$<h4 id="communicating-recurrent-states-are-achievable">Communicating Recurrent States are Achievable
+</h4><p><span id="Lemma 2"></span>
+  <strong>Lemma 2</strong>: If $i \leftrightarrow j$ and $i$ is a recurrent state, then $f_{ji}=1$.</p>
+<p>  <strong>Proof (Lemma 2)</strong>: By contradiction. Suppose $f_{ji}&lt;1$, then starting from $j$ does not necessarily reach $i$ in a finite number of steps. But since $i \rightarrow j$, starting from $i$ must reach $j$ in finite steps. This means that if the process goes from $i$ through $j$, it will not necessarily return to $i$ in finite steps, which contradicts the recurrence of $i$. Therefore, $f_{ij}=1$ is established.</p>
+<h4 id="recurrence-is-a-class-property">Recurrence is a Class Property
+</h4><p><span id="Theorem 5"></span>
+  <strong>Theorem 5</strong>: Recurrence is a class property.<br>
+  <strong>Proof (Theorem 5)</strong>: First, prove that if $i \leftrightarrow j$, then both $i,j$ are either recurrent states or transient states.<br>
+  Since $i \leftrightarrow j$, there exist $n, m$ such that $p_{ij}^{(n)}&gt;0$, $p_{ji}^{(m)}&gt;0$, by the <a class="link" href="#c-k-equation" >C-K equation</a> and <a class="link" href="#theorem3" >the expansion technique used in Theorem 3 proof</a>, we have</p>
+$$
+p_{ii}^{(n+m+l)} \ge p_{ij}^{(n)}p_{jj}^{(l)}p_{ji}^{(m)}\\[5pt]
+p_{jj}^{(n+m+l)} \ge p_{ji}^{(n)}p_{ii}^{(l)}p_{ij}^{(m)}
+$$<p>  Summing both sides yields</p>
+$$
+\sum_{l=0}^{\infty}{p_{ii}^{(n+m+l)}} \ge \sum_{l=0}^{\infty}{p_{ij}^{(n)}p_{jj}^{(l)}p_{ji}^{(m)}}\\[5pt]
+\sum_{l=0}^{\infty}{p_{jj}^{(n+m+l)}} \ge \sum_{l=0}^{\infty}{p_{ji}^{(n)}p_{ii}^{(l)}p_{ij}^{(m)}}
+$$<p>  Considering that $\displaystyle\sum_{l=0}^{n+m-1}{p_{ii}^{(l)}}$ and $\displaystyle\sum_{l=0}^{n+m-1}{p_{jj}^{(l)}}$ are both finite, we can write the above as:</p>
+$$
+\sum_{l=0}^{\infty}{p_{ii}^{(l)}} - \sum_{l=0}^{n+m-1}{p_{ii}^{(l)}} \ge p_{ij}^{(n)}p_{ji}^{(m)}\sum_{l=0}^{\infty}{p_{jj}^{(l)}}\\[5pt]
+\sum_{l=0}^{\infty}{p_{jj}^{(l)}} - \sum_{l=0}^{n+m-1}{p_{jj}^{(l)}} \ge p_{ji}^{(n)}p_{ij}^{(m)}\sum_{l=0}^{\infty}{p_{ii}^{(l)}}
+$$<p>  Thus, we can intuitively see that if $\displaystyle\sum_{l=0}^{n+m-1}{p_{ii}^{(l)}}$ and $\displaystyle\sum_{l=0}^{n+m-1}{p_{jj}^{(l)}}$ are infinite, the other must also be infinite; if one is finite, the other is also finite. Thus, both $i$ and $j$ are either recurrent or transient states. Therefore, recurrence is a class property, such that if any member of the class satisfies it, all other members satisfy it; conversely, if any member of the class does not satisfy it, all other members do not.<br>
+  Furthermore, if $i,j$ are both recurrent states, they are either both positively recurrent or null recurrent. The proof for this is given in <a class="link" onclick="alert('Sorry, not finished yet~')">proof</a> below.</p>
+<h4 id="state-space-decomposition-theorem">State Space Decomposition Theorem
+</h4><p>  <strong>Theorem 6 (State Space Decomposition Theorem)</strong>: The state space $S$ of any Markov chain can be uniquely decomposed into a finite or countable number of mutually exclusive subsets $D,C_1,C_2,\cdots$ such that:<br>
+  (1) Each $C_n$ is a closed set consisting of recurrent states, and $D$ consists of all transient states.<br>
+  (2) States within $C_n$ are of the same type, either all positively recurrent or all null recurrent. They have the same period, and $f_{ij}=1$ for all $i,j \in C_n$.<br>
+  (3) States within $C_n$ cannot reach any state in $D$.</p>
+<p>  <strong>Proof (Theorem 6)</strong>: Let $C$ be the set of all recurrent states, then $D=S-C$ is the set of all transient states. Noting that the communication within $C$ is an equivalence relation, by <a class="link" onclick="alert('Sorry, Discrete Mathematics course not available yet~')">equivalence relations and set partitioning</a>, $C$ can be partitioned into $C_1 \cup C_2 \cup \cdots$, where each $C_n$ is a closed set consisting of recurrent states that communicate. Thus, $S=D \cup C_1 \cup C_2 \cup \cdots$. Assumptions and (1) of the theorem are proved. By <a class="link" href="#theorem5" >Theorem 5</a>, states within $C_n$ are all of the same type (either positively or null recurrent), and by <a class="link" href="#theorem3" >Theorem 3</a>, states within $C_n$ have the same period. By <a class="link" href="#lemma2" >Lemma 2</a>, $f_{ij}=1$ for all $i,j \in C_n$. (2) is proved. For (3), it can be proven by contradiction. Suppose a state $i$ in $C_n$ can reach a state $j$ in $D$. Since $i$ is recurrent, after reaching $j$, the process must return to $i$ again, and by the assumption, it might return to $j$ again. Therefore, starting from $j$, it is possible to return to $j$, which contradicts the transient nature of $j$. Thus, the assumption is false. Hence, states within $C_n$ cannot reach any state in $D$. (3) is proved. Theorem 6 is thus proved.</p>
+<h4 id="irreducible-markov-chain-transitions">Irreducible Markov Chain Transitions
+</h4><p><em><strong>Theorem 7</strong></em>: For an irreducible Markov chain with period \( d \), its state space \( S \) can uniquely be decomposed into \( d \) mutually disjoint subsets, that is</p>
+$$
+S=\bigcup_{r=0}^{d-1}{S_r},\quad S_r \bigcap S_s=\varnothing,\quad r \ne S
+$$<p>Furthermore, starting from any state in \( S_r \), the next transition in 1 step must fall into \( S_{r+1} \) (where \( S_d=S_0 \)).</p>
+<p><em><strong>Proof (Theorem 7)</strong></em>: Let&rsquo;s first define the subsets \( S_r \):<br>
+Arbitrarily choose a state \( i \), and for each \( r=0,1,\cdots,d-1 \), define the set</p>
+$$
+S_r=\{j\;|\; \text{there exists } n \ge 0 \text{ such that } p_{ij}^{(nd+r)}>0\}
+$$<p>Since \( S \) is irreducible, we know that starting from \( i \), every state in \( S \) can be visited, and \( nd+r (r=0,1,\cdots,d-1) \) can cover each time state starting from \( i \). Hence, the union of all \( S_r \) must be \( S \), i.e., \(\bigcup_{r=0}^{d-1}{S_r}=S\).<br>
+Next, we prove that \( S_r \) are disjoint. Using a proof by contradiction, suppose there exist \( S_r, S_s \) and a state \( j \) such that \( j \in S_r \bigcap S_s \). According to the definition of \( S_r \), there exist \( n, m \) such that \( p_{ij}^{(nd+r)}>0 \) and \( p_{ij}^{(md+s)}>0 \). Since \( i \leftrightarrow j \), there exists \( h \) such that \( p_{ji}^{(h)}>0 \). Using the <a class="link" href="https://en.wikipedia.org/wiki/Chapman%E2%80%93Kolmogorov_equation"  target="_blank" rel="noopener"
+    >Chapman-Kolmogorov equations</a> and the technique used in <a class="link" href="#theorem3" >Theorem 3 proof</a> for expansion, we get:</p>
+$$
+p_{ii}^{(nd+r+h)} \ge p_{ij}^{(nd+r)} p_{ji}^{(h)}>0\\[5pt]
+p_{ii}^{(md+s+h)} \ge p_{ij}^{(md+s)} p_{ji}^{(h)}>0
+$$<p>According to the <a class="link" href="https://en.wikipedia.org/wiki/Period_%28Markov_chain%29"  target="_blank" rel="noopener"
+    >definition of period</a>, both \( nd+r+h \) and \( md+s+h \) must be divisible by \( d \). Skipping the initial \( n \) and \( m \), we get that \( r+h \) and \( s+h \) must be divisible by \( d \). Hence, their difference \( (r+h)-(s+h)=r-s \) must be divisible by \( d \) (see the properties of divisibility in elementary number theory). Given \( 0 \le r \le d-1, 0 \le s \le d-1 \), \( 0 \le r-s \le d-1 \), yielding \( r-s \) can only be \( 0 \), which means \( r=s \). Therefore, \( S_r = S_s \), contradicting the assumption, so \( S_r \) are disjoint.<br>
+Next, we prove that starting from any state in \( S_r \), the next transition in 1 step must fall into \( S_{r+1} \) (where \( S_d=S_0 \)). This is equivalent to proving that for any \( j \in S_r \), we have \( \sum_{k \in S_{r+1}}{p_{jk}^{(1)}}=1 \). In fact, according to the <a class="link" href="#irreducible-markov-chain-transitions" >definition of \( S_r \)</a>, \( p_{ij}^{(nd+r)}>0 \). From the <a class="link" href="#irreducible-markov-chain-transitions" >definition of \( S_r \)</a>, we know that for \( k \notin S_{r+1} \), we must have \( p_{ik}^{(nd+r+1)}=0 \). Therefore, using the <a class="link" href="https://en.wikipedia.org/wiki/Chapman%E2%80%93Kolmogorov_equation"  target="_blank" rel="noopener"
+    >Chapman-Kolmogorov equations</a> and the technique used in <a class="link" href="#theorem3" >Theorem 3 proof</a> for expansion, we deduce:</p>
+$$
+0=p_{ik}^{(nd+r+1)} \ge p_{ij}^{(nd+r)} p_{jk}^{(1)}>0
+$$<p>Hence, \( p_{jk}^{(1)}=0 \). Thus,</p>
+$$
+1 = \sum_{k \in S}{p_{jk}} = \sum_{k \in S_{r+1}}{p_{jk}^{(1)}} + \sum_{k \notin S_{r+1}}{p_{jk}^{(1)}} = \sum_{k \in S_{r+1}}{p_{jk}^{(1)}}
+$$<p>Finally, we prove the uniqueness of the decomposition. This is equivalent to proving that \( \{S_k\} \) is independent of the initial \( i \). That is, for any \( i, i^{\prime} \), the decompositions \( \{S_k\}, \{S_k^{\prime}\} \) generated by them are necessarily equal.<br>
+First, we prove that for any subset \( S_r \) in \( \{S_k\} \), there exists a subset \( S_s^{\prime} \) which exactly matches its states. First, we prove that all \( j \in S_r \) can only belong to a fixed set in \( \{S_k^{\prime}\} \). Suppose \( i^{\prime} \) satisfies \( i^{\prime} \in S_s \). Because starting from any state in \( S_k \) it must transfer to \( S_{k+1} \) in 1 step, when \( s \le r \), the transition from \( i^{\prime} \) to \( j \) can only happen in the following steps:</p>
+$$
+\begin{cases}
+S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r\\
+S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r \rightarrow S_{r+1} \rightarrow \cdots \rightarrow S_{d-1} \rightarrow S_0 \rightarrow S_1 \rightarrow \cdots \rightarrow S_r\\
+S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r \rightarrow \overbrace{S_{r+1} \rightarrow \cdots \rightarrow S_{d-1} \rightarrow S_0 \rightarrow S_1 \rightarrow \cdots \rightarrow S_r}^{\text{repeat 2 times}}\\
+\quad \vdots
+\end{cases}
+$$<p>That is, starting from \( i^{\prime} \), \( j \) can only be reached in \( r-s, r-s+d, r-s+2d, \ldots \) steps. We notice this aligns with the definition of \( S_{r-s}^{\prime} \). Hence, \( j \in S_{r-s}^{\prime} \). Conversely, for any \( j^{\prime} \in S_{r-s}^{\prime} \), the transition from \( i \) to \( i^{\prime} \) requires \( s \) steps, and from \( i^{\prime} \) to \( j^{\prime} \) requires \( r-s \) steps, making the total steps from \( i \) to \( j^{\prime} \) is \( r \), thus \( j^{\prime} \in S_r \). Therefore, \( S_r \) and \( S_{r-s}^{\prime} \) are exactly equivalent.<br>
+Similarly, when \( s > r \), using the same methods, we can prove that starting from \( i^{\prime} \), \( j \) can only be reached in \( d-(s-r), 2d-(s-r), \cdots \) steps, making \( j \) fall into \( S_{d-(s-r)}^{\prime} \). Again, it can be proved that \( S_r \) and \( S_{d-(s-r)}^{\prime} \) are exactly equivalent. In summary, we have</p>
+$$
+\begin{cases}
+S_r \text{ and } S_{r-s}^{\prime} \text{ are exactly equivalent, if } r \ge s \\[5pt]
+S_r \text{ and } S_{d-(s-r)}^{\prime} \text{ are exactly equivalent, if } r < s
+\end{cases}
+$$<p>Thus, we can easily prove that \( \{S_k\} \) and \( \{S_k^{\prime}\} \) correspond one-to-one. Hence, the decomposition is unique.</p>
+<h2 id="limit-theorem-and-invariant-distribution">Limit Theorem and Invariant Distribution
+</h2><h3 id="limit-theorem">Limit Theorem
+</h3><p><em><strong>Theorem 8 (Limit Theorem)</strong></em>: If state \( j \) is a recurrent state with period \( d \), then</p>
+$$
+\lim\limits_{n \rightarrow \infty} p_{jj}^{(nd)} = \frac{d}{\mu_j}
+$$<p><em><strong>Proof (Theorem 8)</strong></em>: For \( n \ge 0 \), let:</p>
+$$
+r_n=\sum_{v=n+1}^{\infty}{f_v}
+$$<p>where \( f_v=f_{jj}^{(v)} \). Then,</p>
+$$
+\begin{aligned}
+\sum_{n=0}^{\infty} r_n =& \sum_{n=0}^{\infty} \sum_{v=n+1}^{\infty} f_v\\
+=&(f_1 + f_2 + f_3 + \cdots) + (f_2 + f_3 + \cdots) + (f_3 + \cdots) + \cdots\\[5pt]
+=&1 \cdot f_1 + 2 \cdot f_2 + 3 \cdot f_3 + \cdots\\
+=&\sum_{n=1}^{\infty} n f_n = \mu_j
+\end{aligned}
+$$<p>From the definition of \( r_n \), we have \( f_n=r_{v-1}-r_v \). Substituting this into <a class="link" href="#lemma1" >Lemma 1</a> and denoting \( p_v = p_{jj}^{(v)} \), we get</p>
+$$
+p_n=p_{jj}^{(n)} = \sum_{l=1}^{n} f_{jj}^{(l)} p_{jj}^{(n-l)} = -\sum_{v=1}^{n} (r_v - r_{v-1}) p_{n-v}
+$$<p>Note that \( j \) is a recurrent state, so \( r_0=1 \). The above formula can then be written as</p>
+$$
+\sum_{v=0}^{n} r_v p_{n-v} = \sum_{v=0}^{n-1} r_v p_{n-1-v}
+$$<p>This formula indicates a very clear conclusion: \( \sum_{v=0}^{n} r_v p_{n-v} \) is independent of \( n \). Hence,</p>
+$$
+\sum_{v=0}^{n} r_v p_{n-v} = r_0 p_0 = 1, \quad n \ge 0
+$$<p>Let \( \lambda = \limsup\limits_{n \rightarrow \infty} p_{nd} \). Note that when \( k \) is not a multiple of \( d \), \( p_k=0 \), and \( p_{nd} \ge 0 \). By the definition of the <a class="link" href="https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior"  target="_blank" rel="noopener"
+    >limit superior</a>, we know:</p>
+$$
+\limsup\limits_{k \rightarrow \infty} p_k = \limsup\limits_{n \rightarrow \infty} p_{nd} = \lambda
+$$<p>Therefore, by the definition of the <a class="link" href="https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior"  target="_blank" rel="noopener"
+    >limit superior</a>, there must be a subsequence whose limit equals \( \lambda \). Note again that when \( k \) is not a multiple of \( d \), \( p_k=0 \). Hence, this subsequence can be taken from \( \{nd\} \). Therefore, there exists a subsequence \( \{n_m\}, n_m \rightarrow \infty \) such that \( \lambda = \lim\limits_{m \rightarrow \infty} p_{n_md} \). For any \( s \) such that \( f_s > 0 \), using <a class="link" href="#lemma1" >Lemma 1</a> and the properties of the <a class="link" href="https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior"  target="_blank" rel="noopener"
+    >limit superior</a>, we obtain</p>
+$$
+\begin{aligned}
+\lambda =& \liminf\limits_{m \rightarrow \infty} p_{n_md} = \liminf\limits_{m \rightarrow \infty} p_{jj}^{(n_md)} = \liminf\limits_{m \rightarrow \infty} \sum_{v=1}^{n_md} f_{jj}^{(v)} p_{jj}^{(n_md-v)}\\
+=& \liminf\limits_{m \rightarrow \infty} \sum_{v=1}^{n_md} f_v p_{n_md-v} = \liminf\limits_{m \rightarrow \infty} \left( f_s p_{n_md-s} + \sum_{v=1, v \ne s}^{n_md} f_v p_{n_md-v} \right)\\
+\le &\liminf\limits_{m \rightarrow \infty} f_s p_{n_md-s} + \liminf\limits_{m \rightarrow \infty} \left( \sum_{v=1, v \ne s}^{n_md} f_v p_{n_md-v} \right) \quad \text{(using limit inferior properties)}
+\end{aligned}
+$$<p>Using the <a class="link" href="https://en.wikipedia.org/wiki/Non-negative_matrix"  target="_blank" rel="noopener"
+    >non-negativity of probabilities</a> and the properties of the <a class="link" href="https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior"  target="_blank" rel="noopener"
+    >limit superior</a>, we infer:</p>
+$$
+\begin{aligned}
+\liminf\limits_{m \rightarrow \infty} \sum_{v=1, v \ne s}^{n_md} f_v p_{n_md-v} \le &\liminf\limits_{m \rightarrow \infty} \sum_{v=1, v \ne s}^{\infty} f_v p_{n_md-v} \quad \text{(non-negativity of probabilities)}\\
+\le &\sum_{v=1, v \ne s}^{\infty} \liminf\limits_{m \rightarrow \infty} f_v p_{n_md-v} \quad \text{(using limit inferior properties)}\\
+\le &\sum_{v=1, v \ne s}^{\infty} \liminf\limits_{m \rightarrow \infty} f_v \limsup\limits_{m \rightarrow \infty} p_{n_md-v} \quad \text{(property of products)}\\
+=&\sum_{v=1, v \ne s}^{\infty} f_v \limsup\limits_{m \rightarrow \infty} p_{n_md-v}\\
+\le &\sum_{v=1, v \ne s}^{\infty} f_v \limsup\limits_{m \rightarrow \infty} p_m \quad \text{(definition of limit superior)}\\
+=&\left( \sum_{v=1, v \ne s}^{\infty} f_v \right) \limsup\limits_{m \rightarrow \infty} p_m
+\end{aligned}
+$$<p>Note that state \( j \) is <a class="link" href="https://en.wikipedia.org/wiki/Recurrent_event"  target="_blank" rel="noopener"
+    >recurrent</a>, so \( \sum_{v=1}^{\infty} f_v=1 \), meaning \( \sum_{v=1, v \ne s}^{\infty} f_v = 1 - f_s \). As previously stated, \( \lambda = \limsup\limits_{m \rightarrow \infty} p_m \). Substituting this back into \( \lambda \) yields:</p>
+$$
+\lambda \le f_s \liminf\limits_{m \rightarrow \infty} p_{n_md-s} + (1 - f_s) \lambda
+$$<p>Thus,</p>
+<p>$$
+\liminf\limits_{m \rightarrow \infty} p_{n_md-s} \ge \lambda</p>
+
+    </div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/en/tags/markov-process/">Markov Process</a>
+        
+            <a href="/en/tags/markov-chain/">Markov Chain</a>
+        
+            <a href="/en/tags/c-k-equation/">C-K Equation</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on Sep 20, 2024 16:37 UTC
+        </span>
+    </section><section class="page-visit-count">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+</svg>
+        <span id="busuanzi_container_page_pv">
+  This article has been read for <span id="busuanzi_value_page_pv"></span> times
+</span>
+    </section>
+</footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm&#43;ZU03BU6SQNC66uf4l5&#43;"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/&#43;rCMvRwr4yROQP43s0Xk"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js"integrity="sha384-ifpG&#43;NlgMq0kvOSGqGQxW1mJKpjjMDmZdpKGq3tbvD3WPhyshCEEYClriK/wRVU0"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="BrassWrench/brasswrench.github.io"
+        issue-term="pathname"
+        
+        label="comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    
+    <section class="running-time">
+        
+        <span id="runningdays" class="running-days"></span>
+    </section>
+
+    <section class="statistics">
+        
+        
+        
+            
+            
+        
+            
+            
+        
+        <span>This library has published 2 articles with a total of 4185 words</span>
+    </section>
+
+    <section class="site-visit-count">
+        <span id="busuanzi_container_site_uv">
+  This library has been visited by <span id="busuanzi_value_site_uv"></span> people
+</span>
+        <span id="busuanzi_container_site_pv">
+   for <span id="busuanzi_value_site_pv"></span> times
+</span>
+    </section>
+    <section class="copyright">
+        &copy;
+        
+        2024 Brass Wrench
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script><script type="text/javascript" src="/ts/custom.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script src="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.css" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+
+<script
+        src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/ribbon.min.js"
+        integrity="sha384-UEK8ZiP3VgFNP8KnKMKDmd4pAUAOJ59Y2Jo3ED2Z5qKQf6HLHovMxq7Beb9CLPUe"
+        crossorigin="anonymous"
+        size="300"
+        alpha="0.6"
+        zindex="-1"
+        defer
+></script>
+
+<script>
+
+    const translations = {
+        prefix: "This library has been running stably for ",
+        days: {
+            one: " day ",
+            other: " days "
+        },
+        hours: {
+            one: " hour ",
+            other: " hours "
+        },
+        minutes: {
+            one: " minute ",
+            other: " minutes "
+        },
+        seconds: {
+            one: " second",
+            other: " seconds"
+        }
+    };
+
+
+    function pluralize(number, translations) {
+        return number === 1 ? translations.one : translations.other;
+    }
+
+    function updateRunningTime() {
+        let s1 = new Date("2024-09-14T05:48:19Z");
+        let s2 = new Date();
+        let timeDifference = s2.getTime() - s1.getTime();
+
+        let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        let result = translations.prefix +
+            "<b>" +
+            days + pluralize(days, translations.days) +
+            hours + pluralize(hours, translations.hours) +
+            minutes + pluralize(minutes, translations.minutes) +
+            seconds + pluralize(seconds, translations.seconds);
+            + "</b>";
+
+        document.getElementById('runningdays').innerHTML = result;
+    }
+
+    window.onload = function() {
+        setInterval(updateRunningTime, 1);
+    }
+</script>
+
+
+
+    </body>
+</html>

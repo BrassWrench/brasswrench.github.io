@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>C-K Equation on Brass Wrench&#39;s Library</title>
+        <link>https://www.brasswrench.cn/en/tags/c-k-equation/</link>
+        <description>Recent content in C-K Equation on Brass Wrench&#39;s Library</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Brass Wrench</copyright>
+        <lastBuildDate>Fri, 20 Sep 2024 16:37:22 +0000</lastBuildDate><atom:link href="https://www.brasswrench.cn/en/tags/c-k-equation/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Random Process (Ⅳ): Markov Process</title>
+        <link>https://www.brasswrench.cn/en/posts/mathematics/stochastic_processes/markov_process/</link>
+        <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
+        
+        <guid>https://www.brasswrench.cn/en/posts/mathematics/stochastic_processes/markov_process/</guid>
+        <description>
+
+
+
+
+
+
+
+&lt;iframe
+  class=&#34;netease-cloud-music-frame&#34;
+  title=&#34;song&amp;#39;s 1968959950&#34;
+  frameborder=&#34;no&#34;
+  border=&#34;0&#34;
+  marginwidth=&#34;0&#34;
+  marginheight=&#34;0&#34;
+  width=&#34;100%&#34;
+  height=&#34;86&#34;
+  loading=&#34;lazy&#34;
+  src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=1968959950&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
+&lt;/iframe&gt;
+
+&lt;h1 id=&#34;markov-process&#34;&gt;Markov Process
+&lt;/h1&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction
+&lt;/h2&gt;&lt;p&gt;  There is a class of stochastic processes that possesses the so-called &amp;ldquo;memoryless property&amp;rdquo; (Markov property), which means to determine the future state of the process, knowing its current state is sufficient without needing to know its past states. Such processes are called Markov processes. This article will introduce the two simplest types of Markov processes: the discrete-time Markov chain (abbreviated as Markov chain) and the continuous-time Markov chain.&lt;/p&gt;
+&lt;h2 id=&#34;basic-concepts&#34;&gt;Basic Concepts
+&lt;/h2&gt;&lt;h3 id=&#34;definition-of-markov-chain&#34;&gt;Definition of Markov Chain
+&lt;/h3&gt;&lt;h4 id=&#34;markov-chain&#34;&gt;Markov Chain
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;Definition 1&lt;/strong&gt;: Given a stochastic process \( \{X_n, n=0,1,2,\cdots\} \), if it takes only a finite or countably infinite set of values \( E_0, E_1, E_2, \cdots \) (we label \( E_0, E_1, E_2 \) as \( \{0, 1, 2, \cdots\} \) and call them the states of the process, the set \( \{0, 1, 2 \cdots\} \) or its subset is referred to as the &lt;strong&gt;state space&lt;/strong&gt;). If for \( \{X_n, n=0,1,2,\cdots\} \) (generally considering its states are non-negative integers) and any \( n \geq 0 \) and states \( i, j, i_0, i_1 \cdots, i_{n-1} \), we have&lt;/p&gt;
+$$
+\begin{aligned}
+&amp;P\{X_{n+1}=j \;|\; X_0=i_0, X_1=i_1, X_2=i_2, \cdots, X_{n-1}=i_{n-1}, X_n=i\}\\[5pt]
+=&amp;P\{X_{n+1}=j \;|\; X_n=i\}
+\end{aligned}
+$$&lt;p&gt;  then the stochastic process \( \{X_n, n=0,1,2,\cdots\} \) is called a &lt;strong&gt;Markov chain&lt;/strong&gt;.&lt;/p&gt;
+&lt;h4 id=&#34;markov-property&#34;&gt;Markov Property
+&lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#markov-chain&#34; &gt;Definition 1&lt;/a&gt; characterizes the property of the Markov chain, thus called the &lt;strong&gt;Markov property&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;transition-probability&#34;&gt;Transition Probability
+&lt;/h3&gt;&lt;h4 id=&#34;transition-probability-1&#34;&gt;Transition Probability
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;Definition 2&lt;/strong&gt;: The conditional probability \( P\{X_{n+1}=j\;|\;X_n=i\} \) in &lt;a class=&#34;link&#34; href=&#34;#markov-chain&#34; &gt;Definition 1&lt;/a&gt; is called the &lt;strong&gt;one-step transition probability&lt;/strong&gt; of the Markov chain \( \{X_n,n=0,1,2,\cdots\} \), abbreviated as &lt;strong&gt;transition probability&lt;/strong&gt;.&lt;br&gt;
+  In general, the transition probability depends on states \( i, j \) and time \( n \).&lt;/p&gt;
+&lt;h4 id=&#34;time-homogeneous-markov-chain&#34;&gt;Time-Homogeneous Markov Chain
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;Definition 3&lt;/strong&gt;: If the transition probability of a Markov chain depends only on states \( i, j \) and not on \( n \), the Markov chain is called &lt;strong&gt;time-homogeneous&lt;/strong&gt;, denoted as \( p_{ij}=P\{X_{n+1}=j\;|\;X_n=i\} (n \geq 0) \); otherwise, it is called &lt;strong&gt;non-time-homogeneous&lt;/strong&gt;.&lt;br&gt;
+  This article only discusses time-homogeneous Markov chains and refers to them simply as Markov chains.&lt;/p&gt;
+&lt;h4 id=&#34;finite-chain-and-infinite-chain&#34;&gt;Finite Chain and Infinite Chain
+&lt;/h4&gt;&lt;p&gt;  When the states of a Markov chain are finite, it is called a &lt;strong&gt;finite chain&lt;/strong&gt;; otherwise, it is called an &lt;strong&gt;infinite chain&lt;/strong&gt;. In either case, we can arrange \( p_{ij} (i,j \in S) \) in the form of a matrix, denoted as&lt;/p&gt;
+$$
+\mathbf{P}=(p_{ij})=
+\begin{pmatrix}
+p_{00} &amp; p_{01} &amp; p_{02} &amp; p_{03} &amp; \cdots \\
+p_{10} &amp; p_{11} &amp; p_{12} &amp; p_{13} &amp; \cdots \\
+p_{20} &amp; p_{21} &amp; p_{22} &amp; p_{23} &amp; \cdots \\
+p_{30} &amp; p_{31} &amp; p_{32} &amp; p_{33} &amp; \cdots \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots \\
+\end{pmatrix}
+$$&lt;p&gt;  then \( \mathbf{P} \) is called the &lt;strong&gt;transition probability matrix&lt;/strong&gt;, often referred to as the &lt;strong&gt;transition matrix&lt;/strong&gt;. It is evident that \( p_{ij} (i,j \in S) \) has the properties&lt;/p&gt;
+$$
+\begin{aligned}
+&amp;(1)\; p_{ij} \geq 0, \;i,j\in S \\[5pt]
+&amp;(2)\; \sum_{j \in S}{p_{ij}} = 1, \forall i \in S
+\end{aligned}
+$$&lt;h3 id=&#34;n-step-transition-probability-and-c-k-equation&#34;&gt;n-Step Transition Probability and C-K Equation
+&lt;/h3&gt;&lt;h4 id=&#34;n-step-transition-probability&#34;&gt;n-Step Transition Probability
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;Definition 4&lt;/strong&gt;: The conditional probability&lt;/p&gt;
+$$
+p_{ij}^{(n)}=P\{X_{m+n}=j\;|\;X_m=i\}\quad i,j\in S,m \geq 0, n \geq 1
+$$&lt;p&gt;is called the &lt;strong&gt;n-step transition probability&lt;/strong&gt; of the Markov chain, and the corresponding \( \mathbf{P}^{(n)}=(p_{ij}^{(n)}) \) is called the &lt;strong&gt;n-step transition matrix&lt;/strong&gt;.&lt;br&gt;
+  When \( n=1 \), \( p_{ij}^{(1)}=p_{ij} \), \( \mathbf{P}^{(1)}=\mathbf{P} \). Moreover, it is stipulated that&lt;/p&gt;
+$$
+p_{ij}^{(0)}=
+\begin{cases}
+0, \quad i \neq j\\[5pt]
+1, \quad i=j
+\end{cases}
+$$&lt;p&gt;  Clearly, the n-step transition probability \( p_{ij}^{(n)} \) refers to the probability of the system transitioning from state \( i \) to state \( j \) after \( n \) steps, regardless of the intermediate states in the \( n-1 \) steps. The following theorem gives the relationship between \( p_{ij}^{(n)} \) and \( p_{ij} \).&lt;/p&gt;
+&lt;h4 id=&#34;c-k-equation&#34;&gt;C-K Equation
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;Theorem 1 (Chapman-Kolmogorov Equation, abbreviated C-K Equation)&lt;/strong&gt;: For all \( n,m \geq 0 \), \( i,j \in S \),&lt;/p&gt;
+&lt;p&gt;  ①&lt;/p&gt;
+$$
+p_{ij}^{(m+n)}=\sum_{k \in S}{p_{ik}^{(m)} p_{kj}^{(n)}}
+$$&lt;p&gt;  ②&lt;/p&gt;
+$$
+\mathbf{P}^{(n)}=\mathbf{P} \cdot \mathbf{P}^{(n-1)} = \mathbf{P} \cdot \mathbf{P} \cdot \mathbf{P}^{(n-2)} = \cdots = \mathbf{P}^n
+$$&lt;p&gt;  &lt;strong&gt;Proof (Theorem 1)&lt;/strong&gt;: By the &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;Sorry, \u0027Probability Theory and Mathematical Statistics\u0027 is not yet available~&#39;)&#34;&gt;law of total probability&lt;/a&gt;, we have&lt;/p&gt;
+$$
+\begin{aligned}
+p_{ij}^{(m+n)}&amp;=P\{X_{m+n}=j\;|\;X_0=i\}\\[5pt]
+&amp;=\frac{P\{X_{m+n}=j, X_0=i\}}{P\{X_0=i\}}\\[10pt]
+&amp;=\sum_{k \in S}{\frac{P\{X_{m+n}=j,X_m=k,X_0=i\}}{P\{X_0=i\}}} \text{(law of total probability)}\\
+&amp;=\sum_{k \in S}{\frac{P\{X_{m+n}=j,X_m=k,X_0=i\}}{P\{X_m=k,X_0=i\}}\frac{P\{X_m=k,X_0=i\}}{P\{X_0=i\}}}\\
+&amp;=\sum_{k \in S}{P\{X_{m+n}=j\;|\;X_m=k,X_0=i\}}P\{X_m=k\;|\;X_0=i\}\\
+&amp;=\sum_{k \in S}{p_{kj}^{(n)} p_{ik}^{(m)}}\\
+&amp;=\sum_{k \in S}{p_{ik}^{(m)} p_{kj}^{(n)}}
+\end{aligned}
+$$&lt;p&gt;  From matrix multiplication, it is easy to see that ② is a matrix form of ①.&lt;/p&gt;
+&lt;h2 id=&#34;classification-and-properties-of-states&#34;&gt;Classification and Properties of States
+&lt;/h2&gt;&lt;h3 id=&#34;reachable-communicating-class-reducible&#34;&gt;Reachable, Communicating, Class, Reducible
+&lt;/h3&gt;&lt;p&gt;  &lt;strong&gt;Definition 5&lt;/strong&gt;: A state \( i \) is said to &lt;strong&gt;reach&lt;/strong&gt; state \( j \) (\( i,j \in S \)) if there exists \( n \geq 0 \) such that \( p_{ij}^{(n)} \geq 0 \), denoted as \( i \rightarrow j \). If there is also \( j \rightarrow i \), then \( i \) and \( j \) are said to &lt;strong&gt;communicate&lt;/strong&gt;, denoted as \( i \leftrightarrow j \).&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Theorem 2&lt;/strong&gt;: Communication is an equivalence relation, which satisfies:&lt;br&gt;
+  ① Reflexivity: \( i \leftrightarrow i \);&lt;br&gt;
+  ② Symmetry: \( i \leftrightarrow j \), then \( j \leftrightarrow i \);&lt;br&gt;
+  ③ Transitivity: \( i \leftrightarrow j \), \( j \leftrightarrow k \), then \( i \leftrightarrow k \).&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Proof (Theorem 2)&lt;/strong&gt;: It is obvious that ① and ② are true from the definition of communication, so we only need to prove ③. It follows from \( i \rightarrow j \), \( j \rightarrow k \) that there exist \( m, n \geq 0 \) such that \( p_{ij}^{(m)} &gt; 0 \) and \( p_{jk}^{(n)} &gt; 0 \). Since&lt;/p&gt;
+$$
+p_{ik}^{(m+n)} \geq p_{ij}^{(m)} p_{jk}^{(n)}
+$$&lt;p&gt;we have \( p_{ik}^{(m+n)} &gt; 0 \), which means \( i \rightarrow k \). The proof for \( k \rightarrow i \) is similar, completing the proof of ③, thus proving Theorem 2.&lt;/p&gt;
+&lt;p&gt;  We classify any two communicating states into one &lt;strong&gt;class&lt;/strong&gt;. According to the above theorem, states in the same class should communicate with each other, and any state cannot belong to two different classes simultaneously.&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Definition 6&lt;/strong&gt;: A Markov chain is called &lt;strong&gt;irreducible&lt;/strong&gt; if it has only one class. Otherwise, it is called &lt;strong&gt;reducible&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;period&#34;&gt;Period
+&lt;/h3&gt;&lt;p&gt;  &lt;strong&gt;Definition 7&lt;/strong&gt;: If the set \( \{n \mid n \ge 1, p_{ii}^{(n)} \ge 0\} \) exists, then the greatest common divisor \( d=d(i) \) of this set is called the &lt;strong&gt;period&lt;/strong&gt; of state \( i \). If \( d \ge 1 \), then \( i \) is &lt;strong&gt;periodic&lt;/strong&gt;; if \( d=1 \), then \( i \) is &lt;strong&gt;aperiodic&lt;/strong&gt;. It is specially stipulated that when the above set is empty, the period of \( i \) is said to be &lt;strong&gt;infinite&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Note&lt;/strong&gt;: Although \( i \) has a period \( d \), it does not mean that \( p_{ii}^{(nd)} \) is greater than \( 0 \) for all \( n \). However, it can be proven that \( p_{ii}^{(nd)}&gt;0 \) when \( n \) is sufficiently large (see &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;Sorry, the related proof is not yet available~&#39;)&#34;&gt; proof &lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;Theorem 3&#34;&gt;&lt;/span&gt;
+  &lt;strong&gt;Theorem 3&lt;/strong&gt;: If states \( i \) and \( j \) belong to the same class, then \( d(i)=d(j) \).&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Proof (Theorem 3)&lt;/strong&gt;: From the definition of &lt;a class=&#34;link&#34; href=&#34;#reachable-communicating-class-reducible&#34; &gt;class&lt;/a&gt;, we know \( i \leftrightarrow j \), which means there exist \( m, n \) such that \( p_{ij}^{(m)}&gt;0 \) and \( p_{ji}^{(n)}&gt;0 \). Therefore, by the &lt;a class=&#34;link&#34; href=&#34;#c-k-equation&#34; &gt;C-K equation&lt;/a&gt; and &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;Sorry, \u0027Probability Theory and Mathematical Statistics\u0027 is not yet available~&#39;)&#34;&gt; the non-negativity of probability &lt;/a&gt;, we have \( p_{ii}^{(m+n)}=\sum_{k \in S}{p_{ik}^{(m)} p_{ki}^{(n)}} \geq p_{ij}^{(m)}p_{ji}^{(n)}&gt;0 \). Also, for all \( s \) such that \( p_{jj}^{(s)}&gt;0 \), we have \( p_{ii}^{(m+s+n)}=\sum_{k \in S}{p_{ik}^{(m)}p_{ki}^{(s+n)}}=\sum_{k \in S, l \in S}{p_{ik}^{(m)}p_{kl}^{(s)}p_{li}^{(n)}} \geq p_{ij}^{(m)}p_{jj}^{(s)}p_{ji}^{(n)}&gt;0 \). According to the &lt;a class=&#34;link&#34; href=&#34;#period&#34; &gt;period&lt;/a&gt; definition, since \( p_{ii}^{(m+n)}&gt;0 \) and \( p_{ii}^{(m+s+n)}&gt;0 \), \( d(i) \) must divide both \( n+m \) and \( n+m+s \), and thus \( d(i) \) must also divide \( s \) (see &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;Sorry, \u0027Elementary Number Theory\u0027 is not yet available~&#39;)&#34;&gt; the basic properties of divisibility &lt;/a&gt;). Note that we have assumed \( p_{jj}^{(s)}&gt;0 \), so \( d(j) \) must also divide \( s \). Considering the arbitrariness of \( s \), we can directly set \( s=d(j) \), thus obtaining that \( d(i) \) divides \( d(j) \). By swapping the roles of \( i \) and \( j \) in the above proof, we can also obtain that \( d(j) \) divides \( d(i) \), hence \( d(i)=d(j) \) (see &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;Sorry, &#39;Elementary Number Theory&#39; is not yet available~&#39;)&#34;&gt;the basic properties of divisibility&lt;/a&gt;).&lt;/p&gt;
+&lt;h3 id=&#34;recurrence&#34;&gt;Recurrence
+&lt;/h3&gt;&lt;h4 id=&#34;recurrence-and-transience&#34;&gt;Recurrence and Transience
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;Definition 8&lt;/strong&gt;: For any states \( i,j \), let \( f_{ij}^{(n)} \) denote the probability that starting from \( i \), the process reaches \( j \) for the first time in \( n \) steps. Then,&lt;/p&gt;
+$$
+f_{ij}^{(n)}=
+\begin{cases}
+0 &amp; n=0 \\[5pt]
+P\{X_n=j,\; X_k \ne j \text{ for } k=1,2,\cdots ,n-1 \mid X_0=i\} &amp; n \ge 1
+\end{cases}
+$$&lt;p&gt;  Let \( f_{ij}=\sum_{n=1}^{\infty}{f_{ij}^{(n)}} \). If \( f_{jj}=1 \), then state \( j \) is called a &lt;strong&gt;recurrent state&lt;/strong&gt;; if \( f_{jj}&lt;1 \), then \( j \) is called a &lt;strong&gt;transient state&lt;/strong&gt;.&lt;br&gt;
+   The meaning of \( f_{ij} \) can be derived as follows: From the definition of the set \( A_n \), \( A_n=\{X_n=j,\; X_k \ne j \text{ for } k=1,2,\cdots ,n-1 \mid X_0=i\} \), we know that different \( A_n \) are disjoint. The event \( \bigcup_{n=1}^{\infty}{A_n} \) represents the event that there is always at least one \( n \) such that the process reaches \( j \) from \( i \) in \( n \) steps. By the additivity of probabilities of disjoint events, we get:&lt;/p&gt;
+$$
+P(\bigcup_{n=1}^{\infty}{A_n})=\sum_{n=1}^{\infty}{P(A_n)}=\sum_{n=1}^{\infty}f_{ij}^{(n)}=f_{ij}
+$$&lt;p&gt;  Therefore, \( f_{ij} \) represents the probability that the process can reach \( j \) from \( i \) within a finite number of steps. When \( i \) is a recurrent state, starting from \( i \), it will return to \( i \) with probability 1 within a finite number of steps. When \( i \) is a transient state, starting from \( i \), it will with probability \( 1-f_{ii} \) never return to \( i \) (i.e., it will pass through \( i \)).&lt;br&gt;
+   For a recurrent state \( i \), define&lt;/p&gt;
+$$
+\mu_i=\sum_{n=1}^{\infty}{nf_{ii}^{(n)}}
+$$&lt;p&gt;  which represents the expected number of steps (time) needed to return to \( i \) starting from \( i \).&lt;/p&gt;
+&lt;h4 id=&#34;positive-recurrence-null-recurrence-ergodicity-absorption&#34;&gt;Positive Recurrence, Null Recurrence, Ergodicity, Absorption
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;Definition 9&lt;/strong&gt;: For a recurrent state \( i \), if \( \mu_i&lt;+\infty \), then \( i \) is called a &lt;strong&gt;positive recurrent state&lt;/strong&gt;; if \( \mu_i=+\infty \), then \( i \) is called a &lt;strong&gt;null recurrent state&lt;/strong&gt;. Specifically, if \( i \) is positively recurrent and &lt;a class=&#34;link&#34; href=&#34;#period&#34; &gt;aperiodic&lt;/a&gt;, then it is called an &lt;strong&gt;ergodic state&lt;/strong&gt;. If \( i \) is an ergodic state and \( f_{ii}^{(1)}=1 \), it is called an &lt;strong&gt;absorbing state&lt;/strong&gt;. In this case, it is clear that \( \mu_i=1 \).&lt;/p&gt;
+&lt;h3 id=&#34;proofs-of-some-properties&#34;&gt;Proofs of Some Properties
+&lt;/h3&gt;&lt;h4 id=&#34;recurrence-limits-determination&#34;&gt;Recurrence Limits Determination
+&lt;/h4&gt;&lt;p&gt;&lt;span id=&#34;Theorem 4&#34;&gt;&lt;/span&gt;
+  &lt;strong&gt;Theorem 4&lt;/strong&gt;: State $i$ is a recurrent state if and only if $\displaystyle\sum_{n=0}^{\infty}{p_{ii}^{(n)}}=+\infty$ . When state $i$ is transient,&lt;/p&gt;
+$$
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}=\frac{1}{1-f_{ii}}
+$$&lt;p&gt;  Thus, we have $\lim_{n \rightarrow \infty}p_{ii}^{(n)}=0$ in this case.&lt;/p&gt;
+&lt;p&gt;  To prove &lt;a class=&#34;link&#34; href=&#34;#theorem4&#34; &gt;&lt;strong&gt;Theorem 4&lt;/strong&gt;&lt;/a&gt;, we need to first prove &lt;a class=&#34;link&#34; href=&#34;#conclusion1&#34; &gt;Conclusion 1&lt;/a&gt; and &lt;a class=&#34;link&#34; href=&#34;#lemma1&#34; &gt;Lemma 1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;Conclusion 1&#34;&gt;&lt;/span&gt;
+  &lt;strong&gt;Conclusion 1&lt;/strong&gt;: For any states $i,j$,&lt;/p&gt;
+$$
+f_{ij}^{(l+1)}=\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
+$$&lt;p&gt;  &lt;strong&gt;Proof (Conclusion 1)&lt;/strong&gt;: By the &lt;a class=&#34;link&#34; href=&#34;#recurrence&#34; &gt;definition of $f_{ij}^{(n)}$&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;#markov-property&#34; &gt;Markov property&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;#time-homogeneous-markov-chain&#34; &gt;time-homogeneity&lt;/a&gt;, and the Total Probability Theorem,&lt;/p&gt;
+$$
+\begin{aligned}
+f_{ij}^{(l+1)}=&amp;P\{X_{l+1}=j, X_m \ne j (m=1,2,\cdots ,l) \;|\; X_0=i\}\quad (\text{definition of } f_{ij}^{(n)})\\[5pt]
+=&amp;\sum_{k \ne j,\, k \in S}{P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l), X_1=k \;|\; X_0=i\}} \, (\text{Total Probability Theorem})\\
+=&amp;\sum_{k \ne j,\, k \in S}{\frac{P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l), X_1=k, X_0=i\}}{P\{X_0=i\}}}\\
+=&amp;\sum_{k \ne j,\, k \in S}{\frac{P\{X_1=k, X_0=i\}}{P\{X_0=i\}}\frac{P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l), X_1=k, X_0=i\}}{P\{X_1=k, X_0=i\}}}\\
+=&amp;\sum_{k \ne j,\, k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l)\;|\;X_1=k, X_0=i\}}\\
+=&amp;\sum_{k \ne j,\, k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_{l+1}=j, X_m \ne j (m=2,\cdots ,l)\;|\;X_1=k\}} \, (\text{Markov property})\\
+=&amp;\sum_{k \ne j,\, k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_l=j, X_m \ne j (m=1,\cdots ,l-1)\;|\;X_0=k\}} \, (\text{time-homogeneity})\\
+=&amp;\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
+\end{aligned}
+$$&lt;p&gt;&lt;span id=&#34;Lemma 1&#34;&gt;&lt;/span&gt;
+  &lt;strong&gt;Lemma 1&lt;/strong&gt;: For any states $i,j$ and $1 \le n &amp;lt; \infty$,&lt;/p&gt;
+$$
+p_{ij}^{(n)}=\sum_{l=1}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}
+$$&lt;p&gt;  &lt;strong&gt;Proof (Lemma 1)&lt;/strong&gt;: Using mathematical induction. For $n=1$, since $p_{ij}^{(1)}=f_{ij}^{(1)}$, it is easy to prove that &lt;a class=&#34;link&#34; href=&#34;#theorem4&#34; &gt;Equation (14)&lt;/a&gt; holds.&lt;br&gt;
+  Assuming for $n-1$, we have $p_{ij}^{(n-1)}=\displaystyle\sum_{l=1}^{n-1}{f_{ij}^{(l)}p_{jj}^{(n-1-l)}}$.&lt;br&gt;
+  When $n$ is taken, using the &lt;a class=&#34;link&#34; href=&#34;#c-k-equation&#34; &gt;C-K equation&lt;/a&gt;, the inductive hypothesis, and &lt;a class=&#34;link&#34; href=&#34;#conclusion1&#34; &gt;Conclusion 1&lt;/a&gt;, we can derive&lt;/p&gt;
+$$
+\begin{aligned}
+p_{ij}^{(n)}&amp;=\sum_{k \in S}{p_{ik}^{(1)}p_{kj}^{(n-1)}} \quad (\text{C-K equation})\\
+&amp;=p_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\, k \in S}{p_{ik}^{(1)}p_{kj}^{(n-1)}}\\
+&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}p_{kj}^{(n-1)}} \, (\text{for } n=1)\\
+&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}\left(\sum_{l=1}^{n-1}{f_{kj}^{(l)}p_{jj}^{(n-1-l)}}\right)} \, (\text{inductive hypothesis for } n-1)\\
+&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{\left(\sum_{k \ne j,\, k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}\right)p_{jj}^{(n-1-l)}}\\
+&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{f_{ij}^{(l+1)}p_{jj}^{(n-1-l)}} \, (\text{Lemma 1)}\\
+&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=2}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}\\
+&amp;=\sum_{l=1}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}
+\end{aligned}
+$$&lt;p&gt;  Now, we can use &lt;a class=&#34;link&#34; href=&#34;#lemma1&#34; &gt;Lemma 1&lt;/a&gt; to prove &lt;a class=&#34;link&#34; href=&#34;#theorem4&#34; &gt;&lt;strong&gt;Theorem 4&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Proof (Theorem 4)&lt;/strong&gt;:&lt;/p&gt;
+$$
+\begin{aligned}
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}=&amp;\:p_{ii}^{(0)}+\sum_{n=1}^{\infty}{p_{ii}^{(n)}}\\
+=&amp;\:1+\sum_{n=1}^{\infty}\left(\sum_{l=1}^{n}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\right) \, (\text{Lemma 1})\\
+=&amp;\:1+\sum_{l=1}^{\infty}\sum_{n=l}^{\infty}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\\
+=&amp;\:1+\sum_{l=1}^{\infty}\sum_{m=0}^{\infty}{f_{ii}^{(l)}p_{ii}^{(m)}}\\
+=&amp;\:1+\left(\sum_{l=1}^{\infty}{f_{ii}^{(l)}}\right)\left(\sum_{n=0}^{\infty}{p_{ii}^{(n)}}\right)\\
+=&amp;\:1+f_{ii}\left(\sum_{n=0}^{\infty}{p_{ii}^{(n)}}\right)
+\end{aligned}
+$$&lt;p&gt;  With the same term on both sides, $\displaystyle\sum_{n=0}^{\infty}{p_{ii}^{(n)}}$, we solve the equation to get&lt;/p&gt;
+$$
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}=\frac{1}{1-f_{ii}}
+$$&lt;p&gt;  Therefore,&lt;/p&gt;
+$$
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}\text{ converges if and only if } f_{ii}&lt;1\text{;}
+\sum_{n=0}^{\infty}{p_{ii}^{(n)}}\text{ diverges iff } f_{ii}=1
+$$&lt;h4 id=&#34;communicating-recurrent-states-are-achievable&#34;&gt;Communicating Recurrent States are Achievable
+&lt;/h4&gt;&lt;p&gt;&lt;span id=&#34;Lemma 2&#34;&gt;&lt;/span&gt;
+  &lt;strong&gt;Lemma 2&lt;/strong&gt;: If $i \leftrightarrow j$ and $i$ is a recurrent state, then $f_{ji}=1$.&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Proof (Lemma 2)&lt;/strong&gt;: By contradiction. Suppose $f_{ji}&amp;lt;1$, then starting from $j$ does not necessarily reach $i$ in a finite number of steps. But since $i \rightarrow j$, starting from $i$ must reach $j$ in finite steps. This means that if the process goes from $i$ through $j$, it will not necessarily return to $i$ in finite steps, which contradicts the recurrence of $i$. Therefore, $f_{ij}=1$ is established.&lt;/p&gt;
+&lt;h4 id=&#34;recurrence-is-a-class-property&#34;&gt;Recurrence is a Class Property
+&lt;/h4&gt;&lt;p&gt;&lt;span id=&#34;Theorem 5&#34;&gt;&lt;/span&gt;
+  &lt;strong&gt;Theorem 5&lt;/strong&gt;: Recurrence is a class property.&lt;br&gt;
+  &lt;strong&gt;Proof (Theorem 5)&lt;/strong&gt;: First, prove that if $i \leftrightarrow j$, then both $i,j$ are either recurrent states or transient states.&lt;br&gt;
+  Since $i \leftrightarrow j$, there exist $n, m$ such that $p_{ij}^{(n)}&amp;gt;0$, $p_{ji}^{(m)}&amp;gt;0$, by the &lt;a class=&#34;link&#34; href=&#34;#c-k-equation&#34; &gt;C-K equation&lt;/a&gt; and &lt;a class=&#34;link&#34; href=&#34;#theorem3&#34; &gt;the expansion technique used in Theorem 3 proof&lt;/a&gt;, we have&lt;/p&gt;
+$$
+p_{ii}^{(n+m+l)} \ge p_{ij}^{(n)}p_{jj}^{(l)}p_{ji}^{(m)}\\[5pt]
+p_{jj}^{(n+m+l)} \ge p_{ji}^{(n)}p_{ii}^{(l)}p_{ij}^{(m)}
+$$&lt;p&gt;  Summing both sides yields&lt;/p&gt;
+$$
+\sum_{l=0}^{\infty}{p_{ii}^{(n+m+l)}} \ge \sum_{l=0}^{\infty}{p_{ij}^{(n)}p_{jj}^{(l)}p_{ji}^{(m)}}\\[5pt]
+\sum_{l=0}^{\infty}{p_{jj}^{(n+m+l)}} \ge \sum_{l=0}^{\infty}{p_{ji}^{(n)}p_{ii}^{(l)}p_{ij}^{(m)}}
+$$&lt;p&gt;  Considering that $\displaystyle\sum_{l=0}^{n+m-1}{p_{ii}^{(l)}}$ and $\displaystyle\sum_{l=0}^{n+m-1}{p_{jj}^{(l)}}$ are both finite, we can write the above as:&lt;/p&gt;
+$$
+\sum_{l=0}^{\infty}{p_{ii}^{(l)}} - \sum_{l=0}^{n+m-1}{p_{ii}^{(l)}} \ge p_{ij}^{(n)}p_{ji}^{(m)}\sum_{l=0}^{\infty}{p_{jj}^{(l)}}\\[5pt]
+\sum_{l=0}^{\infty}{p_{jj}^{(l)}} - \sum_{l=0}^{n+m-1}{p_{jj}^{(l)}} \ge p_{ji}^{(n)}p_{ij}^{(m)}\sum_{l=0}^{\infty}{p_{ii}^{(l)}}
+$$&lt;p&gt;  Thus, we can intuitively see that if $\displaystyle\sum_{l=0}^{n+m-1}{p_{ii}^{(l)}}$ and $\displaystyle\sum_{l=0}^{n+m-1}{p_{jj}^{(l)}}$ are infinite, the other must also be infinite; if one is finite, the other is also finite. Thus, both $i$ and $j$ are either recurrent or transient states. Therefore, recurrence is a class property, such that if any member of the class satisfies it, all other members satisfy it; conversely, if any member of the class does not satisfy it, all other members do not.&lt;br&gt;
+  Furthermore, if $i,j$ are both recurrent states, they are either both positively recurrent or null recurrent. The proof for this is given in &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;Sorry, not finished yet~&#39;)&#34;&gt;proof&lt;/a&gt; below.&lt;/p&gt;
+&lt;h4 id=&#34;state-space-decomposition-theorem&#34;&gt;State Space Decomposition Theorem
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;Theorem 6 (State Space Decomposition Theorem)&lt;/strong&gt;: The state space $S$ of any Markov chain can be uniquely decomposed into a finite or countable number of mutually exclusive subsets $D,C_1,C_2,\cdots$ such that:&lt;br&gt;
+  (1) Each $C_n$ is a closed set consisting of recurrent states, and $D$ consists of all transient states.&lt;br&gt;
+  (2) States within $C_n$ are of the same type, either all positively recurrent or all null recurrent. They have the same period, and $f_{ij}=1$ for all $i,j \in C_n$.&lt;br&gt;
+  (3) States within $C_n$ cannot reach any state in $D$.&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Proof (Theorem 6)&lt;/strong&gt;: Let $C$ be the set of all recurrent states, then $D=S-C$ is the set of all transient states. Noting that the communication within $C$ is an equivalence relation, by &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;Sorry, Discrete Mathematics course not available yet~&#39;)&#34;&gt;equivalence relations and set partitioning&lt;/a&gt;, $C$ can be partitioned into $C_1 \cup C_2 \cup \cdots$, where each $C_n$ is a closed set consisting of recurrent states that communicate. Thus, $S=D \cup C_1 \cup C_2 \cup \cdots$. Assumptions and (1) of the theorem are proved. By &lt;a class=&#34;link&#34; href=&#34;#theorem5&#34; &gt;Theorem 5&lt;/a&gt;, states within $C_n$ are all of the same type (either positively or null recurrent), and by &lt;a class=&#34;link&#34; href=&#34;#theorem3&#34; &gt;Theorem 3&lt;/a&gt;, states within $C_n$ have the same period. By &lt;a class=&#34;link&#34; href=&#34;#lemma2&#34; &gt;Lemma 2&lt;/a&gt;, $f_{ij}=1$ for all $i,j \in C_n$. (2) is proved. For (3), it can be proven by contradiction. Suppose a state $i$ in $C_n$ can reach a state $j$ in $D$. Since $i$ is recurrent, after reaching $j$, the process must return to $i$ again, and by the assumption, it might return to $j$ again. Therefore, starting from $j$, it is possible to return to $j$, which contradicts the transient nature of $j$. Thus, the assumption is false. Hence, states within $C_n$ cannot reach any state in $D$. (3) is proved. Theorem 6 is thus proved.&lt;/p&gt;
+&lt;h4 id=&#34;irreducible-markov-chain-transitions&#34;&gt;Irreducible Markov Chain Transitions
+&lt;/h4&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;Theorem 7&lt;/strong&gt;&lt;/em&gt;: For an irreducible Markov chain with period \( d \), its state space \( S \) can uniquely be decomposed into \( d \) mutually disjoint subsets, that is&lt;/p&gt;
+$$
+S=\bigcup_{r=0}^{d-1}{S_r},\quad S_r \bigcap S_s=\varnothing,\quad r \ne S
+$$&lt;p&gt;Furthermore, starting from any state in \( S_r \), the next transition in 1 step must fall into \( S_{r+1} \) (where \( S_d=S_0 \)).&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Proof (Theorem 7)&lt;/strong&gt;&lt;/em&gt;: Let&amp;rsquo;s first define the subsets \( S_r \):&lt;br&gt;
+Arbitrarily choose a state \( i \), and for each \( r=0,1,\cdots,d-1 \), define the set&lt;/p&gt;
+$$
+S_r=\{j\;|\; \text{there exists } n \ge 0 \text{ such that } p_{ij}^{(nd+r)}&gt;0\}
+$$&lt;p&gt;Since \( S \) is irreducible, we know that starting from \( i \), every state in \( S \) can be visited, and \( nd+r (r=0,1,\cdots,d-1) \) can cover each time state starting from \( i \). Hence, the union of all \( S_r \) must be \( S \), i.e., \(\bigcup_{r=0}^{d-1}{S_r}=S\).&lt;br&gt;
+Next, we prove that \( S_r \) are disjoint. Using a proof by contradiction, suppose there exist \( S_r, S_s \) and a state \( j \) such that \( j \in S_r \bigcap S_s \). According to the definition of \( S_r \), there exist \( n, m \) such that \( p_{ij}^{(nd+r)}&gt;0 \) and \( p_{ij}^{(md+s)}&gt;0 \). Since \( i \leftrightarrow j \), there exists \( h \) such that \( p_{ji}^{(h)}&gt;0 \). Using the &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Chapman%E2%80%93Kolmogorov_equation&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Chapman-Kolmogorov equations&lt;/a&gt; and the technique used in &lt;a class=&#34;link&#34; href=&#34;#theorem3&#34; &gt;Theorem 3 proof&lt;/a&gt; for expansion, we get:&lt;/p&gt;
+$$
+p_{ii}^{(nd+r+h)} \ge p_{ij}^{(nd+r)} p_{ji}^{(h)}&gt;0\\[5pt]
+p_{ii}^{(md+s+h)} \ge p_{ij}^{(md+s)} p_{ji}^{(h)}&gt;0
+$$&lt;p&gt;According to the &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Period_%28Markov_chain%29&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;definition of period&lt;/a&gt;, both \( nd+r+h \) and \( md+s+h \) must be divisible by \( d \). Skipping the initial \( n \) and \( m \), we get that \( r+h \) and \( s+h \) must be divisible by \( d \). Hence, their difference \( (r+h)-(s+h)=r-s \) must be divisible by \( d \) (see the properties of divisibility in elementary number theory). Given \( 0 \le r \le d-1, 0 \le s \le d-1 \), \( 0 \le r-s \le d-1 \), yielding \( r-s \) can only be \( 0 \), which means \( r=s \). Therefore, \( S_r = S_s \), contradicting the assumption, so \( S_r \) are disjoint.&lt;br&gt;
+Next, we prove that starting from any state in \( S_r \), the next transition in 1 step must fall into \( S_{r+1} \) (where \( S_d=S_0 \)). This is equivalent to proving that for any \( j \in S_r \), we have \( \sum_{k \in S_{r+1}}{p_{jk}^{(1)}}=1 \). In fact, according to the &lt;a class=&#34;link&#34; href=&#34;#irreducible-markov-chain-transitions&#34; &gt;definition of \( S_r \)&lt;/a&gt;, \( p_{ij}^{(nd+r)}&gt;0 \). From the &lt;a class=&#34;link&#34; href=&#34;#irreducible-markov-chain-transitions&#34; &gt;definition of \( S_r \)&lt;/a&gt;, we know that for \( k \notin S_{r+1} \), we must have \( p_{ik}^{(nd+r+1)}=0 \). Therefore, using the &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Chapman%E2%80%93Kolmogorov_equation&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Chapman-Kolmogorov equations&lt;/a&gt; and the technique used in &lt;a class=&#34;link&#34; href=&#34;#theorem3&#34; &gt;Theorem 3 proof&lt;/a&gt; for expansion, we deduce:&lt;/p&gt;
+$$
+0=p_{ik}^{(nd+r+1)} \ge p_{ij}^{(nd+r)} p_{jk}^{(1)}&gt;0
+$$&lt;p&gt;Hence, \( p_{jk}^{(1)}=0 \). Thus,&lt;/p&gt;
+$$
+1 = \sum_{k \in S}{p_{jk}} = \sum_{k \in S_{r+1}}{p_{jk}^{(1)}} + \sum_{k \notin S_{r+1}}{p_{jk}^{(1)}} = \sum_{k \in S_{r+1}}{p_{jk}^{(1)}}
+$$&lt;p&gt;Finally, we prove the uniqueness of the decomposition. This is equivalent to proving that \( \{S_k\} \) is independent of the initial \( i \). That is, for any \( i, i^{\prime} \), the decompositions \( \{S_k\}, \{S_k^{\prime}\} \) generated by them are necessarily equal.&lt;br&gt;
+First, we prove that for any subset \( S_r \) in \( \{S_k\} \), there exists a subset \( S_s^{\prime} \) which exactly matches its states. First, we prove that all \( j \in S_r \) can only belong to a fixed set in \( \{S_k^{\prime}\} \). Suppose \( i^{\prime} \) satisfies \( i^{\prime} \in S_s \). Because starting from any state in \( S_k \) it must transfer to \( S_{k+1} \) in 1 step, when \( s \le r \), the transition from \( i^{\prime} \) to \( j \) can only happen in the following steps:&lt;/p&gt;
+$$
+\begin{cases}
+S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r\\
+S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r \rightarrow S_{r+1} \rightarrow \cdots \rightarrow S_{d-1} \rightarrow S_0 \rightarrow S_1 \rightarrow \cdots \rightarrow S_r\\
+S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r \rightarrow \overbrace{S_{r+1} \rightarrow \cdots \rightarrow S_{d-1} \rightarrow S_0 \rightarrow S_1 \rightarrow \cdots \rightarrow S_r}^{\text{repeat 2 times}}\\
+\quad \vdots
+\end{cases}
+$$&lt;p&gt;That is, starting from \( i^{\prime} \), \( j \) can only be reached in \( r-s, r-s+d, r-s+2d, \ldots \) steps. We notice this aligns with the definition of \( S_{r-s}^{\prime} \). Hence, \( j \in S_{r-s}^{\prime} \). Conversely, for any \( j^{\prime} \in S_{r-s}^{\prime} \), the transition from \( i \) to \( i^{\prime} \) requires \( s \) steps, and from \( i^{\prime} \) to \( j^{\prime} \) requires \( r-s \) steps, making the total steps from \( i \) to \( j^{\prime} \) is \( r \), thus \( j^{\prime} \in S_r \). Therefore, \( S_r \) and \( S_{r-s}^{\prime} \) are exactly equivalent.&lt;br&gt;
+Similarly, when \( s &gt; r \), using the same methods, we can prove that starting from \( i^{\prime} \), \( j \) can only be reached in \( d-(s-r), 2d-(s-r), \cdots \) steps, making \( j \) fall into \( S_{d-(s-r)}^{\prime} \). Again, it can be proved that \( S_r \) and \( S_{d-(s-r)}^{\prime} \) are exactly equivalent. In summary, we have&lt;/p&gt;
+$$
+\begin{cases}
+S_r \text{ and } S_{r-s}^{\prime} \text{ are exactly equivalent, if } r \ge s \\[5pt]
+S_r \text{ and } S_{d-(s-r)}^{\prime} \text{ are exactly equivalent, if } r &lt; s
+\end{cases}
+$$&lt;p&gt;Thus, we can easily prove that \( \{S_k\} \) and \( \{S_k^{\prime}\} \) correspond one-to-one. Hence, the decomposition is unique.&lt;/p&gt;
+&lt;h2 id=&#34;limit-theorem-and-invariant-distribution&#34;&gt;Limit Theorem and Invariant Distribution
+&lt;/h2&gt;&lt;h3 id=&#34;limit-theorem&#34;&gt;Limit Theorem
+&lt;/h3&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;Theorem 8 (Limit Theorem)&lt;/strong&gt;&lt;/em&gt;: If state \( j \) is a recurrent state with period \( d \), then&lt;/p&gt;
+$$
+\lim\limits_{n \rightarrow \infty} p_{jj}^{(nd)} = \frac{d}{\mu_j}
+$$&lt;p&gt;&lt;em&gt;&lt;strong&gt;Proof (Theorem 8)&lt;/strong&gt;&lt;/em&gt;: For \( n \ge 0 \), let:&lt;/p&gt;
+$$
+r_n=\sum_{v=n+1}^{\infty}{f_v}
+$$&lt;p&gt;where \( f_v=f_{jj}^{(v)} \). Then,&lt;/p&gt;
+$$
+\begin{aligned}
+\sum_{n=0}^{\infty} r_n =&amp; \sum_{n=0}^{\infty} \sum_{v=n+1}^{\infty} f_v\\
+=&amp;(f_1 + f_2 + f_3 + \cdots) + (f_2 + f_3 + \cdots) + (f_3 + \cdots) + \cdots\\[5pt]
+=&amp;1 \cdot f_1 + 2 \cdot f_2 + 3 \cdot f_3 + \cdots\\
+=&amp;\sum_{n=1}^{\infty} n f_n = \mu_j
+\end{aligned}
+$$&lt;p&gt;From the definition of \( r_n \), we have \( f_n=r_{v-1}-r_v \). Substituting this into &lt;a class=&#34;link&#34; href=&#34;#lemma1&#34; &gt;Lemma 1&lt;/a&gt; and denoting \( p_v = p_{jj}^{(v)} \), we get&lt;/p&gt;
+$$
+p_n=p_{jj}^{(n)} = \sum_{l=1}^{n} f_{jj}^{(l)} p_{jj}^{(n-l)} = -\sum_{v=1}^{n} (r_v - r_{v-1}) p_{n-v}
+$$&lt;p&gt;Note that \( j \) is a recurrent state, so \( r_0=1 \). The above formula can then be written as&lt;/p&gt;
+$$
+\sum_{v=0}^{n} r_v p_{n-v} = \sum_{v=0}^{n-1} r_v p_{n-1-v}
+$$&lt;p&gt;This formula indicates a very clear conclusion: \( \sum_{v=0}^{n} r_v p_{n-v} \) is independent of \( n \). Hence,&lt;/p&gt;
+$$
+\sum_{v=0}^{n} r_v p_{n-v} = r_0 p_0 = 1, \quad n \ge 0
+$$&lt;p&gt;Let \( \lambda = \limsup\limits_{n \rightarrow \infty} p_{nd} \). Note that when \( k \) is not a multiple of \( d \), \( p_k=0 \), and \( p_{nd} \ge 0 \). By the definition of the &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;limit superior&lt;/a&gt;, we know:&lt;/p&gt;
+$$
+\limsup\limits_{k \rightarrow \infty} p_k = \limsup\limits_{n \rightarrow \infty} p_{nd} = \lambda
+$$&lt;p&gt;Therefore, by the definition of the &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;limit superior&lt;/a&gt;, there must be a subsequence whose limit equals \( \lambda \). Note again that when \( k \) is not a multiple of \( d \), \( p_k=0 \). Hence, this subsequence can be taken from \( \{nd\} \). Therefore, there exists a subsequence \( \{n_m\}, n_m \rightarrow \infty \) such that \( \lambda = \lim\limits_{m \rightarrow \infty} p_{n_md} \). For any \( s \) such that \( f_s &gt; 0 \), using &lt;a class=&#34;link&#34; href=&#34;#lemma1&#34; &gt;Lemma 1&lt;/a&gt; and the properties of the &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;limit superior&lt;/a&gt;, we obtain&lt;/p&gt;
+$$
+\begin{aligned}
+\lambda =&amp; \liminf\limits_{m \rightarrow \infty} p_{n_md} = \liminf\limits_{m \rightarrow \infty} p_{jj}^{(n_md)} = \liminf\limits_{m \rightarrow \infty} \sum_{v=1}^{n_md} f_{jj}^{(v)} p_{jj}^{(n_md-v)}\\
+=&amp; \liminf\limits_{m \rightarrow \infty} \sum_{v=1}^{n_md} f_v p_{n_md-v} = \liminf\limits_{m \rightarrow \infty} \left( f_s p_{n_md-s} + \sum_{v=1, v \ne s}^{n_md} f_v p_{n_md-v} \right)\\
+\le &amp;\liminf\limits_{m \rightarrow \infty} f_s p_{n_md-s} + \liminf\limits_{m \rightarrow \infty} \left( \sum_{v=1, v \ne s}^{n_md} f_v p_{n_md-v} \right) \quad \text{(using limit inferior properties)}
+\end{aligned}
+$$&lt;p&gt;Using the &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Non-negative_matrix&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;non-negativity of probabilities&lt;/a&gt; and the properties of the &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;limit superior&lt;/a&gt;, we infer:&lt;/p&gt;
+$$
+\begin{aligned}
+\liminf\limits_{m \rightarrow \infty} \sum_{v=1, v \ne s}^{n_md} f_v p_{n_md-v} \le &amp;\liminf\limits_{m \rightarrow \infty} \sum_{v=1, v \ne s}^{\infty} f_v p_{n_md-v} \quad \text{(non-negativity of probabilities)}\\
+\le &amp;\sum_{v=1, v \ne s}^{\infty} \liminf\limits_{m \rightarrow \infty} f_v p_{n_md-v} \quad \text{(using limit inferior properties)}\\
+\le &amp;\sum_{v=1, v \ne s}^{\infty} \liminf\limits_{m \rightarrow \infty} f_v \limsup\limits_{m \rightarrow \infty} p_{n_md-v} \quad \text{(property of products)}\\
+=&amp;\sum_{v=1, v \ne s}^{\infty} f_v \limsup\limits_{m \rightarrow \infty} p_{n_md-v}\\
+\le &amp;\sum_{v=1, v \ne s}^{\infty} f_v \limsup\limits_{m \rightarrow \infty} p_m \quad \text{(definition of limit superior)}\\
+=&amp;\left( \sum_{v=1, v \ne s}^{\infty} f_v \right) \limsup\limits_{m \rightarrow \infty} p_m
+\end{aligned}
+$$&lt;p&gt;Note that state \( j \) is &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Recurrent_event&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;recurrent&lt;/a&gt;, so \( \sum_{v=1}^{\infty} f_v=1 \), meaning \( \sum_{v=1, v \ne s}^{\infty} f_v = 1 - f_s \). As previously stated, \( \lambda = \limsup\limits_{m \rightarrow \infty} p_m \). Substituting this back into \( \lambda \) yields:&lt;/p&gt;
+$$
+\lambda \le f_s \liminf\limits_{m \rightarrow \infty} p_{n_md-s} + (1 - f_s) \lambda
+$$&lt;p&gt;Thus,&lt;/p&gt;
+&lt;p&gt;$$
+\liminf\limits_{m \rightarrow \infty} p_{n_md-s} \ge \lambda&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
