@@ -66,7 +66,7 @@
 <meta property='og:description' content="操作系统概述与基本结构">
 <meta property='og:url' content='https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-19T22:28:10&#43;08:00'/><meta property='article:modified_time' content='2024-09-21T09:14:01&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-19T22:28:10&#43;08:00'/><meta property='article:modified_time' content='2024-09-21T10:26:24&#43;00:00'/>
 <meta name="twitter:title" content="操作系统（一）：操作系统引论">
 <meta name="twitter:description" content="操作系统概述与基本结构">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -541,10 +541,15 @@
         <li><a href="#推动操作系统发展的主要动力">推动操作系统发展的主要动力</a>
           <ol>
             <li><a href="#不断提高计算机资源利用率">不断提高计算机资源利用率</a></li>
+            <li><a href="#方便用户">方便用户</a></li>
+            <li><a href="#器件的不断更新换代">器件的不断更新换代</a></li>
+            <li><a href="#计算机体系结构的不断发展">计算机体系结构的不断发展</a></li>
+            <li><a href="#不断提出新的应用需求">不断提出新的应用需求</a></li>
           </ol>
         </li>
       </ol>
     </li>
+    <li><a href="#操作系统的发展过程">操作系统的发展过程</a></li>
   </ol>
 </nav>
         </div>
@@ -834,7 +839,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 7 分钟
+                    阅读时长: 9 分钟
                 </time>
             </div>
         
@@ -848,7 +853,7 @@
 </svg>
 
             <time class="article-words">
-                3273 字
+                4216 字
             </time>
         </div>
 
@@ -1026,8 +1031,18 @@
 <h3 id="推动操作系统发展的主要动力">推动操作系统发展的主要动力
 </h3><p>  OS自20世纪50年代产生后，经历了由简单到复杂，由低级到高级的发展。在短短60多年间，OS在各方面都有了长足的进步，能够很好地适应计算机硬件和体系结构的快速发展，以及应用需求的不断变化。下面我们对推动OS发展的主要推动力做具体阐述。</p>
 <h4 id="不断提高计算机资源利用率">不断提高计算机资源利用率
-</h4><p>  在计算机发展的初期，计算机系统特别昂贵，人们必须千方百计地提高计算机系统中各种资源的利用率，这就是OS最初发展的推动力。由此形成了能自动地对一批作业进行处理的<a class="link" href="#%e5%a4%9a%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9f" >多道批处理系统</a>。20世纪60年代和70年代有分别出现了能够有效提高I/O设备和CPU利用率的<a class="link" onclick="alert('抱歉，还没写到~')">SPOOLing系统</a>，以及极大地改善了存储器系统利用率的<a class="link" onclick="alert('抱歉，还没写到~')">虚拟存储器技术</a>。此后在网络环境下，通过在服务器上配置网络文件系统和数据库系统算法，将资源提供给全网络用户共享，又进一步提高了资源的利用率。</p>
-
+</h4><p>  在计算机发展的初期，计算机系统特别昂贵，人们必须千方百计地提高计算机系统中各种资源的利用率，这就是OS最初发展的推动力。由此形成了能自动地对一批作业进行处理的<a class="link" href="#%e5%a4%9a%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9f" >多道批处理系统</a>。20世纪60年代和70年代有分别出现了能够有效提高I/O设备和CPU利用率的<a class="link" onclick="alert('抱歉，还没写到~')">SPOOLing系统</a>，以及极大地改善了存储器系统利用率的<a class="link" onclick="alert('抱歉，还没写到~')">虚拟存储器技术</a>。此后在网络环境下，通过在服务器上配置<a class="link" onclick="alert('抱歉，还没写到~')">网络文件系统</a>和<a class="link" onclick="alert('抱歉，“数据库系统”还未上线~')">数据库系统算法</a>，将资源提供给全网络用户共享，又进一步提高了资源的利用率。</p>
+<h4 id="方便用户">方便用户
+</h4><p>  当资源利用率不高的问题得到基本解决后，用户在上机、调试程序时的不方便行便成为主要矛盾，这又成为继续推动OS发展的主要因素。20世纪60年代<a class="link" href="#%e5%88%86%e6%97%b6%e7%b3%bb%e7%bb%9f" >分时系统</a>的出现，不仅提高了系统资源的利用率，还能实现人&mdash;机交互，使用户能像早期使用计算机时一样，感觉自己是独占全机资源，对其进行直接操控，极大地方便了程序员对程序进行调试和修改的操作。90年代初，图形用户界面的出现收到用户的广泛欢迎，进一步方便了用户对计算机的使用，这无疑又加速推动了计算机的迅速普及和广泛使用。</p>
+<h4 id="器件的不断更新换代">器件的不断更新换代
+</h4><p>  随着IT技术的飞讯发展，尤其是微机芯片的不断更新换代，使得计算机的性能快速提高，从而也推动了OS的功能和性能迅速增强和提高。例如当微机芯片由8位发展到16位、32位，进而又发展到64位时，相应的微机OS也就由8位OS发展到16位和32位，进而又发展到64位，此时，相应OS的功能和性能也有了显著的增强和提高。<br>
+  与此同时，外部设备也在迅速发展。OS所能支持的外部设备也越来越多，如现在的微机OS已能够支持种类繁多的外部设备，除了传统的外设外，还可以支持光盘、移动硬盘、闪存盘、扫描仪、数码相机等。</p>
+<h4 id="计算机体系结构的不断发展">计算机体系结构的不断发展
+</h4><p>  计算机体系结构的发展，也不断推动着OS的发展，并产生新的OS类型。例如当计算机由单处理机系统发展为多处理机系统时，相应地，OS也就由单处理机OS发展为多处理机OS。又如当出现了计算机网络后，配置在计算机网络上的操作系统也就应运而生。它不仅能有效地管理好网络中的共享资源，而且还向用户提供了许多网络服务。</p>
+<h4 id="不断提出新的应用需求">不断提出新的应用需求
+</h4><p>  操作系统能如此迅速发展的另一个重要原因是，人们不断提出新的应用需求，例如，为了提高产品的质量和数量，需要将计算机应用于工业控制中，此时在计算机上就需要配置能进行实时控制的OS，由此产生了<a class="link" href="#%e5%ae%9e%e6%97%b6%e7%b3%bb%e7%bb%9f" >实时OS</a>。此后，为了能满足用户在计算机上听音乐、看电影和玩游戏等需求，又在OS中添加了<a class="link" href="#%e6%94%af%e6%8c%81%e5%a4%9a%e5%aa%92%e4%bd%93" >多媒体功能</a>。另外，由于在计算机系统中保存了越来越多的宝贵信息，致使能够<a class="link" href="#%e7%b3%bb%e7%bb%9f%e5%ae%89%e5%85%a8" >确保系统的安全性</a>也成为OS必须具备的功能。尤其是随着VLSI（超大规模集成电路）的发展，计算机芯片的体积越来越小，价格也越来越便宜，大量智能设备应运而生，这样，<a class="link" href="#%e5%be%ae%e6%9c%ba%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f" >微机操作系统</a>的产生和发展也成了一种必然。</p>
+<h2 id="操作系统的发展过程">操作系统的发展过程
+</h2>
     </div>
 </section>
 
@@ -1057,7 +1072,7 @@
 
 
         <span>
-            最后更新于 Sep 21, 2024 09:14 UTC
+            最后更新于 Sep 21, 2024 10:26 UTC
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1179,7 +1194,7 @@
             
             
         
-        <span>本图书馆累计发布了2篇文章 共9401字</span>
+        <span>本图书馆累计发布了2篇文章 共10344字</span>
     </section>
 
     <section class="site-visit-count">
