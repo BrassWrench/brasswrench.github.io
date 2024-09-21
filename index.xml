@@ -7,170 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 21 Sep 2024 14:34:08 +0000</lastBuildDate><atom:link href="https://www.brasswrench.cn/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>操作系统（一）：操作系统引论</title>
-        <link>https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/</link>
-        <pubDate>Thu, 19 Sep 2024 22:28:10 +0800</pubDate>
-        
-        <guid>https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/</guid>
-        <description>
-
-
-
-
-
-
-
-&lt;iframe
-  class=&#34;netease-cloud-music-frame&#34;
-  title=&#34;song&amp;#39;s 1818979572&#34;
-  frameborder=&#34;no&#34;
-  border=&#34;0&#34;
-  marginwidth=&#34;0&#34;
-  marginheight=&#34;0&#34;
-  width=&#34;100%&#34;
-  height=&#34;86&#34;
-  loading=&#34;lazy&#34;
-  src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=1818979572&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
-&lt;/iframe&gt;
-
-&lt;h1 id=&#34;操作系统引论&#34;&gt;操作系统引论
-&lt;/h1&gt;&lt;p&gt;  &lt;strong&gt;操作系统（Operating System，OS）&lt;/strong&gt; 是配置在计算机硬件上的第一层软件，是对硬件系统的首次扩充，其主要作用是管理好这些设备，提高它们的利用率和系统的吞吐量，并为用户和应用程序提供一个简单的接口，便于用户使用。OS是现代计算机系统中最基本和最重要的系统软件，而其他的诸如编译程序、数据库管理系统等系统软件，以及大量的应用软件，都直接依赖于操作系统的支持，取得它所提供的服务。事实上OS已经成为现代计算机系统、多处理机系统、计算机网络中都必须配置的系统软件。&lt;/p&gt;
-&lt;h2 id=&#34;操作系统的目标和作用&#34;&gt;操作系统的目标和作用
-&lt;/h2&gt;&lt;p&gt;  操作系统的目标与应用环境有关。例如在查询系统中所用的OS，希望能提供良好的人机交互性；对于工业控制、武器控制以及多媒体环境下的OS，要求其具有实时性。而对于微机上配置的OS，则更看重的是其使用的方便性。&lt;/p&gt;
-&lt;h3 id=&#34;操作系统的目标&#34;&gt;操作系统的目标
-&lt;/h3&gt;&lt;p&gt;  在计算机系统上配置操作系统，其主要目标是：方便性、有效性、可扩充性和开放性。&lt;/p&gt;
-&lt;h4 id=&#34;方便性&#34;&gt;方便性
-&lt;/h4&gt;&lt;p&gt;  一个未配置OS的计算机系统是极难使用的。用户如果想直接在计算机硬件（&lt;strong&gt;裸机&lt;/strong&gt;）上运行自己的程序，就必须用机器语言书写；但是如果配置了OS，系统就可以使用编译命令将用户采用高级语言书写的程序翻译成机器代码，或直接通过OS所提供的各种命令操纵计算机系统，极大地方便了用户，使计算机变得易学易用。&lt;/p&gt;
-&lt;h4 id=&#34;有效性&#34;&gt;有效性
-&lt;/h4&gt;&lt;p&gt;  有效性所包含的第一层含义是提高系统资源的利用率。在早期未配置OS的计算机系统中，诸如处理机、I/O设备等都经常处于空闲状态，各种资源无法得到充分利用，所以在当时，提高系统资源利用率是推动OS发展最主要的动力。有效性的另一层含义是提高系统的吞吐量。OS可以通过合理地组织计算机的工作流程，加速程序的运行，缩短程序的运行周期，从而提高了系统的吞吐量。&lt;br&gt;
-  方便性和有效性是设计OS时最重要的两个目标。在过去很长的一段时间内，由于计算机系统非常昂贵，有效性显得特别重要。然而，近十多年来，随着硬件越来越便宜，在设计配置在微机上的OS时，似乎更加重视如何提高用户使用计算机的方便性。因此，在微机操作系统中都配置了深受用户欢迎的图形用户界面，以及为程序员提供了大量的系统调用，方便了用户对计算机的使用和编程。&lt;/p&gt;
-&lt;h4 id=&#34;可扩充性&#34;&gt;可扩充性
-&lt;/h4&gt;&lt;p&gt;  为适应计算机硬件、体系结构以及计算机应用发展的要求，OS必须具有很好的可扩充性。可扩充性的好坏与OS的结构有精密的联系，由此推动了OS结构的不断发展。从早期的&lt;a class=&#34;link&#34; href=&#34;#%e6%97%a0%e7%bb%93%e6%9e%84%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f&#34; &gt;无结构&lt;/a&gt;发展成&lt;a class=&#34;link&#34; href=&#34;#%e6%a8%a1%e5%9d%97%e5%8c%96%e7%bb%93%e6%9e%84OS&#34; &gt;模块化结构&lt;/a&gt;，进而又发展成&lt;a class=&#34;link&#34; href=&#34;#%e5%88%86%e5%b1%82%e5%bc%8f%e7%bb%93%e6%9e%84OS&#34; &gt;层次化结构&lt;/a&gt;，近年来OS已广泛采用了&lt;a class=&#34;link&#34; href=&#34;#%e5%be%ae%e5%86%85%e6%a0%b8OS%e7%bb%93%e6%9e%84&#34; &gt;微内核结构&lt;/a&gt;。微内核结构能方便地增添新的功能和模块，以及对原有的功能和模块进行修改，具有良好的可扩充性。&lt;/p&gt;
-&lt;h4 id=&#34;开放性&#34;&gt;开放性
-&lt;/h4&gt;&lt;p&gt;  随着计算机应用的日益普及，计算机硬件和软件的兼容性问题便提到了议事日程上来。世界各国相应地制定了一系列的软、硬件标准，使得不同厂家按照标准生产的软、硬件都能在本国范围内很好地相互兼容。这无疑给用户带来了极大的方便，也给产品的推广、应用铺平了道路。近年来，随着Internet的迅速发展，使得计算机OS的应用环境由单机环境转向了网络环境，其应用环境就必须更为开放，进而对OS的开放性提出了更高的要求。&lt;br&gt;
-  所谓开放性，是指系统能遵循世界标准规范，特别是遵循&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机网络”还未上线~&#39;)&#34;&gt;开放系统互连OSI国际标准&lt;/a&gt;。事实上，凡遵循国际标准所开发的硬件和软件，都能彼此兼容，方便地实现互连。开放性已称为20世纪90年代以后计算机技术的一个核心问题，也是衡量一个新推出的系统或软件能否被广泛应用的至关重要的因素。&lt;/p&gt;
-&lt;h3 id=&#34;操作系统的作用&#34;&gt;操作系统的作用
-&lt;/h3&gt;&lt;p&gt;  操作系统在计算机系统中所起的作用，可以从用户、资源管理及资源抽象等多个不同的角度来进行分析和讨论。&lt;/p&gt;
-&lt;h4 id=&#34;os作为用户与计算机硬件系统之间的接口&#34;&gt;OS作为用户与计算机硬件系统之间的接口
-&lt;/h4&gt;&lt;p&gt;  OS作为用户与计算机硬件系统之间的接口的含义是：OS处于用户与计算机硬件系统之间，用户通过OS来使用计算机系统。或者说，用户在OS帮助下能够方便、快捷、可靠地操纵计算机硬件和运行自己的程序。图1是OS作为接口的示意图。由图可看出，用户可通过三种方式使用计算机，即通过命令方式、系统调用方式和图标&amp;mdash;窗口方式来实现与操作系统的通信，并取得它的服务。&lt;/p&gt;
-
-
-
-
-&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
-    
-    
-        
-        
-    
-
-    
-        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;base&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.54 200.54&#34;&gt;
-  &lt;path d=&#34;M540.41,6.2v42H246.14V6.2h294.27M541.41,5.2H245.14v44h296.27V5.2h0Z&#34;/&gt;
-  &lt;path d=&#34;M354.71,49.2v42h-162.49v-42h162.49M355.71,48.2h-164.49v44h164.49v-44h0Z&#34;/&gt;
-  &lt;text transform=&#34;translate(375.27 34.04)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(237.46 77.04)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序&lt;/tspan&gt;&lt;/text&gt;
-  &lt;path d=&#34;M664.77,92.73v58.85H121.77v-58.85h543M665.77,91.73H120.77v60.85h545v-60.85h0Z&#34;/&gt;
-  &lt;g&gt;
-    &lt;line x1=&#34;393.27&#34; y1=&#34;57.06&#34; x2=&#34;393.27&#34; y2=&#34;83.34&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;polygon points=&#34;390.36 59.04 393.27 48.2 396.18 59.04 390.36 59.04&#34;/&gt;
-    &lt;polygon points=&#34;390.36 81.35 393.27 92.2 396.18 81.35 390.36 81.35&#34;/&gt;
-  &lt;/g&gt;
-  &lt;text transform=&#34;translate(365.27 117.95)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;命令&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(210.67 116.99)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;系统调用&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(465.33 116.99)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;图标—窗口&lt;/tspan&gt;&lt;/text&gt;
-  &lt;g&gt;
-    &lt;line x1=&#34;498.5&#34; y1=&#34;57.06&#34; x2=&#34;498.5&#34; y2=&#34;83.34&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;polygon points=&#34;495.59 59.04 498.5 48.2 501.41 59.04 495.59 59.04&#34;/&gt;
-    &lt;polygon points=&#34;495.59 81.35 498.5 92.2 501.41 81.35 495.59 81.35&#34;/&gt;
-  &lt;/g&gt;
-  &lt;text transform=&#34;translate(357.27 143.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操作系统&lt;/tspan&gt;&lt;/text&gt;
-  &lt;path d=&#34;M708.77,152.34v42H77.77v-42h631M709.77,151.34H76.77v44h633v-44h0Z&#34;/&gt;
-  &lt;text transform=&#34;translate(348.27 180.18)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;计算机硬件&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;
-    
-
-    
-        &lt;p class=&#34;svg-title&#34; style=&#34;font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1 OS作为接口的示意图&lt;/p&gt;
-    
-&lt;/div&gt;
-
-&lt;h4 id=&#34;os作为计算机系统资源的管理者&#34;&gt;OS作为计算机系统资源的管理者
-&lt;/h4&gt;&lt;p&gt;  在一个计算机系统中，通常都含有多种硬件和软件资源。归纳起来可将这些资源分为四类：处理机、存储器、I/O设备以及文件（数据和程序）。相应地，OS的主要功能也正是对这四类资源进行有效的管理。处理机管理适用于分配和控制处理机；存储器管理主要负责内存的分配与回收；I/O设备管理是负责I/O设备的分配（回收）与操纵；文件管理适用于实现对文件的存取、共享和保护。可见，OS的确是计算机系统资源的管理者。&lt;br&gt;
-  当一台计算机系统供多个用户使用时，诸多用户对系统中共享资源的需求（包括数量和时间）有可能发生冲突。为此，操作系统必须对使用资源的请求进行授权，以协调诸用户对共享资源的使用。&lt;/p&gt;
-&lt;h4 id=&#34;os实现了对计算机资源的抽象&#34;&gt;OS实现了对计算机资源的抽象
-&lt;/h4&gt;&lt;p&gt;  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如图2所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。&lt;/p&gt;
-
-
-
-
-&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
-    
-    
-        
-        
-    
-
-    
-        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.54 345.54&#34;&gt;
-  &lt;circle cx=&#34;230.52&#34; cy=&#34;91.27&#34; r=&#34;37&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(212.52 98.11)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
-  &lt;g&gt;
-    &lt;line x1=&#34;230.52&#34; y1=&#34;127.85&#34; x2=&#34;230.52&#34; y2=&#34;163.57&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;polygon points=&#34;227.61 161.58 230.52 172.43 233.43 161.58 227.61 161.58&#34;/&gt;
-  &lt;/g&gt;
-  &lt;rect x=&#34;158.52&#34; y=&#34;172.27&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;rect x=&#34;158.52&#34; y=&#34;210.27&#34; width=&#34;145&#34; height=&#34;81&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(194.45 198.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(212.45 259.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
-  &lt;circle cx=&#34;473.52&#34; cy=&#34;38.77&#34; r=&#34;37&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(455.52 45.61)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
-  &lt;g&gt;
-    &lt;line x1=&#34;473.72&#34; y1=&#34;76.27&#34; x2=&#34;473.72&#34; y2=&#34;113.41&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;polygon points=&#34;470.81 111.43 473.72 122.27 476.62 111.43 470.81 111.43&#34;/&gt;
-  &lt;/g&gt;
-  &lt;circle cx=&#34;473.52&#34; cy=&#34;220.77&#34; r=&#34;123&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.08 12.08; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;rect x=&#34;401.02&#34; y=&#34;197.77&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;rect x=&#34;401.02&#34; y=&#34;235.77&#34; width=&#34;145&#34; height=&#34;81&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(436.74 223.55)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(455.52 284.55)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
-  &lt;rect x=&#34;401.52&#34; y=&#34;122.77&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(441.13 148.55)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O软件&lt;/tspan&gt;&lt;/text&gt;
-  &lt;polyline points=&#34;489.36 161.19 489.36 184.19 502.8 184.19 473.36 197.19 473.68 196.77 444.24 183.77 457.68 183.77 457.68 160.77&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(510.56 66.83)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O操作命令&lt;/tspan&gt;&lt;tspan x=&#34;0&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: 0em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.41&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.02em;&#34;&gt;r&lt;/tspan&gt;&lt;tspan x=&#34;14.38&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: 0em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;24.19&#34; y=&#34;21.6&#34;&gt;a&lt;/tspan&gt;&lt;tspan x=&#34;34.22&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: 0em;&#34;&gt;d&lt;/tspan&gt;&lt;tspan x=&#34;45.52&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.09em;&#34;&gt;,&lt;/tspan&gt;&lt;tspan x=&#34;49.7&#34; y=&#34;21.6&#34;&gt;wri&lt;/tspan&gt;&lt;tspan x=&#34;79.07&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: 0em;&#34;&gt;t&lt;/tspan&gt;&lt;tspan x=&#34;85.66&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.01em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;95.29&#34; y=&#34;21.6&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;
-    
-
-    
-        &lt;p class=&#34;svg-title&#34; style=&#34;font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2 I/O软件隐藏了I/O操作实现的细节&lt;/p&gt;
-    
-&lt;/div&gt;
-
-&lt;p&gt;  通常把覆盖了上述软件的机器称为&lt;strong&gt;扩充机器&lt;/strong&gt;或者&lt;strong&gt;虚机器&lt;/strong&gt;。它向用户提供了一个对硬件操作的抽象模型。用户可利用该模型的接口使用计算机，无需了解物理接口的实现细节，从而使用户更容易地使用计算机硬件资源。亦即，I/O设备管理软件实现了对计算机硬件操作的第一个层次的抽象。&lt;br&gt;
-  同理，为了方便用户使用文件系统，又可在第一层软件（I/O管理软件）上再覆盖一层用于文件管理的软件，由它来实现对文件操作的细节，并向上层提供一组实现对文件进行存取操作的数据结构和命令。这样，用户可利用该软件提供的数据结构及命令对文件进行存取。此时用户所看到的是一台功能更强、使用更方便的虚机器。亦即，文件管理软件实现了对硬件资源操作的第二个层次的抽象。以此类推，如果文件管理软件上再覆盖一层面向用户的窗口软件，则用户便可在窗口环境下方便地使用计算机，从而形成一台功能更强的虚机器。&lt;br&gt;
-  由此可知，OS是铺设在计算机硬件上的多层软件的集合，它们不仅增强了系统的功能，还隐藏了对硬件操作的具体细节，实现了对计算机硬件操作的多个层次的抽象模型。值得说明的是，不仅可在底层对一个硬件资源加以抽象，还可以在高层对该资源底层已抽象的模型再次进行抽象，称为更高层的抽象模型。随着抽象层次的提高，抽象接口所提供的功能就越强，用户使用起来也越方便。&lt;/p&gt;
-&lt;h3 id=&#34;推动操作系统发展的主要动力&#34;&gt;推动操作系统发展的主要动力
-&lt;/h3&gt;&lt;p&gt;  OS自20世纪50年代产生后，经历了由简单到复杂，由低级到高级的发展。在短短60多年间，OS在各方面都有了长足的进步，能够很好地适应计算机硬件和体系结构的快速发展，以及应用需求的不断变化。下面我们对推动OS发展的主要推动力做具体阐述。&lt;/p&gt;
-&lt;h4 id=&#34;不断提高计算机资源利用率&#34;&gt;不断提高计算机资源利用率
-&lt;/h4&gt;&lt;p&gt;  在计算机发展的初期，计算机系统特别昂贵，人们必须千方百计地提高计算机系统中各种资源的利用率，这就是OS最初发展的推动力。由此形成了能自动地对一批作业进行处理的&lt;a class=&#34;link&#34; href=&#34;#%e5%a4%9a%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9f&#34; &gt;多道批处理系统&lt;/a&gt;。20世纪60年代和70年代有分别出现了能够有效提高I/O设备和CPU利用率的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，还没写到~&#39;)&#34;&gt;SPOOLing系统&lt;/a&gt;，以及极大地改善了存储器系统利用率的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，还没写到~&#39;)&#34;&gt;虚拟存储器技术&lt;/a&gt;。此后在网络环境下，通过在服务器上配置&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，还没写到~&#39;)&#34;&gt;网络文件系统&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数据库系统”还未上线~&#39;)&#34;&gt;数据库系统算法&lt;/a&gt;，将资源提供给全网络用户共享，又进一步提高了资源的利用率。&lt;/p&gt;
-&lt;h4 id=&#34;方便用户&#34;&gt;方便用户
-&lt;/h4&gt;&lt;p&gt;  当资源利用率不高的问题得到基本解决后，用户在上机、调试程序时的不方便行便成为主要矛盾，这又成为继续推动OS发展的主要因素。20世纪60年代&lt;a class=&#34;link&#34; href=&#34;#%e5%88%86%e6%97%b6%e7%b3%bb%e7%bb%9f&#34; &gt;分时系统&lt;/a&gt;的出现，不仅提高了系统资源的利用率，还能实现人&amp;mdash;机交互，使用户能像早期使用计算机时一样，感觉自己是独占全机资源，对其进行直接操控，极大地方便了程序员对程序进行调试和修改的操作。90年代初，图形用户界面的出现收到用户的广泛欢迎，进一步方便了用户对计算机的使用，这无疑又加速推动了计算机的迅速普及和广泛使用。&lt;/p&gt;
-&lt;h4 id=&#34;器件的不断更新换代&#34;&gt;器件的不断更新换代
-&lt;/h4&gt;&lt;p&gt;  随着IT技术的飞讯发展，尤其是微机芯片的不断更新换代，使得计算机的性能快速提高，从而也推动了OS的功能和性能迅速增强和提高。例如当微机芯片由8位发展到16位、32位，进而又发展到64位时，相应的微机OS也就由8位OS发展到16位和32位，进而又发展到64位，此时，相应OS的功能和性能也有了显著的增强和提高。&lt;br&gt;
-  与此同时，外部设备也在迅速发展。OS所能支持的外部设备也越来越多，如现在的微机OS已能够支持种类繁多的外部设备，除了传统的外设外，还可以支持光盘、移动硬盘、闪存盘、扫描仪、数码相机等。&lt;/p&gt;
-&lt;h4 id=&#34;计算机体系结构的不断发展&#34;&gt;计算机体系结构的不断发展
-&lt;/h4&gt;&lt;p&gt;  计算机体系结构的发展，也不断推动着OS的发展，并产生新的OS类型。例如当计算机由单处理机系统发展为多处理机系统时，相应地，OS也就由单处理机OS发展为多处理机OS。又如当出现了计算机网络后，配置在计算机网络上的操作系统也就应运而生。它不仅能有效地管理好网络中的共享资源，而且还向用户提供了许多网络服务。&lt;/p&gt;
-&lt;h4 id=&#34;不断提出新的应用需求&#34;&gt;不断提出新的应用需求
-&lt;/h4&gt;&lt;p&gt;  操作系统能如此迅速发展的另一个重要原因是，人们不断提出新的应用需求，例如，为了提高产品的质量和数量，需要将计算机应用于工业控制中，此时在计算机上就需要配置能进行实时控制的OS，由此产生了&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9e%e6%97%b6%e7%b3%bb%e7%bb%9f&#34; &gt;实时OS&lt;/a&gt;。此后，为了能满足用户在计算机上听音乐、看电影和玩游戏等需求，又在OS中添加了&lt;a class=&#34;link&#34; href=&#34;#%e6%94%af%e6%8c%81%e5%a4%9a%e5%aa%92%e4%bd%93&#34; &gt;多媒体功能&lt;/a&gt;。另外，由于在计算机系统中保存了越来越多的宝贵信息，致使能够&lt;a class=&#34;link&#34; href=&#34;#%e7%b3%bb%e7%bb%9f%e5%ae%89%e5%85%a8&#34; &gt;确保系统的安全性&lt;/a&gt;也成为OS必须具备的功能。尤其是随着VLSI（超大规模集成电路）的发展，计算机芯片的体积越来越小，价格也越来越便宜，大量智能设备应运而生，这样，&lt;a class=&#34;link&#34; href=&#34;#%e5%be%ae%e6%9c%ba%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f&#34; &gt;微机操作系统&lt;/a&gt;的产生和发展也成了一种必然。&lt;/p&gt;
-&lt;h2 id=&#34;操作系统的发展过程&#34;&gt;操作系统的发展过程
-&lt;/h2&gt;&lt;p&gt;  在20世纪50年代中期，出现了第一个简单的批处理OS；60年代中期开发出多道程序批处理系统；不久又推出分时系统，与此同时，用于工业和武器控制的实时OS也相继问世。20世纪70到90年代，是VLSI和计算机体系结构大发展的年代，导致了卫星及、多处理机和计算机网络的诞生和发展，与与此相应地，也相继开发出了微机OS，多处理机OS和网络OS，并得到极为迅猛的发展。&lt;/p&gt;
-&lt;h3 id=&#34;未配置操作系统的计算机系统&#34;&gt;未配置操作系统的计算机系统
-&lt;/h3&gt;</description>
-        </item>
-        <item>
+        <lastBuildDate>Sat, 21 Sep 2024 15:20:29 +0000</lastBuildDate><atom:link href="https://www.brasswrench.cn/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：马尔可夫过程</title>
         <link>https://www.brasswrench.cn/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -608,6 +445,245 @@ kd=\sum_{i=1}^{l}c_id_i
 我对许多领域都有浓厚的兴趣，虽然每次都是三分钟热度，但这也使得我的知识积累非常丰富，横跨很多个学科领域，包括数学、物理学、计算机科学、人工智能、自动化、机械工程和电气电子工程等。这份知识库将不仅限于理论知识，还包括我在某些方向实践得到的经验和解决方案。 但是我记忆力实在是太差了，因此这个博客的创建初衷是为了找到一种有效的方法来管理和巩固我所学习的知识，力求作为“第二大脑”。我希望在未来的某个时刻，当我突然想到某个知识点时，能够迅速找到我需要的信息。这个图书馆将帮助我更系统地整理和回顾学习的内容，从而提高我的学习效率和科研能力。&lt;/p&gt;
 &lt;p&gt;  
 此外，我也希望通过这个博客将我的工作公开分享，让那些有类似需求的人能够方便地找到他们需要的知识。我相信在信息爆炸的时代，很多人都在寻找有用的资源。我的图书馆旨在提供一个集中的知识库，帮助访客快速找到他们所需要的信息，同时也希望这能成为一个有价值的参考来源，促进知识的传播与共享。希望您在这里能够找到有用的内容，也欢迎您提出建议和意见，共同推动这个知识库的完善与发展。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>操作系统（一）：操作系统引论</title>
+        <link>https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/</guid>
+        <description>
+
+
+
+
+
+
+
+&lt;iframe
+  class=&#34;netease-cloud-music-frame&#34;
+  title=&#34;song&amp;#39;s 1818979572&#34;
+  frameborder=&#34;no&#34;
+  border=&#34;0&#34;
+  marginwidth=&#34;0&#34;
+  marginheight=&#34;0&#34;
+  width=&#34;100%&#34;
+  height=&#34;86&#34;
+  loading=&#34;lazy&#34;
+  src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=1818979572&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
+&lt;/iframe&gt;
+
+&lt;h1 id=&#34;操作系统引论&#34;&gt;操作系统引论
+&lt;/h1&gt;&lt;p&gt;  &lt;strong&gt;操作系统（Operating System，OS）&lt;/strong&gt; 是配置在计算机硬件上的第一层软件，是对硬件系统的首次扩充，其主要作用是管理好这些设备，提高它们的利用率和系统的吞吐量，并为用户和应用程序提供一个简单的接口，便于用户使用。OS是现代计算机系统中最基本和最重要的系统软件，而其他的诸如编译程序、数据库管理系统等系统软件，以及大量的应用软件，都直接依赖于操作系统的支持，取得它所提供的服务。事实上OS已经成为现代计算机系统、多处理机系统、计算机网络中都必须配置的系统软件。&lt;/p&gt;
+&lt;h2 id=&#34;操作系统的目标和作用&#34;&gt;操作系统的目标和作用
+&lt;/h2&gt;&lt;p&gt;  操作系统的目标与应用环境有关。例如在查询系统中所用的OS，希望能提供良好的人机交互性；对于工业控制、武器控制以及多媒体环境下的OS，要求其具有实时性。而对于微机上配置的OS，则更看重的是其使用的方便性。&lt;/p&gt;
+&lt;h3 id=&#34;操作系统的目标&#34;&gt;操作系统的目标
+&lt;/h3&gt;&lt;p&gt;  在计算机系统上配置操作系统，其主要目标是：方便性、有效性、可扩充性和开放性。&lt;/p&gt;
+&lt;h4 id=&#34;方便性&#34;&gt;方便性
+&lt;/h4&gt;&lt;p&gt;  一个未配置OS的计算机系统是极难使用的。用户如果想直接在计算机硬件（&lt;strong&gt;裸机&lt;/strong&gt;）上运行自己的程序，就必须用机器语言书写；但是如果配置了OS，系统就可以使用编译命令将用户采用高级语言书写的程序翻译成机器代码，或直接通过OS所提供的各种命令操纵计算机系统，极大地方便了用户，使计算机变得易学易用。&lt;/p&gt;
+&lt;h4 id=&#34;有效性&#34;&gt;有效性
+&lt;/h4&gt;&lt;p&gt;  有效性所包含的第一层含义是提高系统资源的利用率。在早期未配置OS的计算机系统中，诸如处理机、I/O设备等都经常处于空闲状态，各种资源无法得到充分利用，所以在当时，提高系统资源利用率是推动OS发展最主要的动力。有效性的另一层含义是提高系统的吞吐量。OS可以通过合理地组织计算机的工作流程，加速程序的运行，缩短程序的运行周期，从而提高了系统的吞吐量。&lt;br&gt;
+  方便性和有效性是设计OS时最重要的两个目标。在过去很长的一段时间内，由于计算机系统非常昂贵，有效性显得特别重要。然而，近十多年来，随着硬件越来越便宜，在设计配置在微机上的OS时，似乎更加重视如何提高用户使用计算机的方便性。因此，在微机操作系统中都配置了深受用户欢迎的图形用户界面，以及为程序员提供了大量的系统调用，方便了用户对计算机的使用和编程。&lt;/p&gt;
+&lt;h4 id=&#34;可扩充性&#34;&gt;可扩充性
+&lt;/h4&gt;&lt;p&gt;  为适应计算机硬件、体系结构以及计算机应用发展的要求，OS必须具有很好的可扩充性。可扩充性的好坏与OS的结构有精密的联系，由此推动了OS结构的不断发展。从早期的&lt;a class=&#34;link&#34; href=&#34;#%e6%97%a0%e7%bb%93%e6%9e%84%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f&#34; &gt;无结构&lt;/a&gt;发展成&lt;a class=&#34;link&#34; href=&#34;#%e6%a8%a1%e5%9d%97%e5%8c%96%e7%bb%93%e6%9e%84OS&#34; &gt;模块化结构&lt;/a&gt;，进而又发展成&lt;a class=&#34;link&#34; href=&#34;#%e5%88%86%e5%b1%82%e5%bc%8f%e7%bb%93%e6%9e%84OS&#34; &gt;层次化结构&lt;/a&gt;，近年来OS已广泛采用了&lt;a class=&#34;link&#34; href=&#34;#%e5%be%ae%e5%86%85%e6%a0%b8OS%e7%bb%93%e6%9e%84&#34; &gt;微内核结构&lt;/a&gt;。微内核结构能方便地增添新的功能和模块，以及对原有的功能和模块进行修改，具有良好的可扩充性。&lt;/p&gt;
+&lt;h4 id=&#34;开放性&#34;&gt;开放性
+&lt;/h4&gt;&lt;p&gt;  随着计算机应用的日益普及，计算机硬件和软件的兼容性问题便提到了议事日程上来。世界各国相应地制定了一系列的软、硬件标准，使得不同厂家按照标准生产的软、硬件都能在本国范围内很好地相互兼容。这无疑给用户带来了极大的方便，也给产品的推广、应用铺平了道路。近年来，随着Internet的迅速发展，使得计算机OS的应用环境由单机环境转向了网络环境，其应用环境就必须更为开放，进而对OS的开放性提出了更高的要求。&lt;br&gt;
+  所谓开放性，是指系统能遵循世界标准规范，特别是遵循&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机网络”还未上线~&#39;)&#34;&gt;开放系统互连OSI国际标准&lt;/a&gt;。事实上，凡遵循国际标准所开发的硬件和软件，都能彼此兼容，方便地实现互连。开放性已称为20世纪90年代以后计算机技术的一个核心问题，也是衡量一个新推出的系统或软件能否被广泛应用的至关重要的因素。&lt;/p&gt;
+&lt;h3 id=&#34;操作系统的作用&#34;&gt;操作系统的作用
+&lt;/h3&gt;&lt;p&gt;  操作系统在计算机系统中所起的作用，可以从用户、资源管理及资源抽象等多个不同的角度来进行分析和讨论。&lt;/p&gt;
+&lt;h4 id=&#34;os作为用户与计算机硬件系统之间的接口&#34;&gt;OS作为用户与计算机硬件系统之间的接口
+&lt;/h4&gt;&lt;p&gt;  OS作为用户与计算机硬件系统之间的接口的含义是：OS处于用户与计算机硬件系统之间，用户通过OS来使用计算机系统。或者说，用户在OS帮助下能够方便、快捷、可靠地操纵计算机硬件和运行自己的程序。图1是OS作为接口的示意图。由图可看出，用户可通过三种方式使用计算机，即通过命令方式、系统调用方式和图标&amp;mdash;窗口方式来实现与操作系统的通信，并取得它的服务。&lt;/p&gt;
+
+
+
+
+&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+    
+    
+        
+        
+    
+
+    
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;base&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.54 200.54&#34;&gt;
+  &lt;path d=&#34;M540.41,6.2v42H246.14V6.2h294.27M541.41,5.2H245.14v44h296.27V5.2h0Z&#34;/&gt;
+  &lt;path d=&#34;M354.71,49.2v42h-162.49v-42h162.49M355.71,48.2h-164.49v44h164.49v-44h0Z&#34;/&gt;
+  &lt;text transform=&#34;translate(375.27 34.04)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(237.46 77.04)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M664.77,92.73v58.85H121.77v-58.85h543M665.77,91.73H120.77v60.85h545v-60.85h0Z&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;393.27&#34; y1=&#34;57.06&#34; x2=&#34;393.27&#34; y2=&#34;83.34&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;390.36 59.04 393.27 48.2 396.18 59.04 390.36 59.04&#34;/&gt;
+    &lt;polygon points=&#34;390.36 81.35 393.27 92.2 396.18 81.35 390.36 81.35&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(365.27 117.95)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;命令&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(210.67 116.99)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;系统调用&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(465.33 116.99)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;图标—窗口&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;498.5&#34; y1=&#34;57.06&#34; x2=&#34;498.5&#34; y2=&#34;83.34&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;495.59 59.04 498.5 48.2 501.41 59.04 495.59 59.04&#34;/&gt;
+    &lt;polygon points=&#34;495.59 81.35 498.5 92.2 501.41 81.35 495.59 81.35&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(357.27 143.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操作系统&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M708.77,152.34v42H77.77v-42h631M709.77,151.34H76.77v44h633v-44h0Z&#34;/&gt;
+  &lt;text transform=&#34;translate(348.27 180.18)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;计算机硬件&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;
+    
+
+    
+        &lt;p class=&#34;svg-title&#34; style=&#34;font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1 OS作为接口的示意图&lt;/p&gt;
+    
+&lt;/div&gt;
+
+&lt;h4 id=&#34;os作为计算机系统资源的管理者&#34;&gt;OS作为计算机系统资源的管理者
+&lt;/h4&gt;&lt;p&gt;  在一个计算机系统中，通常都含有多种硬件和软件资源。归纳起来可将这些资源分为四类：处理机、存储器、I/O设备以及文件（数据和程序）。相应地，OS的主要功能也正是对这四类资源进行有效的管理。处理机管理适用于分配和控制处理机；存储器管理主要负责内存的分配与回收；I/O设备管理是负责I/O设备的分配（回收）与操纵；文件管理适用于实现对文件的存取、共享和保护。可见，OS的确是计算机系统资源的管理者。&lt;br&gt;
+  当一台计算机系统供多个用户使用时，诸多用户对系统中共享资源的需求（包括数量和时间）有可能发生冲突。为此，操作系统必须对使用资源的请求进行授权，以协调诸用户对共享资源的使用。&lt;/p&gt;
+&lt;h4 id=&#34;os实现了对计算机资源的抽象&#34;&gt;OS实现了对计算机资源的抽象
+&lt;/h4&gt;&lt;p&gt;  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如图2所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。&lt;/p&gt;
+
+
+
+
+&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+    
+    
+        
+        
+    
+
+    
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 786.5 345.5&#34;&gt;
+  &lt;defs&gt;
+    &lt;style&gt;
+      .cls-1 {
+        stroke-dasharray: 12.1 12.1;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        isolation: isolate;
+      }
+
+      .cls-3, .cls-4, .cls-6, .cls-7 {
+        font-family: NotoSerifSC-Regular, &#39;Noto Serif SC&#39;;
+        font-size: 18px;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+    &lt;/style&gt;
+  &lt;/defs&gt;
+  &lt;!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  --&gt;
+  &lt;g&gt;
+    &lt;g id=&#34;_图层_1&#34;&gt;
+      &lt;circle class=&#34;cls-2&#34; cx=&#34;230.5&#34; cy=&#34;91.3&#34; r=&#34;37&#34; transform=&#34;translate(114.6 310.5) rotate(-83.7)&#34;/&gt;
+      &lt;g class=&#34;cls-5&#34;&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(212.5 98.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;230.5&#34; y1=&#34;127.9&#34; x2=&#34;230.5&#34; y2=&#34;163.6&#34;/&gt;
+        &lt;polygon points=&#34;227.6 161.6 230.5 172.4 233.4 161.6 227.6 161.6&#34;/&gt;
+      &lt;/g&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;158.5&#34; y=&#34;172.3&#34; width=&#34;145&#34; height=&#34;38&#34;/&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;158.5&#34; y=&#34;210.3&#34; width=&#34;145&#34; height=&#34;81&#34;/&gt;
+      &lt;g class=&#34;cls-5&#34;&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(194.4 198.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+      &lt;g class=&#34;cls-5&#34;&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(212.4 259.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+      &lt;circle class=&#34;cls-2&#34; cx=&#34;473.5&#34; cy=&#34;38.8&#34; r=&#34;37&#34;/&gt;
+      &lt;g class=&#34;cls-5&#34;&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(455.5 45.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;473.7&#34; y1=&#34;76.3&#34; x2=&#34;473.7&#34; y2=&#34;113.4&#34;/&gt;
+        &lt;polygon points=&#34;470.8 111.4 473.7 122.3 476.6 111.4 470.8 111.4&#34;/&gt;
+      &lt;/g&gt;
+      &lt;circle class=&#34;cls-1&#34; cx=&#34;473.5&#34; cy=&#34;220.8&#34; r=&#34;123&#34;/&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;401&#34; y=&#34;197.8&#34; width=&#34;145&#34; height=&#34;38&#34;/&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;401&#34; y=&#34;235.8&#34; width=&#34;145&#34; height=&#34;57.3&#34;/&gt;
+      &lt;g class=&#34;cls-5&#34;&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(436.7 223.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+      &lt;g class=&#34;cls-5&#34;&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(455.5 271.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;401.5&#34; y=&#34;122.8&#34; width=&#34;145&#34; height=&#34;38&#34;/&gt;
+      &lt;g class=&#34;cls-5&#34;&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(441.1 148.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O软件&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+      &lt;polyline class=&#34;cls-2&#34; points=&#34;489.4 161.2 489.4 184.2 502.8 184.2 473.4 197.2 473.7 196.8 444.2 183.8 457.7 183.8 457.7 160.8&#34;/&gt;
+      &lt;g class=&#34;cls-5&#34;&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(510.6 66.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O操作命令&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(510.6 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-7&#34; transform=&#34;translate(517 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;r&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(524.9 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(534.8 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;a&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(544.8 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;d&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-4&#34; transform=&#34;translate(556.1 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;,&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(560.3 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;wri&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(589.6 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-6&#34; transform=&#34;translate(596.2 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(605.8 88.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+      &lt;g class=&#34;cls-5&#34;&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(445.9 320.3)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;虚机器&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;
+    
+
+    
+        &lt;p class=&#34;svg-title&#34; style=&#34;font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2 I/O软件隐藏了I/O操作实现的细节&lt;/p&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;  通常把覆盖了上述软件的机器称为&lt;strong&gt;扩充机器&lt;/strong&gt;或者&lt;strong&gt;虚机器&lt;/strong&gt;。它向用户提供了一个对硬件操作的抽象模型。用户可利用该模型的接口使用计算机，无需了解物理接口的实现细节，从而使用户更容易地使用计算机硬件资源。亦即，I/O设备管理软件实现了对计算机硬件操作的第一个层次的抽象。&lt;br&gt;
+  同理，为了方便用户使用文件系统，又可在第一层软件（I/O管理软件）上再覆盖一层用于文件管理的软件，由它来实现对文件操作的细节，并向上层提供一组实现对文件进行存取操作的数据结构和命令。这样，用户可利用该软件提供的数据结构及命令对文件进行存取。此时用户所看到的是一台功能更强、使用更方便的虚机器。亦即，文件管理软件实现了对硬件资源操作的第二个层次的抽象。以此类推，如果文件管理软件上再覆盖一层面向用户的窗口软件，则用户便可在窗口环境下方便地使用计算机，从而形成一台功能更强的虚机器。&lt;br&gt;
+  由此可知，OS是铺设在计算机硬件上的多层软件的集合，它们不仅增强了系统的功能，还隐藏了对硬件操作的具体细节，实现了对计算机硬件操作的多个层次的抽象模型。值得说明的是，不仅可在底层对一个硬件资源加以抽象，还可以在高层对该资源底层已抽象的模型再次进行抽象，称为更高层的抽象模型。随着抽象层次的提高，抽象接口所提供的功能就越强，用户使用起来也越方便。&lt;/p&gt;
+&lt;h3 id=&#34;推动操作系统发展的主要动力&#34;&gt;推动操作系统发展的主要动力
+&lt;/h3&gt;&lt;p&gt;  OS自20世纪50年代产生后，经历了由简单到复杂，由低级到高级的发展。在短短60多年间，OS在各方面都有了长足的进步，能够很好地适应计算机硬件和体系结构的快速发展，以及应用需求的不断变化。下面我们对推动OS发展的主要推动力做具体阐述。&lt;/p&gt;
+&lt;h4 id=&#34;不断提高计算机资源利用率&#34;&gt;不断提高计算机资源利用率
+&lt;/h4&gt;&lt;p&gt;  在计算机发展的初期，计算机系统特别昂贵，人们必须千方百计地提高计算机系统中各种资源的利用率，这就是OS最初发展的推动力。由此形成了能自动地对一批作业进行处理的&lt;a class=&#34;link&#34; href=&#34;#%e5%a4%9a%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9f&#34; &gt;多道批处理系统&lt;/a&gt;。20世纪60年代和70年代有分别出现了能够有效提高I/O设备和CPU利用率的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，还没写到~&#39;)&#34;&gt;SPOOLing系统&lt;/a&gt;，以及极大地改善了存储器系统利用率的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，还没写到~&#39;)&#34;&gt;虚拟存储器技术&lt;/a&gt;。此后在网络环境下，通过在服务器上配置&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，还没写到~&#39;)&#34;&gt;网络文件系统&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数据库系统”还未上线~&#39;)&#34;&gt;数据库系统算法&lt;/a&gt;，将资源提供给全网络用户共享，又进一步提高了资源的利用率。&lt;/p&gt;
+&lt;h4 id=&#34;方便用户&#34;&gt;方便用户
+&lt;/h4&gt;&lt;p&gt;  当资源利用率不高的问题得到基本解决后，用户在上机、调试程序时的不方便行便成为主要矛盾，这又成为继续推动OS发展的主要因素。20世纪60年代&lt;a class=&#34;link&#34; href=&#34;#%e5%88%86%e6%97%b6%e7%b3%bb%e7%bb%9f&#34; &gt;分时系统&lt;/a&gt;的出现，不仅提高了系统资源的利用率，还能实现人&amp;mdash;机交互，使用户能像早期使用计算机时一样，感觉自己是独占全机资源，对其进行直接操控，极大地方便了程序员对程序进行调试和修改的操作。90年代初，图形用户界面的出现收到用户的广泛欢迎，进一步方便了用户对计算机的使用，这无疑又加速推动了计算机的迅速普及和广泛使用。&lt;/p&gt;
+&lt;h4 id=&#34;器件的不断更新换代&#34;&gt;器件的不断更新换代
+&lt;/h4&gt;&lt;p&gt;  随着IT技术的飞讯发展，尤其是微机芯片的不断更新换代，使得计算机的性能快速提高，从而也推动了OS的功能和性能迅速增强和提高。例如当微机芯片由8位发展到16位、32位，进而又发展到64位时，相应的微机OS也就由8位OS发展到16位和32位，进而又发展到64位，此时，相应OS的功能和性能也有了显著的增强和提高。&lt;br&gt;
+  与此同时，外部设备也在迅速发展。OS所能支持的外部设备也越来越多，如现在的微机OS已能够支持种类繁多的外部设备，除了传统的外设外，还可以支持光盘、移动硬盘、闪存盘、扫描仪、数码相机等。&lt;/p&gt;
+&lt;h4 id=&#34;计算机体系结构的不断发展&#34;&gt;计算机体系结构的不断发展
+&lt;/h4&gt;&lt;p&gt;  计算机体系结构的发展，也不断推动着OS的发展，并产生新的OS类型。例如当计算机由单处理机系统发展为多处理机系统时，相应地，OS也就由单处理机OS发展为多处理机OS。又如当出现了计算机网络后，配置在计算机网络上的操作系统也就应运而生。它不仅能有效地管理好网络中的共享资源，而且还向用户提供了许多网络服务。&lt;/p&gt;
+&lt;h4 id=&#34;不断提出新的应用需求&#34;&gt;不断提出新的应用需求
+&lt;/h4&gt;&lt;p&gt;  操作系统能如此迅速发展的另一个重要原因是，人们不断提出新的应用需求，例如，为了提高产品的质量和数量，需要将计算机应用于工业控制中，此时在计算机上就需要配置能进行实时控制的OS，由此产生了&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9e%e6%97%b6%e7%b3%bb%e7%bb%9f&#34; &gt;实时OS&lt;/a&gt;。此后，为了能满足用户在计算机上听音乐、看电影和玩游戏等需求，又在OS中添加了&lt;a class=&#34;link&#34; href=&#34;#%e6%94%af%e6%8c%81%e5%a4%9a%e5%aa%92%e4%bd%93&#34; &gt;多媒体功能&lt;/a&gt;。另外，由于在计算机系统中保存了越来越多的宝贵信息，致使能够&lt;a class=&#34;link&#34; href=&#34;#%e7%b3%bb%e7%bb%9f%e5%ae%89%e5%85%a8&#34; &gt;确保系统的安全性&lt;/a&gt;也成为OS必须具备的功能。尤其是随着VLSI（超大规模集成电路）的发展，计算机芯片的体积越来越小，价格也越来越便宜，大量智能设备应运而生，这样，&lt;a class=&#34;link&#34; href=&#34;#%e5%be%ae%e6%9c%ba%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f&#34; &gt;微机操作系统&lt;/a&gt;的产生和发展也成了一种必然。&lt;/p&gt;
+&lt;h2 id=&#34;操作系统的发展过程&#34;&gt;操作系统的发展过程
+&lt;/h2&gt;&lt;p&gt;  在20世纪50年代中期，出现了第一个简单的批处理OS；60年代中期开发出多道程序批处理系统；不久又推出分时系统，与此同时，用于工业和武器控制的实时OS也相继问世。20世纪70到90年代，是VLSI和计算机体系结构大发展的年代，导致了卫星及、多处理机和计算机网络的诞生和发展，与与此相应地，也相继开发出了微机OS，多处理机OS和网络OS，并得到极为迅猛的发展。&lt;/p&gt;
+&lt;h3 id=&#34;未配置操作系统的计算机系统&#34;&gt;未配置操作系统的计算机系统
+&lt;/h3&gt;&lt;p&gt;  从1945年诞生的第一台计算机，到50年代中期的计算机，都属于第一代计算机。这时还未出现OS，对计算机的全部操作都是由用户采取人工操作方式进行的。&lt;/p&gt;
+&lt;h4 id=&#34;人工操作方式&#34;&gt;人工操作方式
+&lt;/h4&gt;&lt;p&gt;  早期的操作方式是由程序员将事先已穿孔的纸带（或卡片），装入纸带输入机（或卡片输入机），再启动它们将纸带（或卡片）上的程序和数据输入计算机，然后启动计算机运行。仅当程序运行完毕并取走计算结果后，才允许下一个用户上机。这种人工操作方式有以下两方面缺点：&lt;br&gt;
+  (1)用户独占全机，即一台计算机的全部资源由上级用户所独占。&lt;br&gt;
+  (2)CPU等待人工操作。当用户进行装带（卡），卸带（卡）等人工操作时，CPU及内存等资源是空闲的。&lt;br&gt;
+  可见，人工操作方式严重降低了计算机资源的利用率，此即所谓的&lt;strong&gt;人机矛盾&lt;/strong&gt;。虽然CPU的速度在迅速提高，但I/O设备的速度却提高缓慢，这使CPU与I/O设备之间速度不匹配的矛盾更加突出。为此，曾先后出现了通道技术、缓冲技术，然而都未能很好地解决上述矛盾，直到后来引入了脱机输入/输出技术，才获得了相对较为满意的结果。&lt;/p&gt;
+&lt;h4 id=&#34;脱机输入输出方式&#34;&gt;脱机输入/输出方式
+&lt;/h4&gt;&lt;p&gt;  为了解决人机矛盾及&lt;/p&gt;
 </description>
         </item>
         <item>
