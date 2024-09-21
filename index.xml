@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 20 Sep 2024 17:05:58 +0000</lastBuildDate><atom:link href="https://www.brasswrench.cn/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 21 Sep 2024 03:00:48 +0000</lastBuildDate><atom:link href="https://www.brasswrench.cn/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>操作系统（一）：操作系统引论</title>
         <link>https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/</link>
         <pubDate>Thu, 19 Sep 2024 22:28:10 +0800</pubDate>
@@ -43,7 +43,8 @@
 &lt;h4 id=&#34;方便性&#34;&gt;方便性
 &lt;/h4&gt;&lt;p&gt;  一个未配置OS的计算机系统是极难使用的。用户如果想直接在计算机硬件（&lt;strong&gt;裸机&lt;/strong&gt;）上运行自己的程序，就必须用机器语言书写；但是如果配置了OS，系统就可以使用编译命令将用户采用高级语言书写的程序翻译成机器代码，或直接通过OS所提供的各种命令操纵计算机系统，极大地方便了用户，使计算机变得易学易用。&lt;/p&gt;
 &lt;h4 id=&#34;有效性&#34;&gt;有效性
-&lt;/h4&gt;&lt;p&gt;  有效性所包含的第一层含义是提高系统资源的利用率。在早期未配置OS的计算机系统中，诸如处理机、IO设备等都经常处于空闲状态，各种资源无法得到充分利用，所以在当时，提高系统资源利用率是推动OS发展最主要的动力。有效性的另一层含义是提高系统的吞吐量。OS可以通过合理地组织计算机的工作流程，加速程序的运行，缩短程序的运行周期，从而提高了系统的吞吐量。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  有效性所包含的第一层含义是提高系统资源的利用率。在早期未配置OS的计算机系统中，诸如处理机、I/O设备等都经常处于空闲状态，各种资源无法得到充分利用，所以在当时，提高系统资源利用率是推动OS发展最主要的动力。有效性的另一层含义是提高系统的吞吐量。OS可以通过合理地组织计算机的工作流程，加速程序的运行，缩短程序的运行周期，从而提高了系统的吞吐量。&lt;br&gt;
+  方便性和有效性是设计OS时最重要的两个目标。&lt;/p&gt;
 &lt;h4 id=&#34;可扩充性&#34;&gt;可扩充性
 &lt;/h4&gt;&lt;p&gt;  为适应计算机硬件、体系结构以及计算机应用发展的要求，OS必须具有很好的可扩充性。可扩充性的好坏与OS的结构有精密的联系，由此推动了OS结构的不断发展。从早期的无结构发展成模块化结构，进而又发展成层次化结构，近年来OS已广泛采用了微内核结构。微内核结构能方便地增添新的功能和模块，以及对原有的功能和模块进行修改，具有良好的可扩充性。&lt;/p&gt;
 &lt;h4 id=&#34;开放性&#34;&gt;开放性
@@ -95,7 +96,58 @@
     
 &lt;/div&gt;
 &lt;h4 id=&#34;os作为计算机系统资源的管理者&#34;&gt;OS作为计算机系统资源的管理者
-&lt;/h4&gt;</description>
+&lt;/h4&gt;&lt;p&gt;  在一个计算机系统中，通常都含有多种硬件和软件资源。归纳起来可将这些资源分为四类：处理机、存储器、I/O设备以及文件（数据和程序）。相应地，OS的主要功能也正是对这四类资源进行有效的管理。处理机管理适用于分配和控制处理机；存储器管理主要负责内存的分配与回收；I/O设备管理是负责I/O设备的分配（回收）与操纵；文件管理适用于实现对文件的存取、共享和保护。可见，OS的确是计算机系统资源的管理者。&lt;br&gt;
+  当一台计算机系统供多个用户使用时，诸多用户对系统中共享资源的需求（包括数量和时间）有可能发生冲突。为此，操作系统必须对使用资源的请求进行授权，以协调诸用户对共享资源的使用。&lt;/p&gt;
+&lt;h4 id=&#34;os实现了对计算机资源的抽象&#34;&gt;OS实现了对计算机资源的抽象
+&lt;/h4&gt;&lt;p&gt;  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如图2所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。&lt;/p&gt;
+
+
+
+
+&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+    
+    
+        
+        
+    
+
+    
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.54 345.54&#34;&gt;
+  &lt;circle cx=&#34;230.52&#34; cy=&#34;112.5&#34; r=&#34;37&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(212.52 119.34)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+  &lt;circle cx=&#34;473.52&#34; cy=&#34;38.5&#34; r=&#34;37&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(455.52 45.34)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;230.52&#34; y1=&#34;149.08&#34; x2=&#34;230.52&#34; y2=&#34;184.8&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;227.61 182.81 230.52 193.66 233.43 182.81 227.61 182.81&#34;/&gt;
+  &lt;/g&gt;
+  &lt;rect x=&#34;158.52&#34; y=&#34;193.5&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;158.52&#34; y=&#34;231.5&#34; width=&#34;145&#34; height=&#34;81&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(194.45 219.28)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(212.45 280.28)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;473.72&#34; y1=&#34;76&#34; x2=&#34;473.72&#34; y2=&#34;113.14&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;470.81 111.16 473.72 122 476.62 111.16 470.81 111.16&#34;/&gt;
+  &lt;/g&gt;
+  &lt;circle cx=&#34;473.52&#34; cy=&#34;220.5&#34; r=&#34;123&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.08 12.08; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;401.02&#34; y=&#34;197.5&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;401.02&#34; y=&#34;235.5&#34; width=&#34;145&#34; height=&#34;81&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(436.74 223.28)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(455.52 284.28)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;401.52&#34; y=&#34;122.5&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(441.13 148.28)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O软件&lt;/tspan&gt;&lt;/text&gt;
+  &lt;polyline points=&#34;489.36 160.92 489.36 183.92 502.8 183.92 473.36 196.92 473.68 196.5 444.24 183.5 457.68 183.5 457.68 160.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(510.56 66.56)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O操作命令&lt;/tspan&gt;&lt;tspan x=&#34;0&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: 0em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.41&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.02em;&#34;&gt;r&lt;/tspan&gt;&lt;tspan x=&#34;14.38&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: 0em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;24.19&#34; y=&#34;21.6&#34;&gt;a&lt;/tspan&gt;&lt;tspan x=&#34;34.22&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: 0em;&#34;&gt;d&lt;/tspan&gt;&lt;tspan x=&#34;45.52&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.09em;&#34;&gt;,&lt;/tspan&gt;&lt;tspan x=&#34;49.7&#34; y=&#34;21.6&#34;&gt;wri&lt;/tspan&gt;&lt;tspan x=&#34;79.07&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: 0em;&#34;&gt;t&lt;/tspan&gt;&lt;tspan x=&#34;85.66&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.01em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;95.29&#34; y=&#34;21.6&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;
+    
+
+    
+        &lt;p class=&#34;svg-title&#34; style=&#34;font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2 I/O软件隐藏了I/O操作实现的细节&lt;/p&gt;
+    
+&lt;/div&gt;
+&lt;p&gt;  通常把覆盖了上述软件的机器称为&lt;strong&gt;扩充机器&lt;/strong&gt;或者&lt;strong&gt;虚机器&lt;/strong&gt;。&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>随机过程（四）：马尔可夫过程</title>
