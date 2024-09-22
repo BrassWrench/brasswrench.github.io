@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 22 Sep 2024 13:29:59 +0800</lastBuildDate><atom:link href="https://www.brasswrench.cn/posts/computer_science/operating_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 22 Sep 2024 14:28:02 +0800</lastBuildDate><atom:link href="https://www.brasswrench.cn/posts/computer_science/operating_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>操作系统（一）：操作系统引论</title>
         <link>https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/</link>
         <pubDate>Thu, 19 Sep 2024 22:28:10 +0800</pubDate>
@@ -93,7 +93,7 @@
     
 
     
-        &lt;p class=&#34;svg-title&#34; style=&#34;font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1 OS作为接口的示意图&lt;/p&gt;
+        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1 OS作为接口的示意图&lt;/p&gt;
     
 &lt;/div&gt;
 
@@ -156,7 +156,7 @@
     
 
     
-        &lt;p class=&#34;svg-title&#34; style=&#34;font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2 I/O软件隐藏了I/O操作实现的细节&lt;/p&gt;
+        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2 I/O软件隐藏了I/O操作实现的细节&lt;/p&gt;
     
 &lt;/div&gt;
 
@@ -232,7 +232,7 @@
     
 
     
-        &lt;p class=&#34;svg-title&#34; style=&#34;font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3 脱机I/O示意图&lt;/p&gt;
+        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3 脱机I/O示意图&lt;/p&gt;
     
 &lt;/div&gt;
 &lt;/p&gt;
@@ -325,15 +325,86 @@
     &lt;/g&gt;
   &lt;/g&gt;
   &lt;text transform=&#34;translate(453.67 159.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;是&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g id=&#34;arrow-9&#34; data-name=&#34;arrow&#34;&gt;
+    &lt;g&gt;
+      &lt;line x1=&#34;333.3&#34; y1=&#34;77.79&#34; x2=&#34;333.3&#34; y2=&#34;103.03&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;329.59 100.22 333.3 101.79 337 100.22 333.3 109 329.59 100.22&#34;/&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(303.13 97.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;否&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(314.52 130.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;停止&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;
     
 
     
-        &lt;p class=&#34;svg-title&#34; style=&#34;font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4 单道批处理系统的处理流程&lt;/p&gt;
+        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4 单道批处理系统的处理流程&lt;/p&gt;
     
 &lt;/div&gt;
 
-</description>
+&lt;h4 id=&#34;单道批处理系统的缺点&#34;&gt;单道批处理系统的缺点
+&lt;/h4&gt;&lt;p&gt;  单道批处理系统最主要的缺点是，系统中的资源得不到充分的利用。这是因为在内存中仅有一道程序，每逢该程序在运行中发出I/O请求后，CPU便处于等待状态，必须在其I/O完成后才继续运行。又因I/O设备的低速性，更使CPU的利用率显著降低。&lt;a class=&#34;link&#34; href=&#34;#%e5%8d%95%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%bc%ba%e7%82%b9&#34; &gt;图5&lt;/a&gt;示出了单道程序的运行情况，从图可以看出：在 $t_2$ ~ $t_3$ 、 $t_6$ ~ $t_7$ 时间间隔内CPU空闲。&lt;/p&gt;
+
+
+
+
+&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+    
+    
+        
+        
+    
+
+    
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.54 277.54&#34;&gt;
+  &lt;text transform=&#34;translate(21.84 32.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户程序&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(21.84 109.68)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;监督程序&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(30.41 186.56)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O操作&lt;/tspan&gt;&lt;/text&gt;
+  &lt;polyline points=&#34;104.69 25.41 150.09 25.41 150.09 102.84 191.09 102.84 191.09 179.72 338.09 179.72 338.09 102.84 374.09 102.84 374.09 25.41 465.82 25.41 465.82 102.57 497.06 102.57 497.06 179.72 644.09 179.72 644.09 102.57 673.09 102.57 673.09 25.41 752.09 25.41&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(108.06 16.29)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O中断请求&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(156.34 95.29)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;启动I/O&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(305.06 94.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(345.06 122.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;结束中断&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(419.06 15.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O中断请求&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(467.05 96.26)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;启动I/O&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(602.77 95.83)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(649.77 123.83)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;结束中断&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g id=&#34;arrow&#34;&gt;
+    &lt;g&gt;
+      &lt;line x1=&#34;104.69&#34; y1=&#34;247.12&#34; x2=&#34;758.73&#34; y2=&#34;247.12&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;755.92 250.82 757.49 247.12 755.92 243.41 764.7 247.12 755.92 250.82&#34;/&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(143.37 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(150.34 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(184.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(191.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(332.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(339.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(368.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(375.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;4&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(460.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(467.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;5&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(492.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(499.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;6&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(638.51 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(645.49 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;7&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(666.51 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(673.49 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;8&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(756.04 267.79)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;
+    
+
+    
+        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5 单道程序的运行情况&lt;/p&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;  为了能在系统中运行较大的作业，通常在计算机中都配置了较大容量的内存，但实际情况是有80%以上的作业都属于中小型，因此在单道程序环境下，也必定造成内存的浪费。类似地，为了满足各种类型的作业需要，在系统中将会配置多种类型的I/O设备。显然在单道程序环境下也不能充分利用系统资源。&lt;/p&gt;
+&lt;h3 id=&#34;多道批处理系统multiprogrammed-batch-processing-system&#34;&gt;多道批处理系统（Multiprogrammed Batch Processing System）
+&lt;/h3&gt;&lt;p&gt;  20世纪60年代中期，IBM公司生产了第一台小规模集成电路计算机IBM 360（第三代计算机系统）。由于它较之于晶体管计算机无论在体积、功耗、速度和可靠性上都有了显著的改善，因而获得了极大的成功。IBM公司为该机开发的OS/360操作系统是第一个能运行多道程序的批处理系统。&lt;/p&gt;
+&lt;h4 id=&#34;多道程序设计的基本概念&#34;&gt;多道程序设计的基本概念
+&lt;/h4&gt;</description>
         </item>
         
     </channel>

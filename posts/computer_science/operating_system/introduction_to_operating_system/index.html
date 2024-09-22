@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/'>
 
-<link rel="stylesheet" href="/scss/style.min.fcad2ef67f6f827cd979a07e26d0ca3c0443d600a96b9b3328339c518e968d46.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.3725c523548a23d66ce575fc4131e607e975070afe58c11f2714b704aacfc51e.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -66,7 +66,7 @@
 <meta property='og:description' content="操作系统概述与基本结构">
 <meta property='og:url' content='https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-19T22:28:10&#43;08:00'/><meta property='article:modified_time' content='2024-09-22T13:29:59&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-19T22:28:10&#43;08:00'/><meta property='article:modified_time' content='2024-09-22T14:28:02&#43;08:00'/>
 <meta name="twitter:title" content="操作系统（一）：操作系统引论">
 <meta name="twitter:description" content="操作系统概述与基本结构">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -560,6 +560,12 @@
         <li><a href="#单道批处理系统">单道批处理系统</a>
           <ol>
             <li><a href="#单道批处理系统simple-batch-processing-system的处理过程">单道批处理系统（Simple Batch Processing System）的处理过程</a></li>
+            <li><a href="#单道批处理系统的缺点">单道批处理系统的缺点</a></li>
+          </ol>
+        </li>
+        <li><a href="#多道批处理系统multiprogrammed-batch-processing-system">多道批处理系统（Multiprogrammed Batch Processing System）</a>
+          <ol>
+            <li><a href="#多道程序设计的基本概念">多道程序设计的基本概念</a></li>
           </ol>
         </li>
       </ol>
@@ -865,7 +871,7 @@
 </svg>
 
             <time class="article-words">
-                5921 字
+                6493 字
             </time>
         </div>
 
@@ -880,7 +886,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 12 分钟
+                    阅读时长: 13 分钟
                 </time>
             </div>
         
@@ -997,7 +1003,7 @@
     
 
     
-        <p class="svg-title" style="font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0">图1 OS作为接口的示意图</p>
+        <p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1 OS作为接口的示意图</p>
     
 </div>
 
@@ -1060,7 +1066,7 @@
     
 
     
-        <p class="svg-title" style="font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0">图2 I/O软件隐藏了I/O操作实现的细节</p>
+        <p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2 I/O软件隐藏了I/O操作实现的细节</p>
     
 </div>
 
@@ -1136,7 +1142,7 @@
     
 
     
-        <p class="svg-title" style="font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0">图3 脱机I/O示意图</p>
+        <p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3 脱机I/O示意图</p>
     
 </div>
 </p>
@@ -1229,15 +1235,86 @@
     </g>
   </g>
   <text transform="translate(453.67 159.8)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">是</tspan></text>
+  <g id="arrow-9" data-name="arrow">
+    <g>
+      <line x1="333.3" y1="77.79" x2="333.3" y2="103.03" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="329.59 100.22 333.3 101.79 337 100.22 333.3 109 329.59 100.22"/>
+    </g>
+  </g>
+  <text transform="translate(303.13 97.05)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">否</tspan></text>
+  <text transform="translate(314.52 130.05)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">停止</tspan></text>
 </svg>
     
 
     
-        <p class="svg-title" style="font-size:1.6rem; text-align:center; margin-top: 0; margin-bottom:0">图4 单道批处理系统的处理流程</p>
+        <p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4 单道批处理系统的处理流程</p>
     
 </div>
 
+<h4 id="单道批处理系统的缺点">单道批处理系统的缺点
+</h4><p>  单道批处理系统最主要的缺点是，系统中的资源得不到充分的利用。这是因为在内存中仅有一道程序，每逢该程序在运行中发出I/O请求后，CPU便处于等待状态，必须在其I/O完成后才继续运行。又因I/O设备的低速性，更使CPU的利用率显著降低。<a class="link" href="#%e5%8d%95%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%bc%ba%e7%82%b9" >图5</a>示出了单道程序的运行情况，从图可以看出：在 $t_2$ ~ $t_3$ 、 $t_6$ ~ $t_7$ 时间间隔内CPU空闲。</p>
 
+
+
+
+<div class="svg-figure" style="margin-top:5px; margin-bottom:5px">
+    
+    
+        
+        
+    
+
+    
+        <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 786.54 277.54">
+  <text transform="translate(21.84 32.25)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">用户程序</tspan></text>
+  <text transform="translate(21.84 109.68)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">监督程序</tspan></text>
+  <text transform="translate(30.41 186.56)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">I/O操作</tspan></text>
+  <polyline points="104.69 25.41 150.09 25.41 150.09 102.84 191.09 102.84 191.09 179.72 338.09 179.72 338.09 102.84 374.09 102.84 374.09 25.41 465.82 25.41 465.82 102.57 497.06 102.57 497.06 179.72 644.09 179.72 644.09 102.57 673.09 102.57 673.09 25.41 752.09 25.41" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(108.06 16.29)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">I/O中断请求</tspan></text>
+  <text transform="translate(156.34 95.29)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">启动I/O</tspan></text>
+  <text transform="translate(305.06 94.86)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">I/O完成</tspan></text>
+  <text transform="translate(345.06 122.86)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">结束中断</tspan></text>
+  <text transform="translate(419.06 15.86)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">I/O中断请求</tspan></text>
+  <text transform="translate(467.05 96.26)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">启动I/O</tspan></text>
+  <text transform="translate(602.77 95.83)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">I/O完成</tspan></text>
+  <text transform="translate(649.77 123.83)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">结束中断</tspan></text>
+  <g id="arrow">
+    <g>
+      <line x1="104.69" y1="247.12" x2="758.73" y2="247.12" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="755.92 250.82 757.49 247.12 755.92 243.41 764.7 247.12 755.92 250.82"/>
+    </g>
+  </g>
+  <text transform="translate(143.37 226.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">t</tspan></text>
+  <text transform="translate(150.34 228.56) scale(.58)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">1</tspan></text>
+  <text transform="translate(184.8 226.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">t</tspan></text>
+  <text transform="translate(191.77 228.56) scale(.58)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">2</tspan></text>
+  <text transform="translate(332.8 226.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">t</tspan></text>
+  <text transform="translate(339.77 228.56) scale(.58)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">3</tspan></text>
+  <text transform="translate(368.8 226.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">t</tspan></text>
+  <text transform="translate(375.77 228.56) scale(.58)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">4</tspan></text>
+  <text transform="translate(460.8 226.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">t</tspan></text>
+  <text transform="translate(467.77 228.56) scale(.58)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">5</tspan></text>
+  <text transform="translate(492.8 226.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">t</tspan></text>
+  <text transform="translate(499.77 228.56) scale(.58)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">6</tspan></text>
+  <text transform="translate(638.51 226.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">t</tspan></text>
+  <text transform="translate(645.49 228.56) scale(.58)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">7</tspan></text>
+  <text transform="translate(666.51 226.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">t</tspan></text>
+  <text transform="translate(673.49 228.56) scale(.58)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">8</tspan></text>
+  <text transform="translate(756.04 267.79)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 19px;"><tspan x="0" y="0">t</tspan></text>
+</svg>
+    
+
+    
+        <p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5 单道程序的运行情况</p>
+    
+</div>
+
+<p>  为了能在系统中运行较大的作业，通常在计算机中都配置了较大容量的内存，但实际情况是有80%以上的作业都属于中小型，因此在单道程序环境下，也必定造成内存的浪费。类似地，为了满足各种类型的作业需要，在系统中将会配置多种类型的I/O设备。显然在单道程序环境下也不能充分利用系统资源。</p>
+<h3 id="多道批处理系统multiprogrammed-batch-processing-system">多道批处理系统（Multiprogrammed Batch Processing System）
+</h3><p>  20世纪60年代中期，IBM公司生产了第一台小规模集成电路计算机IBM 360（第三代计算机系统）。由于它较之于晶体管计算机无论在体积、功耗、速度和可靠性上都有了显著的改善，因而获得了极大的成功。IBM公司为该机开发的OS/360操作系统是第一个能运行多道程序的批处理系统。</p>
+<h4 id="多道程序设计的基本概念">多道程序设计的基本概念
+</h4>
     </div>
 </section>
 
@@ -1267,7 +1344,7 @@
 
 
         <span>
-            最后更新于 Sep 22, 2024 13:29 CST
+            最后更新于 Sep 22, 2024 14:28 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1388,7 +1465,7 @@
             
             
         
-        <span>本图书馆累计发布了2篇文章 共12049字</span>
+        <span>本图书馆累计发布了2篇文章 共12621字</span>
     </section>
 
     <section class="site-visit-count">
