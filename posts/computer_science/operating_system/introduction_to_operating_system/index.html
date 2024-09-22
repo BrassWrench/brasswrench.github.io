@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/'>
 
-<link rel="stylesheet" href="/scss/style.min.3725c523548a23d66ce575fc4131e607e975070afe58c11f2714b704aacfc51e.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.a1588d7718241053a524e23b188a177a0683c94b56ac9912f249d11ec1ec27cf.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -66,7 +66,7 @@
 <meta property='og:description' content="操作系统概述与基本结构">
 <meta property='og:url' content='https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-19T22:28:10&#43;08:00'/><meta property='article:modified_time' content='2024-09-22T14:28:02&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-19T22:28:10&#43;08:00'/><meta property='article:modified_time' content='2024-09-22T16:53:59&#43;08:00'/>
 <meta name="twitter:title" content="操作系统（一）：操作系统引论">
 <meta name="twitter:description" content="操作系统概述与基本结构">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -566,6 +566,8 @@
         <li><a href="#多道批处理系统multiprogrammed-batch-processing-system">多道批处理系统（Multiprogrammed Batch Processing System）</a>
           <ol>
             <li><a href="#多道程序设计的基本概念">多道程序设计的基本概念</a></li>
+            <li><a href="#多道批处理系统的优缺点">多道批处理系统的优缺点</a></li>
+            <li><a href="#多道批处理系统需要解决的问题">多道批处理系统需要解决的问题</a></li>
           </ol>
         </li>
       </ol>
@@ -871,7 +873,7 @@
 </svg>
 
             <time class="article-words">
-                6493 字
+                7832 字
             </time>
         </div>
 
@@ -886,7 +888,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 13 分钟
+                    阅读时长: 16 分钟
                 </time>
             </div>
         
@@ -1008,7 +1010,7 @@
 </div>
 
 <h4 id="os作为计算机系统资源的管理者">OS作为计算机系统资源的管理者
-</h4><p>  在一个计算机系统中，通常都含有多种硬件和软件资源。归纳起来可将这些资源分为四类：处理机、存储器、I/O设备以及文件（数据和程序）。相应地，OS的主要功能也正是对这四类资源进行有效的管理。处理机管理适用于分配和控制处理机；存储器管理主要负责内存的分配与回收；I/O设备管理是负责I/O设备的分配（回收）与操纵；文件管理适用于实现对文件的存取、共享和保护。可见，OS的确是计算机系统资源的管理者。<br>
+</h4><p>  在一个计算机系统中，通常都含有多种硬件和软件资源。归纳起来可将这些资源分为四类：<strong>处理机、存储器、I/O设备以及文件（数据和程序）</strong>。相应地，OS的主要功能也正是对这四类资源进行有效的管理。处理机管理适用于分配和控制处理机；存储器管理主要负责内存的分配与回收；I/O设备管理是负责I/O设备的分配（回收）与操纵；文件管理适用于实现对文件的存取、共享和保护。可见，OS的确是计算机系统资源的管理者。<br>
   当一台计算机系统供多个用户使用时，诸多用户对系统中共享资源的需求（包括数量和时间）有可能发生冲突。为此，操作系统必须对使用资源的请求进行授权，以协调诸用户对共享资源的使用。</p>
 <h4 id="os实现了对计算机资源的抽象">OS实现了对计算机资源的抽象
 </h4><p>  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如<a class="link" href="#os%e5%ae%9e%e7%8e%b0%e4%ba%86%e5%af%b9%e8%ae%a1%e7%ae%97%e6%9c%ba%e8%b5%84%e6%ba%90%e7%9a%84%e6%8a%bd%e8%b1%a1" >图2</a>所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。</p>
@@ -1076,7 +1078,7 @@
 <h3 id="推动操作系统发展的主要动力">推动操作系统发展的主要动力
 </h3><p>  OS自20世纪50年代产生后，经历了由简单到复杂，由低级到高级的发展。在短短60多年间，OS在各方面都有了长足的进步，能够很好地适应计算机硬件和体系结构的快速发展，以及应用需求的不断变化。下面我们对推动OS发展的主要推动力做具体阐述。</p>
 <h4 id="不断提高计算机资源利用率">不断提高计算机资源利用率
-</h4><p>  在计算机发展的初期，计算机系统特别昂贵，人们必须千方百计地提高计算机系统中各种资源的利用率，这就是OS最初发展的推动力。由此形成了能自动地对一批作业进行处理的<a class="link" href="#%e5%a4%9a%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9f" >多道批处理系统</a>。20世纪60年代和70年代有分别出现了能够有效提高I/O设备和CPU利用率的<a class="link" onclick="alert('抱歉，还没写到~')">SPOOLing系统</a>，以及极大地改善了存储器系统利用率的<a class="link" onclick="alert('抱歉，还没写到~')">虚拟存储器技术</a>。此后在网络环境下，通过在服务器上配置<a class="link" onclick="alert('抱歉，还没写到~')">网络文件系统</a>和<a class="link" onclick="alert('抱歉，“数据库系统”还未上线~')">数据库系统算法</a>，将资源提供给全网络用户共享，又进一步提高了资源的利用率。</p>
+</h4><p>  在计算机发展的初期，计算机系统特别昂贵，人们必须千方百计地提高计算机系统中各种资源的利用率，这就是OS最初发展的推动力。由此形成了能自动地对一批作业进行处理的<a class="link" href="#%e5%a4%9a%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9fmultiprogrammed-batch-processing-system" >多道批处理系统</a>。20世纪60年代和70年代有分别出现了能够有效提高I/O设备和CPU利用率的<a class="link" onclick="alert('抱歉，还没写到~')">SPOOLing系统</a>，以及极大地改善了存储器系统利用率的<a class="link" onclick="alert('抱歉，还没写到~')">虚拟存储器技术</a>。此后在网络环境下，通过在服务器上配置<a class="link" onclick="alert('抱歉，还没写到~')">网络文件系统</a>和<a class="link" onclick="alert('抱歉，“数据库系统”还未上线~')">数据库系统算法</a>，将资源提供给全网络用户共享，又进一步提高了资源的利用率。</p>
 <h4 id="方便用户">方便用户
 </h4><p>  当资源利用率不高的问题得到基本解决后，用户在上机、调试程序时的不方便行便成为主要矛盾，这又成为继续推动OS发展的主要因素。20世纪60年代<a class="link" href="#%e5%88%86%e6%97%b6%e7%b3%bb%e7%bb%9f" >分时系统</a>的出现，不仅提高了系统资源的利用率，还能实现人&mdash;机交互，使用户能像早期使用计算机时一样，感觉自己是独占全机资源，对其进行直接操控，极大地方便了程序员对程序进行调试和修改的操作。90年代初，图形用户界面的出现收到用户的广泛欢迎，进一步方便了用户对计算机的使用，这无疑又加速推动了计算机的迅速普及和广泛使用。</p>
 <h4 id="器件的不断更新换代">器件的不断更新换代
@@ -1314,7 +1316,158 @@
 <h3 id="多道批处理系统multiprogrammed-batch-processing-system">多道批处理系统（Multiprogrammed Batch Processing System）
 </h3><p>  20世纪60年代中期，IBM公司生产了第一台小规模集成电路计算机IBM 360（第三代计算机系统）。由于它较之于晶体管计算机无论在体积、功耗、速度和可靠性上都有了显著的改善，因而获得了极大的成功。IBM公司为该机开发的OS/360操作系统是第一个能运行多道程序的批处理系统。</p>
 <h4 id="多道程序设计的基本概念">多道程序设计的基本概念
-</h4>
+</h4><p>  为了进一步提高资源的利用率和系统吞吐量，在20世纪60年代中期引入了多道程序设计技术，由此形成了多道批处理系统。在该系统中，用户所提交的作业先存放在外存上，并排成一个队列，称为“后备队列”。然后由作业调度程序按一定的算法，从后备队列中选择若干个作业调入内存，使它们共享CPU和系统中的各种资源。由于同时在内存中装有若干道程序，这样便可以在运行程序A时，利用其因I/O操作而暂停执行时的CPU空挡时间，再调度另一道程序B运行，同样可以利用程序B在I/O操作时的空档时间，再调度程序C运行，使多道程序交替地运行，这样便可以保持CPU处于忙碌状态。图6示出了四道程序时的运行情况。</p>
+
+
+
+
+<div class="svg-figure" style="margin-top:5px; margin-bottom:5px">
+    
+    
+        
+        
+    
+
+    
+        <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 786.54 506.54">
+  <text transform="translate(26.6 111.79)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序A</tspan></text>
+  <text transform="translate(26.6 189.9)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序B</tspan></text>
+  <text transform="translate(26.6 268.01)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序C</tspan></text>
+  <text transform="translate(25.39 346.12)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序D</tspan></text>
+  <text transform="translate(3.87 424.23)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">调度程序</tspan></text>
+  <g>
+    <line x1="130.73" y1="59.89" x2="130.73" y2="65.89" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="130.73" y1="78.09" x2="130.73" y2="487.03" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="130.73" y1="493.13" x2="130.73" y2="499.13" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g id="arrow">
+    <g>
+      <line x1="33.17" y1="486.5" x2="771.7" y2="486.5" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="768.89 490.2 770.47 486.5 768.89 482.8 777.67 486.5 768.89 490.2"/>
+    </g>
+  </g>
+  <g>
+    <line x1="158.44" y1="59.89" x2="158.44" y2="65.89" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="158.44" y1="78.09" x2="158.44" y2="487.03" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="158.44" y1="493.13" x2="158.44" y2="499.13" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <line x1="158.44" y1="104.75" x2="427.67" y2="104.75" style="fill: none; stroke: #000; stroke-dasharray: 12 6 1 6; stroke-miterlimit: 10;"/>
+  <line x1="688.56" y1="417.19" x2="725.17" y2="417.19" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="233.96" y1="59.89" x2="233.96" y2="65.89" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="233.96" y1="78.09" x2="233.96" y2="487.03" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="233.96" y1="493.13" x2="233.96" y2="499.13" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="261.68" y1="59.74" x2="261.68" y2="65.74" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="261.68" y1="77.95" x2="261.68" y2="486.88" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="261.68" y1="492.99" x2="261.68" y2="498.99" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(160.29 177.2)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序B</tspan></text>
+  <polyline points="261.68 182.86 284.84 182.86 354.68 182.86 777.67 182.86" style="fill: none; stroke: #000; stroke-dasharray: 12 6 1 6; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="365" y1="261.17" x2="371" y2="261.17" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="376.82" y1="261.17" x2="380.71" y2="261.17" style="fill: none; stroke: #000; stroke-dasharray: .97 5.82; stroke-miterlimit: 10;"/>
+    <line x1="383.62" y1="261.17" x2="623.38" y2="261.17" style="fill: none; stroke: #000; stroke-dasharray: 11.65 5.82 .97 5.82; stroke-miterlimit: 10;"/>
+    <line x1="626.3" y1="261.17" x2="632.3" y2="261.17" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(84.76 30.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序A</tspan><tspan x="-7.25" y="21.6">I/O请求</tspan></text>
+  <text transform="translate(187.54 30.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序B</tspan><tspan x="-7.69" y="21.6">I/O请求</tspan></text>
+  <text transform="translate(76.26 98.07)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序A</tspan></text>
+  <text transform="translate(166.39 78.33)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序A </tspan><tspan x="-3.92" y="21.6" style="letter-spacing: -.02em;">I</tspan><tspan x="3.04" y="21.6">O处理</tspan></text>
+  <text transform="translate(269.99 157.05)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序B </tspan><tspan x="-7.69" y="21.6">I/O处理</tspan></text>
+  <text transform="translate(264.58 254.91)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序C</tspan></text>
+  <g>
+    <line x1="337.19" y1="59.74" x2="337.19" y2="65.74" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="337.19" y1="77.95" x2="337.19" y2="486.88" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="337.19" y1="492.99" x2="337.19" y2="498.99" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="364.91" y1="59.74" x2="364.91" y2="65.74" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="364.91" y1="77.95" x2="364.91" y2="486.88" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="364.91" y1="492.99" x2="364.91" y2="498.99" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="548.43" y1="339.08" x2="554.43" y2="339.08" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="560.55" y1="339.08" x2="564.63" y2="339.08" style="fill: none; stroke: #000; stroke-dasharray: 1.02 6.12; stroke-miterlimit: 10;"/>
+    <line x1="567.69" y1="339.08" x2="768.61" y2="339.08" style="fill: none; stroke: #000; stroke-dasharray: 12.24 6.12 1.02 6.12; stroke-miterlimit: 10;"/>
+    <line x1="771.67" y1="339.08" x2="777.67" y2="339.08" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(371.71 234.32)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序C </tspan><tspan x="-7.5" y="21.6">I/O处理</tspan></text>
+  <text transform="translate(369.31 333.21)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序D</tspan></text>
+  <text transform="translate(290.51 30.24)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序C</tspan><tspan x="-7.5" y="21.6">I/O请求</tspan></text>
+  <g>
+    <line x1="492.72" y1="59.78" x2="492.72" y2="65.78" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="492.72" y1="77.99" x2="492.72" y2="486.92" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="492.72" y1="493.02" x2="492.72" y2="499.02" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="548.43" y1="59.78" x2="548.43" y2="65.78" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="548.43" y1="77.99" x2="548.43" y2="486.92" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="548.43" y1="493.02" x2="548.43" y2="499.02" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(467.56 30.28)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序D</tspan><tspan x="-6.79" y="21.6">I/O请求</tspan></text>
+  <text transform="translate(402.96 29.86)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序A </tspan><tspan x="-7.25" y="21.6">I/O完成</tspan></text>
+  <g>
+    <line x1="427.25" y1="59.78" x2="427.25" y2="65.78" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="427.25" y1="77.99" x2="427.25" y2="486.92" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="427.25" y1="493.02" x2="427.25" y2="499.02" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(537.8 29.92)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序A</tspan><tspan x="-11.54" y="21.6">再被调度</tspan></text>
+  <text transform="translate(608.25 29.66)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序C </tspan><tspan x="-7.5" y="21.6">I/O完成</tspan></text>
+  <g>
+    <line x1="632.3" y1="59.6" x2="632.3" y2="65.6" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="632.3" y1="77.8" x2="632.3" y2="486.74" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="632.3" y1="492.84" x2="632.3" y2="498.84" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(664.27 29.3)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序A </tspan><tspan x="6.46" y="21.6">完成</tspan></text>
+  <g>
+    <line x1="688.56" y1="59.27" x2="688.56" y2="65.27" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="688.56" y1="77.48" x2="688.56" y2="486.41" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="688.56" y1="492.52" x2="688.56" y2="498.52" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(712.66 30.14)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序C </tspan><tspan x="-2.78" y="21.6">再调度</tspan></text>
+  <g>
+    <line x1="738.67" y1="59.13" x2="738.67" y2="65.13" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="738.67" y1="77.34" x2="738.67" y2="486.27" style="fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;"/>
+    <line x1="738.67" y1="492.37" x2="738.67" y2="498.37" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <polyline points="777.17 260.97 738.67 260.97 738.67 417.19 688.56 417.19 688.56 104.75 552.67 104.75 548.43 104.75 548.43 417.19 492.72 417.19 492.72 339.08 364.91 339.08 364.91 417.19 337.19 417.19 337.19 261.17 261.68 261.17 261.68 261.23 261.68 417.19 233.96 417.19 233.96 261.23 233.96 182.86 158.44 182.86 158.44 417.19 130.73 417.19 130.73 418.17 130.73 105.57 130.73 104.75 79.3 104.75" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+  <text transform="translate(555.56 312.14)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序D </tspan><tspan x="-6.79" y="21.6">I/O处理</tspan></text>
+  <text transform="translate(136.19 30.08)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序B</tspan><tspan x="6.03" y="21.6">调度</tspan></text>
+  <text transform="translate(738.17 254.18)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序C</tspan></text>
+  <text transform="translate(237.36 30.02)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序C</tspan><tspan x="6.22" y="21.6">调度</tspan></text>
+  <text transform="translate(341.65 30.02)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序D</tspan><tspan x="6.93" y="21.6">调度</tspan></text>
+  <line x1="12.5" y1="52.5" x2="61.9" y2="52.5" style="fill: #fff; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+  <text transform="translate(18.65 25.82)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">C</tspan><tspan x="12.44" y="0" style="letter-spacing: -.02em;">P</tspan><tspan x="23.63" y="0">U</tspan><tspan x="-8.01" y="21.6">执行线</tspan></text>
+</svg>
+    
+
+    
+        <p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5 多道程序的运行情况</p>
+    
+</div>
+
+<h4 id="多道批处理系统的优缺点">多道批处理系统的优缺点
+</h4><p>  多道批处理系统的优点如下：<br>
+  (1)资源利用率高。引入多道批处理能使多道程序交替运行，以保持CPU处于忙碌状态；在内存中装入多道程序可提高内存的利用率；此外还可以提高I/O设备的利用率。<br>
+  (2)系统吞吐量大。能提高系统吞吐量的主要原因可归结为：<br>
+    ①CPU和其他资源保持“忙碌状态”；<br>
+    ②仅当作业完成时或运行不下去时才进行切换，系统开销小。<br>
+  多道批处理系统的缺点如下：<br>
+  (1)平均周转时间长。由于作业要排队依次进行处理，因而作业的周转时间较长，通常需几个小时，甚至几天。<br>
+  (2)无交互能力。用户一旦把作业提交给系统后，直至作业完成，用户都不能与自己的作业进行交互，修改和调试程序极不方便。</p>
+<h4 id="多道批处理系统需要解决的问题">多道批处理系统需要解决的问题
+</h4><p>  多道批处理系统是一种十分有效，但又非常复杂的系统，为使系统中的多道程序间能协调地运行，系统必须解决下述一系列问题：<br>
+  (1)处理机争用问题。既要能满足各道程序运行的需要，又要能提高处理机的利用率。<br>
+  (2)内存分配和保护问题。系统应能为每道程序分配必要的内存空间，使它们各得其所，且不会因某道程序出现异常情况而破坏其他程序。<br>
+  (3)I/O设备分配问题。系统应采取适当的策略来分配系统中的I/O设备，以达到既能方便用户对设备的使用，又能提高设备利用率的目的。<br>
+  (4)文件的组织和管理问题。系统应能有效地组织存放在系统中的大量的程序和数据，使它们既便于用户使用，又能保证数据的安全性。<br>
+  (5)作业管理问题。系统中存在着各种作业（应用程序），系统应能对系统中所有的作业进行合理的组织，以满足这些作业用户的不同需求。<br>
+  (6)用户与系统的接口问题。为使用户能方便的使用操作系统，OS还应提供用户与OS之间的接口。<br>
+  为此，应在计算机系统中增加一组软件，用以对上述问题进行妥善、有效的处理。这组软件应包括：能有效地组织和管理<a class="link" href="#os%e4%bd%9c%e4%b8%ba%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%b3%bb%e7%bb%9f%e8%b5%84%e6%ba%90%e7%9a%84%e7%ae%a1%e7%90%86%e8%80%85" >四大资源</a>的软件、合理地对各类作业进行调度和控制它们运行的软件，以及方便用户使用计算机的软件。正是这样一组软件构成了操作系统。据此，我们可以把操作系统定义为：<strong>操作系统是一组能有效地组织和管理计算机硬件和软件资源，合理地对各类作业进行调度，以及方便用户使用的程序的集合</strong>。</p>
+
     </div>
 </section>
 
@@ -1344,7 +1497,7 @@
 
 
         <span>
-            最后更新于 Sep 22, 2024 14:28 CST
+            最后更新于 Sep 22, 2024 16:53 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1465,7 +1618,7 @@
             
             
         
-        <span>本图书馆累计发布了2篇文章 共12621字</span>
+        <span>本图书馆累计发布了2篇文章 共13960字</span>
     </section>
 
     <section class="site-visit-count">
