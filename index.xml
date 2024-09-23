@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 23 Sep 2024 22:26:50 +0800</lastBuildDate><atom:link href="https://www.brasswrench.cn/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 24 Sep 2024 00:02:08 +0800</lastBuildDate><atom:link href="https://www.brasswrench.cn/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>高斯泼溅（一）：3D高斯泼溅算法的基本原理</title>
         <link>https://www.brasswrench.cn/posts/artificial_intelligence/computer_vision/frontier_topic_gaussian_splatting/basic_principles/</link>
         <pubDate>Mon, 23 Sep 2024 19:43:18 +0800</pubDate>
@@ -66,7 +66,7 @@
 
 
 
-&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
     
     
         
@@ -75,28 +75,28 @@
 
     
         &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.5 200.5&#34;&gt;
-  &lt;text transform=&#34;translate(375.3 34)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(237.5 77)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序&lt;/tspan&gt;&lt;/text&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 200.5&#34;&gt;
+  &lt;text transform=&#34;translate(413.89 34)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(276.1 77)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序&lt;/tspan&gt;&lt;/text&gt;
   &lt;g id=&#34;arrow&#34;&gt;
-    &lt;line x1=&#34;393.3&#34; y1=&#34;57.1&#34; x2=&#34;393.3&#34; y2=&#34;83.3&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;polygon points=&#34;390.4 59 393.3 48.2 396.2 59 390.4 59&#34;/&gt;
-    &lt;polygon points=&#34;390.4 81.4 393.3 92.2 396.2 81.4 390.4 81.4&#34;/&gt;
+    &lt;line x1=&#34;431.89&#34; y1=&#34;57.1&#34; x2=&#34;431.89&#34; y2=&#34;83.3&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;428.99 59 431.89 48.2 434.8 59 428.99 59&#34;/&gt;
+    &lt;polygon points=&#34;428.99 81.4 431.89 92.2 434.8 81.4 428.99 81.4&#34;/&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(365.3 118)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;命令&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(210.7 117)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;系统调用&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(465.3 117)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;图标—窗口&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(403.89 118)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;命令&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(249.29 117)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;系统调用&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(503.89 117)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;图标—窗口&lt;/tspan&gt;&lt;/text&gt;
   &lt;g id=&#34;arrow-2&#34; data-name=&#34;arrow&#34;&gt;
-    &lt;line x1=&#34;498.5&#34; y1=&#34;57.1&#34; x2=&#34;498.5&#34; y2=&#34;83.3&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;polygon points=&#34;495.6 59 498.5 48.2 501.4 59 495.6 59&#34;/&gt;
-    &lt;polygon points=&#34;495.6 81.4 498.5 92.2 501.4 81.4 495.6 81.4&#34;/&gt;
+    &lt;line x1=&#34;537.1&#34; y1=&#34;57.1&#34; x2=&#34;537.1&#34; y2=&#34;83.3&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;534.2 59 537.1 48.2 539.99 59 534.2 59&#34;/&gt;
+    &lt;polygon points=&#34;534.2 81.4 537.1 92.2 539.99 81.4 534.2 81.4&#34;/&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(357.3 143.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操作系统&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(348.3 180.2)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;计算机硬件&lt;/tspan&gt;&lt;/text&gt;
-  &lt;rect x=&#34;246.1&#34; y=&#34;6.25&#34; width=&#34;294.3&#34; height=&#34;42&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;rect x=&#34;191.2&#34; y=&#34;48.3&#34; width=&#34;164.5&#34; height=&#34;43.4&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;rect x=&#34;120.8&#34; y=&#34;91.7&#34; width=&#34;545&#34; height=&#34;60.8&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;rect x=&#34;76.8&#34; y=&#34;152.5&#34; width=&#34;633&#34; height=&#34;44&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(395.89 143.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操作系统&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(386.89 180.2)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;计算机硬件&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;284.69&#34; y=&#34;6.25&#34; width=&#34;294.3&#34; height=&#34;42&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;229.8&#34; y=&#34;48.3&#34; width=&#34;164.5&#34; height=&#34;43.4&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;159.4&#34; y=&#34;91.7&#34; width=&#34;545&#34; height=&#34;60.8&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;115.39&#34; y=&#34;152.5&#34; width=&#34;633&#34; height=&#34;44&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
 &lt;/svg&gt;
     
 
@@ -114,7 +114,7 @@
 
 
 
-&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
     
     
         
@@ -123,43 +123,43 @@
 
     
         &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;uuid-97c283c6-4675-4ccd-88a2-6b1344555918&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.5 345.5&#34;&gt;
-  &lt;circle cx=&#34;230.64&#34; cy=&#34;91.41&#34; r=&#34;37&#34; transform=&#34;translate(103.47 304.43) rotate(-80.78)&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(212.5 98.1)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+&lt;svg id=&#34;uuid-97c283c6-4675-4ccd-88a2-6b1344555918&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 345.5&#34;&gt;
+  &lt;circle cx=&#34;269.24&#34; cy=&#34;91.41&#34; r=&#34;37&#34; transform=&#34;translate(135.88 342.53) rotate(-80.78)&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(251.1 98.1)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
   &lt;g id=&#34;arrow&#34;&gt;
-    &lt;line x1=&#34;230.5&#34; y1=&#34;127.9&#34; x2=&#34;230.5&#34; y2=&#34;163.6&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;polygon points=&#34;227.6 161.6 230.5 172.4 233.4 161.6 227.6 161.6&#34;/&gt;
+    &lt;line x1=&#34;269.1&#34; y1=&#34;127.9&#34; x2=&#34;269.1&#34; y2=&#34;163.6&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;266.2 161.6 269.1 172.4 271.99 161.6 266.2 161.6&#34;/&gt;
   &lt;/g&gt;
-  &lt;rect x=&#34;158.5&#34; y=&#34;172.3&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;rect x=&#34;158.5&#34; y=&#34;210.3&#34; width=&#34;145&#34; height=&#34;81&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(194.4 198.1)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(212.4 259.1)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
-  &lt;circle cx=&#34;473.5&#34; cy=&#34;38.8&#34; r=&#34;37&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(455.5 45.6)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;197.1&#34; y=&#34;172.3&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;197.1&#34; y=&#34;210.3&#34; width=&#34;145&#34; height=&#34;81&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(232.99 198.1)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(250.99 259.1)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
+  &lt;circle cx=&#34;512.1&#34; cy=&#34;38.8&#34; r=&#34;37&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(494.1 45.6)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
   &lt;g id=&#34;arrow-2&#34; data-name=&#34;arrow&#34;&gt;
-    &lt;line x1=&#34;473.7&#34; y1=&#34;76.3&#34; x2=&#34;473.7&#34; y2=&#34;113.4&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;polygon points=&#34;470.8 111.4 473.7 122.3 476.6 111.4 470.8 111.4&#34;/&gt;
+    &lt;line x1=&#34;512.3&#34; y1=&#34;76.3&#34; x2=&#34;512.3&#34; y2=&#34;113.4&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;509.39 111.4 512.3 122.3 515.2 111.4 509.39 111.4&#34;/&gt;
   &lt;/g&gt;
-  &lt;circle cx=&#34;473.5&#34; cy=&#34;220.8&#34; r=&#34;123&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.1 12.1; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;rect x=&#34;401&#34; y=&#34;197.8&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;rect x=&#34;401&#34; y=&#34;235.8&#34; width=&#34;145&#34; height=&#34;57.3&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(436.7 223.6)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(455.5 271.6)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
-  &lt;rect x=&#34;401.5&#34; y=&#34;122.8&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(441.1 148.6)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O软件&lt;/tspan&gt;&lt;/text&gt;
-  &lt;polyline points=&#34;489.4 161.2 489.4 184.2 502.8 184.2 473.4 197.2 473.7 196.8 444.2 183.8 457.7 183.8 457.7 160.8&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(510.6 66.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O操作命令&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(510.6 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(517 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;r&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(524.9 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(534.8 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;a&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(544.8 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;d&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(556.1 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;,&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(560.3 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;wri&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(589.6 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(596.2 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(605.8 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(445.9 320.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;虚机器&lt;/tspan&gt;&lt;/text&gt;
+  &lt;circle cx=&#34;512.1&#34; cy=&#34;220.8&#34; r=&#34;123&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.1 12.1; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;439.6&#34; y=&#34;197.8&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;439.6&#34; y=&#34;235.8&#34; width=&#34;145&#34; height=&#34;57.3&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(475.3 223.6)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;物理接口&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(494.1 271.6)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;440.1&#34; y=&#34;122.8&#34; width=&#34;145&#34; height=&#34;38&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(479.7 148.6)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O软件&lt;/tspan&gt;&lt;/text&gt;
+  &lt;polyline points=&#34;527.99 161.2 527.99 184.2 541.39 184.2 511.99 197.2 512.3 196.8 482.8 183.8 496.3 183.8 496.3 160.8&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(549.2 66.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O操作命令&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(549.2 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(555.6 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;r&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(563.5 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(573.39 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;a&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(583.39 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;d&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(594.69 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;,&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(598.89 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;wri&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(628.19 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(634.8 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(644.39 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(484.49 320.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;虚机器&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;
     
 
@@ -201,7 +201,7 @@
 
 
 
-&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
     
     
         
@@ -210,32 +210,32 @@
 
     
         &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.54 238.54&#34;&gt;
-  &lt;text transform=&#34;translate(237.12 45.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;输入设备&lt;/tspan&gt;&lt;/text&gt;
-  &lt;polygon points=&#34;230.45 53.5 316.45 53.5 316.45 22.5 252.45 22.5 230.45 30.92 230.45 53.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(367.85 44.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;外围机&lt;/tspan&gt;&lt;/text&gt;
-  &lt;rect x=&#34;362.45&#34; y=&#34;22&#34; width=&#34;65&#34; height=&#34;31&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;line x1=&#34;317.03&#34; y1=&#34;37.5&#34; x2=&#34;362.45&#34; y2=&#34;37.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;line x1=&#34;427.89&#34; y1=&#34;37.74&#34; x2=&#34;473.31&#34; y2=&#34;37.74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(490.52 45.39)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;磁盘&lt;/tspan&gt;&lt;/text&gt;
-  &lt;path d=&#34;M543.66,11.23c-5.13,3.13-17.55,9.77-34.71,9.84-17.65.08-30.38-6.83-35.42-9.92,5.05-3.1,17.54-9.85,34.84-9.92,17.26-.07,29.81,6.53,35.07,9.71v40.56c-5.13,3.13-17.55,9.77-34.71,9.84-17.5.07-30.16-6.71-35.29-9.84V12&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;polyline points=&#34;473.45 12.03 473.45 10.93 473.45 11.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(263.52 135.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;磁盘&lt;/tspan&gt;&lt;/text&gt;
-  &lt;path d=&#34;M316.66,100.94c-5.13,3.13-17.55,9.77-34.71,9.84-17.65.08-30.38-6.83-35.42-9.92,5.05-3.1,17.54-9.85,34.84-9.92,17.26-.07,29.81,6.53,35.07,9.71v40.56c-5.13,3.13-17.55,9.77-34.71,9.84-17.5.07-30.16-6.71-35.29-9.84v-39.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(376.9 135.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;主机&lt;/tspan&gt;&lt;/text&gt;
-  &lt;rect x=&#34;362.45&#34; y=&#34;112.5&#34; width=&#34;65&#34; height=&#34;31&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(490.52 135.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;磁盘&lt;/tspan&gt;&lt;/text&gt;
-  &lt;path d=&#34;M543.66,100.94c-5.13,3.13-17.55,9.77-34.71,9.84-17.65.08-30.38-6.83-35.42-9.92,5.05-3.1,17.54-9.85,34.84-9.92,17.26-.07,29.81,6.53,35.07,9.71v40.56c-5.13,3.13-17.55,9.77-34.71,9.84-17.5.07-30.16-6.71-35.29-9.84v-39.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;line x1=&#34;427.87&#34; y1=&#34;128&#34; x2=&#34;473.29&#34; y2=&#34;128&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;line x1=&#34;316.87&#34; y1=&#34;128&#34; x2=&#34;362.29&#34; y2=&#34;128&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(263.6 221.27)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;磁盘&lt;/tspan&gt;&lt;/text&gt;
-  &lt;path d=&#34;M316.74,186.91c-5.13,3.13-17.55,9.77-34.71,9.84-17.65.08-30.38-6.83-35.42-9.92,5.05-3.1,17.54-9.85,34.84-9.92,17.26-.07,29.81,6.53,35.07,9.71v40.56c-5.13,3.13-17.55,9.77-34.71,9.84-17.5.07-30.16-6.71-35.29-9.84v-39.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(367.92 221.27)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;外围机&lt;/tspan&gt;&lt;/text&gt;
-  &lt;rect x=&#34;362.52&#34; y=&#34;198.46&#34; width=&#34;65&#34; height=&#34;31&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;line x1=&#34;427.95&#34; y1=&#34;213.96&#34; x2=&#34;473.37&#34; y2=&#34;213.96&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;line x1=&#34;316.95&#34; y1=&#34;213.96&#34; x2=&#34;362.37&#34; y2=&#34;213.96&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(480.05 218.42)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;输出设备&lt;/tspan&gt;&lt;/text&gt;
-  &lt;path d=&#34;M473.45,229.27v-30.81h82.64v30.77c-9.47,4.02-23.22,7.82-36.64,2.27-2.02-.84-2.85-1.48-4.68-2.23-15.79-6.51-31.69-3.17-41.32,0&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 238.54&#34;&gt;
+  &lt;text transform=&#34;translate(275.7 45.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;输入设备&lt;/tspan&gt;&lt;/text&gt;
+  &lt;polygon points=&#34;269.03 53.5 355.03 53.5 355.03 22.5 291.03 22.5 269.03 30.92 269.03 53.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(406.43 44.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;外围机&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;401.03&#34; y=&#34;22&#34; width=&#34;65&#34; height=&#34;31&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;355.61&#34; y1=&#34;37.5&#34; x2=&#34;401.03&#34; y2=&#34;37.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;466.47&#34; y1=&#34;37.74&#34; x2=&#34;511.89&#34; y2=&#34;37.74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(529.1 45.39)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;磁盘&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M582.23,11.23c-5.13,3.13-17.55,9.77-34.71,9.84-17.65.08-30.38-6.83-35.42-9.92,5.05-3.1,17.54-9.85,34.84-9.92,17.26-.07,29.81,6.53,35.07,9.71v40.56c-5.13,3.13-17.55,9.77-34.71,9.84-17.5.07-30.16-6.71-35.29-9.84V12&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;polyline points=&#34;512.03 12.03 512.03 10.93 512.03 11.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(302.1 135.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;磁盘&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M355.24,100.94c-5.13,3.13-17.55,9.77-34.71,9.84-17.65.08-30.38-6.83-35.42-9.92,5.05-3.1,17.54-9.85,34.84-9.92,17.26-.07,29.81,6.53,35.07,9.71v40.56c-5.13,3.13-17.55,9.77-34.71,9.84-17.5.07-30.16-6.71-35.29-9.84v-39.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(415.48 135.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;主机&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;401.03&#34; y=&#34;112.5&#34; width=&#34;65&#34; height=&#34;31&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(529.1 135.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;磁盘&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M582.23,100.94c-5.13,3.13-17.55,9.77-34.71,9.84-17.65.08-30.38-6.83-35.42-9.92,5.05-3.1,17.54-9.85,34.84-9.92,17.26-.07,29.81,6.53,35.07,9.71v40.56c-5.13,3.13-17.55,9.77-34.71,9.84-17.5.07-30.16-6.71-35.29-9.84v-39.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;466.45&#34; y1=&#34;128&#34; x2=&#34;511.87&#34; y2=&#34;128&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;355.45&#34; y1=&#34;128&#34; x2=&#34;400.87&#34; y2=&#34;128&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(302.18 221.27)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;磁盘&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M355.32,186.91c-5.13,3.13-17.55,9.77-34.71,9.84-17.65.08-30.38-6.83-35.42-9.92,5.05-3.1,17.54-9.85,34.84-9.92,17.26-.07,29.81,6.53,35.07,9.71v40.56c-5.13,3.13-17.55,9.77-34.71,9.84-17.5.07-30.16-6.71-35.29-9.84v-39.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(406.5 221.27)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;外围机&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;401.1&#34; y=&#34;198.46&#34; width=&#34;65&#34; height=&#34;31&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;466.53&#34; y1=&#34;213.96&#34; x2=&#34;511.95&#34; y2=&#34;213.96&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;355.53&#34; y1=&#34;213.96&#34; x2=&#34;400.95&#34; y2=&#34;213.96&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(518.62 218.42)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;输出设备&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M512.03,229.27v-30.81h82.64v30.77c-9.47,4.02-23.22,7.82-36.64,2.27-2.02-.84-2.85-1.48-4.68-2.23-15.79-6.51-31.69-3.17-41.32,0&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
 &lt;/svg&gt;
     
 
@@ -255,7 +255,7 @@
 
 
 
-&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
     
     
         
@@ -264,83 +264,83 @@
 
     
         &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.54 319.54&#34;&gt;
-  &lt;path d=&#34;M332.49,2.72c-5.82,2.99-67.97,34.96-72.57,37.32.06.03.1.05.1.05l73.28,37.69s67.66-35.06,72.46-37.55l-.1-.05L332.93,2.5l-.44.22Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(305.84 33.63)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;还有下&lt;/tspan&gt;&lt;tspan x=&#34;-13.5&#34; y=&#34;21.6&#34;&gt;一个作业&lt;/tspan&gt;&lt;tspan x=&#34;58.5&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.5em;&#34;&gt;？&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(496.43 26.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;把下一个作业&lt;/tspan&gt;&lt;tspan x=&#34;0&#34; y=&#34;21.6&#34;&gt;的源程序转换&lt;/tspan&gt;&lt;tspan x=&#34;9&#34; y=&#34;43.2&#34;&gt;为目标程序&lt;/tspan&gt;&lt;/text&gt;
-  &lt;rect x=&#34;490.93&#34; y=&#34;3.5&#34; width=&#34;119&#34; height=&#34;74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 319.54&#34;&gt;
+  &lt;path d=&#34;M371.07,2.72c-5.82,2.99-67.97,34.96-72.57,37.32.06.03.1.05.1.05l73.28,37.69s67.66-35.06,72.46-37.55l-.1-.05L371.5,2.5l-.44.22Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(344.41 33.63)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;还有下&lt;/tspan&gt;&lt;tspan x=&#34;-13.5&#34; y=&#34;21.6&#34;&gt;一个作业&lt;/tspan&gt;&lt;tspan x=&#34;58.5&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.5em;&#34;&gt;？&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(535 26.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;把下一个作业&lt;/tspan&gt;&lt;tspan x=&#34;0&#34; y=&#34;21.6&#34;&gt;的源程序转换&lt;/tspan&gt;&lt;tspan x=&#34;9&#34; y=&#34;43.2&#34;&gt;为目标程序&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;529.5&#34; y=&#34;3.5&#34; width=&#34;119&#34; height=&#34;74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;g id=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;405.75&#34; y1=&#34;40.24&#34; x2=&#34;484.96&#34; y2=&#34;40.24&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;482.15 43.94 483.72 40.24 482.15 36.53 490.93 40.24 482.15 43.94&#34;/&gt;
+      &lt;line x1=&#34;444.33&#34; y1=&#34;40.24&#34; x2=&#34;523.53&#34; y2=&#34;40.24&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;520.72 43.94 522.3 40.24 520.72 36.53 529.5 40.24 520.72 43.94&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(439.33 30.28)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;是&lt;/tspan&gt;&lt;/text&gt;
-  &lt;path d=&#34;M550.55,131.43c-5.82,2.99-67.97,34.96-72.57,37.32.06.03.1.05.1.05l73.28,37.69s67.66-35.06,72.46-37.55l-.1-.05-72.72-37.69-.44.22Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(523.89 165.34)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;源程序&lt;/tspan&gt;&lt;tspan x=&#34;-4.5&#34; y=&#34;21.6&#34;&gt;有错吗&lt;/tspan&gt;&lt;tspan x=&#34;49.5&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.5em;&#34;&gt;？&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(477.91 30.28)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;是&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M589.12,131.43c-5.82,2.99-67.97,34.96-72.57,37.32.06.03.1.05.1.05l73.28,37.69s67.66-35.06,72.46-37.55l-.1-.05-72.72-37.69-.44.22Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(562.47 165.34)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;源程序&lt;/tspan&gt;&lt;tspan x=&#34;-4.5&#34; y=&#34;21.6&#34;&gt;有错吗&lt;/tspan&gt;&lt;tspan x=&#34;49.5&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.5em;&#34;&gt;？&lt;/tspan&gt;&lt;/text&gt;
   &lt;g id=&#34;arrow-2&#34; data-name=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;550.89&#34; y1=&#34;77.5&#34; x2=&#34;550.89&#34; y2=&#34;125.46&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;547.19 122.65 550.89 124.22 554.6 122.65 550.89 131.43 547.19 122.65&#34;/&gt;
+      &lt;line x1=&#34;589.47&#34; y1=&#34;77.5&#34; x2=&#34;589.47&#34; y2=&#34;125.46&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;585.76 122.65 589.47 124.22 593.17 122.65 589.47 131.43 585.76 122.65&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
   &lt;g id=&#34;arrow-3&#34; data-name=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;162.73&#34; y1=&#34;40.14&#34; x2=&#34;253.95&#34; y2=&#34;40.14&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;251.14 43.85 252.72 40.14 251.14 36.44 259.92 40.14 251.14 43.85&#34;/&gt;
+      &lt;line x1=&#34;201.31&#34; y1=&#34;40.14&#34; x2=&#34;292.53&#34; y2=&#34;40.14&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;289.72 43.85 291.29 40.14 289.72 36.44 298.5 40.14 289.72 43.85&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
   &lt;g id=&#34;dot&#34;&gt;
-    &lt;circle cx=&#34;188.93&#34; cy=&#34;40.5&#34; r=&#34;3&#34;/&gt;
+    &lt;circle cx=&#34;227.5&#34; cy=&#34;40.5&#34; r=&#34;3&#34;/&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(171.41 28.64)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;开始&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(209.98 28.64)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;开始&lt;/tspan&gt;&lt;/text&gt;
   &lt;g id=&#34;arrow-4&#34; data-name=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;550.75&#34; y1=&#34;206.48&#34; x2=&#34;550.75&#34; y2=&#34;254.44&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;547.04 251.63 550.75 253.2 554.45 251.63 550.75 260.4 547.04 251.63&#34;/&gt;
+      &lt;line x1=&#34;589.32&#34; y1=&#34;206.48&#34; x2=&#34;589.32&#34; y2=&#34;254.44&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;585.62 251.63 589.32 253.2 593.03 251.63 589.32 260.4 585.62 251.63&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(523.48 236.92)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;否&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(533.43 283.55)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;装配&lt;/tspan&gt;&lt;tspan x=&#34;-18&#34; y=&#34;21.6&#34;&gt;目标程序&lt;/tspan&gt;&lt;/text&gt;
-  &lt;rect x=&#34;491.93&#34; y=&#34;260.5&#34; width=&#34;119&#34; height=&#34;53&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(319.43 283.55)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;运行&lt;/tspan&gt;&lt;tspan x=&#34;-18&#34; y=&#34;21.6&#34;&gt;目标程序&lt;/tspan&gt;&lt;/text&gt;
-  &lt;rect x=&#34;277.93&#34; y=&#34;260.5&#34; width=&#34;119&#34; height=&#34;53&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(562.06 236.92)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;否&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(572 283.55)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;装配&lt;/tspan&gt;&lt;tspan x=&#34;-18&#34; y=&#34;21.6&#34;&gt;目标程序&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;530.5&#34; y=&#34;260.5&#34; width=&#34;119&#34; height=&#34;53&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(358 283.55)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;运行&lt;/tspan&gt;&lt;tspan x=&#34;-18&#34; y=&#34;21.6&#34;&gt;目标程序&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;316.5&#34; y=&#34;260.5&#34; width=&#34;119&#34; height=&#34;53&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;g id=&#34;arrow-5&#34; data-name=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;491.93&#34; y1=&#34;287&#34; x2=&#34;402.9&#34; y2=&#34;287&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;405.71 283.3 404.13 287 405.71 290.7 396.93 287 405.71 283.3&#34;/&gt;
+      &lt;line x1=&#34;530.5&#34; y1=&#34;287&#34; x2=&#34;441.47&#34; y2=&#34;287&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;444.28 283.3 442.71 287 444.28 290.7 435.5 287 444.28 283.3&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
   &lt;g id=&#34;arrow-6&#34; data-name=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;188.93&#34; y1=&#34;287&#34; x2=&#34;188.93&#34; y2=&#34;47.79&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;192.63 50.6 188.93 49.03 185.22 50.6 188.93 41.82 192.63 50.6&#34;/&gt;
+      &lt;line x1=&#34;227.5&#34; y1=&#34;287&#34; x2=&#34;227.5&#34; y2=&#34;47.79&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;231.21 50.6 227.5 49.03 223.8 50.6 227.5 41.82 231.21 50.6&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
   &lt;g id=&#34;arrow-7&#34; data-name=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;277.93&#34; y1=&#34;287&#34; x2=&#34;194.9&#34; y2=&#34;287&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;197.71 283.3 196.13 287 197.71 290.7 188.93 287 197.71 283.3&#34;/&gt;
+      &lt;line x1=&#34;316.5&#34; y1=&#34;287&#34; x2=&#34;233.47&#34; y2=&#34;287&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;236.28 283.3 234.71 287 236.28 290.7 227.5 287 236.28 283.3&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
   &lt;g id=&#34;dot-2&#34; data-name=&#34;dot&#34;&gt;
-    &lt;circle cx=&#34;188.93&#34; cy=&#34;169&#34; r=&#34;3&#34;/&gt;
+    &lt;circle cx=&#34;227.5&#34; cy=&#34;169&#34; r=&#34;3&#34;/&gt;
   &lt;/g&gt;
   &lt;g id=&#34;arrow-8&#34; data-name=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;478.08&#34; y1=&#34;168.8&#34; x2=&#34;194.9&#34; y2=&#34;168.8&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;197.71 165.1 196.13 168.8 197.71 172.5 188.93 168.8 197.71 165.1&#34;/&gt;
+      &lt;line x1=&#34;516.65&#34; y1=&#34;168.8&#34; x2=&#34;233.47&#34; y2=&#34;168.8&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;236.28 165.1 234.71 168.8 236.28 172.5 227.5 168.8 236.28 165.1&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(453.67 159.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;是&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(492.24 159.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;是&lt;/tspan&gt;&lt;/text&gt;
   &lt;g id=&#34;arrow-9&#34; data-name=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;333.3&#34; y1=&#34;77.79&#34; x2=&#34;333.3&#34; y2=&#34;103.03&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;329.59 100.22 333.3 101.79 337 100.22 333.3 109 329.59 100.22&#34;/&gt;
+      &lt;line x1=&#34;371.87&#34; y1=&#34;77.79&#34; x2=&#34;371.87&#34; y2=&#34;103.03&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;368.17 100.22 371.87 101.79 375.57 100.22 371.87 109 368.17 100.22&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(303.13 97.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;否&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(314.52 130.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;停止&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(341.71 97.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;否&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(353.09 130.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;停止&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;
     
 
@@ -355,7 +355,7 @@
 
 
 
-&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
     
     
         
@@ -364,42 +364,42 @@
 
     
         &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.54 277.54&#34;&gt;
-  &lt;text transform=&#34;translate(21.84 32.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户程序&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(21.84 109.68)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;监督程序&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(30.41 186.56)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O操作&lt;/tspan&gt;&lt;/text&gt;
-  &lt;polyline points=&#34;104.69 25.41 150.09 25.41 150.09 102.84 191.09 102.84 191.09 179.72 338.09 179.72 338.09 102.84 374.09 102.84 374.09 25.41 465.82 25.41 465.82 102.57 497.06 102.57 497.06 179.72 644.09 179.72 644.09 102.57 673.09 102.57 673.09 25.41 752.09 25.41&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;text transform=&#34;translate(108.06 16.29)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O中断请求&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(156.34 95.29)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;启动I/O&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(305.06 94.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(345.06 122.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;结束中断&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(419.06 15.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O中断请求&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(467.05 96.26)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;启动I/O&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(602.77 95.83)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(649.77 123.83)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;结束中断&lt;/tspan&gt;&lt;/text&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 277.54&#34;&gt;
+  &lt;text transform=&#34;translate(60.42 32.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户程序&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(60.42 109.68)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;监督程序&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(68.99 186.56)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O操作&lt;/tspan&gt;&lt;/text&gt;
+  &lt;polyline points=&#34;143.27 25.41 188.67 25.41 188.67 102.84 229.67 102.84 229.67 179.72 376.67 179.72 376.67 102.84 412.67 102.84 412.67 25.41 504.39 25.41 504.39 102.57 535.63 102.57 535.63 179.72 682.67 179.72 682.67 102.57 711.67 102.57 711.67 25.41 790.67 25.41&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(146.64 16.29)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O中断请求&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(194.92 95.29)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;启动I/O&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(343.63 94.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(383.63 122.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;结束中断&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(457.63 15.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O中断请求&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(505.63 96.26)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;启动I/O&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(641.34 95.83)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(688.34 123.83)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;结束中断&lt;/tspan&gt;&lt;/text&gt;
   &lt;g id=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;104.69&#34; y1=&#34;247.12&#34; x2=&#34;758.73&#34; y2=&#34;247.12&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;755.92 250.82 757.49 247.12 755.92 243.41 764.7 247.12 755.92 250.82&#34;/&gt;
+      &lt;line x1=&#34;143.27&#34; y1=&#34;247.12&#34; x2=&#34;797.3&#34; y2=&#34;247.12&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;794.49 250.82 796.07 247.12 794.49 243.41 803.27 247.12 794.49 250.82&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(143.37 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(150.34 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(184.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(191.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(332.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(339.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(368.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(375.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;4&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(460.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(467.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;5&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(492.8 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(499.77 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;6&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(638.51 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(645.49 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;7&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(666.51 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(673.49 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;8&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(756.04 267.79)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(181.95 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(188.92 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(223.37 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(230.35 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(371.37 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(378.35 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(407.37 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(414.35 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;4&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(499.37 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(506.35 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;5&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(531.37 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(538.35 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;6&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(677.09 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(684.06 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;7&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(705.09 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(712.06 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;8&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(794.61 267.79)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;
     
 
@@ -417,7 +417,7 @@
 
 
 
-&lt;div class=&#34;svg-figure&#34; style=&#34;margin-top:5px; margin-bottom:5px&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
     
     
         
@@ -426,118 +426,123 @@
 
     
         &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 786.54 506.54&#34;&gt;
-  &lt;text transform=&#34;translate(26.6 111.79)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(26.6 189.9)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(26.6 268.01)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(25.39 346.12)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(3.87 424.23)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度程序&lt;/tspan&gt;&lt;/text&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 506.54&#34;&gt;
+  &lt;text transform=&#34;translate(34.79 111.79)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(34.79 189.9)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(34.79 268.01)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(33.58 346.12)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(12.06 424.23)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度程序&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;130.73&#34; y1=&#34;59.89&#34; x2=&#34;130.73&#34; y2=&#34;65.89&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;130.73&#34; y1=&#34;78.09&#34; x2=&#34;130.73&#34; y2=&#34;487.03&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;130.73&#34; y1=&#34;493.13&#34; x2=&#34;130.73&#34; y2=&#34;499.13&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;138.92&#34; y1=&#34;59.89&#34; x2=&#34;138.92&#34; y2=&#34;65.89&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;138.92&#34; y1=&#34;78.09&#34; x2=&#34;138.92&#34; y2=&#34;487.03&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;138.92&#34; y1=&#34;493.13&#34; x2=&#34;138.92&#34; y2=&#34;499.13&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
   &lt;g id=&#34;arrow&#34;&gt;
     &lt;g&gt;
-      &lt;line x1=&#34;33.17&#34; y1=&#34;486.5&#34; x2=&#34;771.7&#34; y2=&#34;486.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-      &lt;polygon points=&#34;768.89 490.2 770.47 486.5 768.89 482.8 777.67 486.5 768.89 490.2&#34;/&gt;
+      &lt;line x1=&#34;41.36&#34; y1=&#34;486.5&#34; x2=&#34;835.89&#34; y2=&#34;486.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;833.08 490.2 834.66 486.5 833.08 482.8 841.86 486.5 833.08 490.2&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;158.44&#34; y1=&#34;59.89&#34; x2=&#34;158.44&#34; y2=&#34;65.89&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;158.44&#34; y1=&#34;78.09&#34; x2=&#34;158.44&#34; y2=&#34;487.03&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;158.44&#34; y1=&#34;493.13&#34; x2=&#34;158.44&#34; y2=&#34;499.13&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;176.63&#34; y1=&#34;59.89&#34; x2=&#34;176.63&#34; y2=&#34;65.89&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;176.63&#34; y1=&#34;78.09&#34; x2=&#34;176.63&#34; y2=&#34;487.03&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;176.63&#34; y1=&#34;493.13&#34; x2=&#34;176.63&#34; y2=&#34;499.13&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
-  &lt;line x1=&#34;158.44&#34; y1=&#34;104.75&#34; x2=&#34;427.67&#34; y2=&#34;104.75&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12 6 1 6; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;line x1=&#34;688.56&#34; y1=&#34;417.19&#34; x2=&#34;725.17&#34; y2=&#34;417.19&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;176.63&#34; y1=&#34;104.75&#34; x2=&#34;479.86&#34; y2=&#34;104.75&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12 6 1 6; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;740.75&#34; y1=&#34;417.19&#34; x2=&#34;789.36&#34; y2=&#34;417.19&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;233.96&#34; y1=&#34;59.89&#34; x2=&#34;233.96&#34; y2=&#34;65.89&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;233.96&#34; y1=&#34;78.09&#34; x2=&#34;233.96&#34; y2=&#34;487.03&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;233.96&#34; y1=&#34;493.13&#34; x2=&#34;233.96&#34; y2=&#34;499.13&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;g&gt;
-    &lt;line x1=&#34;261.68&#34; y1=&#34;59.74&#34; x2=&#34;261.68&#34; y2=&#34;65.74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;261.68&#34; y1=&#34;77.95&#34; x2=&#34;261.68&#34; y2=&#34;486.88&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;261.68&#34; y1=&#34;492.99&#34; x2=&#34;261.68&#34; y2=&#34;498.99&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;text transform=&#34;translate(160.29 177.2)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;/text&gt;
-  &lt;polyline points=&#34;261.68 182.86 284.84 182.86 354.68 182.86 777.67 182.86&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12 6 1 6; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;g&gt;
-    &lt;line x1=&#34;365&#34; y1=&#34;261.17&#34; x2=&#34;371&#34; y2=&#34;261.17&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;376.82&#34; y1=&#34;261.17&#34; x2=&#34;380.71&#34; y2=&#34;261.17&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: .97 5.82; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;383.62&#34; y1=&#34;261.17&#34; x2=&#34;623.38&#34; y2=&#34;261.17&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 11.65 5.82 .97 5.82; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;626.3&#34; y1=&#34;261.17&#34; x2=&#34;632.3&#34; y2=&#34;261.17&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;text transform=&#34;translate(84.76 30.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;tspan x=&#34;-7.25&#34; y=&#34;21.6&#34;&gt;I/O请求&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(187.54 30.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;tspan x=&#34;-7.69&#34; y=&#34;21.6&#34;&gt;I/O请求&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(76.26 98.07)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(166.39 78.33)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A &lt;/tspan&gt;&lt;tspan x=&#34;-3.92&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.02em;&#34;&gt;I&lt;/tspan&gt;&lt;tspan x=&#34;3.04&#34; y=&#34;21.6&#34;&gt;O处理&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(269.99 157.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B &lt;/tspan&gt;&lt;tspan x=&#34;-7.69&#34; y=&#34;21.6&#34;&gt;I/O处理&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(264.58 254.91)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;/text&gt;
-  &lt;g&gt;
-    &lt;line x1=&#34;337.19&#34; y1=&#34;59.74&#34; x2=&#34;337.19&#34; y2=&#34;65.74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;337.19&#34; y1=&#34;77.95&#34; x2=&#34;337.19&#34; y2=&#34;486.88&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;337.19&#34; y1=&#34;492.99&#34; x2=&#34;337.19&#34; y2=&#34;498.99&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;261.15&#34; y1=&#34;59.89&#34; x2=&#34;261.15&#34; y2=&#34;65.89&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;261.15&#34; y1=&#34;78.09&#34; x2=&#34;261.15&#34; y2=&#34;487.03&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;261.15&#34; y1=&#34;493.13&#34; x2=&#34;261.15&#34; y2=&#34;499.13&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;364.91&#34; y1=&#34;59.74&#34; x2=&#34;364.91&#34; y2=&#34;65.74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;364.91&#34; y1=&#34;77.95&#34; x2=&#34;364.91&#34; y2=&#34;486.88&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;364.91&#34; y1=&#34;492.99&#34; x2=&#34;364.91&#34; y2=&#34;498.99&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;298.87&#34; y1=&#34;59.74&#34; x2=&#34;298.87&#34; y2=&#34;65.74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;298.87&#34; y1=&#34;77.95&#34; x2=&#34;298.87&#34; y2=&#34;486.88&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;298.87&#34; y1=&#34;492.99&#34; x2=&#34;298.87&#34; y2=&#34;498.99&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(178.48 177.97)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;/text&gt;
+  &lt;polyline points=&#34;298.87 182.86 322.03 182.86 399.87 182.86 841.86 182.86&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12 6 1 6; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;417.19&#34; y1=&#34;261.17&#34; x2=&#34;423.19&#34; y2=&#34;261.17&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;429.01&#34; y1=&#34;261.17&#34; x2=&#34;432.9&#34; y2=&#34;261.17&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: .97 5.82; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;435.81&#34; y1=&#34;261.17&#34; x2=&#34;675.58&#34; y2=&#34;261.17&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 11.65 5.82 .97 5.82; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;678.49&#34; y1=&#34;261.17&#34; x2=&#34;684.49&#34; y2=&#34;261.17&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(92.95 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;tspan x=&#34;-7.25&#34; y=&#34;21.6&#34;&gt;I/O请求&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(214.73 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;tspan x=&#34;-7.69&#34; y=&#34;21.6&#34;&gt;I/O请求&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(84.45 99.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(183.58 78.33)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A &lt;/tspan&gt;&lt;tspan x=&#34;-3.92&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.02em;&#34;&gt;I&lt;/tspan&gt;&lt;tspan x=&#34;3.04&#34; y=&#34;21.6&#34;&gt;O处理&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(309.18 157.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B &lt;/tspan&gt;&lt;tspan x=&#34;-7.69&#34; y=&#34;21.6&#34;&gt;I/O处理&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(301.23 256.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;382.38&#34; y1=&#34;59.74&#34; x2=&#34;382.38&#34; y2=&#34;65.74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;382.38&#34; y1=&#34;77.95&#34; x2=&#34;382.38&#34; y2=&#34;486.88&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;382.38&#34; y1=&#34;492.99&#34; x2=&#34;382.38&#34; y2=&#34;498.99&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;548.43&#34; y1=&#34;339.08&#34; x2=&#34;554.43&#34; y2=&#34;339.08&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;560.55&#34; y1=&#34;339.08&#34; x2=&#34;564.63&#34; y2=&#34;339.08&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 1.02 6.12; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;567.69&#34; y1=&#34;339.08&#34; x2=&#34;768.61&#34; y2=&#34;339.08&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.24 6.12 1.02 6.12; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;771.67&#34; y1=&#34;339.08&#34; x2=&#34;777.67&#34; y2=&#34;339.08&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-  &lt;/g&gt;
-  &lt;text transform=&#34;translate(371.71 234.32)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C &lt;/tspan&gt;&lt;tspan x=&#34;-7.5&#34; y=&#34;21.6&#34;&gt;I/O处理&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(369.31 333.21)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(290.51 30.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;tspan x=&#34;-7.5&#34; y=&#34;21.6&#34;&gt;I/O请求&lt;/tspan&gt;&lt;/text&gt;
-  &lt;g&gt;
-    &lt;line x1=&#34;492.72&#34; y1=&#34;59.78&#34; x2=&#34;492.72&#34; y2=&#34;65.78&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;492.72&#34; y1=&#34;77.99&#34; x2=&#34;492.72&#34; y2=&#34;486.92&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;492.72&#34; y1=&#34;493.02&#34; x2=&#34;492.72&#34; y2=&#34;499.02&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;417.1&#34; y1=&#34;59.74&#34; x2=&#34;417.1&#34; y2=&#34;65.74&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;417.1&#34; y1=&#34;77.95&#34; x2=&#34;417.1&#34; y2=&#34;486.88&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;417.1&#34; y1=&#34;492.99&#34; x2=&#34;417.1&#34; y2=&#34;498.99&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;548.43&#34; y1=&#34;59.78&#34; x2=&#34;548.43&#34; y2=&#34;65.78&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;548.43&#34; y1=&#34;77.99&#34; x2=&#34;548.43&#34; y2=&#34;486.92&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;548.43&#34; y1=&#34;493.02&#34; x2=&#34;548.43&#34; y2=&#34;499.02&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;600.62&#34; y1=&#34;339.08&#34; x2=&#34;606.62&#34; y2=&#34;339.08&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;612.4&#34; y1=&#34;339.08&#34; x2=&#34;616.25&#34; y2=&#34;339.08&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: .96 5.78; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;619.14&#34; y1=&#34;339.08&#34; x2=&#34;832.97&#34; y2=&#34;339.08&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 11.56 5.78 .96 5.78; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;835.86&#34; y1=&#34;339.08&#34; x2=&#34;841.86&#34; y2=&#34;339.08&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(467.56 30.28)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D&lt;/tspan&gt;&lt;tspan x=&#34;-6.79&#34; y=&#34;21.6&#34;&gt;I/O请求&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(402.96 29.86)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A &lt;/tspan&gt;&lt;tspan x=&#34;-7.25&#34; y=&#34;21.6&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(424.9 235.32)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C &lt;/tspan&gt;&lt;tspan x=&#34;-7.5&#34; y=&#34;21.6&#34;&gt;I/O处理&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(421.5 333.21)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(335.7 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;tspan x=&#34;-7.5&#34; y=&#34;21.6&#34;&gt;I/O请求&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;427.25&#34; y1=&#34;59.78&#34; x2=&#34;427.25&#34; y2=&#34;65.78&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;427.25&#34; y1=&#34;77.99&#34; x2=&#34;427.25&#34; y2=&#34;486.92&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;427.25&#34; y1=&#34;493.02&#34; x2=&#34;427.25&#34; y2=&#34;499.02&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;544.91&#34; y1=&#34;59.78&#34; x2=&#34;544.91&#34; y2=&#34;65.78&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;544.91&#34; y1=&#34;77.99&#34; x2=&#34;544.91&#34; y2=&#34;486.92&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;544.91&#34; y1=&#34;493.02&#34; x2=&#34;544.91&#34; y2=&#34;499.02&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(537.8 29.92)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;tspan x=&#34;-11.54&#34; y=&#34;21.6&#34;&gt;再被调度&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(608.25 29.66)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C &lt;/tspan&gt;&lt;tspan x=&#34;-7.5&#34; y=&#34;21.6&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;632.3&#34; y1=&#34;59.6&#34; x2=&#34;632.3&#34; y2=&#34;65.6&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;632.3&#34; y1=&#34;77.8&#34; x2=&#34;632.3&#34; y2=&#34;486.74&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;632.3&#34; y1=&#34;492.84&#34; x2=&#34;632.3&#34; y2=&#34;498.84&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;600.62&#34; y1=&#34;59.78&#34; x2=&#34;600.62&#34; y2=&#34;65.78&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;600.62&#34; y1=&#34;77.99&#34; x2=&#34;600.62&#34; y2=&#34;486.92&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;600.62&#34; y1=&#34;493.02&#34; x2=&#34;600.62&#34; y2=&#34;499.02&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(664.27 29.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A &lt;/tspan&gt;&lt;tspan x=&#34;6.46&#34; y=&#34;21.6&#34;&gt;完成&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(519.76 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D&lt;/tspan&gt;&lt;tspan x=&#34;-6.79&#34; y=&#34;21.6&#34;&gt;I/O请求&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(455.15 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A &lt;/tspan&gt;&lt;tspan x=&#34;-7.25&#34; y=&#34;21.6&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;688.56&#34; y1=&#34;59.27&#34; x2=&#34;688.56&#34; y2=&#34;65.27&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;688.56&#34; y1=&#34;77.48&#34; x2=&#34;688.56&#34; y2=&#34;486.41&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;688.56&#34; y1=&#34;492.52&#34; x2=&#34;688.56&#34; y2=&#34;498.52&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;479.44&#34; y1=&#34;59.78&#34; x2=&#34;479.44&#34; y2=&#34;65.78&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;479.44&#34; y1=&#34;77.99&#34; x2=&#34;479.44&#34; y2=&#34;486.92&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;479.44&#34; y1=&#34;493.02&#34; x2=&#34;479.44&#34; y2=&#34;499.02&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
-  &lt;text transform=&#34;translate(712.66 30.14)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C &lt;/tspan&gt;&lt;tspan x=&#34;-2.78&#34; y=&#34;21.6&#34;&gt;再调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(589.99 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;tspan x=&#34;-11.54&#34; y=&#34;21.6&#34;&gt;再被调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(660.44 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C &lt;/tspan&gt;&lt;tspan x=&#34;-7.5&#34; y=&#34;21.6&#34;&gt;I/O完成&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
-    &lt;line x1=&#34;738.67&#34; y1=&#34;59.13&#34; x2=&#34;738.67&#34; y2=&#34;65.13&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;738.67&#34; y1=&#34;77.34&#34; x2=&#34;738.67&#34; y2=&#34;486.27&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
-    &lt;line x1=&#34;738.67&#34; y1=&#34;492.37&#34; x2=&#34;738.67&#34; y2=&#34;498.37&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;684.49&#34; y1=&#34;59.6&#34; x2=&#34;684.49&#34; y2=&#34;65.6&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;684.49&#34; y1=&#34;77.8&#34; x2=&#34;684.49&#34; y2=&#34;486.74&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;684.49&#34; y1=&#34;492.84&#34; x2=&#34;684.49&#34; y2=&#34;498.84&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;/g&gt;
-  &lt;polyline points=&#34;777.17 260.97 738.67 260.97 738.67 417.19 688.56 417.19 688.56 104.75 552.67 104.75 548.43 104.75 548.43 417.19 492.72 417.19 492.72 339.08 364.91 339.08 364.91 417.19 337.19 417.19 337.19 261.17 261.68 261.17 261.68 261.23 261.68 417.19 233.96 417.19 233.96 261.23 233.96 182.86 158.44 182.86 158.44 417.19 130.73 417.19 130.73 418.17 130.73 105.57 130.73 104.75 79.3 104.75&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;&#34;/&gt;
-  &lt;text transform=&#34;translate(555.56 312.14)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D &lt;/tspan&gt;&lt;tspan x=&#34;-6.79&#34; y=&#34;21.6&#34;&gt;I/O处理&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(136.19 30.08)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;tspan x=&#34;6.03&#34; y=&#34;21.6&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(738.17 254.18)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(237.36 30.02)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;tspan x=&#34;6.22&#34; y=&#34;21.6&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(341.65 30.02)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D&lt;/tspan&gt;&lt;tspan x=&#34;6.93&#34; y=&#34;21.6&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
-  &lt;line x1=&#34;12.5&#34; y1=&#34;52.5&#34; x2=&#34;61.9&#34; y2=&#34;52.5&#34; style=&#34;fill: #fff; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;&#34;/&gt;
-  &lt;text transform=&#34;translate(18.65 25.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;12.44&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.02em;&#34;&gt;P&lt;/tspan&gt;&lt;tspan x=&#34;23.63&#34; y=&#34;0&#34;&gt;U&lt;/tspan&gt;&lt;tspan x=&#34;-8.01&#34; y=&#34;21.6&#34;&gt;执行线&lt;/tspan&gt;&lt;/text&gt;
-  &lt;text transform=&#34;translate(551.22 98.11)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(716.46 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A &lt;/tspan&gt;&lt;tspan x=&#34;6.46&#34; y=&#34;21.6&#34;&gt;完成&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;740.75&#34; y1=&#34;59.27&#34; x2=&#34;740.75&#34; y2=&#34;65.27&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;740.75&#34; y1=&#34;77.48&#34; x2=&#34;740.75&#34; y2=&#34;486.41&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;740.75&#34; y1=&#34;492.52&#34; x2=&#34;740.75&#34; y2=&#34;498.52&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(776.85 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C &lt;/tspan&gt;&lt;tspan x=&#34;-11.78&#34; y=&#34;21.6&#34;&gt;再被调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;802.86&#34; y1=&#34;59.13&#34; x2=&#34;802.86&#34; y2=&#34;65.13&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;802.86&#34; y1=&#34;77.34&#34; x2=&#34;802.86&#34; y2=&#34;486.27&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.21 12.21; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;802.86&#34; y1=&#34;492.37&#34; x2=&#34;802.86&#34; y2=&#34;498.37&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;polyline points=&#34;841.36 260.97 802.86 260.97 802.86 417.19 740.75 417.19 740.75 104.75 604.86 104.75 600.62 104.75 600.62 417.19 544.91 417.19 544.91 339.08 417.1 339.08 417.1 417.19 382.38 417.19 382.38 261.17 298.87 261.17 298.87 261.23 298.87 417.19 261.15 417.19 261.15 261.23 261.15 182.86 176.63 182.86 176.63 417.19 138.92 417.19 138.92 418.17 138.92 105.57 138.92 104.75 87.49 104.75&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;&#34;/&gt;
+  &lt;text transform=&#34;translate(607.75 312.29)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D &lt;/tspan&gt;&lt;tspan x=&#34;-6.79&#34; y=&#34;21.6&#34;&gt;I/O处理&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(154.38 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;tspan x=&#34;-2.97&#34; y=&#34;21.6&#34;&gt;被调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(804.36 256.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(274.55 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;tspan x=&#34;-2.78&#34; y=&#34;21.6&#34;&gt;被调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(393.84 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序D&lt;/tspan&gt;&lt;tspan x=&#34;-2.07&#34; y=&#34;21.6&#34;&gt;被调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;line x1=&#34;20.69&#34; y1=&#34;55.5&#34; x2=&#34;70.1&#34; y2=&#34;55.5&#34; style=&#34;fill: #fff; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;&#34;/&gt;
+  &lt;text transform=&#34;translate(26.84 28.82)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;12.44&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.02em;&#34;&gt;P&lt;/tspan&gt;&lt;tspan x=&#34;23.63&#34; y=&#34;0&#34;&gt;U&lt;/tspan&gt;&lt;tspan x=&#34;-8.01&#34; y=&#34;21.6&#34;&gt;执行线&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(603.42 99.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(139.56 414.62)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(261.26 414.62)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(381.69 414.62)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(545.83 414.62)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(740.69 414.62)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;
     
 
