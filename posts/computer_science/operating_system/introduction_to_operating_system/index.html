@@ -66,7 +66,7 @@
 <meta property='og:description' content="操作系统概述与基本结构">
 <meta property='og:url' content='https://www.brasswrench.cn/posts/computer_science/operating_system/introduction_to_operating_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-19T22:28:10&#43;08:00'/><meta property='article:modified_time' content='2024-09-23T00:16:10&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-19T22:28:10&#43;08:00'/><meta property='article:modified_time' content='2024-09-23T13:29:25&#43;08:00'/>
 <meta name="twitter:title" content="操作系统（一）：操作系统引论">
 <meta name="twitter:description" content="操作系统概述与基本结构">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -593,7 +593,15 @@
         </li>
       </ol>
     </li>
-    <li><a href="#操作系统的基本特性">操作系统的基本特性</a></li>
+    <li><a href="#操作系统的基本特性">操作系统的基本特性</a>
+      <ol>
+        <li><a href="#并发">并发</a>
+          <ol>
+            <li><a href="#并行与并发">并行与并发</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -895,7 +903,7 @@
 </svg>
 
             <time class="article-words">
-                14035 字
+                14294 字
             </time>
         </div>
 
@@ -1537,15 +1545,19 @@
   1981年IBM公司首次推出了IBM-PC个人计算机（16位微机），在微机中采用了微软公司开发的<strong>MS-DOS（Disk Operating System）</strong> 操作系统，该操作系统在CP/M的基础上进行了较大的扩充，使其在共轭能上有很大的提高。1983年IBM退出PC/AT（配有Intel 80286芯片），相应地微软又开发出MS-DOS 2.0版本，它不仅能支持硬盘设备，还采用了树形目录结构的文件系统。1987年又宣布了MS-DOS 3.3版本。从MS-DOS 1.0到3.3位置的版本都属于单用户单任务操作系统，内存被限制在640KB。从1989到1993年又先后推出了多个MS-DOS版本，它们都可以配置在Intel 80386、80486等32位微机上。从80年代到90年代初，由于MS-DOS性能优越受到当时用户的广泛欢迎，称为事实上的16位单用户单任务操作系统标准。</p>
 <h4 id="单用户多任务操作系统">单用户多任务操作系统
 </h4><p>  单用户多任务操作系统的含义是，只允许一个用户上机，但允许用户把程序分为若干个任务，使它们<a class="link" href="#%e5%b9%b6%e5%8f%91" >并发执行</a>，从而有效地改善了系统的性能。目前在32位维基上配置的操作系统，基本上都是单用户多任务操作系统。其中最有代表性的是由微软公司推出的<strong>Windows</strong>。1985年和1987年微软公司先后推出了Windows 1.0和Windows 2.0版本操作系统，由于当时的硬件平台还只是16位微机，对1.0和2.0版本不能很好地支持。1990年微软公式又发布了Windows 3.0版本，随后又宣布了Windows 3.1版本，它们主要是针对386和486等32位微机开发的，它较之以前的操作系统有着很重大的改进，引入了友善的图形用户界面，支持多任务和扩展内存的功能。使计算机更好使用，从而称为386和486等微机的主流操作系统。<br>
-  1995年微软公司推出了Windows 95，它较之以前的Windows 3.1有许多重大改进，采用了全32位的处理技术，并兼容以前的16位应用程序，在该系统中还集成了支持Internet的网络功能。1998年微软公司又推出了Windows 95的改进版Windows 98，它已是最后一个仍然兼容以前16位应用程序的Windows。其最主要的改进是把微软公司自己开发的Internet浏览器整合到系统中，大大方便了用户上网浏览；另一个改进是增加了对多媒体的支持。2001年微软又发布了Windows XP，同时提供了家用和商业工作站两种版本，在此后相当长的一段时间，称为使用最广泛的个人操作系统之一。在开发上述Windows操作系统的同时，微软公司又开始对网络操作系统Windows NT进行开发，它是针对网络开发的操作系统，在系统中融入许多面向网络的功能，从2006年后推出的一系列内核版本号为NT6.X的桌面及服务器操作系统，包括Windows Vista、Windows Server 2008、Windows 7、Windows Server 2008 R2、Windows 8和Windows Server 2012等，这里就不对它们进行介绍。<br>
-  （<strong>注</strong>：Windows Server系列实际上属于多用户多任务操作系统，见下文）。</p>
+  1995年微软公司推出了Windows 95，它较之以前的Windows 3.1有许多重大改进，采用了全32位的处理技术，并兼容以前的16位应用程序，在该系统中还集成了支持Internet的网络功能。1998年微软公司又推出了Windows 95的改进版Windows 98，它已是最后一个仍然兼容以前16位应用程序的Windows。其最主要的改进是把微软公司自己开发的Internet浏览器整合到系统中，大大方便了用户上网浏览；另一个改进是增加了对多媒体的支持。2001年微软又发布了Windows XP，同时提供了家用和商业工作站两种版本，在此后相当长的一段时间，称为使用最广泛的个人操作系统之一。在开发上述Windows操作系统的同时，微软公司又开始对网络操作系统Windows NT进行开发，它是针对网络开发的操作系统，在系统中融入许多面向网络的功能，从2006年后推出的一系列内核版本号为NT6.X的桌面操作系统，包括Windows Vista、Windows 7、Windows 8等，这里就不对它们进行介绍。</p>
 <h4 id="多用户多任务操作系统">多用户多任务操作系统
 </h4><p>  多用户多任务操作系统的含义是，允许多个用户通过各自的终端，使用同一台机器，共享主机系统中的各种资源，而每个用户程序又可进一步分为几个任务，使它们能<a class="link" href="#%e5%b9%b6%e5%8f%91" >并发执行</a>，从而可进一步提高资源利用率和系统吞吐量。在大、中和小型机中配置的大多是多用户多任务操作系统，而在32位微机上，也有不少配置的是多用户多任务操作系统，其中最有代表性的是UNIX OS。<br>
   <strong>UNIX OS</strong>是美国电报电话公司的Bell实验室在1969~1970年期间开发的，1979年推出来的UNIX V.7已被广泛应用于多种小型机上。随着微机性能的提高，人们又将UNIX移植到微机上。在1980年后，将UNIX第7版本移植到Motorola公司的MC 680xx微机上，后来又将UNIX V7.0版本进行简化后，移植到Intel 8080上，把它称为Xenix。现在最有影响的两个能运行在微机上的UNIX操作系统变形是<strong>Solaris OS</strong>和<strong>Linux OS</strong>。<br>
   (1)Solaris OS：SUN公司于1982年推出的SUN OS 1.0，是一个运行在MOTOROLA 680X0平台上的UNIX OS，在1988年宣布的SUN OS 4.0，把运行平台从早期的MOTOROLA 680X0平台迁移到SPARC平台，并开始支持Intel公司的80X86；1992年SUN发布了Solaris 2.0。从1998年开始，Sun公司推出64位操作系统Solaris 2.7和2.8，这几款操作系统在网络特性、互操作性、兼容性以及易于配置和管理方面均有很大的提高。<br>
   (2)Linux OS：Linux是UNIX的一个重要变种，最初是由芬兰学生Linus Torvalds针对Intel 8086开发的，1991年，在Internet网上发布第一个Linux版本，由于源代码公开，因此有很多人通过Internet与之合作，使Linux的性能迅速提高，其应用范围也日益扩大，相应地，源代码而急剧膨胀，此时它已是具有全面功能的UNIX系统，大量在UNIX上运行的软件（包括1000多种使用工具软件和大量网络软件），被移植到Linux上，而且可以在主要的微机上运行，如Intel 80X86 Pentium等。</p>
 <h2 id="操作系统的基本特性">操作系统的基本特性
-</h2>
+</h2><p>  前面所介绍的<a class="link" href="#%e5%a4%9a%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9fmultiprogrammed-batch-processing-system" >多道批处理系统</a>、<a class="link" href="#%e5%88%86%e6%97%b6%e7%b3%bb%e7%bb%9ftime-sharing-system" >分时系统</a>和<a class="link" href="#%e5%ae%9e%e6%97%b6%e7%b3%bb%e7%bb%9freal-time-system" >实时系统</a>这三种基本草祖宗系统都具有各自不同的特征，如批处理系统有着高的资源利用率和系统吞吐量；分时系统能获得及时响应；实时系统具有实时特征。除此之外，它们还共同具有并发、共享、虚拟和异步四个基本特征。</p>
+<h3 id="并发">并发
+</h3><p>  正是系统中的程序能并发执行这一特征，才使得OS能有效地提尕奥系统中的资源利用率，增加系统的吞吐量。</p>
+<h4 id="并行与并发">并行与并发
+</h4><p>  并行性和并发性是既相似又有区别的两个概念。<strong>并行性</strong>是指两个或多个事件在同一时刻发生。而<strong>并发性</strong>是指两个或多个事件在同一时间间隔内发生。在多道程序环境下，并发性是指在一段时间内宏观上有多个程序在同时运行，但在单处理机系统中，每一时刻却只能有一道程序执行，故微观上这些程序只能是分时地交替进行。例如，在一秒钟时间内，0~15ms程序A运行</p>
+
     </div>
 </section>
 
@@ -1575,7 +1587,7 @@
 
 
         <span>
-            最后更新于 Sep 23, 2024 00:16 CST
+            最后更新于 Sep 23, 2024 13:29 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1696,7 +1708,10 @@
             
             
         
-        <span>本图书馆累计发布了2篇文章 共20163字</span>
+            
+            
+        
+        <span>本图书馆累计发布了3篇文章 共36521字</span>
     </section>
 
     <section class="site-visit-count">
