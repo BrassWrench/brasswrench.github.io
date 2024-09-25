@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 25 Sep 2024 16:32:24 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/c-k%E6%96%B9%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 25 Sep 2024 16:33:55 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/c-k%E6%96%B9%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：马尔可夫过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -127,7 +127,7 @@ $$&lt;p&gt;  由矩阵乘法易得②是①的矩阵形式。&lt;/p&gt;
 &lt;p&gt;  我们把任何两个相通状态归为一个&lt;strong&gt;类&lt;/strong&gt;，由上述定理可知，同在一类的状态应该都是互通的，并且任何一个状态不能同时属于两个不同的类。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;定义6&lt;/strong&gt;：若马尔可夫链只存在一个类，就称它是&lt;strong&gt;不可约的&lt;/strong&gt;。否则称为&lt;strong&gt;可约的&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;周期&#34;&gt;周期
-&lt;/h3&gt;&lt;p&gt;  &lt;strong&gt;定义7&lt;/strong&gt;：若集合 $\{n|n \ge 1,p_{ii}^{(n)} \ge 0\}$ ，则称它的最大公约数 $d=d(i)$ 为状态 $i$ 的&lt;strong&gt;周期&lt;/strong&gt;。若 $d \ge 1$ ，则称 $i$ 是&lt;strong&gt;周期的&lt;/strong&gt;；若 $d=1$ ，则称 $i$ 是&lt;strong&gt;非周期的&lt;/strong&gt;。并特别规定上述集合为空集时，称 $i$ 的周期为&lt;strong&gt;无穷大&lt;/strong&gt;。 。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  &lt;strong&gt;定义7&lt;/strong&gt;：若集合 $\{n|n \ge 1,p_{ii}^{(n)} \ge 0\}$ 非空，则称它的最大公约数 $d=d(i)$ 为状态 $i$ 的&lt;strong&gt;周期&lt;/strong&gt;。若 $d \ge 1$ ，则称 $i$ 是&lt;strong&gt;周期的&lt;/strong&gt;；若 $d=1$ ，则称 $i$ 是&lt;strong&gt;非周期的&lt;/strong&gt;。并特别规定上述集合为空集时，称 $i$ 的周期为&lt;strong&gt;无穷大&lt;/strong&gt;。 。&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;定理3&#34;&gt;&lt;/span&gt;
   &lt;strong&gt;定理3&lt;/strong&gt;：若状态 $i,j$ 同属一类，则 $d(i)=d(j)$ 。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（定理3）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#%e5%8f%af%e8%be%be%e4%ba%92%e9%80%9a%e7%b1%bb%e5%8f%af%e7%ba%a6&#34; &gt;类&lt;/a&gt;的定义可知 $i \leftrightarrow j$ ，即存在 $m,n$ 使$p_{ij}^{(m)}&amp;gt;0,p_{ji}^{(n)}&amp;gt;0$。则由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;知 $p_{ii}^{(m+n)}=\displaystyle\sum_{k \in S}{p_{ik}^{(m)}p_{ki}^{(n)}} \ge p_{ij}^{(m)}p_{ji}^{(n)}&amp;gt;0$ 。同时对所有使得 $p_{jj}^{(s)} &amp;gt; 0$ 的 $s$ ，有&lt;/p&gt;
