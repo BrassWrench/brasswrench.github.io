@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 25 Sep 2024 17:22:21 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 25 Sep 2024 19:41:47 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：马尔可夫过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -250,7 +250,8 @@ $$
 \sum_{l=0}^{\infin}{p_{jj}^{(l)}} - \sum_{l=0}^{n+m-1}{p_{jj}^{(l)}} \ge p_{ji}^{(n)}p_{ij}^{(m)}\sum_{l=0}^{\infin}{p_{ii}^{(l)}}
 \tag{23}
 $$&lt;p&gt;  因此我们可以直观的看出 $\displaystyle\sum_{l=0}^{n+m-1}{p_{ii}^{(l)}}$ 和 $\displaystyle\sum_{l=0}^{n+m-1}{p_{jj}^{(l)}}$ 当中任意一个为无穷时，另一个必然也为无穷；任意一个为有限时，另一个必然也为有限。因此 $i,j$ 同为常返状态或非常返状态。故常返性是一个类性质，类中任意成员满足，则其他成员也必定满足；反之若类中任一成员不满足，则其他成员也不满足。&lt;br&gt;
-  其次还能证明当 $i,j$ 同为常返状态时，它们同为正常返态或零常返态。该证明见下文&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，还没写完~&#39;)&#34;&gt;证明&lt;/a&gt;处。&lt;/p&gt;
+  其次还能证明当 $i,j$ 同为常返状态时，它们同为正常返态或零常返态。该证明需要用到下文的&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba1&#34; &gt;推论1&lt;/a&gt;。&lt;br&gt;
+  假设 $i$ 为零常返状态且 $i \leftrightarrow j$ 。由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba1&#34; &gt;推论1&lt;/a&gt;可知 $\lim\limits_{m \rightarrow \infin}p_{ii}^{(m)}=0$ 。由于 $i \leftrightarrow j$ ，存在 $n,l$ 使得 $p_{ij}^{(n)}&amp;gt;0,p_{ji}^{(l)}&amp;gt;0$。同时由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%863&#34; &gt;(9)式的展开技巧&lt;/a&gt;可得 $p_{ii}^{(n+m+l)} \ge p_{ij}^{(n)}p_{jj}^{(m)}p_{ji}^{(l)}\ge0$ 。令 $m \rightarrow \infin$ ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等数学”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 $\lim\limits_{m \rightarrow \infin}p_{jj}^{(m)}=0$ ，故由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba1&#34; &gt;推论1&lt;/a&gt;，状态 $j$ 也是零常返状态。&lt;/p&gt;
 &lt;h4 id=&#34;状态空间分解定理&#34;&gt;状态空间分解定理
 &lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理6（状态空间分解定理）&lt;/strong&gt;：任意马尔可夫链的状态空间 $S$ ，可唯一分解为有限个或可列个互不相交的子集 $D,C_1,C_2,\cdots$ 之和，使得&lt;br&gt;
   ①每一个 $C_n$ 是常返状态组成的不可约闭集，$D$ 由全体非常返状态组成。。&lt;br&gt;
@@ -309,8 +310,7 @@ $$&lt;p&gt;  易证此时 $\{S_k\},\{S_k^\prime\}$ 一一对应。故分解�
 $$
 \lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=\frac{d}{\mu_j}
 \tag{31}
-$$&lt;p&gt;  若 $j$ 为非常返状态，则 $\lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=0$ 。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;(32)式&#34;&gt;&lt;/span&gt;
+$$&lt;p&gt;&lt;span id=&#34;(32)式&#34;&gt;&lt;/span&gt;
   &lt;strong&gt;证明（定理8）&lt;/strong&gt;：对 $n \ge 0$ ，令：&lt;/p&gt;
 $$
 r_n=\sum_{v=n+1}^{\infin}{f_v}
@@ -445,7 +445,14 @@ $$&lt;p&gt;  把&lt;a class=&#34;link&#34; href=&#34;#%2837%29%e5%bc%8f&#34;
 $$
 \lim\limits_{n \rightarrow \infin}p_{nd}=\frac{d}{\mu_j}
 \tag{58}
-$$&lt;p&gt;  当 $j$ 为非常返状态时 $\mu_j \rightarrow \infin$ ，因此 $\lim\limits_{n \rightarrow \infin}p_{nd}=0$ 。&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86&#34; &gt;定理8&lt;/a&gt;证毕。&lt;/p&gt;
+$$&lt;p&gt;  由此，&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86&#34; &gt;定理8&lt;/a&gt;证毕。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;推论1&#34;&gt;&lt;/span&gt;
+  &lt;strong&gt;推论1&lt;/strong&gt;：设 $i$ 为常返状态，则&lt;/p&gt;
+$$
+i\text{为零常返状态}\iff\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0
+\tag{59}
+$$&lt;p&gt;&lt;span id=&#34;推论1&#34;&gt;&lt;/span&gt;
+  &lt;strong&gt;证明（推论1）&lt;/strong&gt;：若 $i$ 为零常返状态，则 $\mu_i \rightarrow \infin$ ，从而由&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86&#34; &gt;定理8&lt;/a&gt; $\lim\limits_{n \rightarrow \infin}p_{ii}^{(nd)}=0$ 。而当 $m$ 不等于 $d$ 的整数倍时， $p_{ii}^{(m)}=0$ ，故 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ 。反之，若 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ ，假如 $i$ 为正常返状态，则由&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86&#34; &gt;定理8&lt;/a&gt; $\lim\limits_{n \rightarrow \infin}p_{ii}^{(nd)}&amp;gt;0$ ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;知这与 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ 矛盾，因此 $i$ 为零常返状态。&lt;/p&gt;
 </description>
         </item>
         
