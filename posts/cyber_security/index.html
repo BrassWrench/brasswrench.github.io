@@ -73,12 +73,10 @@
 <script>
     $(document).ready(function() {
         var historyStackKey = 'historyStack';
-        var isLinkClickKey = 'isLinkClick';
 
         var historyStack = JSON.parse(sessionStorage.getItem(historyStackKey)) || [];
-        var isLinkClick = sessionStorage.getItem(isLinkClickKey) === 'true';
 
-        if (historyStack.length > 0 && isLinkClick) {
+        if (historyStack.length > 0) {
             $('#back').fadeIn();
         }
 
@@ -109,7 +107,6 @@
         $('a').on('click', function(e) {
             var href = $(this).attr('href');
             if ($(this).closest('.article-content').length > 0 && href && href.includes('#') && href !== '#') {
-                sessionStorage.setItem(isLinkClickKey, 'true');
                 historyStack.push({
                     path: window.location.pathname + window.location.search,
                     scrollY: window.scrollY
@@ -117,23 +114,24 @@
                 sessionStorage.setItem(historyStackKey, JSON.stringify(historyStack));
                 $('#back').fadeIn();
             } else if(!href.includes('#')) {
-                sessionStorage.setItem(isLinkClickKey, 'false');
                 sessionStorage.setItem(historyStackKey, JSON.stringify([]));
                 $('#back').fadeOut();
             }
         });
 
         var scrollY = new URLSearchParams(window.location.search).get('scrollY');
-        window.scrollTo({
-            top: scrollY,
-            behavior: "smooth"
-        });
+        if(scrollY){
+            window.scrollTo({
+                top: scrollY,
+                behavior: "smooth"
+            });
+        }
     });
 </script><meta property='og:title' content="网络安全">
 <meta property='og:description' content="保护网络系统中的硬件、软件及数据免受恶意攻击、破坏、泄露或非法使用的措施和技术。">
 <meta property='og:url' content='https://www.brasswrench.com/posts/cyber_security/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2024-09-25T23:30:35&#43;08:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2024-09-25T23:49:12&#43;08:00 '/>
 <meta name="twitter:title" content="网络安全">
 <meta name="twitter:description" content="保护网络系统中的硬件、软件及数据免受恶意攻击、破坏、泄露或非法使用的措施和技术。"><link rel="alternate" type="application/rss&#43;xml" href="https://www.brasswrench.com/posts/cyber_security/index.xml">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -901,7 +899,7 @@
             
             
         
-        <span>本图书馆累计发布了3篇文章 共20826字</span>
+        <span>本图书馆累计发布了3篇文章 共20833字</span>
     </section>
 
     <section class="site-visit-count">

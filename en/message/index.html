@@ -73,12 +73,10 @@
 <script>
     $(document).ready(function() {
         var historyStackKey = 'historyStack';
-        var isLinkClickKey = 'isLinkClick';
 
         var historyStack = JSON.parse(sessionStorage.getItem(historyStackKey)) || [];
-        var isLinkClick = sessionStorage.getItem(isLinkClickKey) === 'true';
 
-        if (historyStack.length > 0 && isLinkClick) {
+        if (historyStack.length > 0) {
             $('#back').fadeIn();
         }
 
@@ -109,7 +107,6 @@
         $('a').on('click', function(e) {
             var href = $(this).attr('href');
             if ($(this).closest('.article-content').length > 0 && href && href.includes('#') && href !== '#') {
-                sessionStorage.setItem(isLinkClickKey, 'true');
                 historyStack.push({
                     path: window.location.pathname + window.location.search,
                     scrollY: window.scrollY
@@ -117,23 +114,24 @@
                 sessionStorage.setItem(historyStackKey, JSON.stringify(historyStack));
                 $('#back').fadeIn();
             } else if(!href.includes('#')) {
-                sessionStorage.setItem(isLinkClickKey, 'false');
                 sessionStorage.setItem(historyStackKey, JSON.stringify([]));
                 $('#back').fadeOut();
             }
         });
 
         var scrollY = new URLSearchParams(window.location.search).get('scrollY');
-        window.scrollTo({
-            top: scrollY,
-            behavior: "smooth"
-        });
+        if(scrollY){
+            window.scrollTo({
+                top: scrollY,
+                behavior: "smooth"
+            });
+        }
     });
 </script><meta property='og:title' content="Message">
 <meta property='og:description' content="Easy Comment!\n">
 <meta property='og:url' content='https://www.brasswrench.com/en/message/'>
 <meta property='og:site_name' content='Brass Wrench&#39;s Library'>
-<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:modified_time' content='2024-09-25T23:30:35&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:modified_time' content='2024-09-25T23:49:12&#43;08:00'/>
 <meta name="twitter:title" content="Message">
 <meta name="twitter:description" content="Easy Comment!\n">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -946,7 +944,7 @@
 
 
         <span>
-            Last updated on Sep 25, 2024 23:30 CST
+            Last updated on Sep 25, 2024 23:49 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
