@@ -66,7 +66,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='马尔可夫过程' /><meta property='article:tag' content='马尔可夫链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-25T15:56:30&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='马尔可夫过程' /><meta property='article:tag' content='马尔可夫链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-25T16:28:10&#43;08:00'/>
 <meta name="twitter:title" content="随机过程（四）：马尔可夫过程">
 <meta name="twitter:description" content="一种无后效性的随机过程">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -872,7 +872,7 @@
 </svg>
 
             <time class="article-words">
-                6277 字
+                6347 字
             </time>
         </div>
 
@@ -1219,7 +1219,7 @@ $$<p>  易证此时 $\{S_k\},\{S_k^\prime\}$ 一一对应。故分解是唯�
 $$
 \lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=\frac{d}{\mu_j}
 \tag{31}
-$$<p>  若为非常返状态，则 $\lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=0$ 。</p>
+$$<p>  若 $j$ 为非常返状态，则 $\lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=0$ 。</p>
 <p><span id="(32)式"></span>
   <strong>证明（定理8）</strong>：对 $n \ge 0$ ，令：</p>
 $$
@@ -1248,7 +1248,8 @@ $$<p><span id="(36)式"></span>
 $$
 \sum_{v=0}^{n}{r_vp_{n-v}}=r_0p_0=1,\quad n \ge 0
 \tag{36}
-$$<p>  设</p>
+$$<p><span id="(37)式"></span>
+  设</p>
 $$
 \lambda=\limsup\limits_{n \rightarrow \infin}p_{nd}
 \tag{37}
@@ -1263,21 +1264,21 @@ $$
 \begin{aligned}
 \lambda=&\liminf\limits_{m \rightarrow \infin}p_{n_md}=\liminf\limits_{m \rightarrow \infin}p_{jj}^{(n_md)}=\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{jj}^{(v)}p_{jj}^{(n_md-v)}\\
 =&\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{v}p_{n_md-v}=\liminf\limits_{m \rightarrow \infin}\bigg(f_sp_{n_md-s}+\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\bigg)\\
-\le&\liminf\limits_{m \rightarrow \infin}f_sp_{n_md-s}+\liminf\limits_{m \rightarrow \infin}\bigg(\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\bigg)\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}
+\le&\liminf\limits_{m \rightarrow \infin}f_sp_{n_md-s}+\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}
 \end{aligned}
 \tag{39}
 $$<p><span id="(40)式"></span>
-  由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">概率的非负性</a>和<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">上下极限的定义和性质</a>和可推导出</p>
+  由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">概率的非负性</a>和<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">上下极限的性质</a>和可推导出</p>
 $$
 \begin{aligned}
-\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\le&\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{\infin}f_{v}p_{n_md-v}\quad\text{（概率的非负性）}\\
-\le&\sum_{v=1,v \ne s}^{\infin}\liminf\limits_{m \rightarrow \infin}f_{v}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}\\
+\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\le&\sum_{v=1,v \ne s}^{n_md}\liminf\limits_{m \rightarrow \infin}f_{v}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}\\
+\le&\sum_{v=1,v \ne s}^{\infin}\liminf\limits_{m \rightarrow \infin}f_{v}p_{n_md-v}\quad\text{（概率的非负性）}\\
 \le&\sum_{v=1,v \ne s}^{\infin}\liminf\limits_{m \rightarrow \infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}a_nb_n\le\liminf\limits_{n \rightarrow \infin}a_n\limsup\limits_{n \rightarrow \infin}b_n\text{）}\\
 =&\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\\
 \end{aligned}
 \tag{40}
 $$<p><span id="(41)式"></span>
-  注意当 $v$ 不是 $d$ 的倍数时 $p_{n_md-v}=0$ ，因此 $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$。故接<a class="link" href="#%2840%29%e5%bc%8f" >(40)式</a></p>
+  注意当 $v$ 不是 $d$ 的倍数时 $p_{n_md-v}=0$ ，此时 $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ ；若 $v$ 是 $d$ 的倍数，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">上极限的性质</a>可知仍有  $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ 。故接<a class="link" href="#%2840%29%e5%bc%8f" >(40)式</a></p>
 $$
 \liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\bigg(\sum_{v=1,v \ne s}^{\infin}f_{v}\bigg)\limsup\limits_{m \rightarrow \infin}p_{n_md}
 \tag{41}
@@ -1333,7 +1334,8 @@ $$<p>  在<a class="link" href="#%2836%29%e5%bc%8f" >(36)式</a>中令 $n=(n
 $$
 \sum_{v=0}^{n_m-k_0}r_{vd}p_{(n_m-k_0-v)d}=1
 \tag{53}
-$$<p>  令 $m \rightarrow \infin$ 可得</p>
+$$<p><span id="(54)式"></span>
+  令 $m \rightarrow \infin$ 可得</p>
 $$
 \lambda=\frac{1}{\displaystyle\sum_{v=0}^{\infin}r_{vd}}
 \tag{54}
@@ -1341,15 +1343,19 @@ $$<p>  因为当 $v$ 不是 $d$ 的整数倍时，$f_v=0$ ，由<a class="li
 $$
 r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
 \tag{55}
-$$<p>  从而由<a class="link" href="#33%e5%bc%8f" >(33)式</a>得</p>
+$$<p>  从而由<a class="link" href="#%2833%29%e5%bc%8f" >(33)式</a>得</p>
 $$
 \sum_{v=0}^{\infin}r_{vd}=\frac{1}{d}\sum_{v=0}^{\infin}\sum_{j=vd}^{vd+d-1}r_j=\frac{1}{d}\sum_{v=0}^{\infin}r_v=\frac{\mu_j}{d}
 \tag{56}
-$$<p>即</p>
+$$<p>  代入<a class="link" href="#%2854%29%e5%bc%8f" >(54)式</a>可得</p>
 $$
-\lambda = \frac{\mu_j}{d}
+\lambda = \frac{d}{\mu_j}
 \tag{57}
-$$<p>用同样的方法可以证明出</p>
+$$<p>  把<a class="link" href="#%2837%29%e5%bc%8f" >(37)式</a>换成 $\lambda=\liminf\limits_{n \rightarrow \infin}p_{nd}$ ，下面的推导过程完全相同，仍可以得到 $\lambda = \displaystyle\frac{d}{\mu_j}$ 。因此，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">极限的性质</a>可知</p>
+$$
+\lim\limits_{n \rightarrow \infin}p_{nd}=\frac{d}{\mu_j}
+\tag{58}
+$$<p>  当 $j$ 为非常返状态时 $\mu_j \rightarrow \infin$ ，因此 $\lim\limits_{n \rightarrow \infin}p_{nd}=0$ 。<a class="link" href="#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86" >定理8</a>证毕。</p>
 
     </div>
 </section>
@@ -1395,7 +1401,7 @@ $$<p>用同样的方法可以证明出</p>
 
 
         <span>
-            最后更新于 Sep 25, 2024 15:56 CST
+            最后更新于 Sep 25, 2024 16:28 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1521,7 +1527,7 @@ $$<p>用同样的方法可以证明出</p>
             
             
         
-        <span>本图书馆累计发布了3篇文章 共20562字</span>
+        <span>本图书馆累计发布了3篇文章 共20632字</span>
     </section>
 
     <section class="site-visit-count">
@@ -1532,6 +1538,7 @@ $$<p>用同样的方法可以证明出</p>
   访问量<span id="busuanzi_value_site_pv"></span>次
 </span>
     </section>
+
     <section class="copyright">
         <span>
             <img alt="Static Badge" src="https://img.shields.io/badge/%C2%A9Copyright-%E9%BB%84%E9%93%9C%E6%89%B3%E6%89%8B-%230d7fc0">
@@ -1556,7 +1563,7 @@ $$<p>用同样的方法可以证明出</p>
         </span>
 
         <span>
-            <a href="https://github.com/" target="_blank">
+            <a href="https://github.com/BrassWrench/brasswrench.github.io" target="_blank">
 <img alt="Static Badge" src="https://img.shields.io/badge/Github-Pages-%23c022c5?logo=github">
             </a>
         </span>
