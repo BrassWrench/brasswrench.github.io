@@ -66,7 +66,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='马尔可夫过程' /><meta property='article:tag' content='马尔可夫链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-24T20:30:00&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='马尔可夫过程' /><meta property='article:tag' content='马尔可夫链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-25T15:56:30&#43;08:00'/>
 <meta name="twitter:title" content="随机过程（四）：马尔可夫过程">
 <meta name="twitter:description" content="一种无后效性的随机过程">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -872,7 +872,7 @@
 </svg>
 
             <time class="article-words">
-                6128 字
+                6277 字
             </time>
         </div>
 
@@ -1219,11 +1219,14 @@ $$<p>  易证此时 $\{S_k\},\{S_k^\prime\}$ 一一对应。故分解是唯�
 $$
 \lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=\frac{d}{\mu_j}
 \tag{31}
-$$<p>  <strong>证明（定理8）</strong>：对 $n \ge 0$ ，令：</p>
+$$<p>  若为非常返状态，则 $\lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=0$ 。</p>
+<p><span id="(32)式"></span>
+  <strong>证明（定理8）</strong>：对 $n \ge 0$ ，令：</p>
 $$
 r_n=\sum_{v=n+1}^{\infin}{f_v}
 \tag{32}
-$$<p>  其中 $f_v=f_{jj}^{(v)}$ 。于是</p>
+$$<p><span id="(33)式"></span>
+  其中 $f_v=f_{jj}^{(v)}$ 。于是</p>
 $$
 \begin{aligned}
 \sum_{n=0}^{\infin}{r_n}=&\sum_{n=0}^{\infin}\sum_{v=n+1}^{\infin}{f_v}\\
@@ -1240,7 +1243,8 @@ $$<p>  注意 $j$ 是常返状态，故 $r_0=1$。则上式可以写成</p>
 $$
 \sum_{v=0}^{n}{r_vp_{n-v}}=\sum_{v=0}^{n-1}r_vp_{n-1-v}
 \tag{35}
-$$<p>  上面这个式子表示了一个很明显的结论： $\displaystyle\sum_{v=0}^{n}{r_vp_{n-v}}$ 的值与 $n$ 无关。因此：</p>
+$$<p><span id="(36)式"></span>
+  上面这个式子表示了一个很明显的结论： $\displaystyle\sum_{v=0}^{n}{r_vp_{n-v}}$ 的值与 $n$ 无关。因此：</p>
 $$
 \sum_{v=0}^{n}{r_vp_{n-v}}=r_0p_0=1,\quad n \ge 0
 \tag{36}
@@ -1248,17 +1252,12 @@ $$<p>  设</p>
 $$
 \lambda=\limsup\limits_{n \rightarrow \infin}p_{nd}
 \tag{37}
-$$<p><span id="38式"></span>
-  注意当 $k$ 非 $d$ 的倍数的时候 $p_k=0$ ，而 $p_{nd} \ge 0$ ，根据<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">上极限的定义</a>可知：</p>
+$$<p><span id="(38)式"></span>
+  根据<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">上极限的定义</a>可知，必然存在 $\{n\}$ 的子列 $\{n_m\},n_m \rightarrow \infin$ 使得</p>
 $$
-\limsup\limits_{k \rightarrow \infin}p_k=\limsup\limits_{n \rightarrow \infin}p_{nd}=\lambda
+\lambda=\lim\limits_{m \rightarrow \infin}{p_{n_md}}=\limsup\limits_{m \rightarrow \infin}{p_{n_md}}=\liminf\limits_{m \rightarrow \infin}{p_{n_md}}
 \tag{38}
-$$<p><span id="39式"></span>
-  因此再由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">上极限的定义</a>，必然存在一个子列的极限等于 $\lambda$ 。再次注意 $k$ 非 $d$ 的倍数的时候 $p_k=0$ ，因此这个子序列可以在 $\{nd\}$ 中取。从而存在 $\{n\}$ 的子列 $\{n_m\},n_m \rightarrow \infin$ 使得</p>
-$$
-\lambda=\lim\limits_{m \rightarrow \infin}{p_{n_md}}
-\tag{39}
-$$<p><span id="40式"></span>
+$$<p><span id="(39)式"></span>
   任取 $s$ 使得 $f_s&gt;0$ ，由<a class="link" href="#%e5%bc%95%e7%90%861" >引理1</a>和<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">下极限的性质</a>可得</p>
 $$
 \begin{aligned}
@@ -1266,8 +1265,8 @@ $$
 =&\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{v}p_{n_md-v}=\liminf\limits_{m \rightarrow \infin}\bigg(f_sp_{n_md-s}+\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\bigg)\\
 \le&\liminf\limits_{m \rightarrow \infin}f_sp_{n_md-s}+\liminf\limits_{m \rightarrow \infin}\bigg(\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\bigg)\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}
 \end{aligned}
-\tag{40}
-$$<p><span id="41式"></span>
+\tag{39}
+$$<p><span id="(40)式"></span>
   由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">概率的非负性</a>和<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">上下极限的定义和性质</a>和可推导出</p>
 $$
 \begin{aligned}
@@ -1275,11 +1274,14 @@ $$
 \le&\sum_{v=1,v \ne s}^{\infin}\liminf\limits_{m \rightarrow \infin}f_{v}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}\\
 \le&\sum_{v=1,v \ne s}^{\infin}\liminf\limits_{m \rightarrow \infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}a_nb_n\le\liminf\limits_{n \rightarrow \infin}a_n\limsup\limits_{n \rightarrow \infin}b_n\text{）}\\
 =&\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\\
-\le&\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{k \rightarrow \infin}p_k\quad\text{（上极限的定义）}\\
-=&\bigg(\sum_{v=1,v \ne s}^{\infin}f_{v}\bigg)\limsup\limits_{k \rightarrow \infin}p_k
 \end{aligned}
+\tag{40}
+$$<p><span id="(41)式"></span>
+  注意当 $v$ 不是 $d$ 的倍数时 $p_{n_md-v}=0$ ，因此 $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$。故接<a class="link" href="#%2840%29%e5%bc%8f" >(40)式</a></p>
+$$
+\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\bigg(\sum_{v=1,v \ne s}^{\infin}f_{v}\bigg)\limsup\limits_{m \rightarrow \infin}p_{n_md}
 \tag{41}
-$$<p>  注意状态 $j$ 是<a class="link" href="#%e5%b8%b8%e8%bf%94" >常返</a>的，所以 $\displaystyle\sum_{v=1}^{\infin}f_{v}=1$ ，也就是 $\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s$ 。而将<a class="link" href="#38%e5%bc%8f" >(38)式</a> 代入<a class="link" href="#41%e5%bc%8f" >(41)式</a>后再将<a class="link" href="#41%e5%bc%8f" >(41)式</a>代回<a class="link" href="#40%e5%bc%8f" >(40)式</a>得</p>
+$$<p>  注意状态 $j$ 是<a class="link" href="#%e5%b8%b8%e8%bf%94" >常返</a>的，所以 $\displaystyle\sum_{v=1}^{\infin}f_{v}=1$ ，也就是 $\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s$ 。而将<a class="link" href="#%2838%29%e5%bc%8f" >(38)式</a> 代入<a class="link" href="#%2841%29%e5%bc%8f" >(41)式</a>后再将<a class="link" href="#%2841%29%e5%bc%8f" >(41)式</a>代回<a class="link" href="#%2839%29%e5%bc%8f" >(39)式</a>得</p>
 $$
 \lambda\le f_s\liminf\limits_{m \rightarrow \infin}p_{n_md-s}+(1-f_s)\lambda
 \tag{42}
@@ -1323,7 +1325,31 @@ $$<p>  由<a class="link" href="#%e5%91%a8%e6%9c%9f" >周期 $d$ 的定义</
 $$
 kd=\sum_{i=1}^{l}c_id_i
 \tag{51}
- $$<p>  上式的证明可由<a class="link" onclick="alert('抱歉，初等数论还未上线~')">多元一次不定方程解的存在性的推论</a>得出。</p>
+ $$<p>  上述结论见<a class="link" onclick="alert('抱歉，初等数论还未上线~')">Frobenius问题</a>（实际上 $k_0$ 就是数论中著名的Frobenius数，该数在 $n\ge3$ 时无一般表示式，但是可以证明 $k_0\le \displaystyle\sum_{i=2}^{n}\frac{d_i\cdot gcd(d_1,d_2,\dots,d_{i-1})}{d \cdot gcd(d_1,d_2,\dots,d_i)} - \displaystyle\sum_{i=1}^{n}\frac{d_i}{d}$ ）。于是，对每一个 $k\ge k_0$ 有</p>
+$$
+\lim\limits_{n \rightarrow \infin}p_{(n_m-k)d}=\lambda
+\tag{52}
+$$<p>  在<a class="link" href="#%2836%29%e5%bc%8f" >(36)式</a>中令 $n=(n_m-k_0)d$， 并注意到 $v$ 不是 $d$ 的整数倍时 $p_v=0$ ，故可把 $v$ 替换为 $vd$ ，则得</p>
+$$
+\sum_{v=0}^{n_m-k_0}r_{vd}p_{(n_m-k_0-v)d}=1
+\tag{53}
+$$<p>  令 $m \rightarrow \infin$ 可得</p>
+$$
+\lambda=\frac{1}{\displaystyle\sum_{v=0}^{\infin}r_{vd}}
+\tag{54}
+$$<p>  因为当 $v$ 不是 $d$ 的整数倍时，$f_v=0$ ，由<a class="link" href="#%2832%29%e5%bc%8f" >(32)式</a>可得</p>
+$$
+r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
+\tag{55}
+$$<p>  从而由<a class="link" href="#33%e5%bc%8f" >(33)式</a>得</p>
+$$
+\sum_{v=0}^{\infin}r_{vd}=\frac{1}{d}\sum_{v=0}^{\infin}\sum_{j=vd}^{vd+d-1}r_j=\frac{1}{d}\sum_{v=0}^{\infin}r_v=\frac{\mu_j}{d}
+\tag{56}
+$$<p>即</p>
+$$
+\lambda = \frac{\mu_j}{d}
+\tag{57}
+$$<p>用同样的方法可以证明出</p>
 
     </div>
 </section>
@@ -1369,7 +1395,7 @@ kd=\sum_{i=1}^{l}c_id_i
 
 
         <span>
-            最后更新于 Sep 24, 2024 20:30 CST
+            最后更新于 Sep 25, 2024 15:56 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1495,7 +1521,7 @@ kd=\sum_{i=1}^{l}c_id_i
             
             
         
-        <span>本图书馆累计发布了3篇文章 共20413字</span>
+        <span>本图书馆累计发布了3篇文章 共20562字</span>
     </section>
 
     <section class="site-visit-count">
@@ -1518,14 +1544,14 @@ kd=\sum_{i=1}^{l}c_id_i
         </span>
 
         <span>
-            <a href="https://gohugo.io/" target="_blank">
-                <img alt="Static Badge" src="https://img.shields.io/badge/Frame-Hugo-%23ff3ab5?logo=hugo">
+            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=45110002000283" rel="noreferrer" target="_blank">
+                <img alt="Static Badge" src="https://img.shields.io/badge/%20%E6%A1%82%E5%85%AC%E7%BD%91%E5%AE%89%E5%A4%8745110002000283%E5%8F%B7-%235f5f5f?logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAACQAAAAoCAYAAACWwljjAAAFQklEQVRYw%2B3Wa1BUdRjH8SOpMeg4WhZGpDIxiaaTeUFgWrxE4AVRQJGlRRAVIV1JkbgMgQLi5AVBQSVLSp0xlEAUKBEEFZCrCstll8UV2AV2YbmoGCrYv31%2BR95UL5pmmtamZ%2Bbz6rz5nvOc%2F5zDcX9jGLs%2FiTxuyvIlWYkRFeTHA2HVRFtzfhthTG5KuH96%2FvUgNlC4mMgyw1NJit%2FaAXLKazYje9xtIMZ%2FOZz50gW%2B9hcNkvoLEemEPbnrSP47QYwxQ5Ifv54RqzcXwFFvSyjaOhfavN8F7Y5ZcC%2FHH9JOB4LNa9Zw5YA76OZV8vIGMdZtSp7cDrtOnOavYiQhTAiPwi1AMtIQaqyngsxpBtw2GAGDKfaQmpUAa6xc4Vfp4UtEdzAMycsT9JQ1Tyctl%2F2eEkuTlYysF%2FrCUNxMqDEzgTqzSXBnpgnIHCzgjvEEuD52DLBr3rA1MAaWmNtB582wdtIljZ9G9D%2BIPU6aTxIPBjHCcXvg3CEh9K2fDLWvjIH6D6fwTIyheuwEqLUyhzLOALq8pkN%2BbgRw3HY4FBsMzxojZxP9DequLjAlQwVrbpIjhyIY4UYGQ%2FbuhdBqPxlk3Gion2IMDQIz3kJe%2FZS34I7uHkmD7VSQVgYDNyIAwsNCgfXGXoOBPjP9DKrOCAogA2etGTmTHAMcFwFZye7wS5QlVHGjoEw4A2qPCUBZ6AzNcQ5Q%2FYYRdO%2BYB1U3dsDwypLio4FJ3ECryIzWz6Cm3NgTRHN8HiPF6eHAGSbAdh8feFZkB7krzaHE9h2o85sDsiAbkIsXQMN%2Be2CtGyF0kzdwXCgU5%2B%2BD%2FouLQFV4OEU%2Fg2Q%2FiNuIPNaKkQflAWBqexxGjhLDVUcL6IwSQN3SGVChe6FJg9dckCx6D1QBliDZLIAxo7eA8eyv4KE0BJqTrHkZvnL9DJKn%2BTwmt0NsGGHZy2Dn3kQYfsQ53Hh4%2Fr4RNGz8AIpdzKEuaAF0RC2E57MmQgE3ATjuM%2FCPiANW7AqSfQJQ5vk362eQKmd3JrmXsoSRocpNIMnbB9zbceDIWUPmuHFQNMkISqa9DpUvNK6YDpW2s8DfwBK48WFQnhMCgzUBoLy0BrRVe5P0NWjPLdKUsJiR1tR1wGp8IeZwMgx%2FSrgRvjxuAziNcwLvyathLOcJHLflhRDYGRYFrNET2rJ5yvPLoas0tOj%2FoL8UpC4JHyTSU%2B6MNCS4gvKoAB5WiKG%2BMAQSg0WwLXQ%2FZJ3xhao0FxB5hYCbUwAEfhEF3Td8QP2dAOQnPwFlxgrolUVq9TPoaX%2BZB2nLc2Gk6awj1MU78HZZwJMid2Byb550JQwVO0NfxlJgdz14vWKeRAiK6DlQF28PLZdcoLNcBIO92bb6GTQ8Q%2F13RURT6tlH2gvXMlITLYD6uI%2Bgp2ozdF0VQXumM6ivCqGvahM8kPiDItkeGo8tB025GFQ3xFrSr06zI3%2F4yde7oN7m0sWk5eKWDqK5JWJQvAHac9ygq3Adr9gTNNc3QG85rzPfHe5%2F7wDtPwuhp%2FZz6CjyhaZzwi6ivfetHdH%2FoP77%2B3PJQOsuRnqkQdCa4wWqyx6gyecpL64GTaEX7ycXUJz4GJp1B4O0X%2FHg0Xp1tFV%2B8Ei1k6c5coHofxBrrzQinbKYo0SVJ%2Bwn6iurGHlY5gY911aDJnMFaHXXiDp9GQyvtKfUA9QFTtBZ7gPdit0tpFd9OpwwFmlA9D%2Fo9yNLDpxIKmI8PMnNSNtviCLVpYTITzrXEGWaq4qos0WgOPdpCenIF%2BeRrurjB4k0PXopYZG6gMg%2FD%2FgNBUxhAbSAmKMAAAAASUVORK5CYII%3D">
             </a>
         </span>
 
         <span>
-            <a href="https://themes.gohugo.io/themes/hugo-theme-stack/" target="_blank">
-                <img alt="Static Badge" src="https://img.shields.io/badge/Theme-Stack-%23f7ede2?">
+            <a href="https://gohugo.io/" target="_blank">
+                <img alt="Static Badge" src="https://img.shields.io/badge/Frame-Hugo-%23ff3ab5?logo=hugo">
             </a>
         </span>
 

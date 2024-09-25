@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 24 Sep 2024 20:30:00 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 25 Sep 2024 15:56:30 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：马尔可夫过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -310,11 +310,14 @@ $$&lt;p&gt;  易证此时 $\{S_k\},\{S_k^\prime\}$ 一一对应。故分解�
 $$
 \lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=\frac{d}{\mu_j}
 \tag{31}
-$$&lt;p&gt;  &lt;strong&gt;证明（定理8）&lt;/strong&gt;：对 $n \ge 0$ ，令：&lt;/p&gt;
+$$&lt;p&gt;  若为非常返状态，则 $\lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=0$ 。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;(32)式&#34;&gt;&lt;/span&gt;
+  &lt;strong&gt;证明（定理8）&lt;/strong&gt;：对 $n \ge 0$ ，令：&lt;/p&gt;
 $$
 r_n=\sum_{v=n+1}^{\infin}{f_v}
 \tag{32}
-$$&lt;p&gt;  其中 $f_v=f_{jj}^{(v)}$ 。于是&lt;/p&gt;
+$$&lt;p&gt;&lt;span id=&#34;(33)式&#34;&gt;&lt;/span&gt;
+  其中 $f_v=f_{jj}^{(v)}$ 。于是&lt;/p&gt;
 $$
 \begin{aligned}
 \sum_{n=0}^{\infin}{r_n}=&amp;\sum_{n=0}^{\infin}\sum_{v=n+1}^{\infin}{f_v}\\
@@ -331,7 +334,8 @@ $$&lt;p&gt;  注意 $j$ 是常返状态，故 $r_0=1$。则上式可以写�
 $$
 \sum_{v=0}^{n}{r_vp_{n-v}}=\sum_{v=0}^{n-1}r_vp_{n-1-v}
 \tag{35}
-$$&lt;p&gt;  上面这个式子表示了一个很明显的结论： $\displaystyle\sum_{v=0}^{n}{r_vp_{n-v}}$ 的值与 $n$ 无关。因此：&lt;/p&gt;
+$$&lt;p&gt;&lt;span id=&#34;(36)式&#34;&gt;&lt;/span&gt;
+  上面这个式子表示了一个很明显的结论： $\displaystyle\sum_{v=0}^{n}{r_vp_{n-v}}$ 的值与 $n$ 无关。因此：&lt;/p&gt;
 $$
 \sum_{v=0}^{n}{r_vp_{n-v}}=r_0p_0=1,\quad n \ge 0
 \tag{36}
@@ -339,17 +343,12 @@ $$&lt;p&gt;  设&lt;/p&gt;
 $$
 \lambda=\limsup\limits_{n \rightarrow \infin}p_{nd}
 \tag{37}
-$$&lt;p&gt;&lt;span id=&#34;38式&#34;&gt;&lt;/span&gt;
-  注意当 $k$ 非 $d$ 的倍数的时候 $p_k=0$ ，而 $p_{nd} \ge 0$ ，根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;上极限的定义&lt;/a&gt;可知：&lt;/p&gt;
+$$&lt;p&gt;&lt;span id=&#34;(38)式&#34;&gt;&lt;/span&gt;
+  根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;上极限的定义&lt;/a&gt;可知，必然存在 $\{n\}$ 的子列 $\{n_m\},n_m \rightarrow \infin$ 使得&lt;/p&gt;
 $$
-\limsup\limits_{k \rightarrow \infin}p_k=\limsup\limits_{n \rightarrow \infin}p_{nd}=\lambda
+\lambda=\lim\limits_{m \rightarrow \infin}{p_{n_md}}=\limsup\limits_{m \rightarrow \infin}{p_{n_md}}=\liminf\limits_{m \rightarrow \infin}{p_{n_md}}
 \tag{38}
-$$&lt;p&gt;&lt;span id=&#34;39式&#34;&gt;&lt;/span&gt;
-  因此再由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;上极限的定义&lt;/a&gt;，必然存在一个子列的极限等于 $\lambda$ 。再次注意 $k$ 非 $d$ 的倍数的时候 $p_k=0$ ，因此这个子序列可以在 $\{nd\}$ 中取。从而存在 $\{n\}$ 的子列 $\{n_m\},n_m \rightarrow \infin$ 使得&lt;/p&gt;
-$$
-\lambda=\lim\limits_{m \rightarrow \infin}{p_{n_md}}
-\tag{39}
-$$&lt;p&gt;&lt;span id=&#34;40式&#34;&gt;&lt;/span&gt;
+$$&lt;p&gt;&lt;span id=&#34;(39)式&#34;&gt;&lt;/span&gt;
   任取 $s$ 使得 $f_s&amp;gt;0$ ，由&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;下极限的性质&lt;/a&gt;可得&lt;/p&gt;
 $$
 \begin{aligned}
@@ -357,8 +356,8 @@ $$
 =&amp;\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{v}p_{n_md-v}=\liminf\limits_{m \rightarrow \infin}\bigg(f_sp_{n_md-s}+\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\bigg)\\
 \le&amp;\liminf\limits_{m \rightarrow \infin}f_sp_{n_md-s}+\liminf\limits_{m \rightarrow \infin}\bigg(\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\bigg)\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}
 \end{aligned}
-\tag{40}
-$$&lt;p&gt;&lt;span id=&#34;41式&#34;&gt;&lt;/span&gt;
+\tag{39}
+$$&lt;p&gt;&lt;span id=&#34;(40)式&#34;&gt;&lt;/span&gt;
   由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;上下极限的定义和性质&lt;/a&gt;和可推导出&lt;/p&gt;
 $$
 \begin{aligned}
@@ -366,11 +365,14 @@ $$
 \le&amp;\sum_{v=1,v \ne s}^{\infin}\liminf\limits_{m \rightarrow \infin}f_{v}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}\\
 \le&amp;\sum_{v=1,v \ne s}^{\infin}\liminf\limits_{m \rightarrow \infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}a_nb_n\le\liminf\limits_{n \rightarrow \infin}a_n\limsup\limits_{n \rightarrow \infin}b_n\text{）}\\
 =&amp;\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\\
-\le&amp;\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{k \rightarrow \infin}p_k\quad\text{（上极限的定义）}\\
-=&amp;\bigg(\sum_{v=1,v \ne s}^{\infin}f_{v}\bigg)\limsup\limits_{k \rightarrow \infin}p_k
 \end{aligned}
+\tag{40}
+$$&lt;p&gt;&lt;span id=&#34;(41)式&#34;&gt;&lt;/span&gt;
+  注意当 $v$ 不是 $d$ 的倍数时 $p_{n_md-v}=0$ ，因此 $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$。故接&lt;a class=&#34;link&#34; href=&#34;#%2840%29%e5%bc%8f&#34; &gt;(40)式&lt;/a&gt;&lt;/p&gt;
+$$
+\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\bigg(\sum_{v=1,v \ne s}^{\infin}f_{v}\bigg)\limsup\limits_{m \rightarrow \infin}p_{n_md}
 \tag{41}
-$$&lt;p&gt;  注意状态 $j$ 是&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94&#34; &gt;常返&lt;/a&gt;的，所以 $\displaystyle\sum_{v=1}^{\infin}f_{v}=1$ ，也就是 $\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s$ 。而将&lt;a class=&#34;link&#34; href=&#34;#38%e5%bc%8f&#34; &gt;(38)式&lt;/a&gt; 代入&lt;a class=&#34;link&#34; href=&#34;#41%e5%bc%8f&#34; &gt;(41)式&lt;/a&gt;后再将&lt;a class=&#34;link&#34; href=&#34;#41%e5%bc%8f&#34; &gt;(41)式&lt;/a&gt;代回&lt;a class=&#34;link&#34; href=&#34;#40%e5%bc%8f&#34; &gt;(40)式&lt;/a&gt;得&lt;/p&gt;
+$$&lt;p&gt;  注意状态 $j$ 是&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94&#34; &gt;常返&lt;/a&gt;的，所以 $\displaystyle\sum_{v=1}^{\infin}f_{v}=1$ ，也就是 $\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s$ 。而将&lt;a class=&#34;link&#34; href=&#34;#%2838%29%e5%bc%8f&#34; &gt;(38)式&lt;/a&gt; 代入&lt;a class=&#34;link&#34; href=&#34;#%2841%29%e5%bc%8f&#34; &gt;(41)式&lt;/a&gt;后再将&lt;a class=&#34;link&#34; href=&#34;#%2841%29%e5%bc%8f&#34; &gt;(41)式&lt;/a&gt;代回&lt;a class=&#34;link&#34; href=&#34;#%2839%29%e5%bc%8f&#34; &gt;(39)式&lt;/a&gt;得&lt;/p&gt;
 $$
 \lambda\le f_s\liminf\limits_{m \rightarrow \infin}p_{n_md-s}+(1-f_s)\lambda
 \tag{42}
@@ -414,7 +416,31 @@ $$&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#%e5%91%a8%e6%9c%9f&#34
 $$
 kd=\sum_{i=1}^{l}c_id_i
 \tag{51}
- $$&lt;p&gt;  上式的证明可由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，初等数论还未上线~&#39;)&#34;&gt;多元一次不定方程解的存在性的推论&lt;/a&gt;得出。&lt;/p&gt;
+ $$&lt;p&gt;  上述结论见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，初等数论还未上线~&#39;)&#34;&gt;Frobenius问题&lt;/a&gt;（实际上 $k_0$ 就是数论中著名的Frobenius数，该数在 $n\ge3$ 时无一般表示式，但是可以证明 $k_0\le \displaystyle\sum_{i=2}^{n}\frac{d_i\cdot gcd(d_1,d_2,\dots,d_{i-1})}{d \cdot gcd(d_1,d_2,\dots,d_i)} - \displaystyle\sum_{i=1}^{n}\frac{d_i}{d}$ ）。于是，对每一个 $k\ge k_0$ 有&lt;/p&gt;
+$$
+\lim\limits_{n \rightarrow \infin}p_{(n_m-k)d}=\lambda
+\tag{52}
+$$&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#%2836%29%e5%bc%8f&#34; &gt;(36)式&lt;/a&gt;中令 $n=(n_m-k_0)d$， 并注意到 $v$ 不是 $d$ 的整数倍时 $p_v=0$ ，故可把 $v$ 替换为 $vd$ ，则得&lt;/p&gt;
+$$
+\sum_{v=0}^{n_m-k_0}r_{vd}p_{(n_m-k_0-v)d}=1
+\tag{53}
+$$&lt;p&gt;  令 $m \rightarrow \infin$ 可得&lt;/p&gt;
+$$
+\lambda=\frac{1}{\displaystyle\sum_{v=0}^{\infin}r_{vd}}
+\tag{54}
+$$&lt;p&gt;  因为当 $v$ 不是 $d$ 的整数倍时，$f_v=0$ ，由&lt;a class=&#34;link&#34; href=&#34;#%2832%29%e5%bc%8f&#34; &gt;(32)式&lt;/a&gt;可得&lt;/p&gt;
+$$
+r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
+\tag{55}
+$$&lt;p&gt;  从而由&lt;a class=&#34;link&#34; href=&#34;#33%e5%bc%8f&#34; &gt;(33)式&lt;/a&gt;得&lt;/p&gt;
+$$
+\sum_{v=0}^{\infin}r_{vd}=\frac{1}{d}\sum_{v=0}^{\infin}\sum_{j=vd}^{vd+d-1}r_j=\frac{1}{d}\sum_{v=0}^{\infin}r_v=\frac{\mu_j}{d}
+\tag{56}
+$$&lt;p&gt;即&lt;/p&gt;
+$$
+\lambda = \frac{\mu_j}{d}
+\tag{57}
+$$&lt;p&gt;用同样的方法可以证明出&lt;/p&gt;
 </description>
         </item>
         
