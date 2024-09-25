@@ -25,7 +25,10 @@
         
         $('#back-to-top').on('click', function(e) {
             e.preventDefault(); 
-            $('html, body').animate({scrollTop: 0}, 1000);
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         });
     });
 </script>
@@ -60,7 +63,10 @@
         
         $('#scroll-to-bottom').on('click', function(e) {
             e.preventDefault(); 
-            $('html, body').animate({scrollTop: $(document).height()}, 1000);
+            window.scrollTo({
+                top: $(document).height(),
+                behavior: "smooth"
+            });
         });
     });
 </script>
@@ -83,7 +89,10 @@
                 var lastPage = historyStack.pop();
                 if (lastPage.path === window.location.pathname + window.location.search.replace('scrollY=[^&]*&?', '')) {
                     
-                    $('html, body').animate({ scrollTop: lastPage.scrollY }, 'slow');
+                    window.scrollTo({
+                        top: lastPage.scrollY,
+                        behavior: "smooth"
+                    });
                 } else {
                     var targetUrl = lastPage.path;
                     if (!targetUrl.includes('?')) targetUrl += '?';
@@ -116,13 +125,16 @@
         });
 
         var scrollY = new URLSearchParams(window.location.search).get('scrollY');
-        $('html, body').animate({ scrollTop: scrollY }, 'slow');
+        window.scrollTo({
+            top: scrollY,
+            behavior: "smooth"
+        });
     });
 </script><meta property='og:title' content="黄铜扳手的图书馆">
 <meta property='og:description' content="黄铜扳手的图书馆">
 <meta property='og:url' content='https://www.brasswrench.com/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2024-09-25T23:09:59&#43;08:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2024-09-25T23:30:35&#43;08:00 '/>
 <meta name="twitter:title" content="黄铜扳手的图书馆">
 <meta name="twitter:description" content="黄铜扳手的图书馆"><link rel="alternate" type="application/rss&#43;xml" href="https://www.brasswrench.com/index.xml">
     <link rel="shortcut icon" href="/favicon.ico" />
