@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/en/link/'>
 
-<link rel="stylesheet" href="/scss/style.min.b2ef9870340b8de3b0206f81e9107725af73e223097fbb98e393adaaffbb6c36.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.535c10cae07740868d61546105af1298c237ad22649bdcfadd28c4bffeec6fcd.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -62,11 +62,66 @@
             $('html, body').animate({scrollTop: $(document).height()}, 1000);
         });
     });
+</script>
+
+<script>
+    $(document).ready(function() {
+        var historyStackKey = 'historyStack';
+        var isLinkClickKey = 'isLinkClick';
+
+        var historyStack = JSON.parse(sessionStorage.getItem(historyStackKey)) || [];
+        var isLinkClick = sessionStorage.getItem(isLinkClickKey) === 'true';
+
+        if (historyStack.length > 0 && isLinkClick) {
+            $('#back').fadeIn();
+        }
+
+        $('#back').on('click', function(e) {
+            e.preventDefault();
+            if (historyStack.length > 0) {
+                var lastPage = historyStack.pop();
+                if (lastPage.path === window.location.pathname + window.location.search.replace('scrollY=[^&]*&?', '')) {
+                    
+                    $('html, body').animate({ scrollTop: lastPage.scrollY }, 'slow');
+                } else {
+                    var targetUrl = lastPage.path;
+                    if (!targetUrl.includes('?')) targetUrl += '?';
+                    else targetUrl += '&';
+                    targetUrl += 'scrollY=' + lastPage.scrollY;
+                    window.location.href = targetUrl;
+                }
+                sessionStorage.setItem(historyStackKey, JSON.stringify(historyStack));
+                if (historyStack.length === 0){
+                    $('#back').fadeOut();
+                }
+            }
+        });
+
+        $('a').on('click', function(e) {
+            var href = $(this).attr('href');
+            if ($(this).closest('.article-content').length > 0 && href && href.includes('#') && href !== '#') {
+                sessionStorage.setItem(isLinkClickKey, 'true');
+                historyStack.push({
+                    path: window.location.pathname + window.location.search,
+                    scrollY: window.scrollY
+                });
+                sessionStorage.setItem(historyStackKey, JSON.stringify(historyStack));
+                $('#back').fadeIn();
+            } else if(!href.includes('#')) {
+                sessionStorage.setItem(isLinkClickKey, 'false');
+                sessionStorage.setItem(historyStackKey, JSON.stringify([]));
+                $('#back').fadeOut();
+            }
+        });
+
+        var scrollY = new URLSearchParams(window.location.search).get('scrollY');
+        $('html, body').animate({ scrollTop: scrollY }, 'slow');
+    });
 </script><meta property='og:title' content="Link">
 <meta property='og:description' content="Here are some friend links.\n">
 <meta property='og:url' content='https://www.brasswrench.com/en/link/'>
 <meta property='og:site_name' content='Brass Wrench&#39;s Library'>
-<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:modified_time' content='2024-09-25T19:55:39&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:modified_time' content='2024-09-25T23:09:59&#43;08:00'/>
 <meta name="twitter:title" content="Link">
 <meta name="twitter:description" content="Here are some friend links.\n">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -615,6 +670,11 @@
             <img src="/img/down.svg" />
         </a>
 
+        
+        <a id="back" href="#">
+            <img src="/img/back.svg" />
+        </a>
+
     </aside>
 
 
@@ -873,7 +933,7 @@
 
 
         <span>
-            Last updated on Sep 25, 2024 19:55 CST
+            Last updated on Sep 25, 2024 23:09 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
