@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='马尔可夫过程' /><meta property='article:tag' content='马尔可夫链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-26T22:26:19&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='马尔可夫过程' /><meta property='article:tag' content='马尔可夫链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T00:58:53&#43;08:00'/>
 <meta name="twitter:title" content="随机过程（四）：马尔可夫过程">
 <meta name="twitter:description" content="一种无后效性的随机过程">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -616,7 +616,7 @@
         <li><a href="#周期">周期</a></li>
         <li><a href="#常返">常返</a>
           <ol>
-            <li><a href="#常返与非常返瞬过">常返与非常返（瞬过）</a></li>
+            <li><a href="#首达概率常返与非常返瞬过">首达概率、常返与非常返（瞬过）</a></li>
             <li><a href="#正常返零常返遍历吸收">正常返、零常返、遍历、吸收</a></li>
           </ol>
         </li>
@@ -638,6 +638,7 @@
             <li><a href="#极限定理-1">极限定理</a></li>
             <li><a href="#再论非常返与零常返">再论非常返与零常返</a></li>
             <li><a href="#再论正常返">再论正常返</a></li>
+            <li><a href="#n步转移概率的期望">n步转移概率的期望</a></li>
           </ol>
         </li>
       </ol>
@@ -952,7 +953,7 @@
 </svg>
 
             <time class="article-words">
-                7808 字
+                8048 字
             </time>
         </div>
 
@@ -967,7 +968,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 16 分钟
+                    阅读时长: 17 分钟
                 </time>
             </div>
         
@@ -1125,8 +1126,8 @@ p_{ii}^{(m+s+n)}=\sum_{k \in S}{p_{ik}^{(m)}p_{ki}^{(s+n)}}=\sum_{k \in S,\thins
 \tag{9}
 $$<p>  由<a class="link" href="#%e5%91%a8%e6%9c%9f" >周期</a>的定义可知，由于 $p_{ii}^{(m+n)}&gt;0$ 且 $p_{ii}^{(m+s+n)}&gt;0$ ， $d(i)$ 必然同时整除 $n+m$ 和 $n+m+s$ ，因此，它也必然整除 $s$ （见<a class="link" onclick="alert('抱歉，“初等数论”还未上线~')">整除的基本性质</a>）。同时我们还需注意我们已经假设了 $p_{jj}^{(s)} &gt; 0$ ，因此 $d(j)$ 必定也整除 $s$ 。注意 $s$ 的任意性，不妨直接令 $s=d(j)$ ，由此可得 $d(i)$ 整除 $d(j)$ 。我们把上述证明的 $i$ 和 $j$ 交换一下，就也能得到 $d(j)$ 整除 $d(i)$ ，于是 $d(i)=d(j)$ （见<a class="link" onclick="alert('抱歉，“初等数论”还未上线~')">整除的基本性质</a>）。</p>
 <h3 id="常返">常返
-</h3><h4 id="常返与非常返瞬过">常返与非常返（瞬过）
-</h4><p>  <strong>定义8</strong>：对于任何状态 $i,j$ ，以 $f_{ij}^{(n)}$ 记从i出发经n步后首次到达 $j$ 的概率，则有</p>
+</h3><h4 id="首达概率常返与非常返瞬过">首达概率、常返与非常返（瞬过）
+</h4><p>  <strong>定义8</strong>：对于任何状态 $i,j$ ，以 $f_{ij}^{(n)}$ 记从i出发经n步后首次到达 $j$ 的概率（<strong>首达概率</strong>），则有</p>
 $$
 f_{ij}^{(n)}=
 \begin{cases}
@@ -1492,12 +1493,13 @@ $$
 f_{ij}(r)\space\frac{d}{\mu_j}\le p_{ij}^{(nd+r)} \le f_{ij}(r)\space\frac{d}{\mu_j}
 \tag{68}
 $$<p>  由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">夹挤原则</a>可得<a class="link" href="#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94" >定理10</a>得证。</p>
-<p>  <strong>推论4</strong>：设有不可约的、正常返的、周期为 $d$ 的马尔可夫链（即每个状态都是正常返的），其状态空间为 $S$ ，则对任何状态 $i \leftrightarrow j(i,j \in S)$ ，有</p>
+<p><span id="推论4"></span>
+  <strong>推论4</strong>：设有不可约的、正常返的、周期为 $d$ 的马尔可夫链（即每个状态都是正常返的），其状态空间为 $S$ ，则对任何状态 $i \leftrightarrow j(i,j \in S)$ ，有</p>
 $$
 \lim\limits_{n \to \infin}p_{ij}^{(nd)}=
 \begin{cases}
-\displaystyle\frac{d}{\mu_j}\quad&若\space i \space 与\space j \space 同属于子集\space S\\[10pt]
-0\quad&其他
+\space\displaystyle\frac{d}{\mu_j}\quad&若\space i \space 与\space j \space 同属于子集\space S\\[10pt]
+\space 0\quad&其他
 \end{cases}
 \tag{69}
 $$<p>  其中 $S=\displaystyle\bigcup_{i=0}^{d-1}S_s$ 即为<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" >定理7</a>所给出的 $S_s$ 。特别的，当 $d=1$ 时，$\forall i,j \in S$ 有</p>
@@ -1508,7 +1510,31 @@ $$<p>  <strong>证明（推论4）</strong>：在<a class="link" href="#%e5%
 $$
 \lim\limits_{n \to \infin}p_{ij}^{(nd)}=f_{ij}(0)\space\frac{d}{\mu_j}
 \tag{71}
-$$<p>  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。若 $i$ 与 $j$ 不在同一个 $S_s$ 中，则由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" >定理7</a>可知所有的 $f_{ij}^{(md)}=0$ 。若 $i,j$ 在同一个 $S_s$ 中，则当 $n$ 不为 $m$ 的倍数的时候 $p_{ij}^{(n)}=0$ 。</p>
+$$<p>  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。若 $i$ 与 $j$ 不在同一个 $S_s$ 中，则由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" >定理7</a>可知所有的 $f_{ij}^{(md)}=0$ 。若 $i,j$ 在同一个 $S_s$ 中，注意当 $n$ 不为 $d$ 的倍数的时候 $p_{ij}^{(n)}=0$ ，因此 $f_{ij}^{(n)}=0$ （见<a class="link" href="#%e5%b8%b8%e8%bf%94" > $f_{ij}^{(n)}$ 的定义</a>）。此时有</p>
+$$
+f_{ij}(0)=\sum_{m=0}^{\infin}f_{ij}^{(md)}=\sum_{m=0}^{\infin}f_{ij}^{(m)}=f_{ij}=1
+\tag{72}
+$$<p>  综上，<a class="link" href="#%e6%8e%a8%e8%ae%ba4" >推论4</a>得证。</p>
+<h4 id="n步转移概率的期望">n步转移概率的期望
+</h4><p>  <strong>定理11</strong>：对于任意状态 $i,j \in S$ ，有</p>
+$$
+\lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=
+\begin{cases}
+\space 0 \quad j\space 为非常返状态或零常返状态\\[10pt]
+\space \displaystyle\frac{f_{ij}}{\mu_{j}} \quad j \space 为正常返状态
+\end{cases}
+\tag{73}
+$$<p>  为了证明<a class="link" href="#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b" >定理11</a>，我们需要先证明<a class="link" href="#%e5%bc%95%e7%90%863" >引理3</a>。</p>
+<p><span id="引理3"></span>
+  <strong>引理3</strong>：设有非负数列 $\{a_n\}$ 的 $d$ 个子列 $\{a_{kd+s}\}(s=0,1,2,\cdots,d-1)$ ，如果对每一个 $d$ ，存在极限 $\lim\limits_{k \to \infin}a_{kd+s}=b_s$ ，则有：</p>
+$$
+\lim_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}a_k=\frac{1}{d}\sum_{s=0}^{d-1}b_s
+\tag{74}
+$$<p>  <strong>证明（引理3）</strong>：设 $n=md+r(0 \le r &lt; d-1)$ ，数列的前 $n$ 项和 $\displaystyle\sum_{k=1}^{n}a_k$ 可以写为：</p>
+$$
+\sum_{k=1}^{n}a_k=\sum_{s=0}^{d-1}\sum_{k=0}^{m-1}a_{kd+s}+\sum_{t=0}^{r}a_{md+t}
+\tag{75}
+$$<p>  等式两端对 $m$ 取极限。先看右端第一项，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">Stolz定理</a>可推导得：</p>
 
     </div>
 </section>
@@ -1554,7 +1580,7 @@ $$<p>  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。�
 
 
         <span>
-            最后更新于 Sep 26, 2024 22:26 CST
+            最后更新于 Sep 27, 2024 00:58 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1683,7 +1709,7 @@ $$<p>  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。�
             
             
         
-        <span>本图书馆累计发布了4篇文章 共22095字</span>
+        <span>本图书馆累计发布了4篇文章 共22335字</span>
     </section>
 
     <section class="site-visit-count">
