@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 26 Sep 2024 15:33:37 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Sep 2024 17:13:41 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：马尔可夫过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -478,6 +478,31 @@ $$&lt;p&gt;  定理得证。&lt;/p&gt;
   若 $S$ 中有零常返状态，设为 $i$ ，令 $C=\set{j | i \rightarrow j}$ ，则有 $\displaystyle\sum_{j \in C}p_{ij}^{(n)}=1$ 且 $j \rightarrow i$ （ $j \nrightarrow i$ 与 $i$ 的常返性相矛盾，类似&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94%e4%ba%92%e9%80%9a%e5%88%99%e5%bf%85%e8%be%be&#34; &gt;引理2&lt;/a&gt;的证明）。故 $i \leftrightarrow j$ ，从而 $j$ 也为零常返状态（&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8&#34; &gt;定理5&lt;/a&gt;）。则 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ （&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94&#34; &gt;定理9&lt;/a&gt;），从而 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}\to 0$ 。但是由 $j$ 的定义知 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}=1$ ，矛盾。因此有限状态的马尔可夫链不可能有零常返状态。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;推论3&lt;/strong&gt;：若马尔可夫链有一个零常返状态，则必有无限个零常返状态。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（推论3）&lt;/strong&gt;：假设马尔可夫链有一个零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#%e7%8a%b6%e6%80%81%e7%a9%ba%e9%97%b4%e5%88%86%e8%a7%a3%e5%ae%9a%e7%90%86&#34; &gt;定理6&lt;/a&gt;可知这个零常返状态必然存在于某个不可约类中，又有&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8&#34; &gt;定理5&lt;/a&gt;可知这个类必然全都是零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba2&#34; &gt;推论2&lt;/a&gt;可知该不可约类不可能是有限状态的。因此，该马尔可夫链必然有无限个零常返状态。&lt;/p&gt;
+&lt;h4 id=&#34;再论正常返&#34;&gt;再论正常返
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理10&lt;/strong&gt;：若 $j$ 为正常返状态且周期为 $d$ ，则对 $\forall i$ 及 $0 \le r \le d-1$ ，有&lt;/p&gt;
+$$
+\lim\limits_{n \to \infin}p_{ij}^{(nd+r)}=f_{ij}(r)\space\frac{d}{\mu_j}
+\tag{64}
+$$&lt;p&gt;  其中 $f_{ij}(r)$ 为：&lt;/p&gt;
+$$
+f_{ij}(r)=\sum_{m=0}^{\infin}f_{ij}^{(md+r)},\quad 0 \le r \le d-1
+\tag{65}
+$$&lt;p&gt;  &lt;strong&gt;证明（定理10）&lt;/strong&gt;：当 $n \ne kd$ 时， $p_{jj}^{(n)}=0$ 。因此由&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;可得&lt;/p&gt;
+$$
+\begin{aligned}
+p_{ij}^{(nd+r)}=&amp;\sum_{k=0}^{(nd+r)}f_{ij}^{(k)}p_{jj}^{(nd+r-k)}\quad\text{（引理1）}\\
+=&amp;\sum_{m=0}^{n}f_{ij}^{(md+r)}p_{jj}^{(n-m)d}\text{（}换元k=md+r，其余的k的项值都为0\text{）}
+\end{aligned}
+\tag{66}
+$$&lt;p&gt;  于是由 $0 \le p_{jj}^{(n-m)d} \le 1$ （&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，”概率论“还未上线~&#39;)&#34;&gt;概率的性质&lt;/a&gt;），对 $1 \le N &amp;lt; n$ 有&lt;/p&gt;
+$$
+\sum_{m=0}^{N}f_{ij}^{(md+r)}p_{jj}^{(n-m)d}\le p_{ij}^{(nd+r)}\le \sum_{m=0}^{N}f_{ij}^{(md+r)}p_{jj}^{(n-m)d}+\sum_{N+1}^{n}f_{ij}^{(md+r)}
+\tag{67}
+$$&lt;p&gt;  类似于&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94&#34; &gt;定理9&lt;/a&gt;的推导，先令 $n \to \infin$，再令 $N \to \infin$ ，由&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86-1&#34; &gt;定理8&lt;/a&gt;得&lt;/p&gt;
+$$
+f_{ij}(r)\space\frac{d}{\mu_j}\le p_{ij}^{(nd+r)} \le f_{ij}(r)\space\frac{d}{\mu_j}
+\tag{68}
+$$&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤原则&lt;/a&gt;可得&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94&#34; &gt;定理10&lt;/a&gt;得证。&lt;/p&gt;
 </description>
         </item>
         
