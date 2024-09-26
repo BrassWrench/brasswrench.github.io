@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 26 Sep 2024 17:13:41 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Sep 2024 17:47:43 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：马尔可夫过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -503,7 +503,23 @@ $$
 f_{ij}(r)\space\frac{d}{\mu_j}\le p_{ij}^{(nd+r)} \le f_{ij}(r)\space\frac{d}{\mu_j}
 \tag{68}
 $$&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤原则&lt;/a&gt;可得&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94&#34; &gt;定理10&lt;/a&gt;得证。&lt;/p&gt;
-</description>
+&lt;p&gt;  &lt;strong&gt;推论4&lt;/strong&gt;：设有不可约的、正常返的、周期为 $d$ 的马尔可夫链（即每个状态都是正常返的），其状态空间为 $S$ ，则对任何状态 $i \leftrightarrow j(i,j \in S)$ ，有&lt;/p&gt;
+$$
+\lim\limits_{n \to \infin}p_{ij}^{(nd)}=
+\begin{cases}
+\displaystyle\frac{d}{\mu_j}\quad&amp;若\space i \space 与\space j \space 同属于子集\space S\\[10pt]
+0\quad&amp;其他
+\end{cases}
+\tag{69}
+$$&lt;p&gt;  其中 $S=\displaystyle\bigcup_{i=0}^{d-1}S_s$ 即为&lt;a class=&#34;link&#34; href=&#34;#%e4%b8%8d%e5%8f%af%e7%ba%a6%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb&#34; &gt;定理7&lt;/a&gt;所给出的 $S_s$ 。特别的，当 $d=1$ 时，$\forall i,j \in S$ 有&lt;/p&gt;
+$$
+\lim\limits_{n \to \infin}p_{ij}^{(n)}=\frac{1}{\mu_j}
+\tag{70}
+$$&lt;p&gt;  &lt;strong&gt;证明（推论4）&lt;/strong&gt;：在&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94&#34; &gt;定理10&lt;/a&gt;中取 $r=0$ 得&lt;/p&gt;
+$$
+\lim\limits_{n \to \infin}p_{ij}^{(nd)}=f_{ij}(0)\space\frac{d}{\mu_j}
+\tag{71}
+$$</description>
         </item>
         
     </channel>
