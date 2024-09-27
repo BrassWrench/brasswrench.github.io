@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 27 Sep 2024 13:04:40 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/markov%E9%93%BE/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 27 Sep 2024 13:49:16 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/markov%E9%93%BE/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：Markov过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -72,8 +72,8 @@ p_{30} &amp; p_{31} &amp; p_{32} &amp; p_{33} &amp; \cdots \\
 $$&lt;p&gt;  则称 $\mathbf{P}$ 为&lt;strong&gt;转移概率矩阵&lt;/strong&gt;，一般称为&lt;strong&gt;转移矩阵&lt;/strong&gt;。容易看出 $p_{ij}(i,j\in S)$ 有性质&lt;/p&gt;
 $$
 \begin{aligned}
-&amp;\text{①}\; p_{ij} \ge 0, \;i,j\in S \\[5pt]
-&amp;\text{②}\; \sum_{j \in S}{p_{ij}} = 1, \forall i \in S
+&amp;\text{①} p_{ij} \ge 0, i,j\in S \\[5pt]
+&amp;\text{②} \sum_{j \in S}{p_{ij}} = 1, \forall i \in S
 \end{aligned}
 \tag{3}
 $$&lt;h3 id=&#34;n步转移概率与c-k方程&#34;&gt;n步转移概率与C-K方程
@@ -107,10 +107,10 @@ $$&lt;p&gt;  &lt;strong&gt;证明（定理1）&lt;/strong&gt;：由&lt;a cla
 $$
 \begin{aligned}
 p_{ij}^{(m+n)}&amp;=P\set{X_{m+n}=j|X_0=i}\\[5pt]
-&amp;=\frac{P\{X_{m+n}=j,X_0=i\}}{P\{X_0=i\}}\\[10pt]
-&amp;=\sum_{k \in S}{\frac{P\{X_{m+n}=j,X_m=k,X_0=i\}}{P\{X_0=i\}}}\text{（全概率公式）}\\
-&amp;=\sum_{k \in S}{\frac{P\{X_{m+n}=j,X_m=k,X_0=i\}}{P\{X_m=k,X_0=i\}}\frac{P\{X_m=k,X_0=i\}}{P\{X_0=i\}}}\\
-&amp;=\sum_{k \in S}{P\{X_{m+n}=j\;|\;X_m=k,X_0=i\}}P\{X_m=k\;|\;X_0=i\}\\
+&amp;=\frac{P\set{X_{m+n}=j,X_0=i}}{P\set{X_0=i}}\\[10pt]
+&amp;=\sum_{k \in S}{\frac{P\set{X_{m+n}=j,X_m=k,X_0=i}}{P\set{X_0=i}}}\text{（全概率公式）}\\
+&amp;=\sum_{k \in S}{\frac{P\set{X_{m+n}=j,X_m=k,X_0=i}}{P\set{X_m=k,X_0=i}}\frac{P\set{X_m=k,X_0=i}}{P\set{X_0=i}}}\\
+&amp;=\sum_{k \in S}{P\set{X_{m+n}=j|X_m=k,X_0=i}}P\set{X_m=k|X_0=i}\\
 &amp;=\sum_{k \in S}{p_{kj}^{(n)}p_{ik}^{(m)}}\\
 &amp;=\sum_{k \in S}{p_{ik}^{(m)}p_{kj}^{(n)}}
 \end{aligned}
@@ -142,7 +142,7 @@ $$
 f_{ij}^{(n)}=
 \begin{cases}
 0 \quad n=0 \\[5pt]
-P\{X_n=j,X_k \ne j(k=1,2,\cdots ,n-1)\;|\; X_0=i\} \quad n \ge 1
+P\set{X_n=j,X_k \ne j(k=1,2,\cdots ,n-1)| X_0=i} \quad n \ge 1
 \end{cases}
 \tag{10}
 $$&lt;p&gt;  令 $f_{ij}=\displaystyle\sum_{n=1}^{\infin}{f_{ij}^{(n)}}$ ，若 $f_{jj}=1$ ，则称状态 $j$ 为&lt;strong&gt;常返状态&lt;/strong&gt;，若 $f_{jj}&amp;lt;1$ ，称 $j$ 为&lt;strong&gt;非常返状态&lt;/strong&gt;或&lt;strong&gt;瞬过状态&lt;/strong&gt;。&lt;br&gt;
@@ -175,13 +175,13 @@ f_{ij}^{(l+1)}=\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
 $$&lt;p&gt;  &lt;strong&gt;证明（结论1）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94&#34; &gt;定义8&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#Markov%e6%80%a7&#34; &gt;Markov性&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#%e6%97%b6%e9%bd%90Markov%e9%93%be&#34; &gt;时齐性&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
 $$
 \begin{aligned}
-f_{ij}^{(l+1)}=&amp;P\{X_{l+1}=j,X_m \ne j(m=1,2,\cdots ,l) \;|\; X_0=i\}\quad \text{（}f_{ij}^{(n)}\text{的定义）}\\[5pt]
-=&amp;\sum_{k \ne j,\thinspace k \in S}{P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k \;|\; X_0=i\}}\text{（全概率公式）}\\
-=&amp;\sum_{k \ne j,\thinspace k \in S}{\frac{P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i\}}{P\{X_0=i\}}}\\
-=&amp;\sum_{k \ne j,\thinspace k \in S}{\frac{P\{X_1=k,X_0=i\}}{P\{X_0=i\}}\frac{P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i\}}{P\{X_1=k,X_0=i\}}}\\
-=&amp;\sum_{k \ne j,\thinspace k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)\;|\;X_1=k,X_0=i\}}\\
-=&amp;\sum_{k \ne j,\thinspace k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)\;|\;X_1=k\}}\text{（Markov性）}\\
-=&amp;\sum_{k \ne j,\thinspace k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_l=j,X_m \ne j(m=1,\cdots ,l-1)\;|\;X_0=k\}}\text{（时齐性）}\\
+f_{ij}^{(l+1)}=&amp;P\set{X_{l+1}=j,X_m \ne j(m=1,2,\cdots ,l) | X_0=i}\quad \text{（定义8）}\\[5pt]
+=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k | X_0=i}}\text{（全概率公式）}\\
+=&amp;\sum_{k \ne j,\thinspace k \in S}{\frac{P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i}}{P\set{X_0=i}}}\\
+=&amp;\sum_{k \ne j,\thinspace k \in S}{\frac{P\set{X_1=k,X_0=i}}{P\set{X_0=i}}\frac{P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i}}{P\set{X_1=k,X_0=i}}}\\
+=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)|X_1=k,X_0=i}}\\
+=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\{\thinspace X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)|X_1=k\thinspace\}}\text{（Markov性）}\\
+=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_l=j,X_m \ne j (m=1,\cdots ,l-1)|X_0=k}}\text{（时齐性）}\\
 =&amp;\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
 \end{aligned}
 \tag{15}
@@ -268,7 +268,7 @@ $$&lt;p&gt;  且使得自 $S_r$ 任意状态出发，经 $1$ 步转移必进
   &lt;strong&gt;证明（定理7）&lt;/strong&gt;：先给出子集 $S_r$ 的定义：&lt;br&gt;
   任意取状态 $i$，对每一个 $r=0,1,\cdots,d-1$ ，定义集合&lt;/p&gt;
 $$
-S_r=\{j\;|\;存在n \ge 0使得p_{ij}^{(nd+r)}&gt;0\}
+S_r=\set{j|存在n \ge 0使得p_{ij}^{(nd+r)}&gt;0}
 \tag{25}
 $$&lt;p&gt;  因为 $S$ 不可约，故 $S$ 中从 $i$ 出发一定可以遍历每一个状态，而 $nd+r(r=0,1,\cdots,n-1)$ 可以遍历从 $i$ 出发后的每一个时间，因此所有 $S_r$ 的并集一定为 $S$ ，即 $\displaystyle\bigcup_{r=0}^{d-1}{S_r}=S$ 。&lt;br&gt;
   接下来证明 $S_r$ 不相交。用反证法，假设存在 $S_r,S_s$ 和状态 $j$ 满足 $j \in S_r \bigcap S_s$ 。由 $S_r$ 的定义知存在 $n,m$ 使得 $p_{ij}^{(nd+r)}&amp;gt;0,p_{ij}^{(md+s)}&amp;gt;0$ 。又因为 $i \leftrightarrow j$ ，故存在 $h$ 使得 $p_{ji}^{(h)}&amp;gt;0$ ，于是由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;和和&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%863&#34; &gt;(9)式的展开技巧&lt;/a&gt;可得：&lt;/p&gt;
