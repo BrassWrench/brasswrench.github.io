@@ -7,12 +7,12 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 27 Sep 2024 14:28:23 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>生成模型（一）：扩散模型的基本原理</title>
-        <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_generative_model/diffusion_model_basic_principles/</link>
+        <lastBuildDate>Fri, 27 Sep 2024 18:39:28 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>图像生成模型（一）：扩散模型的基本原理</title>
+        <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/</link>
         <pubDate>Thu, 26 Sep 2024 13:00:05 +0800</pubDate>
         
-        <guid>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_generative_model/diffusion_model_basic_principles/</guid>
+        <guid>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/</guid>
         <description></description>
         </item>
         <item>
@@ -673,7 +673,7 @@
 &lt;/h2&gt;&lt;h3 id=&#34;markov链的定义&#34;&gt;Markov链的定义
 &lt;/h3&gt;&lt;h4 id=&#34;markov链&#34;&gt;Markov链
 &lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义1&lt;/strong&gt;：给定随机过程 $\set{X_n,n=0,1,2,\cdots}$ ，若它只取有限或可列个值 $E_0,E_1,E_2,\cdots$（我们以 $\set{0,1,2,\cdots}$ 来标记 $E_0,E_1,E_2$ 并称他们是过程的状态， $\set{0,1,2\cdots}$ 或者其子集记为 $S$ ，称为过程的&lt;strong&gt;状态空间&lt;/strong&gt;）。若对 $\set{X_n,n=0,1,2,\cdots}$ （一般就认为它的状态是非负整数）和任意的 $n\ge0$ 及状态 $i,j,i_0,i_1\cdots,i_{n-1}$ ，有&lt;/p&gt;
-$$
+$$  
 \begin{aligned}
 &amp;P\set{X_{n+1}=j|X_0=i_0,X_1=i_1,X_2=i_2,\cdots,X_{n-1}=i_{n-1},X_n=i}\\[5pt]
 =&amp;P\set{X_{n+1}=j|X_n=i}
@@ -978,12 +978,12 @@ $$
 \lambda=\limsup\limits_{n \rightarrow \infin}p_{nd}
 \tag{37}
 $$&lt;p&gt;&lt;span id=&#34;(38)式&#34;&gt;&lt;/span&gt;
-  根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;上极限的定义&lt;/a&gt;可知，必然存在 $\set{n}$ 的子列 $\set{n_m},n_m \rightarrow \infin$ 使得&lt;/p&gt;
+  根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上极限的定义&lt;/a&gt;可知，必然存在 $\set{n}$ 的子列 $\set{n_m},n_m \rightarrow \infin$ 使得&lt;/p&gt;
 $$
 \lambda=\lim\limits_{m \rightarrow \infin}{p_{n_md}}=\limsup\limits_{m \rightarrow \infin}{p_{n_md}}=\liminf\limits_{m \rightarrow \infin}{p_{n_md}}
 \tag{38}
 $$&lt;p&gt;&lt;span id=&#34;(39)式&#34;&gt;&lt;/span&gt;
-  任取 $s$ 使得 $f_s&amp;gt;0$ ，由&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;下极限的性质&lt;/a&gt;可得&lt;/p&gt;
+  任取 $s$ 使得 $f_s&amp;gt;0$ ，由&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;下极限的性质&lt;/a&gt;可得&lt;/p&gt;
 $$
 \begin{aligned}
 \lambda=&amp;\liminf\limits_{m \rightarrow \infin}p_{n_md}=\liminf\limits_{m \rightarrow \infin}p_{jj}^{(n_md)}=\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{jj}^{(v)}p_{jj}^{(n_md-v)}\\
@@ -992,7 +992,7 @@ $$
 \end{aligned}
 \tag{39}
 $$&lt;p&gt;&lt;span id=&#34;(40)式&#34;&gt;&lt;/span&gt;
-  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;上下极限的性质&lt;/a&gt;和可推导出&lt;/p&gt;
+  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的性质&lt;/a&gt;和可推导出&lt;/p&gt;
 $$
 \begin{aligned}
 \liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\le&amp;\sum_{v=1,v \ne s}^{n_md}\liminf\limits_{m \rightarrow \infin}f_{v}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}\\
@@ -1002,7 +1002,7 @@ $$
 \end{aligned}
 \tag{40}
 $$&lt;p&gt;&lt;span id=&#34;(41)式&#34;&gt;&lt;/span&gt;
-  注意当 $v$ 不是 $d$ 的倍数时 $p_{n_md-v}=0$ ，此时 $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ ；若 $v$ 是 $d$ 的倍数，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;上极限的性质&lt;/a&gt;可知仍有  $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ 。故接&lt;a class=&#34;link&#34; href=&#34;#%2840%29%e5%bc%8f&#34; &gt;(40)式&lt;/a&gt;&lt;/p&gt;
+  注意当 $v$ 不是 $d$ 的倍数时 $p_{n_md-v}=0$ ，此时 $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ ；若 $v$ 是 $d$ 的倍数，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上极限的性质&lt;/a&gt;可知仍有  $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ 。故接&lt;a class=&#34;link&#34; href=&#34;#%2840%29%e5%bc%8f&#34; &gt;(40)式&lt;/a&gt;&lt;/p&gt;
 $$
 \liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\bigg(\sum_{v=1,v \ne s}^{\infin}f_{v}\bigg)\limsup\limits_{m \rightarrow \infin}p_{n_md}
 \tag{41}
@@ -1015,7 +1015,7 @@ $$
 \liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda
 \tag{43}
 $$&lt;p&gt;&lt;span id=&#34;(44)式&#34;&gt;&lt;/span&gt;
-  由&lt;a class=&#34;link&#34; href=&#34;#%e5%91%a8%e6%9c%9f&#34; &gt;周期&lt;/a&gt;的定义和 $f_s&amp;gt;0$ 知 $d$ 必整除 $s$ 。因此 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda$ 。但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;上下极限的定义&lt;/a&gt;可知 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}$ ，即 $\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda$ 。故由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda$ 。又由&lt;a class=&#34;link&#34; href=&#34;#%2838%29%e5%bc%8f&#34; &gt;(38)式&lt;/a&gt;可得：&lt;/p&gt;
+  由&lt;a class=&#34;link&#34; href=&#34;#%e5%91%a8%e6%9c%9f&#34; &gt;周期&lt;/a&gt;的定义和 $f_s&amp;gt;0$ 知 $d$ 必整除 $s$ 。因此 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda$ 。但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的定义&lt;/a&gt;可知 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}$ ，即 $\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda$ 。故由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda$ 。又由&lt;a class=&#34;link&#34; href=&#34;#%2838%29%e5%bc%8f&#34; &gt;(38)式&lt;/a&gt;可得：&lt;/p&gt;
 $$
 \lambda=\lim\limits_{m \rightarrow \infin}p_{n_md}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-2s}=\cdots
 \tag{44}
@@ -1214,14 +1214,27 @@ P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 \tag{82}
 $$&lt;p&gt;  这与 $X_0$ 的分布是相同的。依此类推， $X_n(n=0,1,2,\cdots)$ 将有相同的分布，这也是称 $\set{p_i(i \in S)}$ 为不变分布的原因。&lt;/p&gt;
 &lt;h4 id=&#34;极限分布&#34;&gt;极限分布
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义11&lt;/strong&gt;：称Markov链是&lt;strong&gt;遍历的&lt;/strong&gt;，如果所有状态相通且均是周期为1的正常返状态，对遍历的Markov链，极限&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义11&lt;/strong&gt;：称Markov链是&lt;strong&gt;遍历的&lt;/strong&gt;，如果所有状态相通且均是周期为 $1$ 的正常返状态，对遍历的Markov链，极限&lt;/p&gt;
 $$
 \lim\limits_{n \to \infin}p_{ij}^{(n)}=\pi_j\quad j \in S
 \tag{83}
-$$&lt;p&gt;  称为Markov链的&lt;strong&gt;极限分布&lt;/strong&gt;。且由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4&lt;/a&gt;知 $\pi_j=\displaystyle\frac{1}{\mu_j}$ 。&lt;/p&gt;
+$$&lt;p&gt;  称为Markov链的&lt;strong&gt;极限分布&lt;/strong&gt;。由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4&lt;/a&gt;知 $\pi_j$ 存在且 $\pi_j=\displaystyle\frac{1}{\mu_j}$ 。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;定理12&lt;/strong&gt;：对于不可约非周期的Markov链：&lt;br&gt;
   ①若它是遍历的，则 $\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n)}&amp;gt;0$ 是不变分布且是唯一的不变分布。&lt;br&gt;
   ②若状态都是瞬过的或全为零常返的，则不变分布不存在。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（定理12）&lt;/strong&gt;：①对遍历的Markov链，由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4的(70)式&lt;/a&gt;可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}$ 存在，记为 $\pi_j$ 。首先证 $\set{\pi_j,j \in S}$ 是不变分布。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
+$$
+\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n+1)}=\lim\limits_{n \to \infin}\sum_{k \in S}p_{ik}^{(n)}p_{kj}\ge\sum_{k \in S}\lim\limits_{n \to \infin}p_{ik}^{(n)}p_{kj}=\sum_{k \in S}\pi_kp_{kj}
+\tag{84}
+$$&lt;p&gt;  两边对 $j$ 求和，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率归一性&lt;/a&gt;有&lt;/p&gt;
+$$
+\sum_{j \in S}\pi_j\ge\sum_{j \in S}\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\pi_k\bigg(\sum_{j \in S}p_{kj}\bigg)=\sum_{k \in S}\pi_k
+\tag{85}
+$$&lt;p&gt;  因此，上式的大于等于号必须取等，否则将产生矛盾。因此：&lt;/p&gt;
+$$
+\pi_j=\sum_{k \in S}\pi_kp_{kj}
+\tag{86}
+$$&lt;p&gt;  从而 $\set{\pi_j,j \in S}$ 是不变分布。&lt;/p&gt;
 </description>
         </item>
         <item>

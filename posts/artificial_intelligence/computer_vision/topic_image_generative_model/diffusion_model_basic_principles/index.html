@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="An introduction to the Diffusion Model and its underlying principles">
-<title>Generative Model(Ⅰ): Basic Principles of the Diffusion Model</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="一类通过逐步添加噪声并学习逆过程以恢复原始数据分布，从而生成新数据的深度学习生成模型。">
+<title>图像生成模型（一）：扩散模型的基本原理</title>
 
-<link rel='canonical' href='https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/topic_generative_model/diffusion_model_basic_principles/'>
+<link rel='canonical' href='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/'>
 
 <link rel="stylesheet" href="/scss/style.min.947fafd2715a0829ff8061df4de5528c0eef9059606f38c85c18cf441bec36c9.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
@@ -127,13 +127,13 @@
             });
         }
     });
-</script><meta property='og:title' content="Generative Model(Ⅰ): Basic Principles of the Diffusion Model">
-<meta property='og:description' content="An introduction to the Diffusion Model and its underlying principles">
-<meta property='og:url' content='https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/topic_generative_model/diffusion_model_basic_principles/'>
-<meta property='og:site_name' content='Brass Wrench&#39;s Library'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-26T13:01:13&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T14:28:23&#43;08:00'/>
-<meta name="twitter:title" content="Generative Model(Ⅰ): Basic Principles of the Diffusion Model">
-<meta name="twitter:description" content="An introduction to the Diffusion Model and its underlying principles">
+</script><meta property='og:title' content="图像生成模型（一）：扩散模型的基本原理">
+<meta property='og:description' content="一类通过逐步添加噪声并学习逆过程以恢复原始数据分布，从而生成新数据的深度学习生成模型。">
+<meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/'>
+<meta property='og:site_name' content='黄铜扳手的图书馆'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-26T13:00:05&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T18:39:28&#43;08:00'/>
+<meta name="twitter:title" content="图像生成模型（一）：扩散模型的基本原理">
+<meta name="twitter:description" content="一类通过逐步添加噪声并学习逆过程以恢复原始数据分布，从而生成新数据的深度学习生成模型。">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-3M2EFBT99V"></script>
@@ -198,7 +198,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -208,7 +208,7 @@
         
             
             <figure class="site-avatar">
-                <a href="/en/">
+                <a href="/">
                 
                     
                     
@@ -227,8 +227,8 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/en">Brass Wrench&#39;s Library</a></h1>
-            <h2 class="site-description">A quiet and peaceful place</h2>
+            <h1 class="site-name"><a href="/">黄铜扳手的图书馆</a></h1>
+            <h2 class="site-description">一片静谧之地</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -336,7 +336,7 @@
         
         
         <li >
-            <a href='/en/' >
+            <a href='/' >
                 
                 
                 
@@ -350,13 +350,13 @@
 
 
                 
-                <span>Home</span>
+                <span>主页</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/categories/' >
+            <a href='/categories/' >
                 
                 
                 
@@ -371,13 +371,13 @@
 
 
                 
-                <span>Categories</span>
+                <span>分类</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/tagcloud/' >
+            <a href='/tagcloud/' >
                 
                 
                 
@@ -390,13 +390,13 @@
 
 
                 
-                <span>Tags</span>
+                <span>标签</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/archives/' >
+            <a href='/archives/' >
                 
                 
                 
@@ -410,13 +410,13 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/search/' >
+            <a href='/search/' >
                 
                 
                 
@@ -429,13 +429,13 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/about/' >
+            <a href='/about/' >
                 
                 
                 
@@ -448,13 +448,30 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/link/' >
+            <a href='/message/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-message" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M8 9h8" />
+    <path d="M8 13h6" />
+    <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
+</svg>
+                
+                <span>留言</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
                 
                 
                 
@@ -467,24 +484,7 @@
 
 
                 
-                <span>Link</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/en/message/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-message" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M8 9h8" />
-    <path d="M8 13h6" />
-    <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
-</svg>
-                
-                <span>Message</span>
+                <span>链接</span>
             </a>
         </li>
         
@@ -505,9 +505,9 @@
 
                             <select class = "language_select" name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="https://www.brasswrench.com/en/" selected>English</option>
+                                    <option value="https://www.brasswrench.com/en/" >English</option>
                                 
-                                    <option value="https://www.brasswrench.com/" >简体中文</option>
+                                    <option value="https://www.brasswrench.com/" selected>简体中文</option>
                                 
                             </select>
                         </li>
@@ -535,7 +535,7 @@
     <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
     <path d="M19 11h2m-1 -1v2" />
 </svg>
-                        <span>Dark Mode</span>
+                        <span>暗色模式</span>
                     </li>
                 
 
@@ -547,12 +547,12 @@
     <aside class="sidebar right-sidebar sticky">
         
             
-                <form action="/en/search/" class="search-form widget" >
+                <form action="/search/" class="search-form widget" >
         <p>
-            <label>Search</label>
-            <input name="keyword" required placeholder="Type something..." />
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
         
-            <button title="Search">
+            <button title="搜索">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="10" cy="10" r="7" />
@@ -615,12 +615,12 @@
         </div>
         <p style="font-size: 2.4rem; font-weight: bold; margin: 0;text-align:center; ">
             <span class="shake">👋</span>
-            <span class="jump-text1">Welcome</span>
-            <span class="jump-text2">to</span>
-            <span class="jump-text3" style="color:#e99312;">Brass</span>
-            <span class="jump-text5" style="color:#e99312;">Wrench</span>
-            <span class="jump-text6" style="color:#e99312;">&#39;s</span>
-            <span class="jump-text7" style="color:#e99312;">Library</span>
+            <span class="jump-text1">欢迎</span>
+            <span class="jump-text2">来到</span>
+            <span class="jump-text3" style="color:#e99312;">黄铜</span>
+            <span class="jump-text5" style="color:#e99312;">扳手</span>
+            <span class="jump-text6" style="color:#e99312;">的</span>
+            <span class="jump-text7" style="color:#e99312;">图书馆</span>
         </p>
         <div id="motto2" style="width: 200px; height: 40px; margin-left: 10px; margin-right: 10px;">
             <svg id="功夫到家" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 752 160">
@@ -785,7 +785,7 @@
                         
                             
                         
-                        <a href="/categories/artificial_intelligence/" ZgotmplZ>Artificial Intelligence</a>
+                        <a href="/categories/artificial_intelligence/" ZgotmplZ>人工智能</a>
 
                     
                 
@@ -802,7 +802,7 @@
                         
                             
                         
-                        <a href="/posts/artificial_intelligence/computer_vision/" ZgotmplZ>Computer Vision</a>
+                        <a href="/posts/artificial_intelligence/computer_vision/" ZgotmplZ>计算机视觉</a>
 
                     
                 
@@ -817,7 +817,7 @@
                         
                             
                         
-                        <a href="/posts/artificial_intelligence/computer_vision/topic_generative_model/" ZgotmplZ>Topic: Generative Model</a>
+                        <a href="/posts/artificial_intelligence/computer_vision/topic_image_generative_model/" ZgotmplZ>专题：图像生成模型</a>
 
                     
                 
@@ -827,19 +827,19 @@
                 
             
             
-                <a id="draft-tag">Draft</a>
+                <a id="draft-tag">草稿</a>
             
         </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/en/posts/artificial_intelligence/computer_vision/topic_generative_model/diffusion_model_basic_principles/">Generative Model(Ⅰ): Basic Principles of the Diffusion Model</a>
+            <a href="/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/">图像生成模型（一）：扩散模型的基本原理</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            An introduction to the Diffusion Model and its underlying principles
+            一类通过逐步添加噪声并学习逆过程以恢复原始数据分布，从而生成新数据的深度学习生成模型。
         </h3>
         
     </div>
@@ -861,7 +861,7 @@
   <path d="M18 16.496v1.504l1 1" />
 </svg>
                 <time class="article-time--published">
-                    Sep 26, 2024 13:01 CST
+                    Sep 26, 2024 13:00 CST
                 </time>
             </div>
         
@@ -873,7 +873,7 @@
     <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
 </svg>
                 <time class="article-words">
-                    Harbin Institute of Technology(Weihai Campus), Weihai City, Shandong Province, China
+                    中国 山东省 威海市 哈尔滨工业大学威海校区 云杉书院
                 </time>
             </div>
         
@@ -888,7 +888,7 @@
 </svg>
 
             <time class="article-words">
-                0 Words
+                0 字
             </time>
         </div>
 
@@ -903,7 +903,7 @@
 
 
                 <time class="article-time--reading">
-                    0 minutes to read
+                    阅读时长: 0 分钟
                 </time>
             </div>
         
@@ -926,7 +926,7 @@
 
             <div>
                 
-                    <a href="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_generative_model/diffusion_model_basic_principles/" class="link">简体中文</a>
+                    <a href="https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/" class="link">English</a>
                 
             </div>
         </footer>
@@ -971,7 +971,7 @@
 
 
         <span>
-            Last updated on Sep 27, 2024 14:28 CST
+            最后更新于 Sep 27, 2024 18:39 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -980,7 +980,7 @@
     <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
 </svg>
         <span id="busuanzi_container_page_pv">
-  This article has been read for <span id="busuanzi_value_page_pv"></span> times
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
 </span>
     </section>
 </footer>
@@ -1101,15 +1101,15 @@
             
             
         
-        <span>This library has published 4 articles with a total of 4185 words</span>
+        <span>本图书馆累计发布了4篇文章 共23095字</span>
     </section>
 
     <section class="site-visit-count">
         <span id="busuanzi_container_site_uv">
-  This library has been visited by <span id="busuanzi_value_site_uv"></span> people
+  本图书馆访客数<span id="busuanzi_value_site_uv"></span>人
 </span>
         <span id="busuanzi_container_site_pv">
-   for <span id="busuanzi_value_site_pv"></span> times
+  访问量<span id="busuanzi_value_site_pv"></span>次
 </span>
     </section>
 
@@ -1273,22 +1273,22 @@
 <script>
 
     const translations = {
-        prefix: "This library has been running stably for ",
+        prefix: "本图书馆已稳定运行",
         days: {
-            one: " day ",
-            other: " days "
+            one: "天",
+            other: "天"
         },
         hours: {
-            one: " hour ",
-            other: " hours "
+            one: "小时",
+            other: "小时"
         },
         minutes: {
-            one: " minute ",
-            other: " minutes "
+            one: "分钟",
+            other: "分钟"
         },
         seconds: {
-            one: " second",
-            other: " seconds"
+            one: "秒",
+            other: "秒"
         }
     };
 
