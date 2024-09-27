@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 27 Sep 2024 18:39:28 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 27 Sep 2024 19:52:44 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>图像生成模型（一）：扩散模型的基本原理</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/</link>
         <pubDate>Thu, 26 Sep 2024 13:00:05 +0800</pubDate>
@@ -1222,19 +1222,31 @@ $$&lt;p&gt;  称为Markov链的&lt;strong&gt;极限分布&lt;/strong&gt;。�
 &lt;p&gt;  &lt;strong&gt;定理12&lt;/strong&gt;：对于不可约非周期的Markov链：&lt;br&gt;
   ①若它是遍历的，则 $\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n)}&amp;gt;0$ 是不变分布且是唯一的不变分布。&lt;br&gt;
   ②若状态都是瞬过的或全为零常返的，则不变分布不存在。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理12）&lt;/strong&gt;：①对遍历的Markov链，由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4的(70)式&lt;/a&gt;可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}$ 存在，记为 $\pi_j$ 。首先证 $\set{\pi_j,j \in S}$ 是不变分布。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（定理12）&lt;/strong&gt;：①对遍历的Markov链，由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4的(70)式&lt;/a&gt;可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}$ 存在，记为 $\pi_j$ 。首先证 $\set{\pi_j,j \in S}$ 是不变分布。由于 $\displaystyle\sum_{j \in S}p_{ij}^{(n)}=1$ ，则有&lt;/p&gt;
 $$
-\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n+1)}=\lim\limits_{n \to \infin}\sum_{k \in S}p_{ik}^{(n)}p_{kj}\ge\sum_{k \in S}\lim\limits_{n \to \infin}p_{ik}^{(n)}p_{kj}=\sum_{k \in S}\pi_kp_{kj}
+\lim\limits_{n \to \infin}\sum_{j \in S}p_{ij}^{(n)}=1
 \tag{84}
-$$&lt;p&gt;  两边对 $j$ 求和，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率归一性&lt;/a&gt;有&lt;/p&gt;
+$$&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Lebesgue控制收敛定理&lt;/a&gt;和 $p_{ij}^{(n)}\le1$ 可知该极限与求和可交换。则&lt;/p&gt;
 $$
-\sum_{j \in S}\pi_j\ge\sum_{j \in S}\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\pi_k\bigg(\sum_{j \in S}p_{kj}\bigg)=\sum_{k \in S}\pi_k
+\lim\limits_{n \to \infin}\sum_{j \in S}p_{ij}^{(n)}=\sum_{j \in S}\lim\limits_{n \to \infin}p_{ij}^{(n)}=\sum_{j \in S}\pi_j=1
 \tag{85}
-$$&lt;p&gt;  因此，上式的大于等于号必须取等，否则将产生矛盾。因此：&lt;/p&gt;
+$$&lt;p&gt;利用&lt;a class=&#34;link&#34; href=&#34;#C-K%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;得&lt;/p&gt;
 $$
-\pi_j=\sum_{k \in S}\pi_kp_{kj}
+p_{ij}^{(n+1)}=\sum_{k \in S}p_{ik}^{(n)}p_{kj}
 \tag{86}
-$$&lt;p&gt;  从而 $\set{\pi_j,j \in S}$ 是不变分布。&lt;/p&gt;
+$$&lt;p&gt;两边取极限，再由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Lebesgue控制收敛定理&lt;/a&gt;和 $p_{ik}^{(n)}p_{kj} \le 1$ 可得&lt;/p&gt;
+$$
+\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n+1)}=\lim\limits_{n \to \infin}\sum_{k \in S}p_{ik}^{(n)}p_{kj}=\sum_{k \in S}\lim\limits_{n \to \infin}p_{ik}^{(n)}p_{kj}=\sum_{k \in S}\pi_kp_{kj}
+\tag{86}
+$$&lt;p&gt;  从而 $\set{\pi_j,j \in S}$ 是不变分布。再来证 $\set{\pi_j,j \in S}$ 是唯一的不变分布。假设另外还有一个平衡分布 $\set{\tilde\pi_j,j \in S}$ ，则由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
+$$
+\tilde\pi_j=\sum_{k \in S}\tilde\pi_kp_{kj}=\sum_{k \in S}\sum_{l \in S}\tilde\pi_lp_{lk}p_{kj}=\sum_{l \in S}\tilde\pi_lp_{lj}^{(2)}=\cdots=\sum_{k \in S}\tilde\pi_kp_{kj}^{(n)}(n=1,2,\dots)
+\tag{87}
+$$&lt;p&gt;  令 $n \to \infin$ ，由 $\displaystyle\sum_{k \in S}\pi_kp_{kj}^{(n)}&amp;lt;1$ 、&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Lebesgue控制收敛定理&lt;/a&gt;和 $\displaystyle\sum_{j \in S}\pi_j=1$ 可得&lt;/p&gt;
+$$
+\tilde\pi_j=\lim\limits_{n \to \infin}\sum_{k \in S}\tilde\pi_kp_{kj}^{(n)}=\sum_{k \in S}\lim\limits_{n \to \infin}\tilde\pi_kp_{kj}^{(n)}=\sum_{k \in S}\tilde\pi_k\pi_j=\pi_j
+\tag{88}
+$$&lt;p&gt;  因此 $\tilde\pi_j=\pi_j$ 。故分布唯一。接下来证②。假设存在一个不变分布 $\set{\pi_j,j \in S}$ ，则由①中证明可知 $\pi_j=\displaystyle\sum_{k \in S}\pi_kp_{kj}^{(n)}(n=1,2,\dots)$ 。令 $n \to \infin$ ，由&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94&#34; &gt;定理9&lt;/a&gt;可知 $p_{kj}^{(n)} \to 0$ ，则任意 $\pi_j = 0$ ，然而这是不可能的。于是对非常返或零常返Markov链不存在不变分布。&lt;/p&gt;
 </description>
         </item>
         <item>
