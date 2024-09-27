@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:tag' content='Markov链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T10:35:03&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:tag' content='Markov链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T11:07:21&#43;08:00'/>
 <meta name="twitter:title" content="随机过程（四）：Markov过程">
 <meta name="twitter:description" content="一种无后效性的随机过程">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -953,7 +953,7 @@
 </svg>
 
             <time class="article-words">
-                8178 字
+                8377 字
             </time>
         </div>
 
@@ -1546,7 +1546,17 @@ $$<p>  最后再令 $n \to \infin$ ，得</p>
 $$
 \lim_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}a_k=\lim_{m \to \infin}\frac{m}{md+r}\cdot\lim_{m \to \infin}\frac{1}{m}\sum_{k=1}^{n}a_k=\frac{1}{d}\sum_{s=0}^{d-1}b_s
 \tag{78}
+$$<p>  现在，我们可以证明<a class="link" href="#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b" >定理11</a>。</p>
+<p>  <strong>证明（定理11）</strong>：若 $j$ 为非常返状态或零常返状态，由<a class="link" href="#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94" >定理9</a>可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ 。因此 $\lim\limits_{n \to \infin}\displaystyle\frac{1}{n}\displaystyle\sum_{k=1}^{n}p_{ij}^{(k)}=0$ 。若 $j$ 为正常返状态且有周期 $d$ ，则令<a class="link" href="#%e5%bc%95%e7%90%863" >引理3</a>中的 $a_{kd+s}=p_{ij}^{(kd+s)}$ ，然后利用<a class="link" href="#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94" >定理10</a>得到 $b_s=f_{ij}(s)\displaystyle\space\frac{d}{\mu_j}$ 。从而得</p>
 $$
+\lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=\frac{1}{d}\sum_{s=0}^{d-1}f_{ij}(s)\space\frac{d}{\mu_j}=\frac{1}{\mu_j}\sum_{s=0}^{d-1}f_{ij}(s)=f_{ij}
+\tag{79}
+$$<p>  <strong>推论5</strong>：如果 $\set{X_n}$ 是不可约的、常返的Markov链（即每个状态都是常返的），则对任意状态 $i,j \in S$ ，有</p>
+$$
+\lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=\frac{1}{\mu_j}
+\tag{80}
+$$<p>  <strong>证明（推论5）</strong>：由<a class="link" href="#%e5%b8%b8%e8%bf%94%e4%ba%92%e9%80%9a%e5%88%99%e5%bf%85%e8%be%be" >引理2</a>可知 $f_{ij}=1$ ，又由<a class="link" href="#%e6%8e%a8%e8%ae%ba2" >推论2</a>可知 $i,j$ 都是正常返的。因此直接代入<a class="link" href="#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b" >定理11</a>可证得该推论。</p>
+
     </div>
 </section>
 
@@ -1591,7 +1601,7 @@ $$
 
 
         <span>
-            最后更新于 Sep 27, 2024 10:35 CST
+            最后更新于 Sep 27, 2024 11:07 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1720,7 +1730,7 @@ $$
             
             
         
-        <span>本图书馆累计发布了4篇文章 共22465字</span>
+        <span>本图书馆累计发布了4篇文章 共22664字</span>
     </section>
 
     <section class="site-visit-count">

@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 27 Sep 2024 10:35:03 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 27 Sep 2024 11:07:21 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>生成模型（一）：扩散模型的基本原理</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_generative_model/diffusion_model_basic_principles/</link>
         <pubDate>Thu, 26 Sep 2024 13:00:05 +0800</pubDate>
@@ -1188,7 +1188,17 @@ $$&lt;p&gt;  最后再令 $n \to \infin$ ，得&lt;/p&gt;
 $$
 \lim_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}a_k=\lim_{m \to \infin}\frac{m}{md+r}\cdot\lim_{m \to \infin}\frac{1}{m}\sum_{k=1}^{n}a_k=\frac{1}{d}\sum_{s=0}^{d-1}b_s
 \tag{78}
-$$</description>
+$$&lt;p&gt;  现在，我们可以证明&lt;a class=&#34;link&#34; href=&#34;#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b&#34; &gt;定理11&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（定理11）&lt;/strong&gt;：若 $j$ 为非常返状态或零常返状态，由&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94&#34; &gt;定理9&lt;/a&gt;可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ 。因此 $\lim\limits_{n \to \infin}\displaystyle\frac{1}{n}\displaystyle\sum_{k=1}^{n}p_{ij}^{(k)}=0$ 。若 $j$ 为正常返状态且有周期 $d$ ，则令&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%863&#34; &gt;引理3&lt;/a&gt;中的 $a_{kd+s}=p_{ij}^{(kd+s)}$ ，然后利用&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94&#34; &gt;定理10&lt;/a&gt;得到 $b_s=f_{ij}(s)\displaystyle\space\frac{d}{\mu_j}$ 。从而得&lt;/p&gt;
+$$
+\lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=\frac{1}{d}\sum_{s=0}^{d-1}f_{ij}(s)\space\frac{d}{\mu_j}=\frac{1}{\mu_j}\sum_{s=0}^{d-1}f_{ij}(s)=f_{ij}
+\tag{79}
+$$&lt;p&gt;  &lt;strong&gt;推论5&lt;/strong&gt;：如果 $\set{X_n}$ 是不可约的、常返的Markov链（即每个状态都是常返的），则对任意状态 $i,j \in S$ ，有&lt;/p&gt;
+$$
+\lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=\frac{1}{\mu_j}
+\tag{80}
+$$&lt;p&gt;  &lt;strong&gt;证明（推论5）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94%e4%ba%92%e9%80%9a%e5%88%99%e5%bf%85%e8%be%be&#34; &gt;引理2&lt;/a&gt;可知 $f_{ij}=1$ ，又由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba2&#34; &gt;推论2&lt;/a&gt;可知 $i,j$ 都是正常返的。因此直接代入&lt;a class=&#34;link&#34; href=&#34;#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b&#34; &gt;定理11&lt;/a&gt;可证得该推论。&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>标签</title>
