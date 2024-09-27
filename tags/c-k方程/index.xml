@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 27 Sep 2024 13:49:16 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/c-k%E6%96%B9%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 27 Sep 2024 14:28:23 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/c-k%E6%96%B9%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：Markov过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -180,7 +180,7 @@ f_{ij}^{(l+1)}=&amp;P\set{X_{l+1}=j,X_m \ne j(m=1,2,\cdots ,l) | X_0=i}\quad \te
 =&amp;\sum_{k \ne j,\thinspace k \in S}{\frac{P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i}}{P\set{X_0=i}}}\\
 =&amp;\sum_{k \ne j,\thinspace k \in S}{\frac{P\set{X_1=k,X_0=i}}{P\set{X_0=i}}\frac{P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i}}{P\set{X_1=k,X_0=i}}}\\
 =&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)|X_1=k,X_0=i}}\\
-=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\{\thinspace X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)|X_1=k\thinspace\}}\text{（Markov性）}\\
+=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)|X_1=k}}\text{（Markov性）}\\
 =&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_l=j,X_m \ne j (m=1,\cdots ,l-1)|X_0=k}}\text{（时齐性）}\\
 =&amp;\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
 \end{aligned}
