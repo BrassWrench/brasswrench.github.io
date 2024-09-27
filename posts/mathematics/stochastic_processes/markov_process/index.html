@@ -2,7 +2,7 @@
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="一种无后效性的随机过程">
-<title>随机过程（四）：马尔可夫过程</title>
+<title>随机过程（四）：Markov过程</title>
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 
@@ -127,12 +127,12 @@
             });
         }
     });
-</script><meta property='og:title' content="随机过程（四）：马尔可夫过程">
+</script><meta property='og:title' content="随机过程（四）：Markov过程">
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='马尔可夫过程' /><meta property='article:tag' content='马尔可夫链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T00:58:53&#43;08:00'/>
-<meta name="twitter:title" content="随机过程（四）：马尔可夫过程">
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:tag' content='Markov链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T10:25:30&#43;08:00'/>
+<meta name="twitter:title" content="随机过程（四）：Markov过程">
 <meta name="twitter:description" content="一种无后效性的随机过程">
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -589,16 +589,16 @@
     <li><a href="#引言">引言</a></li>
     <li><a href="#基本概念">基本概念</a>
       <ol>
-        <li><a href="#马尔可夫链的定义">马尔可夫链的定义</a>
+        <li><a href="#markov链的定义">Markov链的定义</a>
           <ol>
-            <li><a href="#马尔可夫链">马尔可夫链</a></li>
-            <li><a href="#马尔可夫性">马尔可夫性</a></li>
+            <li><a href="#markov链">Markov链</a></li>
+            <li><a href="#markov性">Markov性</a></li>
           </ol>
         </li>
         <li><a href="#转移概率">转移概率</a>
           <ol>
             <li><a href="#转移概率-1">转移概率</a></li>
-            <li><a href="#时齐马尔可夫链">时齐马尔可夫链</a></li>
+            <li><a href="#时齐markov链">时齐Markov链</a></li>
             <li><a href="#有限链和无限链">有限链和无限链</a></li>
           </ol>
         </li>
@@ -626,7 +626,7 @@
             <li><a href="#常返互通则必达">常返互通则必达</a></li>
             <li><a href="#常返是一个类性质">常返是一个类性质</a></li>
             <li><a href="#状态空间分解定理">状态空间分解定理</a></li>
-            <li><a href="#不可约马尔可夫链的转移">不可约马尔可夫链的转移</a></li>
+            <li><a href="#不可约markov链的转移">不可约Markov链的转移</a></li>
           </ol>
         </li>
       </ol>
@@ -899,7 +899,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/posts/mathematics/stochastic_processes/markov_process/">随机过程（四）：马尔可夫过程</a>
+            <a href="/posts/mathematics/stochastic_processes/markov_process/">随机过程（四）：Markov过程</a>
         </h2>
     
         
@@ -953,7 +953,7 @@
 </svg>
 
             <time class="article-words">
-                8048 字
+                8176 字
             </time>
         </div>
 
@@ -1024,12 +1024,12 @@
   src="https://music.163.com/outchain/player?type=2&amp;id=1968959950&amp;auto=0&amp;height=66">
 </iframe>
 
-<h1 id="马尔可夫过程">马尔可夫过程
+<h1 id="markov过程">Markov过程
 </h1><h2 id="引言">引言
-</h2><p>  有一类随机过程，它具备所谓的“无后效性”(马尔可夫性)，即，要确定过程将来的状态，知道它此刻的情况就足够了，并不需要对它以往的情况的认识，这类过程称为马尔可夫过程。本文将介绍马尔可夫过程中最简单的两种类型：离散时间马尔可夫链（简称马氏链）及连续时间的马尔可夫链。</p>
+</h2><p>  有一类随机过程，它具备所谓的“无后效性”(Markov性)，即，要确定过程将来的状态，知道它此刻的情况就足够了，并不需要对它以往的情况的认识，这类过程称为Markov过程。本文将介绍Markov过程中最简单的两种类型：离散时间Markov链（简称马氏链）及连续时间的Markov链。</p>
 <h2 id="基本概念">基本概念
-</h2><h3 id="马尔可夫链的定义">马尔可夫链的定义
-</h3><h4 id="马尔可夫链">马尔可夫链
+</h2><h3 id="markov链的定义">Markov链的定义
+</h3><h4 id="markov链">Markov链
 </h4><p>  <strong>定义1</strong>：给定随机过程 $\{X_n,n=0,1,2,\cdots\}$ ，若它只取有限或可列个值 $E_0,E_1,E_2,\cdots$（我们以 $\{0,1,2,\cdots\}$ 来标记 $E_0,E_1,E_2$ 并称他们是过程的状态， $\{0,1,2\cdots\}$ 或者其子集记为 $S$ ，称为过程的<strong>状态空间</strong>）。若对 $\{X_n,n=0,1,2,\cdots\}$ （一般就认为它的状态是非负整数）和任意的 $\;n\ge0\;$ 及状态 $i,j,i_0,i_1\cdots,i_{n-1}$ ，有</p>
 $$
 \begin{aligned}
@@ -1037,18 +1037,18 @@ $$
 =&P\{X_{n+1}=j\;|\;X_n=i\}
 \end{aligned}
 \tag{1}
-$$<p>  则称随机过程 $\{X_n,n=0,1,2,\cdots\}$ 为<strong>马尔可夫链</strong>。</p>
-<h4 id="马尔可夫性">马尔可夫性
-</h4><p>  <a class="link" href="#%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be" >式1</a>刻画了马尔可夫链的特性，故称为<strong>马尔可夫性</strong>。</p>
+$$<p>  则称随机过程 $\{X_n,n=0,1,2,\cdots\}$ 为<strong>Markov链</strong>。</p>
+<h4 id="markov性">Markov性
+</h4><p>  <a class="link" href="#Markov%e9%93%be" >式1</a>刻画了Markov链的特性，故称为<strong>Markov性</strong>。</p>
 <h3 id="转移概率">转移概率
 </h3><h4 id="转移概率-1">转移概率
-</h4><p>  <strong>定义2</strong>：称<a class="link" href="#%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be" >式1</a>中的条件概率 $P\{X_{n+1}=j\;|\;X_n=i\}$ 为马尔可夫链 $\{X_n,n=0,1,2,\cdots\}$ 的<strong>一步转移概率</strong>，简称<strong>转移概率</strong>。<br>
+</h4><p>  <strong>定义2</strong>：称<a class="link" href="#Markov%e9%93%be" >式1</a>中的条件概率 $P\{X_{n+1}=j\;|\;X_n=i\}$ 为Markov链 $\{X_n,n=0,1,2,\cdots\}$ 的<strong>一步转移概率</strong>，简称<strong>转移概率</strong>。<br>
   一般情况下，转移概率与状态$i,j$和时刻$n$有关。</p>
-<h4 id="时齐马尔可夫链">时齐马尔可夫链
-</h4><p>  <strong>定义3</strong>：当马尔可夫链的转移概率只与状态 $i,j$ 有关，而与 $n$ 无关时，称马尔可夫链为<strong>时齐</strong>的，并记 $p_{ij}=P\{X_{n+1}=j\;|\;X_n=i\}(n \ge 0)$ ；否则，就称之为<strong>非时齐</strong>的。<br>
-  本文只讨论时齐马尔可夫链并将其简称为马尔可夫链。</p>
+<h4 id="时齐markov链">时齐Markov链
+</h4><p>  <strong>定义3</strong>：当Markov链的转移概率只与状态 $i,j$ 有关，而与 $n$ 无关时，称Markov链为<strong>时齐</strong>的，并记 $p_{ij}=P\{X_{n+1}=j\;|\;X_n=i\}(n \ge 0)$ ；否则，就称之为<strong>非时齐</strong>的。<br>
+  本文只讨论时齐Markov链并将其简称为Markov链。</p>
 <h4 id="有限链和无限链">有限链和无限链
-</h4><p>  当马尔可夫链的状态为有限时，成为<strong>有限链</strong>，否则成为<strong>无限链</strong>。但无论状态有限还是无限，我们都可以将 $p_{ij}(i,j\in S)$ 排成一个矩阵的形式，令</p>
+</h4><p>  当Markov链的状态为有限时，成为<strong>有限链</strong>，否则成为<strong>无限链</strong>。但无论状态有限还是无限，我们都可以将 $p_{ij}(i,j\in S)$ 排成一个矩阵的形式，令</p>
 $$
 \mathbf{P}=(p_{ij})=
 \begin{pmatrix}
@@ -1072,7 +1072,7 @@ $$<h3 id="n步转移概率与c-k方程">n步转移概率与C-K方程
 $$
 p_{ij}^{(n)}=P\{X_{m+n}=j\;|\;X_m=i\}\quad i,j\in S,m \ge 0, n \ge 1
 \tag{4}
-$$<p>为马尔可夫链的<strong>n步转移概率</strong>，相应地称 $\mathbf{P}^{(n)}=(p_{ij}^{(n)})$ 为<strong>n步转移矩阵</strong>。<br>
+$$<p>为Markov链的<strong>n步转移概率</strong>，相应地称 $\mathbf{P}^{(n)}=(p_{ij}^{(n)})$ 为<strong>n步转移矩阵</strong>。<br>
   当 $n=1$ 时， $p_{ij}^{(1)}=p_{ij}$ ， $\mathbf{P}^{(1)}=\mathbf{P}$ 。此外规定</p>
 $$
 p_{ij}^{(0)}=
@@ -1115,7 +1115,7 @@ $$<p>  由矩阵乘法易得②是①的矩阵形式。</p>
   ③传递性： $i \leftrightarrow j$ , $j \leftrightarrow k$ ，则 $i \leftrightarrow k$ 。</p>
 <p>  <strong>证明（定理2）</strong>：从互通的定义可知①②是显然的，只证③。由互通定义可知，需证 $i \rightarrow k$ 且 $k \rightarrow i$ 。首先，由 $i \rightarrow j$ ， $j \rightarrow k$ 可知存在 $m$ ， $n$ 使得 $p_{ij}^{(m)}&gt;0$ ， $p_{jk}^{(n)}&gt;0$ 。再由<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">概率的非负性</a>可知 $p_{ik}^{(m+n)}=\displaystyle\sum_{l \in S}{p_{il}^{(m)}p_{lk}^{(n)}}\ge {p_{ij}^{(m)}p_{jk}^{(n)}}&gt;0$ ，故 $i \rightarrow k$ 。反过来同样有 $k \rightarrow i$ ，即证 $i \leftrightarrow k$ 。</p>
 <p>  我们把任何两个相通状态归为一个<strong>类</strong>，由上述定理可知，同在一类的状态应该都是互通的，并且任何一个状态不能同时属于两个不同的类。</p>
-<p>  <strong>定义6</strong>：若马尔可夫链只存在一个类，就称它是<strong>不可约的</strong>。否则称为<strong>可约的</strong>。</p>
+<p>  <strong>定义6</strong>：若Markov链只存在一个类，就称它是<strong>不可约的</strong>。否则称为<strong>可约的</strong>。</p>
 <h3 id="周期">周期
 </h3><p>  <strong>定义7</strong>：若集合 $\{n|n \ge 1,p_{ii}^{(n)} \ge 0\}$ 非空，则称它的最大公约数 $d=d(i)$ 为状态 $i$ 的<strong>周期</strong>。若 $d \ge 1$ ，则称 $i$ 是<strong>周期的</strong>；若 $d=1$ ，则称 $i$ 是<strong>非周期的</strong>。并特别规定上述集合为空集时，称 $i$ 的周期为<strong>无穷大</strong>。 。</p>
 <p><span id="定理3"></span>
@@ -1162,7 +1162,7 @@ $$<p>  因而此时有 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ �
 $$
 f_{ij}^{(l+1)}=\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
 \tag{14}
-$$<p>  <strong>证明（结论1）</strong>：由<a class="link" href="#%e5%b8%b8%e8%bf%94" > $f_{ij}^{(n)}$ 的定义</a>、<a class="link" href="#%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e6%80%a7" >马尔可夫性</a>、<a class="link" href="#%e6%97%b6%e9%bd%90%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be" >时齐性</a>和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
+$$<p>  <strong>证明（结论1）</strong>：由<a class="link" href="#%e5%b8%b8%e8%bf%94" > $f_{ij}^{(n)}$ 的定义</a>、<a class="link" href="#Markov%e6%80%a7" >Markov性</a>、<a class="link" href="#%e6%97%b6%e9%bd%90Markov%e9%93%be" >时齐性</a>和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
 $$
 \begin{aligned}
 f_{ij}^{(l+1)}=&P\{X_{l+1}=j,X_m \ne j(m=1,2,\cdots ,l) \;|\; X_0=i\}\quad \text{（}f_{ij}^{(n)}\text{的定义）}\\[5pt]
@@ -1170,7 +1170,7 @@ f_{ij}^{(l+1)}=&P\{X_{l+1}=j,X_m \ne j(m=1,2,\cdots ,l) \;|\; X_0=i\}\quad \text
 =&\sum_{k \ne j,\thinspace k \in S}{\frac{P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i\}}{P\{X_0=i\}}}\\
 =&\sum_{k \ne j,\thinspace k \in S}{\frac{P\{X_1=k,X_0=i\}}{P\{X_0=i\}}\frac{P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i\}}{P\{X_1=k,X_0=i\}}}\\
 =&\sum_{k \ne j,\thinspace k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)\;|\;X_1=k,X_0=i\}}\\
-=&\sum_{k \ne j,\thinspace k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)\;|\;X_1=k\}}\text{（马尔可夫性）}\\
+=&\sum_{k \ne j,\thinspace k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)\;|\;X_1=k\}}\text{（Markov性）}\\
 =&\sum_{k \ne j,\thinspace k \in S}{P\{X_1=k\;|\;X_0=i\}P\{X_l=j,X_m \ne j(m=1,\cdots ,l-1)\;|\;X_0=k\}}\text{（时齐性）}\\
 =&\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
 \end{aligned}
@@ -1243,13 +1243,13 @@ $$<p>  因此我们可以直观的看出 $\displaystyle\sum_{l=0}^{\infin}{p
   其次还能证明当 $i,j$ 同为常返状态时，它们同为正常返态或零常返态。该证明需要用到下文的<a class="link" href="#%e6%8e%a8%e8%ae%ba1" >推论1</a>。<br>
   假设 $i$ 为零常返状态且 $i \leftrightarrow j$ 。由<a class="link" href="#%e6%8e%a8%e8%ae%ba1" >推论1</a>可知 $\lim\limits_{m \rightarrow \infin}p_{ii}^{(m)}=0$ 。由于 $i \leftrightarrow j$ ，存在 $n,l$ 使得 $p_{ij}^{(n)}&gt;0,p_{ji}^{(l)}&gt;0$。同时由<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>和<a class="link" href="#%e5%ae%9a%e7%90%863" >(9)式的展开技巧</a>可得 $p_{ii}^{(n+m+l)} \ge p_{ij}^{(n)}p_{jj}^{(m)}p_{ji}^{(l)}\ge0$ 。令 $m \rightarrow \infin$ ，由<a class="link" onclick="alert('抱歉，“高等数学”还未上线~')">夹挤准则</a>可知 $\lim\limits_{m \rightarrow \infin}p_{jj}^{(m)}=0$ ，故由<a class="link" href="#%e6%8e%a8%e8%ae%ba1" >推论1</a>，状态 $j$ 也是零常返状态。</p>
 <h4 id="状态空间分解定理">状态空间分解定理
-</h4><p>  <strong>定理6（状态空间分解定理）</strong>：任意马尔可夫链的状态空间 $S$ ，可唯一分解为有限个或可列个互不相交的子集 $D,C_1,C_2,\cdots$ 之和，使得<br>
+</h4><p>  <strong>定理6（状态空间分解定理）</strong>：任意Markov链的状态空间 $S$ ，可唯一分解为有限个或可列个互不相交的子集 $D,C_1,C_2,\cdots$ 之和，使得<br>
   ①每一个 $C_n$ 是常返状态组成的不可约闭集，$D$ 由全体非常返状态组成。。<br>
   ② $C_n$ 中的状态同类，或者全是正常返态，或者全是零常返态。它们有相同的周期且 $f_{ij}=1(i,j \in C_n)$ 。<br>
   ③ 自 $C_n$ 中的状态出发不能到达 $D$ 中状态。</p>
 <p>  <strong>证明（定理6）</strong>：设 $C$ 为全体常返状态组成的集合，则 $D=S-C$ 为非常返状态的全体组成的集合。注意到定义在 $C$ 上的互通是一种等价关系，由<a class="link" onclick="alert('抱歉，“离散数学”还未上线~')">等价关系与集合的划分</a>可知， $C$ 可以按互通关系划分为 $C_1 \bigcup C_2 \bigcup \dots$ ，其中每一个 $C_n$ 是由同一类常返状态组成的不可约的闭集。因此 $S=D \bigcup C_1 \bigcup C_2 \bigcup \dots$ 。定理假设和①证毕。由<a class="link" href="#%e5%ae%9a%e7%90%865" >定理5</a>可知 $C_n$ 中的状态都是同类型的（正常返或零常返），由<a class="link" href="#%e5%ae%9a%e7%90%863" >定理3</a>可知 $C_n$ 中的状态都有相同的周期，由<a class="link" href="#%e5%bc%95%e7%90%862" >引理2</a>可知 $C_n$ 中的状态都满足 $f_{ij}=1(i,j \in C_n)$ 。②证毕。对于③，可用反证法证明。假设 $C_n$ 中的状态 $i$ 可以到达 $D$ 中的状态 $j$ ，由于 $i$ 是<a class="link" href="#%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9d%9e%e5%b8%b8%e8%bf%94%e7%9e%ac%e8%bf%87" >常返</a>的，状态在到达 $j$ 后必定还会再返回 $i$ ，而后再由假设，状态还可能继续回到 $j$ 。因此，状态从 $j$ 出发后再次返回 $j$ 的情况是可能出现的，这与 $j$ 是<a class="link" href="#%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9d%9e%e5%b8%b8%e8%bf%94%e7%9e%ac%e8%bf%87" >非常返态</a>相矛盾，因此假设不成立。故 $C_n$ 中的状态 $i$ 不可到达 $D$ 中的状态 $j$ 。③证毕。定理6证毕。</p>
-<h4 id="不可约马尔可夫链的转移">不可约马尔可夫链的转移
-</h4><p>  <strong>定理7</strong>：周期为 $d$ 的不可约马尔可夫链，其状态空间 $S$ 可唯一地分解为 $d$ 个互不相交的子集之和，即</p>
+<h4 id="不可约markov链的转移">不可约Markov链的转移
+</h4><p>  <strong>定理7</strong>：周期为 $d$ 的不可约Markov链，其状态空间 $S$ 可唯一地分解为 $d$ 个互不相交的子集之和，即</p>
 $$
 S=\bigcup_{r=0}^{d-1}{S_r},\quad S_r \bigcap S_s=\varnothing,\quad r \ne S
 \tag{24}
@@ -1266,7 +1266,7 @@ p_{ii}^{(nd+r+h)} \ge p_{ij}^{(nd+r)}p_{ji}^{(h)}>0\\[5pt]
 p_{ii}^{(md+s+h)} \ge p_{ij}^{(md+s)}p_{ji}^{(h)}>0
 \tag{26}
 $$<p>  由<a class="link" href="#%e5%91%a8%e6%9c%9f" >周期</a>的定义可知 $nd+r+h$ 和 $md+s+h$ 都可以被 $d$ 整除。省去前面的 $n$ 和 $m$ 可得 $r+h$ 和 $s+h$ 都可被 $d$ 整除。从而其差 $(r+h)-(s+h)=r-s$ 都能被 $d$ 整除(见<a class="link" onclick="alert('抱歉，“初等数论”还未上线~')">整除的基本性质</a>)。但是 $0 \le r \le d-1,0 \le s \le d-1$ ，故 $0 \le r-s \le d-1$ ，因此 $r-s$ 只能为 $0$ ，也就是 $r=s$ 。故 $S_r=S_s$ ，假设不成立，故 $S_r$ 不相交。<br>
-  接下来证明自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。等价于证明对任意 $j \in S_r$ ，有 $\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}=1$ 。事实上，由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" > $S_r$ 的定义</a>可知 $p_{ij}^{(nd+r)}&gt;0$ 。而由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" > $S_r$ 的定义</a>的定义可知对 $k \notin S_{r+1}$ 必有 $p_{ik}^{(nd+r+1)}=0$ 。因此由<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>和和<a class="link" href="#%e5%ae%9a%e7%90%863" >(9)式的展开技巧</a>可推导：</p>
+  接下来证明自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。等价于证明对任意 $j \in S_r$ ，有 $\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}=1$ 。事实上，由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" > $S_r$ 的定义</a>可知 $p_{ij}^{(nd+r)}&gt;0$ 。而由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" > $S_r$ 的定义</a>的定义可知对 $k \notin S_{r+1}$ 必有 $p_{ik}^{(nd+r+1)}=0$ 。因此由<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>和和<a class="link" href="#%e5%ae%9a%e7%90%863" >(9)式的展开技巧</a>可推导：</p>
 $$
 0=p_{ik}^{(nd+r+1)} \ge p_{ij}^{(nd+r)}p_{jk}^{(1)}>0
 \tag{27}
@@ -1463,11 +1463,11 @@ $$
 \tag{63}
 $$<p>  定理得证。</p>
 <p><span id="推论2"></span>
-  <strong>推论2</strong>：有限状态的马尔可夫链，不可能全为非常返状态，也不可能有零常返状态，从而不可约的有限马尔可夫链是正常返的。</p>
-<p>  <strong>证明（推论2）</strong>：设状态空间 $S=\{1,2,\cdots,N\}$ ，若全部 $N$ 个状态都是非常返，则任取其中两个状态 $i,j$ ，若 $i \rightarrow j $ ，有 $p_{ij}^{(n)}\rightarrow 0$ （<a class="link" href="#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94" >定理9</a>）；若 $i \nrightarrow j$ ，则对 $\forall n$，$p_{ij}^{(n)}=0$ 。不管是哪种情况， $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}\to 0$ ，但是 $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}=1$ （与<a class="link" href="#%e6%9c%89%e9%99%90%e9%93%be%e5%92%8c%e6%97%a0%e9%99%90%e9%93%be" >(3)式</a>的②类似），矛盾。因此有限状态的马尔可夫链，不可能全为非常返状态。<br>
-  若 $S$ 中有零常返状态，设为 $i$ ，令 $C=\set{j | i \rightarrow j}$ ，则有 $\displaystyle\sum_{j \in C}p_{ij}^{(n)}=1$ 且 $j \rightarrow i$ （ $j \nrightarrow i$ 与 $i$ 的常返性相矛盾，类似<a class="link" href="#%e5%b8%b8%e8%bf%94%e4%ba%92%e9%80%9a%e5%88%99%e5%bf%85%e8%be%be" >引理2</a>的证明）。故 $i \leftrightarrow j$ ，从而 $j$ 也为零常返状态（<a class="link" href="#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8" >定理5</a>）。则 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ （<a class="link" href="#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94" >定理9</a>），从而 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}\to 0$ 。但是由 $j$ 的定义知 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}=1$ ，矛盾。因此有限状态的马尔可夫链不可能有零常返状态。</p>
-<p>  <strong>推论3</strong>：若马尔可夫链有一个零常返状态，则必有无限个零常返状态。</p>
-<p>  <strong>证明（推论3）</strong>：假设马尔可夫链有一个零常返状态。由<a class="link" href="#%e7%8a%b6%e6%80%81%e7%a9%ba%e9%97%b4%e5%88%86%e8%a7%a3%e5%ae%9a%e7%90%86" >定理6</a>可知这个零常返状态必然存在于某个不可约类中，又有<a class="link" href="#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8" >定理5</a>可知这个类必然全都是零常返状态。由<a class="link" href="#%e6%8e%a8%e8%ae%ba2" >推论2</a>可知该不可约类不可能是有限状态的。因此，该马尔可夫链必然有无限个零常返状态。</p>
+  <strong>推论2</strong>：有限状态的Markov链，不可能全为非常返状态，也不可能有零常返状态，从而不可约的有限Markov链是正常返的。</p>
+<p>  <strong>证明（推论2）</strong>：设状态空间 $S=\{1,2,\cdots,N\}$ ，若全部 $N$ 个状态都是非常返，则任取其中两个状态 $i,j$ ，若 $i \rightarrow j $ ，有 $p_{ij}^{(n)}\rightarrow 0$ （<a class="link" href="#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94" >定理9</a>）；若 $i \nrightarrow j$ ，则对 $\forall n$，$p_{ij}^{(n)}=0$ 。不管是哪种情况， $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}\to 0$ ，但是 $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}=1$ （与<a class="link" href="#%e6%9c%89%e9%99%90%e9%93%be%e5%92%8c%e6%97%a0%e9%99%90%e9%93%be" >(3)式</a>的②类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。<br>
+  若 $S$ 中有零常返状态，设为 $i$ ，令 $C=\set{j | i \rightarrow j}$ ，则有 $\displaystyle\sum_{j \in C}p_{ij}^{(n)}=1$ 且 $j \rightarrow i$ （ $j \nrightarrow i$ 与 $i$ 的常返性相矛盾，类似<a class="link" href="#%e5%b8%b8%e8%bf%94%e4%ba%92%e9%80%9a%e5%88%99%e5%bf%85%e8%be%be" >引理2</a>的证明）。故 $i \leftrightarrow j$ ，从而 $j$ 也为零常返状态（<a class="link" href="#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8" >定理5</a>）。则 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ （<a class="link" href="#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94" >定理9</a>），从而 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}\to 0$ 。但是由 $j$ 的定义知 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}=1$ ，矛盾。因此有限状态的Markov链不可能有零常返状态。</p>
+<p>  <strong>推论3</strong>：若Markov链有一个零常返状态，则必有无限个零常返状态。</p>
+<p>  <strong>证明（推论3）</strong>：假设Markov链有一个零常返状态。由<a class="link" href="#%e7%8a%b6%e6%80%81%e7%a9%ba%e9%97%b4%e5%88%86%e8%a7%a3%e5%ae%9a%e7%90%86" >定理6</a>可知这个零常返状态必然存在于某个不可约类中，又有<a class="link" href="#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8" >定理5</a>可知这个类必然全都是零常返状态。由<a class="link" href="#%e6%8e%a8%e8%ae%ba2" >推论2</a>可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。</p>
 <h4 id="再论正常返">再论正常返
 </h4><p>  <strong>定理10</strong>：若 $j$ 为正常返状态且周期为 $d$ ，则对 $\forall i$ 及 $0 \le r \le d-1$ ，有</p>
 $$
@@ -1494,7 +1494,7 @@ f_{ij}(r)\space\frac{d}{\mu_j}\le p_{ij}^{(nd+r)} \le f_{ij}(r)\space\frac{d}{\m
 \tag{68}
 $$<p>  由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">夹挤原则</a>可得<a class="link" href="#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94" >定理10</a>得证。</p>
 <p><span id="推论4"></span>
-  <strong>推论4</strong>：设有不可约的、正常返的、周期为 $d$ 的马尔可夫链（即每个状态都是正常返的），其状态空间为 $S$ ，则对任何状态 $i \leftrightarrow j(i,j \in S)$ ，有</p>
+  <strong>推论4</strong>：设有不可约的、正常返的、周期为 $d$ 的Markov链（即每个状态都是正常返的），其状态空间为 $S$ ，则对任何状态 $i \leftrightarrow j(i,j \in S)$ ，有</p>
 $$
 \lim\limits_{n \to \infin}p_{ij}^{(nd)}=
 \begin{cases}
@@ -1502,7 +1502,7 @@ $$
 \space 0\quad&其他
 \end{cases}
 \tag{69}
-$$<p>  其中 $S=\displaystyle\bigcup_{i=0}^{d-1}S_s$ 即为<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" >定理7</a>所给出的 $S_s$ 。特别的，当 $d=1$ 时，$\forall i,j \in S$ 有</p>
+$$<p>  其中 $S=\displaystyle\bigcup_{i=0}^{d-1}S_s$ 即为<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" >定理7</a>所给出的 $S_s$ 。特别的，当 $d=1$ 时，$\forall i,j \in S$ 有</p>
 $$
 \lim\limits_{n \to \infin}p_{ij}^{(n)}=\frac{1}{\mu_j}
 \tag{70}
@@ -1510,7 +1510,7 @@ $$<p>  <strong>证明（推论4）</strong>：在<a class="link" href="#%e5%
 $$
 \lim\limits_{n \to \infin}p_{ij}^{(nd)}=f_{ij}(0)\space\frac{d}{\mu_j}
 \tag{71}
-$$<p>  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。若 $i$ 与 $j$ 不在同一个 $S_s$ 中，则由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6%e9%a9%ac%e5%b0%94%e5%8f%af%e5%a4%ab%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" >定理7</a>可知所有的 $f_{ij}^{(md)}=0$ 。若 $i,j$ 在同一个 $S_s$ 中，注意当 $n$ 不为 $d$ 的倍数的时候 $p_{ij}^{(n)}=0$ ，因此 $f_{ij}^{(n)}=0$ （见<a class="link" href="#%e5%b8%b8%e8%bf%94" > $f_{ij}^{(n)}$ 的定义</a>）。此时有</p>
+$$<p>  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。若 $i$ 与 $j$ 不在同一个 $S_s$ 中，则由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" >定理7</a>可知所有的 $f_{ij}^{(md)}=0$ 。若 $i,j$ 在同一个 $S_s$ 中，注意当 $n$ 不为 $d$ 的倍数的时候 $p_{ij}^{(n)}=0$ ，因此 $f_{ij}^{(n)}=0$ （见<a class="link" href="#%e5%b8%b8%e8%bf%94" > $f_{ij}^{(n)}$ 的定义</a>）。此时有</p>
 $$
 f_{ij}(0)=\sum_{m=0}^{\infin}f_{ij}^{(md)}=\sum_{m=0}^{\infin}f_{ij}^{(m)}=f_{ij}=1
 \tag{72}
@@ -1532,10 +1532,21 @@ $$
 \tag{74}
 $$<p>  <strong>证明（引理3）</strong>：设 $n=md+r(0 \le r &lt; d-1)$ ，数列的前 $n$ 项和 $\displaystyle\sum_{k=1}^{n}a_k$ 可以写为：</p>
 $$
-\sum_{k=1}^{n}a_k=\sum_{s=0}^{d-1}\sum_{k=0}^{m-1}a_{kd+s}+\sum_{t=0}^{r}a_{md+t}
+\sum_{k=1}^{n}a_k=\sum_{t=1}^{d-1}a_{t}+\sum_{s=0}^{d-1}\sum_{k=1}^{m-1}a_{kd+s}+\sum_{t=0}^{r}a_{md+t}
 \tag{75}
-$$<p>  等式两端对 $m$ 取极限。先看右端第一项，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">Stolz定理</a>可推导得：</p>
-
+$$<p>  等式两端除以 $m$ 并令 $m \to \infin$ 。右端第一项和第三项都为有限值，因此极限为 $0$ 。讨论右端第二项，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">Stolz定理</a>可推导得：</p>
+$$
+\lim\limits_{m \to \infin}\frac{\displaystyle\sum_{k=1}^{m-1}a_{kd+s}}{m}=\lim\limits_{m \to \infin}\frac{\displaystyle\sum_{k=1}^{m-1}a_{kd+s}-\displaystyle\sum_{k=1}^{m-2}a_{kd+s}}{m-(m-1)}=\lim\limits_{m \to \infin}a_{(m-1)d+s}=b_s
+\tag{76}
+$$<p>  因此</p>
+$$
+\lim\limits_{m \to \infin}\sum_{k=1}^{n}a_k=\sum_{s=0}^{d-1}b_s
+\tag{77}
+$$<p>  最后再令 $n \to \infin$ ，得</p>
+$$
+\lim_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}a_k=\lim_{m \to \infin}\frac{m}{md+r}\sum_{k=1}^{n}a_k=\frac{1}{d}\sum_{s=0}^{d-1}b_s
+\tag{78}
+$$
     </div>
 </section>
 
@@ -1547,9 +1558,9 @@ $$<p>  等式两端对 $m$ 取极限。先看右端第一项，由<a class="
     
     <section class="article-tags">
         
-            <a href="/tags/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E8%BF%87%E7%A8%8B/">马尔可夫过程</a>
+            <a href="/tags/markov%E8%BF%87%E7%A8%8B/">Markov过程</a>
         
-            <a href="/tags/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE/">马尔可夫链</a>
+            <a href="/tags/markov%E9%93%BE/">Markov链</a>
         
             <a href="/tags/c-k%E6%96%B9%E7%A8%8B/">C-K方程</a>
         
@@ -1580,7 +1591,7 @@ $$<p>  等式两端对 $m$ 取极限。先看右端第一项，由<a class="
 
 
         <span>
-            最后更新于 Sep 27, 2024 00:58 CST
+            最后更新于 Sep 27, 2024 10:25 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1709,7 +1720,7 @@ $$<p>  等式两端对 $m$ 取极限。先看右端第一项，由<a class="
             
             
         
-        <span>本图书馆累计发布了4篇文章 共22335字</span>
+        <span>本图书馆累计发布了4篇文章 共22463字</span>
     </section>
 
     <section class="site-visit-count">
