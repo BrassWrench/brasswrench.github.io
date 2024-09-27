@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:tag' content='Markov链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T11:07:21&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:tag' content='Markov链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T13:04:40&#43;08:00'/>
 <meta name="twitter:title" content="随机过程（四）：Markov过程">
 <meta name="twitter:description" content="一种无后效性的随机过程">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -633,12 +633,18 @@
     </li>
     <li><a href="#极限定理与不变分布">极限定理与不变分布</a>
       <ol>
-        <li><a href="#极限定理">极限定理</a>
+        <li><a href="#极限定理及其衍生定理">极限定理及其衍生定理</a>
           <ol>
-            <li><a href="#极限定理-1">极限定理</a></li>
+            <li><a href="#极限定理">极限定理</a></li>
             <li><a href="#再论非常返与零常返">再论非常返与零常返</a></li>
             <li><a href="#再论正常返">再论正常返</a></li>
             <li><a href="#n步转移概率的期望">n步转移概率的期望</a></li>
+          </ol>
+        </li>
+        <li><a href="#不变分布与极限分布">不变分布与极限分布</a>
+          <ol>
+            <li><a href="#不变分布">不变分布</a></li>
+            <li><a href="#极限分布">极限分布</a></li>
           </ol>
         </li>
       </ol>
@@ -953,7 +959,7 @@
 </svg>
 
             <time class="article-words">
-                8377 字
+                8674 字
             </time>
         </div>
 
@@ -968,7 +974,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 17 分钟
+                    阅读时长: 18 分钟
                 </time>
             </div>
         
@@ -1030,22 +1036,22 @@
 <h2 id="基本概念">基本概念
 </h2><h3 id="markov链的定义">Markov链的定义
 </h3><h4 id="markov链">Markov链
-</h4><p>  <strong>定义1</strong>：给定随机过程 $\{X_n,n=0,1,2,\cdots\}$ ，若它只取有限或可列个值 $E_0,E_1,E_2,\cdots$（我们以 $\{0,1,2,\cdots\}$ 来标记 $E_0,E_1,E_2$ 并称他们是过程的状态， $\{0,1,2\cdots\}$ 或者其子集记为 $S$ ，称为过程的<strong>状态空间</strong>）。若对 $\{X_n,n=0,1,2,\cdots\}$ （一般就认为它的状态是非负整数）和任意的 $\;n\ge0\;$ 及状态 $i,j,i_0,i_1\cdots,i_{n-1}$ ，有</p>
+</h4><p>  <strong>定义1</strong>：给定随机过程 $\set{X_n,n=0,1,2,\cdots}$ ，若它只取有限或可列个值 $E_0,E_1,E_2,\cdots$（我们以 $\set{0,1,2,\cdots}$ 来标记 $E_0,E_1,E_2$ 并称他们是过程的状态， $\set{0,1,2\cdots}$ 或者其子集记为 $S$ ，称为过程的<strong>状态空间</strong>）。若对 $\set{X_n,n=0,1,2,\cdots}$ （一般就认为它的状态是非负整数）和任意的 $n\ge0$ 及状态 $i,j,i_0,i_1\cdots,i_{n-1}$ ，有</p>
 $$
 \begin{aligned}
-&P\{X_{n+1}=j\;|\;X_0=i_0,X_1=i_1,X_2=i_2,\cdots,X_{n-1}=i_{n-1},X_n=i\}\\[5pt]
-=&P\{X_{n+1}=j\;|\;X_n=i\}
+&P\set{X_{n+1}=j|X_0=i_0,X_1=i_1,X_2=i_2,\cdots,X_{n-1}=i_{n-1},X_n=i}\\[5pt]
+=&P\set{X_{n+1}=j|X_n=i}
 \end{aligned}
 \tag{1}
-$$<p>  则称随机过程 $\{X_n,n=0,1,2,\cdots\}$ 为<strong>Markov链</strong>。</p>
+$$<p>  则称随机过程 $\set{X_n,n=0,1,2,\cdots}$ 为<strong>Markov链</strong>。</p>
 <h4 id="markov性">Markov性
 </h4><p>  <a class="link" href="#Markov%e9%93%be" >式1</a>刻画了Markov链的特性，故称为<strong>Markov性</strong>。</p>
 <h3 id="转移概率">转移概率
 </h3><h4 id="转移概率-1">转移概率
-</h4><p>  <strong>定义2</strong>：称<a class="link" href="#Markov%e9%93%be" >式1</a>中的条件概率 $P\{X_{n+1}=j\;|\;X_n=i\}$ 为Markov链 $\{X_n,n=0,1,2,\cdots\}$ 的<strong>一步转移概率</strong>，简称<strong>转移概率</strong>。<br>
+</h4><p>  <strong>定义2</strong>：称<a class="link" href="#Markov%e9%93%be" >式1</a>中的条件概率 $P\set{X_{n+1}=j|X_n=i}$ 为Markov链 $\set{X_n(n=0,1,2,\cdots)}$ 的<strong>一步转移概率</strong>，简称<strong>转移概率</strong>。<br>
   一般情况下，转移概率与状态$i,j$和时刻$n$有关。</p>
 <h4 id="时齐markov链">时齐Markov链
-</h4><p>  <strong>定义3</strong>：当Markov链的转移概率只与状态 $i,j$ 有关，而与 $n$ 无关时，称Markov链为<strong>时齐</strong>的，并记 $p_{ij}=P\{X_{n+1}=j\;|\;X_n=i\}(n \ge 0)$ ；否则，就称之为<strong>非时齐</strong>的。<br>
+</h4><p>  <strong>定义3</strong>：当Markov链的转移概率只与状态 $i,j$ 有关，而与 $n$ 无关时，称Markov链为<strong>时齐</strong>的，并记 $p_{ij}=P\set{X_{n+1}=j|X_n=i}(n \ge 0)$ ；否则，就称之为<strong>非时齐</strong>的。<br>
   本文只讨论时齐Markov链并将其简称为Markov链。</p>
 <h4 id="有限链和无限链">有限链和无限链
 </h4><p>  当Markov链的状态为有限时，成为<strong>有限链</strong>，否则成为<strong>无限链</strong>。但无论状态有限还是无限，我们都可以将 $p_{ij}(i,j\in S)$ 排成一个矩阵的形式，令</p>
@@ -1070,7 +1076,7 @@ $$<h3 id="n步转移概率与c-k方程">n步转移概率与C-K方程
 </h3><h4 id="n步转移概率">n步转移概率
 </h4><p>  <strong>定义4</strong>：称条件概率</p>
 $$
-p_{ij}^{(n)}=P\{X_{m+n}=j\;|\;X_m=i\}\quad i,j\in S,m \ge 0, n \ge 1
+p_{ij}^{(n)}=P\set{X_{m+n}=j|X_m=i}\quad i,j\in S,m \ge 0, n \ge 1
 \tag{4}
 $$<p>为Markov链的<strong>n步转移概率</strong>，相应地称 $\mathbf{P}^{(n)}=(p_{ij}^{(n)})$ 为<strong>n步转移矩阵</strong>。<br>
   当 $n=1$ 时， $p_{ij}^{(1)}=p_{ij}$ ， $\mathbf{P}^{(1)}=\mathbf{P}$ 。此外规定</p>
@@ -1096,7 +1102,7 @@ $$
 $$<p>  <strong>证明（定理1）</strong>：由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
 $$
 \begin{aligned}
-p_{ij}^{(m+n)}&=P\{X_{m+n}=j\;|\;X_0=i\}\\[5pt]
+p_{ij}^{(m+n)}&=P\set{X_{m+n}=j|X_0=i}\\[5pt]
 &=\frac{P\{X_{m+n}=j,X_0=i\}}{P\{X_0=i\}}\\[10pt]
 &=\sum_{k \in S}{\frac{P\{X_{m+n}=j,X_m=k,X_0=i\}}{P\{X_0=i\}}}\text{（全概率公式）}\\
 &=\sum_{k \in S}{\frac{P\{X_{m+n}=j,X_m=k,X_0=i\}}{P\{X_m=k,X_0=i\}}\frac{P\{X_m=k,X_0=i\}}{P\{X_0=i\}}}\\
@@ -1117,7 +1123,7 @@ $$<p>  由矩阵乘法易得②是①的矩阵形式。</p>
 <p>  我们把任何两个相通状态归为一个<strong>类</strong>，由上述定理可知，同在一类的状态应该都是互通的，并且任何一个状态不能同时属于两个不同的类。</p>
 <p>  <strong>定义6</strong>：若Markov链只存在一个类，就称它是<strong>不可约的</strong>。否则称为<strong>可约的</strong>。</p>
 <h3 id="周期">周期
-</h3><p>  <strong>定义7</strong>：若集合 $\{n|n \ge 1,p_{ii}^{(n)} \ge 0\}$ 非空，则称它的最大公约数 $d=d(i)$ 为状态 $i$ 的<strong>周期</strong>。若 $d \ge 1$ ，则称 $i$ 是<strong>周期的</strong>；若 $d=1$ ，则称 $i$ 是<strong>非周期的</strong>。并特别规定上述集合为空集时，称 $i$ 的周期为<strong>无穷大</strong>。 。</p>
+</h3><p>  <strong>定义7</strong>：若集合 $\set{n|n \ge 1,p_{ii}^{(n)} \ge 0}$ 非空，则称它的最大公约数 $d=d(i)$ 为状态 $i$ 的<strong>周期</strong>。若 $d \ge 1$ ，则称 $i$ 是<strong>周期的</strong>；若 $d=1$ ，则称 $i$ 是<strong>非周期的</strong>。并特别规定上述集合为空集时，称 $i$ 的周期为<strong>无穷大</strong>。 。</p>
 <p><span id="定理3"></span>
   <strong>定理3</strong>：若状态 $i,j$ 同属一类，则 $d(i)=d(j)$ 。</p>
 <p>  <strong>证明（定理3）</strong>：由<a class="link" href="#%e5%8f%af%e8%be%be%e4%ba%92%e9%80%9a%e7%b1%bb%e5%8f%af%e7%ba%a6" >类</a>的定义可知 $i \leftrightarrow j$ ，即存在 $m,n$ 使$p_{ij}^{(m)}&gt;0,p_{ji}^{(n)}&gt;0$。则由<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">概率的非负性</a>知 $p_{ii}^{(m+n)}=\displaystyle\sum_{k \in S}{p_{ik}^{(m)}p_{ki}^{(n)}} \ge p_{ij}^{(m)}p_{ji}^{(n)}&gt;0$ 。同时对所有使得 $p_{jj}^{(s)} &gt; 0$ 的 $s$ ，有</p>
@@ -1136,7 +1142,7 @@ P\{X_n=j,X_k \ne j(k=1,2,\cdots ,n-1)\;|\; X_0=i\} \quad n \ge 1
 \end{cases}
 \tag{10}
 $$<p>  令 $f_{ij}=\displaystyle\sum_{n=1}^{\infin}{f_{ij}^{(n)}}$ ，若 $f_{jj}=1$ ，则称状态 $j$ 为<strong>常返状态</strong>，若 $f_{jj}&lt;1$ ，称 $j$ 为<strong>非常返状态</strong>或<strong>瞬过状态</strong>。<br>
-   $f_{ij}$ 的含义可由如下得出：由集合 $A_n$ 的定义 $A_n=\{X_n=j,X_k \ne j, k=1,2,\cdots n-1 \;|\; X_0=i\}$ 可知 $n$ 不同的时候 $A_n$ 不相交。而 $\displaystyle\bigcup_{n=1}^{\infin}{A_n}$表示的事件正是总有一个 $n$ 使得过程经 $n$ 步后可从 $i$ 到达 $j$ ,那么由不相交事件概率的可加性可得：</p>
+   $f_{ij}$ 的含义可由如下得出：由集合 $A_n$ 的定义 $A_n=\set{X_n=j,X_k \ne j, k=1,2,\cdots n-1 | X_0=i}$ 可知 $n$ 不同的时候 $A_n$ 不相交。而 $\displaystyle\bigcup_{n=1}^{\infin}{A_n}$表示的事件正是总有一个 $n$ 使得过程经 $n$ 步后可从 $i$ 到达 $j$ ,那么由不相交事件概率的可加性可得：</p>
 $$
 P(\bigcup_{n=1}^{\infin}{A_n})=\sum_{n=1}^{\infin}{P(A_n)}=\sum_{n=1}^{\infin}f_{ij}^{(n)}=f_{ij}
 \tag{11}
@@ -1162,7 +1168,7 @@ $$<p>  因而此时有 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ �
 $$
 f_{ij}^{(l+1)}=\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
 \tag{14}
-$$<p>  <strong>证明（结论1）</strong>：由<a class="link" href="#%e5%b8%b8%e8%bf%94" > $f_{ij}^{(n)}$ 的定义</a>、<a class="link" href="#Markov%e6%80%a7" >Markov性</a>、<a class="link" href="#%e6%97%b6%e9%bd%90Markov%e9%93%be" >时齐性</a>和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
+$$<p>  <strong>证明（结论1）</strong>：由<a class="link" href="#%e5%b8%b8%e8%bf%94" >定义8</a>、<a class="link" href="#Markov%e6%80%a7" >Markov性</a>、<a class="link" href="#%e6%97%b6%e9%bd%90Markov%e9%93%be" >时齐性</a>和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
 $$
 \begin{aligned}
 f_{ij}^{(l+1)}=&P\{X_{l+1}=j,X_m \ne j(m=1,2,\cdots ,l) \;|\; X_0=i\}\quad \text{（}f_{ij}^{(n)}\text{的定义）}\\[5pt]
@@ -1247,14 +1253,15 @@ $$<p>  因此我们可以直观的看出 $\displaystyle\sum_{l=0}^{\infin}{p
   ①每一个 $C_n$ 是常返状态组成的不可约闭集，$D$ 由全体非常返状态组成。。<br>
   ② $C_n$ 中的状态同类，或者全是正常返态，或者全是零常返态。它们有相同的周期且 $f_{ij}=1(i,j \in C_n)$ 。<br>
   ③ 自 $C_n$ 中的状态出发不能到达 $D$ 中状态。</p>
-<p>  <strong>证明（定理6）</strong>：设 $C$ 为全体常返状态组成的集合，则 $D=S-C$ 为非常返状态的全体组成的集合。注意到定义在 $C$ 上的互通是一种等价关系，由<a class="link" onclick="alert('抱歉，“离散数学”还未上线~')">等价关系与集合的划分</a>可知， $C$ 可以按互通关系划分为 $C_1 \bigcup C_2 \bigcup \dots$ ，其中每一个 $C_n$ 是由同一类常返状态组成的不可约的闭集。因此 $S=D \bigcup C_1 \bigcup C_2 \bigcup \dots$ 。定理假设和①证毕。由<a class="link" href="#%e5%ae%9a%e7%90%865" >定理5</a>可知 $C_n$ 中的状态都是同类型的（正常返或零常返），由<a class="link" href="#%e5%ae%9a%e7%90%863" >定理3</a>可知 $C_n$ 中的状态都有相同的周期，由<a class="link" href="#%e5%bc%95%e7%90%862" >引理2</a>可知 $C_n$ 中的状态都满足 $f_{ij}=1(i,j \in C_n)$ 。②证毕。对于③，可用反证法证明。假设 $C_n$ 中的状态 $i$ 可以到达 $D$ 中的状态 $j$ ，由于 $i$ 是<a class="link" href="#%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9d%9e%e5%b8%b8%e8%bf%94%e7%9e%ac%e8%bf%87" >常返</a>的，状态在到达 $j$ 后必定还会再返回 $i$ ，而后再由假设，状态还可能继续回到 $j$ 。因此，状态从 $j$ 出发后再次返回 $j$ 的情况是可能出现的，这与 $j$ 是<a class="link" href="#%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9d%9e%e5%b8%b8%e8%bf%94%e7%9e%ac%e8%bf%87" >非常返态</a>相矛盾，因此假设不成立。故 $C_n$ 中的状态 $i$ 不可到达 $D$ 中的状态 $j$ 。③证毕。定理6证毕。</p>
+<p>  <strong>证明（定理6）</strong>：设 $C$ 为全体常返状态组成的集合，则 $D=S-C$ 为非常返状态的全体组成的集合。注意到定义在 $C$ 上的互通是一种等价关系，由<a class="link" onclick="alert('抱歉，“离散数学”还未上线~')">等价关系与集合的划分</a>可知， $C$ 可以按互通关系划分为 $C_1 \bigcup C_2 \bigcup \dots$ ，其中每一个 $C_n$ 是由同一类常返状态组成的不可约的闭集。因此 $S=D \bigcup C_1 \bigcup C_2 \bigcup \dots$ 。定理假设和①证毕。由<a class="link" href="#%e5%ae%9a%e7%90%865" >定理5</a>可知 $C_n$ 中的状态都是同类型的（正常返或零常返），由<a class="link" href="#%e5%ae%9a%e7%90%863" >定理3</a>可知 $C_n$ 中的状态都有相同的周期，由<a class="link" href="#%e5%bc%95%e7%90%862" >引理2</a>可知 $C_n$ 中的状态都满足 $f_{ij}=1(i,j \in C_n)$ 。②证毕。对于③，可用反证法证明。假设 $C_n$ 中的状态 $i$ 可以到达 $D$ 中的状态 $j$ ，由于 $i$ 是常返的，状态在到达 $j$ 后必定还会再返回 $i$ ，而后再由假设，状态还可能继续回到 $j$ 。因此，状态从 $j$ 出发后再次返回 $j$ 的情况是可能出现的，这与 $j$ 是非常返态相矛盾，因此假设不成立。故 $C_n$ 中的状态 $i$ 不可到达 $D$ 中的状态 $j$ 。③证毕。定理6证毕。</p>
 <h4 id="不可约markov链的转移">不可约Markov链的转移
 </h4><p>  <strong>定理7</strong>：周期为 $d$ 的不可约Markov链，其状态空间 $S$ 可唯一地分解为 $d$ 个互不相交的子集之和，即</p>
 $$
 S=\bigcup_{r=0}^{d-1}{S_r},\quad S_r \bigcap S_s=\varnothing,\quad r \ne S
 \tag{24}
 $$<p>  且使得自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。</p>
-<p>  <strong>证明（定理7）</strong>：先给出子集 $S_r$ 的定义：<br>
+<p><span id="(25)式"></span>
+  <strong>证明（定理7）</strong>：先给出子集 $S_r$ 的定义：<br>
   任意取状态 $i$，对每一个 $r=0,1,\cdots,d-1$ ，定义集合</p>
 $$
 S_r=\{j\;|\;存在n \ge 0使得p_{ij}^{(nd+r)}>0\}
@@ -1266,7 +1273,7 @@ p_{ii}^{(nd+r+h)} \ge p_{ij}^{(nd+r)}p_{ji}^{(h)}>0\\[5pt]
 p_{ii}^{(md+s+h)} \ge p_{ij}^{(md+s)}p_{ji}^{(h)}>0
 \tag{26}
 $$<p>  由<a class="link" href="#%e5%91%a8%e6%9c%9f" >周期</a>的定义可知 $nd+r+h$ 和 $md+s+h$ 都可以被 $d$ 整除。省去前面的 $n$ 和 $m$ 可得 $r+h$ 和 $s+h$ 都可被 $d$ 整除。从而其差 $(r+h)-(s+h)=r-s$ 都能被 $d$ 整除(见<a class="link" onclick="alert('抱歉，“初等数论”还未上线~')">整除的基本性质</a>)。但是 $0 \le r \le d-1,0 \le s \le d-1$ ，故 $0 \le r-s \le d-1$ ，因此 $r-s$ 只能为 $0$ ，也就是 $r=s$ 。故 $S_r=S_s$ ，假设不成立，故 $S_r$ 不相交。<br>
-  接下来证明自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。等价于证明对任意 $j \in S_r$ ，有 $\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}=1$ 。事实上，由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" > $S_r$ 的定义</a>可知 $p_{ij}^{(nd+r)}&gt;0$ 。而由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" > $S_r$ 的定义</a>的定义可知对 $k \notin S_{r+1}$ 必有 $p_{ik}^{(nd+r+1)}=0$ 。因此由<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>和和<a class="link" href="#%e5%ae%9a%e7%90%863" >(9)式的展开技巧</a>可推导：</p>
+  接下来证明自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。等价于证明对任意 $j \in S_r$ ，有 $\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}=1$ 。事实上，由 $S_r$ 的定义可知 $p_{ij}^{(nd+r)}&gt;0$ 。而由<a class="link" href="#%2825%29%e5%bc%8f" >(25)式</a>可知对 $k \notin S_{r+1}$ 必有 $p_{ik}^{(nd+r+1)}=0$ 。因此由<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>和和<a class="link" href="#%e5%ae%9a%e7%90%863" >(9)式的展开技巧</a>可推导：</p>
 $$
 0=p_{ik}^{(nd+r+1)} \ge p_{ij}^{(nd+r)}p_{jk}^{(1)}>0
 \tag{27}
@@ -1274,8 +1281,8 @@ $$<p>  从而 $p_{jk}^{(1)}=0$ 。于是</p>
 $$
 1\:=\sum_{k \in S}{p_{jk}}=\sum_{k \in S_{r+1}}{p_{jk}^{(1)}} + \sum_{k \notin S_{r+1}}{p_{jk}^{(1)}}=\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}
 \tag{28}
-$$<p>  最后证明分解的唯一性。等价于与证明 $\{S_k\}$ 与初始的 $i$ 无关。也就是，对于任意的 $i,i^\prime$ 生成的分解 $\{S_k\},\{S_k^\prime\}$ 必相等。<br>
-  首先，证明对于 $\{S_k\}$ 中的任意 ${S_r}$ ，存在 ${S_s^\prime}$ 与其状态完全相等。首先证对所有 $j \in S_r$ ， $j$ 都只能属于 $\{S_k^\prime\}$ 中某个固定的集合。假设 $i^{\prime}$ 满足 $i^\prime \in S_s$ 。由于自 $S_k$ 任意状态出发经 $1$ 步转移必进入 $S_{k+1}$ 中，所以当 $s \le r$ 时，从 $i^{\prime}$ 到达 $j$ 只可能通过如下过程之一：</p>
+$$<p>  最后证明分解的唯一性。等价于与证明 $\set{S_k}$ 与初始的 $i$ 无关。也就是，对于任意的 $i,i^\prime$ 生成的分解 $\set{S_k},\set{S_k^\prime}$ 必相等。<br>
+  首先，证明对于 $\set{S_k}$ 中的任意 ${S_r}$ ，存在 ${S_s^\prime}$ 与其状态完全相等。首先证对所有 $j \in S_r$ ， $j$ 都只能属于 $\set{S_k^\prime}$ 中某个固定的集合。假设 $i^{\prime}$ 满足 $i^\prime \in S_s$ 。由于自 $S_k$ 任意状态出发经 $1$ 步转移必进入 $S_{k+1}$ 中，所以当 $s \le r$ 时，从 $i^{\prime}$ 到达 $j$ 只可能通过如下过程之一：</p>
 $$
 \begin{cases}
 S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r\\
@@ -1293,10 +1300,10 @@ S_r与S_{r-s}^{\prime}完全对等，若r \ge s \\[5pt]
 S_r与S_{d-(s-r)}^{\prime}完全对等，若r < s
 \end{cases}
 \tag{30}
-$$<p>  易证此时 $\{S_k\},\{S_k^\prime\}$ 一一对应。故分解是唯一的。</p>
+$$<p>  易证此时 $\set{S_k},\set{S_k^\prime}$ 一一对应。故分解是唯一的。</p>
 <h2 id="极限定理与不变分布">极限定理与不变分布
-</h2><h3 id="极限定理">极限定理
-</h3><h4 id="极限定理-1">极限定理
+</h2><h3 id="极限定理及其衍生定理">极限定理及其衍生定理
+</h3><h4 id="极限定理">极限定理
 </h4><p>  <strong>定理8（极限定理）</strong>：若状态 $j$ 是周期为 $d$ 的常返状态，则</p>
 $$
 \lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=\frac{d}{\mu_j}
@@ -1335,7 +1342,7 @@ $$
 \lambda=\limsup\limits_{n \rightarrow \infin}p_{nd}
 \tag{37}
 $$<p><span id="(38)式"></span>
-  根据<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">上极限的定义</a>可知，必然存在 $\{n\}$ 的子列 $\{n_m\},n_m \rightarrow \infin$ 使得</p>
+  根据<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">上极限的定义</a>可知，必然存在 $\set{n}$ 的子列 $\set{n_m},n_m \rightarrow \infin$ 使得</p>
 $$
 \lambda=\lim\limits_{m \rightarrow \infin}{p_{n_md}}=\limsup\limits_{m \rightarrow \infin}{p_{n_md}}=\liminf\limits_{m \rightarrow \infin}{p_{n_md}}
 \tag{38}
@@ -1464,7 +1471,7 @@ $$
 $$<p>  定理得证。</p>
 <p><span id="推论2"></span>
   <strong>推论2</strong>：有限状态的Markov链，不可能全为非常返状态，也不可能有零常返状态，从而不可约的有限Markov链是正常返的。</p>
-<p>  <strong>证明（推论2）</strong>：设状态空间 $S=\{1,2,\cdots,N\}$ ，若全部 $N$ 个状态都是非常返，则任取其中两个状态 $i,j$ ，若 $i \rightarrow j $ ，有 $p_{ij}^{(n)}\rightarrow 0$ （<a class="link" href="#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94" >定理9</a>）；若 $i \nrightarrow j$ ，则对 $\forall n$，$p_{ij}^{(n)}=0$ 。不管是哪种情况， $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}\to 0$ ，但是 $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}=1$ （与<a class="link" href="#%e6%9c%89%e9%99%90%e9%93%be%e5%92%8c%e6%97%a0%e9%99%90%e9%93%be" >(3)式</a>的②类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。<br>
+<p>  <strong>证明（推论2）</strong>：设状态空间 $S=\set{1,2,\cdots,N}$ ，若全部 $N$ 个状态都是非常返，则任取其中两个状态 $i,j$ ，若 $i \rightarrow j $ ，有 $p_{ij}^{(n)}\rightarrow 0$ （<a class="link" href="#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94" >定理9</a>）；若 $i \nrightarrow j$ ，则对 $\forall n$，$p_{ij}^{(n)}=0$ 。不管是哪种情况， $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}\to 0$ ，但是 $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}=1$ （与<a class="link" href="#%e6%9c%89%e9%99%90%e9%93%be%e5%92%8c%e6%97%a0%e9%99%90%e9%93%be" >(3)式</a>的②类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。<br>
   若 $S$ 中有零常返状态，设为 $i$ ，令 $C=\set{j | i \rightarrow j}$ ，则有 $\displaystyle\sum_{j \in C}p_{ij}^{(n)}=1$ 且 $j \rightarrow i$ （ $j \nrightarrow i$ 与 $i$ 的常返性相矛盾，类似<a class="link" href="#%e5%b8%b8%e8%bf%94%e4%ba%92%e9%80%9a%e5%88%99%e5%bf%85%e8%be%be" >引理2</a>的证明）。故 $i \leftrightarrow j$ ，从而 $j$ 也为零常返状态（<a class="link" href="#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8" >定理5</a>）。则 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ （<a class="link" href="#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94" >定理9</a>），从而 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}\to 0$ 。但是由 $j$ 的定义知 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}=1$ ，矛盾。因此有限状态的Markov链不可能有零常返状态。</p>
 <p>  <strong>推论3</strong>：若Markov链有一个零常返状态，则必有无限个零常返状态。</p>
 <p>  <strong>证明（推论3）</strong>：假设Markov链有一个零常返状态。由<a class="link" href="#%e7%8a%b6%e6%80%81%e7%a9%ba%e9%97%b4%e5%88%86%e8%a7%a3%e5%ae%9a%e7%90%86" >定理6</a>可知这个零常返状态必然存在于某个不可约类中，又有<a class="link" href="#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8" >定理5</a>可知这个类必然全都是零常返状态。由<a class="link" href="#%e6%8e%a8%e8%ae%ba2" >推论2</a>可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。</p>
@@ -1510,7 +1517,7 @@ $$<p>  <strong>证明（推论4）</strong>：在<a class="link" href="#%e5%
 $$
 \lim\limits_{n \to \infin}p_{ij}^{(nd)}=f_{ij}(0)\space\frac{d}{\mu_j}
 \tag{71}
-$$<p>  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。若 $i$ 与 $j$ 不在同一个 $S_s$ 中，则由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" >定理7</a>可知所有的 $f_{ij}^{(md)}=0$ 。若 $i,j$ 在同一个 $S_s$ 中，注意当 $n$ 不为 $d$ 的倍数的时候 $p_{ij}^{(n)}=0$ ，因此 $f_{ij}^{(n)}=0$ （见<a class="link" href="#%e5%b8%b8%e8%bf%94" > $f_{ij}^{(n)}$ 的定义</a>）。此时有</p>
+$$<p>  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。若 $i$ 与 $j$ 不在同一个 $S_s$ 中，则由<a class="link" href="#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb" >定理7</a>可知所有的 $f_{ij}^{(md)}=0$ 。若 $i,j$ 在同一个 $S_s$ 中，注意当 $n$ 不为 $d$ 的倍数的时候 $p_{ij}^{(n)}=0$ ，因此 $f_{ij}^{(n)}=0$ （见<a class="link" href="#%e5%b8%b8%e8%bf%94" >定义8</a>）。此时有</p>
 $$
 f_{ij}(0)=\sum_{m=0}^{\infin}f_{ij}^{(md)}=\sum_{m=0}^{\infin}f_{ij}^{(m)}=f_{ij}=1
 \tag{72}
@@ -1526,7 +1533,7 @@ $$
 \tag{73}
 $$<p>  为了证明<a class="link" href="#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b" >定理11</a>，我们需要先证明<a class="link" href="#%e5%bc%95%e7%90%863" >引理3</a>。</p>
 <p><span id="引理3"></span>
-  <strong>引理3</strong>：设有非负数列 $\{a_n\}$ 的 $d$ 个子列 $\{a_{kd+s}\}(s=0,1,2,\cdots,d-1)$ ，如果对每一个 $d$ ，存在极限 $\lim\limits_{k \to \infin}a_{kd+s}=b_s$ ，则有：</p>
+  <strong>引理3</strong>：设有非负数列 $\set{a_n}$ 的 $d$ 个子列 $\set{a_{kd+s}}(s=0,1,2,\cdots,d-1)$ ，如果对每一个 $d$ ，存在极限 $\lim\limits_{k \to \infin}a_{kd+s}=b_s$ ，则有：</p>
 $$
 \lim_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}a_k=\frac{1}{d}\sum_{s=0}^{d-1}b_s
 \tag{74}
@@ -1556,6 +1563,29 @@ $$
 \lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=\frac{1}{\mu_j}
 \tag{80}
 $$<p>  <strong>证明（推论5）</strong>：由<a class="link" href="#%e5%b8%b8%e8%bf%94%e4%ba%92%e9%80%9a%e5%88%99%e5%bf%85%e8%be%be" >引理2</a>可知 $f_{ij}=1$ ，又由<a class="link" href="#%e6%8e%a8%e8%ae%ba2" >推论2</a>可知 $i,j$ 都是正常返的。因此直接代入<a class="link" href="#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b" >定理11</a>可证得该推论。</p>
+<h3 id="不变分布与极限分布">不变分布与极限分布
+</h3><h4 id="不变分布">不变分布
+</h4><p>  <strong>定义10</strong>：对于Markov链，概率分布 $\set{\pi_j,j \in S}$ 称为<strong>不变的</strong>，若</p>
+$$
+\pi_j=\sum_{i \in S}\pi_ip_{ij}
+\tag{81}
+$$<p>  可见，若Markov链的初始分布 $P\set{X_0=j}=p_j$ 是不变分布，则 $X_1$ 的分布将是</p>
+$$
+\begin{aligned}
+P\set{X_1=j}=&\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
+=&\sum_{i \in S}p_{ij}p_i=p_j
+\end{aligned}
+\tag{82}
+$$<p>  这与 $X_0$ 的分布是相同的。依此类推， $X_n(n=0,1,2,\cdots)$ 将有相同的分布，这也是称 $\set{p_i(i \in S)}$ 为不变分布的原因。</p>
+<h4 id="极限分布">极限分布
+</h4><p>  <strong>定义11</strong>：称Markov链是<strong>遍历的</strong>，如果所有状态相通且均是周期为1的正常返状态，对遍历的Markov链，极限</p>
+$$
+\lim\limits_{n \to \infin}p_{ij}^{(n)}=\pi_j\quad j \in S
+\tag{83}
+$$<p>  称为Markov链的<strong>极限分布</strong>。且由<a class="link" href="#%e6%8e%a8%e8%ae%ba4" >推论4</a>知 $\pi_j=\displaystyle\frac{1}{\mu_j}$ 。</p>
+<p>  <strong>定理12</strong>：对于不可约非周期的Markov链：<br>
+  ①若它是遍历的，则 $\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n)}&gt;0$ 是不变分布且是唯一的不变分布。<br>
+  ②若状态都是瞬过的或全为零常返的，则不变分布不存在。</p>
 
     </div>
 </section>
@@ -1601,7 +1631,7 @@ $$<p>  <strong>证明（推论5）</strong>：由<a class="link" href="#%e5%
 
 
         <span>
-            最后更新于 Sep 27, 2024 11:07 CST
+            最后更新于 Sep 27, 2024 13:04 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1730,7 +1760,7 @@ $$<p>  <strong>证明（推论5）</strong>：由<a class="link" href="#%e5%
             
             
         
-        <span>本图书馆累计发布了4篇文章 共22664字</span>
+        <span>本图书馆累计发布了4篇文章 共22961字</span>
     </section>
 
     <section class="site-visit-count">
