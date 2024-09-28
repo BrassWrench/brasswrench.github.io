@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:tag' content='Markov链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:tag' content='不变分布' /><meta property='article:tag' content='连续时间Markov链' /><meta property='article:tag' content='Kolmogorov微分方程' /><meta property='article:tag' content='Markov链Monte Carlo方法' /><meta property='article:tag' content='隐Markov链' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-27T23:55:10&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:tag' content='Markov链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:tag' content='不变分布' /><meta property='article:tag' content='连续时间Markov链' /><meta property='article:tag' content='Kolmogorov微分方程' /><meta property='article:tag' content='Markov链Monte Carlo方法' /><meta property='article:tag' content='隐Markov链' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-28T12:32:01&#43;08:00'/>
 <meta name="twitter:title" content="随机过程（四）：Markov过程">
 <meta name="twitter:description" content="一种无后效性的随机过程">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -658,6 +658,12 @@
             <li><a href="#正则连续时间markov链">正则连续时间Markov链</a></li>
           </ol>
         </li>
+        <li><a href="#转移概率和kolmogorov微分方程">转移概率和Kolmogorov微分方程</a>
+          <ol>
+            <li><a href="#转移概率的性质">转移概率的性质</a></li>
+            <li><a href="#转移概率具有一致连续性">转移概率具有一致连续性</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -970,7 +976,7 @@
 </svg>
 
             <time class="article-words">
-                9736 字
+                10341 字
             </time>
         </div>
 
@@ -985,7 +991,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 20 分钟
+                    阅读时长: 21 分钟
                 </time>
             </div>
         
@@ -1597,30 +1603,35 @@ $$<p>  称为Markov链的<strong>极限分布</strong>。由<a class="link" 
 <p>  <strong>定理12</strong>：对于不可约非周期的Markov链：<br>
   ①若它是遍历的，则 $\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n)}&gt;0$ 是不变分布且是唯一的不变分布。<br>
   ②若状态都是瞬过的或全为零常返的，则不变分布不存在。</p>
-<p>  <strong>证明（定理12）</strong>：①对遍历的Markov链，由<a class="link" href="#%e6%8e%a8%e8%ae%ba4" >推论4的(70)式</a>可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}$ 存在，记为 $\pi_j$ 。首先证 $\set{\pi_j,j \in S}$ 是不变分布。由于 $\displaystyle\sum_{j \in S}p_{ij}^{(n)}=1$ ，则有</p>
+<p>  <strong>证明（定理12）</strong>：①对遍历的Markov链，由<a class="link" href="#%e6%8e%a8%e8%ae%ba4" >推论4的(70)式</a>可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}$ 存在，记为 $\pi_j$ 。首先证 $\set{\pi_j,j \in S}$ 是不变分布。由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Fatou引理</a>和<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>可得（因为级数是<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Riemann-Stieljes积分</a>的特例， 也可以看成关于点测度的Lebesgue积分， 所以Fatou引理和下文出现的Lebesgue控制收敛定理仍成立）。</p>
 $$
-\lim\limits_{n \to \infin}\sum_{j \in S}p_{ij}^{(n)}=1
+\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n+1)}=\lim\limits_{n \to \infin}\sum_{k \in S}p_{ik}^{(n)}p_{kj}\ge\sum_{k \in S}\lim\limits_{n \to \infin}p_{ik}^{(n)}p_{kj}=\sum_{k \in S}\pi_kp_{kj}
 \tag{84}
-$$<p>  由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Lebesgue控制收敛定理</a>和 $p_{ij}^{(n)}\le1$ 可知该极限与求和可交换。则</p>
+$$<p>  两边对 $j$ 求和，由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">概率归一性</a>有</p>
 $$
-\lim\limits_{n \to \infin}\sum_{j \in S}p_{ij}^{(n)}=\sum_{j \in S}\lim\limits_{n \to \infin}p_{ij}^{(n)}=\sum_{j \in S}\pi_j=1
+\sum_{j \in S}\pi_j\ge\sum_{j \in S}\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\pi_k\bigg(\sum_{j \in S}p_{kj}\bigg)=\sum_{k \in S}\pi_k
 \tag{85}
-$$<p>利用<a class="link" href="#C-K%e6%96%b9%e7%a8%8b" >C-K方程</a>得</p>
+$$<p>  因此，上式的大于等于号必须取等，否则将产生矛盾。因此：</p>
 $$
-p_{ij}^{(n+1)}=\sum_{k \in S}p_{ik}^{(n)}p_{kj}
+\pi_j=\sum_{k \in S}\pi_kp_{kj}
 \tag{86}
-$$<p>两边取极限，再由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Lebesgue控制收敛定理</a>和 $p_{ik}^{(n)}p_{kj} \le 1$ 可得</p>
+$$<p><span id="(87)式"></span>
+  从而 $\set{\pi_j,j \in S}$ 是不变分布。再来证 $\set{\pi_j,j \in S}$ 是唯一的不变分布。由上式和<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>可得</p>
 $$
-\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n+1)}=\lim\limits_{n \to \infin}\sum_{k \in S}p_{ik}^{(n)}p_{kj}=\sum_{k \in S}\lim\limits_{n \to \infin}p_{ik}^{(n)}p_{kj}=\sum_{k \in S}\pi_kp_{kj}
-\tag{86}
-$$<p>  从而 $\set{\pi_j,j \in S}$ 是不变分布。再来证 $\set{\pi_j,j \in S}$ 是唯一的不变分布。假设另外还有一个平衡分布 $\set{\tilde\pi_j,j \in S}$ ，则由<a class="link" href="#c-k%e6%96%b9%e7%a8%8b" >C-K方程</a>可得</p>
-$$
-\tilde\pi_j=\sum_{k \in S}\tilde\pi_kp_{kj}=\sum_{k \in S}\sum_{l \in S}\tilde\pi_lp_{lk}p_{kj}=\sum_{l \in S}\tilde\pi_lp_{lj}^{(2)}=\cdots=\sum_{k \in S}\tilde\pi_kp_{kj}^{(n)}(n=1,2,\dots)
+\pi_j=\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\sum_{l \in S}\pi_lp_{lk}p_{kj}=\sum_{l \in S}\pi_lp_{lj}^{(2)}=\cdots=\sum_{k \in S}\pi_kp_{kj}^{(n)}
 \tag{87}
-$$<p>  令 $n \to \infin$ ，由 $\displaystyle\sum_{k \in S}\pi_kp_{kj}^{(n)}&lt;1$ 、<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Lebesgue控制收敛定理</a>和 $\displaystyle\sum_{j \in S}\pi_j=1$ 可得</p>
+$$<p>  对 $\displaystyle\sum_{j \in S}p_{ij}^{(n)}=1$ 两边取 $n \to \infin$ 并由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Fatou引理</a>可得</p>
 $$
-\tilde\pi_j=\lim\limits_{n \to \infin}\sum_{k \in S}\tilde\pi_kp_{kj}^{(n)}=\sum_{k \in S}\lim\limits_{n \to \infin}\tilde\pi_kp_{kj}^{(n)}=\sum_{k \in S}\tilde\pi_k\pi_j=\pi_j
+1=\lim\limits_{n \to \infin}\sum_{j \in S}p_{ij}^{(n)}\ge\sum_{j \in S}\lim\limits_{n \to \infin}p_{ij}^{(n)}=\sum_{j \in S}\pi_j
 \tag{88}
+$$<p>  因此 $\displaystyle\sum_{j \in S}\pi_j\le 1$ 有限。将<a class="link" href="#%2887%29%e5%bc%8f" >(87)式</a>左右两边取 $n \to \infin$ 并由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Lebesgue控制收敛定理</a>可得</p>
+$$
+\pi_j=\lim\limits_{n \to \infin}\sum_{k \in S}\pi_kp_{kj}^{(n)}=\sum_{k \in S}\lim\limits_{n \to \infin}\pi_kp_{kj}^{(n)}=\pi_j\bigg(\sum_{k \in S}\pi_k\bigg)
+\tag{89}
+$$<p>  因此 $\displaystyle\sum_{k \in S}\pi_k=1$ 。假设另外还有一个平衡分布 $\set{\tilde\pi_j,j \in S}$ ，则有</p>
+$$
+\tilde\pi_j=\pi_j\bigg(\sum_{k \in S}\tilde\pi_k\bigg)=\pi_j
+\tag{90}
 $$<p>  因此 $\tilde\pi_j=\pi_j$ 。故分布唯一。接下来证②。假设存在一个不变分布 $\set{\pi_j,j \in S}$ ，则由①中证明可知 $\pi_j=\displaystyle\sum_{k \in S}\pi_kp_{kj}^{(n)}(n=1,2,\dots)$ 。令 $n \to \infin$ ，由<a class="link" href="#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94" >定理9</a>可知 $p_{kj}^{(n)} \to 0$ ，则任意 $\pi_j = 0$ ，然而这是不可能的。于是对非常返或零常返Markov链不存在不变分布。</p>
 <h2 id="连续时间markov链">连续时间Markov链
 </h2><h3 id="基本定义和性质">基本定义和性质
@@ -1631,7 +1642,7 @@ $$
 &P\set{X(t+s)=j|X(s)=i,X(u)=x(u),0\le u < s}\\[5pt]
 =&P\set{X(t+s)=j|X(s)=i}
 \end{aligned}
-\tag{89}
+\tag{91}
 $$<p>  成立，则称 $\set{X(t),t \ge 0}$ 是一个<strong>连续时间Markov链</strong>。<br>
   条件概率 $P\set{X(t+s)=j|X(s)=i}$ 记作 $p_{ij}(s,t)$ 表示过程在时刻 $s$ 处处于状态 $i$ ，经过 $t$ 时间后转移到 $j$ 的<strong>转移概率</strong>，并称 $\mathbf{P}(s,t)=(p_{ij}(s,t))$ 为相应的<strong>转移概率矩阵</strong>。</p>
 <h4 id="时齐连续时间markov链">时齐连续时间Markov链
@@ -1640,7 +1651,7 @@ $$<p>  成立，则称 $\set{X(t),t \ge 0}$ 是一个<strong>连续时间Mar
 <p>  <strong>证明（定理13）</strong>：只需证明 $\tau_i$ 是无记忆性的，即证明对 $s,t \ge 0$ 有（见<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">指数分布</a>）</p>
 $$
 P\set{\tau_i>s+t|\tau_i>s}=P\set{\tau_i>t}
-\tag{90}
+\tag{92}
 $$<p>  将上式写开并由<a class="link" href="#%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be%e7%9a%84%e5%ae%9a%e4%b9%89" >连续时间Markov链的定义</a>和<a class="link" href="#%e6%97%b6%e9%bd%90%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be" >时齐性</a>可得</p>
 $$
 \begin{aligned}
@@ -1650,7 +1661,7 @@ $$
 =&P\set{X(v)=i\space (0 < v \le t)|X(0)=i}\quad\text{（时齐性）}\\[5pt]
 =&P\set{\tau_i>t}
 \end{aligned}
-\tag{91}
+\tag{93}
 $$<h4 id="正则连续时间markov链">正则连续时间Markov链
 </h4><p>  <strong>定义14</strong>：称一个连续时间Markov链是<strong>正则的</strong>，若以概率1在任意有限长的时间内转移的次数是有限的。从而可得<strong>连续性条件</strong></p>
 $$
@@ -1659,8 +1670,56 @@ $$
 1,\quad i=j\\[5pt]
 0,\quad i \ne j
 \end{cases}
-\tag{92}
-$$<p>  <strong>注</strong>：“成立”和“以概率1成立”是有很大区别的。在概率论中，“以概率1成立”意味着某个事件在无限多次试验中几乎肯定会发生，但并不意味着它在每一次试验中都会发生。换句话说，存在极小的可能性（尽管这个可能性可能非常小，接近于0）该事件不会发生。见<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">以概率1收敛</a>。</p>
+\tag{94}
+$$<p>  下文讨论的连续时间马尔可夫链都是正则的。</p>
+<p>  <strong>注</strong>：“成立”和“以概率1成立”是有很大区别的。在概率论中，“以概率1成立”意味着某个事件在无限多次试验中几乎肯定会发生，但并不意味着它在每一次试验中都会发生。换句话说，存在极小的可能性（尽管这个可能性可能非常小，接近于0）该事件不会发生。见<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">以概率1收敛</a>。</p>
+<h3 id="转移概率和kolmogorov微分方程">转移概率和Kolmogorov微分方程
+</h3><h4 id="转移概率的性质">转移概率的性质
+</h4><p>  <strong>定理14</strong>：时齐连续时间Markov链的转移概率 $p_{ij}(t)$ 满足：<br>
+  ① $p_{ij}(t)\ge 0$<br>
+  ② $\displaystyle\sum_{j \in S}p_{ij}(t)=1$<br>
+  ③ $p_{ij}(t+s)=\displaystyle\sum_{k \in S}p_{ik}(t)p_{kj}(s)$   （<strong>连续时间Markov链的C-K方程</strong>）</p>
+<p>  <strong>证明（定理4）</strong>：①和②由 $p_{ij}(t)$ 的定义易知。下面证明③。由<a class="link" href="#%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be%e7%9a%84%e5%ae%9a%e4%b9%89" >连续时间Markov链的定义</a>和<a class="link" href="#%e6%97%b6%e9%bd%90%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be" >时齐性</a>可得</p>
+$$
+\begin{aligned}
+p_{ij}(t+s)=&P\set{X(t+s)=j|X(0)=i}\\[5pt]
+=&\sum_{k \in S}P\set{X(t+s)=j,X(t)=k|X(0)=i}\\[5pt]
+=&\sum_{k \in S}\frac{P\set{X(t+s)=j,X(t)=k,X(0)=i}}{P\set{X(0)=i}}\\[5pt]
+=&\sum_{k \in S}\frac{P\set{X(t+s)=j,X(t)=k,X(0)=i}}{P\set{X(t)=k,X(0)=i}}\frac{P\set{X(t)=k,X(0)=i}}{P\set{X(0)=i}}\\[5pt]
+=&\sum_{k \in S}P\set{X(t+s)=j|X(t)=k,X(0)=i}P\set{X(t)=k|X(0)=i}\\[5pt]
+=&\sum_{k \in S}P\set{X(t+s)=j|X(t)=k}p_{ik}(t)\quad\text{（连续时间Markov链定义）}\\[5pt]
+=&\sum_{k \in S}p_{kj}(s)p_{ik}(t)=\sum_{k \in S}p_{ik}(t)p_{kj}(s)\quad\text{（时齐性）}
+\end{aligned}
+\tag{95}
+$$<h4 id="转移概率具有一致连续性">转移概率具有一致连续性
+</h4><p>  <strong>定理15</strong>：对固定的 $i,j \in S=\set{0,1,2,\cdots}$ ， $p_{ij}(t)$是 $t$ 的一致连续函数（见<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">一致连续性</a>）。</p>
+<p>  <strong>证明（定理15）</strong>：设 $h&gt;0$ ，则</p>
+$$
+\begin{aligned}
+p_{ij}(t+h)-p_{ij}(t)=&\sum_{k \in S}p_{ik}(h)p_{kj}(t)-p_{ij}(t)\\
+=&p_{ii}(h)p_{ij}(t)-p_{ij}(t)+\sum_{k \ne i, k \in S}p_{ik}(h)p_{kj}(t)\\
+=&-(1-p_{ii}(h))p_{ij}(t)+\sum_{k \ne i, k \in S}p_{ik}(h)p_{kj}(t)
+\end{aligned}
+\tag{96}
+$$<p>  从而得到</p>
+$$
+\begin{aligned}
+p_{ij}(t+h)-p_{ij}(t)\ge&-(1-p_{ii}(h))p_{ij}(t)\\
+\ge&-(1-p_{ii}(h))\\
+\end{aligned}
+\tag{97}
+$$<p>  和</p>
+$$
+\begin{aligned}
+p_{ij}(t+h)-p_{ij}(t)\le&\sum_{k \ne i, k \in S}p_{ik}(h)p_{kj}(t)\\
+\le&\sum_{k \ne i, k \in S}p_{ik}(h)=1-p_{ii}(h)\\
+\end{aligned}
+\tag{98}
+$$<p>  因此得到</p>
+$$
+|p_{ij}(t+h)-p_{ij}(t)|\le 1-p_{ii}(h)
+\tag{99}
+$$<p>  对 $h&lt;0$ 也可以得到类似的结果。注意由<a class="link" href="#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be" >正则性</a>可知 $\lim\limits_{h \to 0}p_{ii}(h)=1$ 。因此 $\forall \epsilon &gt; 0$ ，$\exist \delta &gt; 0$ 满足 $h &lt; \delta$ 时恒有 $1-p_{ii}(h)&lt;\epsilon$ ，即 $|p_{ij}(t+h)-p_{ij}(t)|&lt;\epsilon$ 。因此，$p_{ij}(t)$ 一致连续（见<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">一致连续性</a>）。</p>
 
     </div>
 </section>
@@ -1716,7 +1775,7 @@ $$<p>  <strong>注</strong>：“成立”和“以概率1成立”是有很
 
 
         <span>
-            最后更新于 Sep 27, 2024 23:55 CST
+            最后更新于 Sep 28, 2024 12:32 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1846,7 +1905,7 @@ $$<p>  <strong>注</strong>：“成立”和“以概率1成立”是有很
             
             
         
-        <span>本图书馆累计发布了4篇文章 共24023字</span>
+        <span>本图书馆累计发布了4篇文章 共24628字</span>
     </section>
 
     <section class="site-visit-count">
