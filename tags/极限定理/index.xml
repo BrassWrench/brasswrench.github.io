@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 28 Sep 2024 12:32:01 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 28 Sep 2024 15:44:44 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：Markov过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -51,7 +51,7 @@ $$&lt;p&gt;  则称随机过程 $\set{X_n,n=0,1,2,\cdots}$ 为&lt;strong&gt;
 &lt;h4 id=&#34;markov性&#34;&gt;Markov性
 &lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#Markov%e9%93%be&#34; &gt;式1&lt;/a&gt;刻画了Markov链的特性，故称为&lt;strong&gt;Markov性&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;转移概率&#34;&gt;转移概率
-&lt;/h3&gt;&lt;h4 id=&#34;转移概率-1&#34;&gt;转移概率
+&lt;/h3&gt;&lt;h4 id=&#34;转移概率的定义&#34;&gt;转移概率的定义
 &lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义2&lt;/strong&gt;：称&lt;a class=&#34;link&#34; href=&#34;#Markov%e9%93%be&#34; &gt;式1&lt;/a&gt;中的条件概率 $P\set{X_{n+1}=j|X_n=i}$ 为Markov链 $\set{X_n(n=0,1,2,\cdots)}$ 的&lt;strong&gt;一步转移概率&lt;/strong&gt;，简称&lt;strong&gt;转移概率&lt;/strong&gt;。&lt;br&gt;
   一般情况下，转移概率与状态$i,j$和时刻$n$有关。&lt;/p&gt;
 &lt;h4 id=&#34;时齐markov链&#34;&gt;时齐Markov链
@@ -588,7 +588,7 @@ $$
 \tag{83}
 $$&lt;p&gt;  称为Markov链的&lt;strong&gt;极限分布&lt;/strong&gt;。由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4&lt;/a&gt;知 $\pi_j$ 存在且 $\pi_j=\displaystyle\frac{1}{\mu_j}$ 。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;定理12&lt;/strong&gt;：对于不可约非周期的Markov链：&lt;br&gt;
-  ①若它是遍历的，则 $\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n)}&amp;gt;0$ 是不变分布且是唯一的不变分布。&lt;br&gt;
+  ①若它是遍历的，则 $\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n)}&amp;gt;0$ 是不变分布且是唯一的不变分布（&lt;strong&gt;遍历定理&lt;/strong&gt;）。&lt;br&gt;
   ②若状态都是瞬过的或全为零常返的，则不变分布不存在。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（定理12）&lt;/strong&gt;：①对遍历的Markov链，由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4的(70)式&lt;/a&gt;可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}$ 存在，记为 $\pi_j$ 。首先证 $\set{\pi_j,j \in S}$ 是不变分布。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;可得（因为级数是&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Riemann-Stieljes积分&lt;/a&gt;的特例， 也可以看成关于点测度的Lebesgue积分， 所以Fatou引理和下文出现的Lebesgue控制收敛定理仍成立）。&lt;/p&gt;
 $$
@@ -658,7 +658,7 @@ $$
 0,\quad i \ne j
 \end{cases}
 \tag{94}
-$$&lt;p&gt;  下文讨论的连续时间马尔可夫链都是正则的。&lt;/p&gt;
+$$&lt;p&gt;  本文讨论的连续时间马尔可夫链都是正则的。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：“成立”和“以概率1成立”是有很大区别的。在概率论中，“以概率1成立”意味着某个事件在无限多次试验中几乎肯定会发生，但并不意味着它在每一次试验中都会发生。换句话说，存在极小的可能性（尽管这个可能性可能非常小，接近于0）该事件不会发生。见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;以概率1收敛&lt;/a&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;转移概率和kolmogorov微分方程&#34;&gt;转移概率和Kolmogorov微分方程
 &lt;/h3&gt;&lt;h4 id=&#34;转移概率的性质&#34;&gt;转移概率的性质
@@ -666,7 +666,7 @@ $$&lt;p&gt;  下文讨论的连续时间马尔可夫链都是正则的。&lt
   ① $p_{ij}(t)\ge 0$&lt;br&gt;
   ② $\displaystyle\sum_{j \in S}p_{ij}(t)=1$&lt;br&gt;
   ③ $p_{ij}(t+s)=\displaystyle\sum_{k \in S}p_{ik}(t)p_{kj}(s)$   （&lt;strong&gt;连续时间Markov链的C-K方程&lt;/strong&gt;）&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理4）&lt;/strong&gt;：①和②由 $p_{ij}(t)$ 的定义易知。下面证明③。由&lt;a class=&#34;link&#34; href=&#34;#%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be%e7%9a%84%e5%ae%9a%e4%b9%89&#34; &gt;连续时间Markov链的定义&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e6%97%b6%e9%bd%90%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;时齐性&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（定理14）&lt;/strong&gt;：①和②由 $p_{ij}(t)$ 的定义易知。下面证明③。由&lt;a class=&#34;link&#34; href=&#34;#%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be%e7%9a%84%e5%ae%9a%e4%b9%89&#34; &gt;连续时间Markov链的定义&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e6%97%b6%e9%bd%90%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;时齐性&lt;/a&gt;可得&lt;/p&gt;
 $$
 \begin{aligned}
 p_{ij}(t+s)=&amp;P\set{X(t+s)=j|X(0)=i}\\[5pt]
@@ -706,7 +706,36 @@ $$&lt;p&gt;  因此得到&lt;/p&gt;
 $$
 |p_{ij}(t+h)-p_{ij}(t)|\le 1-p_{ii}(h)
 \tag{99}
-$$&lt;p&gt;  对 $h&amp;lt;0$ 也可以得到类似的结果。注意由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;正则性&lt;/a&gt;可知 $\lim\limits_{h \to 0}p_{ii}(h)=1$ 。因此 $\forall \epsilon &amp;gt; 0$ ，$\exist \delta &amp;gt; 0$ 满足 $h &amp;lt; \delta$ 时恒有 $1-p_{ii}(h)&amp;lt;\epsilon$ ，即 $|p_{ij}(t+h)-p_{ij}(t)|&amp;lt;\epsilon$ 。因此，$p_{ij}(t)$ 一致连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
+$$&lt;p&gt;  对 $h&amp;lt;0$ 也可以得到类似的结果。注意由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;正则性&lt;/a&gt;可知 $\displaystyle\lim\limits_{h \to 0}p_{ii}(h)=1$ 。因此 $\forall \epsilon &amp;gt; 0$ ，$\exist \delta &amp;gt; 0$ 满足 $h &amp;lt; \delta$ 时恒有 $1-p_{ii}(h)&amp;lt;\epsilon$ ，即 $|p_{ij}(t+h)-p_{ij}(t)|&amp;lt;\epsilon$ 。因此，$p_{ij}(t)$ 一致连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
+&lt;h4 id=&#34;转移速率&#34;&gt;转移速率
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理16&lt;/strong&gt;：① $\displaystyle\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=q_{ii}\le+\infin$&lt;/p&gt;
+&lt;p&gt;  ② $\displaystyle\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}=q_{ij}&amp;lt;+\infin$&lt;/p&gt;
+&lt;p&gt;  称 $q_{ij}$ 为从状态 $i$ 转移到状态 $j$ 的&lt;strong&gt;转移速率&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（定理16）&lt;/strong&gt;：先证①。首先由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;连续性条件&lt;/a&gt;可知对任意固定的 $t&amp;gt;0$ ，当 $n$ 充分大时，有 $p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)&amp;gt;0$ ，再由&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得结论 $p_{ii}(s+t)=\displaystyle\sum_{k \in S}p_{ik}(s)p_{ki}(t)\ge p_{ii}(s)p_{ii}(t)$ ，因此 $p_{ii}(t)\ge \bigg(p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)\bigg)^n&amp;gt;0$ 。故可以定义 $\phi(t)=-\ln p_{ii}(t)$ ，它非负有限，且由于 $p_{ii}(s+t)\ge p_{ii}(s)p_{ii}(t)$ ，有 $\phi(s+t) \le \phi(s)+\phi(t)$ 。令 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}$ ，现在要证明 $\displaystyle\frac{\phi(t)}{t}$ 极限存在且为其上确界。显然&lt;/p&gt;
+$$
+0 \le q_{ii} \le \infin,\quad \limsup\limits_{t \to 0}\le q_{ii}
+\tag{100}
+$$&lt;p&gt;  所以以下只需证下极限 $\displaystyle\liminf\limits_{t \to 0}\frac{\phi(t)}{t}\ge q_{ii}$ 。任给 $0 &amp;lt; h &amp;lt; t$ ，取 $n$ 使 $t=nh+\epsilon,\space 0 \le \epsilon &amp;lt; h$ ，得&lt;/p&gt;
+$$
+\frac{\phi(t)}{t} \le \frac{n\phi(h)}{t}+\frac{\phi(\epsilon)}{t} = \frac{nh}{t}\frac{\phi(h)}{h}+\frac{\phi(\epsilon)}{t}
+\tag{101}
+$$&lt;p&gt;  注意当 $h \to 0^+$ 时，$\epsilon \to 0$ ，$\displaystyle\frac{nh}{t} \to 1$ ， $\phi(\epsilon)=-\ln p_{ii}(\epsilon) \to 0$ ，故 $\displaystyle\frac{\phi(t)}{t}\le\liminf\limits_{h \to 0}\frac{\phi(h)}{h}$ 因此 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}\le\liminf\limits_{t \to 0}\frac{\phi(t)}{t}$ 。从而 $\displaystyle q_{ii}=\lim\limits_{t \to 0}\frac{\phi(t)}{t}$ 。由 $\phi(t)$ 定义得&lt;/p&gt;
+$$
+\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=\lim\limits_{t \to 0}\frac{1-e^{-\phi(t)}}{\phi(t)}\frac{\phi(t)}{t}=\lim\limits_{t \to 0}\frac{\phi(t)}{t}=q_{ii}
+\tag{102}
+$$&lt;p&gt;  再证②。由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;连续性条件&lt;/a&gt;，对任意 $\displaystyle 0 &amp;lt; \epsilon &amp;lt; \frac{1}{3}$ ，存在 $0 &amp;lt; \delta &amp;lt; 1$ ，使当 $0 &amp;lt; t \le \delta $ 时，有 $p_{ii}(t)&amp;gt;1-\epsilon$ ， $p_{jj}(t)&amp;gt;1-\epsilon$ ， $p_{ji}(t)&amp;lt;\epsilon$ 。&lt;br&gt;
+  下面要证：对任意 $0 \le h &amp;lt; t$ ，只要 $t \le \delta$ ，则有&lt;/p&gt;
+$$
+p_{ij}(h)\le\frac{p_{ij}(t)}{n}\frac{1}{1-3\epsilon}
+\tag{103}
+$$&lt;p&gt;其中 $\displaystyle n=\big\lfloor \frac{t}{h} \big\rfloor$ （向下取整）。记&lt;/p&gt;
+$$
+\begin{cases}
+_jp_{ik}(h)=p_{ik}(h)\\[10pt]
+_jp_{ik}(mh)=\displaystyle\sum_{r \ne j}{_jp_{ir}((m-1)h)p_{rk}(h)}
+\end{cases}
+\tag{104}
+$$&lt;p&gt;其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)h$ 未到达 $j$ 而在 $mh$ 时刻到达 $k$ 的概率。当 $h &amp;lt; t \le \delta$ 时，有&lt;/p&gt;
 </description>
         </item>
         
