@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:tag' content='Markov链' /><meta property='article:tag' content='C-K方程' /><meta property='article:tag' content='极限定理' /><meta property='article:tag' content='不变分布' /><meta property='article:tag' content='遍历定理' /><meta property='article:tag' content='连续时间Markov链' /><meta property='article:tag' content='Kolmogorov微分方程' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-28T20:34:27&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/figures/image.zh-cn.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov链' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-29T01:23:11&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/figures/image.zh-cn.svg' />
 <meta name="twitter:title" content="随机过程（四）：Markov过程">
 <meta name="twitter:description" content="一种无后效性的随机过程"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/figures/image.zh-cn.svg' />
@@ -994,7 +994,7 @@
 </svg>
 
             <time class="article-words">
-                10772 字
+                11329 字
             </time>
         </div>
 
@@ -1009,7 +1009,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 22 分钟
+                    阅读时长: 23 分钟
                 </time>
             </div>
         
@@ -1740,7 +1740,7 @@ $$
 $$<p>  对 $h&lt;0$ 也可以得到类似的结果。注意由<a class="link" href="#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be" >正则性</a>可知 $\displaystyle\lim\limits_{h \to 0}p_{ii}(h)=1$ 。因此 $\forall \epsilon &gt; 0$ ，$\exist \delta &gt; 0$ 满足 $h &lt; \delta$ 时恒有 $1-p_{ii}(h)&lt;\epsilon$ ，即 $|p_{ij}(t+h)-p_{ij}(t)|&lt;\epsilon$ 。因此，$p_{ij}(t)$ 一致连续（见<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">一致连续性</a>）。</p>
 <h4 id="转移速率">转移速率
 </h4><p>  <strong>定理16</strong>：① $\displaystyle\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=q_{ii}\le+\infin$</p>
-<p>  ② $\displaystyle\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}=q_{ij}&lt;+\infin$</p>
+<p>  ② $\displaystyle\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}=q_{ij}&lt;+\infin$ ($i \ne j$)</p>
 <p>  称 $q_{ij}$ 为从状态 $i$ 转移到状态 $j$ 的<strong>转移速率</strong>。</p>
 <p>  <strong>证明（定理16）</strong>：先证①。首先由<a class="link" href="#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be" >连续性条件</a>可知对任意固定的 $t&gt;0$ ，当 $n$ 充分大时，有 $p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)&gt;0$ ，再由<a class="link" href="#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8" >C-K方程</a>可得结论 $p_{ii}(s+t)=\displaystyle\sum_{k \in S}p_{ik}(s)p_{ki}(t)\ge p_{ii}(s)p_{ii}(t)$ ，因此 $p_{ii}(t)\ge \bigg(p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)\bigg)^n&gt;0$ 。故可以定义 $\phi(t)=-\ln p_{ii}(t)$ ，它非负有限，且由于 $p_{ii}(s+t)\ge p_{ii}(s)p_{ii}(t)$ ，有 $\phi(s+t) \le \phi(s)+\phi(t)$ 。令 $q_{ii}=\displaystyle\sup\limits_{t&gt;0}\frac{\phi(t)}{t}$ ，现在要证明 $\displaystyle\frac{\phi(t)}{t}$ 极限存在且为其上确界。显然</p>
 $$
@@ -1756,6 +1756,8 @@ $$
 \tag{102}
 $$<p>  再证②。由<a class="link" href="#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be" >连续性条件</a>，对任意 $\displaystyle 0 &lt; \epsilon &lt; \frac{1}{3}$ ，存在 $0 &lt; \delta &lt; 1$ ，使当 $0 &lt; t \le \delta $ 时，有 $p_{ii}(t)&gt;1-\epsilon$ ， $p_{jj}(t)&gt;1-\epsilon$ ， $p_{ji}(t)&lt;\epsilon$ 。<br>
   下面要证：对任意 $0 \le h &lt; t$ ，只要 $t \le \delta$ ，则有</p>
+<p><span id="(103)式"></span>
+</p>
 $$
 p_{ij}(h)\le\frac{p_{ij}(t)}{n}\frac{1}{1-3\epsilon}
 \tag{103}
@@ -1766,7 +1768,81 @@ _jp_{ik}(h)=p_{ik}(h)\\[10pt]
 _jp_{ik}(mh)=\displaystyle\sum_{r \ne j}{_jp_{ir}((m-1)h)p_{rk}(h)}
 \end{cases}
 \tag{104}
-$$<p>其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)h$ 未到达 $j$ 而在 $mh$ 时刻到达 $k$ 的概率。当 $h &lt; t \le \delta$ 时，有</p>
+$$<p>  其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)h$ 未到达 $j$ 而在 $mh$ 时刻到达 $k$ 的概率。反复展开 \(_jp_{ik}(mh)\) 并由<a class="link" href="#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8" >C-K方程</a>可得</p>
+<p><span id="(105)式"></span>
+</p>
+$$
+\begin{aligned}
+_jp_{ik}(mh)=&\sum_{r \ne j}{_jp_{ir}((m-1)h)p_{rk}(h)}\\
+=&\sum_r{_jp_{ir}((m-1)h)p_{rk}(h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\\
+=&\sum_r\sum_{s \ne j}{_jp_{is}((m-2)h)p_{sr}(h)p_{rk}(h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\\
+=&\sum_{s \ne j}{_jp_{is}((m-2)h)p_{sk}(2h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\quad\text{（C-K方程）}\\
+=&\sum_s{_jp_{is}((m-2)h)p_{sk}(2h)}-{_jp_{ij}((m-2)h)p_{jk}(2h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\\
+=&\cdots\\
+=&\sum_r{_jp_{ir}(h)p_{rk}((m-1)h)}-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\\
+=&\sum_r{p_{ir}(h)p_{rk}((m-1)h)}-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\\
+=&p_{ik}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\quad\text{（C-K方程）}\\
+=&p_{ik}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)p_{jk}((m-l)h)}\quad（换元l \to (m-l)）
+\end{aligned}
+\tag{105}
+$$<p>  由<a class="link" href="#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be" >连续性条件</a>可得</p>
+$$
+\begin{aligned}
+p_{ik}(mh)=&_jp_{ik}(mh)+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\\
+=&_jp_{ij}(mh)\delta_{jk}+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\\
+=&_jp_{ij}(mh)p_{jk}(0)+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\quad（连续性条件）\\
+=&\sum_{l=1}^{m}{_jp_{ij}(lh)p_{jk}((m-l)h)}
+\end{aligned}
+\tag{106}
+$$<p>  由上式和<a class="link" href="#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8" >C-K方程</a>可得</p>
+<p><span id="(107)式"></span>
+</p>
+$$
+\begin{aligned}
+p_{ij}(t)=&\sum_k{p_{ik}(nh)p_{kj}(t-nh)}\\
+=&\sum_k\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jk}((n-m)h)}p_{kj}(t-nh)\\
+=&\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}
+\end{aligned}
+\tag{107}
+$$<p>  当 $h &lt; t \le \delta$ 时，由上式可得</p>
+$$
+\begin{aligned}
+\epsilon > 1-p_{ii}(t)=&\sum_{k \ne i}p_{ik}(t)\\[10pt]
+\ge&p_{ij}(t)\quad（注意i \ne j）\\[5pt]
+\ge&\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}\\
+\ge&(1-\epsilon)\sum_{m=1}^{n}{_jp_{ij}(mh)}
+\end{aligned}
+\tag{108}
+$$<p>即</p>
+$$
+\sum_{m=1}^{n}{_jp_{ij}(mh)} \le \frac{\epsilon}{1-\epsilon}
+\tag{109}
+$$<p>  <a class="link" href="#%28105%29%e5%bc%8f" >(105)式</a>取 $k=i$ 可得</p>
+$$
+\begin{aligned}
+_jp_{ii}(mh)=&p_{ii}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)p_{ji}((m-l)h)}\\
+\ge&p_{ii}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)}\\
+\ge&1 - \epsilon - \frac{\epsilon}{1-\epsilon}
+\end{aligned}
+\tag{110}
+$$<p>  因此由<a class="link" href="#%28107%29%e5%bc%8f" >(107)式</a>和<a class="link" href="#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8" >C-K方程</a>可得</p>
+$$
+\begin{aligned}
+p_{ij}(t)=&\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}\\[5pt]
+\ge&\sum_{m=1}^{n}{_jp_{ii}((m-1)h)p_{ij}(h)p_{jj}(t-mh)}\\[5pt]
+\ge&n(1 - \epsilon - \frac{\epsilon}{1-\epsilon})p_{ij}(h)(1-\epsilon)\\[10pt]
+\ge&n(1-3\epsilon)p_{ij}(h)
+\end{aligned}
+\tag{111}
+$$<p>  <a class="link" href="#%28103%29%e5%bc%8f" >(103)式</a>得证。两边除以 $h$ 并注意当 $h \to 0$ 时 $nh \to t$ ，得</p>
+$$
+\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\frac{p_{ij}(t)}{t} < \infin
+\tag{112}
+$$<p>  再令 $t \to 0$ ，有</p>
+$$
+\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\liminf\limits_{t \to 0}\frac{p_{ij}(t)}{t} < \infin
+\tag{113}
+$$<p>  再令 $\epsilon \to 0$ ，定理得证。</p>
 
     </div>
 </section>
@@ -1779,21 +1855,7 @@ $$<p>其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)
     
     <section class="article-tags">
         
-            <a href="/tags/markov%E8%BF%87%E7%A8%8B/">Markov过程</a>
-        
             <a href="/tags/markov%E9%93%BE/">Markov链</a>
-        
-            <a href="/tags/c-k%E6%96%B9%E7%A8%8B/">C-K方程</a>
-        
-            <a href="/tags/%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86/">极限定理</a>
-        
-            <a href="/tags/%E4%B8%8D%E5%8F%98%E5%88%86%E5%B8%83/">不变分布</a>
-        
-            <a href="/tags/%E9%81%8D%E5%8E%86%E5%AE%9A%E7%90%86/">遍历定理</a>
-        
-            <a href="/tags/%E8%BF%9E%E7%BB%AD%E6%97%B6%E9%97%B4markov%E9%93%BE/">连续时间Markov链</a>
-        
-            <a href="/tags/kolmogorov%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/">Kolmogorov微分方程</a>
         
     </section>
 
@@ -1820,7 +1882,7 @@ $$<p>其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)
 
 
         <span>
-            最后更新于 Sep 28, 2024 20:34 CST
+            最后更新于 Sep 29, 2024 01:23 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1952,7 +2014,7 @@ $$<p>其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)
             
             
         
-        <span>本图书馆累计发布了4篇文章 共25059字</span>
+        <span>本图书馆累计发布了4篇文章 共25616字</span>
     </section>
 
     <section class="site-visit-count">

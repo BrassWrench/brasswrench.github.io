@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 28 Sep 2024 20:34:27 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 29 Sep 2024 01:23:11 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>图像生成模型（一）：扩散模型的基本原理</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/</link>
         <pubDate>Thu, 26 Sep 2024 13:00:05 +0800</pubDate>
@@ -1341,7 +1341,7 @@ $$
 $$&lt;p&gt;  对 $h&amp;lt;0$ 也可以得到类似的结果。注意由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;正则性&lt;/a&gt;可知 $\displaystyle\lim\limits_{h \to 0}p_{ii}(h)=1$ 。因此 $\forall \epsilon &amp;gt; 0$ ，$\exist \delta &amp;gt; 0$ 满足 $h &amp;lt; \delta$ 时恒有 $1-p_{ii}(h)&amp;lt;\epsilon$ ，即 $|p_{ij}(t+h)-p_{ij}(t)|&amp;lt;\epsilon$ 。因此，$p_{ij}(t)$ 一致连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
 &lt;h4 id=&#34;转移速率&#34;&gt;转移速率
 &lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理16&lt;/strong&gt;：① $\displaystyle\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=q_{ii}\le+\infin$&lt;/p&gt;
-&lt;p&gt;  ② $\displaystyle\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}=q_{ij}&amp;lt;+\infin$&lt;/p&gt;
+&lt;p&gt;  ② $\displaystyle\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}=q_{ij}&amp;lt;+\infin$ ($i \ne j$)&lt;/p&gt;
 &lt;p&gt;  称 $q_{ij}$ 为从状态 $i$ 转移到状态 $j$ 的&lt;strong&gt;转移速率&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（定理16）&lt;/strong&gt;：先证①。首先由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;连续性条件&lt;/a&gt;可知对任意固定的 $t&amp;gt;0$ ，当 $n$ 充分大时，有 $p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)&amp;gt;0$ ，再由&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得结论 $p_{ii}(s+t)=\displaystyle\sum_{k \in S}p_{ik}(s)p_{ki}(t)\ge p_{ii}(s)p_{ii}(t)$ ，因此 $p_{ii}(t)\ge \bigg(p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)\bigg)^n&amp;gt;0$ 。故可以定义 $\phi(t)=-\ln p_{ii}(t)$ ，它非负有限，且由于 $p_{ii}(s+t)\ge p_{ii}(s)p_{ii}(t)$ ，有 $\phi(s+t) \le \phi(s)+\phi(t)$ 。令 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}$ ，现在要证明 $\displaystyle\frac{\phi(t)}{t}$ 极限存在且为其上确界。显然&lt;/p&gt;
 $$
@@ -1357,6 +1357,8 @@ $$
 \tag{102}
 $$&lt;p&gt;  再证②。由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;连续性条件&lt;/a&gt;，对任意 $\displaystyle 0 &amp;lt; \epsilon &amp;lt; \frac{1}{3}$ ，存在 $0 &amp;lt; \delta &amp;lt; 1$ ，使当 $0 &amp;lt; t \le \delta $ 时，有 $p_{ii}(t)&amp;gt;1-\epsilon$ ， $p_{jj}(t)&amp;gt;1-\epsilon$ ， $p_{ji}(t)&amp;lt;\epsilon$ 。&lt;br&gt;
   下面要证：对任意 $0 \le h &amp;lt; t$ ，只要 $t \le \delta$ ，则有&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;(103)式&#34;&gt;&lt;/span&gt;
+&lt;/p&gt;
 $$
 p_{ij}(h)\le\frac{p_{ij}(t)}{n}\frac{1}{1-3\epsilon}
 \tag{103}
@@ -1367,7 +1369,81 @@ _jp_{ik}(h)=p_{ik}(h)\\[10pt]
 _jp_{ik}(mh)=\displaystyle\sum_{r \ne j}{_jp_{ir}((m-1)h)p_{rk}(h)}
 \end{cases}
 \tag{104}
-$$&lt;p&gt;其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)h$ 未到达 $j$ 而在 $mh$ 时刻到达 $k$ 的概率。当 $h &amp;lt; t \le \delta$ 时，有&lt;/p&gt;
+$$&lt;p&gt;  其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)h$ 未到达 $j$ 而在 $mh$ 时刻到达 $k$ 的概率。反复展开 \(_jp_{ik}(mh)\) 并由&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;(105)式&#34;&gt;&lt;/span&gt;
+&lt;/p&gt;
+$$
+\begin{aligned}
+_jp_{ik}(mh)=&amp;\sum_{r \ne j}{_jp_{ir}((m-1)h)p_{rk}(h)}\\
+=&amp;\sum_r{_jp_{ir}((m-1)h)p_{rk}(h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\\
+=&amp;\sum_r\sum_{s \ne j}{_jp_{is}((m-2)h)p_{sr}(h)p_{rk}(h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\\
+=&amp;\sum_{s \ne j}{_jp_{is}((m-2)h)p_{sk}(2h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\quad\text{（C-K方程）}\\
+=&amp;\sum_s{_jp_{is}((m-2)h)p_{sk}(2h)}-{_jp_{ij}((m-2)h)p_{jk}(2h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\\
+=&amp;\cdots\\
+=&amp;\sum_r{_jp_{ir}(h)p_{rk}((m-1)h)}-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\\
+=&amp;\sum_r{p_{ir}(h)p_{rk}((m-1)h)}-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\\
+=&amp;p_{ik}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\quad\text{（C-K方程）}\\
+=&amp;p_{ik}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)p_{jk}((m-l)h)}\quad（换元l \to (m-l)）
+\end{aligned}
+\tag{105}
+$$&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;连续性条件&lt;/a&gt;可得&lt;/p&gt;
+$$
+\begin{aligned}
+p_{ik}(mh)=&amp;_jp_{ik}(mh)+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\\
+=&amp;_jp_{ij}(mh)\delta_{jk}+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\\
+=&amp;_jp_{ij}(mh)p_{jk}(0)+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\quad（连续性条件）\\
+=&amp;\sum_{l=1}^{m}{_jp_{ij}(lh)p_{jk}((m-l)h)}
+\end{aligned}
+\tag{106}
+$$&lt;p&gt;  由上式和&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;(107)式&#34;&gt;&lt;/span&gt;
+&lt;/p&gt;
+$$
+\begin{aligned}
+p_{ij}(t)=&amp;\sum_k{p_{ik}(nh)p_{kj}(t-nh)}\\
+=&amp;\sum_k\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jk}((n-m)h)}p_{kj}(t-nh)\\
+=&amp;\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}
+\end{aligned}
+\tag{107}
+$$&lt;p&gt;  当 $h &amp;lt; t \le \delta$ 时，由上式可得&lt;/p&gt;
+$$
+\begin{aligned}
+\epsilon &gt; 1-p_{ii}(t)=&amp;\sum_{k \ne i}p_{ik}(t)\\[10pt]
+\ge&amp;p_{ij}(t)\quad（注意i \ne j）\\[5pt]
+\ge&amp;\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}\\
+\ge&amp;(1-\epsilon)\sum_{m=1}^{n}{_jp_{ij}(mh)}
+\end{aligned}
+\tag{108}
+$$&lt;p&gt;即&lt;/p&gt;
+$$
+\sum_{m=1}^{n}{_jp_{ij}(mh)} \le \frac{\epsilon}{1-\epsilon}
+\tag{109}
+$$&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#%28105%29%e5%bc%8f&#34; &gt;(105)式&lt;/a&gt;取 $k=i$ 可得&lt;/p&gt;
+$$
+\begin{aligned}
+_jp_{ii}(mh)=&amp;p_{ii}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)p_{ji}((m-l)h)}\\
+\ge&amp;p_{ii}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)}\\
+\ge&amp;1 - \epsilon - \frac{\epsilon}{1-\epsilon}
+\end{aligned}
+\tag{110}
+$$&lt;p&gt;  因此由&lt;a class=&#34;link&#34; href=&#34;#%28107%29%e5%bc%8f&#34; &gt;(107)式&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
+$$
+\begin{aligned}
+p_{ij}(t)=&amp;\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}\\[5pt]
+\ge&amp;\sum_{m=1}^{n}{_jp_{ii}((m-1)h)p_{ij}(h)p_{jj}(t-mh)}\\[5pt]
+\ge&amp;n(1 - \epsilon - \frac{\epsilon}{1-\epsilon})p_{ij}(h)(1-\epsilon)\\[10pt]
+\ge&amp;n(1-3\epsilon)p_{ij}(h)
+\end{aligned}
+\tag{111}
+$$&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#%28103%29%e5%bc%8f&#34; &gt;(103)式&lt;/a&gt;得证。两边除以 $h$ 并注意当 $h \to 0$ 时 $nh \to t$ ，得&lt;/p&gt;
+$$
+\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\frac{p_{ij}(t)}{t} &lt; \infin
+\tag{112}
+$$&lt;p&gt;  再令 $t \to 0$ ，有&lt;/p&gt;
+$$
+\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\liminf\limits_{t \to 0}\frac{p_{ij}(t)}{t} &lt; \infin
+\tag{113}
+$$&lt;p&gt;  再令 $\epsilon \to 0$ ，定理得证。&lt;/p&gt;
 </description>
         </item>
         <item>
