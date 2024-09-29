@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 
-<link rel="stylesheet" href="/scss/style.min.49b69361ba61141b6ee5397c832c3d3658e60934225852f2cc2f121d4e74fef1.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.f0acaa38ec80486d46180bafcc85fbe1663917e310c10db2fe2baa2a3f3e863e.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov链' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-29T01:23:11&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/figures/image.zh-cn.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov链' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-29T13:21:10&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/figures/image.zh-cn.svg' />
 <meta name="twitter:title" content="随机过程（四）：Markov过程">
 <meta name="twitter:description" content="一种无后效性的随机过程"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/figures/image.zh-cn.svg' />
@@ -664,6 +664,8 @@
             <li><a href="#转移概率的性质">转移概率的性质</a></li>
             <li><a href="#转移概率具有一致连续性">转移概率具有一致连续性</a></li>
             <li><a href="#转移速率">转移速率</a></li>
+            <li><a href="#保守性">保守性</a></li>
+            <li><a href="#kolmogorov微分方程">Kolmogorov微分方程</a></li>
           </ol>
         </li>
       </ol>
@@ -994,7 +996,7 @@
 </svg>
 
             <time class="article-words">
-                11329 字
+                12121 字
             </time>
         </div>
 
@@ -1009,7 +1011,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 23 分钟
+                    阅读时长: 25 分钟
                 </time>
             </div>
         
@@ -1072,6 +1074,8 @@
 </h2><h3 id="markov链的定义">Markov链的定义
 </h3><h4 id="markov链">Markov链
 </h4><p>  <strong>定义1</strong>：给定随机过程 $\set{X_n,n=0,1,2,\cdots}$ ，若它只取有限或可列个值 $E_0,E_1,E_2,\cdots$（我们以 $\set{0,1,2,\cdots}$ 来标记 $E_0,E_1,E_2$ 并称他们是过程的状态， $\set{0,1,2\cdots}$ 或者其子集记为 $S$ ，称为过程的<strong>状态空间</strong>）。若对 $\set{X_n,n=0,1,2,\cdots}$ （一般就认为它的状态是非负整数）和任意的 $n\ge0$ 及状态 $i,j,i_0,i_1\cdots,i_{n-1}$ ，有</p>
+<p><span id="this is a label"></span>
+</p>
 $$  
 \begin{aligned}
 &P\set{X_{n+1}=j|X_0=i_0,X_1=i_1,X_2=i_2,\cdots,X_{n-1}=i_{n-1},X_n=i}\\[5pt]
@@ -1093,11 +1097,11 @@ $$<p>  则称随机过程 $\set{X_n,n=0,1,2,\cdots}$ 为<strong>Markov链</s
 $$
 \mathbf{P}=(p_{ij})=
 \begin{pmatrix}
-p_{00} & p_{01} & p_{02} & p_{03} & \cdots \\
-p_{10} & p_{11} & p_{12} & p_{13} & \cdots \\
-p_{20} & p_{21} & p_{22} & p_{23} & \cdots \\
-p_{30} & p_{31} & p_{32} & p_{33} & \cdots \\
-\vdots & \vdots & \vdots & \vdots & \ddots \\
+p_{00} & p_{01} & p_{02} & p_{03} & \cdots \\[5pt]
+p_{10} & p_{11} & p_{12} & p_{13} & \cdots \\[5pt]
+p_{20} & p_{21} & p_{22} & p_{23} & \cdots \\[5pt]
+p_{30} & p_{31} & p_{32} & p_{33} & \cdots \\[5pt]
+\vdots & \vdots & \vdots & \vdots & \ddots \\[5pt]
 \end{pmatrix}
 \tag{2}
 $$<p>  则称 $\mathbf{P}$ 为<strong>转移概率矩阵</strong>，一般称为<strong>转移矩阵</strong>。容易看出 $p_{ij}(i,j\in S)$ 有性质</p>
@@ -1843,6 +1847,93 @@ $$
 \limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\liminf\limits_{t \to 0}\frac{p_{ij}(t)}{t} < \infin
 \tag{113}
 $$<p>  再令 $\epsilon \to 0$ ，定理得证。</p>
+<p><span id="推论6"></span>
+  <strong>推论6</strong>：对有限状态时齐的连续时间的Markov链，有</p>
+$$
+q_{ii}=\sum_{j \ne i}q_{ij} < +\infin
+\tag{114}
+$$<p>  <strong>证明（推论6）</strong>：由<a class="link" href="#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8" >定理14</a>知， $\displaystyle\sum_{j \in S}p_{ij}(t)=1$ ，即</p>
+$$
+1-p_{ii}(t)=\sum_{j \ne i}p_{ij}(t)
+\tag{115}
+$$<p>  故由<a class="link" href="#%e8%bd%ac%e7%a7%bb%e9%80%9f%e7%8e%87" >定理16</a></p>
+<p><span id="(116)式"></span>
+</p>
+$$
+\begin{aligned}
+\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=&\lim\limits_{t \to 0}\sum_{j \ne i}\frac{p_{ij}(t)}{t}\\
+=&\sum_{j \ne i}\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}\\
+=&\sum_{j \ne i}q_{ij} < +\infin
+\end{aligned}
+\tag{116}
+$$<h4 id="保守性">保守性
+</h4><p>  对于无限状态的情况，一般只能得到 $q_{ii} \ge \displaystyle\sum_{j \ne i}q_{ij}$ （<a class="link" href="#%28116%29%e5%bc%8f" >(116)式</a>中积分和求和不可交换，因此只能使用<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Fatou引理</a>）。设状态空间为 $S=\set{1,2,\cdots,n,\cdots}$ ，此时记</p>
+$$
+\mathbf{Q}=
+\begin{pmatrix}
+-q_{11} & q_{12}  & q_{13} & \cdots & q_{1i}  & \cdots \\[5pt]
+q_{21}  & -q_{22} & q_{23} & \cdots & q_{2i}  & \cdots \\[5pt]
+\vdots  & \vdots  & \vdots &        & \vdots  & \cdots \\[5pt]
+q_{i1}  & q_{i2}  & q_{i3} & \cdots & -q_{ii} & \cdots \\[5pt]
+\vdots  & \vdots  & \vdots &        & \vdots  &        \\[5pt]
+\end{pmatrix}
+\tag{117}
+$$<p>  称为连续时间Markov链的 $\mathbf{Q}$ 矩阵。当矩阵元素 $q_{ii}=\sum_{j \ne i}q_{ij}&lt;+\infin$ 时，称该矩阵为<strong>保守的</strong>。</p>
+<h4 id="kolmogorov微分方程">Kolmogorov微分方程
+</h4><p>  <strong>定理17（Kolmogorov微分方程）</strong>：对一切 $i,j \in S，t \ge 0$ 且 $q_{ii}=\displaystyle\sum_{j \ne i}q_{ij}&lt;+\infin$ ，有：<br>
+  ①<strong>向后方程</strong></p>
+$$
+p_{ij}^\prime(t)=\sum_{k \ne i}q_{ik}p_{kj}(t)-q_{ii}p_{ij}(t)
+\tag{118}
+$$<p>  ②<strong>向前方程</strong>（如果满足 $\displaystyle\sum_{k \ne i}\frac{p_{kj}(h)}{h}$ 有限）</p>
+$$
+p_{ij}^\prime(t)=\sum_{k \ne j}q_{kj}p_{ik}(t)-q_{jj}p_{ij}(t)
+\tag{119}
+$$<p>  <strong>证明（定理17）</strong>：先证明$①$ 。由<a class="link" href="#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8" >C-K方程</a>可得</p>
+$$
+p_{ij}(t+h)=\sum_{k \in S}p_{ik}(h)p_{kj}(t)
+\tag{120}
+$$<p>  或等价地</p>
+$$
+p_{ij}(t+h)-p_{ii}(h)p_{ij}(t)=\sum_{k \ne i,k \in S}p_{ik}(h)p_{kj}(t)
+\tag{121}
+$$<p>变形为</p>
+$$
+p_{ij}(t+h)-p_{ij}(t)=\sum_{k \ne i,k \in S}p_{ik}(h)p_{kj}(t)-(1-p_{ii}(h))p_{ij}(t)
+\tag{122}
+$$<p>  于是</p>
+$$
+\lim\limits_{h \to 0}\frac{p_{ij}(t+h)-p_{ij}(t)}{h}=\lim\limits_{h \to 0}\sum_{k \ne i,k \in S}\frac{p_{ik}(h)}{h}p_{kj}(t)-\lim\limits_{h \to 0}\frac{1-p_{ii}(h)}{h}p_{ij}(t)
+\tag{123}
+$$<p>  若此时Markov链状态是有限的，应用<a class="link" href="#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87" >定理16</a>和<a class="link" href="#%e6%8e%a8%e8%ae%ba6" >推论6</a>从上式直接可以得到①（向后方程）<br>
+  下面证明对于无限状态下依然有①成立。由上式，我们只需证明其中的极限与求和可交换次序即可。由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Fatou引理</a>可推导出</p>
+$$
+\begin{aligned}
+\liminf\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)\ge&\sum_{k \ne i}\liminf\limits_{h \to 0}\frac{p_{ik}(h)}{h}p_{kj}(t)\\
+=&\sum_{k \ne i}q_{ik}p_{kj}(t)
+\end{aligned}
+\tag{124}
+$$<p>  注意 $\displaystyle\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)\le\sum_{k \ne i}\frac{p_{ik}(h)}{h}=\frac{1-p_{ii}(h)}{h}$ ，因此可以使用<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">反向Fatou引理</a></p>
+$$
+\begin{aligned}
+\limsup\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)\le&\sum_{k \ne i}\limsup\limits_{h \to 0}\frac{p_{ik}(h)}{h}p_{kj}(t)\\
+=&\sum_{k \ne i}q_{ik}p_{kj}(t)
+\end{aligned}
+\tag{125}
+$$<p>  因此</p>
+$$
+\lim\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)=\sum_{k \ne i}q_{ik}p_{kj}(t)
+\tag{126}
+$$<p>  因此无限状态下①仍然成立。实际上①可以被写成矩阵形式，也就是 $\mathbf{P}^\prime(t)=\mathbf{Q}\mathbf{P}(t)$ ，其中 $\mathbf{P}(t)=(p_{ij}(t))$ ， $\mathbf{Q}=(q_{ij})$ 。依<a class="link" href="#kolmogorov%e5%be%ae%e5%88%86%e6%96%b9%e7%a8%8b" >定理17</a>条件知 $\mathbf{Q}$ 是保守的。<br>
+  下面证明②。在①中计算 $t+h$ 的状态时是对退后到时刻 $h$ 的状态来取条件的（所以称为后退方程），这里我们考虑对时刻 $t$ 的状态取条件，用<a class="link" href="#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8" >C-K方程</a>有</p>
+$$
+p_{ij}(t+h)=\sum_{k \in S}p_{ik}(t)p_{kj}(h)
+\tag{127}
+$$<p>  同理得到</p>
+$$
+\lim\limits_{h \to 0}\frac{p_{ij}(t+h)-p_{ij}(t)}{h}=\lim\limits_{h \to 0}\sum_{k \ne i,k \in S}p_{ik}(t)\frac{p_{kj}(h)}{h}-\lim\limits_{h \to 0}\frac{1-p_{jj}(h)}{h}p_{ij}(t)
+\tag{127}
+$$<p>  注意上式的极限和求和不一定是能交换的（ $\displaystyle\sum_{k \ne i}\frac{p_{kj}(h)}{h}$ 不一定有限，因此<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">反向Fatou引理</a>不可用）。如果上式的极限和求和运算可以交换，则可得②式成立。</p>
 
     </div>
 </section>
@@ -1882,7 +1973,7 @@ $$<p>  再令 $\epsilon \to 0$ ，定理得证。</p>
 
 
         <span>
-            最后更新于 Sep 29, 2024 01:23 CST
+            最后更新于 Sep 29, 2024 13:21 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2014,7 +2105,7 @@ $$<p>  再令 $\epsilon \to 0$ ，定理得证。</p>
             
             
         
-        <span>本图书馆累计发布了4篇文章 共25616字</span>
+        <span>本图书馆累计发布了4篇文章 共26408字</span>
     </section>
 
     <section class="site-visit-count">
