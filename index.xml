@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 29 Sep 2024 13:21:50 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 30 Sep 2024 21:32:03 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>图像生成模型（一）：扩散模型的基本原理</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/</link>
         <pubDate>Thu, 26 Sep 2024 13:00:05 +0800</pubDate>
@@ -70,21 +70,8 @@
 &lt;h3 id=&#34;操作系统的作用&#34;&gt;操作系统的作用
 &lt;/h3&gt;&lt;p&gt;  操作系统在计算机系统中所起的作用，可以从用户、资源管理及资源抽象等多个不同的角度来进行分析和讨论。&lt;/p&gt;
 &lt;h4 id=&#34;os作为用户与计算机硬件系统之间的接口&#34;&gt;OS作为用户与计算机硬件系统之间的接口
-&lt;/h4&gt;&lt;p&gt;  OS作为用户与计算机硬件系统之间的接口的含义是：OS处于用户与计算机硬件系统之间，用户通过OS来使用计算机系统。或者说，用户在OS帮助下能够方便、快捷、可靠地操纵计算机硬件和运行自己的程序。&lt;a class=&#34;link&#34; href=&#34;#os%e4%bd%9c%e4%b8%ba%e7%94%a8%e6%88%b7%e4%b8%8e%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a1%ac%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%b9%8b%e9%97%b4%e7%9a%84%e6%8e%a5%e5%8f%a3&#34; &gt;图1&lt;/a&gt;是OS作为接口的示意图。由图可看出，用户可通过三种方式使用计算机，即通过命令方式、系统调用方式和图标&amp;mdash;窗口方式来实现与操作系统的通信，并取得它的服务。&lt;/p&gt;
-
-
-
-
-&lt;div class=&#34;svg-figure&#34;&gt;
-    
-    
-    
-        
-        
-    
-
-    
-        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;/h4&gt;&lt;p&gt;  OS作为用户与计算机硬件系统之间的接口的含义是：OS处于用户与计算机硬件系统之间，用户通过OS来使用计算机系统。或者说，用户在OS帮助下能够方便、快捷、可靠地操纵计算机硬件和运行自己的程序。&lt;a class=&#34;link&#34; href=&#34;#20240929215340CST&#34;&gt;图1&lt;/a&gt;是OS作为接口的示意图。由图可看出，用户可通过三种方式使用计算机，即通过命令方式、系统调用方式和图标&amp;mdash;窗口方式来实现与操作系统的通信，并取得它的服务。&lt;/p&gt;
+&lt;span id=&#34;20240929215340CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 200.5&#34;&gt;
   &lt;text transform=&#34;translate(413.89 34)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(276.1 77)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序&lt;/tspan&gt;&lt;/text&gt;
@@ -107,32 +94,13 @@
   &lt;rect x=&#34;229.8&#34; y=&#34;48.3&#34; width=&#34;164.5&#34; height=&#34;43.4&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;rect x=&#34;159.4&#34; y=&#34;91.7&#34; width=&#34;545&#34; height=&#34;60.8&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;rect x=&#34;115.39&#34; y=&#34;152.5&#34; width=&#34;633&#34; height=&#34;44&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-&lt;/svg&gt;
-    
-    
-        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1 OS作为接口的示意图&lt;/p&gt;
-    
-&lt;/div&gt;
-
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;OS作为接口的示意图&lt;/p&gt;&lt;/div&gt;
 &lt;h4 id=&#34;os作为计算机系统资源的管理者&#34;&gt;OS作为计算机系统资源的管理者
 &lt;/h4&gt;&lt;p&gt;  在一个计算机系统中，通常都含有多种硬件和软件资源。归纳起来可将这些资源分为四类：&lt;strong&gt;处理机、存储器、I/O设备以及文件（数据和程序）&lt;/strong&gt;。相应地，OS的主要功能也正是对这四类资源进行有效的管理。处理机管理适用于分配和控制处理机；存储器管理主要负责内存的分配与回收；I/O设备管理是负责I/O设备的分配（回收）与操纵；文件管理适用于实现对文件的存取、共享和保护。可见，OS的确是计算机系统资源的管理者。&lt;br&gt;
   当一台计算机系统供多个用户使用时，诸多用户对系统中共享资源的需求（包括数量和时间）有可能发生冲突。为此，操作系统必须对使用资源的请求进行授权，以协调诸用户对共享资源的使用。&lt;/p&gt;
 &lt;h4 id=&#34;os实现了对计算机资源的抽象&#34;&gt;OS实现了对计算机资源的抽象
-&lt;/h4&gt;&lt;p&gt;  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如&lt;a class=&#34;link&#34; href=&#34;#os%e5%ae%9e%e7%8e%b0%e4%ba%86%e5%af%b9%e8%ae%a1%e7%ae%97%e6%9c%ba%e8%b5%84%e6%ba%90%e7%9a%84%e6%8a%bd%e8%b1%a1&#34; &gt;图2&lt;/a&gt;所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。&lt;/p&gt;
-
-
-
-
-&lt;div class=&#34;svg-figure&#34;&gt;
-    
-    
-    
-        
-        
-    
-
-    
-        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;/h4&gt;&lt;p&gt;  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如&lt;a class=&#34;link&#34; href=&#34;#20240929215356CST&#34;&gt;图2&lt;/a&gt;所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。&lt;/p&gt;
+&lt;span id=&#34;20240929215356CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;uuid-97c283c6-4675-4ccd-88a2-6b1344555918&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 345.5&#34;&gt;
   &lt;circle cx=&#34;269.24&#34; cy=&#34;91.41&#34; r=&#34;37&#34; transform=&#34;translate(135.88 342.53) rotate(-80.78)&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(251.1 98.1)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
@@ -170,13 +138,7 @@
   &lt;text transform=&#34;translate(634.8 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(644.39 88.4)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(484.49 320.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;虚机器&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;
-    
-    
-        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2 I/O软件隐藏了I/O操作实现的细节&lt;/p&gt;
-    
-&lt;/div&gt;
-
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;I/O软件隐藏了I/O操作实现的细节&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;  通常把覆盖了上述软件的机器称为&lt;strong&gt;扩充机器&lt;/strong&gt;或者&lt;strong&gt;虚机器&lt;/strong&gt;。它向用户提供了一个对硬件操作的抽象模型。用户可利用该模型的接口使用计算机，无需了解物理接口的实现细节，从而使用户更容易地使用计算机硬件资源。亦即，I/O设备管理软件实现了对计算机硬件操作的第一个层次的抽象。&lt;br&gt;
   同理，为了方便用户使用文件系统，又可在第一层软件（I/O管理软件）上再覆盖一层用于文件管理的软件，由它来实现对文件操作的细节，并向上层提供一组实现对文件进行存取操作的数据结构和命令。这样，用户可利用该软件提供的数据结构及命令对文件进行存取。此时用户所看到的是一台功能更强、使用更方便的虚机器。亦即，文件管理软件实现了对硬件资源操作的第二个层次的抽象。以此类推，如果文件管理软件上再覆盖一层面向用户的窗口软件，则用户便可在窗口环境下方便地使用计算机，从而形成一台功能更强的虚机器。&lt;br&gt;
   由此可知，OS是铺设在计算机硬件上的多层软件的集合，它们不仅增强了系统的功能，还隐藏了对硬件操作的具体细节，实现了对计算机硬件操作的多个层次的抽象模型。值得说明的是，不仅可在底层对一个硬件资源加以抽象，还可以在高层对该资源底层已抽象的模型再次进行抽象，称为更高层的抽象模型。随着抽象层次的提高，抽象接口所提供的功能就越强，用户使用起来也越方便。&lt;/p&gt;
@@ -205,21 +167,7 @@
 &lt;h4 id=&#34;脱机输入输出off-line-io方式&#34;&gt;脱机输入/输出（Off-Line IO）方式
 &lt;/h4&gt;&lt;p&gt;  为了解决人机矛盾及CPU和I/O设备之间速度不匹配的矛盾，20世纪50年代末出现了&lt;strong&gt;脱机I/O技术&lt;/strong&gt;。该技术是实现将装有用户程序和数据的纸带装入纸带输入机，在一台外围机的控制下，把纸带（卡片）上的数据（程序）输入到磁带上。当CPU需要这些程序和数据时，再从磁带上高速地调入内存。&lt;br&gt;
   类似地，当CPU需要输出时，可先由CPU把数据直接从内存高速地输送到磁带上，然后在另一台外围机的控制下，再将此大地上的结果通过相应地输出设备输出。&lt;a class=&#34;link&#34; href=&#34;#%e8%84%b1%e6%9c%ba%e8%be%93%e5%85%a5%e8%be%93%e5%87%baoff-line-io%e6%96%b9%e5%bc%8f&#34; &gt;图3&lt;/a&gt;示出了脱机输入/输出的过程。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;图3&#34;&gt;&lt;/span&gt;
-
-
-
-
-&lt;div class=&#34;svg-figure&#34;&gt;
-    
-    
-    
-        
-        
-    
-
-    
-        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;span id=&#34;20240929215418CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 238.54&#34;&gt;
   &lt;text transform=&#34;translate(275.7 45.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;输入设备&lt;/tspan&gt;&lt;/text&gt;
   &lt;polygon points=&#34;269.03 53.5 355.03 53.5 355.03 22.5 291.03 22.5 269.03 30.92 269.03 53.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -246,13 +194,7 @@
   &lt;line x1=&#34;355.53&#34; y1=&#34;213.96&#34; x2=&#34;400.95&#34; y2=&#34;213.96&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(518.62 218.42)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;输出设备&lt;/tspan&gt;&lt;/text&gt;
   &lt;path d=&#34;M512.03,229.27v-30.81h82.64v30.77c-9.47,4.02-23.22,7.82-36.64,2.27-2.02-.84-2.85-1.48-4.68-2.23-15.79-6.51-31.69-3.17-41.32,0&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-&lt;/svg&gt;
-    
-    
-        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3 脱机I/O示意图&lt;/p&gt;
-    
-&lt;/div&gt;
-&lt;/p&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;脱机I/O示意图&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;  由于程序和数据的输入和输出都是在外围机的控制下完成的，或者说，它们是在脱离主机的情况下进行的，故称为&lt;strong&gt;脱机输入/输出方式&lt;/strong&gt;。反之，把在主机的直接控制下进行输入/输出的方式称为&lt;strong&gt;联机输入/输出（On-Line I/O）&lt;/strong&gt; 方式。这种脱机I/O方式的主要优点为：&lt;br&gt;
   (1)减少了CPU的空闲时间。装带、卸带，以及将数据从低俗I/O设备送到高速磁带上（或反之）的操作，都是在脱机情况下由外围机万郴个，并不占用主机时间，从而有效地减少了CPU的空闲时间。&lt;br&gt;
   (2)提高了I/O速度。当CPU在运行中需要输入数据时，是直接从高速的磁带上将数据输入到内存的，这便极大地提高了I/O速度，从而进一步减少了CPU的空闲时间。&lt;/p&gt;
@@ -260,20 +202,7 @@
 &lt;/h3&gt;&lt;p&gt;  20世纪50年代中期出现了第二代晶体管计算机，此时计算机虽已具有推广应用的价值，但计算机系统仍然非常昂贵，为了能充分地提高它的利用率，应尽量保持系统的连接运行，即在处理完一个作业后，紧接着处理下一个作业，以减少机器的空闲等待时间。&lt;/p&gt;
 &lt;h4 id=&#34;单道批处理系统的处理过程&#34;&gt;单道批处理系统的处理过程
 &lt;/h4&gt;&lt;p&gt;  为了实现对作业的连续处理，需要先把一批作业以脱机方式输入到磁带上，并在系统中配上&lt;strong&gt;监督程序（Monitor）&lt;/strong&gt;，在它的控制下，使这批作业能一个接一个连续处理。其处理过程是：首先由监督程序将磁带上的第一个作业装入内存，并把运行控制权交给该作业；当该作业处理完成时，又把控制权交给监督程序，再由监督程序把磁带上的第二个作业调入内存。计算机系统就这样自动地一个作业紧接着一个作业地进行处理，直至磁带上的所有作业全部完成，这样便形成了早期的批处理系统。虽然系统对作业的处理是成批进行的，但在内存中时终止保持一道作业，故称为&lt;strong&gt;单道批处理系统&lt;/strong&gt;。&lt;a class=&#34;link&#34; href=&#34;#%e5%8d%95%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9fsimple-batch-processing-system%e7%9a%84%e5%a4%84%e7%90%86%e8%bf%87%e7%a8%8b&#34; &gt;图4&lt;/a&gt;示出了单道批处理系统的处理流程。&lt;/p&gt;
-
-
-
-
-&lt;div class=&#34;svg-figure&#34;&gt;
-    
-    
-    
-        
-        
-    
-
-    
-        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;span id=&#34;20240929215439CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 319.54&#34;&gt;
   &lt;path d=&#34;M371.07,2.72c-5.82,2.99-67.97,34.96-72.57,37.32.06.03.1.05.1.05l73.28,37.69s67.66-35.06,72.46-37.55l-.1-.05L371.5,2.5l-.44.22Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(344.41 33.63)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;还有下&lt;/tspan&gt;&lt;tspan x=&#34;-13.5&#34; y=&#34;21.6&#34;&gt;一个作业&lt;/tspan&gt;&lt;tspan x=&#34;58.5&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.5em;&#34;&gt;？&lt;/tspan&gt;&lt;/text&gt;
@@ -351,29 +280,10 @@
   &lt;/g&gt;
   &lt;text transform=&#34;translate(341.71 97.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;否&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(353.09 130.05)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;停止&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;
-    
-    
-        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4 单道批处理系统的处理流程&lt;/p&gt;
-    
-&lt;/div&gt;
-
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;单道批处理系统的处理流程&lt;/p&gt;&lt;/div&gt;
 &lt;h4 id=&#34;单道批处理系统的缺点&#34;&gt;单道批处理系统的缺点
 &lt;/h4&gt;&lt;p&gt;  单道批处理系统最主要的缺点是，系统中的资源得不到充分的利用。这是因为在内存中仅有一道程序，每逢该程序在运行中发出I/O请求后，CPU便处于等待状态，必须在其I/O完成后才继续运行。又因I/O设备的低速性，更使CPU的利用率显著降低。&lt;a class=&#34;link&#34; href=&#34;#%e5%8d%95%e9%81%93%e6%89%b9%e5%a4%84%e7%90%86%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%bc%ba%e7%82%b9&#34; &gt;图5&lt;/a&gt;示出了单道程序的运行情况，从图可以看出：在 $t_2$ ~ $t_3$ 、 $t_6$ ~ $t_7$ 时间间隔内CPU空闲。&lt;/p&gt;
-
-
-
-
-&lt;div class=&#34;svg-figure&#34;&gt;
-    
-    
-    
-        
-        
-    
-
-    
-        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;span id=&#34;20240929215455CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 277.54&#34;&gt;
   &lt;text transform=&#34;translate(60.42 32.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户程序&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(60.42 109.68)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;监督程序&lt;/tspan&gt;&lt;/text&gt;
@@ -410,32 +320,13 @@
   &lt;text transform=&#34;translate(705.09 226.24)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(712.06 228.56) scale(.58)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;8&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(794.61 267.79)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 19px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;
-    
-    
-        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5 单道程序的运行情况&lt;/p&gt;
-    
-&lt;/div&gt;
-
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;单道程序的运行情况&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;  为了能在系统中运行较大的作业，通常在计算机中都配置了较大容量的内存，但实际情况是有80%以上的作业都属于中小型，因此在单道程序环境下，也必定造成内存的浪费。类似地，为了满足各种类型的作业需要，在系统中将会配置多种类型的I/O设备。显然在单道程序环境下也不能充分利用系统资源。&lt;/p&gt;
 &lt;h3 id=&#34;多道批处理系统multiprogrammed-batch-processing-system&#34;&gt;多道批处理系统（Multiprogrammed Batch Processing System）
 &lt;/h3&gt;&lt;p&gt;  20世纪60年代中期，IBM公司生产了第一台小规模集成电路计算机IBM 360（第三代计算机系统）。由于它较之于晶体管计算机无论在体积、功耗、速度和可靠性上都有了显著的改善，因而获得了极大的成功。IBM公司为该机开发的OS/360操作系统是第一个能运行多道程序的批处理系统。&lt;/p&gt;
 &lt;h4 id=&#34;多道程序设计的基本概念&#34;&gt;多道程序设计的基本概念
 &lt;/h4&gt;&lt;p&gt;  为了进一步提高资源的利用率和系统吞吐量，在20世纪60年代中期引入了&lt;strong&gt;多道程序设计技术&lt;/strong&gt;，由此形成了&lt;strong&gt;多道批处理系统&lt;/strong&gt;。在该系统中，用户所提交的作业先存放在外存上，并排成一个队列，称为“后备队列”。然后由&lt;strong&gt;作业调度程序&lt;/strong&gt;按一定的算法，从后备队列中选择若干个作业调入内存，使它们共享CPU和系统中的各种资源。由于同时在内存中装有若干道程序，这样便可以在运行程序A时，利用其因I/O操作而暂停执行时的CPU空挡时间，再调度另一道程序B运行，同样可以利用程序B在I/O操作时的空档时间，再调度程序C运行，使多道程序交替地运行，这样便可以保持CPU处于忙碌状态。&lt;a class=&#34;link&#34; href=&#34;#%e5%a4%9a%e9%81%93%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5&#34; &gt;图6&lt;/a&gt;示出了四道程序时的运行情况。&lt;/p&gt;
-
-
-
-
-&lt;div class=&#34;svg-figure&#34;&gt;
-    
-    
-    
-        
-        
-    
-
-    
-        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;span id=&#34;20240929215511CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 506.54&#34;&gt;
   &lt;text transform=&#34;translate(34.79 111.79)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(34.79 189.9)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;/text&gt;
@@ -553,13 +444,7 @@
   &lt;text transform=&#34;translate(381.69 414.62)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(545.83 414.62)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(740.69 414.62)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;
-    
-    
-        &lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6 多道程序的运行情况&lt;/p&gt;
-    
-&lt;/div&gt;
-
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6&amp;emsp;多道程序的运行情况&lt;/p&gt;&lt;/div&gt;
 &lt;h4 id=&#34;多道批处理系统的优缺点&#34;&gt;多道批处理系统的优缺点
 &lt;/h4&gt;&lt;p&gt;  多道批处理系统的优点如下：&lt;br&gt;
   (1)资源利用率高。引入多道批处理能使多道程序交替运行，以保持CPU处于忙碌状态；在内存中装入多道程序可提高内存的利用率；此外还可以提高I/O设备的利用率。&lt;br&gt;
@@ -672,28 +557,27 @@
 &lt;h2 id=&#34;基本概念&#34;&gt;基本概念
 &lt;/h2&gt;&lt;h3 id=&#34;markov链的定义&#34;&gt;Markov链的定义
 &lt;/h3&gt;&lt;h4 id=&#34;markov链&#34;&gt;Markov链
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义1&lt;/strong&gt;：给定随机过程 $\set{X_n,n=0,1,2,\cdots}$ ，若它只取有限或可列个值 $E_0,E_1,E_2,\cdots$（我们以 $\set{0,1,2,\cdots}$ 来标记 $E_0,E_1,E_2$ 并称他们是过程的状态， $\set{0,1,2\cdots}$ 或者其子集记为 $S$ ，称为过程的&lt;strong&gt;状态空间&lt;/strong&gt;）。若对 $\set{X_n,n=0,1,2,\cdots}$ （一般就认为它的状态是非负整数）和任意的 $n\ge0$ 及状态 $i,j,i_0,i_1\cdots,i_{n-1}$ ，有&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;this is a label&#34;&gt;&lt;/span&gt;
-&lt;/p&gt;
-$$  
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203511CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1（Markov链）&lt;/strong&gt;：给定随机过程 $\set{X_n,n=0,1,2,\cdots}$ ，若它只取有限或可列个值 $E_0,E_1,E_2,\cdots$（我们以 $\set{0,1,2,\cdots}$ 来标记 $E_0,E_1,E_2$ 并称他们是过程的状态， $\set{0,1,2\cdots}$ 或者其子集记为 $S$ ，称为过程的&lt;strong&gt;状态空间&lt;/strong&gt;）。若对 $\set{X_n,n=0,1,2,\cdots}$ （一般就认为它的状态是非负整数）和任意的 $n\ge0$ 及状态 $i,j,i_0,i_1\cdots,i_{n-1}$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240929203518CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 &amp;P\set{X_{n+1}=j|X_0=i_0,X_1=i_1,X_2=i_2,\cdots,X_{n-1}=i_{n-1},X_n=i}\\[5pt]
 =&amp;P\set{X_{n+1}=j|X_n=i}
 \end{aligned}
 \tag{1}
-$$&lt;p&gt;  则称随机过程 $\set{X_n,n=0,1,2,\cdots}$ 为&lt;strong&gt;Markov链&lt;/strong&gt;。&lt;/p&gt;
+    $$
+&lt;p&gt;  则称随机过程 $\set{X_n,n=0,1,2,\cdots}$ 为&lt;strong&gt;Markov链&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;markov性&#34;&gt;Markov性
-&lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#Markov%e9%93%be&#34; &gt;式1&lt;/a&gt;刻画了Markov链的特性，故称为&lt;strong&gt;Markov性&lt;/strong&gt;。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929203518CST&#34;&gt;式(1)&lt;/a&gt;刻画了Markov链的特性，故称为&lt;strong&gt;Markov性&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;转移概率&#34;&gt;转移概率
 &lt;/h3&gt;&lt;h4 id=&#34;转移概率的定义&#34;&gt;转移概率的定义
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义2&lt;/strong&gt;：称&lt;a class=&#34;link&#34; href=&#34;#Markov%e9%93%be&#34; &gt;式1&lt;/a&gt;中的条件概率 $P\set{X_{n+1}=j|X_n=i}$ 为Markov链 $\set{X_n(n=0,1,2,\cdots)}$ 的&lt;strong&gt;一步转移概率&lt;/strong&gt;，简称&lt;strong&gt;转移概率&lt;/strong&gt;。&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203544CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（一步转移概率）&lt;/strong&gt;：称&lt;a class=&#34;link&#34; href=&#34;#20240929203518CST&#34;&gt;式(1)&lt;/a&gt;中的条件概率 $P\set{X_{n+1}=j|X_n=i}$ 为Markov链 $\set{X_n(n=0,1,2,\cdots)}$ 的&lt;strong&gt;一步转移概率&lt;/strong&gt;，简称&lt;strong&gt;转移概率&lt;/strong&gt;。&lt;br&gt;
   一般情况下，转移概率与状态$i,j$和时刻$n$有关。&lt;/p&gt;
 &lt;h4 id=&#34;时齐markov链&#34;&gt;时齐Markov链
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义3&lt;/strong&gt;：当Markov链的转移概率只与状态 $i,j$ 有关，而与 $n$ 无关时，称Markov链为&lt;strong&gt;时齐&lt;/strong&gt;的，并记 $p_{ij}=P\set{X_{n+1}=j|X_n=i}(n \ge 0)$ ；否则，就称之为&lt;strong&gt;非时齐&lt;/strong&gt;的。&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203556CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3（时齐）&lt;/strong&gt;：当Markov链的转移概率只与状态 $i,j$ 有关，而与 $n$ 无关时，称Markov链为&lt;strong&gt;时齐&lt;/strong&gt;的，并记 $p_{ij}=P\set{X_{n+1}=j|X_n=i}(n \ge 0)$ ；否则，就称之为&lt;strong&gt;非时齐&lt;/strong&gt;的。&lt;br&gt;
   本文只讨论时齐Markov链并将其简称为Markov链。&lt;/p&gt;
 &lt;h4 id=&#34;有限链和无限链&#34;&gt;有限链和无限链
-&lt;/h4&gt;&lt;p&gt;  当Markov链的状态为有限时，成为&lt;strong&gt;有限链&lt;/strong&gt;，否则成为&lt;strong&gt;无限链&lt;/strong&gt;。但无论状态有限还是无限，我们都可以将 $p_{ij}(i,j\in S)$ 排成一个矩阵的形式，令&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240930163746CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义4（有限链和无限链）&lt;/strong&gt;：当Markov链的状态为有限时，成为&lt;strong&gt;有限链&lt;/strong&gt;，否则成为&lt;strong&gt;无限链&lt;/strong&gt;。但无论状态有限还是无限，我们都可以将 $p_{ij}(i,j\in S)$ 排成一个矩阵的形式，令&lt;/p&gt;
+&lt;span id=&#34;20240929204111CST&#34;&gt;&lt;/span&gt;$$
 \mathbf{P}=(p_{ij})=
 \begin{pmatrix}
 p_{00} &amp; p_{01} &amp; p_{02} &amp; p_{03} &amp; \cdots \\[5pt]
@@ -703,42 +587,47 @@ p_{30} &amp; p_{31} &amp; p_{32} &amp; p_{33} &amp; \cdots \\[5pt]
 \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots \\[5pt]
 \end{pmatrix}
 \tag{2}
-$$&lt;p&gt;  则称 $\mathbf{P}$ 为&lt;strong&gt;转移概率矩阵&lt;/strong&gt;，一般称为&lt;strong&gt;转移矩阵&lt;/strong&gt;。容易看出 $p_{ij}(i,j\in S)$ 有性质&lt;/p&gt;
-$$
+    $$
+&lt;p&gt;  则称 $\mathbf{P}$ 为&lt;strong&gt;转移概率矩阵&lt;/strong&gt;，一般称为&lt;strong&gt;转移矩阵&lt;/strong&gt;。容易看出 $p_{ij}(i,j\in S)$ 有性质&lt;/p&gt;
+&lt;span id=&#34;20240929204123CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 &amp;\text{①} p_{ij} \ge 0, i,j\in S \\[5pt]
 &amp;\text{②} \sum_{j \in S}{p_{ij}} = 1, \forall i \in S
 \end{aligned}
 \tag{3}
-$$&lt;h3 id=&#34;n步转移概率与c-k方程&#34;&gt;n步转移概率与C-K方程
+    $$
+&lt;h3 id=&#34;n步转移概率与c-k方程&#34;&gt;n步转移概率与C-K方程
 &lt;/h3&gt;&lt;h4 id=&#34;n步转移概率&#34;&gt;n步转移概率
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义4&lt;/strong&gt;：称条件概率&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203627CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义5（n步转移概率）&lt;/strong&gt;：称条件概率&lt;/p&gt;
+&lt;span id=&#34;20240929204149CST&#34;&gt;&lt;/span&gt;$$
 p_{ij}^{(n)}=P\set{X_{m+n}=j|X_m=i}\quad i,j\in S,m \ge 0, n \ge 1
 \tag{4}
-$$&lt;p&gt;为Markov链的&lt;strong&gt;n步转移概率&lt;/strong&gt;，相应地称 $\mathbf{P}^{(n)}=(p_{ij}^{(n)})$ 为&lt;strong&gt;n步转移矩阵&lt;/strong&gt;。&lt;br&gt;
+    $$
+&lt;p&gt;  为Markov链的&lt;strong&gt;n步转移概率&lt;/strong&gt;，相应地称 $\mathbf{P}^{(n)}=(p_{ij}^{(n)})$ 为&lt;strong&gt;n步转移矩阵&lt;/strong&gt;。&lt;br&gt;
   当 $n=1$ 时， $p_{ij}^{(1)}=p_{ij}$ ， $\mathbf{P}^{(1)}=\mathbf{P}$ 。此外规定&lt;/p&gt;
-$$
+&lt;span id=&#34;20240929204157CST&#34;&gt;&lt;/span&gt;$$
 p_{ij}^{(0)}=
 \begin{cases}
 0, \quad i \ne j\\[5pt]
 1, \quad i=j
 \end{cases}
 \tag{5}
-$$&lt;p&gt;  显然，n步转移概率 $p_{ij}^{(n)}$ 指的就是系统从状态 $i$ 经过 $n$ 步后转移到了 $j$ 的概率，它对中间的 $n-1$ 步转移经过的状态无要求。下面的定理给出了 $p_{ij}^{(n)}$ 和 $p_{ij}$ 的关系。&lt;/p&gt;
+    $$
+&lt;p&gt;  显然，n步转移概率 $p_{ij}^{(n)}$ 指的就是系统从状态 $i$ 经过 $n$ 步后转移到了 $j$ 的概率，它对中间的 $n-1$ 步转移经过的状态无要求。下面的定理给出了 $p_{ij}^{(n)}$ 和 $p_{ij}$ 的关系。&lt;/p&gt;
 &lt;h4 id=&#34;c-k方程&#34;&gt;C-K方程
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理1（Chapman-Kolmogorov方程，简称C-K方程）&lt;/strong&gt;：对一切 $n,m \ge 0$ ， $i,j \in S$ 有&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929204400CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理1（Charpman-Kolmogorov方程，简称C-K方程）&lt;/strong&gt;：对一切 $n,m \ge 0$ ， $i,j \in S$ 有&lt;/p&gt;
 &lt;p&gt;  ①&lt;/p&gt;
-$$
+&lt;span id=&#34;20240929204257CST&#34;&gt;&lt;/span&gt;$$
 p_{ij}^{(m+n)}=\sum_{k \in S}{p_{ik}^{(m)}}p_{kj}^{(n)}
 \tag{6}
-$$&lt;p&gt;  ②
-&lt;/p&gt;
-$$
+    $$
+&lt;p&gt;  ②&lt;/p&gt;
+&lt;span id=&#34;20240929204308CST&#34;&gt;&lt;/span&gt;$$
 \mathbf{P}^{(n)}=\mathbf{P} \cdot \mathbf{P}^{(n-1)} = \mathbf{P} \cdot \mathbf{P} \cdot \mathbf{P}^{(n-2)} = \cdots = \mathbf{P}^n
 \tag{7}
-$$&lt;p&gt;  &lt;strong&gt;证明（定理1）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
-$$
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929204323CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ij}^{(m+n)}&amp;=P\set{X_{m+n}=j|X_0=i}\\[5pt]
 &amp;=\frac{P\set{X_{m+n}=j,X_0=i}}{P\set{X_0=i}}\\[10pt]
@@ -749,532 +638,608 @@ p_{ij}^{(m+n)}&amp;=P\set{X_{m+n}=j|X_0=i}\\[5pt]
 &amp;=\sum_{k \in S}{p_{ik}^{(m)}p_{kj}^{(n)}}
 \end{aligned}
 \tag{8}
-$$&lt;p&gt;  由矩阵乘法易得②是①的矩阵形式。&lt;/p&gt;
+    $$
+&lt;p&gt;  由矩阵乘法易得②是①的矩阵形式。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240930161109CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;结论1&lt;/strong&gt;：对任意 $n_1,n_2,n_3,\cdots,n_m(n_i\ge0)$ 和  $k_1,k_2,k_3,\cdots,k_m(k_j \in S)$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240930161207CST&#34;&gt;&lt;/span&gt;$$
+p_{ij}^{(n_1+n_2+n_3+\cdots+n_m)}\ge p_{ik_1}^{(n_1)}p_{k_1k_2}^{(n_2)}p_{k_2k_3}^{(n_3)}\cdots p_{k_{m-1}j}^{(n_m)}
+\tag{9}
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240930161647CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+p_{ij}^{(n_1+n_2+n_3+\cdots+n_m)}=&amp;\sum_{k \in S}p_{ik}^{(n_1)}p_{kj}^{(n_2+n_3+\cdots+n_m)}\\[5pt]
+\ge&amp;p_{ik_1}^{(n_1)}p_{k_1j}^{(n_2+n_3+\cdots+n_m)}\\[5pt]
+\ge&amp;\sum_{k \in S}p_{ik_1}^{(n_1)}p_{k_1k}^{(n_2)}p_{kj}^{(n_3+\cdots+n_m)}\\
+\ge&amp;p_{ik_1}^{(n_1)}p_{k_1k_2}^{(n_2)}p_{k_2j}^{(n_3+\cdots+n_m)}\\
+\vdots\\
+\ge&amp;p_{ik_1}^{(n_1)}p_{k_1k_2}^{(n_2)}p_{k_2k_3}^{(n_3)}\cdots p_{k_{m-1}j}^{(n_m)}
+\end{aligned}
+\tag{10}
+    $$
 &lt;h2 id=&#34;状态的分类及性质&#34;&gt;状态的分类及性质
 &lt;/h2&gt;&lt;h3 id=&#34;可达互通类可约&#34;&gt;可达、互通、类、可约
-&lt;/h3&gt;&lt;p&gt;  &lt;strong&gt;定义5&lt;/strong&gt;：称状态 $i$ &lt;strong&gt;可达&lt;/strong&gt;状态 $j(i,j \in S)$，若存在 $n \ge 0$ 使得 $p_{ij}^{(n)} \ge 0$ ，记为 $i \rightarrow j$ 。若同时有状态 $j \rightarrow i$ ，则称 $i$ 与 $j$ &lt;strong&gt;互通&lt;/strong&gt;，记为 $i \leftrightarrow j$ 。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;定理2&lt;/strong&gt;：互通是一种等价关系，即满足：&lt;br&gt;
+&lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20240929203634CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义6（可达与互通）&lt;/strong&gt;：称状态 $i$ &lt;strong&gt;可达&lt;/strong&gt;状态 $j(i,j \in S)$，若存在 $n \ge 0$ 使得 $p_{ij}^{(n)} \ge 0$ ，记为 $i \rightarrow j$ 。若同时有状态 $j \rightarrow i$ ，则称 $i$ 与 $j$ &lt;strong&gt;互通&lt;/strong&gt;，记为 $i \leftrightarrow j$ 。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929205200CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理2&lt;/strong&gt;：互通是一种等价关系，即满足：&lt;br&gt;
   ①自反性： $i \leftrightarrow i$ ；&lt;br&gt;
   ②对称性： $i \leftrightarrow j$ ，则 $j \leftrightarrow i$ ；&lt;br&gt;
   ③传递性： $i \leftrightarrow j$ , $j \leftrightarrow k$ ，则 $i \leftrightarrow k$ 。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理2）&lt;/strong&gt;：从互通的定义可知①②是显然的，只证③。由互通定义可知，需证 $i \rightarrow k$ 且 $k \rightarrow i$ 。首先，由 $i \rightarrow j$ ， $j \rightarrow k$ 可知存在 $m$ ， $n$ 使得 $p_{ij}^{(m)}&amp;gt;0$ ， $p_{jk}^{(n)}&amp;gt;0$ 。再由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;可知 $p_{ik}^{(m+n)}=\displaystyle\sum_{l \in S}{p_{il}^{(m)}p_{lk}^{(n)}}\ge {p_{ij}^{(m)}p_{jk}^{(n)}}&amp;gt;0$ ，故 $i \rightarrow k$ 。反过来同样有 $k \rightarrow i$ ，即证 $i \leftrightarrow k$ 。&lt;/p&gt;
-&lt;p&gt;  我们把任何两个相通状态归为一个&lt;strong&gt;类&lt;/strong&gt;，由上述定理可知，同在一类的状态应该都是互通的，并且任何一个状态不能同时属于两个不同的类。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;定义6&lt;/strong&gt;：若Markov链只存在一个类，就称它是&lt;strong&gt;不可约的&lt;/strong&gt;。否则称为&lt;strong&gt;可约的&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205200CST&#34;&gt;定理2&lt;/a&gt;）&lt;/strong&gt;：从互通的定义可知①②是显然的，只证③。由互通定义可知，需证 $i \rightarrow k$ 且 $k \rightarrow i$ 。首先，由 $i \rightarrow j$ ， $j \rightarrow k$ 可知存在 $m$ ， $n$ 使得 $p_{ij}^{(m)}&amp;gt;0$ ， $p_{jk}^{(n)}&amp;gt;0$ 。再由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可知 $p_{ik}^{(m+n)}\ge {p_{ij}^{(m)}p_{jk}^{(n)}}&amp;gt;0$ ，故 $i \rightarrow k$ 。反过来同样有 $k \rightarrow i$ ，即证 $i \leftrightarrow k$ 。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240930163421CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义7（类）&lt;/strong&gt;：我们把任何两个相通状态归为一个&lt;strong&gt;类&lt;/strong&gt;，由上述定理可知，同在一类的状态应该都是互通的，并且任何一个状态不能同时属于两个不同的类。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929203638CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义8（可约）&lt;/strong&gt;：若Markov链只存在一个类，就称它是&lt;strong&gt;不可约的&lt;/strong&gt;。否则称为&lt;strong&gt;可约的&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;周期&#34;&gt;周期
-&lt;/h3&gt;&lt;p&gt;  &lt;strong&gt;定义7&lt;/strong&gt;：若集合 $\set{n|n \ge 1,p_{ii}^{(n)} \ge 0}$ 非空，则称它的最大公约数 $d=d(i)$ 为状态 $i$ 的&lt;strong&gt;周期&lt;/strong&gt;。若 $d \ge 1$ ，则称 $i$ 是&lt;strong&gt;周期的&lt;/strong&gt;；若 $d=1$ ，则称 $i$ 是&lt;strong&gt;非周期的&lt;/strong&gt;。并特别规定上述集合为空集时，称 $i$ 的周期为&lt;strong&gt;无穷大&lt;/strong&gt;。 。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;定理3&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;定理3&lt;/strong&gt;：若状态 $i,j$ 同属一类，则 $d(i)=d(j)$ 。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理3）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#%e5%8f%af%e8%be%be%e4%ba%92%e9%80%9a%e7%b1%bb%e5%8f%af%e7%ba%a6&#34; &gt;类&lt;/a&gt;的定义可知 $i \leftrightarrow j$ ，即存在 $m,n$ 使$p_{ij}^{(m)}&amp;gt;0,p_{ji}^{(n)}&amp;gt;0$。则由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;知 $p_{ii}^{(m+n)}=\displaystyle\sum_{k \in S}{p_{ik}^{(m)}p_{ki}^{(n)}} \ge p_{ij}^{(m)}p_{ji}^{(n)}&amp;gt;0$ 。同时对所有使得 $p_{jj}^{(s)} &amp;gt; 0$ 的 $s$ ，有&lt;/p&gt;
-$$
-p_{ii}^{(m+s+n)}=\sum_{k \in S}{p_{ik}^{(m)}p_{ki}^{(s+n)}}=\sum_{k \in S,\thinspace l \in S}{p_{ik}^{(m)}p_{kl}^{(s)}p_{li}^{(n)}} \ge p_{ij}^{(m)}p_{jj}^{(s)}p_{ji}^{(n)}&gt;0
-\tag{9}
-$$&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#%e5%91%a8%e6%9c%9f&#34; &gt;周期&lt;/a&gt;的定义可知，由于 $p_{ii}^{(m+n)}&amp;gt;0$ 且 $p_{ii}^{(m+s+n)}&amp;gt;0$ ， $d(i)$ 必然同时整除 $n+m$ 和 $n+m+s$ ，因此，它也必然整除 $s$ （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“初等数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。同时我们还需注意我们已经假设了 $p_{jj}^{(s)} &amp;gt; 0$ ，因此 $d(j)$ 必定也整除 $s$ 。注意 $s$ 的任意性，不妨直接令 $s=d(j)$ ，由此可得 $d(i)$ 整除 $d(j)$ 。我们把上述证明的 $i$ 和 $j$ 交换一下，就也能得到 $d(j)$ 整除 $d(i)$ ，于是 $d(i)=d(j)$ （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“初等数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20240929203650CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义9（周期）&lt;/strong&gt;：若集合 $\set{n|n \ge 1,p_{ii}^{(n)} \ge 0}$ 非空，则称它的最大公约数 $d=d(i)$ 为状态 $i$ 的&lt;strong&gt;周期&lt;/strong&gt;。若 $d \ge 1$ ，则称 $i$ 是&lt;strong&gt;周期的&lt;/strong&gt;；若 $d=1$ ，则称 $i$ 是&lt;strong&gt;非周期的&lt;/strong&gt;。并特别规定上述集合为空集时，称 $i$ 的周期为&lt;strong&gt;无穷大&lt;/strong&gt;。 。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929205205CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理3&lt;/strong&gt;：若状态 $i,j$ 同属一类，则 $d(i)=d(j)$ 。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205205CST&#34;&gt;定理3&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20240930163421CST&#34;&gt;类&lt;/a&gt;的定义可知 $i \leftrightarrow j$ ，即存在 $m,n$ 使$p_{ij}^{(m)}&amp;gt;0,p_{ji}^{(n)}&amp;gt;0$。则由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;知 $p_{ii}^{(m+n)}\ge p_{ij}^{(m)}p_{ji}^{(n)}&amp;gt;0$ ，同时对所有使得 $p_{jj}^{(s)} &amp;gt; 0$ 的 $s$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240929212541CST&#34;&gt;&lt;/span&gt;$$
+p_{ii}^{(m+s+n)} \ge p_{ij}^{(m)}p_{jj}^{(s)}p_{ji}^{(n)}&gt;0
+\tag{11}
+    $$
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义可知，由于 $p_{ii}^{(m+n)}&amp;gt;0$ 且 $p_{ii}^{(m+s+n)}&amp;gt;0$ ， $d(i)$ 必然同时整除 $n+m$ 和 $n+m+s$ ，因此，它也必然整除 $s$ （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“初等数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。同时我们还需注意我们已经假设了 $p_{jj}^{(s)} &amp;gt; 0$ ，因此 $d(j)$ 必定也整除 $s$ 。注意 $s$ 的任意性，不妨直接令 $s=d(j)$ ，由此可得 $d(i)$ 整除 $d(j)$ 。我们把上述证明的 $i$ 和 $j$ 交换一下，就也能得到 $d(j)$ 整除 $d(i)$ ，于是 $d(i)=d(j)$ （见 &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“初等数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。&lt;/p&gt;
 &lt;h3 id=&#34;常返&#34;&gt;常返
 &lt;/h3&gt;&lt;h4 id=&#34;首达概率常返与非常返瞬过&#34;&gt;首达概率、常返与非常返（瞬过）
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义8&lt;/strong&gt;：对于任何状态 $i,j$ ，以 $f_{ij}^{(n)}$ 记从i出发经n步后首次到达 $j$ 的概率（&lt;strong&gt;首达概率&lt;/strong&gt;），则有&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203654CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义10（首达概率）&lt;/strong&gt;：对于任何状态 $i,j$ ，以 $f_{ij}^{(n)}$ 记从i出发经n步后首次到达 $j$ 的概率（&lt;strong&gt;首达概率&lt;/strong&gt;），则有&lt;/p&gt;
+&lt;span id=&#34;20240929212550CST&#34;&gt;&lt;/span&gt;$$
 f_{ij}^{(n)}=
 \begin{cases}
 0 \quad n=0 \\[5pt]
 P\set{X_n=j,X_k \ne j(k=1,2,\cdots ,n-1)| X_0=i} \quad n \ge 1
 \end{cases}
-\tag{10}
-$$&lt;p&gt;  令 $f_{ij}=\displaystyle\sum_{n=1}^{\infin}{f_{ij}^{(n)}}$ ，若 $f_{jj}=1$ ，则称状态 $j$ 为&lt;strong&gt;常返状态&lt;/strong&gt;，若 $f_{jj}&amp;lt;1$ ，称 $j$ 为&lt;strong&gt;非常返状态&lt;/strong&gt;或&lt;strong&gt;瞬过状态&lt;/strong&gt;。&lt;br&gt;
-   $f_{ij}$ 的含义可由如下得出：由集合 $A_n$ 的定义 $A_n=\set{X_n=j,X_k \ne j, k=1,2,\cdots n-1 | X_0=i}$ 可知 $n$ 不同的时候 $A_n$ 不相交。而 $\displaystyle\bigcup_{n=1}^{\infin}{A_n}$表示的事件正是总有一个 $n$ 使得过程经 $n$ 步后可从 $i$ 到达 $j$ ,那么由不相交事件概率的可加性可得：&lt;/p&gt;
-$$
-P(\bigcup_{n=1}^{\infin}{A_n})=\sum_{n=1}^{\infin}{P(A_n)}=\sum_{n=1}^{\infin}f_{ij}^{(n)}=f_{ij}
-\tag{11}
-$$&lt;p&gt;  因此 $f_{ij}$ 表示从 $i$ 出发，有限步内可以到达 $j$ 的概率。当 $i$ 为常返状态时，以概率 $1$ 从 $i$ 出发，在有限步过程将重新返回 $i$ ，而当 $i$ 为非常返状态时，若也以概率 $1$ 从 $i$ 出发，则以概率 $1-f_{ii}$ 不再回到 $i$ （即从 $i$ 滑过）。&lt;br&gt;
-  对于常返态 $i$ ，定义&lt;/p&gt;
-$$
-\mu_i=\sum_{n=1}^{\infin}{nf_{ii}^{(n)}}
 \tag{12}
-$$&lt;p&gt;  表示由 $i$ 出发再返回到 $i$ 所需的平均步数（时间）。&lt;/p&gt;
+    $$
+&lt;p&gt;  &lt;span id=&#34;20240930164408CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义11（常返）&lt;/strong&gt;：令 $f_{ij}=\displaystyle\sum_{n=1}^{\infin}{f_{ij}^{(n)}}$ ，若 $f_{jj}=1$ ，则称状态 $j$ 为&lt;strong&gt;常返状态&lt;/strong&gt;，若 $f_{jj}&amp;lt;1$ ，称 $j$ 为&lt;strong&gt;非常返状态&lt;/strong&gt;或&lt;strong&gt;瞬过状态&lt;/strong&gt;。&lt;br&gt;
+   $f_{ij}$ 的含义可由如下得出：由集合 $A_n$ 的定义 $A_n=\set{X_n=j,X_k \ne j, k=1,2,\cdots n-1 | X_0=i}$ 可知 $n$ 不同的时候 $A_n$ 不相交。而 $\displaystyle\bigcup_{n=1}^{\infin}{A_n}$表示的事件正是总有一个 $n$ 使得过程经 $n$ 步后可从 $i$ 到达 $j$ ,那么由不相交事件概率的可加性可得：&lt;/p&gt;
+&lt;span id=&#34;20240929212559CST&#34;&gt;&lt;/span&gt;$$
+P(\bigcup_{n=1}^{\infin}{A_n})=\sum_{n=1}^{\infin}{P(A_n)}=\sum_{n=1}^{\infin}f_{ij}^{(n)}=f_{ij}
+\tag{13}
+    $$
+&lt;p&gt;  因此 $f_{ij}$ 表示从 $i$ 出发，有限步内可以到达 $j$ 的概率。当 $i$ 为常返状态时，以概率 $1$ 从 $i$ 出发，在有限步过程将重新返回 $i$ ，而当 $i$ 为非常返状态时，若也以概率 $1$ 从 $i$ 出发，则以概率 $1-f_{ii}$ 不再回到 $i$ （即从 $i$ 滑过）。&lt;br&gt;
+  对于常返态 $i$ ，定义&lt;/p&gt;
+&lt;span id=&#34;20240929212608CST&#34;&gt;&lt;/span&gt;$$
+\mu_i=\sum_{n=1}^{\infin}{nf_{ii}^{(n)}}
+\tag{14}
+    $$
+&lt;p&gt;  表示由 $i$ 出发再返回到 $i$ 所需的平均步数（时间）。&lt;/p&gt;
 &lt;h4 id=&#34;正常返零常返遍历吸收&#34;&gt;正常返、零常返、遍历、吸收
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义9&lt;/strong&gt;：对于常返态 $i$ ，若 $\mu_i&amp;lt;+\infin$，则称 $i$ 为&lt;strong&gt;正常返态&lt;/strong&gt;；若 $\mu_i=+\infin$ ，则称 $i$ 为&lt;strong&gt;零常返态&lt;/strong&gt;。特别地，若 $i$ 正常返且是&lt;a class=&#34;link&#34; href=&#34;#%e5%91%a8%e6%9c%9f&#34; &gt;非周期的&lt;/a&gt;，则称之为&lt;strong&gt;遍历状态&lt;/strong&gt;。若 $i$ 是遍历状态，且 $f_{ii}^{(1)}=1$，则称 $i$ 为&lt;strong&gt;吸收状态&lt;/strong&gt;。此时显然 $\mu_i=1$ 。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203658CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义12（正常返、零常返、遍历、吸收）&lt;/strong&gt;：对于常返态 $i$ ，若 $\mu_i&amp;lt;+\infin$，则称 $i$ 为&lt;strong&gt;正常返态&lt;/strong&gt;；若 $\mu_i=+\infin$ ，则称 $i$ 为&lt;strong&gt;零常返态&lt;/strong&gt;。特别地，若 $i$ 正常返且是非周期的，则称之为&lt;strong&gt;遍历状态&lt;/strong&gt;。若 $i$ 是遍历状态，且 $f_{ii}^{(1)}=1$，则称 $i$ 为&lt;strong&gt;吸收状态&lt;/strong&gt;。此时显然 $\mu_i=1$ 。&lt;/p&gt;
 &lt;h3 id=&#34;若干性质证明&#34;&gt;若干性质证明
 &lt;/h3&gt;&lt;h4 id=&#34;常返的极限判定&#34;&gt;常返的极限判定
-&lt;/h4&gt;&lt;p&gt;&lt;span id=&#34;定理4&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;定理4&lt;/strong&gt;：状态 $i$ 为常返状态当且仅当 $\displaystyle\sum_{n=0}^{\infin}{p_{ii}^{(n)}}=+\infin$ 。状态 $i$ 为非常返状态时&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205400CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理4&lt;/strong&gt;：状态 $i$ 为常返状态当且仅当 $\displaystyle\sum_{n=0}^{\infin}{p_{ii}^{(n)}}=+\infin$ 。状态 $i$ 为非常返状态时&lt;/p&gt;
+&lt;span id=&#34;20240929212615CST&#34;&gt;&lt;/span&gt;$$
 \sum_{n=0}^{(\infin)}{p_{ii}^{(n)}}=\frac{1}{1-f_{ii}}
-\tag{13}
-$$&lt;p&gt;  因而此时有 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ 。&lt;/p&gt;
-&lt;p&gt;  为了证明&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%864&#34; &gt;&lt;strong&gt;定理4&lt;/strong&gt;&lt;/a&gt;，我们需要先证明&lt;a class=&#34;link&#34; href=&#34;#%e7%bb%93%e8%ae%ba1&#34; &gt;结论1&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;结论1&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;结论1&lt;/strong&gt;：对任意状态 $i,j$ ，有&lt;/p&gt;
-$$
+\tag{15}
+    $$
+&lt;p&gt;  因而此时有 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ 。&lt;/p&gt;
+&lt;p&gt;  为了证明&lt;a class=&#34;link&#34; href=&#34;#20240929205400CST&#34;&gt;定理4&lt;/a&gt;，我们需要先证明&lt;a class=&#34;link&#34; href=&#34;#20240929212905CST&#34;&gt;结论2&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929212214CST&#34;&gt;引理1&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929212905CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;结论2&lt;/strong&gt;：对任意状态 $i,j$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240929212622CST&#34;&gt;&lt;/span&gt;$$
 f_{ij}^{(l+1)}=\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
-\tag{14}
-$$&lt;p&gt;  &lt;strong&gt;证明（结论1）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94&#34; &gt;定义8&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#Markov%e6%80%a7&#34; &gt;Markov性&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#%e6%97%b6%e9%bd%90Markov%e9%93%be&#34; &gt;时齐性&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
-$$
+\tag{16}
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212905CST&#34;&gt;结论2&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20240929203654CST&#34;&gt;首达概率&lt;/a&gt;的定义、&lt;a class=&#34;link&#34; href=&#34;#20240929203511CST&#34;&gt;Markov链&lt;/a&gt;的定义、&lt;a class=&#34;link&#34; href=&#34;#20240929203556CST&#34;&gt;时齐&lt;/a&gt;的定义和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929212629CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
-f_{ij}^{(l+1)}=&amp;P\set{X_{l+1}=j,X_m \ne j(m=1,2,\cdots ,l) | X_0=i}\quad \text{（定义8）}\\[5pt]
+f_{ij}^{(l+1)}=&amp;P\set{X_{l+1}=j,X_m \ne j(m=1,2,\cdots ,l) | X_0=i}\quad \text{（首达概率）}\\[5pt]
 =&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k | X_0=i}}\text{（全概率公式）}\\
 =&amp;\sum_{k \ne j,\thinspace k \in S}{\frac{P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i}}{P\set{X_0=i}}}\\
 =&amp;\sum_{k \ne j,\thinspace k \in S}{\frac{P\set{X_1=k,X_0=i}}{P\set{X_0=i}}\frac{P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l),X_1=k,X_0=i}}{P\set{X_1=k,X_0=i}}}\\
 =&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)|X_1=k,X_0=i}}\\
-=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)|X_1=k}}\text{（Markov性）}\\
-=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_l=j,X_m \ne j (m=1,\cdots ,l-1)|X_0=k}}\text{（时齐性）}\\
+=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_{l+1}=j,X_m \ne j(m=2,\cdots ,l)|X_1=k}}\text{（Markov链）}\\
+=&amp;\sum_{k \ne j,\thinspace k \in S}{P\set{X_1=k|X_0=i}P\set{X_l=j,X_m \ne j (m=1,\cdots ,l-1)|X_0=k}}\text{（时齐）}\\
 =&amp;\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}
 \end{aligned}
-\tag{15}
-$$&lt;p&gt;&lt;span id=&#34;引理1&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;引理1&lt;/strong&gt;：对任意状态 $i,j$ 及 $1 \le n &amp;lt; \infin$ ，有&lt;/p&gt;
-$$
+\tag{17}
+    $$
+&lt;p&gt;  &lt;span id=&#34;20240929212214CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;引理1&lt;/strong&gt;：对任意状态 $i,j$ 及 $1 \le n &amp;lt; \infin$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240929212642CST&#34;&gt;&lt;/span&gt;$$
 p_{ij}^{(n)}=\sum_{l=1}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}
-\tag{16}
-$$&lt;p&gt;  &lt;strong&gt;证明（引理1）&lt;/strong&gt;：用归纳法。对 $n=1$，由 $p_{ij}^{(1)}=f_{ij}^{(1)}$，易证&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%864&#34; &gt;式(16)&lt;/a&gt;成立。&lt;br&gt;
+\tag{18}
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212214CST&#34;&gt;引理1&lt;/a&gt;）&lt;/strong&gt;：用归纳法。对 $n=1$，由 $p_{ij}^{(1)}=f_{ij}^{(1)}$，易证上式成立。&lt;br&gt;
   假设对 $n-1$ ，已有 $p_{ij}^{(n-1)}=\displaystyle\sum_{l=1}^{n-1}{f_{ij}^{(l)}p_{jj}^{(n-1-l)}}$ 成立。&lt;br&gt;
-  当取 $n$ 时，利用&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;、归纳假设和&lt;a class=&#34;link&#34; href=&#34;#%e7%bb%93%e8%ae%ba1&#34; &gt;结论1&lt;/a&gt;，可以推导出&lt;/p&gt;
-$$
+  当取 $n$ 时，利用&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;、归纳假设和&lt;a class=&#34;link&#34; href=&#34;#20240929212905CST&#34;&gt;结论2&lt;/a&gt;，可以推导出&lt;/p&gt;
+&lt;span id=&#34;20240929212648CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ij}^{(n)}&amp;=\sum_{k \in S}{p_{ik}^{(1)}p_{kj}^{(n-1)}} \qquad \text{（C-K方程）}\\
 &amp;=p_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\thinspace k \in S}{p_{ik}^{(1)}p_{kj}^{(n-1)}}\\
 &amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}p_{kj}^{(n-1)}} \text{（归纳法n=1时的情况）}\\
 &amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}\bigg(\sum_{l=1}^{n-1}{f_{kj}^{(l)}p_{jj}^{(n-1-l)}}}\bigg) \text{（归纳假设n-1时的情况）}\\
 &amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{\bigg(\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}\bigg)p_{jj}^{(n-1-l)}}\\
-&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{f_{ij}^{(l+1)}p_{jj}^{(n-1-l)}} \quad \text{(结论1)}\\
+&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{f_{ij}^{(l+1)}p_{jj}^{(n-1-l)}} \quad \text{（结论2）}\\
 &amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=2}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}\\
 &amp;=\sum_{l=1}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}\\
 \end{aligned}
-\tag{17}
-$$&lt;p&gt;  现在，我们可以用&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;证明&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%864&#34; &gt;&lt;strong&gt;定理4&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理4）&lt;/strong&gt;：&lt;/p&gt;
-$$
+\tag{19}
+    $$
+&lt;p&gt;  现在，我们可以用&lt;a class=&#34;link&#34; href=&#34;#20240929212214CST&#34;&gt;引理1&lt;/a&gt;证明&lt;a class=&#34;link&#34; href=&#34;#20240929205400CST&#34;&gt;定理4&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205400CST&#34;&gt;定理4&lt;/a&gt;）&lt;/strong&gt;：&lt;/p&gt;
+&lt;span id=&#34;20240929212659CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \sum_{n=0}^{\infin}{p_{ii}^{(n)}}=&amp;\:p_{ii}^{(0)}+\sum_{n=1}^{\infin}{p_{ii}^{(n)}}\\
-=&amp;\:1+\sum_{n=1}^{\infin}\bigg(\sum_{l=1}^{n}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\bigg) \quad \text{（引理1）}\\
+=&amp;\:1+\sum_{n=1}^{\infin}\bigg(\sum_{l=1}^{n}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\bigg)\\
 =&amp;\:1+\sum_{l=1}^{\infin}\sum_{n=l}^{\infin}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\\
 =&amp;\:1+\sum_{l=1}^{\infin}\sum_{m=0}^{\infin}{f_{ii}^{(l)}p_{ii}^{(m)}}\\
 =&amp;\:1+\bigg(\sum_{l=1}^{\infin}{f_{ii}^{(l)}}\bigg)\bigg(\sum_{n=0}^{\infin}{p_{ii}^{(n)}}\bigg)\\
 =&amp;\:1+f_{ii}\bigg(\sum_{n=0}^{\infin}{p_{ii}^{(n)}}\bigg)
 \end{aligned}
-\tag{18}
-$$&lt;p&gt;  左右有相同项 $\displaystyle\sum_{n=0}^{\infin}{p_{ii}^{(n)}}$，则解该等式得&lt;/p&gt;
-$$
+\tag{20}
+    $$
+&lt;p&gt;  左右有相同项 $\displaystyle\sum_{n=0}^{\infin}{p_{ii}^{(n)}}$，则解该等式得&lt;/p&gt;
+&lt;span id=&#34;20240929212707CST&#34;&gt;&lt;/span&gt;$$
 \sum_{n=0}^{\infin}{p_{ii}^{(n)}}=\frac{1}{1-f_{ii}}
-\tag{19}
-$$&lt;p&gt;  因此&lt;/p&gt;
-$$
+\tag{21}
+    $$
+&lt;p&gt;  因此&lt;/p&gt;
+&lt;span id=&#34;20240929212714CST&#34;&gt;&lt;/span&gt;$$
 \sum_{n=0}^{\infin}{p_{ii}^{(n)}}\text{收敛}\iff f_{ii}&lt;1\text{；}
 \sum_{n=0}^{\infin}{p_{ii}^{(n)}}=\infin \iff f_{ii}=1
-\tag{20}
-$$&lt;h4 id=&#34;常返互通则必达&#34;&gt;常返互通则必达
-&lt;/h4&gt;&lt;p&gt;&lt;span id=&#34;引理2&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;引理2&lt;/strong&gt;：若 $i \leftrightarrow j$ 且 $i$ 为常返态，则 $f_{ji}=1$。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（引理2）&lt;/strong&gt;：用反证法。假设 $f_{ji}&amp;lt;1$ ，则从 $j$ 出发不一定能在有限步内到达 $i$ ，但是由于 $i \rightarrow j$ ，则从 $i$ 出发一定能在有限步到达 $j$ 。这意味着从 $i$ 出发如果经过 $j$ ，将不一定能在有限步之内再回到 $i$ ，这与 $i$ 的常返性相矛盾，假设不成立。因此 $f_{ij}=1$ 。&lt;/p&gt;
+\tag{22}
+    $$
+&lt;h4 id=&#34;常返互通则必达&#34;&gt;常返互通则必达
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929212219CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;引理2&lt;/strong&gt;：若 $i \leftrightarrow j$ 且 $i$ 为常返态，则 $f_{ji}=1$。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;）&lt;/strong&gt;：用反证法。假设 $f_{ji}&amp;lt;1$ ，则从 $j$ 出发不一定能在有限步内到达 $i$ ，但是由于 $i \rightarrow j$ ，则从 $i$ 出发一定能在有限步到达 $j$ 。这意味着从 $i$ 出发如果经过 $j$ ，将不一定能在有限步之内再回到 $i$ ，这与 $i$ 的常返性相矛盾，假设不成立。因此 $f_{ij}=1$ 。&lt;/p&gt;
 &lt;h4 id=&#34;常返是一个类性质&#34;&gt;常返是一个类性质
-&lt;/h4&gt;&lt;p&gt;&lt;span id=&#34;定理5&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;定理5&lt;/strong&gt;：常返性是一个类性质。即若 $i \leftrightarrow j$ 则 $i,j$ 同为常返状态或非常返状态，且当 $i,j$ 同为常返状态时，它们同为正常返态或零常返态。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理5）&lt;/strong&gt;：先证明若 $i \leftrightarrow j$ 则 $i,j$ 同为常返状态或非常返状态。&lt;br&gt;
-  由 $i \leftrightarrow j$ 知。存在 $n, m$ 使得 $p_{ij}^{(n)}&amp;gt;0,p_{ji}^{(m)}&amp;gt;0$ ，由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%863&#34; &gt;(9)式的展开技巧&lt;/a&gt;易得&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205430CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理5&lt;/strong&gt;：常返性是一个类性质。即若 $i \leftrightarrow j$ 则 $i,j$ 同为常返状态或非常返状态，且当 $i,j$ 同为常返状态时，它们同为正常返态或零常返态。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;）&lt;/strong&gt;：先证明若 $i \leftrightarrow j$ 则 $i,j$ 同为常返状态或非常返状态。&lt;br&gt;
+  由 $i \leftrightarrow j$ 知。存在 $n, m$ 使得 $p_{ij}^{(n)}&amp;gt;0,p_{ji}^{(m)}&amp;gt;0$ ，由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;易得&lt;/p&gt;
+&lt;span id=&#34;20240929213318CST&#34;&gt;&lt;/span&gt;$$
 p_{ii}^{(n+m+l)} \ge p_{ij}^{(n)}p_{jj}^{(l)}p_{ji}^{(m)}\\[5pt]
 p_{jj}^{(n+m+l)} \ge p_{ji}^{(n)}p_{ii}^{(l)}p_{ij}^{(m)}
-\tag{21}
-$$&lt;p&gt;  两边求和得到&lt;/p&gt;
-$$
+\tag{23}
+    $$
+&lt;p&gt;  两边求和得到&lt;/p&gt;
+&lt;span id=&#34;20240929213325CST&#34;&gt;&lt;/span&gt;$$
 \sum_{l=0}^{\infin}{p_{ii}^{(n+m+l)}} \ge \sum_{l=0}^{\infin}{p_{ij}^{(n)}p_{jj}^{(l)}p_{ji}^{(m)}}\\[5pt]
 \sum_{l=0}^{\infin}{p_{jj}^{(n+m+l)}} \ge \sum_{l=0}^{\infin}{p_{ji}^{(n)}p_{ii}^{(l)}p_{ij}^{(m)}}
-\tag{22}
-$$&lt;p&gt;  考虑到 $\displaystyle\sum_{l=0}^{n+m-1}{p_{ii}^{(l)}}$ 和 $\displaystyle\sum_{l=0}^{n+m-1}{p_{jj}^{(l)}}$ 都是有限的，那么可以把上式写成这样：&lt;/p&gt;
-$$
+\tag{24}
+    $$
+&lt;p&gt;  考虑到 $\displaystyle\sum_{l=0}^{n+m-1}{p_{ii}^{(l)}}$ 和 $\displaystyle\sum_{l=0}^{n+m-1}{p_{jj}^{(l)}}$ 都是有限的，那么可以把上式写成这样：&lt;/p&gt;
+&lt;span id=&#34;20240929213332CST&#34;&gt;&lt;/span&gt;$$
 \sum_{l=0}^{\infin}{p_{ii}^{(l)}} - \sum_{l=0}^{n+m-1}{p_{ii}^{(l)}} \ge p_{ij}^{(n)}p_{ji}^{(m)}\sum_{l=0}^{\infin}{p_{jj}^{(l)}}\\[5pt]
 \sum_{l=0}^{\infin}{p_{jj}^{(l)}} - \sum_{l=0}^{n+m-1}{p_{jj}^{(l)}} \ge p_{ji}^{(n)}p_{ij}^{(m)}\sum_{l=0}^{\infin}{p_{ii}^{(l)}}
-\tag{23}
-$$&lt;p&gt;  因此我们可以直观的看出 $\displaystyle\sum_{l=0}^{\infin}{p_{ii}^{(l)}}$ 和 $\displaystyle\sum_{l=0}^{\infin}{p_{jj}^{(l)}}$ 当中任意一个为无穷时，另一个必然也为无穷；任意一个为有限时，另一个必然也为有限。因此 $i,j$ 同为常返状态或非常返状态。故常返性是一个类性质，类中任意成员满足，则其他成员也必定满足；反之若类中任一成员不满足，则其他成员也不满足。&lt;br&gt;
-  其次还能证明当 $i,j$ 同为常返状态时，它们同为正常返态或零常返态。该证明需要用到下文的&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba1&#34; &gt;推论1&lt;/a&gt;。&lt;br&gt;
-  假设 $i$ 为零常返状态且 $i \leftrightarrow j$ 。由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba1&#34; &gt;推论1&lt;/a&gt;可知 $\lim\limits_{m \rightarrow \infin}p_{ii}^{(m)}=0$ 。由于 $i \leftrightarrow j$ ，存在 $n,l$ 使得 $p_{ij}^{(n)}&amp;gt;0,p_{ji}^{(l)}&amp;gt;0$。同时由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%863&#34; &gt;(9)式的展开技巧&lt;/a&gt;可得 $p_{ii}^{(n+m+l)} \ge p_{ij}^{(n)}p_{jj}^{(m)}p_{ji}^{(l)}\ge0$ 。令 $m \rightarrow \infin$ ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等数学”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 $\lim\limits_{m \rightarrow \infin}p_{jj}^{(m)}=0$ ，故由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba1&#34; &gt;推论1&lt;/a&gt;，状态 $j$ 也是零常返状态。&lt;/p&gt;
+\tag{25}
+    $$
+&lt;p&gt;  因此我们可以直观的看出 $\displaystyle\sum_{l=0}^{\infin}{p_{ii}^{(l)}}$ 和 $\displaystyle\sum_{l=0}^{\infin}{p_{jj}^{(l)}}$ 当中任意一个为无穷时，另一个必然也为无穷；任意一个为有限时，另一个必然也为有限。因此 $i,j$ 同为常返状态或非常返状态。故常返性是一个类性质，类中任意成员满足，则其他成员也必定满足；反之若类中任一成员不满足，则其他成员也不满足。&lt;br&gt;
+  其次还能证明当 $i,j$ 同为常返状态时，它们同为正常返态或零常返态。该证明需要用到下文的&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;。&lt;br&gt;
+  假设 $i$ 为零常返状态且 $i \leftrightarrow j$ 。由&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;可知 $\lim\limits_{m \rightarrow \infin}p_{ii}^{(m)}=0$ 。由于 $i \leftrightarrow j$ ，存在 $n,l$ 使得 $p_{ij}^{(n)}&amp;gt;0,p_{ji}^{(l)}&amp;gt;0$。同时由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可得 $p_{ii}^{(n+m+l)} \ge p_{ij}^{(n)}p_{jj}^{(m)}p_{ji}^{(l)}\ge0$ 。令 $m \rightarrow \infin$ ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等数学”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 $\lim\limits_{m \rightarrow \infin}p_{jj}^{(m)}=0$ ，故由&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;，状态 $j$ 也是零常返状态。&lt;/p&gt;
 &lt;h4 id=&#34;状态空间分解定理&#34;&gt;状态空间分解定理
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理6（状态空间分解定理）&lt;/strong&gt;：任意Markov链的状态空间 $S$ ，可唯一分解为有限个或可列个互不相交的子集 $D,C_1,C_2,\cdots$ 之和，使得&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205434CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理6（状态空间分解定理）&lt;/strong&gt;：任意Markov链的状态空间 $S$ ，可唯一分解为有限个或可列个互不相交的子集 $D,C_1,C_2,\cdots$ 之和，使得&lt;br&gt;
   ①每一个 $C_n$ 是常返状态组成的不可约闭集，$D$ 由全体非常返状态组成。。&lt;br&gt;
   ② $C_n$ 中的状态同类，或者全是正常返态，或者全是零常返态。它们有相同的周期且 $f_{ij}=1(i,j \in C_n)$ 。&lt;br&gt;
   ③ 自 $C_n$ 中的状态出发不能到达 $D$ 中状态。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理6）&lt;/strong&gt;：设 $C$ 为全体常返状态组成的集合，则 $D=S-C$ 为非常返状态的全体组成的集合。注意到定义在 $C$ 上的互通是一种等价关系，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“离散数学”还未上线~&#39;)&#34;&gt;等价关系与集合的划分&lt;/a&gt;可知， $C$ 可以按互通关系划分为 $C_1 \bigcup C_2 \bigcup \dots$ ，其中每一个 $C_n$ 是由同一类常返状态组成的不可约的闭集。因此 $S=D \bigcup C_1 \bigcup C_2 \bigcup \dots$ 。定理假设和①证毕。由&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%865&#34; &gt;定理5&lt;/a&gt;可知 $C_n$ 中的状态都是同类型的（正常返或零常返），由&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%863&#34; &gt;定理3&lt;/a&gt;可知 $C_n$ 中的状态都有相同的周期，由&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%862&#34; &gt;引理2&lt;/a&gt;可知 $C_n$ 中的状态都满足 $f_{ij}=1(i,j \in C_n)$ 。②证毕。对于③，可用反证法证明。假设 $C_n$ 中的状态 $i$ 可以到达 $D$ 中的状态 $j$ ，由于 $i$ 是常返的，状态在到达 $j$ 后必定还会再返回 $i$ ，而后再由假设，状态还可能继续回到 $j$ 。因此，状态从 $j$ 出发后再次返回 $j$ 的情况是可能出现的，这与 $j$ 是非常返态相矛盾，因此假设不成立。故 $C_n$ 中的状态 $i$ 不可到达 $D$ 中的状态 $j$ 。③证毕。定理6证毕。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;）&lt;/strong&gt;：设 $C$ 为全体常返状态组成的集合，则 $D=S-C$ 为非常返状态的全体组成的集合。注意到定义在 $C$ 上的互通是一种等价关系，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;等价关系与集合的划分&lt;/a&gt;可知， $C$ 可以按互通关系划分为 $C_1 \bigcup C_2 \bigcup \dots$ ，其中每一个 $C_n$ 是由同一类常返状态组成的不可约的闭集。因此 $S=D \bigcup C_1 \bigcup C_2 \bigcup \dots$ 。定理假设和①证毕。由&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知 $C_n$ 中的状态都是同类型的（正常返或零常返），由&lt;a class=&#34;link&#34; href=&#34;#20240929205205CST&#34;&gt;定理3&lt;/a&gt;可知 $C_n$ 中的状态都有相同的周期，由&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;可知 $C_n$ 中的状态都满足 $f_{ij}=1(i,j \in C_n)$ 。②证毕。对于③，可用反证法证明。假设 $C_n$ 中的状态 $i$ 可以到达 $D$ 中的状态 $j$ ，由于 $i$ 是常返的，状态在到达 $j$ 后必定还会再返回 $i$ ，而后再由假设，状态还可能继续回到 $j$ 。因此，状态从 $j$ 出发后再次返回 $j$ 的情况是可能出现的，这与 $j$ 是非常返态相矛盾，因此假设不成立。故 $C_n$ 中的状态 $i$ 不可到达 $D$ 中的状态 $j$ 。③证毕。至此，&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;证毕。&lt;/p&gt;
 &lt;h4 id=&#34;不可约markov链的转移&#34;&gt;不可约Markov链的转移
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理7&lt;/strong&gt;：周期为 $d$ 的不可约Markov链，其状态空间 $S$ 可唯一地分解为 $d$ 个互不相交的子集之和，即&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205707CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理7&lt;/strong&gt;：周期为 $d$ 的不可约Markov链，其状态空间 $S$ 可唯一地分解为 $d$ 个互不相交的子集之和，即&lt;/p&gt;
+&lt;span id=&#34;20240929213341CST&#34;&gt;&lt;/span&gt;$$
 S=\bigcup_{r=0}^{d-1}{S_r},\quad S_r \bigcap S_s=\varnothing,\quad r \ne S
-\tag{24}
-$$&lt;p&gt;  且使得自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;(25)式&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;证明（定理7）&lt;/strong&gt;：先给出子集 $S_r$ 的定义：&lt;br&gt;
+\tag{26}
+    $$
+&lt;p&gt;  且使得自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205707CST&#34;&gt;定理7&lt;/a&gt;）&lt;/strong&gt;：先给出子集 $S_r$ 的定义：&lt;br&gt;
   任意取状态 $i$，对每一个 $r=0,1,\cdots,d-1$ ，定义集合&lt;/p&gt;
-$$
+&lt;span id=&#34;20240929213348CST&#34;&gt;&lt;/span&gt;$$
 S_r=\set{j|存在n \ge 0使得p_{ij}^{(nd+r)}&gt;0}
-\tag{25}
-$$&lt;p&gt;  因为 $S$ 不可约，故 $S$ 中从 $i$ 出发一定可以遍历每一个状态，而 $nd+r(r=0,1,\cdots,n-1)$ 可以遍历从 $i$ 出发后的每一个时间，因此所有 $S_r$ 的并集一定为 $S$ ，即 $\displaystyle\bigcup_{r=0}^{d-1}{S_r}=S$ 。&lt;br&gt;
-  接下来证明 $S_r$ 不相交。用反证法，假设存在 $S_r,S_s$ 和状态 $j$ 满足 $j \in S_r \bigcap S_s$ 。由 $S_r$ 的定义知存在 $n,m$ 使得 $p_{ij}^{(nd+r)}&amp;gt;0,p_{ij}^{(md+s)}&amp;gt;0$ 。又因为 $i \leftrightarrow j$ ，故存在 $h$ 使得 $p_{ji}^{(h)}&amp;gt;0$ ，于是由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;和和&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%863&#34; &gt;(9)式的展开技巧&lt;/a&gt;可得：&lt;/p&gt;
-$$
+\tag{27}
+    $$
+&lt;p&gt;  因为 $S$ 不可约，故 $S$ 中从 $i$ 出发一定可以遍历每一个状态，而 $nd+r(r=0,1,\cdots,n-1)$ 可以遍历从 $i$ 出发后的每一个时间，因此所有 $S_r$ 的并集一定为 $S$ ，即 $\displaystyle\bigcup_{r=0}^{d-1}{S_r}=S$ 。&lt;br&gt;
+  接下来证明 $S_r$ 不相交。用反证法，假设存在 $S_r,S_s$ 和状态 $j$ 满足 $j \in S_r \bigcap S_s$ 。由 $S_r$ 的定义知存在 $n,m$ 使得 $p_{ij}^{(nd+r)}&amp;gt;0,p_{ij}^{(md+s)}&amp;gt;0$ 。又因为 $i \leftrightarrow j$ ，故存在 $h$ 使得 $p_{ji}^{(h)}&amp;gt;0$ ，于是由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可得：&lt;/p&gt;
+&lt;span id=&#34;20240929213356CST&#34;&gt;&lt;/span&gt;$$
 p_{ii}^{(nd+r+h)} \ge p_{ij}^{(nd+r)}p_{ji}^{(h)}&gt;0\\[5pt]
 p_{ii}^{(md+s+h)} \ge p_{ij}^{(md+s)}p_{ji}^{(h)}&gt;0
-\tag{26}
-$$&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#%e5%91%a8%e6%9c%9f&#34; &gt;周期&lt;/a&gt;的定义可知 $nd+r+h$ 和 $md+s+h$ 都可以被 $d$ 整除。省去前面的 $n$ 和 $m$ 可得 $r+h$ 和 $s+h$ 都可被 $d$ 整除。从而其差 $(r+h)-(s+h)=r-s$ 都能被 $d$ 整除(见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“初等数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;)。但是 $0 \le r \le d-1,0 \le s \le d-1$ ，故 $0 \le r-s \le d-1$ ，因此 $r-s$ 只能为 $0$ ，也就是 $r=s$ 。故 $S_r=S_s$ ，假设不成立，故 $S_r$ 不相交。&lt;br&gt;
-  接下来证明自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。等价于证明对任意 $j \in S_r$ ，有 $\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}=1$ 。事实上，由 $S_r$ 的定义可知 $p_{ij}^{(nd+r)}&amp;gt;0$ 。而由&lt;a class=&#34;link&#34; href=&#34;#%2825%29%e5%bc%8f&#34; &gt;(25)式&lt;/a&gt;可知对 $k \notin S_{r+1}$ 必有 $p_{ik}^{(nd+r+1)}=0$ 。因此由&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;和和&lt;a class=&#34;link&#34; href=&#34;#%e5%ae%9a%e7%90%863&#34; &gt;(9)式的展开技巧&lt;/a&gt;可推导：&lt;/p&gt;
-$$
-0=p_{ik}^{(nd+r+1)} \ge p_{ij}^{(nd+r)}p_{jk}^{(1)}&gt;0
-\tag{27}
-$$&lt;p&gt;  从而 $p_{jk}^{(1)}=0$ 。于是&lt;/p&gt;
-$$
-1\:=\sum_{k \in S}{p_{jk}}=\sum_{k \in S_{r+1}}{p_{jk}^{(1)}} + \sum_{k \notin S_{r+1}}{p_{jk}^{(1)}}=\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}
 \tag{28}
-$$&lt;p&gt;  最后证明分解的唯一性。等价于与证明 $\set{S_k}$ 与初始的 $i$ 无关。也就是，对于任意的 $i,i^\prime$ 生成的分解 $\set{S_k},\set{S_k^\prime}$ 必相等。&lt;br&gt;
+    $$
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义可知 $nd+r+h$ 和 $md+s+h$ 都可以被 $d$ 整除。省去前面的 $n$ 和 $m$ 可得 $r+h$ 和 $s+h$ 都可被 $d$ 整除。从而其差 $(r+h)-(s+h)=r-s$ 都能被 $d$ 整除(见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“初等数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;)。但是 $0 \le r \le d-1,0 \le s \le d-1$ ，故 $0 \le r-s \le d-1$ ，因此 $r-s$ 只能为 $0$ ，也就是 $r=s$ 。故 $S_r=S_s$ ，假设不成立，故 $S_r$ 不相交。&lt;br&gt;
+  接下来证明自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。等价于证明对任意 $j \in S_r$ ，有 $\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}=1$ 。事实上，由 &lt;a class=&#34;link&#34; href=&#34;#20240929213348CST&#34;&gt;式(27)&lt;/a&gt;可知 $p_{ij}^{(nd+r)}&amp;gt;0$ ，同样可知对 $k \notin S_{r+1}$ 必有 $p_{ik}^{(nd+r+1)}=0$ 。因此由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可推导：&lt;/p&gt;
+&lt;span id=&#34;20240929213405CST&#34;&gt;&lt;/span&gt;$$
+0=p_{ik}^{(nd+r+1)} \ge p_{ij}^{(nd+r)}p_{jk}^{(1)}&gt;0
+\tag{29}
+    $$
+&lt;p&gt;  从而 $p_{jk}^{(1)}=0$ 。于是&lt;/p&gt;
+&lt;span id=&#34;20240929213412CST&#34;&gt;&lt;/span&gt;$$
+1\:=\sum_{k \in S}{p_{jk}}=\sum_{k \in S_{r+1}}{p_{jk}^{(1)}} + \sum_{k \notin S_{r+1}}{p_{jk}^{(1)}}=\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}
+\tag{30}
+    $$
+&lt;p&gt;  最后证明分解的唯一性。等价于与证明 $\set{S_k}$ 与初始的 $i$ 无关。也就是，对于任意的 $i,i^\prime$ 生成的分解 $\set{S_k},\set{S_k^\prime}$ 必相等。&lt;br&gt;
   首先，证明对于 $\set{S_k}$ 中的任意 ${S_r}$ ，存在 ${S_s^\prime}$ 与其状态完全相等。首先证对所有 $j \in S_r$ ， $j$ 都只能属于 $\set{S_k^\prime}$ 中某个固定的集合。假设 $i^{\prime}$ 满足 $i^\prime \in S_s$ 。由于自 $S_k$ 任意状态出发经 $1$ 步转移必进入 $S_{k+1}$ 中，所以当 $s \le r$ 时，从 $i^{\prime}$ 到达 $j$ 只可能通过如下过程之一：&lt;/p&gt;
-$$
+&lt;span id=&#34;20240929213420CST&#34;&gt;&lt;/span&gt;$$
 \begin{cases}
 S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r\\
 S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r\rightarrow S_{r+1} \rightarrow \cdots \rightarrow S_{d-1} \rightarrow S_0 \rightarrow S_1 \rightarrow \cdots \rightarrow S_r\\
 S_s \rightarrow S_{s+1} \rightarrow \cdots \rightarrow S_r\rightarrow
 \overbrace{S_{r+1} \rightarrow \cdots \rightarrow S_{d-1} \rightarrow S_0 \rightarrow S_1 \rightarrow \cdots \rightarrow S_r}^{重复2次}\\
-\quad \vdots 
+\quad \vdots
 \end{cases}
-\tag{29}
-$$&lt;p&gt;  也就是从 $i^{\prime}$ 出发只能在 $r-s,r-s+d,r-s+2d,\dots$ 步上到达 $j$ 。我们发现这刚好与 $S_{r-s}^{\prime}$ 的定义是一致的。因此 $j \in S_{r-s}^{\prime}$ 。反过来讨论任意 $j^\prime \in S_{r-s}^{\prime}$ 。从 $i$ 转移到  $i^\prime$ 需要 $s$ 步，而从  $i^\prime$ 转移到  $j^\prime$ 需要 $r-s$ 步，因此从 $i$ 转移到 $j^\prime$ 需要 $r$ 步，故 $j^\prime \in S_r$ 。故 $S_r$ 与 $S_{r-s}^\prime$ 完全对等。&lt;br&gt;
+\tag{31}
+    $$
+&lt;p&gt;  也就是从 $i^{\prime}$ 出发只能在 $r-s,r-s+d,r-s+2d,\dots$ 步上到达 $j$ 。我们发现这刚好与 $S_{r-s}^{\prime}$ 的定义是一致的。因此 $j \in S_{r-s}^{\prime}$ 。反过来讨论任意 $j^\prime \in S_{r-s}^{\prime}$ 。从 $i$ 转移到  $i^\prime$ 需要 $s$ 步，而从  $i^\prime$ 转移到  $j^\prime$ 需要 $r-s$ 步，因此从 $i$ 转移到 $j^\prime$ 需要 $r$ 步，故 $j^\prime \in S_r$ 。故 $S_r$ 与 $S_{r-s}^\prime$ 完全对等。&lt;br&gt;
   另外当 $s &amp;gt; r$ 时，由类似的方法可以证明从 $i^{\prime}$ 出发，只能在 $d-(s-r),2d-(s-r),\dots$ 步到达 $j$ ，因此 $j \in S_{d-(s-r)}^{\prime}$ 。类似的也可证明 $S_r$ 与 $S_{d-(s-r)}^{\prime}$ 完全对等。综上，有&lt;/p&gt;
-$$
+&lt;span id=&#34;20240929213428CST&#34;&gt;&lt;/span&gt;$$
 \begin{cases}
 S_r与S_{r-s}^{\prime}完全对等，若r \ge s \\[5pt]
 S_r与S_{d-(s-r)}^{\prime}完全对等，若r &lt; s
 \end{cases}
-\tag{30}
-$$&lt;p&gt;  易证此时 $\set{S_k},\set{S_k^\prime}$ 一一对应。故分解是唯一的。&lt;/p&gt;
+\tag{32}
+    $$
+&lt;p&gt;  易证此时 $\set{S_k},\set{S_k^\prime}$ 一一对应。故分解是唯一的。&lt;/p&gt;
 &lt;h2 id=&#34;极限定理与不变分布&#34;&gt;极限定理与不变分布
 &lt;/h2&gt;&lt;h3 id=&#34;极限定理及其衍生定理&#34;&gt;极限定理及其衍生定理
 &lt;/h3&gt;&lt;h4 id=&#34;极限定理&#34;&gt;极限定理
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理8（极限定理）&lt;/strong&gt;：若状态 $j$ 是周期为 $d$ 的常返状态，则&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205712CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理8（极限定理）&lt;/strong&gt;：若状态 $j$ 是周期为 $d$ 的常返状态，则&lt;/p&gt;
+&lt;span id=&#34;20240929213435CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{n \rightarrow \infin}p_{jj}^{(nd)}=\frac{d}{\mu_j}
-\tag{31}
-$$&lt;p&gt;&lt;span id=&#34;(32)式&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;证明（定理8）&lt;/strong&gt;：对 $n \ge 0$ ，令：&lt;/p&gt;
-$$
+\tag{33}
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;）&lt;/strong&gt;：对 $n \ge 0$ ，令：&lt;/p&gt;
+&lt;span id=&#34;20240929213442CST&#34;&gt;&lt;/span&gt;$$
 r_n=\sum_{v=n+1}^{\infin}{f_v}
-\tag{32}
-$$&lt;p&gt;&lt;span id=&#34;(33)式&#34;&gt;&lt;/span&gt;
-  其中 $f_v=f_{jj}^{(v)}$ 。于是&lt;/p&gt;
-$$
+\tag{34}
+    $$
+&lt;p&gt;  其中 $f_v=f_{jj}^{(v)}$ 。于是&lt;/p&gt;
+&lt;span id=&#34;20240929213450CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \sum_{n=0}^{\infin}{r_n}=&amp;\sum_{n=0}^{\infin}\sum_{v=n+1}^{\infin}{f_v}\\
 =&amp;(f_1+f_2+f_3+\cdots)+(f_2+f_3+\cdots)+(f_3+\cdots)+\cdots\\[5pt]
 =&amp;1\cdot f_1 + 2 \cdot f_2 + 3 \cdot f_3 + \cdots\\
 =&amp;\sum_{n=1}^{\infin}{nf_n}=\mu_j
 \end{aligned}
-\tag{33}
-$$&lt;p&gt;  由 $r_n$ 定义可知 $f_n=r_{v-1}-r_v$ ，代入&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;并记 $p_v=p_{jj}^{(v)}$ 可得&lt;/p&gt;
-$$
-p_n=p_{jj}^{(n)}=\sum_{l=1}^{n}{f_{jj}^{(l)}p_{jj}^{(n-l)}}=-\sum_{v=1}^{n}{(r_v-r_{v-1})p_{n-v}}
-\tag{34}
-$$&lt;p&gt;  注意 $j$ 是常返状态，故 $r_0=1$。则上式可以写成&lt;/p&gt;
-$$
-\sum_{v=0}^{n}{r_vp_{n-v}}=\sum_{v=0}^{n-1}r_vp_{n-1-v}
 \tag{35}
-$$&lt;p&gt;&lt;span id=&#34;(36)式&#34;&gt;&lt;/span&gt;
-  上面这个式子表示了一个很明显的结论： $\displaystyle\sum_{v=0}^{n}{r_vp_{n-v}}$ 的值与 $n$ 无关。因此：&lt;/p&gt;
-$$
-\sum_{v=0}^{n}{r_vp_{n-v}}=r_0p_0=1,\quad n \ge 0
+    $$
+&lt;p&gt;  由 $r_n$ 定义可知 $f_n=r_{v-1}-r_v$ ，代入&lt;a class=&#34;link&#34; href=&#34;#20240929212214CST&#34;&gt;引理1&lt;/a&gt;并记 $p_v=p_{jj}^{(v)}$ 可得&lt;/p&gt;
+&lt;span id=&#34;20240929213457CST&#34;&gt;&lt;/span&gt;$$
+p_n=p_{jj}^{(n)}=\sum_{l=1}^{n}{f_{jj}^{(l)}p_{jj}^{(n-l)}}=-\sum_{v=1}^{n}{(r_v-r_{v-1})p_{n-v}}
 \tag{36}
-$$&lt;p&gt;&lt;span id=&#34;(37)式&#34;&gt;&lt;/span&gt;
-  设&lt;/p&gt;
-$$
-\lambda=\limsup\limits_{n \rightarrow \infin}p_{nd}
+    $$
+&lt;p&gt;  注意 $j$ 是常返状态，故 $r_0=1$。则上式可以写成&lt;/p&gt;
+&lt;span id=&#34;20240929213505CST&#34;&gt;&lt;/span&gt;$$
+\sum_{v=0}^{n}{r_vp_{n-v}}=\sum_{v=0}^{n-1}r_vp_{n-1-v}
 \tag{37}
-$$&lt;p&gt;&lt;span id=&#34;(38)式&#34;&gt;&lt;/span&gt;
-  根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上极限的定义&lt;/a&gt;可知，必然存在 $\set{n}$ 的子列 $\set{n_m},n_m \rightarrow \infin$ 使得&lt;/p&gt;
-$$
-\lambda=\lim\limits_{m \rightarrow \infin}{p_{n_md}}=\limsup\limits_{m \rightarrow \infin}{p_{n_md}}=\liminf\limits_{m \rightarrow \infin}{p_{n_md}}
+    $$
+&lt;p&gt;  上面这个式子表示了一个很明显的结论： $\displaystyle\sum_{v=0}^{n}{r_vp_{n-v}}$ 的值与 $n$ 无关。因此：&lt;/p&gt;
+&lt;span id=&#34;20240929213519CST&#34;&gt;&lt;/span&gt;$$
+\sum_{v=0}^{n}{r_vp_{n-v}}=r_0p_0=1,\quad n \ge 0
 \tag{38}
-$$&lt;p&gt;&lt;span id=&#34;(39)式&#34;&gt;&lt;/span&gt;
-  任取 $s$ 使得 $f_s&amp;gt;0$ ，由&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;下极限的性质&lt;/a&gt;可得&lt;/p&gt;
-$$
+    $$
+&lt;p&gt;  设&lt;/p&gt;
+&lt;span id=&#34;20240929213526CST&#34;&gt;&lt;/span&gt;$$
+\lambda=\limsup\limits_{n \rightarrow \infin}p_{nd}
+\tag{39}
+    $$
+&lt;p&gt;  根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上极限的定义&lt;/a&gt;可知，必然存在 $\set{n}$ 的子列 $\set{n_m},n_m \rightarrow \infin$ 使得&lt;/p&gt;
+&lt;span id=&#34;20240929213532CST&#34;&gt;&lt;/span&gt;$$
+\lambda=\lim\limits_{m \rightarrow \infin}{p_{n_md}}=\limsup\limits_{m \rightarrow \infin}{p_{n_md}}=\liminf\limits_{m \rightarrow \infin}{p_{n_md}}
+\tag{40}
+    $$
+&lt;p&gt;  任取 $s$ 使得 $f_s&amp;gt;0$ ，由&lt;a class=&#34;link&#34; href=&#34;#20240929212214CST&#34;&gt;引理1&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;下极限的性质&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929213539CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \lambda=&amp;\liminf\limits_{m \rightarrow \infin}p_{n_md}=\liminf\limits_{m \rightarrow \infin}p_{jj}^{(n_md)}=\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{jj}^{(v)}p_{jj}^{(n_md-v)}\\
 =&amp;\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{v}p_{n_md-v}=\liminf\limits_{m \rightarrow \infin}\bigg(f_sp_{n_md-s}+\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\bigg)\\
 \le&amp;\liminf\limits_{m \rightarrow \infin}f_sp_{n_md-s}+\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}
 \end{aligned}
-\tag{39}
-$$&lt;p&gt;&lt;span id=&#34;(40)式&#34;&gt;&lt;/span&gt;
-  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的性质&lt;/a&gt;和可推导出&lt;/p&gt;
-$$
+\tag{41}
+    $$
+&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的性质&lt;/a&gt;和可推导出&lt;/p&gt;
+&lt;span id=&#34;20240929213547CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\le&amp;\sum_{v=1,v \ne s}^{n_md}\liminf\limits_{m \rightarrow \infin}f_{v}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}\\
 \le&amp;\sum_{v=1,v \ne s}^{\infin}\liminf\limits_{m \rightarrow \infin}f_{v}p_{n_md-v}\quad\text{（概率的非负性）}\\
 \le&amp;\sum_{v=1,v \ne s}^{\infin}\liminf\limits_{m \rightarrow \infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}a_nb_n\le\liminf\limits_{n \rightarrow \infin}a_n\limsup\limits_{n \rightarrow \infin}b_n\text{）}\\
 =&amp;\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\\
 \end{aligned}
-\tag{40}
-$$&lt;p&gt;&lt;span id=&#34;(41)式&#34;&gt;&lt;/span&gt;
-  注意当 $v$ 不是 $d$ 的倍数时 $p_{n_md-v}=0$ ，此时 $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ ；若 $v$ 是 $d$ 的倍数，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上极限的性质&lt;/a&gt;可知仍有  $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ 。故接&lt;a class=&#34;link&#34; href=&#34;#%2840%29%e5%bc%8f&#34; &gt;(40)式&lt;/a&gt;&lt;/p&gt;
-$$
-\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\bigg(\sum_{v=1,v \ne s}^{\infin}f_{v}\bigg)\limsup\limits_{m \rightarrow \infin}p_{n_md}
-\tag{41}
-$$&lt;p&gt;  注意状态 $j$ 是&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94&#34; &gt;常返&lt;/a&gt;的，所以 $\displaystyle\sum_{v=1}^{\infin}f_{v}=1$ ，也就是 $\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s$ 。而将&lt;a class=&#34;link&#34; href=&#34;#%2838%29%e5%bc%8f&#34; &gt;(38)式&lt;/a&gt; 代入&lt;a class=&#34;link&#34; href=&#34;#%2841%29%e5%bc%8f&#34; &gt;(41)式&lt;/a&gt;后再将&lt;a class=&#34;link&#34; href=&#34;#%2841%29%e5%bc%8f&#34; &gt;(41)式&lt;/a&gt;代回&lt;a class=&#34;link&#34; href=&#34;#%2839%29%e5%bc%8f&#34; &gt;(39)式&lt;/a&gt;得&lt;/p&gt;
-$$
-\lambda\le f_s\liminf\limits_{m \rightarrow \infin}p_{n_md-s}+(1-f_s)\lambda
 \tag{42}
-$$&lt;p&gt;即&lt;/p&gt;
-$$
-\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda
+    $$
+&lt;p&gt;  注意当 $v$ 不是 $d$ 的倍数时 $p_{n_md-v}=0$ ，此时 $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ ；若 $v$ 是 $d$ 的倍数，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上极限的性质&lt;/a&gt;可知仍有  $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ 。故接上式&lt;/p&gt;
+&lt;span id=&#34;20240929213601CST&#34;&gt;&lt;/span&gt;$$
+\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\bigg(\sum_{v=1,v \ne s}^{\infin}f_{v}\bigg)\limsup\limits_{m \rightarrow \infin}p_{n_md}
 \tag{43}
-$$&lt;p&gt;&lt;span id=&#34;(44)式&#34;&gt;&lt;/span&gt;
-  由&lt;a class=&#34;link&#34; href=&#34;#%e5%91%a8%e6%9c%9f&#34; &gt;周期&lt;/a&gt;的定义和 $f_s&amp;gt;0$ 知 $d$ 必整除 $s$ 。因此 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda$ 。但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的定义&lt;/a&gt;可知 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}$ ，即 $\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda$ 。故由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda$ 。又由&lt;a class=&#34;link&#34; href=&#34;#%2838%29%e5%bc%8f&#34; &gt;(38)式&lt;/a&gt;可得：&lt;/p&gt;
-$$
-\lambda=\lim\limits_{m \rightarrow \infin}p_{n_md}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-2s}=\cdots
+    $$
+&lt;p&gt;  注意状态 $j$ 是&lt;a class=&#34;link&#34; href=&#34;#20240930164408CST&#34;&gt;常返&lt;/a&gt;的，所以 $\displaystyle\sum_{v=1}^{\infin}f_{v}=1$ ，也就是 $\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s$ 。而将&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(40)&lt;/a&gt;代入&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式(43)&lt;/a&gt;后再将&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式(43)&lt;/a&gt;代回&lt;a class=&#34;link&#34; href=&#34;#20240929213539CST&#34;&gt;式(41)&lt;/a&gt;得&lt;/p&gt;
+&lt;span id=&#34;20240929213611CST&#34;&gt;&lt;/span&gt;$$
+\lambda\le f_s\liminf\limits_{m \rightarrow \infin}p_{n_md-s}+(1-f_s)\lambda
 \tag{44}
-$$&lt;p&gt;&lt;span id=&#34;(45)式&#34;&gt;&lt;/span&gt;
-  任取 $l$ 个正整数 $c_i$ 和满足 $f_{d_i}&amp;gt;0$ 的 $l$ 个正整数 $d_i,i=1,2,\cdots,l$ 。由&lt;a class=&#34;link&#34; href=&#34;#%2844%29%e5%bc%8f&#34; &gt;(44)式&lt;/a&gt;可知有&lt;/p&gt;
-$$
-\lim\limits_{m \rightarrow \infin}p_{n_md-c_id_i}=\lambda
+    $$
+&lt;p&gt;  即&lt;/p&gt;
+&lt;span id=&#34;20240929213623CST&#34;&gt;&lt;/span&gt;$$
+\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda
 \tag{45}
-$$&lt;p&gt;&lt;span id=&#34;(46)式&#34;&gt;&lt;/span&gt;
-  注意由&lt;a class=&#34;link&#34; href=&#34;#%e5%91%a8%e6%9c%9f&#34; &gt;周期&lt;/a&gt;的定义，$d$ 一定可以整除 $d_i$ 。假设 $d_i=k_id$ ， $k_i$ 为正整数，则&lt;a class=&#34;link&#34; href=&#34;#%2845%29%e5%bc%8f&#34; &gt;(45)式&lt;/a&gt;又可以写为&lt;/p&gt;
-$$
-\lim\limits_{m \rightarrow \infin}p_{(n_m-c_ik_i)d}=\lambda
+    $$
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义和 $f_s&amp;gt;0$ 知 $d$ 必整除 $s$ 。因此 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda$ 。但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的定义&lt;/a&gt;可知 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}$ ，即 $\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda$ 。故由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 $\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda$ 。又由&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(40)&lt;/a&gt;可得：&lt;/p&gt;
+&lt;span id=&#34;20240929213629CST&#34;&gt;&lt;/span&gt;$$
+\lambda=\lim\limits_{m \rightarrow \infin}p_{n_md}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-2s}=\cdots
 \tag{46}
-$$&lt;p&gt;&lt;span id=&#34;47式&#34;&gt;&lt;/span&gt;
-  可以定义一个正整数 $n_m^\prime=n_m-c_ik_i$ 。则&lt;a class=&#34;link&#34; href=&#34;#%2846%29%e5%bc%8f&#34; &gt;(46)式&lt;/a&gt;可以写成&lt;/p&gt;
-$$
-\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d}=\lambda
+    $$
+&lt;p&gt;  任取 $l$ 个正整数 $c_i$ 和满足 $f_{d_i}&amp;gt;0$ 的 $l$ 个正整数 $d_i,i=1,2,\cdots,l$ 。由&lt;a class=&#34;link&#34; href=&#34;#20240929213629CST&#34;&gt;式(46)&lt;/a&gt;可知有&lt;/p&gt;
+&lt;span id=&#34;20240929213639CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{m \rightarrow \infin}p_{n_md-c_id_i}=\lambda
 \tag{47}
-$$&lt;p&gt;  我们发现&lt;a class=&#34;link&#34; href=&#34;#47%e5%bc%8f&#34; &gt;(47)式&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%2838%29%e5%bc%8f&#34; &gt;(38)式&lt;/a&gt;形式完全一样，因此再次重复从&lt;a class=&#34;link&#34; href=&#34;#%2838%29%e5%bc%8f&#34; &gt;(38)式&lt;/a&gt;到&lt;a class=&#34;link&#34; href=&#34;#%2845%29%e5%bc%8f&#34; &gt;(45)式&lt;/a&gt;的推导又可以得到&lt;/p&gt;
-$$
-\lambda=\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d}=\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d-s^\prime}=\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d-2s^\prime}=\cdots
+    $$
+&lt;p&gt;  注意由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义，$d$ 一定可以整除 $d_i$ 。假设 $d_i=k_id$ ， $k_i$ 为正整数，则上式又可以写为&lt;/p&gt;
+&lt;span id=&#34;20240929213645CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{m \rightarrow \infin}p_{(n_m-c_ik_i)d}=\lambda
 \tag{48}
-$$&lt;p&gt;  也就是&lt;/p&gt;
-$$
-\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d-c_{i^\prime}d_{i^\prime}}=\lambda
+    $$
+&lt;p&gt;  可以定义一个正整数 $n_m^\prime=n_m-c_ik_i$ 。则上式可以写成&lt;/p&gt;
+&lt;span id=&#34;20240929213650CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d}=\lambda
 \tag{49}
-$$&lt;p&gt;  因此，不同的 $c_id_i$ 可以叠加而不影响结论。故对 $u=\displaystyle\sum_{i=1}^{l}c_id_i$ 也满足&lt;/p&gt;
-$$
-\lim\limits_{m \rightarrow \infin}p_{n_md-u}=\lambda
+    $$
+&lt;p&gt;  我们发现上式和&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(40)&lt;/a&gt;形式完全一样，因此再次重复从&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(40)&lt;/a&gt;到&lt;a class=&#34;link&#34; href=&#34;#20240929213639CST&#34;&gt;式(47)&lt;/a&gt;的推导又可以得到&lt;/p&gt;
+&lt;span id=&#34;20240929213656CST&#34;&gt;&lt;/span&gt;$$
+\lambda=\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d}=\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d-s^\prime}=\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d-2s^\prime}=\cdots
 \tag{50}
-$$&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#%e5%91%a8%e6%9c%9f&#34; &gt;周期 $d$ 的定义&lt;/a&gt;知，存在满足 $f_{d_i}&amp;gt;0$ 的 $d_i,i=1,2,\cdots,l$ 使得 $d_1,d_2,\cdots,d_l$ 的最大公因子也是 $d$ 。于是，当 $k$ 大于某个正整数 $k_0$ 时，必有正整数 $c_i$ ，使得&lt;/p&gt;
-$$
-kd=\sum_{i=1}^{l}c_id_i
+    $$
+&lt;p&gt;  也就是&lt;/p&gt;
+&lt;span id=&#34;20240929213704CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d-c_{i^\prime}d_{i^\prime}}=\lambda
 \tag{51}
- $$&lt;p&gt;  上述结论见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，初等数论还未上线~&#39;)&#34;&gt;Frobenius问题&lt;/a&gt;（实际上 $k_0$ 就是数论中著名的Frobenius数，该数在 $l\ge3$ 时无一般表示式，但是可以证明 $k_0\le \displaystyle\sum_{i=2}^{l}\frac{d_i\cdot gcd(d_1,d_2,\dots,d_{i-1})}{d \cdot gcd(d_1,d_2,\dots,d_i)} - \displaystyle\sum_{i=1}^{l}\frac{d_i}{d}$ ）。于是，对每一个 $k\ge k_0$ 有&lt;/p&gt;
-$$
-\lim\limits_{n \rightarrow \infin}p_{(n_m-k)d}=\lambda
+    $$
+&lt;p&gt;  因此，不同的 $c_id_i$ 可以叠加而不影响结论。故对 $u=\displaystyle\sum_{i=1}^{l}c_id_i$ 也满足&lt;/p&gt;
+&lt;span id=&#34;20240929213712CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{m \rightarrow \infin}p_{n_md-u}=\lambda
 \tag{52}
-$$&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#%2836%29%e5%bc%8f&#34; &gt;(36)式&lt;/a&gt;中令 $n=(n_m-k_0)d$， 并注意到 $v$ 不是 $d$ 的整数倍时 $p_v=0$ ，故可把 $v$ 替换为 $vd$ ，则得&lt;/p&gt;
-$$
-\sum_{v=0}^{n_m-k_0}r_{vd}p_{(n_m-k_0-v)d}=1
+    $$
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义知，存在满足 $f_{d_i}&amp;gt;0$ 的 $d_i,i=1,2,\cdots,l$ 使得 $d_1,d_2,\cdots,d_l$ 的最大公因子也是 $d$ 。于是，当 $k$ 大于某个正整数 $k_0$ 时，必有正整数 $c_i$ ，使得&lt;/p&gt;
+&lt;span id=&#34;20240929213720CST&#34;&gt;&lt;/span&gt;$$
+kd=\sum_{i=1}^{l}c_id_i
 \tag{53}
-$$&lt;p&gt;&lt;span id=&#34;(54)式&#34;&gt;&lt;/span&gt;
-  令 $m \rightarrow \infin$ 可得&lt;/p&gt;
-$$
-\lambda=\frac{1}{\displaystyle\sum_{v=0}^{\infin}r_{vd}}
+    $$
+&lt;p&gt;  上述结论见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，初等数论还未上线~&#39;)&#34;&gt;Frobenius问题&lt;/a&gt;（实际上 $k_0$ 就是数论中著名的Frobenius数，该数在 $l\ge3$ 时无一般表示式，但是可以证明 $k_0\le \displaystyle\sum_{i=2}^{l}\frac{d_i\cdot gcd(d_1,d_2,\dots,d_{i-1})}{d \cdot gcd(d_1,d_2,\dots,d_i)} - \displaystyle\sum_{i=1}^{l}\frac{d_i}{d}$ ）。于是，对每一个 $k\ge k_0$ 有&lt;/p&gt;
+&lt;span id=&#34;20240929213727CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{n \rightarrow \infin}p_{(n_m-k)d}=\lambda
 \tag{54}
-$$&lt;p&gt;  因为当 $v$ 不是 $d$ 的整数倍时，$f_v=0$ ，由&lt;a class=&#34;link&#34; href=&#34;#%2832%29%e5%bc%8f&#34; &gt;(32)式&lt;/a&gt;可得&lt;/p&gt;
-$$
-r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
+    $$
+&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20240929213519CST&#34;&gt;式(38)&lt;/a&gt;中令 $n=(n_m-k_0)d$， 并注意到 $v$ 不是 $d$ 的整数倍时 $p_v=0$ ，故可把 $v$ 替换为 $vd$ ，则得&lt;/p&gt;
+&lt;span id=&#34;20240929213734CST&#34;&gt;&lt;/span&gt;$$
+\sum_{v=0}^{n_m-k_0}r_{vd}p_{(n_m-k_0-v)d}=1
 \tag{55}
-$$&lt;p&gt;  从而由&lt;a class=&#34;link&#34; href=&#34;#%2833%29%e5%bc%8f&#34; &gt;(33)式&lt;/a&gt;得&lt;/p&gt;
-$$
-\sum_{v=0}^{\infin}r_{vd}=\frac{1}{d}\sum_{v=0}^{\infin}\sum_{j=vd}^{vd+d-1}r_j=\frac{1}{d}\sum_{v=0}^{\infin}r_v=\frac{\mu_j}{d}
+    $$
+&lt;p&gt;  令 $m \rightarrow \infin$ 可得&lt;/p&gt;
+&lt;span id=&#34;20240929213740CST&#34;&gt;&lt;/span&gt;$$
+\lambda=\frac{1}{\displaystyle\sum_{v=0}^{\infin}r_{vd}}
 \tag{56}
-$$&lt;p&gt;  代入&lt;a class=&#34;link&#34; href=&#34;#%2854%29%e5%bc%8f&#34; &gt;(54)式&lt;/a&gt;可得&lt;/p&gt;
-$$
-\lambda = \frac{d}{\mu_j}
+    $$
+&lt;p&gt;  因为当 $v$ 不是 $d$ 的整数倍时，$f_v=0$ ，由&lt;a class=&#34;link&#34; href=&#34;#20240929213442CST&#34;&gt;式(34)&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929213747CST&#34;&gt;&lt;/span&gt;$$
+r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
 \tag{57}
-$$&lt;p&gt;  把&lt;a class=&#34;link&#34; href=&#34;#%2837%29%e5%bc%8f&#34; &gt;(37)式&lt;/a&gt;换成 $\lambda=\liminf\limits_{n \rightarrow \infin}p_{nd}$ ，下面的推导过程完全相同，仍可以得到 $\lambda = \displaystyle\frac{d}{\mu_j}$ 。因此，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;可知&lt;/p&gt;
-$$
-\lim\limits_{n \rightarrow \infin}p_{nd}=\frac{d}{\mu_j}
+    $$
+&lt;p&gt;  从而由&lt;a class=&#34;link&#34; href=&#34;#20240929213450CST&#34;&gt;式(35)&lt;/a&gt;得&lt;/p&gt;
+&lt;span id=&#34;20240929213756CST&#34;&gt;&lt;/span&gt;$$
+\sum_{v=0}^{\infin}r_{vd}=\frac{1}{d}\sum_{v=0}^{\infin}\sum_{j=vd}^{vd+d-1}r_j=\frac{1}{d}\sum_{v=0}^{\infin}r_v=\frac{\mu_j}{d}
 \tag{58}
-$$&lt;p&gt;  由此，&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86&#34; &gt;定理8&lt;/a&gt;证毕。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;推论1&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;推论1&lt;/strong&gt;：设 $i$ 为常返状态，则&lt;/p&gt;
-$$
-i\text{为零常返状态}\iff\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0
+    $$
+&lt;p&gt;  代入&lt;a class=&#34;link&#34; href=&#34;#20240929213740CST&#34;&gt;式(56)&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929213802CST&#34;&gt;&lt;/span&gt;$$
+\lambda = \frac{d}{\mu_j}
 \tag{59}
-$$&lt;p&gt;&lt;span id=&#34;推论1&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;证明（推论1）&lt;/strong&gt;：若 $i$ 为零常返状态，则 $\mu_i \rightarrow \infin$ ，从而由&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86&#34; &gt;定理8&lt;/a&gt;知 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(nd)}=0$ 。而当 $m$ 不等于 $d$ 的整数倍时， $p_{ii}^{(m)}=0$ ，故 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ 。反之，若 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ ，假如 $i$ 为正常返状态，则由&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86&#34; &gt;定理8&lt;/a&gt;知 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(nd)}&amp;gt;0$ ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;知这与 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ 矛盾，因此 $i$ 为零常返状态。&lt;/p&gt;
-&lt;h4 id=&#34;再论非常返与零常返&#34;&gt;再论非常返与零常返
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理9&lt;/strong&gt;：若 $j$ 为非常返状态或零常返状态，则对 $\forall i \in S$&lt;/p&gt;
-$$
-\lim\limits_{n \rightarrow \infin}p_{ij}^{(n)}=0
+    $$
+&lt;p&gt;  把&lt;a class=&#34;link&#34; href=&#34;#20240929213526CST&#34;&gt;式(39)&lt;/a&gt;换成 $\lambda=\liminf\limits_{n \rightarrow \infin}p_{nd}$ ，下面的推导过程完全相同，仍可以得到 $\lambda = \displaystyle\frac{d}{\mu_j}$ 。因此，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;可知&lt;/p&gt;
+&lt;span id=&#34;20240929213809CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{n \rightarrow \infin}p_{nd}=\frac{d}{\mu_j}
 \tag{60}
-$$&lt;p&gt;  &lt;strong&gt;证明（定理9）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;得&lt;/p&gt;
-$$
-p_{ij}^{(n)}=\sum_{l=1}^{n}f_{ij}^{(l)}p_{jj}^{(n-l)}
+    $$
+&lt;p&gt;  由此，&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;证毕。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929212113CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论1&lt;/strong&gt;：设 $i$ 为常返状态，则&lt;/p&gt;
+&lt;span id=&#34;20240929213817CST&#34;&gt;&lt;/span&gt;$$
+i\text{为零常返状态}\iff\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0
 \tag{61}
-$$&lt;p&gt;  对 $N&amp;lt;n$ ，由概率小于1可知 $f_{ij}^{(l)}&amp;lt;1$ ，因此上式可写成&lt;/p&gt;
-$$
-\sum_{l=1}^{n}f_{ij}^{(l)}p_{jj}^{(n-l)}\le \sum_{l=1}^{N}f_{ij}^{(l)}p_{jj}^{(n-l)}+\sum_{l=N+1}^{n}f_{ij}^{(l)}
-\tag{62}
-$$&lt;p&gt;  先固定 $N$ ，令 $n \rightarrow \infin$ 。由&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86&#34; &gt;定理8&lt;/a&gt;知 $p_{jj}^{(n)} \rightarrow 0$ ，故上式右端第一项为 $0$ 。再令 $N \rightarrow \infin$ ，上式右端第二项因 $\displaystyle\sum_{l=1}^{n}f_{ij}^{(l)}&amp;lt;1$ 而趋于 $0$ ，故&lt;/p&gt;
-$$
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;）&lt;/strong&gt;：若 $i$ 为零常返状态，则 $\mu_i \rightarrow \infin$ ，从而由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;知 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(nd)}=0$ 。而当 $m$ 不等于 $d$ 的整数倍时， $p_{ii}^{(m)}=0$ ，故 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ 。反之，若 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ ，假如 $i$ 为正常返状态，则由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;知 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(nd)}&amp;gt;0$ ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;知这与 $\lim\limits_{n \rightarrow \infin}p_{ii}^{(n)}=0$ 矛盾，因此 $i$ 为零常返状态。&lt;/p&gt;
+&lt;h4 id=&#34;再论非常返与零常返&#34;&gt;再论非常返与零常返
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205716CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理9&lt;/strong&gt;：若 $j$ 为非常返状态或零常返状态，则对 $\forall i \in S$&lt;/p&gt;
+&lt;span id=&#34;20240929213832CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{n \rightarrow \infin}p_{ij}^{(n)}=0
+\tag{62}
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20240929212214CST&#34;&gt;引理1&lt;/a&gt;得&lt;/p&gt;
+&lt;span id=&#34;20240929213841CST&#34;&gt;&lt;/span&gt;$$
+p_{ij}^{(n)}=\sum_{l=1}^{n}f_{ij}^{(l)}p_{jj}^{(n-l)}
 \tag{63}
-$$&lt;p&gt;  定理得证。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;推论2&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;推论2&lt;/strong&gt;：有限状态的Markov链，不可能全为非常返状态，也不可能有零常返状态，从而不可约的有限Markov链是正常返的。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（推论2）&lt;/strong&gt;：设状态空间 $S=\set{1,2,\cdots,N}$ ，若全部 $N$ 个状态都是非常返，则任取其中两个状态 $i,j$ ，若 $i \rightarrow j $ ，有 $p_{ij}^{(n)}\rightarrow 0$ （&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94&#34; &gt;定理9&lt;/a&gt;）；若 $i \nrightarrow j$ ，则对 $\forall n$，$p_{ij}^{(n)}=0$ 。不管是哪种情况， $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}\to 0$ ，但是 $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}=1$ （与&lt;a class=&#34;link&#34; href=&#34;#%e6%9c%89%e9%99%90%e9%93%be%e5%92%8c%e6%97%a0%e9%99%90%e9%93%be&#34; &gt;(3)式&lt;/a&gt;的②类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。&lt;br&gt;
-  若 $S$ 中有零常返状态，设为 $i$ ，令 $C=\set{j | i \rightarrow j}$ ，则有 $\displaystyle\sum_{j \in C}p_{ij}^{(n)}=1$ 且 $j \rightarrow i$ （ $j \nrightarrow i$ 与 $i$ 的常返性相矛盾，类似&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94%e4%ba%92%e9%80%9a%e5%88%99%e5%bf%85%e8%be%be&#34; &gt;引理2&lt;/a&gt;的证明）。故 $i \leftrightarrow j$ ，从而 $j$ 也为零常返状态（&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8&#34; &gt;定理5&lt;/a&gt;）。则 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ （&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94&#34; &gt;定理9&lt;/a&gt;），从而 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}\to 0$ 。但是由 $j$ 的定义知 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}=1$ ，矛盾。因此有限状态的Markov链不可能有零常返状态。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;推论3&lt;/strong&gt;：若Markov链有一个零常返状态，则必有无限个零常返状态。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（推论3）&lt;/strong&gt;：假设Markov链有一个零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#%e7%8a%b6%e6%80%81%e7%a9%ba%e9%97%b4%e5%88%86%e8%a7%a3%e5%ae%9a%e7%90%86&#34; &gt;定理6&lt;/a&gt;可知这个零常返状态必然存在于某个不可约类中，又有&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94%e6%98%af%e4%b8%80%e4%b8%aa%e7%b1%bb%e6%80%a7%e8%b4%a8&#34; &gt;定理5&lt;/a&gt;可知这个类必然全都是零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba2&#34; &gt;推论2&lt;/a&gt;可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。&lt;/p&gt;
-&lt;h4 id=&#34;再论正常返&#34;&gt;再论正常返
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理10&lt;/strong&gt;：若 $j$ 为正常返状态且周期为 $d$ ，则对 $\forall i$ 及 $0 \le r \le d-1$ ，有&lt;/p&gt;
-$$
-\lim\limits_{n \to \infin}p_{ij}^{(nd+r)}=f_{ij}(r)\space\frac{d}{\mu_j}
+    $$
+&lt;p&gt;  对 $N&amp;lt;n$ ，由概率小于1可知 $f_{ij}^{(l)}&amp;lt;1$ ，因此上式可写成&lt;/p&gt;
+&lt;span id=&#34;20240929213848CST&#34;&gt;&lt;/span&gt;$$
+\sum_{l=1}^{n}f_{ij}^{(l)}p_{jj}^{(n-l)}\le \sum_{l=1}^{N}f_{ij}^{(l)}p_{jj}^{(n-l)}+\sum_{l=N+1}^{n}f_{ij}^{(l)}
 \tag{64}
-$$&lt;p&gt;  其中 $f_{ij}(r)$ 为：&lt;/p&gt;
-$$
-f_{ij}(r)=\sum_{m=0}^{\infin}f_{ij}^{(md+r)},\quad 0 \le r \le d-1
+    $$
+&lt;p&gt;  先固定 $N$ ，令 $n \rightarrow \infin$ 。由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;知 $p_{jj}^{(n)} \rightarrow 0$ ，故上式右端第一项为 $0$ 。再令 $N \rightarrow \infin$ ，上式右端第二项因 $\displaystyle\sum_{l=1}^{n}f_{ij}^{(l)}&amp;lt;1$ 而趋于 $0$ ，故&lt;/p&gt;
+&lt;span id=&#34;20240929213854CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{n \rightarrow \infin}p_{ij}^{(n)}=0
 \tag{65}
-$$&lt;p&gt;  &lt;strong&gt;证明（定理10）&lt;/strong&gt;：当 $n \ne kd$ 时， $p_{jj}^{(n)}=0$ 。因此由&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%861&#34; &gt;引理1&lt;/a&gt;可得&lt;/p&gt;
-$$
+    $$
+&lt;p&gt;  定理得证。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929212119CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论2&lt;/strong&gt;：有限状态的Markov链，不可能全为非常返状态，也不可能有零常返状态，从而不可约的有限Markov链是正常返的。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;）&lt;/strong&gt;：设状态空间 $S=\set{1,2,\cdots,N}$ ，若全部 $N$ 个状态都是非常返，则任取其中两个状态 $i,j$ ，若 $i \rightarrow j $ ，有 $p_{ij}^{(n)}\rightarrow 0$ （&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;）；若 $i \nrightarrow j$ ，则对 $\forall n$，$p_{ij}^{(n)}=0$ 。不管是哪种情况， $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}\to 0$ ，但是 $\displaystyle\sum_{j=0}^{N}p_{ij}^{(n)}=1$ （与&lt;a class=&#34;link&#34; href=&#34;#20240929204123CST&#34;&gt;式(3)&lt;/a&gt;的②类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。&lt;br&gt;
+  若 $S$ 中有零常返状态，设为 $i$ ，令 $C=\set{j | i \rightarrow j}$ ，则有 $\displaystyle\sum_{j \in C}p_{ij}^{(n)}=1$ 且 $j \rightarrow i$ （ $j \nrightarrow i$ 与 $i$ 的常返性相矛盾，类似&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;的证明）。故 $i \leftrightarrow j$ ，从而 $j$ 也为零常返状态（&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;）。则 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ （&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;），从而 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}\to 0$ 。但是由 $j$ 的定义知 $\displaystyle\sum_{j \in C}^{}p_{ij}^{(n)}=1$ ，矛盾。因此有限状态的Markov链不可能有零常返状态。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929212124CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论3&lt;/strong&gt;：若Markov链有一个零常返状态，则必有无限个零常返状态。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212124CST&#34;&gt;推论3&lt;/a&gt;）&lt;/strong&gt;：假设Markov链有一个零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;可知这个零常返状态必然存在于某个不可约类中，又有&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知这个类必然全都是零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。&lt;/p&gt;
+&lt;h4 id=&#34;再论正常返&#34;&gt;再论正常返
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205721CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理10&lt;/strong&gt;：若 $j$ 为正常返状态且&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;为 $d$ ，则对 $\forall i$ 及 $0 \le r \le d-1$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240929213918CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{n \to \infin}p_{ij}^{(nd+r)}=f_{ij}(r)\space\frac{d}{\mu_j}
+\tag{66}
+    $$
+&lt;p&gt;  其中 $f_{ij}(r)$ 为：&lt;/p&gt;
+&lt;span id=&#34;20240929213923CST&#34;&gt;&lt;/span&gt;$$
+f_{ij}(r)=\sum_{m=0}^{\infin}f_{ij}^{(md+r)},\quad 0 \le r \le d-1
+\tag{67}
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205721CST&#34;&gt;定理10&lt;/a&gt;）&lt;/strong&gt;：当 $n \ne kd$ 时， $p_{jj}^{(n)}=0$ 。因此由&lt;a class=&#34;link&#34; href=&#34;#20240929212214CST&#34;&gt;引理1&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929213929CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ij}^{(nd+r)}=&amp;\sum_{k=0}^{(nd+r)}f_{ij}^{(k)}p_{jj}^{(nd+r-k)}\quad\text{（引理1）}\\
 =&amp;\sum_{m=0}^{n}f_{ij}^{(md+r)}p_{jj}^{(n-m)d}\text{（}换元k=md+r，其余的k的项值都为0\text{）}
 \end{aligned}
-\tag{66}
-$$&lt;p&gt;  于是由 $0 \le p_{jj}^{(n-m)d} \le 1$ （&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，”概率论“还未上线~&#39;)&#34;&gt;概率的性质&lt;/a&gt;），对 $1 \le N &amp;lt; n$ 有&lt;/p&gt;
-$$
-\sum_{m=0}^{N}f_{ij}^{(md+r)}p_{jj}^{(n-m)d}\le p_{ij}^{(nd+r)}\le \sum_{m=0}^{N}f_{ij}^{(md+r)}p_{jj}^{(n-m)d}+\sum_{N+1}^{n}f_{ij}^{(md+r)}
-\tag{67}
-$$&lt;p&gt;  类似于&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94&#34; &gt;定理9&lt;/a&gt;的推导，先令 $n \to \infin$，再令 $N \to \infin$ ，由&lt;a class=&#34;link&#34; href=&#34;#%e6%9e%81%e9%99%90%e5%ae%9a%e7%90%86-1&#34; &gt;定理8&lt;/a&gt;得&lt;/p&gt;
-$$
-f_{ij}(r)\space\frac{d}{\mu_j}\le p_{ij}^{(nd+r)} \le f_{ij}(r)\space\frac{d}{\mu_j}
 \tag{68}
-$$&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤原则&lt;/a&gt;可得&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94&#34; &gt;定理10&lt;/a&gt;得证。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;推论4&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;推论4&lt;/strong&gt;：设有不可约的、正常返的、周期为 $d$ 的Markov链（即每个状态都是正常返的），其状态空间为 $S$ ，则对任何状态 $i \leftrightarrow j(i,j \in S)$ ，有&lt;/p&gt;
-$$
+    $$
+&lt;p&gt;  于是由 $0 \le p_{jj}^{(n-m)d} \le 1$ （&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，”概率论“还未上线~&#39;)&#34;&gt;概率的性质&lt;/a&gt;），对 $1 \le N &amp;lt; n$ 有&lt;/p&gt;
+&lt;span id=&#34;20240929213935CST&#34;&gt;&lt;/span&gt;$$
+\sum_{m=0}^{N}f_{ij}^{(md+r)}p_{jj}^{(n-m)d}\le p_{ij}^{(nd+r)}\le \sum_{m=0}^{N}f_{ij}^{(md+r)}p_{jj}^{(n-m)d}+\sum_{N+1}^{n}f_{ij}^{(md+r)}
+\tag{69}
+    $$
+&lt;p&gt;  类似于&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;的推导，先令 $n \to \infin$，再令 $N \to \infin$ ，由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;得&lt;/p&gt;
+&lt;span id=&#34;20240929213942CST&#34;&gt;&lt;/span&gt;$$
+f_{ij}(r)\space\frac{d}{\mu_j}\le p_{ij}^{(nd+r)} \le f_{ij}(r)\space\frac{d}{\mu_j}
+\tag{70}
+    $$
+&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可得&lt;a class=&#34;link&#34; href=&#34;#20240929205721CST&#34;&gt;定理10&lt;/a&gt;得证。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929212128CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论4&lt;/strong&gt;：设有不可约的、正常返的、周期为 $d$ 的Markov链（即每个状态都是正常返的），其状态空间为 $S$ ，则对任何状态 $i \leftrightarrow j(i,j \in S)$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240929213948CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{n \to \infin}p_{ij}^{(nd)}=
 \begin{cases}
 \space\displaystyle\frac{d}{\mu_j}\quad&amp;若\space i \space 与\space j \space 同属于子集\space S\\[10pt]
 \space 0\quad&amp;其他
 \end{cases}
-\tag{69}
-$$&lt;p&gt;  其中 $S=\displaystyle\bigcup_{i=0}^{d-1}S_s$ 即为&lt;a class=&#34;link&#34; href=&#34;#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb&#34; &gt;定理7&lt;/a&gt;所给出的 $S_s$ 。特别的，当 $d=1$ 时，$\forall i,j \in S$ 有&lt;/p&gt;
-$$
-\lim\limits_{n \to \infin}p_{ij}^{(n)}=\frac{1}{\mu_j}
-\tag{70}
-$$&lt;p&gt;  &lt;strong&gt;证明（推论4）&lt;/strong&gt;：在&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94&#34; &gt;定理10&lt;/a&gt;中取 $r=0$ 得&lt;/p&gt;
-$$
-\lim\limits_{n \to \infin}p_{ij}^{(nd)}=f_{ij}(0)\space\frac{d}{\mu_j}
 \tag{71}
-$$&lt;p&gt;  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。若 $i$ 与 $j$ 不在同一个 $S_s$ 中，则由&lt;a class=&#34;link&#34; href=&#34;#%e4%b8%8d%e5%8f%af%e7%ba%a6Markov%e9%93%be%e7%9a%84%e8%bd%ac%e7%a7%bb&#34; &gt;定理7&lt;/a&gt;可知所有的 $f_{ij}^{(md)}=0$ 。若 $i,j$ 在同一个 $S_s$ 中，注意当 $n$ 不为 $d$ 的倍数的时候 $p_{ij}^{(n)}=0$ ，因此 $f_{ij}^{(n)}=0$ （见&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94&#34; &gt;定义8&lt;/a&gt;）。此时有&lt;/p&gt;
-$$
-f_{ij}(0)=\sum_{m=0}^{\infin}f_{ij}^{(md)}=\sum_{m=0}^{\infin}f_{ij}^{(m)}=f_{ij}=1
+    $$
+&lt;p&gt;  其中 $S=\displaystyle\bigcup_{i=0}^{d-1}S_s$ 即为&lt;a class=&#34;link&#34; href=&#34;#20240929205707CST&#34;&gt;定理7&lt;/a&gt;所给出的 $S_s$ 。特别的，当 $d=1$ 时，$\forall i,j \in S$ 有&lt;/p&gt;
+&lt;span id=&#34;20240929213954CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{n \to \infin}p_{ij}^{(n)}=\frac{1}{\mu_j}
 \tag{72}
-$$&lt;p&gt;  综上，&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4&lt;/a&gt;得证。&lt;/p&gt;
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212128CST&#34;&gt;推论4&lt;/a&gt;）&lt;/strong&gt;：在&lt;a class=&#34;link&#34; href=&#34;#20240929205721CST&#34;&gt;定理10&lt;/a&gt;中取 $r=0$ 得&lt;/p&gt;
+&lt;span id=&#34;20240929213959CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{n \to \infin}p_{ij}^{(nd)}=f_{ij}(0)\space\frac{d}{\mu_j}
+\tag{73}
+    $$
+&lt;p&gt;  其中 $f_{ij}(0)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{(md)}$ 。若 $i$ 与 $j$ 不在同一个 $S_s$ 中，则由&lt;a class=&#34;link&#34; href=&#34;#20240929205707CST&#34;&gt;定理7&lt;/a&gt;可知所有的 $f_{ij}^{(md)}=0$ 。若 $i,j$ 在同一个 $S_s$ 中，注意当 $n$ 不为 $d$ 的倍数的时候 $p_{ij}^{(n)}=0$ ，因此 $f_{ij}^{(n)}=0$ （见&lt;a class=&#34;link&#34; href=&#34;#20240930164408CST&#34;&gt;常返&lt;/a&gt;）。此时有&lt;/p&gt;
+&lt;span id=&#34;20240929214005CST&#34;&gt;&lt;/span&gt;$$
+f_{ij}(0)=\sum_{m=0}^{\infin}f_{ij}^{(md)}=\sum_{m=0}^{\infin}f_{ij}^{(m)}=f_{ij}=1
+\tag{74}
+    $$
+&lt;p&gt;  综上，&lt;a class=&#34;link&#34; href=&#34;#20240929212128CST&#34;&gt;推论4&lt;/a&gt;得证。&lt;/p&gt;
 &lt;h4 id=&#34;n步转移概率的期望&#34;&gt;n步转移概率的期望
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理11&lt;/strong&gt;：对于任意状态 $i,j \in S$ ，有&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205725CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理11&lt;/strong&gt;：对于任意状态 $i,j \in S$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240929214011CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=
 \begin{cases}
 \space 0 \quad j\space 为非常返状态或零常返状态\\[10pt]
 \space \displaystyle\frac{f_{ij}}{\mu_{j}} \quad j \space 为正常返状态
 \end{cases}
-\tag{73}
-$$&lt;p&gt;  为了证明&lt;a class=&#34;link&#34; href=&#34;#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b&#34; &gt;定理11&lt;/a&gt;，我们需要先证明&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%863&#34; &gt;引理3&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;引理3&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;引理3&lt;/strong&gt;：设有非负数列 $\set{a_n}$ 的 $d$ 个子列 $\set{a_{kd+s}}(s=0,1,2,\cdots,d-1)$ ，如果对每一个 $d$ ，存在极限 $\lim\limits_{k \to \infin}a_{kd+s}=b_s$ ，则有：&lt;/p&gt;
-$$
-\lim_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}a_k=\frac{1}{d}\sum_{s=0}^{d-1}b_s
-\tag{74}
-$$&lt;p&gt;  &lt;strong&gt;证明（引理3）&lt;/strong&gt;：设 $n=md+r(0 \le r &amp;lt; d-1)$ ，数列的前 $n$ 项和 $\displaystyle\sum_{k=1}^{n}a_k$ 可以写为：&lt;/p&gt;
-$$
-\sum_{k=1}^{n}a_k=\sum_{t=1}^{d-1}a_{t}+\sum_{s=0}^{d-1}\sum_{k=1}^{m-1}a_{kd+s}+\sum_{t=0}^{r}a_{md+t}
 \tag{75}
-$$&lt;p&gt;  等式两端除以 $m$ 并令 $m \to \infin$ 。右端第一项和第三项都为有限值，因此极限为 $0$ 。讨论右端第二项，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;Stolz定理&lt;/a&gt;可推导得：&lt;/p&gt;
-$$
-\lim\limits_{m \to \infin}\frac{\displaystyle\sum_{k=1}^{m-1}a_{kd+s}}{m}=\lim\limits_{m \to \infin}\frac{\displaystyle\sum_{k=1}^{m-1}a_{kd+s}-\displaystyle\sum_{k=1}^{m-2}a_{kd+s}}{m-(m-1)}=\lim\limits_{m \to \infin}a_{(m-1)d+s}=b_s
+    $$
+&lt;p&gt;  为了证明&lt;a class=&#34;link&#34; href=&#34;#20240929205725CST&#34;&gt;定理11&lt;/a&gt;，我们需要先证明&lt;a class=&#34;link&#34; href=&#34;#20240929212223CST&#34;&gt;引理3&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929212223CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;引理3&lt;/strong&gt;：设有非负数列 $\set{a_n}$ 的 $d$ 个子列 $\set{a_{kd+s}}(s=0,1,2,\cdots,d-1)$ ，如果对每一个 $d$ ，存在极限 $\lim\limits_{k \to \infin}a_{kd+s}=b_s$ ，则有：&lt;/p&gt;
+&lt;span id=&#34;20240929214017CST&#34;&gt;&lt;/span&gt;$$
+\lim_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}a_k=\frac{1}{d}\sum_{s=0}^{d-1}b_s
 \tag{76}
-$$&lt;p&gt;  因此&lt;/p&gt;
-$$
-\lim\limits_{m \to \infin}\frac{1}{m}\sum_{k=1}^{n}a_k=\sum_{s=0}^{d-1}b_s
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212223CST&#34;&gt;引理3&lt;/a&gt;）&lt;/strong&gt;：设 $n=md+r(0 \le r &amp;lt; d-1)$ ，数列的前 $n$ 项和 $\displaystyle\sum_{k=1}^{n}a_k$ 可以写为：&lt;/p&gt;
+&lt;span id=&#34;20240929214023CST&#34;&gt;&lt;/span&gt;$$
+\sum_{k=1}^{n}a_k=\sum_{t=1}^{d-1}a_{t}+\sum_{s=0}^{d-1}\sum_{k=1}^{m-1}a_{kd+s}+\sum_{t=0}^{r}a_{md+t}
 \tag{77}
-$$&lt;p&gt;  最后再令 $n \to \infin$ ，得&lt;/p&gt;
-$$
-\lim_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}a_k=\lim_{m \to \infin}\frac{m}{md+r}\cdot\lim_{m \to \infin}\frac{1}{m}\sum_{k=1}^{n}a_k=\frac{1}{d}\sum_{s=0}^{d-1}b_s
+    $$
+&lt;p&gt;  等式两端除以 $m$ 并令 $m \to \infin$ 。右端第一项和第三项都为有限值，因此极限为 $0$ 。讨论右端第二项，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;Stolz定理&lt;/a&gt;可推导得：&lt;/p&gt;
+&lt;span id=&#34;20240929214031CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{m \to \infin}\frac{\displaystyle\sum_{k=1}^{m-1}a_{kd+s}}{m}=\lim\limits_{m \to \infin}\frac{\displaystyle\sum_{k=1}^{m-1}a_{kd+s}-\displaystyle\sum_{k=1}^{m-2}a_{kd+s}}{m-(m-1)}=\lim\limits_{m \to \infin}a_{(m-1)d+s}=b_s
 \tag{78}
-$$&lt;p&gt;  现在，我们可以证明&lt;a class=&#34;link&#34; href=&#34;#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b&#34; &gt;定理11&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理11）&lt;/strong&gt;：若 $j$ 为非常返状态或零常返状态，由&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94&#34; &gt;定理9&lt;/a&gt;可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ 。因此 $\lim\limits_{n \to \infin}\displaystyle\frac{1}{n}\displaystyle\sum_{k=1}^{n}p_{ij}^{(k)}=0$ 。若 $j$ 为正常返状态且有周期 $d$ ，则令&lt;a class=&#34;link&#34; href=&#34;#%e5%bc%95%e7%90%863&#34; &gt;引理3&lt;/a&gt;中的 $a_{kd+s}=p_{ij}^{(kd+s)}$ ，然后利用&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e6%ad%a3%e5%b8%b8%e8%bf%94&#34; &gt;定理10&lt;/a&gt;得到 $b_s=f_{ij}(s)\displaystyle\space\frac{d}{\mu_j}$ 。从而得&lt;/p&gt;
-$$
-\lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=\frac{1}{d}\sum_{s=0}^{d-1}f_{ij}(s)\space\frac{d}{\mu_j}=\frac{1}{\mu_j}\sum_{s=0}^{d-1}f_{ij}(s)=f_{ij}
+    $$
+&lt;p&gt;  因此&lt;/p&gt;
+&lt;span id=&#34;20240929214038CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{m \to \infin}\frac{1}{m}\sum_{k=1}^{n}a_k=\sum_{s=0}^{d-1}b_s
 \tag{79}
-$$&lt;p&gt;  &lt;strong&gt;推论5&lt;/strong&gt;：如果 $\set{X_n}$ 是不可约的、常返的Markov链（即每个状态都是常返的），则对任意状态 $i,j \in S$ ，有&lt;/p&gt;
-$$
-\lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=\frac{1}{\mu_j}
+    $$
+&lt;p&gt;  最后再令 $n \to \infin$ ，得&lt;/p&gt;
+&lt;span id=&#34;20240929214043CST&#34;&gt;&lt;/span&gt;$$
+\lim_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}a_k=\lim_{m \to \infin}\frac{m}{md+r}\cdot\lim_{m \to \infin}\frac{1}{m}\sum_{k=1}^{n}a_k=\frac{1}{d}\sum_{s=0}^{d-1}b_s
 \tag{80}
-$$&lt;p&gt;  &lt;strong&gt;证明（推论5）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#%e5%b8%b8%e8%bf%94%e4%ba%92%e9%80%9a%e5%88%99%e5%bf%85%e8%be%be&#34; &gt;引理2&lt;/a&gt;可知 $f_{ij}=1$ ，又由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba2&#34; &gt;推论2&lt;/a&gt;可知 $i,j$ 都是正常返的。因此直接代入&lt;a class=&#34;link&#34; href=&#34;#n%e6%ad%a5%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%9c%9f%e6%9c%9b&#34; &gt;定理11&lt;/a&gt;可证得该推论。&lt;/p&gt;
+    $$
+&lt;p&gt;  现在，我们可以证明&lt;a class=&#34;link&#34; href=&#34;#20240929205725CST&#34;&gt;定理11&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205725CST&#34;&gt;定理11&lt;/a&gt;）&lt;/strong&gt;：若 $j$ 为非常返状态或零常返状态，由&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}=0$ 。因此 $\lim\limits_{n \to \infin}\displaystyle\frac{1}{n}\displaystyle\sum_{k=1}^{n}p_{ij}^{(k)}=0$ 。若 $j$ 为正常返状态且有周期 $d$ ，则令&lt;a class=&#34;link&#34; href=&#34;#20240929212223CST&#34;&gt;引理3&lt;/a&gt;中的 $a_{kd+s}=p_{ij}^{(kd+s)}$ ，然后利用&lt;a class=&#34;link&#34; href=&#34;#20240929205721CST&#34;&gt;定理10&lt;/a&gt;得到 $b_s=f_{ij}(s)\displaystyle\space\frac{d}{\mu_j}$ 。从而得&lt;/p&gt;
+&lt;span id=&#34;20240929214049CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=\frac{1}{d}\sum_{s=0}^{d-1}f_{ij}(s)\space\frac{d}{\mu_j}=\frac{1}{\mu_j}\sum_{s=0}^{d-1}f_{ij}(s)=f_{ij}
+\tag{81}
+    $$
+&lt;p&gt;  &lt;span id=&#34;20240929212132CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论5&lt;/strong&gt;：如果 $\set{X_n}$ 是不可约的、常返的Markov链（即每个状态都是常返的），则对任意状态 $i,j \in S$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240929214056CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{n \to \infin}\frac{1}{n}\sum_{k=1}^{n}p_{ij}^{(k)}=\frac{1}{\mu_j}
+\tag{82}
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212132CST&#34;&gt;推论5&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;可知 $f_{ij}=1$ ，又由&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;可知 $i,j$ 都是正常返的。因此直接代入&lt;a class=&#34;link&#34; href=&#34;#20240929205725CST&#34;&gt;定理11&lt;/a&gt;可证得该推论。&lt;/p&gt;
 &lt;h3 id=&#34;不变分布与极限分布&#34;&gt;不变分布与极限分布
 &lt;/h3&gt;&lt;h4 id=&#34;不变分布&#34;&gt;不变分布
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义10&lt;/strong&gt;：对于Markov链，概率分布 $\set{\pi_j,j \in S}$ 称为&lt;strong&gt;不变的&lt;/strong&gt;，若&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203702CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义13（不变分布）&lt;/strong&gt;：对于Markov链，概率分布 $\set{\pi_j,j \in S}$ 称为&lt;strong&gt;不变的&lt;/strong&gt;，若&lt;/p&gt;
+&lt;span id=&#34;20240929214103CST&#34;&gt;&lt;/span&gt;$$
 \pi_j=\sum_{i \in S}\pi_ip_{ij}
-\tag{81}
-$$&lt;p&gt;  可见，若Markov链的初始分布 $P\set{X_0=j}=p_j$ 是不变分布，则 $X_1$ 的分布将是&lt;/p&gt;
-$$
+\tag{83}
+    $$
+&lt;p&gt;  可见，若Markov链的初始分布 $P\set{X_0=j}=p_j$ 是不变分布，则 $X_1$ 的分布将是&lt;/p&gt;
+&lt;span id=&#34;20240929214110CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 =&amp;\sum_{i \in S}p_{ij}p_i=p_j
 \end{aligned}
-\tag{82}
-$$&lt;p&gt;  这与 $X_0$ 的分布是相同的。依此类推， $X_n(n=0,1,2,\cdots)$ 将有相同的分布，这也是称 $\set{p_i(i \in S)}$ 为不变分布的原因。&lt;/p&gt;
+\tag{84}
+    $$
+&lt;p&gt;  这与 $X_0$ 的分布是相同的。依此类推， $X_n(n=0,1,2,\cdots)$ 将有相同的分布，这也是称 $\set{p_i(i \in S)}$ 为不变分布的原因。&lt;/p&gt;
 &lt;h4 id=&#34;极限分布&#34;&gt;极限分布
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义11&lt;/strong&gt;：称Markov链是&lt;strong&gt;遍历的&lt;/strong&gt;，如果所有状态相通且均是周期为 $1$ 的正常返状态，对遍历的Markov链，极限&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203706CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义14（极限分布）&lt;/strong&gt;：称Markov链是&lt;strong&gt;遍历的&lt;/strong&gt;，如果所有状态相通且均是周期为 $1$ 的正常返状态，对遍历的Markov链，极限&lt;/p&gt;
+&lt;span id=&#34;20240929214116CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{n \to \infin}p_{ij}^{(n)}=\pi_j\quad j \in S
-\tag{83}
-$$&lt;p&gt;  称为Markov链的&lt;strong&gt;极限分布&lt;/strong&gt;。由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4&lt;/a&gt;知 $\pi_j$ 存在且 $\pi_j=\displaystyle\frac{1}{\mu_j}$ 。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;定理12&lt;/strong&gt;：对于不可约非周期的Markov链：&lt;br&gt;
+\tag{85}
+    $$
+&lt;p&gt;  称为Markov链的&lt;strong&gt;极限分布&lt;/strong&gt;。由&lt;a class=&#34;link&#34; href=&#34;#20240929212128CST&#34;&gt;推论4&lt;/a&gt;知 $\pi_j$ 存在且 $\pi_j=\displaystyle\frac{1}{\mu_j}$ 。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929205730CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理12&lt;/strong&gt;：对于不可约非周期的Markov链：&lt;br&gt;
   ①若它是遍历的，则 $\pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n)}&amp;gt;0$ 是不变分布且是唯一的不变分布（&lt;strong&gt;遍历定理&lt;/strong&gt;）。&lt;br&gt;
   ②若状态都是瞬过的或全为零常返的，则不变分布不存在。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理12）&lt;/strong&gt;：①对遍历的Markov链，由&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba4&#34; &gt;推论4的(70)式&lt;/a&gt;可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}$ 存在，记为 $\pi_j$ 。首先证 $\set{\pi_j,j \in S}$ 是不变分布。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;可得（因为级数是&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Riemann-Stieljes积分&lt;/a&gt;的特例， 也可以看成关于点测度的Lebesgue积分， 所以Fatou引理和下文出现的Lebesgue控制收敛定理仍成立）。&lt;/p&gt;
-$$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205730CST&#34;&gt;定理12&lt;/a&gt;）&lt;/strong&gt;：①对遍历的Markov链，由&lt;a class=&#34;link&#34; href=&#34;#20240929212128CST&#34;&gt;推论4&lt;/a&gt;可知 $\lim\limits_{n \to \infin}p_{ij}^{(n)}$ 存在，记为 $\pi_j$ 。首先证 $\set{\pi_j,j \in S}$ 是不变分布。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;可得（因为级数是&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Riemann-Stieljes积分&lt;/a&gt;的特例， 也可以看成关于点测度的Lebesgue积分， 所以Fatou引理和下文出现的Lebesgue控制收敛定理仍成立）。&lt;/p&gt;
+&lt;span id=&#34;20240929214122CST&#34;&gt;&lt;/span&gt;$$
 \pi_j=\lim\limits_{n \to \infin}p_{ij}^{(n+1)}=\lim\limits_{n \to \infin}\sum_{k \in S}p_{ik}^{(n)}p_{kj}\ge\sum_{k \in S}\lim\limits_{n \to \infin}p_{ik}^{(n)}p_{kj}=\sum_{k \in S}\pi_kp_{kj}
-\tag{84}
-$$&lt;p&gt;  两边对 $j$ 求和，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率归一性&lt;/a&gt;有&lt;/p&gt;
-$$
-\sum_{j \in S}\pi_j\ge\sum_{j \in S}\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\pi_k\bigg(\sum_{j \in S}p_{kj}\bigg)=\sum_{k \in S}\pi_k
-\tag{85}
-$$&lt;p&gt;  因此，上式的大于等于号必须取等，否则将产生矛盾。因此：&lt;/p&gt;
-$$
-\pi_j=\sum_{k \in S}\pi_kp_{kj}
 \tag{86}
-$$&lt;p&gt;&lt;span id=&#34;(87)式&#34;&gt;&lt;/span&gt;
-  从而 $\set{\pi_j,j \in S}$ 是不变分布。再来证 $\set{\pi_j,j \in S}$ 是唯一的不变分布。由上式和&lt;a class=&#34;link&#34; href=&#34;#c-k%e6%96%b9%e7%a8%8b&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
-$$
-\pi_j=\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\sum_{l \in S}\pi_lp_{lk}p_{kj}=\sum_{l \in S}\pi_lp_{lj}^{(2)}=\cdots=\sum_{k \in S}\pi_kp_{kj}^{(n)}
+    $$
+&lt;p&gt;  两边对 $j$ 求和，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率归一性&lt;/a&gt;有&lt;/p&gt;
+&lt;span id=&#34;20240929214128CST&#34;&gt;&lt;/span&gt;$$
+\sum_{j \in S}\pi_j\ge\sum_{j \in S}\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\pi_k\bigg(\sum_{j \in S}p_{kj}\bigg)=\sum_{k \in S}\pi_k
 \tag{87}
-$$&lt;p&gt;  对 $\displaystyle\sum_{j \in S}p_{ij}^{(n)}=1$ 两边取 $n \to \infin$ 并由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;可得&lt;/p&gt;
-$$
-1=\lim\limits_{n \to \infin}\sum_{j \in S}p_{ij}^{(n)}\ge\sum_{j \in S}\lim\limits_{n \to \infin}p_{ij}^{(n)}=\sum_{j \in S}\pi_j
+    $$
+&lt;p&gt;  因此，上式的大于等于号必须取等，否则将产生矛盾。因此：&lt;/p&gt;
+&lt;span id=&#34;20240929214137CST&#34;&gt;&lt;/span&gt;$$
+\pi_j=\sum_{k \in S}\pi_kp_{kj}
 \tag{88}
-$$&lt;p&gt;  因此 $\displaystyle\sum_{j \in S}\pi_j\le 1$ 有限。将&lt;a class=&#34;link&#34; href=&#34;#%2887%29%e5%bc%8f&#34; &gt;(87)式&lt;/a&gt;左右两边取 $n \to \infin$ 并由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Lebesgue控制收敛定理&lt;/a&gt;可得&lt;/p&gt;
-$$
-\pi_j=\lim\limits_{n \to \infin}\sum_{k \in S}\pi_kp_{kj}^{(n)}=\sum_{k \in S}\lim\limits_{n \to \infin}\pi_kp_{kj}^{(n)}=\pi_j\bigg(\sum_{k \in S}\pi_k\bigg)
+    $$
+&lt;p&gt;  从而 $\set{\pi_j,j \in S}$ 是不变分布。再来证 $\set{\pi_j,j \in S}$ 是唯一的不变分布。由上式和&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214143CST&#34;&gt;&lt;/span&gt;$$
+\pi_j=\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\sum_{l \in S}\pi_lp_{lk}p_{kj}=\sum_{l \in S}\pi_lp_{lj}^{(2)}=\cdots=\sum_{k \in S}\pi_kp_{kj}^{(n)}
 \tag{89}
-$$&lt;p&gt;  因此 $\displaystyle\sum_{k \in S}\pi_k=1$ 。假设另外还有一个平衡分布 $\set{\tilde\pi_j,j \in S}$ ，则有&lt;/p&gt;
-$$
-\tilde\pi_j=\pi_j\bigg(\sum_{k \in S}\tilde\pi_k\bigg)=\pi_j
+    $$
+&lt;p&gt;  对 $\displaystyle\sum_{j \in S}p_{ij}^{(n)}=1$ 两边取 $n \to \infin$ 并由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214150CST&#34;&gt;&lt;/span&gt;$$
+1=\lim\limits_{n \to \infin}\sum_{j \in S}p_{ij}^{(n)}\ge\sum_{j \in S}\lim\limits_{n \to \infin}p_{ij}^{(n)}=\sum_{j \in S}\pi_j
 \tag{90}
-$$&lt;p&gt;  因此 $\tilde\pi_j=\pi_j$ 。故分布唯一。接下来证②。假设存在一个不变分布 $\set{\pi_j,j \in S}$ ，则由①中证明可知 $\pi_j=\displaystyle\sum_{k \in S}\pi_kp_{kj}^{(n)}(n=1,2,\dots)$ 。令 $n \to \infin$ ，由&lt;a class=&#34;link&#34; href=&#34;#%e5%86%8d%e8%ae%ba%e9%9d%9e%e5%b8%b8%e8%bf%94%e4%b8%8e%e9%9b%b6%e5%b8%b8%e8%bf%94&#34; &gt;定理9&lt;/a&gt;可知 $p_{kj}^{(n)} \to 0$ ，则任意 $\pi_j = 0$ ，然而这是不可能的。于是对非常返或零常返Markov链不存在不变分布。&lt;/p&gt;
+    $$
+&lt;p&gt;  因此 $\displaystyle\sum_{j \in S}\pi_j\le 1$ 有限。将&lt;a class=&#34;link&#34; href=&#34;#20240929214143CST&#34;&gt;式(89)&lt;/a&gt;左右两边取 $n \to \infin$ 并由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Lebesgue控制收敛定理&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214155CST&#34;&gt;&lt;/span&gt;$$
+\pi_j=\lim\limits_{n \to \infin}\sum_{k \in S}\pi_kp_{kj}^{(n)}=\sum_{k \in S}\lim\limits_{n \to \infin}\pi_kp_{kj}^{(n)}=\pi_j\bigg(\sum_{k \in S}\pi_k\bigg)
+\tag{91}
+    $$
+&lt;p&gt;  因此 $\displaystyle\sum_{k \in S}\pi_k=1$ 。假设另外还有一个平衡分布 $\set{\tilde\pi_j,j \in S}$ ，则有&lt;/p&gt;
+&lt;span id=&#34;20240929214201CST&#34;&gt;&lt;/span&gt;$$
+\tilde\pi_j=\pi_j\bigg(\sum_{k \in S}\tilde\pi_k\bigg)=\pi_j
+\tag{92}
+    $$
+&lt;p&gt;  因此 $\tilde\pi_j=\pi_j$ 。故分布唯一。接下来证②。假设存在一个不变分布 $\set{\pi_j,j \in S}$ ，则由①中证明可知 $\pi_j=\displaystyle\sum_{k \in S}\pi_kp_{kj}^{(n)}(n=1,2,\dots)$ 。令 $n \to \infin$ ，由&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;可知 $p_{kj}^{(n)} \to 0$ ，则任意 $\pi_j = 0$ ，然而这是不可能的。于是对非常返或零常返Markov链不存在不变分布。&lt;/p&gt;
 &lt;h2 id=&#34;连续时间markov链&#34;&gt;连续时间Markov链
 &lt;/h2&gt;&lt;h3 id=&#34;基本定义和性质&#34;&gt;基本定义和性质
 &lt;/h3&gt;&lt;h4 id=&#34;连续时间markov链的定义&#34;&gt;连续时间Markov链的定义
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义12&lt;/strong&gt;：过程 $\set{X(t),t\ge0}$ 的状态空间 $S$ 为离散空间，为方便书写，设 $S$ 为 $\set{0,1,2,\cdots}$ 或其子集。若对一切 $s,t\ge0$ 及 $i,j \in S$ 有&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203710CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义15（连续时间Markov链）&lt;/strong&gt;：过程 $\set{X(t),t\ge0}$ 的状态空间 $S$ 为离散空间，为方便书写，设 $S$ 为 $\set{0,1,2,\cdots}$ 或其子集。若对一切 $s,t\ge0$ 及 $i,j \in S$ 有&lt;/p&gt;
+&lt;span id=&#34;20240929214213CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 &amp;P\set{X(t+s)=j|X(s)=i,X(u)=x(u),0\le u &lt; s}\\[5pt]
 =&amp;P\set{X(t+s)=j|X(s)=i}
 \end{aligned}
-\tag{91}
-$$&lt;p&gt;  成立，则称 $\set{X(t),t \ge 0}$ 是一个&lt;strong&gt;连续时间Markov链&lt;/strong&gt;。&lt;br&gt;
+\tag{93}
+    $$
+&lt;p&gt;  成立，则称 $\set{X(t),t \ge 0}$ 是一个&lt;strong&gt;连续时间Markov链&lt;/strong&gt;。&lt;br&gt;
   条件概率 $P\set{X(t+s)=j|X(s)=i}$ 记作 $p_{ij}(s,t)$ 表示过程在时刻 $s$ 处处于状态 $i$ ，经过 $t$ 时间后转移到 $j$ 的&lt;strong&gt;转移概率&lt;/strong&gt;，并称 $\mathbf{P}(s,t)=(p_{ij}(s,t))$ 为相应的&lt;strong&gt;转移概率矩阵&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;时齐连续时间markov链&#34;&gt;时齐连续时间Markov链
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义13&lt;/strong&gt;：称连续时间Markov链是&lt;strong&gt;时齐的&lt;/strong&gt;，若 $p_{ij}(s,t)$ 与 $s$ 无关。简记 $p_{ij}(s,t)=p_{ij}(t)$ ，相应的记 $\mathbf{P}(t)=(p_{ij}(t))$ 。本章只讨论时齐的连续时间Markov链，并简称为连续时间Markov链。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;定理13&lt;/strong&gt;：设 $\set{X(t),t\ge 0}$ 是连续时间Markov链，假定在时刻0过程刚刚到达 $i$ ，以 $\tau_i$ 记过程离开 $i$ 之前在 $i$ 停留的时间，则 $\tau_i$ 服从指数分布。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理13）&lt;/strong&gt;：只需证明 $\tau_i$ 是无记忆性的，即证明对 $s,t \ge 0$ 有（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;指数分布&lt;/a&gt;）&lt;/p&gt;
-$$
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203714CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义16（时齐性）&lt;/strong&gt;：称连续时间Markov链是&lt;strong&gt;时齐的&lt;/strong&gt;，若 $p_{ij}(s,t)$ 与 $s$ 无关。简记 $p_{ij}(s,t)=p_{ij}(t)$ ，相应的记 $\mathbf{P}(t)=(p_{ij}(t))$ 。本章只讨论时齐的连续时间Markov链，并简称为连续时间Markov链。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929205735CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理13&lt;/strong&gt;：设 $\set{X(t),t\ge 0}$ 是连续时间Markov链，假定在时刻0过程刚刚到达 $i$ ，以 $\tau_i$ 记过程离开 $i$ 之前在 $i$ 停留的时间，则 $\tau_i$ 服从指数分布。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205735CST&#34;&gt;定理13&lt;/a&gt;）&lt;/strong&gt;：只需证明 $\tau_i$ 是无记忆性的，即证明对 $s,t \ge 0$ 有（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;指数分布&lt;/a&gt;）&lt;/p&gt;
+&lt;span id=&#34;20240929214220CST&#34;&gt;&lt;/span&gt;$$
 P\set{\tau_i&gt;s+t|\tau_i&gt;s}=P\set{\tau_i&gt;t}
-\tag{92}
-$$&lt;p&gt;  将上式写开并由&lt;a class=&#34;link&#34; href=&#34;#%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be%e7%9a%84%e5%ae%9a%e4%b9%89&#34; &gt;连续时间Markov链的定义&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e6%97%b6%e9%bd%90%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;时齐性&lt;/a&gt;可得&lt;/p&gt;
-$$
+\tag{94}
+    $$
+&lt;p&gt;  将上式写开并由&lt;a class=&#34;link&#34; href=&#34;#20240929203710CST&#34;&gt;连续时间Markov链&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929203714CST&#34;&gt;时齐性&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214227CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 &amp;P\set{\tau_i&gt;s+t|\tau_i&gt;s}\\[5pt]
 =&amp;P\set{X(u)=i\space (0 &lt; u \le s),X(v)=i\space (s &lt; v \le s+t)|X(u)=i\space (0 &lt; u \le s)}\\[5pt]
@@ -1282,192 +1247,207 @@ $$
 =&amp;P\set{X(v)=i\space (0 &lt; v \le t)|X(0)=i}\quad\text{（时齐性）}\\[5pt]
 =&amp;P\set{\tau_i&gt;t}
 \end{aligned}
-\tag{93}
-$$&lt;h4 id=&#34;正则连续时间markov链&#34;&gt;正则连续时间Markov链
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定义14&lt;/strong&gt;：称一个连续时间Markov链是&lt;strong&gt;正则的&lt;/strong&gt;，若以概率1在任意有限长的时间内转移的次数是有限的。从而可得&lt;strong&gt;连续性条件&lt;/strong&gt;&lt;/p&gt;
-$$
+\tag{95}
+    $$
+&lt;h4 id=&#34;正则连续时间markov链&#34;&gt;正则连续时间Markov链
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203718CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义17（正则性）&lt;/strong&gt;：称一个连续时间Markov链是&lt;strong&gt;正则的&lt;/strong&gt;，若以概率1在任意有限长的时间内转移的次数是有限的。从而可得&lt;strong&gt;连续性条件&lt;/strong&gt;&lt;/p&gt;
+&lt;span id=&#34;20240929214235CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{t \to 0}p_{ij}(t)=\delta_{ij}=
 \begin{cases}
 1,\quad i=j\\[5pt]
 0,\quad i \ne j
 \end{cases}
-\tag{94}
-$$&lt;p&gt;  本文讨论的连续时间马尔可夫链都是正则的。&lt;/p&gt;
+\tag{96}
+    $$
+&lt;p&gt;  本文讨论的连续时间Markov链都是正则的。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：“成立”和“以概率1成立”是有很大区别的。在概率论中，“以概率1成立”意味着某个事件在无限多次试验中几乎肯定会发生，但并不意味着它在每一次试验中都会发生。换句话说，存在极小的可能性（尽管这个可能性可能非常小，接近于0）该事件不会发生。见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;以概率1收敛&lt;/a&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;转移概率和kolmogorov微分方程&#34;&gt;转移概率和Kolmogorov微分方程
 &lt;/h3&gt;&lt;h4 id=&#34;转移概率的性质&#34;&gt;转移概率的性质
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理14&lt;/strong&gt;：时齐连续时间Markov链的转移概率 $p_{ij}(t)$ 满足：&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929210959CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理14&lt;/strong&gt;：时齐连续时间Markov链的转移概率 $p_{ij}(t)$ 满足：&lt;br&gt;
   ① $p_{ij}(t)\ge 0$&lt;br&gt;
   ② $\displaystyle\sum_{j \in S}p_{ij}(t)=1$&lt;br&gt;
   ③ $p_{ij}(t+s)=\displaystyle\sum_{k \in S}p_{ik}(t)p_{kj}(s)$   （&lt;strong&gt;连续时间Markov链的C-K方程&lt;/strong&gt;）&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理14）&lt;/strong&gt;：①和②由 $p_{ij}(t)$ 的定义易知。下面证明③。由&lt;a class=&#34;link&#34; href=&#34;#%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be%e7%9a%84%e5%ae%9a%e4%b9%89&#34; &gt;连续时间Markov链的定义&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e6%97%b6%e9%bd%90%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;时齐性&lt;/a&gt;可得&lt;/p&gt;
-$$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;）&lt;/strong&gt;：①和②由 $p_{ij}(t)$ 的定义易知。下面证明③。由&lt;a class=&#34;link&#34; href=&#34;#20240929203710CST&#34;&gt;连续时间Markov链&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929203714CST&#34;&gt;时齐性&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214247CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ij}(t+s)=&amp;P\set{X(t+s)=j|X(0)=i}\\[5pt]
 =&amp;\sum_{k \in S}P\set{X(t+s)=j,X(t)=k|X(0)=i}\\[5pt]
 =&amp;\sum_{k \in S}\frac{P\set{X(t+s)=j,X(t)=k,X(0)=i}}{P\set{X(0)=i}}\\[5pt]
 =&amp;\sum_{k \in S}\frac{P\set{X(t+s)=j,X(t)=k,X(0)=i}}{P\set{X(t)=k,X(0)=i}}\frac{P\set{X(t)=k,X(0)=i}}{P\set{X(0)=i}}\\[5pt]
 =&amp;\sum_{k \in S}P\set{X(t+s)=j|X(t)=k,X(0)=i}P\set{X(t)=k|X(0)=i}\\[5pt]
-=&amp;\sum_{k \in S}P\set{X(t+s)=j|X(t)=k}p_{ik}(t)\quad\text{（连续时间Markov链定义）}\\[5pt]
+=&amp;\sum_{k \in S}P\set{X(t+s)=j|X(t)=k}p_{ik}(t)\quad\text{（连续时间Markov链）}\\[5pt]
 =&amp;\sum_{k \in S}p_{kj}(s)p_{ik}(t)=\sum_{k \in S}p_{ik}(t)p_{kj}(s)\quad\text{（时齐性）}
 \end{aligned}
-\tag{95}
-$$&lt;h4 id=&#34;转移概率具有一致连续性&#34;&gt;转移概率具有一致连续性
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理15&lt;/strong&gt;：对固定的 $i,j \in S=\set{0,1,2,\cdots}$ ， $p_{ij}(t)$是 $t$ 的一致连续函数（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理15）&lt;/strong&gt;：设 $h&amp;gt;0$ ，则&lt;/p&gt;
-$$
+\tag{97}
+    $$
+&lt;h4 id=&#34;转移概率具有一致连续性&#34;&gt;转移概率具有一致连续性
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929211018CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理15&lt;/strong&gt;：对固定的 $i,j \in S=\set{0,1,2,\cdots}$ ， $p_{ij}(t)$是 $t$ 的一致连续函数（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211018CST&#34;&gt;定理15&lt;/a&gt;）&lt;/strong&gt;：设 $h&amp;gt;0$ ，则&lt;/p&gt;
+&lt;span id=&#34;20240929214257CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ij}(t+h)-p_{ij}(t)=&amp;\sum_{k \in S}p_{ik}(h)p_{kj}(t)-p_{ij}(t)\\
 =&amp;p_{ii}(h)p_{ij}(t)-p_{ij}(t)+\sum_{k \ne i, k \in S}p_{ik}(h)p_{kj}(t)\\
 =&amp;-(1-p_{ii}(h))p_{ij}(t)+\sum_{k \ne i, k \in S}p_{ik}(h)p_{kj}(t)
 \end{aligned}
-\tag{96}
-$$&lt;p&gt;  从而得到&lt;/p&gt;
-$$
+\tag{98}
+    $$
+&lt;p&gt;  从而得到&lt;/p&gt;
+&lt;span id=&#34;20240929214306CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ij}(t+h)-p_{ij}(t)\ge&amp;-(1-p_{ii}(h))p_{ij}(t)\\
 \ge&amp;-(1-p_{ii}(h))\\
 \end{aligned}
-\tag{97}
-$$&lt;p&gt;  和&lt;/p&gt;
-$$
+\tag{99}
+    $$
+&lt;p&gt;  和&lt;/p&gt;
+&lt;span id=&#34;20240929214312CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ij}(t+h)-p_{ij}(t)\le&amp;\sum_{k \ne i, k \in S}p_{ik}(h)p_{kj}(t)\\
 \le&amp;\sum_{k \ne i, k \in S}p_{ik}(h)=1-p_{ii}(h)\\
 \end{aligned}
-\tag{98}
-$$&lt;p&gt;  因此得到&lt;/p&gt;
-$$
+\tag{100}
+    $$
+&lt;p&gt;  因此得到&lt;/p&gt;
+&lt;span id=&#34;20240929214319CST&#34;&gt;&lt;/span&gt;$$
 |p_{ij}(t+h)-p_{ij}(t)|\le 1-p_{ii}(h)
-\tag{99}
-$$&lt;p&gt;  对 $h&amp;lt;0$ 也可以得到类似的结果。注意由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;正则性&lt;/a&gt;可知 $\displaystyle\lim\limits_{h \to 0}p_{ii}(h)=1$ 。因此 $\forall \epsilon &amp;gt; 0$ ，$\exist \delta &amp;gt; 0$ 满足 $h &amp;lt; \delta$ 时恒有 $1-p_{ii}(h)&amp;lt;\epsilon$ ，即 $|p_{ij}(t+h)-p_{ij}(t)|&amp;lt;\epsilon$ 。因此，$p_{ij}(t)$ 一致连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
+\tag{101}
+    $$
+&lt;p&gt;  对 $h&amp;lt;0$ 也可以得到类似的结果。注意由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可知 $\displaystyle\lim\limits_{h \to 0}p_{ii}(h)=1$ 。因此 $\forall \epsilon &amp;gt; 0$ ，$\exist \delta &amp;gt; 0$ 满足 $h &amp;lt; \delta$ 时恒有 $1-p_{ii}(h)&amp;lt;\epsilon$ ，即 $|p_{ij}(t+h)-p_{ij}(t)|&amp;lt;\epsilon$ 。因此，$p_{ij}(t)$ 一致连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
 &lt;h4 id=&#34;转移速率&#34;&gt;转移速率
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理16&lt;/strong&gt;：① $\displaystyle\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=q_{ii}\le+\infin$&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929211024CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理16&lt;/strong&gt;：① $\displaystyle\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=q_{ii}\le+\infin$&lt;/p&gt;
 &lt;p&gt;  ② $\displaystyle\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}=q_{ij}&amp;lt;+\infin$ ($i \ne j$)&lt;/p&gt;
 &lt;p&gt;  称 $q_{ij}$ 为从状态 $i$ 转移到状态 $j$ 的&lt;strong&gt;转移速率&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（定理16）&lt;/strong&gt;：先证①。首先由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;连续性条件&lt;/a&gt;可知对任意固定的 $t&amp;gt;0$ ，当 $n$ 充分大时，有 $p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)&amp;gt;0$ ，再由&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得结论 $p_{ii}(s+t)=\displaystyle\sum_{k \in S}p_{ik}(s)p_{ki}(t)\ge p_{ii}(s)p_{ii}(t)$ ，因此 $p_{ii}(t)\ge \bigg(p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)\bigg)^n&amp;gt;0$ 。故可以定义 $\phi(t)=-\ln p_{ii}(t)$ ，它非负有限，且由于 $p_{ii}(s+t)\ge p_{ii}(s)p_{ii}(t)$ ，有 $\phi(s+t) \le \phi(s)+\phi(t)$ 。令 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}$ ，现在要证明 $\displaystyle\frac{\phi(t)}{t}$ 极限存在且为其上确界。显然&lt;/p&gt;
-$$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211024CST&#34;&gt;定理16&lt;/a&gt;）&lt;/strong&gt;：先证①。首先由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可知对任意固定的 $t&amp;gt;0$ ，当 $n$ 充分大时，有 $p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)&amp;gt;0$ ，再由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得结论 $p_{ii}(s+t)=\displaystyle\sum_{k \in S}p_{ik}(s)p_{ki}(t)\ge p_{ii}(s)p_{ii}(t)$ ，因此 $p_{ii}(t)\ge \bigg(p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)\bigg)^n&amp;gt;0$ 。故可以定义 $\phi(t)=-\ln p_{ii}(t)$ ，它非负有限，且由于 $p_{ii}(s+t)\ge p_{ii}(s)p_{ii}(t)$ ，有 $\phi(s+t) \le \phi(s)+\phi(t)$ 。令 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}$ ，现在要证明 $\displaystyle\frac{\phi(t)}{t}$ 极限存在且为其上确界。显然&lt;/p&gt;
+&lt;span id=&#34;20240929214326CST&#34;&gt;&lt;/span&gt;$$
 0 \le q_{ii} \le \infin,\quad \limsup\limits_{t \to 0}\le q_{ii}
-\tag{100}
-$$&lt;p&gt;  所以以下只需证下极限 $\displaystyle\liminf\limits_{t \to 0}\frac{\phi(t)}{t}\ge q_{ii}$ 。任给 $0 &amp;lt; h &amp;lt; t$ ，取 $n$ 使 $t=nh+\epsilon,\space 0 \le \epsilon &amp;lt; h$ ，得&lt;/p&gt;
-$$
-\frac{\phi(t)}{t} \le \frac{n\phi(h)}{t}+\frac{\phi(\epsilon)}{t} = \frac{nh}{t}\frac{\phi(h)}{h}+\frac{\phi(\epsilon)}{t}
-\tag{101}
-$$&lt;p&gt;  注意当 $h \to 0^+$ 时，$\epsilon \to 0$ ，$\displaystyle\frac{nh}{t} \to 1$ ， $\phi(\epsilon)=-\ln p_{ii}(\epsilon) \to 0$ ，故 $\displaystyle\frac{\phi(t)}{t}\le\liminf\limits_{h \to 0}\frac{\phi(h)}{h}$ 因此 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}\le\liminf\limits_{t \to 0}\frac{\phi(t)}{t}$ 。从而 $\displaystyle q_{ii}=\lim\limits_{t \to 0}\frac{\phi(t)}{t}$ 。由 $\phi(t)$ 定义得&lt;/p&gt;
-$$
-\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=\lim\limits_{t \to 0}\frac{1-e^{-\phi(t)}}{\phi(t)}\frac{\phi(t)}{t}=\lim\limits_{t \to 0}\frac{\phi(t)}{t}=q_{ii}
 \tag{102}
-$$&lt;p&gt;  再证②。由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;连续性条件&lt;/a&gt;，对任意 $\displaystyle 0 &amp;lt; \epsilon &amp;lt; \frac{1}{3}$ ，存在 $0 &amp;lt; \delta &amp;lt; 1$ ，使当 $0 &amp;lt; t \le \delta $ 时，有 $p_{ii}(t)&amp;gt;1-\epsilon$ ， $p_{jj}(t)&amp;gt;1-\epsilon$ ， $p_{ji}(t)&amp;lt;\epsilon$ 。&lt;br&gt;
-  下面要证：对任意 $0 \le h &amp;lt; t$ ，只要 $t \le \delta$ ，则有&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;(103)式&#34;&gt;&lt;/span&gt;
-&lt;/p&gt;
-$$
-p_{ij}(h)\le\frac{p_{ij}(t)}{n}\frac{1}{1-3\epsilon}
+    $$
+&lt;p&gt;  所以以下只需证下极限 $\displaystyle\liminf\limits_{t \to 0}\frac{\phi(t)}{t}\ge q_{ii}$ 。任给 $0 &amp;lt; h &amp;lt; t$ ，取 $n$ 使 $t=nh+\epsilon,\space 0 \le \epsilon &amp;lt; h$ ，得&lt;/p&gt;
+&lt;span id=&#34;20240929214331CST&#34;&gt;&lt;/span&gt;$$
+\frac{\phi(t)}{t} \le \frac{n\phi(h)}{t}+\frac{\phi(\epsilon)}{t} = \frac{nh}{t}\frac{\phi(h)}{h}+\frac{\phi(\epsilon)}{t}
 \tag{103}
-$$&lt;p&gt;其中 $\displaystyle n=\big\lfloor \frac{t}{h} \big\rfloor$ （向下取整）。记&lt;/p&gt;
-$$
+    $$
+&lt;p&gt;  注意当 $h \to 0^+$ 时，$\epsilon \to 0$ ，$\displaystyle\frac{nh}{t} \to 1$ ， $\phi(\epsilon)=-\ln p_{ii}(\epsilon) \to 0$ ，故 $\displaystyle\frac{\phi(t)}{t}\le\liminf\limits_{h \to 0}\frac{\phi(h)}{h}$ 因此 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}\le\liminf\limits_{t \to 0}\frac{\phi(t)}{t}$ 。从而 $\displaystyle q_{ii}=\lim\limits_{t \to 0}\frac{\phi(t)}{t}$ 。由 $\phi(t)$ 定义得&lt;/p&gt;
+&lt;span id=&#34;20240929214337CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=\lim\limits_{t \to 0}\frac{1-e^{-\phi(t)}}{\phi(t)}\frac{\phi(t)}{t}=\lim\limits_{t \to 0}\frac{\phi(t)}{t}=q_{ii}
+\tag{104}
+    $$
+&lt;p&gt;  再证②。由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;，对任意 $\displaystyle 0 &amp;lt; \epsilon &amp;lt; \frac{1}{3}$ ，存在 $0 &amp;lt; \delta &amp;lt; 1$ ，使当 $0 &amp;lt; t \le \delta $ 时，有 $p_{ii}(t)&amp;gt;1-\epsilon$ ， $p_{jj}(t)&amp;gt;1-\epsilon$ ， $p_{ji}(t)&amp;lt;\epsilon$ 。&lt;br&gt;
+  下面要证：对任意 $0 \le h &amp;lt; t$ ，只要 $t \le \delta$ ，则有&lt;/p&gt;
+&lt;span id=&#34;20240929214343CST&#34;&gt;&lt;/span&gt;$$
+p_{ij}(h)\le\frac{p_{ij}(t)}{n}\frac{1}{1-3\epsilon}
+\tag{105}
+    $$
+&lt;p&gt;其中 $\displaystyle n=\big\lfloor \frac{t}{h} \big\rfloor$ （向下取整）。记&lt;/p&gt;
+&lt;span id=&#34;20240929214351CST&#34;&gt;&lt;/span&gt;$$
 \begin{cases}
 _jp_{ik}(h)=p_{ik}(h)\\[10pt]
 _jp_{ik}(mh)=\displaystyle\sum_{r \ne j}{_jp_{ir}((m-1)h)p_{rk}(h)}
 \end{cases}
-\tag{104}
-$$&lt;p&gt;  其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)h$ 未到达 $j$ 而在 $mh$ 时刻到达 $k$ 的概率。反复展开 \(_jp_{ik}(mh)\) 并由&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;(105)式&#34;&gt;&lt;/span&gt;
-&lt;/p&gt;
-$$
+\tag{106}
+    $$
+&lt;p&gt;  其中 \(_jp_{ik}(mh)\) 表示从 $i$ 出发，在时刻 $h,2h,\cdots,(m-1)h$ 未到达 $j$ 而在 $mh$ 时刻到达 $k$ 的概率。反复展开 \(_jp_{ik}(mh)\) 并由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214359CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 _jp_{ik}(mh)=&amp;\sum_{r \ne j}{_jp_{ir}((m-1)h)p_{rk}(h)}\\
 =&amp;\sum_r{_jp_{ir}((m-1)h)p_{rk}(h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\\
 =&amp;\sum_r\sum_{s \ne j}{_jp_{is}((m-2)h)p_{sr}(h)p_{rk}(h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\\
-=&amp;\sum_{s \ne j}{_jp_{is}((m-2)h)p_{sk}(2h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\quad\text{（C-K方程）}\\
+=&amp;\sum_{s \ne j}{_jp_{is}((m-2)h)p_{sk}(2h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\quad\text{（定理14）}\\
 =&amp;\sum_s{_jp_{is}((m-2)h)p_{sk}(2h)}-{_jp_{ij}((m-2)h)p_{jk}(2h)}-{_jp_{ij}((m-1)h)p_{jk}(h)}\\
 =&amp;\cdots\\
 =&amp;\sum_r{_jp_{ir}(h)p_{rk}((m-1)h)}-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\\
 =&amp;\sum_r{p_{ir}(h)p_{rk}((m-1)h)}-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\\
-=&amp;p_{ik}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\quad\text{（C-K方程）}\\
+=&amp;p_{ik}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((m-l)h)p_{jk}(lh)}\quad\text{（定理14）}\\
 =&amp;p_{ik}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)p_{jk}((m-l)h)}\quad（换元l \to (m-l)）
 \end{aligned}
-\tag{105}
-$$&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#%e6%ad%a3%e5%88%99%e8%bf%9e%e7%bb%ad%e6%97%b6%e9%97%b4markov%e9%93%be&#34; &gt;连续性条件&lt;/a&gt;可得&lt;/p&gt;
-$$
+\tag{107}
+    $$
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214407CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ik}(mh)=&amp;_jp_{ik}(mh)+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\\
 =&amp;_jp_{ij}(mh)\delta_{jk}+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\\
-=&amp;_jp_{ij}(mh)p_{jk}(0)+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\quad（连续性条件）\\
+=&amp;_jp_{ij}(mh)p_{jk}(0)+\sum_{l=1}^{m-1}{_jp_{ij}(lh)p_{jk}((m-l)h)}\quad（正则性）\\
 =&amp;\sum_{l=1}^{m}{_jp_{ij}(lh)p_{jk}((m-l)h)}
 \end{aligned}
-\tag{106}
-$$&lt;p&gt;  由上式和&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;(107)式&#34;&gt;&lt;/span&gt;
-&lt;/p&gt;
-$$
+\tag{108}
+    $$
+&lt;p&gt;  由上式和&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214413CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ij}(t)=&amp;\sum_k{p_{ik}(nh)p_{kj}(t-nh)}\\
 =&amp;\sum_k\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jk}((n-m)h)}p_{kj}(t-nh)\\
 =&amp;\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}
 \end{aligned}
-\tag{107}
-$$&lt;p&gt;  当 $h &amp;lt; t \le \delta$ 时，由上式可得&lt;/p&gt;
-$$
+\tag{109}
+    $$
+&lt;p&gt;  当 $h &amp;lt; t \le \delta$ 时，由上式可得&lt;/p&gt;
+&lt;span id=&#34;20240929214419CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \epsilon &gt; 1-p_{ii}(t)=&amp;\sum_{k \ne i}p_{ik}(t)\\[10pt]
 \ge&amp;p_{ij}(t)\quad（注意i \ne j）\\[5pt]
 \ge&amp;\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}\\
 \ge&amp;(1-\epsilon)\sum_{m=1}^{n}{_jp_{ij}(mh)}
 \end{aligned}
-\tag{108}
-$$&lt;p&gt;即&lt;/p&gt;
-$$
+\tag{110}
+    $$
+&lt;p&gt;  即&lt;/p&gt;
+&lt;span id=&#34;20240929214429CST&#34;&gt;&lt;/span&gt;$$
 \sum_{m=1}^{n}{_jp_{ij}(mh)} \le \frac{\epsilon}{1-\epsilon}
-\tag{109}
-$$&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#%28105%29%e5%bc%8f&#34; &gt;(105)式&lt;/a&gt;取 $k=i$ 可得&lt;/p&gt;
-$$
+\tag{111}
+    $$
+&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929214359CST&#34;&gt;式(107)&lt;/a&gt;取 $k=i$ 可得&lt;/p&gt;
+&lt;span id=&#34;20240929214438CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 _jp_{ii}(mh)=&amp;p_{ii}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)p_{ji}((m-l)h)}\\
 \ge&amp;p_{ii}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)}\\
 \ge&amp;1 - \epsilon - \frac{\epsilon}{1-\epsilon}
 \end{aligned}
-\tag{110}
-$$&lt;p&gt;  因此由&lt;a class=&#34;link&#34; href=&#34;#%28107%29%e5%bc%8f&#34; &gt;(107)式&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
-$$
+\tag{112}
+    $$
+&lt;p&gt;  因此由&lt;a class=&#34;link&#34; href=&#34;#20240929214413CST&#34;&gt;式(109)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214445CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 p_{ij}(t)=&amp;\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}\\[5pt]
 \ge&amp;\sum_{m=1}^{n}{_jp_{ii}((m-1)h)p_{ij}(h)p_{jj}(t-mh)}\\[5pt]
 \ge&amp;n(1 - \epsilon - \frac{\epsilon}{1-\epsilon})p_{ij}(h)(1-\epsilon)\\[10pt]
 \ge&amp;n(1-3\epsilon)p_{ij}(h)
 \end{aligned}
-\tag{111}
-$$&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#%28103%29%e5%bc%8f&#34; &gt;(103)式&lt;/a&gt;得证。两边除以 $h$ 并注意当 $h \to 0$ 时 $nh \to t$ ，得&lt;/p&gt;
-$$
-\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\frac{p_{ij}(t)}{t} &lt; \infin
-\tag{112}
-$$&lt;p&gt;  再令 $t \to 0$ ，有&lt;/p&gt;
-$$
-\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\liminf\limits_{t \to 0}\frac{p_{ij}(t)}{t} &lt; \infin
 \tag{113}
-$$&lt;p&gt;  再令 $\epsilon \to 0$ ，定理得证。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;推论6&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;推论6&lt;/strong&gt;：对有限状态时齐的连续时间的Markov链，有&lt;/p&gt;
-$$
-q_{ii}=\sum_{j \ne i}q_{ij} &lt; +\infin
+    $$
+&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929214343CST&#34;&gt;式(105)&lt;/a&gt;得证。两边除以 $h$ 并注意当 $h \to 0$ 时 $nh \to t$ ，得&lt;/p&gt;
+&lt;span id=&#34;20240929214451CST&#34;&gt;&lt;/span&gt;$$
+\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\frac{p_{ij}(t)}{t} &lt; \infin
 \tag{114}
-$$&lt;p&gt;  &lt;strong&gt;证明（推论6）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;定理14&lt;/a&gt;知， $\displaystyle\sum_{j \in S}p_{ij}(t)=1$ ，即&lt;/p&gt;
-$$
-1-p_{ii}(t)=\sum_{j \ne i}p_{ij}(t)
+    $$
+&lt;p&gt;  再令 $t \to 0$ ，有&lt;/p&gt;
+&lt;span id=&#34;20240929214457CST&#34;&gt;&lt;/span&gt;$$
+\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\liminf\limits_{t \to 0}\frac{p_{ij}(t)}{t} &lt; \infin
 \tag{115}
-$$&lt;p&gt;  故由&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e9%80%9f%e7%8e%87&#34; &gt;定理16&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;(116)式&#34;&gt;&lt;/span&gt;
-&lt;/p&gt;
-$$
+    $$
+&lt;p&gt;  再令 $\epsilon \to 0$ ，定理得证。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20240929212137CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论6&lt;/strong&gt;：对有限状态时齐的连续时间的Markov链，有&lt;/p&gt;
+&lt;span id=&#34;20240929214507CST&#34;&gt;&lt;/span&gt;$$
+q_{ii}=\sum_{j \ne i}q_{ij} &lt; +\infin
+\tag{116}
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212137CST&#34;&gt;推论6&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;知， $\displaystyle\sum_{j \in S}p_{ij}(t)=1$ ，即&lt;/p&gt;
+&lt;span id=&#34;20240929214513CST&#34;&gt;&lt;/span&gt;$$
+1-p_{ii}(t)=\sum_{j \ne i}p_{ij}(t)
+\tag{117}
+    $$
+&lt;p&gt;  故由&lt;a class=&#34;link&#34; href=&#34;#20240929211024CST&#34;&gt;定理16&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;20240929214518CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=&amp;\lim\limits_{t \to 0}\sum_{j \ne i}\frac{p_{ij}(t)}{t}\\
 =&amp;\sum_{j \ne i}\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}\\
 =&amp;\sum_{j \ne i}q_{ij} &lt; +\infin
 \end{aligned}
-\tag{116}
-$$&lt;h4 id=&#34;保守性&#34;&gt;保守性
-&lt;/h4&gt;&lt;p&gt;  对于无限状态的情况，一般只能得到 $q_{ii} \ge \displaystyle\sum_{j \ne i}q_{ij}$ （&lt;a class=&#34;link&#34; href=&#34;#%28116%29%e5%bc%8f&#34; &gt;(116)式&lt;/a&gt;中积分和求和不可交换，因此只能使用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;）。设状态空间为 $S=\set{1,2,\cdots,n,\cdots}$ ，此时记&lt;/p&gt;
-$$
+\tag{118}
+    $$
+&lt;h4 id=&#34;保守性&#34;&gt;保守性
+&lt;/h4&gt;&lt;p&gt;  对于无限状态的情况，一般只能得到 $q_{ii} \ge \displaystyle\sum_{j \ne i}q_{ij}$ （&lt;a class=&#34;link&#34; href=&#34;#20240929214518CST&#34;&gt;式(118)&lt;/a&gt;中积分和求和不可交换，因此只能使用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;）。设状态空间为 $S=\set{1,2,\cdots,n,\cdots}$ ，此时记&lt;/p&gt;
+&lt;span id=&#34;20240929214526CST&#34;&gt;&lt;/span&gt;$$
 \mathbf{Q}=
 \begin{pmatrix}
 -q_{11} &amp; q_{12}  &amp; q_{13} &amp; \cdots &amp; q_{1i}  &amp; \cdots \\[5pt]
@@ -1476,63 +1456,83 @@ q_{21}  &amp; -q_{22} &amp; q_{23} &amp; \cdots &amp; q_{2i}  &amp; \cdots \\[5p
 q_{i1}  &amp; q_{i2}  &amp; q_{i3} &amp; \cdots &amp; -q_{ii} &amp; \cdots \\[5pt]
 \vdots  &amp; \vdots  &amp; \vdots &amp;        &amp; \vdots  &amp;        \\[5pt]
 \end{pmatrix}
-\tag{117}
-$$&lt;p&gt;  称为连续时间Markov链的 $\mathbf{Q}$ 矩阵。当矩阵元素 $q_{ii}=\sum_{j \ne i}q_{ij}&amp;lt;+\infin$ 时，称该矩阵为&lt;strong&gt;保守的&lt;/strong&gt;。&lt;/p&gt;
-&lt;h4 id=&#34;kolmogorov微分方程&#34;&gt;Kolmogorov微分方程
-&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;定理17（Kolmogorov微分方程）&lt;/strong&gt;：对一切 $i,j \in S，t \ge 0$ 且 $q_{ii}=\displaystyle\sum_{j \ne i}q_{ij}&amp;lt;+\infin$ ，有：&lt;br&gt;
-  ①&lt;strong&gt;向后方程&lt;/strong&gt;&lt;/p&gt;
-$$
-p_{ij}^\prime(t)=\sum_{k \ne i}q_{ik}p_{kj}(t)-q_{ii}p_{ij}(t)
-\tag{118}
-$$&lt;p&gt;  ②&lt;strong&gt;向前方程&lt;/strong&gt;（如果满足 $\displaystyle\sum_{k \ne i}\frac{p_{kj}(h)}{h}$ 有限）&lt;/p&gt;
-$$
-p_{ij}^\prime(t)=\sum_{k \ne j}q_{kj}p_{ik}(t)-q_{jj}p_{ij}(t)
 \tag{119}
-$$&lt;p&gt;  &lt;strong&gt;证明（定理17）&lt;/strong&gt;：先证明$①$ 。由&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
-$$
-p_{ij}(t+h)=\sum_{k \in S}p_{ik}(h)p_{kj}(t)
+    $$
+&lt;p&gt;  称为连续时间Markov链的 $\mathbf{Q}$ 矩阵。当矩阵元素 $q_{ii}=\sum_{j \ne i}q_{ij}&amp;lt;+\infin$ 时，称该矩阵为&lt;strong&gt;保守的&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;kolmogorov微分方程&#34;&gt;Kolmogorov微分方程
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929211031CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理17（Kolmogorov微分方程）&lt;/strong&gt;：对一切 $i,j \in S，t \ge 0$ 且 $q_{ii}=\displaystyle\sum_{j \ne i}q_{ij}&amp;lt;+\infin$ ，有：&lt;br&gt;
+  ①&lt;strong&gt;向后方程&lt;/strong&gt;&lt;/p&gt;
+&lt;span id=&#34;20240929214533CST&#34;&gt;&lt;/span&gt;$$
+p_{ij}^\prime(t)=\sum_{k \ne i}q_{ik}p_{kj}(t)-q_{ii}p_{ij}(t)
 \tag{120}
-$$&lt;p&gt;  或等价地&lt;/p&gt;
-$$
-p_{ij}(t+h)-p_{ii}(h)p_{ij}(t)=\sum_{k \ne i,k \in S}p_{ik}(h)p_{kj}(t)
+    $$
+&lt;p&gt;  ②&lt;strong&gt;向前方程&lt;/strong&gt;（如果满足 $\displaystyle\sum_{k \ne i}\frac{p_{kj}(h)}{h}$ 有限）&lt;/p&gt;
+&lt;span id=&#34;20240929214539CST&#34;&gt;&lt;/span&gt;$$
+p_{ij}^\prime(t)=\sum_{k \ne j}q_{kj}p_{ik}(t)-q_{jj}p_{ij}(t)
 \tag{121}
-$$&lt;p&gt;变形为&lt;/p&gt;
-$$
-p_{ij}(t+h)-p_{ij}(t)=\sum_{k \ne i,k \in S}p_{ik}(h)p_{kj}(t)-(1-p_{ii}(h))p_{ij}(t)
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Kolmogorov微分方程&lt;/a&gt;）&lt;/strong&gt;：先证明$①$ 。由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20240929214546CST&#34;&gt;&lt;/span&gt;$$
+p_{ij}(t+h)=\sum_{k \in S}p_{ik}(h)p_{kj}(t)
 \tag{122}
-$$&lt;p&gt;  于是&lt;/p&gt;
-$$
-\lim\limits_{h \to 0}\frac{p_{ij}(t+h)-p_{ij}(t)}{h}=\lim\limits_{h \to 0}\sum_{k \ne i,k \in S}\frac{p_{ik}(h)}{h}p_{kj}(t)-\lim\limits_{h \to 0}\frac{1-p_{ii}(h)}{h}p_{ij}(t)
+    $$
+&lt;p&gt;  或等价地&lt;/p&gt;
+&lt;span id=&#34;20240929214552CST&#34;&gt;&lt;/span&gt;$$
+p_{ij}(t+h)-p_{ii}(h)p_{ij}(t)=\sum_{k \ne i,k \in S}p_{ik}(h)p_{kj}(t)
 \tag{123}
-$$&lt;p&gt;  若此时Markov链状态是有限的，应用&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87&#34; &gt;定理16&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#%e6%8e%a8%e8%ae%ba6&#34; &gt;推论6&lt;/a&gt;从上式直接可以得到①（向后方程）&lt;br&gt;
+    $$
+&lt;p&gt;  变形为&lt;/p&gt;
+&lt;span id=&#34;20240929214602CST&#34;&gt;&lt;/span&gt;$$
+p_{ij}(t+h)-p_{ij}(t)=\sum_{k \ne i,k \in S}p_{ik}(h)p_{kj}(t)-(1-p_{ii}(h))p_{ij}(t)
+\tag{124}
+    $$
+&lt;p&gt;  于是&lt;/p&gt;
+&lt;span id=&#34;20240929214609CST&#34;&gt;&lt;/span&gt;$$
+\lim\limits_{h \to 0}\frac{p_{ij}(t+h)-p_{ij}(t)}{h}=\lim\limits_{h \to 0}\sum_{k \ne i,k \in S}\frac{p_{ik}(h)}{h}p_{kj}(t)-\lim\limits_{h \to 0}\frac{1-p_{ii}(h)}{h}p_{ij}(t)
+\tag{125}
+    $$
+&lt;p&gt;  若此时Markov链状态是有限的，应用&lt;a class=&#34;link&#34; href=&#34;#20240929211024CST&#34;&gt;定理16&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929212137CST&#34;&gt;推论6&lt;/a&gt;从上式直接可以得到①（向后方程）&lt;br&gt;
   下面证明对于无限状态下依然有①成立。由上式，我们只需证明其中的极限与求和可交换次序即可。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;可推导出&lt;/p&gt;
-$$
+&lt;span id=&#34;20240929214615CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \liminf\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)\ge&amp;\sum_{k \ne i}\liminf\limits_{h \to 0}\frac{p_{ik}(h)}{h}p_{kj}(t)\\
 =&amp;\sum_{k \ne i}q_{ik}p_{kj}(t)
 \end{aligned}
-\tag{124}
-$$&lt;p&gt;  注意 $\displaystyle\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)\le\sum_{k \ne i}\frac{p_{ik}(h)}{h}=\frac{1-p_{ii}(h)}{h}$ ，因此可以使用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;反向Fatou引理&lt;/a&gt;&lt;/p&gt;
-$$
+\tag{126}
+    $$
+&lt;p&gt;  注意 $\displaystyle\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)\le\sum_{k \ne i}\frac{p_{ik}(h)}{h}=\frac{1-p_{ii}(h)}{h}$ ，因此可以使用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;反向Fatou引理&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;20240929214621CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \limsup\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)\le&amp;\sum_{k \ne i}\limsup\limits_{h \to 0}\frac{p_{ik}(h)}{h}p_{kj}(t)\\
 =&amp;\sum_{k \ne i}q_{ik}p_{kj}(t)
 \end{aligned}
-\tag{125}
-$$&lt;p&gt;  因此&lt;/p&gt;
-$$
+\tag{127}
+    $$
+&lt;p&gt;  因此&lt;/p&gt;
+&lt;span id=&#34;20240929214627CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)=\sum_{k \ne i}q_{ik}p_{kj}(t)
-\tag{126}
-$$&lt;p&gt;  因此无限状态下①仍然成立。实际上①可以被写成矩阵形式，也就是 $\mathbf{P}^\prime(t)=\mathbf{Q}\mathbf{P}(t)$ ，其中 $\mathbf{P}(t)=(p_{ij}(t))$ ， $\mathbf{Q}=(q_{ij})$ 。依&lt;a class=&#34;link&#34; href=&#34;#kolmogorov%e5%be%ae%e5%88%86%e6%96%b9%e7%a8%8b&#34; &gt;定理17&lt;/a&gt;条件知 $\mathbf{Q}$ 是保守的。&lt;br&gt;
-  下面证明②。在①中计算 $t+h$ 的状态时是对退后到时刻 $h$ 的状态来取条件的（所以称为后退方程），这里我们考虑对时刻 $t$ 的状态取条件，用&lt;a class=&#34;link&#34; href=&#34;#%e8%bd%ac%e7%a7%bb%e6%a6%82%e7%8e%87%e7%9a%84%e6%80%a7%e8%b4%a8&#34; &gt;C-K方程&lt;/a&gt;有&lt;/p&gt;
-$$
+\tag{128}
+    $$
+&lt;p&gt;  因此无限状态下①仍然成立。实际上①可以被写成矩阵形式，也就是 $\mathbf{P}^\prime(t)=\mathbf{Q}\mathbf{P}(t)$ ，其中 $\mathbf{P}(t)=(p_{ij}(t))$ ， $\mathbf{Q}=(q_{ij})$ 。依&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Kolmogorov微分方程&lt;/a&gt;条件知 $\mathbf{Q}$ 是保守的。&lt;br&gt;
+  下面证明②。在①中计算 $t+h$ 的状态时是对退后到时刻 $h$ 的状态来取条件的（所以称为后退方程），这里我们考虑对时刻 $t$ 的状态取条件，用&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;有&lt;/p&gt;
+&lt;span id=&#34;20240929214633CST&#34;&gt;&lt;/span&gt;$$
 p_{ij}(t+h)=\sum_{k \in S}p_{ik}(t)p_{kj}(h)
-\tag{127}
-$$&lt;p&gt;  同理得到&lt;/p&gt;
-$$
+\tag{129}
+    $$
+&lt;p&gt;  同理得到&lt;/p&gt;
+&lt;span id=&#34;20240929214639CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{h \to 0}\frac{p_{ij}(t+h)-p_{ij}(t)}{h}=\lim\limits_{h \to 0}\sum_{k \ne i,k \in S}p_{ik}(t)\frac{p_{kj}(h)}{h}-\lim\limits_{h \to 0}\frac{1-p_{jj}(h)}{h}p_{ij}(t)
-\tag{127}
-$$&lt;p&gt;  注意上式的极限和求和不一定是能交换的（ $\displaystyle\sum_{k \ne i}\frac{p_{kj}(h)}{h}$ 不一定有限，因此&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;反向Fatou引理&lt;/a&gt;不可用）。如果上式的极限和求和运算可以交换，则可得②式成立。&lt;/p&gt;
+\tag{130}
+    $$
+&lt;p&gt;  注意上式的极限和求和不一定是能交换的（ $\displaystyle\sum_{k \ne i}\frac{p_{kj}(h)}{h}$ 不一定有限，因此&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;反向Fatou引理&lt;/a&gt;不可用）。如果上式的极限和求和运算可以交换，则可得②式成立。&lt;/p&gt;
+&lt;blockquote&gt;
+    &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
+从明天起，做一个幸福的人
+&lt;p&gt;喂马、劈柴，周游世界&lt;/p&gt;
+&lt;p&gt;从明天起，关心粮食和蔬菜&lt;/p&gt;
+&lt;p&gt;我有一所房子，面朝大海，春暖花开&lt;/p&gt;
+&lt;/div&gt;
+&lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;海子, &lt;/span&gt;&lt;cite&gt;《面朝大海，春暖花开》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
         <item>
