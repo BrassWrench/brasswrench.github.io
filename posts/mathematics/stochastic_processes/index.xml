@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 30 Sep 2024 22:07:46 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 30 Sep 2024 22:20:54 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：Markov过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -158,7 +158,7 @@ p_{ij}^{(n_1+n_2+n_3+\cdots+n_m)}=&amp;\sum_{k \in S}p_{ik}^{(n_1)}p_{kj}^{(n_2+
 p_{ii}^{(m+s+n)} \ge p_{ij}^{(m)}p_{jj}^{(s)}p_{ji}^{(n)}&gt;0
 \tag{11}
     $$
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义可知，由于 $p_{ii}^{(m+n)}&amp;gt;0$ 且 $p_{ii}^{(m+s+n)}&amp;gt;0$ ， $d(i)$ 必然同时整除 $n+m$ 和 $n+m+s$ ，因此，它也必然整除 $s$ （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“初等数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。同时我们还需注意我们已经假设了 $p_{jj}^{(s)} &amp;gt; 0$ ，因此 $d(j)$ 必定也整除 $s$ 。注意 $s$ 的任意性，不妨直接令 $s=d(j)$ ，由此可得 $d(i)$ 整除 $d(j)$ 。我们把上述证明的 $i$ 和 $j$ 交换一下，就也能得到 $d(j)$ 整除 $d(i)$ ，于是 $d(i)=d(j)$ （见 &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“初等数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义可知，由于 $p_{ii}^{(m+n)}&amp;gt;0$ 且 $p_{ii}^{(m+s+n)}&amp;gt;0$ ， $d(i)$ 必然同时整除 $n+m$ 和 $n+m+s$ ，因此，它也必然整除 $s$ （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。同时我们还需注意我们已经假设了 $p_{jj}^{(s)} &amp;gt; 0$ ，因此 $d(j)$ 必定也整除 $s$ 。注意 $s$ 的任意性，不妨直接令 $s=d(j)$ ，由此可得 $d(i)$ 整除 $d(j)$ 。我们把上述证明的 $i$ 和 $j$ 交换一下，就也能得到 $d(j)$ 整除 $d(i)$ ，于是 $d(i)=d(j)$ （见 &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。&lt;/p&gt;
 &lt;h3 id=&#34;常返&#34;&gt;常返
 &lt;/h3&gt;&lt;h4 id=&#34;首达概率常返与非常返瞬过&#34;&gt;首达概率、常返与非常返（瞬过）
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203654CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义10（首达概率）&lt;/strong&gt;：对于任何状态 $i,j$ ，以 $f_{ij}^{(n)}$ 记从i出发经n步后首次到达 $j$ 的概率（&lt;strong&gt;首达概率&lt;/strong&gt;），则有&lt;/p&gt;
@@ -311,7 +311,7 @@ p_{ii}^{(nd+r+h)} \ge p_{ij}^{(nd+r)}p_{ji}^{(h)}&gt;0\\[5pt]
 p_{ii}^{(md+s+h)} \ge p_{ij}^{(md+s)}p_{ji}^{(h)}&gt;0
 \tag{28}
     $$
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义可知 $nd+r+h$ 和 $md+s+h$ 都可以被 $d$ 整除。省去前面的 $n$ 和 $m$ 可得 $r+h$ 和 $s+h$ 都可被 $d$ 整除。从而其差 $(r+h)-(s+h)=r-s$ 都能被 $d$ 整除(见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“初等数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;)。但是 $0 \le r \le d-1,0 \le s \le d-1$ ，故 $0 \le r-s \le d-1$ ，因此 $r-s$ 只能为 $0$ ，也就是 $r=s$ 。故 $S_r=S_s$ ，假设不成立，故 $S_r$ 不相交。&lt;br&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义可知 $nd+r+h$ 和 $md+s+h$ 都可以被 $d$ 整除。省去前面的 $n$ 和 $m$ 可得 $r+h$ 和 $s+h$ 都可被 $d$ 整除。从而其差 $(r+h)-(s+h)=r-s$ 都能被 $d$ 整除(见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;)。但是 $0 \le r \le d-1,0 \le s \le d-1$ ，故 $0 \le r-s \le d-1$ ，因此 $r-s$ 只能为 $0$ ，也就是 $r=s$ 。故 $S_r=S_s$ ，假设不成立，故 $S_r$ 不相交。&lt;br&gt;
   接下来证明自 $S_r$ 任意状态出发，经 $1$ 步转移必进入 $S_{r+1}$ 中（其中 $S_d=S_0$ ）。等价于证明对任意 $j \in S_r$ ，有 $\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{(1)}}=1$ 。事实上，由 &lt;a class=&#34;link&#34; href=&#34;#20240929213348CST&#34;&gt;式(27)&lt;/a&gt;可知 $p_{ij}^{(nd+r)}&amp;gt;0$ ，同样可知对 $k \notin S_{r+1}$ 必有 $p_{ik}^{(nd+r+1)}=0$ 。因此由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可推导：&lt;/p&gt;
 &lt;span id=&#34;20240929213405CST&#34;&gt;&lt;/span&gt;$$
 0=p_{ik}^{(nd+r+1)} \ge p_{ij}^{(nd+r)}p_{jk}^{(1)}&gt;0
@@ -466,7 +466,7 @@ p_n=p_{jj}^{(n)}=\sum_{l=1}^{n}{f_{jj}^{(l)}p_{jj}^{(n-l)}}=-\sum_{v=1}^{n}{(r_v
 kd=\sum_{i=1}^{l}c_id_i
 \tag{53}
     $$
-&lt;p&gt;  上述结论见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，初等数论还未上线~&#39;)&#34;&gt;Frobenius问题&lt;/a&gt;（实际上 $k_0$ 就是数论中著名的Frobenius数，该数在 $l\ge3$ 时无一般表示式，但是可以证明 $k_0\le \displaystyle\sum_{i=2}^{l}\frac{d_i\cdot gcd(d_1,d_2,\dots,d_{i-1})}{d \cdot gcd(d_1,d_2,\dots,d_i)} - \displaystyle\sum_{i=1}^{l}\frac{d_i}{d}$ ）。于是，对每一个 $k\ge k_0$ 有&lt;/p&gt;
+&lt;p&gt;  上述结论见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;Frobenius问题&lt;/a&gt;（实际上 $k_0$ 就是数论中著名的Frobenius数，该数在 $l\ge3$ 时无一般表示式，但是可以证明 $k_0\le \displaystyle\sum_{i=2}^{l}\frac{d_i\cdot gcd(d_1,d_2,\dots,d_{i-1})}{d \cdot gcd(d_1,d_2,\dots,d_i)} - \displaystyle\sum_{i=1}^{l}\frac{d_i}{d}$ ）。于是，对每一个 $k\ge k_0$ 有&lt;/p&gt;
 &lt;span id=&#34;20240929213727CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{n \rightarrow \infin}p_{(n_m-k)d}=\lambda
 \tag{54}
