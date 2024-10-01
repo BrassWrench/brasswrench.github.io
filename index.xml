@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 01 Oct 2024 15:25:22 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 01 Oct 2024 18:10:10 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>图像生成模型（一）：扩散模型的基本原理</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_image_generative_model/diffusion_model_basic_principles/</link>
         <pubDate>Thu, 26 Sep 2024 13:00:05 +0800</pubDate>
@@ -63,6 +63,209 @@
   src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=578090&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
 &lt;/iframe&gt;
 
+&lt;h1 id=&#34;3d高斯泼溅算法&#34;&gt;3D高斯泼溅算法
+&lt;/h1&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+&lt;/h2&gt;&lt;p&gt;  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，&lt;strong&gt;3D高斯泼溅（3D Gaussian Splatting）算法&lt;/strong&gt;作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。&lt;br&gt;
+  3D高斯泼溅算法的基本原理在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯核，利用高斯函数的数学性质，将离散的数据点或体素转换为连续的表面或体积表示。这一过程中，高斯核的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。&lt;br&gt;
+  本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。&lt;/p&gt;
+&lt;h2 id=&#34;整体框架&#34;&gt;整体框架
+&lt;/h2&gt;&lt;span id=&#34;20241001163933CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 211.6&#34;&gt;
+  &lt;defs&gt;
+    &lt;style&gt;
+      .cls-1 {
+        stroke-dasharray: 5.9 5.9;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-7 {
+        fill: url(#_未命名的渐变_25-4);
+      }
+
+      .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13 {
+        mix-blend-mode: overlay;
+      }
+
+      .cls-8 {
+        fill: url(#_未命名的渐变_25-2);
+      }
+
+      .cls-9 {
+        fill: url(#_未命名的渐变_25-3);
+      }
+
+      .cls-14 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        stroke-dasharray: 6 6;
+      }
+
+      .cls-15 {
+        opacity: .1;
+      }
+
+      .cls-10 {
+        fill: url(#_未命名的渐变_25-6);
+      }
+
+      .cls-11 {
+        fill: url(#_未命名的渐变_25);
+      }
+
+      .cls-12 {
+        fill: url(#_未命名的渐变_25-5);
+      }
+
+      .cls-4 {
+        stroke-dasharray: 5.2 5.2;
+      }
+
+      .cls-5 {
+        stroke-dasharray: 6 6;
+      }
+
+      .cls-13 {
+        fill: url(#_未命名的渐变_25-7);
+      }
+
+      .cls-16 {
+        font-family: NotoSerifSC-Regular, &#39;Noto Serif SC&#39;;
+        font-size: 18px;
+      }
+
+      .cls-6 {
+        stroke-dasharray: 6.1 6.1;
+      }
+    &lt;/style&gt;
+    &lt;radialGradient id=&#34;_未命名的渐变_25&#34; data-name=&#34;未命名的渐变 25&#34; cx=&#34;317.1&#34; cy=&#34;170.5&#34; fx=&#34;317.1&#34; fy=&#34;170.5&#34; r=&#34;13.8&#34; gradientTransform=&#34;translate(378.1 -215.9) rotate(90) scale(1 .5)&#34; gradientUnits=&#34;userSpaceOnUse&#34;&gt;
+      &lt;stop offset=&#34;0&#34; stop-color=&#34;#000&#34;/&gt;
+      &lt;stop offset=&#34;.6&#34; stop-color=&#34;#080808&#34; stop-opacity=&#34;1&#34;/&gt;
+      &lt;stop offset=&#34;1&#34; stop-color=&#34;#fff&#34; stop-opacity=&#34;0&#34;/&gt;
+    &lt;/radialGradient&gt;
+    &lt;radialGradient id=&#34;_未命名的渐变_25-2&#34; data-name=&#34;未命名的渐变 25&#34; cx=&#34;333.8&#34; cy=&#34;136.2&#34; fx=&#34;333.8&#34; fy=&#34;136.2&#34; r=&#34;13.8&#34; gradientTransform=&#34;translate(396.3 -239.7) rotate(90) scale(1 .6)&#34; xlink:href=&#34;#_未命名的渐变_25&#34;/&gt;
+    &lt;radialGradient id=&#34;_未命名的渐变_25-3&#34; data-name=&#34;未命名的渐变 25&#34; cx=&#34;344.7&#34; cy=&#34;75.2&#34; fx=&#34;344.7&#34; fy=&#34;75.2&#34; r=&#34;13.8&#34; gradientTransform=&#34;translate(-1.6 50) scale(1 .7)&#34; xlink:href=&#34;#_未命名的渐变_25&#34;/&gt;
+    &lt;radialGradient id=&#34;_未命名的渐变_25-4&#34; data-name=&#34;未命名的渐变 25&#34; cx=&#34;326.7&#34; cy=&#34;119.1&#34; fx=&#34;326.7&#34; fy=&#34;119.1&#34; r=&#34;13.8&#34; gradientTransform=&#34;translate(0 16.3) scale(1 .9)&#34; xlink:href=&#34;#_未命名的渐变_25&#34;/&gt;
+    &lt;radialGradient id=&#34;_未命名的渐变_25-5&#34; data-name=&#34;未命名的渐变 25&#34; cx=&#34;322.1&#34; cy=&#34;106.7&#34; fx=&#34;322.1&#34; fy=&#34;106.7&#34; gradientTransform=&#34;translate(0 40.7) scale(1 .7)&#34; xlink:href=&#34;#_未命名的渐变_25&#34;/&gt;
+    &lt;radialGradient id=&#34;_未命名的渐变_25-6&#34; data-name=&#34;未命名的渐变 25&#34; cx=&#34;340.1&#34; cy=&#34;254.2&#34; fx=&#34;340.1&#34; fy=&#34;254.2&#34; gradientTransform=&#34;translate(470.4 -205) rotate(90) scale(1 .6)&#34; xlink:href=&#34;#_未命名的渐变_25&#34;/&gt;
+    &lt;radialGradient id=&#34;_未命名的渐变_25-7&#34; data-name=&#34;未命名的渐变 25&#34; cx=&#34;373.8&#34; cy=&#34;203.1&#34; fx=&#34;373.8&#34; fy=&#34;203.1&#34; r=&#34;13.8&#34; gradientTransform=&#34;translate(-182 51.6) scale(1.4 .4)&#34; xlink:href=&#34;#_未命名的渐变_25&#34;/&gt;
+  &lt;/defs&gt;
+  &lt;!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  --&gt;
+  &lt;g class=&#34;cls-14&#34;&gt;
+    &lt;g id=&#34;_图层_1&#34;&gt;
+      &lt;circle cx=&#34;21.1&#34; cy=&#34;90&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;21.1&#34; cy=&#34;90&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;21.1&#34; cy=&#34;90&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;21.1&#34; cy=&#34;90&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;21.1&#34; cy=&#34;90&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;21.1&#34; cy=&#34;90&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;41.5&#34; cy=&#34;95&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;57.2&#34; cy=&#34;107.2&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;27.6&#34; cy=&#34;100&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;44&#34; cy=&#34;107.2&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;50.6&#34; cy=&#34;118.1&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;34.5&#34; cy=&#34;125.7&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;46.5&#34; cy=&#34;131.8&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;58.1&#34; cy=&#34;129.4&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;22.6&#34; cy=&#34;130.7&#34; r=&#34;2.5&#34;/&gt;
+      &lt;circle cx=&#34;27.6&#34; cy=&#34;145&#34; r=&#34;2.5&#34;/&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(7.8 184.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;SfM Points&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(118.5 130.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Initialization&lt;/tspan&gt;&lt;/text&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;113.5&#34; y=&#34;99.6&#34; width=&#34;123.9&#34; height=&#34;45.8&#34;/&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;71&#34; y1=&#34;120.6&#34; x2=&#34;95.3&#34; y2=&#34;120.6&#34;/&gt;
+        &lt;polygon points=&#34;93.3 123.5 104.2 120.6 93.3 117.7 93.3 123.5&#34;/&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;250.1&#34; y1=&#34;120.6&#34; x2=&#34;274.3&#34; y2=&#34;120.6&#34;/&gt;
+        &lt;polygon points=&#34;272.4 123.5 283.2 120.6 272.4 117.7 272.4 123.5&#34;/&gt;
+      &lt;/g&gt;
+      &lt;ellipse class=&#34;cls-11&#34; cx=&#34;299.5&#34; cy=&#34;101.2&#34; rx=&#34;6.3&#34; ry=&#34;13.8&#34; transform=&#34;translate(113.3 356.7) rotate(-72.6)&#34;/&gt;
+      &lt;ellipse class=&#34;cls-8&#34; cx=&#34;319.2&#34; cy=&#34;94.2&#34; rx=&#34;7.8&#34; ry=&#34;13.8&#34; transform=&#34;translate(133.8 370.6) rotate(-72.6)&#34;/&gt;
+      &lt;ellipse class=&#34;cls-9&#34; cx=&#34;343.2&#34; cy=&#34;100.8&#34; rx=&#34;13.8&#34; ry=&#34;9.3&#34; transform=&#34;translate(-8.6 165.3) rotate(-26.8)&#34;/&gt;
+      &lt;ellipse class=&#34;cls-7&#34; cx=&#34;326.7&#34; cy=&#34;127.4&#34; rx=&#34;13.8&#34; ry=&#34;12.8&#34;/&gt;
+      &lt;ellipse class=&#34;cls-12&#34; cx=&#34;322.1&#34; cy=&#34;114.6&#34; rx=&#34;13.8&#34; ry=&#34;9.5&#34;/&gt;
+      &lt;ellipse class=&#34;cls-10&#34; cx=&#34;312.9&#34; cy=&#34;135.2&#34; rx=&#34;8.5&#34; ry=&#34;13.8&#34; transform=&#34;translate(23.4 315.1) rotate(-55.2)&#34;/&gt;
+      &lt;ellipse class=&#34;cls-13&#34; cx=&#34;337.1&#34; cy=&#34;138.2&#34; rx=&#34;19.1&#34; ry=&#34;5.9&#34; transform=&#34;translate(-16.5 50.4) rotate(-8.3)&#34;/&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(255.4 184.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3D Gaussians&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(434.5 63.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Projection&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(440.9 174.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Adaptive&lt;/tspan&gt;&lt;tspan x=&#34;-30&#34; y=&#34;21.6&#34;&gt;Density Control&lt;/tspan&gt;&lt;/text&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;409&#34; y=&#34;147.7&#34; width=&#34;141.7&#34; height=&#34;59.5&#34;/&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;409&#34; y=&#34;25.5&#34; width=&#34;141.7&#34; height=&#34;59.5&#34;/&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(605.3 119.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Differentiable&lt;/tspan&gt;&lt;tspan x=&#34;0&#34; y=&#34;21.6&#34;&gt;Tile Rasterizer&lt;/tspan&gt;&lt;/text&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;598.6&#34; y=&#34;93&#34; width=&#34;141.7&#34; height=&#34;59.5&#34;/&gt;
+      &lt;rect class=&#34;cls-15&#34; x=&#34;113.5&#34; y=&#34;99.9&#34; width=&#34;123.9&#34; height=&#34;45.8&#34;/&gt;
+      &lt;rect class=&#34;cls-15&#34; x=&#34;409&#34; y=&#34;148&#34; width=&#34;141.7&#34; height=&#34;59.5&#34;/&gt;
+      &lt;rect class=&#34;cls-15&#34; x=&#34;409&#34; y=&#34;25.9&#34; width=&#34;141.7&#34; height=&#34;59.5&#34;/&gt;
+      &lt;rect class=&#34;cls-15&#34; x=&#34;598.6&#34; y=&#34;93&#34; width=&#34;141.7&#34; height=&#34;59.5&#34;/&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(787.6 128.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Image&lt;/tspan&gt;&lt;/text&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;776&#34; y=&#34;99&#34; width=&#34;79.2&#34; height=&#34;47.4&#34;/&gt;
+      &lt;g&gt;
+        &lt;path class=&#34;cls-2&#34; d=&#34;M354.9,76.9c7.7-13.9,28.4-19.1,40.3-21&#34;/&gt;
+        &lt;polygon points=&#34;393.7 59.1 404 54.8 392.9 53.3 393.7 59.1&#34;/&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;path class=&#34;cls-2&#34; d=&#34;M405.4,184.6c-18.8-.9-40.6-24.2-50.6-36.1&#34;/&gt;
+        &lt;polygon points=&#34;358.4 148.2 349.3 141.6 353.9 151.8 358.4 148.2&#34;/&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;path class=&#34;cls-2&#34; d=&#34;M555.6,56.2c24-.7,38.4,14,45.1,23.5&#34;/&gt;
+        &lt;polygon points=&#34;597.1 79.6 605.3 87.3 602.1 76.5 597.1 79.6&#34;/&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;path class=&#34;cls-2&#34; d=&#34;M598,155c-.3,1-.7,1.9-1.1,2.8&#34;/&gt;
+        &lt;path class=&#34;cls-5&#34; d=&#34;M594.1,163c-6.7,10.6-17.3,16.3-25.9,19.3&#34;/&gt;
+        &lt;path class=&#34;cls-2&#34; d=&#34;M565.3,183.3c-1,.3-2,.6-2.9.8&#34;/&gt;
+        &lt;polygon points=&#34;563.8 180.8 553.7 185.8 564.9 186.5 563.8 180.8&#34;/&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;741.6&#34; y1=&#34;115.2&#34; x2=&#34;765.9&#34; y2=&#34;115.2&#34;/&gt;
+        &lt;polygon points=&#34;763.9 118.2 774.7 115.2 763.9 112.3 763.9 118.2&#34;/&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;774.7&#34; y1=&#34;128&#34; x2=&#34;771.7&#34; y2=&#34;128&#34;/&gt;
+        &lt;line class=&#34;cls-6&#34; x1=&#34;765.6&#34; y1=&#34;128&#34; x2=&#34;756.5&#34; y2=&#34;128&#34;/&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;753.4&#34; y1=&#34;128&#34; x2=&#34;750.4&#34; y2=&#34;128&#34;/&gt;
+        &lt;polygon points=&#34;752.4 125 741.6 128 752.4 130.9 752.4 125&#34;/&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;path class=&#34;cls-2&#34; d=&#34;M596,91.4c-.4-.9-.8-1.9-1.2-2.7&#34;/&gt;
+        &lt;path class=&#34;cls-4&#34; d=&#34;M592.1,84.1c-6.1-8.7-15.5-13.5-23.4-16.1&#34;/&gt;
+        &lt;path class=&#34;cls-2&#34; d=&#34;M566.3,67.2c-1-.3-2-.6-2.9-.8&#34;/&gt;
+        &lt;polygon points=&#34;565.9 64.1 554.7 64.9 564.8 69.8 565.9 64.1&#34;/&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;path class=&#34;cls-3&#34; d=&#34;M404,62.9c-20.8,3.6-21.9,4.3-29.8,7.9-3.7,1.7-7.4,5.4-10.2,8.7&#34;/&gt;
+        &lt;polygon points=&#34;363 76.3 358.9 86.7 367.7 79.8 363 76.3&#34;/&gt;
+      &lt;/g&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(291.7 43.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Camera&lt;/tspan&gt;&lt;/text&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;286.9&#34; y=&#34;25.9&#34; width=&#34;79.2&#34; height=&#34;25&#34;/&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;370&#34; y1=&#34;38.3&#34; x2=&#34;394.2&#34; y2=&#34;38.3&#34;/&gt;
+        &lt;polygon points=&#34;392.3 41.2 403.1 38.3 392.3 35.4 392.3 41.2&#34;/&gt;
+      &lt;/g&gt;
+      &lt;rect class=&#34;cls-2&#34; x=&#34;11&#34; y=&#34;12.1&#34; width=&#34;216.9&#34; height=&#34;49.9&#34;/&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(18 34.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Operation Flow&lt;/tspan&gt;&lt;/text&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;159.9&#34; y1=&#34;30.8&#34; x2=&#34;207.2&#34; y2=&#34;30.8&#34;/&gt;
+        &lt;polygon points=&#34;205.3 33.7 216.1 30.8 205.3 27.9 205.3 33.7&#34;/&gt;
+      &lt;/g&gt;
+      &lt;text class=&#34;cls-16&#34; transform=&#34;translate(23.5 57)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Gradient Flow&lt;/tspan&gt;&lt;/text&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;159.9&#34; y1=&#34;52.3&#34; x2=&#34;162.9&#34; y2=&#34;52.3&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;168.8&#34; y1=&#34;52.3&#34; x2=&#34;201.3&#34; y2=&#34;52.3&#34;/&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;204.2&#34; y1=&#34;52.3&#34; x2=&#34;207.2&#34; y2=&#34;52.3&#34;/&gt;
+        &lt;polygon points=&#34;205.3 55.3 216.1 52.3 205.3 49.4 205.3 55.3&#34;/&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;3D Gaussian Splatting整体框架&lt;/p&gt;&lt;/div&gt;
 </description>
         </item>
         <item>
