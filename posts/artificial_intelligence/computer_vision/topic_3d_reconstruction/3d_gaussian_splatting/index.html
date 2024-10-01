@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="An algorithm that achieves efficient 3D reconstruction and rendering by modeling objects as Gaussian point clouds and performing rapid differentiable rasterization.">
-<title>3D Reconstruction(Ⅰ): 3D Gaussian Splatting</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法">
+<title>三维重建（二）：3D高斯泼溅算法</title>
 
-<link rel='canonical' href='https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting_basic_principles/'>
+<link rel='canonical' href='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/'>
 
 <link rel="stylesheet" href="/scss/style.min.ae61b9ccc6e9326f33c3228be2a7331373421426ee4c8b6606da674fe41df680.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
@@ -127,13 +127,14 @@
             });
         }
     });
-</script><meta property='og:title' content="3D Reconstruction(Ⅰ): 3D Gaussian Splatting">
-<meta property='og:description' content="An algorithm that achieves efficient 3D reconstruction and rendering by modeling objects as Gaussian point clouds and performing rapid differentiable rasterization.">
-<meta property='og:url' content='https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting_basic_principles/'>
-<meta property='og:site_name' content='Brass Wrench&#39;s Library'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-09-23T19:43:23&#43;08:00'/><meta property='article:modified_time' content='2024-10-01T19:57:18&#43;08:00'/>
-<meta name="twitter:title" content="3D Reconstruction(Ⅰ): 3D Gaussian Splatting">
-<meta name="twitter:description" content="An algorithm that achieves efficient 3D reconstruction and rendering by modeling objects as Gaussian point clouds and performing rapid differentiable rasterization.">
+</script><meta property='og:title' content="三维重建（二）：3D高斯泼溅算法">
+<meta property='og:description' content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法">
+<meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/'>
+<meta property='og:site_name' content='黄铜扳手的图书馆'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='3D Gaussian Splatting' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-10-01T20:48:34&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
+<meta name="twitter:title" content="三维重建（二）：3D高斯泼溅算法">
+<meta name="twitter:description" content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-3M2EFBT99V"></script>
@@ -198,7 +199,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -208,7 +209,7 @@
         
             
             <figure class="site-avatar">
-                <a href="/en/">
+                <a href="/">
                 
                     
                     
@@ -227,8 +228,8 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/en">Brass Wrench&#39;s Library</a></h1>
-            <h2 class="site-description">A quiet and peaceful place</h2>
+            <h1 class="site-name"><a href="/">黄铜扳手的图书馆</a></h1>
+            <h2 class="site-description">一片静谧之地</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -336,7 +337,7 @@
         
         
         <li >
-            <a href='/en/' >
+            <a href='/' >
                 
                 
                 
@@ -350,13 +351,13 @@
 
 
                 
-                <span>Home</span>
+                <span>主页</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/categories/' >
+            <a href='/categories/' >
                 
                 
                 
@@ -371,13 +372,13 @@
 
 
                 
-                <span>Categories</span>
+                <span>分类</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/tagcloud/' >
+            <a href='/tagcloud/' >
                 
                 
                 
@@ -390,13 +391,13 @@
 
 
                 
-                <span>Tags</span>
+                <span>标签</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/archives/' >
+            <a href='/archives/' >
                 
                 
                 
@@ -410,13 +411,13 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/search/' >
+            <a href='/search/' >
                 
                 
                 
@@ -429,13 +430,13 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/about/' >
+            <a href='/about/' >
                 
                 
                 
@@ -448,13 +449,13 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/message/' >
+            <a href='/message/' >
                 
                 
                 
@@ -465,13 +466,13 @@
     <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
 </svg>
                 
-                <span>Message</span>
+                <span>留言</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/en/link/' >
+            <a href='/link/' >
                 
                 
                 
@@ -484,7 +485,7 @@
 
 
                 
-                <span>Link</span>
+                <span>链接</span>
             </a>
         </li>
         
@@ -505,9 +506,9 @@
 
                             <select class = "language_select" name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="https://www.brasswrench.com/en/" selected>English</option>
+                                    <option value="https://www.brasswrench.com/en/" >English</option>
                                 
-                                    <option value="https://www.brasswrench.com/" >简体中文</option>
+                                    <option value="https://www.brasswrench.com/" selected>简体中文</option>
                                 
                             </select>
                         </li>
@@ -535,7 +536,7 @@
     <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
     <path d="M19 11h2m-1 -1v2" />
 </svg>
-                        <span>Dark Mode</span>
+                        <span>暗色模式</span>
                     </li>
                 
 
@@ -547,12 +548,12 @@
     <aside class="sidebar right-sidebar sticky">
         
             
-                <form action="/en/search/" class="search-form widget" >
+                <form action="/search/" class="search-form widget" >
         <p>
-            <label>Search</label>
-            <input name="keyword" required placeholder="Type something..." />
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
         
-            <button title="Search">
+            <button title="搜索">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="10" cy="10" r="7" />
@@ -568,6 +569,31 @@
         
             
                 
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#整体框架">整体框架</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
             
         
 
@@ -614,7 +640,7 @@
             </svg>
         </div>
         <p style="font-size: 2.4rem; font-weight: bold; margin: 0;text-align:center; ">
-            <span class="shake">👋</span><span class="jump-text1">Welcome </span><span class="jump-text2">to </span><span class="jump-text3" style="color:#e99312;">Brass </span><span class="jump-text5" style="color:#e99312;">Wrench</span><span class="jump-text6" style="color:#e99312;">&#39;s </span><span class="jump-text7" style="color:#e99312;">Library</span>
+            <span class="shake">👋</span><span class="jump-text1">欢迎</span><span class="jump-text2">来到</span><span class="jump-text3" style="color:#e99312;">黄铜</span><span class="jump-text5" style="color:#e99312;">扳手</span><span class="jump-text6" style="color:#e99312;">的</span><span class="jump-text7" style="color:#e99312;">图书馆</span>
         </p>
         <div id="motto2" style="width: 200px; height: 40px; margin-left: 10px; margin-right: 10px;">
             <svg id="功夫到家" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 752 160">
@@ -749,7 +775,7 @@
     }
 </style>
 
-    <article class="main-article">
+    <article class="has-image main-article">
 
 
     <header class="article-header">
@@ -778,7 +804,7 @@
                         
                             
                         
-                        <a href="/categories/artificial_intelligence/" ZgotmplZ>Artificial Intelligence</a>
+                        <a href="/categories/artificial_intelligence/" ZgotmplZ>人工智能</a>
 
                     
                 
@@ -795,7 +821,7 @@
                         
                             
                         
-                        <a href="/posts/artificial_intelligence/computer_vision/" ZgotmplZ>Computer Vision</a>
+                        <a href="/posts/artificial_intelligence/computer_vision/" ZgotmplZ>计算机视觉</a>
 
                     
                 
@@ -810,7 +836,7 @@
                         
                             
                         
-                        <a href="/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/" ZgotmplZ>Topic: 3D Reconstruction</a>
+                        <a href="/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/" ZgotmplZ>专题：三维重建</a>
 
                     
                 
@@ -820,22 +846,36 @@
                 
             
             
-                <a id="draft-tag">Draft</a>
+                <a id="draft-tag">草稿</a>
             
         </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/en/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting_basic_principles/">3D Reconstruction(Ⅰ): 3D Gaussian Splatting</a>
+            <a href="/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/">三维重建（二）：3D高斯泼溅算法</a>
         </h2>
 
         
         <h3 class="article-subtitle">
-            An algorithm that achieves efficient 3D reconstruction and rendering by modeling objects as Gaussian point clouds and performing rapid differentiable rasterization.
+            一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法
         </h3>
         
     </div>
+        <div class="article-image">
+            
+            
+            
+            
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-view-360" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+    <path d="M12 12m-4 0a4 9 0 1 0 8 0a4 9 0 1 0 -8 0" />
+    <path d="M3 12c0 2.21 4.03 4 9 4s9 -1.79 9 -4s-4.03 -4 -9 -4s-9 1.79 -9 4z" />
+</svg>
+            
+        </div>
+    
 
 
     
@@ -867,7 +907,7 @@
     <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
 </svg>
                 <time class="article-words">
-                    Harbin Institute of Technology(Weihai Campus), Weihai City, Shandong Province, China
+                    中国 山东省 威海市 哈尔滨工业大学威海校区 云杉书院
                 </time>
             </div>
         
@@ -882,7 +922,7 @@
 </svg>
 
             <time class="article-words">
-                0 Words
+                665 字
             </time>
         </div>
 
@@ -897,7 +937,7 @@
 
 
                 <time class="article-time--reading">
-                    0 minutes to read
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -920,7 +960,7 @@
 
             <div>
                 
-                    <a href="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting_basic_principles/" class="link">简体中文</a>
+                    <a href="https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/" class="link">English</a>
                 
             </div>
         </footer>
@@ -952,6 +992,175 @@
   src="https://music.163.com/outchain/player?type=2&amp;id=578090&amp;auto=0&amp;height=66">
 </iframe>
 
+<h1 id="3d高斯泼溅算法">3D高斯泼溅算法
+</h1><h2 id="引言">引言
+</h2><p>  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，<strong>3D高斯泼溅（3D Gaussian Splatting）算法</strong>作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。<br>
+  3D高斯泼溅算法的基本原理在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯核，利用高斯函数的数学性质，将离散的数据点或体素转换为连续的表面或体积表示。这一过程中，高斯核的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。<br>
+  本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。</p>
+<h2 id="整体框架">整体框架
+</h2><p>  3D Gaussian Splatting的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。</p>
+<span id="20241001163933CST"></span><div class="svg-figure"><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 863.7 212.2">
+  <defs>
+    <radialGradient id="_未命名的渐变" data-name="未命名的渐变" cx="489.86" cy="2044.53" fx="489.86" fy="2044.53" r="13.9" gradientTransform="translate(912.53 -394.06) rotate(90) scale(1 .3)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".6" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#efefef" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="_未命名的渐变_2" data-name="未命名的渐变 2" cx="506.56" cy="1996.83" fx="506.56" fy="1996.83" r="13.2" gradientTransform="translate(917.41 -416.13) rotate(90) scale(1 .3)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".6" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#efefef" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="_未命名的渐变_3" data-name="未命名的渐变 3" cx="98.73" cy="743.75" fx="98.73" fy="743.75" r="13.5" gradientTransform="translate(244.75 -427.5) scale(1 .7)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".6" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#efefef" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="_未命名的渐变_4" data-name="未命名的渐变 4" cx="328.07" cy="744.39" fx="328.07" fy="744.39" r="14.01" gradientTransform="translate(0 -555.69) scale(1 .9)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".6" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#efefef" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="_未命名的渐变_5" data-name="未命名的渐变 5" cx="322.5" cy="1529.14" fx="322.5" fy="1529.14" r="14.5" gradientTransform="translate(0 -508.02) scale(1 .4)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".6" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#efefef" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="_未命名的渐变_6" data-name="未命名的渐变 6" cx="669" cy="1108.3" fx="669" fy="1108.3" r="14" gradientTransform="translate(971.98 -544.76) rotate(90) scale(1 .6)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".6" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#efefef" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="_未命名的渐变_7" data-name="未命名的渐变 7" cx="335.39" cy="1576.33" fx="335.39" fy="1576.33" r="14.2" gradientTransform="translate(-132.33 -503.31) scale(1.4 .4)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".6" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#efefef" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="_未命名的渐变_8" data-name="未命名的渐变 8" cx="571.03" cy="2941.72" fx="571.03" fy="2941.72" r="12.9" gradientTransform="translate(900.52 -188.99) rotate(90) scale(.5 .2)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".6" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#efefef" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g style="isolation: isolate;">
+    <g id="_图层_1" data-name="图层_1">
+      <circle cx="21.5" cy="82.6" r="2.5"/>
+      <circle cx="21.5" cy="82.6" r="2.5"/>
+      <circle cx="21.5" cy="82.6" r="2.5"/>
+      <circle cx="21.5" cy="82.6" r="2.5"/>
+      <circle cx="21.5" cy="82.6" r="2.5"/>
+      <circle cx="21.5" cy="82.6" r="2.5"/>
+      <circle cx="41.9" cy="87.6" r="2.5"/>
+      <circle cx="57.6" cy="99.8" r="2.5"/>
+      <circle cx="28" cy="92.6" r="2.5"/>
+      <circle cx="44.4" cy="99.8" r="2.5"/>
+      <circle cx="51" cy="110.7" r="2.5"/>
+      <circle cx="34.9" cy="118.3" r="2.5"/>
+      <circle cx="46.9" cy="124.4" r="2.5"/>
+      <circle cx="58.5" cy="122" r="2.5"/>
+      <circle cx="23" cy="123.3" r="2.5"/>
+      <circle cx="28" cy="137.6" r="2.5"/>
+      <rect x="113.9" y="92.2" width="123.9" height="45.8" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <line x1="71.4" y1="113.2" x2="95.7" y2="113.2" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="93.7 116.1 104.6 113.2 93.7 110.3 93.7 116.1"/>
+      <line x1="250.5" y1="113.2" x2="274.7" y2="113.2" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="272.8 116.1 283.6 113.2 272.8 110.3 272.8 116.1"/>
+      <ellipse cx="299.19" cy="95.71" rx="4.2" ry="13.8" transform="translate(118.39 352.59) rotate(-72.6)" style="fill: url(#_未命名的渐变); isolation: isolate; mix-blend-mode: overlay;"/>
+      <ellipse cx="318.37" cy="90.43" rx="3.8" ry="13.8" transform="translate(136.87 367.19) rotate(-72.6)" style="fill: url(#_未命名的渐变_2); isolation: isolate; mix-blend-mode: overlay;"/>
+      <ellipse cx="343.48" cy="93.12" rx="13.8" ry="9.3" transform="translate(-5.09 164.87) rotate(-26.8)" style="fill: url(#_未命名的渐变_3); isolation: isolate; mix-blend-mode: overlay;"/>
+      <ellipse cx="328.07" cy="114.26" rx="13.8" ry="12.8" style="fill: url(#_未命名的渐变_4); isolation: isolate; mix-blend-mode: overlay;"/>
+      <ellipse cx="322.5" cy="103.7" rx="13.8" ry="6.1" style="fill: url(#_未命名的渐变_5); isolation: isolate; mix-blend-mode: overlay;"/>
+      <ellipse cx="306.98" cy="124.24" rx="8.5" ry="13.8" transform="translate(29.76 305.41) rotate(-55.2)" style="fill: url(#_未命名的渐变_6); isolation: isolate; mix-blend-mode: overlay;"/>
+      <ellipse cx="337.29" cy="127.17" rx="19.1" ry="5.9" transform="translate(-14.82 50.02) rotate(-8.3)" style="fill: url(#_未命名的渐变_7); isolation: isolate; mix-blend-mode: overlay;"/>
+      <rect x="409.4" y="140.3" width="141.7" height="59.5" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <rect x="409.4" y="18.1" width="141.7" height="59.5" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <rect x="599" y="85.6" width="141.7" height="59.5" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <rect x="113.9" y="92.5" width="123.9" height="45.8" style="isolation: isolate; opacity: .1;"/>
+      <rect x="409.4" y="140.6" width="141.7" height="59.5" style="isolation: isolate; opacity: .1;"/>
+      <rect x="409.4" y="18.5" width="141.7" height="59.5" style="isolation: isolate; opacity: .1;"/>
+      <rect x="599" y="85.6" width="141.7" height="59.5" style="isolation: isolate; opacity: .1;"/>
+      <rect x="776.4" y="91.6" width="79.2" height="47.4" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <path d="M355.3,69.5c7.7-13.9,28.4-19.1,40.3-21" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="394.1 51.7 404.4 47.4 393.3 45.9 394.1 51.7"/>
+      <path d="M405.8,177.2c-18.8-.9-40.6-24.2-50.6-36.1" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="358.8 140.8 349.7 134.2 354.3 144.4 358.8 140.8"/>
+      <path d="M556,48.8c24-.7,38.4,14,45.1,23.5" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="597.5 72.2 605.7 79.9 602.5 69.1 597.5 72.2"/>
+      <path d="M598.4,147.6c-.3,1-.7,1.9-1.1,2.8" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <path d="M594.5,155.6c-6.7,10.6-17.3,16.3-25.9,19.3" style="fill: none; stroke: #000; stroke-dasharray: 6 6; stroke-miterlimit: 10;"/>
+      <path d="M565.7,175.9c-1,.3-2,.6-2.9.8" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="564.2 173.4 554.1 178.4 565.3 179.1 564.2 173.4"/>
+      <line x1="742" y1="107.8" x2="766.3" y2="107.8" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="764.3 110.8 775.1 107.8 764.3 104.9 764.3 110.8"/>
+      <line x1="775.1" y1="120.6" x2="772.1" y2="120.6" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <line x1="766" y1="120.6" x2="756.9" y2="120.6" style="fill: none; stroke: #000; stroke-dasharray: 6.1 6.1; stroke-miterlimit: 10;"/>
+      <line x1="753.8" y1="120.6" x2="750.8" y2="120.6" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="752.8 117.6 742 120.6 752.8 123.5 752.8 117.6"/>
+      <path d="M596.4,84c-.4-.9-.8-1.9-1.2-2.7" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <path d="M592.5,76.7c-6.1-8.7-15.5-13.5-23.4-16.1" style="fill: none; stroke: #000; stroke-dasharray: 5.2 5.2; stroke-miterlimit: 10;"/>
+      <path d="M566.7,59.8c-1-.3-2-.6-2.9-.8" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="566.3 56.7 555.1 57.5 565.2 62.4 566.3 56.7"/>
+      <path d="M404.4,55.5c-20.8,3.6-21.9,4.3-29.8,7.9-3.7,1.7-7.4,5.4-10.2,8.7" style="fill: none; stroke: #000; stroke-dasharray: 6 6; stroke-miterlimit: 10;"/>
+      <polygon points="363.4 68.9 359.3 79.3 368.1 72.4 363.4 68.9"/>
+      <rect x="287.3" y="18.5" width="79.2" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <line x1="370.4" y1="30.9" x2="394.6" y2="30.9" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="392.7 33.8 403.5 30.9 392.7 28 392.7 33.8"/>
+      <rect x="11.4" y="4.7" width="216.9" height="49.9" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <line x1="160.3" y1="20.4" x2="207.6" y2="20.4" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="205.7 23.3 216.5 20.4 205.7 17.5 205.7 23.3"/>
+      <line x1="160.3" y1="42" x2="163.3" y2="42" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <line x1="169.2" y1="42" x2="201.7" y2="42" style="fill: none; stroke: #000; stroke-dasharray: 5.9 5.9; stroke-miterlimit: 10;"/>
+      <line x1="204.6" y1="42" x2="207.6" y2="42" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="205.7 44.9 216.5 42 205.7 39.1 205.7 44.9"/>
+      <g style="isolation: isolate;">
+        <text transform="translate(8.2 177)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: 0em;">S</tspan><tspan x="10.1" y="0" style="letter-spacing: .03em;">f</tspan><tspan x="17.69" y="0">M </tspan><tspan x="39.85" y="0" style="letter-spacing: -.02em;">P</tspan><tspan x="51.01" y="0">oi</tspan><tspan x="67.71" y="0" style="letter-spacing: 0em;">n</tspan><tspan x="79.59" y="0" style="letter-spacing: 0em;">t</tspan><tspan x="86.22" y="0">s</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(118.9 122.72)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">Initialization</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(255.8 177)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">3D </tspan><tspan x="28.37" y="0" style="letter-spacing: 0em;">G</tspan><tspan x="41.78" y="0" style="letter-spacing: 0em;">a</tspan><tspan x="51.77" y="0" style="letter-spacing: 0em;">u</tspan><tspan x="63.54" y="0">s</tspan><tspan x="72.05" y="0" style="letter-spacing: 0em;">s</tspan><tspan x="80.55" y="0">ians</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(434.9 55.7)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: 0em;">P</tspan><tspan x="11.5" y="0" style="letter-spacing: -.02em;">r</tspan><tspan x="19.48" y="0">oje</tspan><tspan x="45.65" y="0" style="letter-spacing: 0em;">c</tspan><tspan x="55.31" y="0">tion</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(441.3 167.1)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.02em;">A</tspan><tspan x="12.64" y="0" style="letter-spacing: 0em;">d</tspan><tspan x="23.87" y="0" style="letter-spacing: -.02em;">a</tspan><tspan x="33.61" y="0" style="letter-spacing: 0em;">p</tspan><tspan x="45.05" y="0">t</tspan><tspan x="51.66" y="0" style="letter-spacing: 0em;">i</tspan><tspan x="57.46" y="0" style="letter-spacing: -.02em;">v</tspan><tspan x="67" y="0">e</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(411.3 188.7)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">Den</tspan><tspan x="35.6" y="0" style="letter-spacing: 0em;">s</tspan><tspan x="44.1" y="0">i</tspan><tspan x="50.08" y="0" style="letter-spacing: 0em;">t</tspan><tspan x="56.7" y="0">y Co</tspan><tspan x="94.41" y="0" style="letter-spacing: 0em;">n</tspan><tspan x="106.29" y="0">t</tspan><tspan x="112.89" y="0" style="letter-spacing: -.02em;">r</tspan><tspan x="120.87" y="0" style="letter-spacing: 0em;">o</tspan><tspan x="131.56" y="0">l</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(605.7 112.4)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">Di</tspan><tspan x="19.84" y="0" style="letter-spacing: -.02em;">ff</tspan><tspan x="32.54" y="0">e</tspan><tspan x="42.39" y="0" style="letter-spacing: -.02em;">r</tspan><tspan x="50.36" y="0" style="letter-spacing: 0em;">e</tspan><tspan x="60.21" y="0" style="letter-spacing: 0em;">n</tspan><tspan x="72.09" y="0">tia</tspan><tspan x="94.7" y="0" style="letter-spacing: 0em;">b</tspan><tspan x="106.14" y="0">le</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(605.7 134)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: 0em;">T</tspan><tspan x="11.81" y="0">ile </tspan><tspan x="38.25" y="0" style="letter-spacing: 0em;">R</tspan><tspan x="51.1" y="0">as</tspan><tspan x="69.64" y="0" style="letter-spacing: 0em;">t</tspan><tspan x="76.23" y="0">erizer</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(788 121)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">I</tspan><tspan x="7.29" y="0" style="letter-spacing: 0em;">m</tspan><tspan x="24.8" y="0" style="letter-spacing: 0em;">a</tspan><tspan x="34.76" y="0" style="letter-spacing: 0em;">g</tspan><tspan x="44.82" y="0">e</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(292.1 36.5)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">Came</tspan><tspan x="49.84" y="0" style="letter-spacing: -.01em;">r</tspan><tspan x="57.91" y="0">a</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(18.4 23.8)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">O</tspan><tspan x="13.81" y="0" style="letter-spacing: 0em;">p</tspan><tspan x="25.31" y="0">e</tspan><tspan x="35.15" y="0" style="letter-spacing: -.01em;">r</tspan><tspan x="43.22" y="0">ation </tspan><tspan x="93.06" y="0" style="letter-spacing: 0em;">F</tspan><tspan x="104.24" y="0">l</tspan><tspan x="110.25" y="0" style="letter-spacing: 0em;">o</tspan><tspan x="120.96" y="0">w</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(23.9 46.7)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">G</tspan><tspan x="13.34" y="0" style="letter-spacing: -.01em;">r</tspan><tspan x="21.4" y="0">adie</tspan><tspan x="58.57" y="0" style="letter-spacing: 0em;">n</tspan><tspan x="70.45" y="0">t </tspan><tspan x="81.67" y="0" style="letter-spacing: 0em;">F</tspan><tspan x="92.84" y="0">l</tspan><tspan x="98.86" y="0" style="letter-spacing: 0em;">o</tspan><tspan x="109.57" y="0">w</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;3D Gaussian Splatting整体框架</p></div>
+<p>  由上图可以看出，当拿到一组场景照片以后，我们需要先使用某种<strong>SfM（Structure from Motion）算法</strong>估计出这一组照片的<strong>结构</strong>（位置）和<strong>姿态</strong>（摄像机方向）和一组<strong>稀疏点云</strong>。然后交给3D Gaussian Splatting进行<strong>初始化</strong>得到一组初始的<strong>3D高斯球</strong>。</p>
 
     </div>
 </section>
@@ -962,6 +1171,12 @@
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/3d-gaussian-splatting/">3D Gaussian Splatting</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
@@ -985,7 +1200,7 @@
 
 
         <span>
-            Last updated on Oct 01, 2024 19:57 CST
+            最后更新于 Oct 01, 2024 20:48 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -994,7 +1209,7 @@
     <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
 </svg>
         <span id="busuanzi_container_page_pv">
-  This article has been read for <span id="busuanzi_value_page_pv"></span> times
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
 </span>
     </section>
 </footer>
@@ -1093,15 +1308,18 @@
             
             
         
-        <span>This library has published 5 articles with a total of 0 words</span>
+            
+            
+        
+        <span>本图书馆累计发布了6篇文章 共27220字</span>
     </section>
 
     <section class="site-visit-count">
         <span id="busuanzi_container_site_uv">
-  This library has been visited by <span id="busuanzi_value_site_uv"></span> people
+  本图书馆访客数<span id="busuanzi_value_site_uv"></span>人
 </span>
         <span id="busuanzi_container_site_pv">
-   for <span id="busuanzi_value_site_pv"></span> times
+  访问量<span id="busuanzi_value_site_pv"></span>次
 </span>
     </section>
 
@@ -1280,22 +1498,22 @@
 <script>
 
     const translations = {
-        prefix: "This library has been running stably for ",
+        prefix: "本图书馆已稳定运行",
         days: {
-            one: " day ",
-            other: " days "
+            one: "天",
+            other: "天"
         },
         hours: {
-            one: " hour ",
-            other: " hours "
+            one: "小时",
+            other: "小时"
         },
         minutes: {
-            one: " minute ",
-            other: " minutes "
+            one: "分钟",
+            other: "分钟"
         },
         seconds: {
-            one: " second",
-            other: " seconds"
+            one: "秒",
+            other: "秒"
         }
     };
 
