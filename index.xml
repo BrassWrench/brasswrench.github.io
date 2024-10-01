@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 01 Oct 2024 22:08:33 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 01 Oct 2024 22:16:37 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>三维重建（一）：COLMAP算法</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/colmap/</link>
         <pubDate>Tue, 01 Oct 2024 20:37:32 +0800</pubDate>
@@ -997,8 +997,8 @@ p_{ij}^{(n)}=\sum_{l=1}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}
 p_{ij}^{(n)}&amp;=\sum_{k \in S}{p_{ik}^{(1)}p_{kj}^{(n-1)}} \qquad \text{（C-K方程）}\\
 &amp;=p_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\thinspace k \in S}{p_{ik}^{(1)}p_{kj}^{(n-1)}}\\
 &amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}p_{kj}^{(n-1)}} \text{（归纳法n=1时的情况）}\\
-&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}\bigg(\sum_{l=1}^{n-1}{f_{kj}^{(l)}p_{jj}^{(n-1-l)}}}\bigg) \text{（归纳假设n-1时的情况）}\\
-&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{\bigg(\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}\bigg)p_{jj}^{(n-1-l)}}\\
+&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{k \ne j,\thinspace k \in S}f_{ik}^{(1)}\left(\sum_{l=1}^{n-1}{f_{kj}^{(l)}p_{jj}^{(n-1-l)}}\right) \text{（归纳假设n-1时的情况）}\\
+&amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{\left(\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{(1)}f_{kj}^{(l)}}\right)p_{jj}^{(n-1-l)}}\\
 &amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=1}^{n-1}{f_{ij}^{(l+1)}p_{jj}^{(n-1-l)}} \quad \text{（结论2）}\\
 &amp;=f_{ij}^{(1)}p_{jj}^{(n-1)}+\sum_{l=2}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}\\
 &amp;=\sum_{l=1}^{n}{f_{ij}^{(l)}p_{jj}^{(n-l)}}\\
@@ -1010,11 +1010,11 @@ p_{ij}^{(n)}&amp;=\sum_{k \in S}{p_{ik}^{(1)}p_{kj}^{(n-1)}} \qquad \text{（C-K
 &lt;span id=&#34;20240929212659CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \sum_{n=0}^{\infin}{p_{ii}^{(n)}}=&amp;\:p_{ii}^{(0)}+\sum_{n=1}^{\infin}{p_{ii}^{(n)}}\\
-=&amp;\:1+\sum_{n=1}^{\infin}\bigg(\sum_{l=1}^{n}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\bigg)\\
+=&amp;\:1+\sum_{n=1}^{\infin}\left(\sum_{l=1}^{n}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\right)\\
 =&amp;\:1+\sum_{l=1}^{\infin}\sum_{n=l}^{\infin}{f_{ii}^{(l)}p_{ii}^{(n-l)}}\\
 =&amp;\:1+\sum_{l=1}^{\infin}\sum_{m=0}^{\infin}{f_{ii}^{(l)}p_{ii}^{(m)}}\\
-=&amp;\:1+\bigg(\sum_{l=1}^{\infin}{f_{ii}^{(l)}}\bigg)\bigg(\sum_{n=0}^{\infin}{p_{ii}^{(n)}}\bigg)\\
-=&amp;\:1+f_{ii}\bigg(\sum_{n=0}^{\infin}{p_{ii}^{(n)}}\bigg)
+=&amp;\:1+\left(\sum_{l=1}^{\infin}{f_{ii}^{(l)}}\right)\left(\sum_{n=0}^{\infin}{p_{ii}^{(n)}}\right)\\
+=&amp;\:1+f_{ii}\left(\sum_{n=0}^{\infin}{p_{ii}^{(n)}}\right)
 \end{aligned}
 \tag{20}
     $$
@@ -1167,7 +1167,7 @@ p_n=p_{jj}^{(n)}=\sum_{l=1}^{n}{f_{jj}^{(l)}p_{jj}^{(n-l)}}=-\sum_{v=1}^{n}{(r_v
 &lt;span id=&#34;20240929213539CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 \lambda=&amp;\liminf\limits_{m \rightarrow \infin}p_{n_md}=\liminf\limits_{m \rightarrow \infin}p_{jj}^{(n_md)}=\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{jj}^{(v)}p_{jj}^{(n_md-v)}\\
-=&amp;\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{v}p_{n_md-v}=\liminf\limits_{m \rightarrow \infin}\bigg(f_sp_{n_md-s}+\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\bigg)\\
+=&amp;\liminf\limits_{m \rightarrow \infin}\sum_{v=1}^{n_md}f_{v}p_{n_md-v}=\liminf\limits_{m \rightarrow \infin}\left(f_sp_{n_md-s}+\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\right)\\
 \le&amp;\liminf\limits_{m \rightarrow \infin}f_sp_{n_md-s}+\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}\quad\text{（}\liminf\limits_{n \rightarrow \infin}(a_n+b_n)\le\liminf\limits_{n \rightarrow \infin}a_n+\liminf\limits_{n \rightarrow \infin}b_n\text{）}
 \end{aligned}
 \tag{41}
@@ -1184,7 +1184,7 @@ p_n=p_{jj}^{(n)}=\sum_{l=1}^{n}{f_{jj}^{(l)}p_{jj}^{(n-l)}}=-\sum_{v=1}^{n}{(r_v
     $$
 &lt;p&gt;  注意当 $v$ 不是 $d$ 的倍数时 $p_{n_md-v}=0$ ，此时 $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ ；若 $v$ 是 $d$ 的倍数，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上极限的性质&lt;/a&gt;可知仍有  $\limsup\limits_{m \rightarrow \infin}p_{n_md-v} \le \limsup\limits_{m \rightarrow \infin}p_{n_md}$ 。故接上式&lt;/p&gt;
 &lt;span id=&#34;20240929213601CST&#34;&gt;&lt;/span&gt;$$
-\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\bigg(\sum_{v=1,v \ne s}^{\infin}f_{v}\bigg)\limsup\limits_{m \rightarrow \infin}p_{n_md}
+\liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\left(\sum_{v=1,v \ne s}^{\infin}f_{v}\right)\limsup\limits_{m \rightarrow \infin}p_{n_md}
 \tag{43}
     $$
 &lt;p&gt;  注意状态 $j$ 是&lt;a class=&#34;link&#34; href=&#34;#20240930164408CST&#34;&gt;常返&lt;/a&gt;的，所以 $\displaystyle\sum_{v=1}^{\infin}f_{v}=1$ ，也就是 $\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s$ 。而将&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式40&lt;/a&gt;代入&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式43&lt;/a&gt;后再将&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式43&lt;/a&gt;代回&lt;a class=&#34;link&#34; href=&#34;#20240929213539CST&#34;&gt;式41&lt;/a&gt;得&lt;/p&gt;
@@ -1442,7 +1442,7 @@ P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
     $$
 &lt;p&gt;  两边对 $j$ 求和，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率归一性&lt;/a&gt;有&lt;/p&gt;
 &lt;span id=&#34;20240929214128CST&#34;&gt;&lt;/span&gt;$$
-\sum_{j \in S}\pi_j\ge\sum_{j \in S}\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\pi_k\bigg(\sum_{j \in S}p_{kj}\bigg)=\sum_{k \in S}\pi_k
+\sum_{j \in S}\pi_j\ge\sum_{j \in S}\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\pi_k\left(\sum_{j \in S}p_{kj}\right)=\sum_{k \in S}\pi_k
 \tag{87}
     $$
 &lt;p&gt;  因此，上式的大于等于号必须取等，否则将产生矛盾。因此：&lt;/p&gt;
@@ -1462,12 +1462,12 @@ P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
     $$
 &lt;p&gt;  因此 $\displaystyle\sum_{j \in S}\pi_j\le 1$ 有限。将&lt;a class=&#34;link&#34; href=&#34;#20240929214143CST&#34;&gt;式89&lt;/a&gt;左右两边取 $n \to \infin$ 并由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Lebesgue控制收敛定理&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214155CST&#34;&gt;&lt;/span&gt;$$
-\pi_j=\lim\limits_{n \to \infin}\sum_{k \in S}\pi_kp_{kj}^{(n)}=\sum_{k \in S}\lim\limits_{n \to \infin}\pi_kp_{kj}^{(n)}=\pi_j\bigg(\sum_{k \in S}\pi_k\bigg)
+\pi_j=\lim\limits_{n \to \infin}\sum_{k \in S}\pi_kp_{kj}^{(n)}=\sum_{k \in S}\lim\limits_{n \to \infin}\pi_kp_{kj}^{(n)}=\pi_j\left(\sum_{k \in S}\pi_k\right)
 \tag{91}
     $$
 &lt;p&gt;  因此 $\displaystyle\sum_{k \in S}\pi_k=1$ 。假设另外还有一个平衡分布 $\set{\tilde\pi_j,j \in S}$ ，则有&lt;/p&gt;
 &lt;span id=&#34;20240929214201CST&#34;&gt;&lt;/span&gt;$$
-\tilde\pi_j=\pi_j\bigg(\sum_{k \in S}\tilde\pi_k\bigg)=\pi_j
+\tilde\pi_j=\pi_j\left(\sum_{k \in S}\tilde\pi_k\right)=\pi_j
 \tag{92}
     $$
 &lt;p&gt;  因此 $\tilde\pi_j=\pi_j$ 。故分布唯一。接下来证②。假设存在一个不变分布 $\set{\pi_j,j \in S}$ ，则由①中证明可知 $\pi_j=\displaystyle\sum_{k \in S}\pi_kp_{kj}^{(n)}(n=1,2,\dots)$ 。令 $n \to \infin$ ，由&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;可知 $p_{kj}^{(n)} \to 0$ ，则任意 $\pi_j = 0$ ，然而这是不可能的。于是对非常返或零常返Markov链不存在不变分布。&lt;/p&gt;
@@ -1571,7 +1571,7 @@ p_{ij}(t+h)-p_{ij}(t)\le&amp;\sum_{k \ne i, k \in S}p_{ik}(h)p_{kj}(t)\\
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929211024CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理16&lt;/strong&gt;：① $\displaystyle\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=q_{ii}\le+\infin$&lt;/p&gt;
 &lt;p&gt;  ② $\displaystyle\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}=q_{ij}&amp;lt;+\infin$ ($i \ne j$)&lt;/p&gt;
 &lt;p&gt;  称 $q_{ij}$ 为从状态 $i$ 转移到状态 $j$ 的&lt;strong&gt;转移速率&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211024CST&#34;&gt;定理16&lt;/a&gt;）&lt;/strong&gt;：先证①。首先由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可知对任意固定的 $t&amp;gt;0$ ，当 $n$ 充分大时，有 $p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)&amp;gt;0$ ，再由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得结论 $p_{ii}(s+t)=\displaystyle\sum_{k \in S}p_{ik}(s)p_{ki}(t)\ge p_{ii}(s)p_{ii}(t)$ ，因此 $p_{ii}(t)\ge \bigg(p_{ii}\bigg(\displaystyle\frac{t}{n}\bigg)\bigg)^n&amp;gt;0$ 。故可以定义 $\phi(t)=-\ln p_{ii}(t)$ ，它非负有限，且由于 $p_{ii}(s+t)\ge p_{ii}(s)p_{ii}(t)$ ，有 $\phi(s+t) \le \phi(s)+\phi(t)$ 。令 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}$ ，现在要证明 $\displaystyle\frac{\phi(t)}{t}$ 极限存在且为其上确界。显然&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211024CST&#34;&gt;定理16&lt;/a&gt;）&lt;/strong&gt;：先证①。首先由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可知对任意固定的 $t&amp;gt;0$ ，当 $n$ 充分大时，有 $p_{ii}\left(\displaystyle\frac{t}{n}\right)&amp;gt;0$ ，再由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得结论 $p_{ii}(s+t)=\displaystyle\sum_{k \in S}p_{ik}(s)p_{ki}(t)\ge p_{ii}(s)p_{ii}(t)$ ，因此 $p_{ii}(t)\ge \left(p_{ii}\left(\displaystyle\frac{t}{n}\right)\right)^n&amp;gt;0$ 。故可以定义 $\phi(t)=-\ln p_{ii}(t)$ ，它非负有限，且由于 $p_{ii}(s+t)\ge p_{ii}(s)p_{ii}(t)$ ，有 $\phi(s+t) \le \phi(s)+\phi(t)$ 。令 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}$ ，现在要证明 $\displaystyle\frac{\phi(t)}{t}$ 极限存在且为其上确界。显然&lt;/p&gt;
 &lt;span id=&#34;20240929214326CST&#34;&gt;&lt;/span&gt;$$
 0 \le q_{ii} \le \infin,\quad \limsup\limits_{t \to 0}\le q_{ii}
 \tag{102}
