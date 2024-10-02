@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 02 Oct 2024 12:23:49 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 02 Oct 2024 23:08:15 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：Markov过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -795,7 +795,7 @@ p_{ij}(t+h)-p_{ij}(t)\le&amp;\sum_{k \ne i, k \in S}p_{ik}(h)p_{kj}(t)\\
 |p_{ij}(t+h)-p_{ij}(t)|\le 1-p_{ii}(h)
 \tag{101}
     $$
-&lt;p&gt;  对 $h&amp;lt;0$ 也可以得到类似的结果。注意由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可知 $\displaystyle\lim\limits_{h \to 0}p_{ii}(h)=1$ 。因此 $\forall \epsilon &amp;gt; 0$ ，$\exist \delta &amp;gt; 0$ 满足 $h &amp;lt; \delta$ 时恒有 $1-p_{ii}(h)&amp;lt;\epsilon$ ，即 $|p_{ij}(t+h)-p_{ij}(t)|&amp;lt;\epsilon$ 。因此，$p_{ij}(t)$ 一致连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;  对 $h&amp;lt;0$ 也可以得到类似的结果。注意由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可知 $\displaystyle\lim\limits_{h \to 0}p_{ii}(h)=1$ 。因此 $\forall \varepsilon &amp;gt; 0$ ，$\exist \delta &amp;gt; 0$ 满足 $h &amp;lt; \delta$ 时恒有 $1-p_{ii}(h)&amp;lt;\varepsilon$ ，即 $|p_{ij}(t+h)-p_{ij}(t)|&amp;lt;\varepsilon$ 。因此，$p_{ij}(t)$ 一致连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
 &lt;h4 id=&#34;转移速率&#34;&gt;转移速率
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929211024CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理16&lt;/strong&gt;：① $\displaystyle\lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=q_{ii}\le+\infin$&lt;/p&gt;
 &lt;p&gt;  ② $\displaystyle\lim\limits_{t \to 0}\frac{p_{ij}(t)}{t}=q_{ij}&amp;lt;+\infin$ ($i \ne j$)&lt;/p&gt;
@@ -805,20 +805,20 @@ p_{ij}(t+h)-p_{ij}(t)\le&amp;\sum_{k \ne i, k \in S}p_{ik}(h)p_{kj}(t)\\
 0 \le q_{ii} \le \infin,\quad \limsup\limits_{t \to 0}\le q_{ii}
 \tag{102}
     $$
-&lt;p&gt;  所以以下只需证下极限 $\displaystyle\liminf\limits_{t \to 0}\frac{\phi(t)}{t}\ge q_{ii}$ 。任给 $0 &amp;lt; h &amp;lt; t$ ，取 $n$ 使 $t=nh+\epsilon,\space 0 \le \epsilon &amp;lt; h$ ，得&lt;/p&gt;
+&lt;p&gt;  所以以下只需证下极限 $\displaystyle\liminf\limits_{t \to 0}\frac{\phi(t)}{t}\ge q_{ii}$ 。任给 $0 &amp;lt; h &amp;lt; t$ ，取 $n$ 使 $t=nh+\varepsilon,\space 0 \le \varepsilon &amp;lt; h$ ，得&lt;/p&gt;
 &lt;span id=&#34;20240929214331CST&#34;&gt;&lt;/span&gt;$$
-\frac{\phi(t)}{t} \le \frac{n\phi(h)}{t}+\frac{\phi(\epsilon)}{t} = \frac{nh}{t}\frac{\phi(h)}{h}+\frac{\phi(\epsilon)}{t}
+\frac{\phi(t)}{t} \le \frac{n\phi(h)}{t}+\frac{\phi(\varepsilon)}{t} = \frac{nh}{t}\frac{\phi(h)}{h}+\frac{\phi(\varepsilon)}{t}
 \tag{103}
     $$
-&lt;p&gt;  注意当 $h \to 0^+$ 时，$\epsilon \to 0$ ，$\displaystyle\frac{nh}{t} \to 1$ ， $\phi(\epsilon)=-\ln p_{ii}(\epsilon) \to 0$ ，故 $\displaystyle\frac{\phi(t)}{t}\le\liminf\limits_{h \to 0}\frac{\phi(h)}{h}$ 因此 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}\le\liminf\limits_{t \to 0}\frac{\phi(t)}{t}$ 。从而 $\displaystyle q_{ii}=\lim\limits_{t \to 0}\frac{\phi(t)}{t}$ 。由 $\phi(t)$ 定义得&lt;/p&gt;
+&lt;p&gt;  注意当 $h \to 0^+$ 时，$\varepsilon \to 0$ ，$\displaystyle\frac{nh}{t} \to 1$ ， $\phi(\varepsilon)=-\ln p_{ii}(\varepsilon) \to 0$ ，故 $\displaystyle\frac{\phi(t)}{t}\le\liminf\limits_{h \to 0}\frac{\phi(h)}{h}$ 因此 $q_{ii}=\displaystyle\sup\limits_{t&amp;gt;0}\frac{\phi(t)}{t}\le\liminf\limits_{t \to 0}\frac{\phi(t)}{t}$ 。从而 $\displaystyle q_{ii}=\lim\limits_{t \to 0}\frac{\phi(t)}{t}$ 。由 $\phi(t)$ 定义得&lt;/p&gt;
 &lt;span id=&#34;20240929214337CST&#34;&gt;&lt;/span&gt;$$
 \lim\limits_{t \to 0}\frac{1-p_{ii}(t)}{t}=\lim\limits_{t \to 0}\frac{1-e^{-\phi(t)}}{\phi(t)}\frac{\phi(t)}{t}=\lim\limits_{t \to 0}\frac{\phi(t)}{t}=q_{ii}
 \tag{104}
     $$
-&lt;p&gt;  再证②。由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;，对任意 $\displaystyle 0 &amp;lt; \epsilon &amp;lt; \frac{1}{3}$ ，存在 $0 &amp;lt; \delta &amp;lt; 1$ ，使当 $0 &amp;lt; t \le \delta $ 时，有 $p_{ii}(t)&amp;gt;1-\epsilon$ ， $p_{jj}(t)&amp;gt;1-\epsilon$ ， $p_{ji}(t)&amp;lt;\epsilon$ 。&lt;br&gt;
+&lt;p&gt;  再证②。由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;，对任意 $\displaystyle 0 &amp;lt; \varepsilon &amp;lt; \frac{1}{3}$ ，存在 $0 &amp;lt; \delta &amp;lt; 1$ ，使当 $0 &amp;lt; t \le \delta $ 时，有 $p_{ii}(t)&amp;gt;1-\varepsilon$ ， $p_{jj}(t)&amp;gt;1-\varepsilon$ ， $p_{ji}(t)&amp;lt;\varepsilon$ 。&lt;br&gt;
   下面要证：对任意 $0 \le h &amp;lt; t$ ，只要 $t \le \delta$ ，则有&lt;/p&gt;
 &lt;span id=&#34;20240929214343CST&#34;&gt;&lt;/span&gt;$$
-p_{ij}(h)\le\frac{p_{ij}(t)}{n}\frac{1}{1-3\epsilon}
+p_{ij}(h)\le\frac{p_{ij}(t)}{n}\frac{1}{1-3\varepsilon}
 \tag{105}
     $$
 &lt;p&gt;其中 $\displaystyle n=\big\lfloor \frac{t}{h} \big\rfloor$ （向下取整）。记&lt;/p&gt;
@@ -867,16 +867,16 @@ p_{ij}(t)=&amp;\sum_k{p_{ik}(nh)p_{kj}(t-nh)}\\
 &lt;p&gt;  当 $h &amp;lt; t \le \delta$ 时，由上式可得&lt;/p&gt;
 &lt;span id=&#34;20240929214419CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
-\epsilon &gt; 1-p_{ii}(t)=&amp;\sum_{k \ne i}p_{ik}(t)\\[10pt]
+\varepsilon &gt; 1-p_{ii}(t)=&amp;\sum_{k \ne i}p_{ik}(t)\\[10pt]
 \ge&amp;p_{ij}(t)\quad（注意i \ne j）\\[5pt]
 \ge&amp;\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}\\
-\ge&amp;(1-\epsilon)\sum_{m=1}^{n}{_jp_{ij}(mh)}
+\ge&amp;(1-\varepsilon)\sum_{m=1}^{n}{_jp_{ij}(mh)}
 \end{aligned}
 \tag{110}
     $$
 &lt;p&gt;  即&lt;/p&gt;
 &lt;span id=&#34;20240929214429CST&#34;&gt;&lt;/span&gt;$$
-\sum_{m=1}^{n}{_jp_{ij}(mh)} \le \frac{\epsilon}{1-\epsilon}
+\sum_{m=1}^{n}{_jp_{ij}(mh)} \le \frac{\varepsilon}{1-\varepsilon}
 \tag{111}
     $$
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929214359CST&#34;&gt;式107&lt;/a&gt;取 $k=i$ 可得&lt;/p&gt;
@@ -884,7 +884,7 @@ p_{ij}(t)=&amp;\sum_k{p_{ik}(nh)p_{kj}(t-nh)}\\
 \begin{aligned}
 _jp_{ii}(mh)=&amp;p_{ii}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)p_{ji}((m-l)h)}\\
 \ge&amp;p_{ii}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)}\\
-\ge&amp;1 - \epsilon - \frac{\epsilon}{1-\epsilon}
+\ge&amp;1 - \varepsilon - \frac{\varepsilon}{1-\varepsilon}
 \end{aligned}
 \tag{112}
     $$
@@ -893,22 +893,22 @@ _jp_{ii}(mh)=&amp;p_{ii}(mh)-\sum_{l=1}^{m-1}{_jp_{ij}((lh)p_{ji}((m-l)h)}\\
 \begin{aligned}
 p_{ij}(t)=&amp;\sum_{m=1}^{n}{_jp_{ij}(mh)p_{jj}(t-mh)}\\[5pt]
 \ge&amp;\sum_{m=1}^{n}{_jp_{ii}((m-1)h)p_{ij}(h)p_{jj}(t-mh)}\\[5pt]
-\ge&amp;n(1 - \epsilon - \frac{\epsilon}{1-\epsilon})p_{ij}(h)(1-\epsilon)\\[10pt]
-\ge&amp;n(1-3\epsilon)p_{ij}(h)
+\ge&amp;n(1 - \varepsilon - \frac{\varepsilon}{1-\varepsilon})p_{ij}(h)(1-\varepsilon)\\[10pt]
+\ge&amp;n(1-3\varepsilon)p_{ij}(h)
 \end{aligned}
 \tag{113}
     $$
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929214343CST&#34;&gt;式105&lt;/a&gt;得证。两边除以 $h$ 并注意当 $h \to 0$ 时 $nh \to t$ ，得&lt;/p&gt;
 &lt;span id=&#34;20240929214451CST&#34;&gt;&lt;/span&gt;$$
-\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\frac{p_{ij}(t)}{t} &lt; \infin
+\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\varepsilon}\frac{p_{ij}(t)}{t} &lt; \infin
 \tag{114}
     $$
 &lt;p&gt;  再令 $t \to 0$ ，有&lt;/p&gt;
 &lt;span id=&#34;20240929214457CST&#34;&gt;&lt;/span&gt;$$
-\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\epsilon}\liminf\limits_{t \to 0}\frac{p_{ij}(t)}{t} &lt; \infin
+\limsup\limits_{h \to 0}\frac{p_{ij}(h)}{h} \le \frac{1}{1+3\varepsilon}\liminf\limits_{t \to 0}\frac{p_{ij}(t)}{t} &lt; \infin
 \tag{115}
     $$
-&lt;p&gt;  再令 $\epsilon \to 0$ ，定理得证。&lt;/p&gt;
+&lt;p&gt;  再令 $\varepsilon \to 0$ ，定理得证。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929212137CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论6&lt;/strong&gt;：对有限状态时齐的连续时间的Markov链，有&lt;/p&gt;
 &lt;span id=&#34;20240929214507CST&#34;&gt;&lt;/span&gt;$$
 q_{ii}=\sum_{j \ne i}q_{ij} &lt; +\infin
