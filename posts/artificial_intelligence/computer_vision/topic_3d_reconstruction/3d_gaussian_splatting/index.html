@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='3D Gaussian Splatting' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-10-03T13:20:52&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='3D Gaussian Splatting' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-10-03T23:50:13&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
 <meta name="twitter:title" content="三维重建（一）：3D高斯泼溅算法">
 <meta name="twitter:description" content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
@@ -589,6 +589,16 @@
   <ol>
     <li><a href="#引言">引言</a></li>
     <li><a href="#算法框架">算法框架</a></li>
+    <li><a href="#算法内容">算法内容</a>
+      <ol>
+        <li><a href="#运动结构恢复">运动结构恢复</a></li>
+        <li><a href="#3d高斯椭球集的创建及描述">3D高斯椭球集的创建及描述</a>
+          <ol>
+            <li><a href="#3d高斯椭球">3D高斯椭球</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -922,7 +932,7 @@
 </svg>
 
             <time class="article-words">
-                969 字
+                1312 字
             </time>
         </div>
 
@@ -937,7 +947,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -995,7 +1005,8 @@
 <h1 id="3d高斯泼溅算法">3D高斯泼溅算法
 </h1><h2 id="引言">引言
 </h2><p>  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，<strong>3D高斯泼溅（3D Gaussian Splatting）算法</strong>作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。<br>
-  3D高斯泼溅算法的基本原理在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯核，利用高斯函数的数学性质，将离散的数据点或体素转换为连续的表面或体积表示。这一过程中，高斯核的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。<br>
+  3D高斯泼溅算法的创新在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯球，利用三维高斯函数的数学性质，将离散的数据点或体素转换为可视化的效果。这一过程中，三维高斯球的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。<br>
+  对比 Nerf 和传统的 Mesh：一个是纯连续的、隐式表达在可微空间内；一个是纯离散的（虽然可以插值）、显式表达在三维空间内，3D高斯是在离散和连续间的一个平衡：在高斯球内部是连续的、可微的；在整个空间中，每个高斯球又是离散的。<br>
   本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。</p>
 <h2 id="算法框架">算法框架
 </h2><p>  3D Gaussian Splatting的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。</p>
@@ -1162,6 +1173,18 @@
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;3D Gaussian Splatting整体框架</p></div>
 <p>  由上图可以看出，当拿到一组场景照片以后，我们需要先使用某种<strong>SfM（Structure from Motion）算法</strong>估计出这一组照片的<strong>结构</strong>（位置）和<strong>姿态</strong>（摄像机方向）和一组<strong>稀疏点云（SfM Points）</strong>。然后交给3D Gaussian Splatting进行<strong>初始化（Initialization）</strong>‌得到一组初始的<strong>3D高斯球（3D Gaussians）</strong>。然后，我们借助相机外参（结构和姿态）将这一组3D高斯球<strong>投影</strong>到相机平面上（<strong>Projection</strong>），接着再使用<strong>可微分块光栅化（Differentiable Tile Rasterizer）</strong>‌渲染得到图像（<strong>Image</strong>）。得到渲染图像后将其与相机原始的图像（Ground Truth）进行loss比对，然后沿着虚线箭头进行梯度回传。虚线箭头从上回传的时候，更新3D高斯球中的参数，从下回传时会经过<strong>自适应密度控制（Adaptive Density Control）</strong>‌的处理，而后更新3D高斯球中的点云。<br>
   接下来，我们详细讲解算法中的每一个步骤，并给出具体的实现方式。</p>
+<h2 id="算法内容">算法内容
+</h2><h3 id="运动结构恢复">运动结构恢复
+</h3><p>  由于该步骤并不是3D Gaussian Splatting的主要内容（详细请见<a class="link" onclick="alert('抱歉，“计算机视觉”还未上线~')">运动结构恢复</a>），而且已经有较成熟的算法和软件可以实现这部分内容（例如COLMAP），因此在此不做过多介绍。</p>
+<h3 id="3d高斯椭球集的创建及描述">3D高斯椭球集的创建及描述
+</h3><p>  拿到相机的位置、姿态和稀疏点云后，就可以开始创建初始的3D高斯椭球集。描述一个3D高斯椭球需要四种信息：位置、形状、颜色和透明度。这里我们先对3D高斯椭球这个概念进行介绍。</p>
+<h4 id="3d高斯椭球">3D高斯椭球
+</h4><p>  在概率论中我们已经学到了<a class="link" onclick="alert('抱歉，“概率论“还未上线~')">多维高斯分布</a>的表达式如下：</p>
+<span id="20241003225449CST"></span>$$
+f(\bm{x}|\bm{\mu},\bm{\Sigma})=\frac{1}{\sqrt{(2\pi)^3|\bm{\Sigma}|}}\exp \left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
+\tag{1}
+    $$
+<p>  其中 $\bm{\Sigma}$ 是正定的。</p>
 
     </div>
 </section>
@@ -1201,7 +1224,7 @@
 
 
         <span>
-            最后更新于 Oct 03, 2024 13:20 CST
+            最后更新于 Oct 03, 2024 23:50 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1321,7 +1344,7 @@
             
             
         
-        <span>本图书馆累计发布了5篇文章 共28051字</span>
+        <span>本图书馆累计发布了5篇文章 共28394字</span>
     </section>
 
     <section class="site-visit-count">

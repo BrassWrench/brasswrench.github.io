@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-10-03T13:20:52&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/figures/image.zh-cn.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Markov过程' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/figures/image.zh-cn.svg' />
 <meta name="twitter:title" content="随机过程（四）：Markov过程">
 <meta name="twitter:description" content="一种无后效性的随机过程"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/figures/image.zh-cn.svg' />
@@ -1085,7 +1085,7 @@
 <h4 id="有限链和无限链">有限链和无限链
 </h4><p>  <span id="20240930163746CST"></span><strong>定义4（有限链和无限链）</strong>：当Markov链的状态为有限时，成为<strong>有限链</strong>，否则成为<strong>无限链</strong>。但无论状态有限还是无限，我们都可以将 $p_{ij}(i,j\in S)$ 排成一个矩阵的形式，令</p>
 <span id="20240929204111CST"></span>$$
-\mathbf{P}=(p_{ij})=
+\bm{P}=(p_{ij})=
 \begin{pmatrix}
 p_{00} & p_{01} & p_{02} & p_{03} & \cdots \\[5pt]
 p_{10} & p_{11} & p_{12} & p_{13} & \cdots \\[5pt]
@@ -1095,7 +1095,7 @@ p_{30} & p_{31} & p_{32} & p_{33} & \cdots \\[5pt]
 \end{pmatrix}
 \tag{2}
     $$
-<p>  则称 $\mathbf{P}$ 为<strong>转移概率矩阵</strong>，一般称为<strong>转移矩阵</strong>。容易看出 $p_{ij}(i,j\in S)$ 有性质</p>
+<p>  则称 $\bm{P}$ 为<strong>转移概率矩阵</strong>，一般称为<strong>转移矩阵</strong>。容易看出 $p_{ij}(i,j\in S)$ 有性质</p>
 <span id="20240929204123CST"></span>$$
 \begin{aligned}
 &\text{①} p_{ij} \ge 0, i,j\in S \\[5pt]
@@ -1110,8 +1110,8 @@ p_{30} & p_{31} & p_{32} & p_{33} & \cdots \\[5pt]
 p_{ij}^{(n)}=P\set{X_{m+n}=j|X_m=i}\quad i,j\in S,m \ge 0, n \ge 1
 \tag{4}
     $$
-<p>  为Markov链的<strong>n步转移概率</strong>，相应地称 $\mathbf{P}^{(n)}=(p_{ij}^{(n)})$ 为<strong>n步转移矩阵</strong>。<br>
-  当 $n=1$ 时， $p_{ij}^{(1)}=p_{ij}$ ， $\mathbf{P}^{(1)}=\mathbf{P}$ 。此外规定</p>
+<p>  为Markov链的<strong>n步转移概率</strong>，相应地称 $\bm{P}^{(n)}=(p_{ij}^{(n)})$ 为<strong>n步转移矩阵</strong>。<br>
+  当 $n=1$ 时， $p_{ij}^{(1)}=p_{ij}$ ， $\bm{P}^{(1)}=\bm{P}$ 。此外规定</p>
 <span id="20240929204157CST"></span>$$
 p_{ij}^{(0)}=
 \begin{cases}
@@ -1130,7 +1130,7 @@ p_{ij}^{(m+n)}=\sum_{k \in S}{p_{ik}^{(m)}}p_{kj}^{(n)}
     $$
 <p>  ②</p>
 <span id="20240929204308CST"></span>$$
-\mathbf{P}^{(n)}=\mathbf{P} \cdot \mathbf{P}^{(n-1)} = \mathbf{P} \cdot \mathbf{P} \cdot \mathbf{P}^{(n-2)} = \cdots = \mathbf{P}^n
+\bm{P}^{(n)}=\bm{P} \cdot \bm{P}^{(n-1)} = \bm{P} \cdot \bm{P} \cdot \bm{P}^{(n-2)} = \cdots = \bm{P}^n
 \tag{7}
     $$
 <p>  <strong>证明（<a class="link" href="#20240929204400CST">C-K方程</a>）</strong>‌：由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
@@ -1736,9 +1736,9 @@ P\set{X_1=j}=&\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 \tag{93}
     $$
 <p>  成立，则称 $\set{X(t),t \ge 0}$ 是一个<strong>连续时间Markov链</strong>。<br>
-  条件概率 $P\set{X(t+s)=j|X(s)=i}$ 记作 $p_{ij}(s,t)$ 表示过程在时刻 $s$ 处处于状态 $i$ ，经过 $t$ 时间后转移到 $j$ 的<strong>转移概率</strong>，并称 $\mathbf{P}(s,t)=(p_{ij}(s,t))$ 为相应的<strong>转移概率矩阵</strong>。</p>
+  条件概率 $P\set{X(t+s)=j|X(s)=i}$ 记作 $p_{ij}(s,t)$ 表示过程在时刻 $s$ 处处于状态 $i$ ，经过 $t$ 时间后转移到 $j$ 的<strong>转移概率</strong>，并称 $\bm{P}(s,t)=(p_{ij}(s,t))$ 为相应的<strong>转移概率矩阵</strong>。</p>
 <h4 id="时齐连续时间markov链">时齐连续时间Markov链
-</h4><p>  <span id="20240929203714CST"></span><strong>定义16（时齐性）</strong>：称连续时间Markov链是<strong>时齐的</strong>，若 $p_{ij}(s,t)$ 与 $s$ 无关。简记 $p_{ij}(s,t)=p_{ij}(t)$ ，相应的记 $\mathbf{P}(t)=(p_{ij}(t))$ 。本章只讨论时齐的连续时间Markov链，并简称为连续时间Markov链。</p>
+</h4><p>  <span id="20240929203714CST"></span><strong>定义16（时齐性）</strong>：称连续时间Markov链是<strong>时齐的</strong>，若 $p_{ij}(s,t)$ 与 $s$ 无关。简记 $p_{ij}(s,t)=p_{ij}(t)$ ，相应的记 $\bm{P}(t)=(p_{ij}(t))$ 。本章只讨论时齐的连续时间Markov链，并简称为连续时间Markov链。</p>
 <p>  <span id="20240929205735CST"></span><strong>定理13</strong>：设 $\set{X(t),t\ge 0}$ 是连续时间Markov链，假定在时刻0过程刚刚到达 $i$ ，以 $\tau_i$ 记过程离开 $i$ 之前在 $i$ 停留的时间，则 $\tau_i$ 服从指数分布。</p>
 <p>  <strong>证明（<a class="link" href="#20240929205735CST">定理13</a>）</strong>‌：只需证明 $\tau_i$ 是无记忆性的，即证明对 $s,t \ge 0$ 有（见<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">指数分布</a>）</p>
 <span id="20240929214220CST"></span>$$
@@ -1955,7 +1955,7 @@ q_{ii}=\sum_{j \ne i}q_{ij} < +\infin
 <h4 id="保守性">保守性
 </h4><p>  对于无限状态的情况，一般只能得到 $q_{ii} \ge \displaystyle\sum_{j \ne i}q_{ij}$ （<a class="link" href="#20240929214518CST">式118</a>中积分和求和不可交换，因此只能使用<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Fatou引理</a>）。设状态空间为 $S=\set{1,2,\cdots,n,\cdots}$ ，此时记</p>
 <span id="20240929214526CST"></span>$$
-\mathbf{Q}=
+\bm{Q}=
 \begin{pmatrix}
 -q_{11} & q_{12}  & q_{13} & \cdots & q_{1i}  & \cdots \\[5pt]
 q_{21}  & -q_{22} & q_{23} & \cdots & q_{2i}  & \cdots \\[5pt]
@@ -1965,7 +1965,7 @@ q_{i1}  & q_{i2}  & q_{i3} & \cdots & -q_{ii} & \cdots \\[5pt]
 \end{pmatrix}
 \tag{119}
     $$
-<p>  称为连续时间Markov链的 $\mathbf{Q}$ 矩阵。当矩阵元素 $q_{ii}=\sum_{j \ne i}q_{ij}&lt;+\infin$ 时，称该矩阵为<strong>保守的</strong>。</p>
+<p>  称为连续时间Markov链的 $\bm{Q}$ 矩阵。当矩阵元素 $q_{ii}=\sum_{j \ne i}q_{ij}&lt;+\infin$ 时，称该矩阵为<strong>保守的</strong>。</p>
 <h4 id="kolmogorov微分方程">Kolmogorov微分方程
 </h4><p>  <span id="20240929211031CST"></span><strong>定理17（Kolmogorov微分方程）</strong>：对一切 $i,j \in S，t \ge 0$ 且 $q_{ii}=\displaystyle\sum_{j \ne i}q_{ij}&lt;+\infin$ ，有：<br>
   ①<strong>向后方程</strong></p>
@@ -2020,7 +2020,7 @@ p_{ij}(t+h)-p_{ij}(t)=\sum_{k \ne i,k \in S}p_{ik}(h)p_{kj}(t)-(1-p_{ii}(h))p_{i
 \lim\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)=\sum_{k \ne i}q_{ik}p_{kj}(t)
 \tag{128}
     $$
-<p>  因此无限状态下①仍然成立。实际上①可以被写成矩阵形式，也就是 $\mathbf{P}^\prime(t)=\mathbf{Q}\mathbf{P}(t)$ ，其中 $\mathbf{P}(t)=(p_{ij}(t))$ ， $\mathbf{Q}=(q_{ij})$ 。依<a class="link" href="#20240929211031CST">Kolmogorov微分方程</a>条件知 $\mathbf{Q}$ 是保守的。<br>
+<p>  因此无限状态下①仍然成立。实际上①可以被写成矩阵形式，也就是 $\bm{P}^\prime(t)=\bm{Q}\bm{P}(t)$ ，其中 $\bm{P}(t)=(p_{ij}(t))$ ， $\bm{Q}=(q_{ij})$ 。依<a class="link" href="#20240929211031CST">Kolmogorov微分方程</a>条件知 $\bm{Q}$ 是保守的。<br>
   下面证明②。在①中计算 $t+h$ 的状态时是对退后到时刻 $h$ 的状态来取条件的（所以称为后退方程），这里我们考虑对时刻 $t$ 的状态取条件，用<a class="link" href="#20240929210959CST">定理14</a>有</p>
 <span id="20240929214633CST"></span>$$
 p_{ij}(t+h)=\sum_{k \in S}p_{ik}(t)p_{kj}(h)
@@ -2069,19 +2069,7 @@ p_{ij}(t+h)=\sum_{k \in S}p_{ik}(t)p_{kj}(h)
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    <section class="article-lastmod">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-        <span>
-            最后更新于 Oct 03, 2024 13:20 CST
-        </span>
-    </section><section class="page-visit-count">
+    <section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
     <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
@@ -2199,7 +2187,7 @@ p_{ij}(t+h)=\sum_{k \in S}p_{ik}(t)p_{kj}(h)
             
             
         
-        <span>本图书馆累计发布了5篇文章 共28051字</span>
+        <span>本图书馆累计发布了5篇文章 共28394字</span>
     </section>
 
     <section class="site-visit-count">

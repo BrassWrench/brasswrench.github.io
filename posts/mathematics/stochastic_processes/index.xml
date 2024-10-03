@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 03 Oct 2024 13:20:52 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 14 Sep 2024 21:05:01 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：Markov过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -61,7 +61,7 @@
 &lt;h4 id=&#34;有限链和无限链&#34;&gt;有限链和无限链
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240930163746CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义4（有限链和无限链）&lt;/strong&gt;：当Markov链的状态为有限时，成为&lt;strong&gt;有限链&lt;/strong&gt;，否则成为&lt;strong&gt;无限链&lt;/strong&gt;。但无论状态有限还是无限，我们都可以将 $p_{ij}(i,j\in S)$ 排成一个矩阵的形式，令&lt;/p&gt;
 &lt;span id=&#34;20240929204111CST&#34;&gt;&lt;/span&gt;$$
-\mathbf{P}=(p_{ij})=
+\bm{P}=(p_{ij})=
 \begin{pmatrix}
 p_{00} &amp; p_{01} &amp; p_{02} &amp; p_{03} &amp; \cdots \\[5pt]
 p_{10} &amp; p_{11} &amp; p_{12} &amp; p_{13} &amp; \cdots \\[5pt]
@@ -71,7 +71,7 @@ p_{30} &amp; p_{31} &amp; p_{32} &amp; p_{33} &amp; \cdots \\[5pt]
 \end{pmatrix}
 \tag{2}
     $$
-&lt;p&gt;  则称 $\mathbf{P}$ 为&lt;strong&gt;转移概率矩阵&lt;/strong&gt;，一般称为&lt;strong&gt;转移矩阵&lt;/strong&gt;。容易看出 $p_{ij}(i,j\in S)$ 有性质&lt;/p&gt;
+&lt;p&gt;  则称 $\bm{P}$ 为&lt;strong&gt;转移概率矩阵&lt;/strong&gt;，一般称为&lt;strong&gt;转移矩阵&lt;/strong&gt;。容易看出 $p_{ij}(i,j\in S)$ 有性质&lt;/p&gt;
 &lt;span id=&#34;20240929204123CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
 &amp;\text{①} p_{ij} \ge 0, i,j\in S \\[5pt]
@@ -86,8 +86,8 @@ p_{30} &amp; p_{31} &amp; p_{32} &amp; p_{33} &amp; \cdots \\[5pt]
 p_{ij}^{(n)}=P\set{X_{m+n}=j|X_m=i}\quad i,j\in S,m \ge 0, n \ge 1
 \tag{4}
     $$
-&lt;p&gt;  为Markov链的&lt;strong&gt;n步转移概率&lt;/strong&gt;，相应地称 $\mathbf{P}^{(n)}=(p_{ij}^{(n)})$ 为&lt;strong&gt;n步转移矩阵&lt;/strong&gt;。&lt;br&gt;
-  当 $n=1$ 时， $p_{ij}^{(1)}=p_{ij}$ ， $\mathbf{P}^{(1)}=\mathbf{P}$ 。此外规定&lt;/p&gt;
+&lt;p&gt;  为Markov链的&lt;strong&gt;n步转移概率&lt;/strong&gt;，相应地称 $\bm{P}^{(n)}=(p_{ij}^{(n)})$ 为&lt;strong&gt;n步转移矩阵&lt;/strong&gt;。&lt;br&gt;
+  当 $n=1$ 时， $p_{ij}^{(1)}=p_{ij}$ ， $\bm{P}^{(1)}=\bm{P}$ 。此外规定&lt;/p&gt;
 &lt;span id=&#34;20240929204157CST&#34;&gt;&lt;/span&gt;$$
 p_{ij}^{(0)}=
 \begin{cases}
@@ -106,7 +106,7 @@ p_{ij}^{(m+n)}=\sum_{k \in S}{p_{ik}^{(m)}}p_{kj}^{(n)}
     $$
 &lt;p&gt;  ②&lt;/p&gt;
 &lt;span id=&#34;20240929204308CST&#34;&gt;&lt;/span&gt;$$
-\mathbf{P}^{(n)}=\mathbf{P} \cdot \mathbf{P}^{(n-1)} = \mathbf{P} \cdot \mathbf{P} \cdot \mathbf{P}^{(n-2)} = \cdots = \mathbf{P}^n
+\bm{P}^{(n)}=\bm{P} \cdot \bm{P}^{(n-1)} = \bm{P} \cdot \bm{P} \cdot \bm{P}^{(n-2)} = \cdots = \bm{P}^n
 \tag{7}
     $$
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
@@ -712,9 +712,9 @@ P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 \tag{93}
     $$
 &lt;p&gt;  成立，则称 $\set{X(t),t \ge 0}$ 是一个&lt;strong&gt;连续时间Markov链&lt;/strong&gt;。&lt;br&gt;
-  条件概率 $P\set{X(t+s)=j|X(s)=i}$ 记作 $p_{ij}(s,t)$ 表示过程在时刻 $s$ 处处于状态 $i$ ，经过 $t$ 时间后转移到 $j$ 的&lt;strong&gt;转移概率&lt;/strong&gt;，并称 $\mathbf{P}(s,t)=(p_{ij}(s,t))$ 为相应的&lt;strong&gt;转移概率矩阵&lt;/strong&gt;。&lt;/p&gt;
+  条件概率 $P\set{X(t+s)=j|X(s)=i}$ 记作 $p_{ij}(s,t)$ 表示过程在时刻 $s$ 处处于状态 $i$ ，经过 $t$ 时间后转移到 $j$ 的&lt;strong&gt;转移概率&lt;/strong&gt;，并称 $\bm{P}(s,t)=(p_{ij}(s,t))$ 为相应的&lt;strong&gt;转移概率矩阵&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;时齐连续时间markov链&#34;&gt;时齐连续时间Markov链
-&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203714CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义16（时齐性）&lt;/strong&gt;：称连续时间Markov链是&lt;strong&gt;时齐的&lt;/strong&gt;，若 $p_{ij}(s,t)$ 与 $s$ 无关。简记 $p_{ij}(s,t)=p_{ij}(t)$ ，相应的记 $\mathbf{P}(t)=(p_{ij}(t))$ 。本章只讨论时齐的连续时间Markov链，并简称为连续时间Markov链。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203714CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义16（时齐性）&lt;/strong&gt;：称连续时间Markov链是&lt;strong&gt;时齐的&lt;/strong&gt;，若 $p_{ij}(s,t)$ 与 $s$ 无关。简记 $p_{ij}(s,t)=p_{ij}(t)$ ，相应的记 $\bm{P}(t)=(p_{ij}(t))$ 。本章只讨论时齐的连续时间Markov链，并简称为连续时间Markov链。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929205735CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理13&lt;/strong&gt;：设 $\set{X(t),t\ge 0}$ 是连续时间Markov链，假定在时刻0过程刚刚到达 $i$ ，以 $\tau_i$ 记过程离开 $i$ 之前在 $i$ 停留的时间，则 $\tau_i$ 服从指数分布。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205735CST&#34;&gt;定理13&lt;/a&gt;）&lt;/strong&gt;‌：只需证明 $\tau_i$ 是无记忆性的，即证明对 $s,t \ge 0$ 有（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;指数分布&lt;/a&gt;）&lt;/p&gt;
 &lt;span id=&#34;20240929214220CST&#34;&gt;&lt;/span&gt;$$
@@ -931,7 +931,7 @@ q_{ii}=\sum_{j \ne i}q_{ij} &lt; +\infin
 &lt;h4 id=&#34;保守性&#34;&gt;保守性
 &lt;/h4&gt;&lt;p&gt;  对于无限状态的情况，一般只能得到 $q_{ii} \ge \displaystyle\sum_{j \ne i}q_{ij}$ （&lt;a class=&#34;link&#34; href=&#34;#20240929214518CST&#34;&gt;式118&lt;/a&gt;中积分和求和不可交换，因此只能使用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;）。设状态空间为 $S=\set{1,2,\cdots,n,\cdots}$ ，此时记&lt;/p&gt;
 &lt;span id=&#34;20240929214526CST&#34;&gt;&lt;/span&gt;$$
-\mathbf{Q}=
+\bm{Q}=
 \begin{pmatrix}
 -q_{11} &amp; q_{12}  &amp; q_{13} &amp; \cdots &amp; q_{1i}  &amp; \cdots \\[5pt]
 q_{21}  &amp; -q_{22} &amp; q_{23} &amp; \cdots &amp; q_{2i}  &amp; \cdots \\[5pt]
@@ -941,7 +941,7 @@ q_{i1}  &amp; q_{i2}  &amp; q_{i3} &amp; \cdots &amp; -q_{ii} &amp; \cdots \\[5p
 \end{pmatrix}
 \tag{119}
     $$
-&lt;p&gt;  称为连续时间Markov链的 $\mathbf{Q}$ 矩阵。当矩阵元素 $q_{ii}=\sum_{j \ne i}q_{ij}&amp;lt;+\infin$ 时，称该矩阵为&lt;strong&gt;保守的&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  称为连续时间Markov链的 $\bm{Q}$ 矩阵。当矩阵元素 $q_{ii}=\sum_{j \ne i}q_{ij}&amp;lt;+\infin$ 时，称该矩阵为&lt;strong&gt;保守的&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;kolmogorov微分方程&#34;&gt;Kolmogorov微分方程
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929211031CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理17（Kolmogorov微分方程）&lt;/strong&gt;：对一切 $i,j \in S，t \ge 0$ 且 $q_{ii}=\displaystyle\sum_{j \ne i}q_{ij}&amp;lt;+\infin$ ，有：&lt;br&gt;
   ①&lt;strong&gt;向后方程&lt;/strong&gt;&lt;/p&gt;
@@ -996,7 +996,7 @@ p_{ij}(t+h)-p_{ij}(t)=\sum_{k \ne i,k \in S}p_{ik}(h)p_{kj}(t)-(1-p_{ii}(h))p_{i
 \lim\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}(h)}{h}p_{kj}(t)=\sum_{k \ne i}q_{ik}p_{kj}(t)
 \tag{128}
     $$
-&lt;p&gt;  因此无限状态下①仍然成立。实际上①可以被写成矩阵形式，也就是 $\mathbf{P}^\prime(t)=\mathbf{Q}\mathbf{P}(t)$ ，其中 $\mathbf{P}(t)=(p_{ij}(t))$ ， $\mathbf{Q}=(q_{ij})$ 。依&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Kolmogorov微分方程&lt;/a&gt;条件知 $\mathbf{Q}$ 是保守的。&lt;br&gt;
+&lt;p&gt;  因此无限状态下①仍然成立。实际上①可以被写成矩阵形式，也就是 $\bm{P}^\prime(t)=\bm{Q}\bm{P}(t)$ ，其中 $\bm{P}(t)=(p_{ij}(t))$ ， $\bm{Q}=(q_{ij})$ 。依&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Kolmogorov微分方程&lt;/a&gt;条件知 $\bm{Q}$ 是保守的。&lt;br&gt;
   下面证明②。在①中计算 $t+h$ 的状态时是对退后到时刻 $h$ 的状态来取条件的（所以称为后退方程），这里我们考虑对时刻 $t$ 的状态取条件，用&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;有&lt;/p&gt;
 &lt;span id=&#34;20240929214633CST&#34;&gt;&lt;/span&gt;$$
 p_{ij}(t+h)=\sum_{k \in S}p_{ik}(t)p_{kj}(h)
