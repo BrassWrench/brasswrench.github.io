@@ -935,7 +935,7 @@
 </svg>
 
             <time class="article-words">
-                1978 字
+                2129 字
             </time>
         </div>
 
@@ -950,7 +950,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -1184,14 +1184,14 @@
 <h4 id="3d高斯椭球">3D高斯椭球
 </h4><p>  在概率论中我们已经学到了<a class="link" onclick="alert('抱歉，“概率论“还未上线~')">多维高斯分布</a>的表达式如下：</p>
 <span id="20241003225449CST"></span>$$
-f(\bm{x}|\bm{\mu},\bm{\Sigma})=\frac{1}{\sqrt{(2\pi)^3|\bm{\Sigma}|}}\exp \left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
+f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\sqrt{\left(2\pi\right)^3|\bm{\Sigma}|}}\exp \left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
 \tag{1}
     $$
 <p>  其中 $\bm{\mu}$ 是均值， $\bm{\Sigma}$ 是协方差矩阵，它是对称且正定的。在三维空间中，我们将这么一个三维高斯分布叫做一个<strong>3D高斯椭球</strong>。</p>
 <h4 id="位置">位置
 </h4><p>  3D高斯椭球的均值 $\bm{\mu}$ 就是这个3D高斯椭球的位置，也就是其中心点。初始化3D高斯椭球的时候，这个中心点就是由SfM算法得到的稀疏点云。</p>
 <h4 id="形状">形状
-</h4><p>  3D高斯椭球的协方差 $\bm{\Sigma}$ 就是代表它的形状。由<a class="link" onclick="alert('抱歉，“矩阵理论”还未上线~')">奇异值分解</a>和 $\bm{\Sigma}$ 的对称性和正定性， $\bm{\Sigma}$ 可以被分解成 $\bm{\Sigma}=\bm{R}\bm{\Lambda}\bm{R}^T$ ，其中 $\bm{R}$ 是一个正交矩阵， $\bm{\Lambda}$ 是由 $\bm{\Sigma}$ 的特征值构成的对角矩阵。注意正定矩阵的特征值都是正的，因此 $\bm{\Lambda}$ 还可以被分解成 $\bm{\Lambda}=\bm{S}\bm{S}^T$ ，其中 $\bm{S}$ 也是一个正的对角矩阵，且其对角线上的值其实就是对应的 $\bm{\Sigma}$ 特征值的平方根。因此有</p>
+</h4><p>  3D高斯椭球的协方差 $\bm{\Sigma}$ 就是代表它的形状。由<a class="link" onclick="alert('抱歉，“矩阵理论”还未上线~')">实对称矩阵的正交相似对角化</a>和 $\bm{\Sigma}$ 的对称性和正定性， $\bm{\Sigma}$ 可以被分解成 $\bm{\Sigma}=\bm{R}\bm{\Lambda}\bm{R}^T$ ，其中 $\bm{R}$ 是一个正交矩阵， $\bm{\Lambda}$ 是由 $\bm{\Sigma}$ 的特征值构成的对角矩阵。注意正定矩阵的特征值都是正的，因此 $\bm{\Lambda}$ 还可以被分解成 $\bm{\Lambda}=\bm{S}\bm{S}^T$ ，其中 $\bm{S}$ 也是一个正的对角矩阵，且其对角线上的值其实就是对应的 $\bm{\Sigma}$ 特征值的平方根。因此有</p>
 <span id="20241004120125CST"></span>$$
 \bm{\Sigma}=\bm{R}\bm{S}\bm{S}^T\bm{R}^T
 \tag{2}
@@ -1199,7 +1199,7 @@ f(\bm{x}|\bm{\mu},\bm{\Sigma})=\frac{1}{\sqrt{(2\pi)^3|\bm{\Sigma}|}}\exp \left(
 <p>  我们注意看这个式子的几何意义。由于 $\bm{S}$ 是一个对角矩阵，因此其可以被看成一个<strong>放缩变换</strong>，而 $\bm{R}$ 是一个正交矩阵，因此可以看成一个<strong>旋转变换</strong>（见<a class="link" onclick="alert('抱歉，“解析几何”还未上线~')">旋转变换</a>）。将其代回<a class="link" href="#20241003225449CST">式1</a>，易得实际上这个操作就是把正交基先拉伸后旋转，再将去均值的随机向量 $\bm{x}-\bm{\mu}$ 投影到新的正交基上的操作。<br>
   对于三维对角矩阵 $\bm{S}$ ，只需要一个三维向量 $\bm{s}$ 描述即可，该向量的每个分量对应对角矩阵 $\bm{S}$ 的每个对角分量。即</p>
 <span id="20241004154012CST"></span>$$
-\bm{S}(\bm{s})=
+\bm{S}\left(\bm{s}\right)=
 \begin{pmatrix}
 s_1 & 0   & 0   \\[5pt]
  0  & s_2 & 0   \\[5pt]
@@ -1209,17 +1209,29 @@ s_1 & 0   & 0   \\[5pt]
     $$
 <p>  对于正交矩阵 $\bm{R}$ ，可以用一个四元数 $\bm{q}$ 来表示（见<a class="link" onclick="alert('抱歉，“解析几何”还未上线~')">四元数与旋转</a>）。在机器学习中，直接对 $\bm{\Sigma}$ 进行学习很难保证其正定性。因此，3DGS采用的方法是对 $\bm{s}$ 和 $\bm{q}$ 进行学习，再用公式间接计算 $\bm{\Sigma}$ 。这里，我们先给出四元数到旋转矩阵的计算关系（具体推导见<a class="link" onclick="alert('抱歉，“解析几何”还未上线~')">四元数与旋转</a>）：</p>
 <span id="20241004135007CST"></span>$$
-\bm{R}(\bm{q})=
+\bm{R}\left(\bm{q}\right)=
 \begin{pmatrix}
-1-2(q_2^2+q_3^2) & 2(q_1q_2-q_0q_3) & 2(q_1q_3+q_0q_2) \\[5pt]
-2(q_1q_2+q_0q_3) & 1-2(q_1^2+q_3^2) & 2(q_2q_3-q_0q_1) \\[5pt]
-2(q_1q_3-q_0q_2) & 2(q_2q_3+q_0q_1) & 1-2(q_1^2+q_2^2)
+1-2\left(q_2^2+q_3^2\right) & 2\left(q_1q_2-q_0q_3\right) & 2\left(q_1q_3+q_0q_2\right) \\[5pt]
+2\left(q_1q_2+q_0q_3\right) & 1-2\left(q_1^2+q_3^2\right) & 2\left(q_2q_3-q_0q_1\right) \\[5pt]
+2\left(q_1q_3-q_0q_2\right) & 2\left(q_2q_3+q_0q_1\right) & 1-2\left(q_1^2+q_2^2\right)
 \end{pmatrix}
 \tag{4}
     $$
-<p>  在初始化的时候，3DGS会利用<a class="link" onclick="alert('抱歉，“机器学习”还未上线~')">KNN算法</a>计算点云中每个点到与其最近的3个点的平均距离，然后取对数，将其同时作为 $\bm{s}$ 中的三个分量的值。对于 $\bm{q}$ ，3DGS将其初始化为 $\bm{q}=(1,0,0,0)$ ，也就是不进行旋转。</p>
+<p>  在初始化的时候，3DGS会利用<a class="link" onclick="alert('抱歉，“机器学习”还未上线~')">KNN算法</a>计算点云中每个点到与其最近的3个点的平均距离，然后取对数，将其同时作为 $\bm{s}$ 中的三个分量的值。对于 $\bm{q}$ ，3DGS将其初始化为 $\bm{q}=\left(1,0,0,0\right)$ ，也就是不进行旋转。</p>
 <h4 id="颜色">颜色
-</h4>
+</h4><p>  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：<strong>球谐函数</strong>（见<a class="link" onclick="alert('抱歉，“特殊函数：Legendre函数”还未写完~')">球谐函数</a>）。<br>
+  球谐函数的定义如下：</p>
+<span id="20241004221955CST"></span>$$
+Y_{lm}\left(\theta,\varphi\right)=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-m\right)!}{\left(l+m\right)!}}P^{m}_{l}\left(\cos\theta\right)e^{im\varphi}
+\tag{5}
+    $$
+<p>  其中 $P^m_l\left(\cos\theta\right)$ 是<strong>连带Legendre函数</strong>（见 <a class="link" onclick="alert('抱歉，“特殊函数：连带Legendre函数”还没写完~')">连带Legendre函数</a>）。定义如下：</p>
+<span id="20241004223430CST"></span>$$
+P^m_l\left(\cos\theta\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^ll!}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l
+\tag{6}
+    $$
+<p>  类似于Fourier变换</p>
+
     </div>
 </section>
 
@@ -1309,7 +1321,7 @@ s_1 & 0   & 0   \\[5pt]
                 "\\leq": "\\leqslant"
             },
             ignoredClasses: ["gist"],
-            maxExpand: 2000,
+            maxExpand: 3000,
             throwOnError: true,
             errorColor: "#cc0000"
         });})
@@ -1378,7 +1390,7 @@ s_1 & 0   & 0   \\[5pt]
             
             
         
-        <span>本图书馆累计发布了5篇文章 共29060字</span>
+        <span>本图书馆累计发布了5篇文章 共29817字</span>
     </section>
 
     <section class="site-visit-count">
