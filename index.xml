@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 04 Oct 2024 00:34:30 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 04 Oct 2024 23:19:07 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>特殊函数（五）：Legendre函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/special_functions/legendre_functions/</link>
         <pubDate>Tue, 01 Oct 2024 13:25:22 +0800</pubDate>
@@ -338,12 +338,21 @@ s_1 &amp; 0   &amp; 0   \\[5pt]
 Y_{lm}\left(\theta,\varphi\right)=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-m\right)!}{\left(l+m\right)!}}P^{m}_{l}\left(\cos\theta\right)e^{im\varphi}
 \tag{5}
     $$
-&lt;p&gt;  其中 $P^m_l\left(\cos\theta\right)$ 是&lt;strong&gt;连带Legendre函数&lt;/strong&gt;（见 &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：连带Legendre函数”还没写完~&#39;)&#34;&gt;连带Legendre函数&lt;/a&gt;）。定义如下：&lt;/p&gt;
+&lt;p&gt;  其中 $P^m_l\left(\cos\theta\right)$ 是&lt;strong&gt;连带Legendre函数&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：连带Legendre函数”还没写完~&#39;)&#34;&gt;连带Legendre函数&lt;/a&gt;）。定义如下：&lt;/p&gt;
 &lt;span id=&#34;20241004223430CST&#34;&gt;&lt;/span&gt;$$
 P^m_l\left(\cos\theta\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^ll!}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l
 \tag{6}
     $$
-&lt;p&gt;  类似于Fourier变换&lt;/p&gt;
+&lt;p&gt;  类似于Tayler展开和Fourier展开，任何一个在球面上连续的函数 $f(\theta,\varphi)$  可以用 $Y_{lm}(\theta,\varphi)$ 展开为一平均收敛的级数&lt;/p&gt;
+&lt;span id=&#34;20241004231613CST&#34;&gt;&lt;/span&gt;$$
+f(\theta,\varphi)=\sum_{l=0}^{\infin}\sum_{-l}^{l}A_{lm}Y_{lm}(\theta,\varphi)
+\tag{7}
+    $$
+&lt;p&gt;  其中&lt;/p&gt;
+&lt;span id=&#34;20241004232136CST&#34;&gt;&lt;/span&gt;$$
+A_{lm}=\int_0^\pi\int_0^{2\pi}Y_{lm}^*(\theta,\varphi)f(\theta,\varphi)\sin\theta d\varphi d\theta
+\tag{8}
+    $$
 </description>
         </item>
         <item>
