@@ -119,12 +119,12 @@
 
 &lt;h1 id=&#34;3d高斯泼溅算法&#34;&gt;3D高斯泼溅算法
 &lt;/h1&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
-&lt;/h2&gt;&lt;p&gt;  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，&lt;strong&gt;3D高斯泼溅（3D Gaussian Splatting）算法&lt;/strong&gt;作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。&lt;br&gt;
+&lt;/h2&gt;&lt;p&gt;  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，&lt;strong&gt;3D高斯泼溅算法（3D Gaussian Splatting，简称3DGS）&lt;/strong&gt;‌作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。&lt;br&gt;
   3D高斯泼溅算法的创新在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯球，利用三维高斯函数的数学性质，将离散的数据点或体素转换为可视化的效果。这一过程中，三维高斯球的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。&lt;br&gt;
   对比 Nerf 和传统的 Mesh：一个是纯连续的、隐式表达在可微空间内；一个是纯离散的（虽然可以插值）、显式表达在三维空间内，3D高斯是在离散和连续间的一个平衡：在高斯球内部是连续的、可微的；在整个空间中，每个高斯球又是离散的。&lt;br&gt;
   本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。&lt;/p&gt;
 &lt;h2 id=&#34;算法框架&#34;&gt;算法框架
-&lt;/h2&gt;&lt;p&gt;  3D Gaussian Splatting的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;  3DGS的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。&lt;/p&gt;
 &lt;span id=&#34;20241001163933CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 212.2&#34;&gt;
   &lt;defs&gt;
@@ -286,21 +286,52 @@
     &lt;/g&gt;
   &lt;/g&gt;
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;3D Gaussian Splatting整体框架&lt;/p&gt;&lt;/div&gt;
-&lt;p&gt;  由上图可以看出，当拿到一组场景照片以后，我们需要先使用某种&lt;strong&gt;SfM（Structure from Motion）算法&lt;/strong&gt;估计出这一组照片的&lt;strong&gt;结构&lt;/strong&gt;（位置）和&lt;strong&gt;姿态&lt;/strong&gt;（摄像机方向）和一组&lt;strong&gt;稀疏点云（SfM Points）&lt;/strong&gt;。然后交给3D Gaussian Splatting进行&lt;strong&gt;初始化（Initialization）&lt;/strong&gt;‌得到一组初始的&lt;strong&gt;3D高斯球（3D Gaussians）&lt;/strong&gt;。然后，我们借助相机外参（结构和姿态）将这一组3D高斯球&lt;strong&gt;投影&lt;/strong&gt;到相机平面上（&lt;strong&gt;Projection&lt;/strong&gt;），接着再使用&lt;strong&gt;可微分块光栅化（Differentiable Tile Rasterizer）&lt;/strong&gt;‌渲染得到图像（&lt;strong&gt;Image&lt;/strong&gt;）。得到渲染图像后将其与相机原始的图像（Ground Truth）进行loss比对，然后沿着虚线箭头进行梯度回传。虚线箭头从上回传的时候，更新3D高斯球中的参数，从下回传时会经过&lt;strong&gt;自适应密度控制（Adaptive Density Control）&lt;/strong&gt;‌的处理，而后更新3D高斯球中的点云。&lt;br&gt;
+&lt;p&gt;  由上图可以看出，当拿到一组场景照片以后，我们需要先使用某种&lt;strong&gt;SfM（Structure from Motion）算法&lt;/strong&gt;估计出这一组照片的&lt;strong&gt;结构&lt;/strong&gt;（位置）和&lt;strong&gt;姿态&lt;/strong&gt;（摄像机方向）和一组&lt;strong&gt;稀疏点云（SfM Points）&lt;/strong&gt;。然后交给3DGS进行&lt;strong&gt;初始化（Initialization）&lt;/strong&gt;‌得到一组初始的&lt;strong&gt;3D高斯球（3D Gaussians）&lt;/strong&gt;。然后，我们借助相机外参（结构和姿态）将这一组3D高斯球&lt;strong&gt;投影&lt;/strong&gt;到相机平面上（&lt;strong&gt;Projection&lt;/strong&gt;），接着再使用&lt;strong&gt;可微分块光栅化（Differentiable Tile Rasterizer）&lt;/strong&gt;‌渲染得到图像（&lt;strong&gt;Image&lt;/strong&gt;）。得到渲染图像后将其与相机原始的图像（Ground Truth）进行loss比对，然后沿着虚线箭头进行梯度回传。虚线箭头从上回传的时候，更新3D高斯球中的参数，从下回传时会经过&lt;strong&gt;自适应密度控制（Adaptive Density Control）&lt;/strong&gt;‌的处理，而后更新3D高斯球中的点云。&lt;br&gt;
   接下来，我们详细讲解算法中的每一个步骤，并给出具体的实现方式。&lt;/p&gt;
 &lt;h2 id=&#34;算法内容&#34;&gt;算法内容
 &lt;/h2&gt;&lt;h3 id=&#34;运动结构恢复&#34;&gt;运动结构恢复
 &lt;/h3&gt;&lt;p&gt;  由于该步骤并不是3D Gaussian Splatting的主要内容（详细请见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机视觉”还未上线~&#39;)&#34;&gt;运动结构恢复&lt;/a&gt;），而且已经有较成熟的算法和软件可以实现这部分内容（例如COLMAP），因此在此不做过多介绍。&lt;/p&gt;
 &lt;h3 id=&#34;3d高斯椭球集的创建及描述&#34;&gt;3D高斯椭球集的创建及描述
-&lt;/h3&gt;&lt;p&gt;  拿到相机的位置、姿态和稀疏点云后，就可以开始创建初始的3D高斯椭球集。描述一个3D高斯椭球需要四种信息：位置、形状、颜色和透明度。这里我们先对3D高斯椭球这个概念进行介绍。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  拿到相机的位置、姿态和稀疏点云后，就可以开始创建初始的3D高斯椭球集。描述一个3D高斯椭球需要四种信息：位置、形状、颜色和透明度。&lt;/p&gt;
 &lt;h4 id=&#34;3d高斯椭球&#34;&gt;3D高斯椭球
 &lt;/h4&gt;&lt;p&gt;  在概率论中我们已经学到了&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论“还未上线~&#39;)&#34;&gt;多维高斯分布&lt;/a&gt;的表达式如下：&lt;/p&gt;
 &lt;span id=&#34;20241003225449CST&#34;&gt;&lt;/span&gt;$$
 f(\bm{x}|\bm{\mu},\bm{\Sigma})=\frac{1}{\sqrt{(2\pi)^3|\bm{\Sigma}|}}\exp \left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
 \tag{1}
     $$
-&lt;p&gt;  其中 $\bm{\Sigma}$ 是正定的。&lt;/p&gt;
-</description>
+&lt;p&gt;  其中 $\bm{\mu}$ 是均值， $\bm{\Sigma}$ 是协方差矩阵，它是对称且正定的。在三维空间中，我们将这么一个三维高斯分布叫做一个&lt;strong&gt;3D高斯椭球&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;位置&#34;&gt;位置
+&lt;/h4&gt;&lt;p&gt;  3D高斯椭球的均值 $\bm{\mu}$ 就是这个3D高斯椭球的位置，也就是其中心点。初始化3D高斯椭球的时候，这个中心点就是由SfM算法得到的稀疏点云。&lt;/p&gt;
+&lt;h4 id=&#34;形状&#34;&gt;形状
+&lt;/h4&gt;&lt;p&gt;  3D高斯椭球的协方差 $\bm{\Sigma}$ 就是代表它的形状。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“矩阵理论”还未上线~&#39;)&#34;&gt;奇异值分解&lt;/a&gt;和 $\bm{\Sigma}$ 的对称性和正定性， $\bm{\Sigma}$ 可以被分解成 $\bm{\Sigma}=\bm{R}\bm{\Lambda}\bm{R}^T$ ，其中 $\bm{R}$ 是一个正交矩阵， $\bm{\Lambda}$ 是由 $\bm{\Sigma}$ 的特征值构成的对角矩阵。注意正定矩阵的特征值都是正的，因此 $\bm{\Lambda}$ 还可以被分解成 $\bm{\Lambda}=\bm{S}\bm{S}^T$ ，其中 $\bm{S}$ 也是一个正的对角矩阵，且其对角线上的值其实就是对应的 $\bm{\Sigma}$ 特征值的平方根。因此有&lt;/p&gt;
+&lt;span id=&#34;20241004120125CST&#34;&gt;&lt;/span&gt;$$
+\bm{\Sigma}=\bm{R}\bm{S}\bm{S}^T\bm{R}^T
+\tag{2}
+    $$
+&lt;p&gt;  我们注意看这个式子的几何意义。由于 $\bm{S}$ 是一个对角矩阵，因此其可以被看成一个&lt;strong&gt;放缩变换&lt;/strong&gt;，而 $\bm{R}$ 是一个正交矩阵，因此可以看成一个&lt;strong&gt;旋转变换&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“解析几何”还未上线~&#39;)&#34;&gt;旋转变换&lt;/a&gt;）。将其代回&lt;a class=&#34;link&#34; href=&#34;#20241003225449CST&#34;&gt;式1&lt;/a&gt;，易得实际上这个操作就是把正交基先拉伸后旋转，再将去均值的随机向量 $\bm{x}-\bm{\mu}$ 投影到新的正交基上的操作。&lt;br&gt;
+  对于三维对角矩阵 $\bm{S}$ ，只需要一个三维向量 $\bm{s}$ 描述即可，该向量的每个分量对应对角矩阵 $\bm{S}$ 的每个对角分量。即&lt;/p&gt;
+&lt;span id=&#34;20241004154012CST&#34;&gt;&lt;/span&gt;$$
+\bm{S}(\bm{s})=
+\begin{pmatrix}
+s_1 &amp; 0   &amp; 0   \\[5pt]
+ 0  &amp; s_2 &amp; 0   \\[5pt]
+ 0  &amp;  0  &amp; s_3 
+\end{pmatrix}
+\tag{3}
+    $$
+&lt;p&gt;  对于正交矩阵 $\bm{R}$ ，可以用一个四元数 $\bm{q}$ 来表示（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“解析几何”还未上线~&#39;)&#34;&gt;四元数与旋转&lt;/a&gt;）。在机器学习中，直接对 $\bm{\Sigma}$ 进行学习很难保证其正定性。因此，3DGS采用的方法是对 $\bm{s}$ 和 $\bm{q}$ 进行学习，再用公式间接计算 $\bm{\Sigma}$ 。这里，我们先给出四元数到旋转矩阵的计算关系（具体推导见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“解析几何”还未上线~&#39;)&#34;&gt;四元数与旋转&lt;/a&gt;）：&lt;/p&gt;
+&lt;span id=&#34;20241004135007CST&#34;&gt;&lt;/span&gt;$$
+\bm{R}(\bm{q})=
+\begin{pmatrix}
+1-2(q_2^2+q_3^2) &amp; 2(q_1q_2-q_0q_3) &amp; 2(q_1q_3+q_0q_2) \\[5pt]
+2(q_1q_2+q_0q_3) &amp; 1-2(q_1^2+q_3^2) &amp; 2(q_2q_3-q_0q_1) \\[5pt]
+2(q_1q_3-q_0q_2) &amp; 2(q_2q_3+q_0q_1) &amp; 1-2(q_1^2+q_2^2)
+\end{pmatrix}
+\tag{4}
+    $$
+&lt;p&gt;  在初始化的时候，3DGS会利用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“机器学习”还未上线~&#39;)&#34;&gt;KNN算法&lt;/a&gt;计算点云中每个点到与其最近的3个点的平均距离，然后取对数，将其同时作为 $\bm{s}$ 中的三个分量的值。对于 $\bm{q}$ ，3DGS将其初始化为 $\bm{q}=(1,0,0,0)$ ，也就是不进行旋转。&lt;/p&gt;
+&lt;h4 id=&#34;颜色&#34;&gt;颜色
+&lt;/h4&gt;</description>
         </item>
         <item>
         <title>操作系统（一）：操作系统引论</title>
