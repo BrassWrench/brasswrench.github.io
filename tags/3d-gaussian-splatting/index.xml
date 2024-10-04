@@ -248,28 +248,50 @@ s_1 &amp; 0   &amp; 0   \\[5pt]
     $$
 &lt;p&gt;  在初始化的时候，3DGS会利用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“机器学习”还未上线~&#39;)&#34;&gt;KNN算法&lt;/a&gt;计算点云中每个点到与其最近的3个点的平均距离，然后取对数，将其同时作为 $\bm{s}$ 中的三个分量的值。对于 $\bm{q}$ ，3DGS将其初始化为 $\bm{q}=\left(1,0,0,0\right)$ ，也就是不进行旋转。&lt;/p&gt;
 &lt;h4 id=&#34;颜色&#34;&gt;颜色
-&lt;/h4&gt;&lt;p&gt;  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：&lt;strong&gt;球谐函数&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：Legendre函数”还未写完~&#39;)&#34;&gt;球谐函数&lt;/a&gt;）。&lt;br&gt;
-  球谐函数的定义如下：&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：&lt;strong&gt;实球谐函数&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：Legendre函数”还未写完~&#39;)&#34;&gt;球谐函数&lt;/a&gt;）。&lt;br&gt;
+  实球谐函数的定义如下：&lt;/p&gt;
 &lt;span id=&#34;20241004221955CST&#34;&gt;&lt;/span&gt;$$
-Y_{lm}\left(\theta,\varphi\right)=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-m\right)!}{\left(l+m\right)!}}P^{m}_{l}\left(\cos\theta\right)e^{im\varphi}
+\mathcal{Y}_{lm}\left(\theta,\varphi\right)=
+\begin{cases}
+\displaystyle(-1)^m\sqrt{2}A_{lm}P^{m}_{l}\left(\cos\theta\right)\cos m\varphi\quad &amp;(m&gt;0)\\[5pt]
+\displaystyle A_{lm}P^{m}_{l}\left(\cos\theta\right)\quad &amp;(m=0)\\[5pt]
+\displaystyle(-1)^m\sqrt{2}A_{lm}P^{m}_{l}\left(\cos\theta\right)\sin m\varphi\quad &amp;(m&lt;0)
+\end{cases}
 \tag{5}
     $$
-&lt;p&gt;  其中 $P^m_l\left(\cos\theta\right)$ 是&lt;strong&gt;连带Legendre函数&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：连带Legendre函数”还没写完~&#39;)&#34;&gt;连带Legendre函数&lt;/a&gt;）。定义如下：&lt;/p&gt;
-&lt;span id=&#34;20241004223430CST&#34;&gt;&lt;/span&gt;$$
-P^m_l\left(\cos\theta\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^ll!}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l
+&lt;p&gt;  其中&lt;/p&gt;
+&lt;span id=&#34;20241005013910CST&#34;&gt;&lt;/span&gt;$$
+A_{lm}=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-m\right)!}{\left(l+m\right)!}}
 \tag{6}
+    $$
+&lt;p&gt;  是归一化系数。 $P^m_l\left(\cos\theta\right)$ 是&lt;strong&gt;连带Legendre多项式&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：Legendre函数”还没写完~&#39;)&#34;&gt;连带Legendre多项式&lt;/a&gt;），定义如下：&lt;/p&gt;
+&lt;span id=&#34;20241004223430CST&#34;&gt;&lt;/span&gt;$$
+P^m_l\left(x\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^ll!}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l
+\tag{7}
     $$
 &lt;p&gt;  类似于Tayler展开和Fourier展开，任何一个在球面上连续的函数 $f(\theta,\varphi)$  可以用 $Y_{lm}(\theta,\varphi)$ 展开为一平均收敛的级数&lt;/p&gt;
 &lt;span id=&#34;20241004231613CST&#34;&gt;&lt;/span&gt;$$
-f(\theta,\varphi)=\sum_{l=0}^{\infin}\sum_{-l}^{l}A_{lm}Y_{lm}(\theta,\varphi)
-\tag{7}
+f(\theta,\varphi)=\sum_{l=0}^{\infin}\sum_{-l}^{l}C_{lm}\mathcal{Y}_{lm}(\theta,\varphi)
+\tag{8}
     $$
 &lt;p&gt;  其中&lt;/p&gt;
 &lt;span id=&#34;20241004232136CST&#34;&gt;&lt;/span&gt;$$
-A_{lm}=\int_0^\pi\int_0^{2\pi}Y_{lm}^*(\theta,\varphi)f(\theta,\varphi)\sin\theta d\varphi d\theta
-\tag{8}
+C_{lm}=\int_0^\pi\int_0^{2\pi}\mathcal{Y}_{lm}(\theta,\varphi)f(\theta,\varphi)\sin\theta d\theta d\varphi
+\tag{9}
     $$
-&lt;p&gt;  3DGS算法采用RGB颜色来进行渲染。也就是，一共有三个通道，每个通道由区间 $[0,1]$ 的一个数来映射到每个通道表示颜色的 $0\text{\textasciitilde}255$ 的一个数字。&lt;/p&gt;
+&lt;p&gt;  3DGS算法 $3$ 阶球函数近似，使用RGB颜色来进行渲染。也就是，一共有三个通道，每个通道由区间 $[0,1]$ 的一个数来映射到每个通道表示颜色的 $0\text{\textasciitilde}255$ 的一个数字。将每个RGB通道展开成一个 $3$ 阶球函数需要 $(3+1)^2=16$ 个系数。由此可得，要想表示一个3D高斯椭球的颜色信息，需要 $3\times (3+1)^2=48$ 个参数。&lt;br&gt;
+  具体的，当我们拿到这 $48$ 个系数和一个方向向量 $\bm{n}=(x,y,z)$ 以后，利用&lt;a class=&#34;link&#34; href=&#34;#20241004231613CST&#34;&gt;式8&lt;/a&gt;，我们可以通过如下推导得到该方向的球谐函数值&lt;/p&gt;
+&lt;span id=&#34;20241005000157CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+f_i(\bm{n})_{RGB}=&amp;\sum_{l=0}^{3}\sum_{-l}^{l}C_{lm}(i)\mathcal{Y}_{lm}(\bm{n})\\[5pt]
+=&amp;C_{00}(i)\mathcal{Y}_{00}(\bm{n})+C_{1,-1}(i)\mathcal{Y}_{1,-1}(\bm{n})+C_{10}\mathcal{Y}_{10}(\bm{n})+C_{11}\mathcal{Y}_{11}(\bm{n})+C_{2,-2}(i)\mathcal{Y}_{2,-2}(\bm{n})+\\[5pt]
+&amp;C_{2,-1}(i)\mathcal{Y}_{2,-1}(\bm{n})+C_{20}\mathcal{Y}_{20}(\bm{n})+C_{21}\mathcal{Y}_{21}(\bm{n})+C_{2,2}(i)\mathcal{Y}_{2,2}(\bm{n})+C_{3,-3}(i)\mathcal{Y}_{3,-3}(\bm{n})+\\[5pt]
+&amp;C_{3,-2}(i)\mathcal{Y}_{3,-2}(\bm{n})+C_{3,-1}(i)\mathcal{Y}_{3,-1}(\bm{n})+C_{30}\mathcal{Y}_{30}(\bm{n})+C_{31}\mathcal{Y}_{31}(\bm{n})+C_{3,2}(i)\mathcal{Y}_{3,2}(\bm{n})+\\[5pt]
+&amp;C_{3,3}(i)\mathcal{Y}_{3,3}(\bm{n})
+\end{aligned}
+\tag{10}
+    $$
+&lt;p&gt;   $i$ 取 $1,2,3$ 表示 $3$ 个RGB通道， $C_{00}(i)\text{\textasciitilde}C_{33}(i)$ 均已知，下面给出 \(\mathcal{Y}_{00}(i)\text{\textasciitilde}\mathcal{Y}_{33}(i)\) 的表达式（可直接根据&lt;a class=&#34;link&#34; href=&#34;#20241004221955CST&#34;&gt;式5&lt;/a&gt;得到）&lt;/p&gt;
 </description>
         </item>
         

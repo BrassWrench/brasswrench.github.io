@@ -935,7 +935,7 @@
 </svg>
 
             <time class="article-words">
-                2243 字
+                2432 字
             </time>
         </div>
 
@@ -1219,28 +1219,50 @@ s_1 & 0   & 0   \\[5pt]
     $$
 <p>  在初始化的时候，3DGS会利用<a class="link" onclick="alert('抱歉，“机器学习”还未上线~')">KNN算法</a>计算点云中每个点到与其最近的3个点的平均距离，然后取对数，将其同时作为 $\bm{s}$ 中的三个分量的值。对于 $\bm{q}$ ，3DGS将其初始化为 $\bm{q}=\left(1,0,0,0\right)$ ，也就是不进行旋转。</p>
 <h4 id="颜色">颜色
-</h4><p>  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：<strong>球谐函数</strong>（见<a class="link" onclick="alert('抱歉，“特殊函数：Legendre函数”还未写完~')">球谐函数</a>）。<br>
-  球谐函数的定义如下：</p>
+</h4><p>  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：<strong>实球谐函数</strong>（见<a class="link" onclick="alert('抱歉，“特殊函数：Legendre函数”还未写完~')">球谐函数</a>）。<br>
+  实球谐函数的定义如下：</p>
 <span id="20241004221955CST"></span>$$
-Y_{lm}\left(\theta,\varphi\right)=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-m\right)!}{\left(l+m\right)!}}P^{m}_{l}\left(\cos\theta\right)e^{im\varphi}
+\mathcal{Y}_{lm}\left(\theta,\varphi\right)=
+\begin{cases}
+\displaystyle(-1)^m\sqrt{2}A_{lm}P^{m}_{l}\left(\cos\theta\right)\cos m\varphi\quad &(m>0)\\[5pt]
+\displaystyle A_{lm}P^{m}_{l}\left(\cos\theta\right)\quad &(m=0)\\[5pt]
+\displaystyle(-1)^m\sqrt{2}A_{lm}P^{m}_{l}\left(\cos\theta\right)\sin m\varphi\quad &(m<0)
+\end{cases}
 \tag{5}
     $$
-<p>  其中 $P^m_l\left(\cos\theta\right)$ 是<strong>连带Legendre函数</strong>（见<a class="link" onclick="alert('抱歉，“特殊函数：连带Legendre函数”还没写完~')">连带Legendre函数</a>）。定义如下：</p>
-<span id="20241004223430CST"></span>$$
-P^m_l\left(\cos\theta\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^ll!}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l
+<p>  其中</p>
+<span id="20241005013910CST"></span>$$
+A_{lm}=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-m\right)!}{\left(l+m\right)!}}
 \tag{6}
+    $$
+<p>  是归一化系数。 $P^m_l\left(\cos\theta\right)$ 是<strong>连带Legendre多项式</strong>（见<a class="link" onclick="alert('抱歉，“特殊函数：Legendre函数”还没写完~')">连带Legendre多项式</a>），定义如下：</p>
+<span id="20241004223430CST"></span>$$
+P^m_l\left(x\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^ll!}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l
+\tag{7}
     $$
 <p>  类似于Tayler展开和Fourier展开，任何一个在球面上连续的函数 $f(\theta,\varphi)$  可以用 $Y_{lm}(\theta,\varphi)$ 展开为一平均收敛的级数</p>
 <span id="20241004231613CST"></span>$$
-f(\theta,\varphi)=\sum_{l=0}^{\infin}\sum_{-l}^{l}A_{lm}Y_{lm}(\theta,\varphi)
-\tag{7}
+f(\theta,\varphi)=\sum_{l=0}^{\infin}\sum_{-l}^{l}C_{lm}\mathcal{Y}_{lm}(\theta,\varphi)
+\tag{8}
     $$
 <p>  其中</p>
 <span id="20241004232136CST"></span>$$
-A_{lm}=\int_0^\pi\int_0^{2\pi}Y_{lm}^*(\theta,\varphi)f(\theta,\varphi)\sin\theta d\varphi d\theta
-\tag{8}
+C_{lm}=\int_0^\pi\int_0^{2\pi}\mathcal{Y}_{lm}(\theta,\varphi)f(\theta,\varphi)\sin\theta d\theta d\varphi
+\tag{9}
     $$
-<p>  3DGS算法采用RGB颜色来进行渲染。也就是，一共有三个通道，每个通道由区间 $[0,1]$ 的一个数来映射到每个通道表示颜色的 $0\text{\textasciitilde}255$ 的一个数字。</p>
+<p>  3DGS算法 $3$ 阶球函数近似，使用RGB颜色来进行渲染。也就是，一共有三个通道，每个通道由区间 $[0,1]$ 的一个数来映射到每个通道表示颜色的 $0\text{\textasciitilde}255$ 的一个数字。将每个RGB通道展开成一个 $3$ 阶球函数需要 $(3+1)^2=16$ 个系数。由此可得，要想表示一个3D高斯椭球的颜色信息，需要 $3\times (3+1)^2=48$ 个参数。<br>
+  具体的，当我们拿到这 $48$ 个系数和一个方向向量 $\bm{n}=(x,y,z)$ 以后，利用<a class="link" href="#20241004231613CST">式8</a>，我们可以通过如下推导得到该方向的球谐函数值</p>
+<span id="20241005000157CST"></span>$$
+\begin{aligned}
+f_i(\bm{n})_{RGB}=&\sum_{l=0}^{3}\sum_{-l}^{l}C_{lm}(i)\mathcal{Y}_{lm}(\bm{n})\\[5pt]
+=&C_{00}(i)\mathcal{Y}_{00}(\bm{n})+C_{1,-1}(i)\mathcal{Y}_{1,-1}(\bm{n})+C_{10}\mathcal{Y}_{10}(\bm{n})+C_{11}\mathcal{Y}_{11}(\bm{n})+C_{2,-2}(i)\mathcal{Y}_{2,-2}(\bm{n})+\\[5pt]
+&C_{2,-1}(i)\mathcal{Y}_{2,-1}(\bm{n})+C_{20}\mathcal{Y}_{20}(\bm{n})+C_{21}\mathcal{Y}_{21}(\bm{n})+C_{2,2}(i)\mathcal{Y}_{2,2}(\bm{n})+C_{3,-3}(i)\mathcal{Y}_{3,-3}(\bm{n})+\\[5pt]
+&C_{3,-2}(i)\mathcal{Y}_{3,-2}(\bm{n})+C_{3,-1}(i)\mathcal{Y}_{3,-1}(\bm{n})+C_{30}\mathcal{Y}_{30}(\bm{n})+C_{31}\mathcal{Y}_{31}(\bm{n})+C_{3,2}(i)\mathcal{Y}_{3,2}(\bm{n})+\\[5pt]
+&C_{3,3}(i)\mathcal{Y}_{3,3}(\bm{n})
+\end{aligned}
+\tag{10}
+    $$
+<p>   $i$ 取 $1,2,3$ 表示 $3$ 个RGB通道， $C_{00}(i)\text{\textasciitilde}C_{33}(i)$ 均已知，下面给出 \(\mathcal{Y}_{00}(i)\text{\textasciitilde}\mathcal{Y}_{33}(i)\) 的表达式（可直接根据<a class="link" href="#20241004221955CST">式5</a>得到）</p>
 
     </div>
 </section>
@@ -1400,7 +1422,7 @@ A_{lm}=\int_0^\pi\int_0^{2\pi}Y_{lm}^*(\theta,\varphi)f(\theta,\varphi)\sin\thet
             
             
         
-        <span>本图书馆累计发布了5篇文章 共29931字</span>
+        <span>本图书馆累计发布了5篇文章 共30120字</span>
     </section>
 
     <section class="site-visit-count">
