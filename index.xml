@@ -332,20 +332,20 @@ s_1 &amp; 0   &amp; 0   \\[5pt]
     $$
 &lt;p&gt;  在初始化的时候，3DGS会利用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“机器学习”还未上线~&#39;)&#34;&gt;KNN算法&lt;/a&gt;计算点云中每个点到与其最近的3个点的平均距离，然后取对数，将其同时作为 $\bm{s}$ 中的三个分量的值。对于 $\bm{q}$ ，3DGS将其初始化为 $\bm{q}=\left(1,0,0,0\right)$ ，也就是不进行旋转。&lt;/p&gt;
 &lt;h4 id=&#34;颜色&#34;&gt;颜色
-&lt;/h4&gt;&lt;p&gt;  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：&lt;strong&gt;实球谐函数&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：Legendre函数”还未写完~&#39;)&#34;&gt;球谐函数&lt;/a&gt;）。&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：&lt;strong&gt;实球谐函数（Real Spherical Harmonics）&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：Legendre函数”还未写完~&#39;)&#34;&gt;球谐函数&lt;/a&gt;）。&lt;br&gt;
   计算机图形学中常用的实球谐函数的定义如下：&lt;/p&gt;
 &lt;span id=&#34;20241004221955CST&#34;&gt;&lt;/span&gt;$$
-\mathcal{Y}_{lm}\left(\theta,\varphi\right)=
+\mathcal{Y}_l^m\left(\theta,\varphi\right)=
 \begin{cases}
-\displaystyle\sqrt{2}A_{lm}P^{m}_{l}\left(\cos\theta\right)\cos m\varphi\quad &amp;(m&gt;0)\\[5pt]
-\displaystyle A_{lm}P^{m}_{l}\left(\cos\theta\right)\quad &amp;(m=0)\\[5pt]
-\displaystyle\sqrt{2}A_{lm}P^{-m}_{l}\left(\cos\theta\right)\sin (-m\varphi)\quad &amp;(m&lt;0)
+\displaystyle\sqrt{2}K_l^mP^m_l\left(\cos\theta\right)\cos m\varphi\quad &amp;(m&gt;0)\\[5pt]
+\displaystyle K_l^mP^{m}_{l}\left(\cos\theta\right)\quad &amp;(m=0)\\[5pt]
+\displaystyle\sqrt{2}K_l^mP^{-m}_{l}\left(\cos\theta\right)\sin (-m\varphi)\quad &amp;(m&lt;0)
 \end{cases}
 \tag{5}
     $$
 &lt;p&gt;  其中&lt;/p&gt;
 &lt;span id=&#34;20241005013910CST&#34;&gt;&lt;/span&gt;$$
-A_{lm}=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-|m|\right)!}{\left(l+|m|\right)!}}
+K_l^m=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-|m|\right)!}{\left(l+|m|\right)!}}
 \tag{6}
     $$
 &lt;p&gt;  是归一化系数。 $P^m_l\left(\cos\theta\right)$ 是&lt;strong&gt;连带Legendre多项式&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：Legendre函数”还没写完~&#39;)&#34;&gt;连带Legendre多项式&lt;/a&gt;），定义如下：&lt;/p&gt;
@@ -355,24 +355,23 @@ P^m_l\left(x\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^l
     $$
 &lt;p&gt;  类似于Tayler展开和Fourier展开，任何一个在球面上连续的实函数 $f(\theta,\varphi)$  可以用 $Y_{lm}(\theta,\varphi)$ 展开为一平均收敛的级数&lt;/p&gt;
 &lt;span id=&#34;20241004231613CST&#34;&gt;&lt;/span&gt;$$
-f(\theta,\varphi)=\sum_{l=0}^{\infin}\sum_{-l}^{l}C_{lm}\mathcal{Y}_{lm}(\theta,\varphi)
+f(\theta,\varphi)=\sum_{l=0}^{\infin}\sum_{-l}^{l}C_l^m\mathcal{Y}_l^m(\theta,\varphi)
 \tag{8}
     $$
 &lt;p&gt;  其中&lt;/p&gt;
 &lt;span id=&#34;20241004232136CST&#34;&gt;&lt;/span&gt;$$
-C_{lm}=\int_0^\pi\int_0^{2\pi}\mathcal{Y}_{lm}(\theta,\varphi)f(\theta,\varphi)\sin\theta d\theta d\varphi
+C_l^m=\int_0^\pi\int_0^{2\pi}\mathcal{Y}_l^m(\theta,\varphi)f(\theta,\varphi)\sin\theta d\theta d\varphi
 \tag{9}
     $$
 &lt;p&gt;  3DGS算法使用 $3$ 阶球函数近似，使用RGB颜色来进行渲染。也就是，一共有三个通道，每个通道由区间 $[0,1]$ 的一个数来映射到每个通道表示颜色的 $0\text{\textasciitilde}255$ 的一个数字。将每个RGB通道展开成一个 $3$ 阶球函数需要 $(3+1)^2=16$ 个系数。由此可得，要想表示一个3D高斯椭球的颜色信息，需要 $3\times (3+1)^2=48$ 个参数。&lt;br&gt;
-  具体的，当我们拿到这 $48$ 个系数和一个方向向量 $\bm{n}=(x,y,z)$ 以后，利用&lt;a class=&#34;link&#34; href=&#34;#20241004231613CST&#34;&gt;式8&lt;/a&gt;，我们可以通过如下推导得到该方向的球谐函数值&lt;/p&gt;
+  具体的，当我们拿到这 $48$ 个参数和一个方向向量 $\bm{n}=(x,y,z)$ 以后，利用&lt;a class=&#34;link&#34; href=&#34;#20241004231613CST&#34;&gt;式8&lt;/a&gt;，我们可以通过如下推导得到该方向的球谐函数值&lt;/p&gt;
 &lt;span id=&#34;20241005000157CST&#34;&gt;&lt;/span&gt;$$
 \begin{aligned}
-f_i(\bm{n})_{SH}=&amp;\sum_{l=0}^{3}\sum_{-l}^{l}C_{lm}(i)\mathcal{Y}_{lm}(\bm{n})\\[5pt]
-=&amp;C_{00}(i)\mathcal{Y}_{00}(\bm{n})+\\[5pt]
-&amp;C_{1,-1}(i)\mathcal{Y}_{1,-1}(\bm{n})+C_{10}\mathcal{Y}_{10}(\bm{n})+C_{11}\mathcal{Y}_{11}(\bm{n})+\\[5pt]
-&amp;C_{2,-2}(i)\mathcal{Y}_{2,-2}(\bm{n})+C_{2,-1}(i)\mathcal{Y}_{2,-1}(\bm{n})+C_{20}\mathcal{Y}_{20}(\bm{n})+C_{21}\mathcal{Y}_{21}(\bm{n})+C_{22}(i)\mathcal{Y}_{22}(\bm{n})+\\[5pt]
-&amp;C_{3,-3}(i)\mathcal{Y}_{3,-3}(\bm{n})+C_{3,-2}(i)\mathcal{Y}_{3,-2}(\bm{n})+C_{3,-1}(i)\mathcal{Y}_{3,-1}(\bm{n})+C_{30}\mathcal{Y}_{30}(\bm{n})+C_{31}\mathcal{Y}_{31}(\bm{n})+\\[5pt]
-&amp;C_{32}(i)\mathcal{Y}_{32}(\bm{n})+C_{33}(i)\mathcal{Y}_{33}(\bm{n})
+f_i(\bm{n})_{SH}=&amp;\sum_{l=0}^{3}\sum_{-l}^{l}C_l^m(i)\mathcal{Y}_l^m(\bm{n})\\[5pt]
+=&amp;C_0^0(i)\mathcal{Y}_0^0(\bm{n})+\\[5pt]
+&amp;C_1^{-1}(i)\mathcal{Y}_1^{-1}(\bm{n})+C_1^0\mathcal{Y}_1^0(\bm{n})+C_1^1\mathcal{Y}_1^1(\bm{n})+\\[5pt]
+&amp;C_2^{-2}(i)\mathcal{Y}_2^{-2}(\bm{n})+C_2^{-1}(i)\mathcal{Y}_2^{-1}(\bm{n})+C_{20}\mathcal{Y}_{20}(\bm{n})+C_{21}\mathcal{Y}_{21}(\bm{n})+C_{22}(i)\mathcal{Y}_{22}(\bm{n})+\\[5pt]
+&amp;C_3^{-3}(i)\mathcal{Y}_3^{-3}(\bm{n})+C_3^{-2}(i)\mathcal{Y}_3^{-2}(\bm{n})+C_3^{-1}(i)\mathcal{Y}_3^{-1}(\bm{n})+C_3^0\mathcal{Y}_3^0(\bm{n})+C_3^1\mathcal{Y}_3^1(\bm{n})+C_3^2(i)\mathcal{Y}_3^2(\bm{n})+C_3^3(i)\mathcal{Y}_3^3(\bm{n})
 \end{aligned}
 \tag{10}
     $$
@@ -387,87 +386,99 @@ f_i(\bm{n})_{SH}=&amp;\sum_{l=0}^{3}\sum_{-l}^{l}C_{lm}(i)\mathcal{Y}_{lm}(\bm{n
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{00}(\bm{n})$&lt;/td&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\displaystyle\frac{1}{2}\sqrt{\frac{1}{2\pi}}y$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_0^0(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\displaystyle\frac{1}{2}\sqrt{\frac{1}{\pi}}$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$0.28209479177387814$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{1,-1}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_1^{-1}(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-\displaystyle\frac{1}{2}\sqrt{\frac{3}{2\pi}}y$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-0.4886025119029199\times y$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{10}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_1^0(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$\displaystyle\frac{1}{2}\sqrt{\frac{3}{2\pi}}z$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$0.4886025119029199\times z$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{11}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_1^1(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-\displaystyle\frac{1}{2}\sqrt{\frac{3}{2\pi}}x$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-0.4886025119029199\times x$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{2,-2}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_2^{-2}(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$\displaystyle\frac{1}{2}\sqrt{\frac{15}{\pi}}xy$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$1.0925484305920792\times xy$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{2,-1}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_2^{-1}(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-\displaystyle\frac{1}{2}\sqrt{\frac{15}{\pi}}yz$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-1.0925484305920792\times yz$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{20}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_2^0(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-\displaystyle\frac{1}{4}\sqrt{\frac{5}{\pi}}(3z^2-1)$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$0.31539156525252005\times (3z^2-1)$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{21}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_2^1(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-\displaystyle\frac{1}{2}\sqrt{\frac{15}{\pi}}xz$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-1.0925484305920792\times xz$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{22}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_2^2(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$\displaystyle\frac{1}{4}\sqrt{\frac{15}{\pi}}(x^2-y^2)$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$0.5462742152960396\times (x^2-y^2)$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{3,-3}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_3^{-3}(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-\displaystyle\frac{1}{8}\sqrt{\frac{70}{\pi}}y(3x^2-y^2)$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-0.5900435899266435\times y(3x^2-y^2)$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{3,-2}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_3^{-2}(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$\displaystyle\frac{1}{2}\sqrt{\frac{105}{\pi}}xyz$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$2.890611442640554\times xyz$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{3,-1}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_3^{-1}(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-\displaystyle\frac{1}{8}\sqrt{\frac{42}{\pi}}y(5z^2-1)$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-0.4570457994644658\times y(5z^2-1)$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{30}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_3^0(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$\displaystyle\frac{1}{4}\sqrt{\frac{7}{\pi}}z(5z^2-3)$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$0.3731763325901154\times z(5z^2-3)$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{31}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_3^1(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-\displaystyle\frac{1}{8}\sqrt{\frac{42}{\pi}}x(5z^2-1)$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-0.4570457994644658\times x(5z^2-1)$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{32}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_3^2(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$\displaystyle\frac{1}{4}\sqrt{\frac{105}{\pi}}z(x^2-y^2)$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$1.445305721320277\times z(x^2-y^2)$&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_{33}(\bm{n})$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\mathcal{Y}_3^3(\bm{n})$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-\displaystyle\frac{1}{8}\sqrt{\frac{70}{\pi}}x(x^2-3y^2)$&lt;/td&gt;
           &lt;td style=&#34;text-align: center&#34;&gt;$-0.5900435899266435\times x(x^2-3y^2)$&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;p&gt;  这是在实球谐函数一侧进行合成的方法。但是我们还需要将其换算到RGB通道参数。为了方便合成与分解（减少精度损失），3DGS采用如下变换联系实球谐函数和RGB通道参数：&lt;/p&gt;
+&lt;span id=&#34;20241005133050CST&#34;&gt;&lt;/span&gt;$$
+f_i(\bm{n})_{SH}=\frac{f_i(\bm{n})_{RGB}-0.5}{\mathcal{Y}_0^0(\bm{n})}
+\tag{11}
+    $$
+&lt;p&gt;  在初始化的时候，3DGS将 $C_0^0(i)$ 初始化成稀疏点云中的RGB通道值（需要通过上式变换到球谐函数侧），其他参数均初始化为0。&lt;/p&gt;
+&lt;h4 id=&#34;透明度&#34;&gt;透明度
+&lt;/h4&gt;&lt;p&gt;  除了位置、形状和颜色，每个3D高斯椭球还有一个透明度参数 $\alpha$ 。这个参数现在暂时不用过多介绍，在讲渲染的时候会讲清楚它的作用。初始化的时候，每个3D高斯椭球的不透明度均被初始化成&lt;/p&gt;
+&lt;span id=&#34;20241005134418CST&#34;&gt;&lt;/span&gt;$$
+\alpha_0=\ln\frac{0.1}{1-0.1}=-2.197224577336219
+\tag{12}
+    $$
 </description>
         </item>
         <item>
