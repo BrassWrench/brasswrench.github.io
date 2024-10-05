@@ -9,11 +9,11 @@
         <copyright>黄铜扳手</copyright>
         <lastBuildDate>Fri, 04 Oct 2024 23:19:07 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/3d-gaussian-splatting/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>三维重建（一）：3D高斯泼溅算法</title>
-        <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/</link>
+        <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/</link>
         <pubDate>Mon, 23 Sep 2024 19:43:18 +0800</pubDate>
         
-        <guid>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/</guid>
-        <description>&lt;img src="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/topic_3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg" alt="Featured image of post 三维重建（一）：3D高斯泼溅算法" /&gt;
+        <guid>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/</guid>
+        <description>&lt;img src="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg" alt="Featured image of post 三维重建（一）：3D高斯泼溅算法" /&gt;
 
 
 
@@ -213,7 +213,7 @@
 &lt;h4 id=&#34;3d高斯椭球&#34;&gt;3D高斯椭球
 &lt;/h4&gt;&lt;p&gt;  在概率论中我们已经学到了&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论“还未上线~&#39;)&#34;&gt;多维高斯分布&lt;/a&gt;的表达式如下：&lt;/p&gt;
 &lt;span id=&#34;20241003225449CST&#34;&gt;&lt;/span&gt;$$
-f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\sqrt{\left(2\pi\right)^3|\bm{\Sigma}|}}\exp \left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
+f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}\right|}}\exp \left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
 \tag{1}
     $$
 &lt;p&gt;  其中 $\bm{\mu}$ 是均值， $\bm{\Sigma}$ 是协方差矩阵，它是对称且正定的。在三维空间中，我们将这么一个三维高斯分布叫做一个&lt;strong&gt;3D高斯椭球&lt;/strong&gt;。&lt;/p&gt;
@@ -390,11 +390,58 @@ f_i(\bm{n})_{SH}=\frac{f_i(\bm{n})_{RGB}-0.5}{\mathcal{Y}_0^0(\bm{n})}
     $$
 &lt;p&gt;  在初始化的时候，3DGS将 $C_0^0(i)$ 初始化成稀疏点云中的RGB通道值（需要通过上式变换到球谐函数侧），其他参数均初始化为0。&lt;/p&gt;
 &lt;h4 id=&#34;透明度&#34;&gt;透明度
-&lt;/h4&gt;&lt;p&gt;  除了位置、形状和颜色，每个3D高斯椭球还有一个透明度参数 $\alpha$ 。这个参数现在暂时不用过多介绍，在讲渲染的时候会讲清楚它的作用。初始化的时候，每个3D高斯椭球的不透明度均被初始化成&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  除了位置、形状和颜色，每个3D高斯椭球还有一个透明度参数 $\alpha$ 。这个参数现在暂时不用过多介绍，在讲渲染的时候会讲清楚它的作用。初始化的时候，每个3D高斯椭球的透明度均被初始化成&lt;/p&gt;
 &lt;span id=&#34;20241005134418CST&#34;&gt;&lt;/span&gt;$$
 \alpha_0=\ln\frac{0.1}{1-0.1}=-2.197224577336219
 \tag{12}
     $$
+&lt;h3 id=&#34;渲染&#34;&gt;渲染
+&lt;/h3&gt;&lt;p&gt;  得到一组3D高斯椭球集之后，我们需要把他渲染出来。渲染操作的输入是3D高斯椭球集的各个参数和相机参数，输出是相机看到的图片。首先，我们需要将3D高斯椭球集投影到相机对应的2D平面内，然后再采用可微分块光栅化的办法进行渲染。&lt;/p&gt;
+&lt;h4 id=&#34;投影&#34;&gt;投影
+&lt;/h4&gt;&lt;p&gt;  如何将3D高斯椭球投影到2D平面进行渲染中非常重要的关键点。首先我们来证明一个重要的结论：&lt;br&gt;
+  &lt;span id=&#34;20241006001351CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;结论1&lt;/strong&gt;：多维高斯分布的概率分布函数 $\displaystyle f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)$ ，对仿射变换 $u=\phi(\bm{x})=\bm{M}\bm{x}+\bm{c}$ ，有&lt;/p&gt;
+&lt;span id=&#34;20241006001745CST&#34;&gt;&lt;/span&gt;$$
+f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{u}|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)
+\tag{13}
+    $$
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;）&lt;/strong&gt;：由上式和&lt;a class=&#34;link&#34; href=&#34;#20241003225449CST&#34;&gt;式1&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241006002545CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+&amp;\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{u}|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)\\
+=&amp;\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\phi(\bm{x})|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)\\
+=&amp;\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{M}\bm{x}+\bm{c}|\bm{M}\bm{\mu}+\bm{c},\bm{M}\bm{\Sigma}\bm{M}^T\right)\\
+=&amp;\frac{1}{\left|\bm{M}^{-1}\right|}\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{M}\bm{\Sigma}\bm{M}^T\right|}}\exp\left(-\frac{1}{2}\left(\left(\bm{M}\bm{x}+\bm{c}\right)-\left(\bm{M}\bm{\mu}+\bm{c}\right)\right)^{T}(\bm{M}\bm{\Sigma}\bm{M}^T)^{-1}\left(\left(\bm{M}\bm{x}+\bm{c}\right)-\left(\bm{M}\bm{\mu}+\bm{c}\right)\right)\right)\\
+\end{aligned}
+\tag{14}
+    $$
+&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等代数”还未上线~&#39;)&#34;&gt; $|AB|=|A||B|$ &lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等代数”还未上线~&#39;)&#34;&gt; $|A^T|=|A|$ &lt;/a&gt;，对系数部分有&lt;/p&gt;
+&lt;span id=&#34;20241006011029CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+&amp;\frac{1}{\left|\bm{M}^{-1}\right|}\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{M}\bm{\Sigma}\bm{M}^T\right|}}\\
+=&amp;\frac{1}{\sqrt{\left|\bm{M}^{-1}\right|^2\left(2\pi\right)^3\left|\bm{M}\right|\left|\bm{\Sigma}\right|\left|\bm{M}^T\right|}}\\
+=&amp;\frac{1}{\sqrt{\left|\bm{M}^{-1}\right|^2\left(2\pi\right)^3\left|\bm{M}\right|\left|\bm{\Sigma}\right|\left|\bm{M}\right|}}\\
+=&amp;\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{M}^{-1}\right|\left|\bm{M}\right|\left|\bm{\Sigma}\right|\left|\bm{M}^{-1}\right|\left|\bm{M}\right|}}\\
+=&amp;\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{M}^{-1}\bm{M}\right|\left|\bm{\Sigma}\right|\left|\bm{M}^{-1}\bm{M}\right|}}\\
+=&amp;\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}\right|}}
+\end{aligned}
+\tag{15}
+    $$
+&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等代数”还未上线~&#39;)&#34;&gt; $(AB)^{-1}=B^{-1}A^{-1}$ &lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等代数”还未上线~&#39;)&#34;&gt; $(AB)^T=B^TA^T$ &lt;/a&gt;，对指数部分有&lt;/p&gt;
+&lt;span id=&#34;20241006011115CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+&amp;\exp\left(-\frac{1}{2}\left(\left(\bm{M}\bm{x}+\bm{c}\right)-\left(\bm{M}\bm{\mu}+\bm{c}\right)\right)^{T}(\bm{M}\bm{\Sigma}\bm{M}^T)^{-1}\left(\left(\bm{M}\bm{x}+\bm{c}\right)-\left(\bm{M}\bm{\mu}+\bm{c}\right)\right)\right)\\
+=&amp;\exp\left(-\frac{1}{2}\left(\bm{M}\left(\bm{x}-\bm{\mu}\right)\right)^{T}\left(\bm{M}^T\right)^{-1}\bm{\Sigma}^{-1}\bm{M}^{-1}\bm{M}\left(\bm{x}-\bm{\mu}\right)\right)\\
+=&amp;\exp\left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^T\bm{M}^T\left(\bm{M}^T\right)^{-1}\bm{\Sigma}^{-1}\bm{M}^{-1}\bm{M}\left(\bm{x}-\bm{\mu}\right)\right)\\
+=&amp;\exp\left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^T\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)\\
+\end{aligned}
+\tag{16}
+    $$
+&lt;p&gt;  综上可得&lt;/p&gt;
+&lt;span id=&#34;20241006013540CST&#34;&gt;&lt;/span&gt;$$
+\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{u}|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}\right|}}\exp\left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^T\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)=f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)
+\tag{17}
+    $$
+&lt;p&gt;  证毕。&lt;/p&gt;
 </description>
         </item>
         
