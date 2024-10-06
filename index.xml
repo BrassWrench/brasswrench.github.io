@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 06 Oct 2024 23:32:10 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 07 Oct 2024 01:08:39 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>特殊函数（一）：函数的无穷级数和无穷乘积展开</title>
         <link>https://www.brasswrench.com/posts/mathematics/special_functions/infinite_expansions/</link>
         <pubDate>Sun, 06 Oct 2024 22:21:34 +0800</pubDate>
@@ -43,7 +43,7 @@
 \frac{te^{xt}}{e^t-1}=\sum_{n=0}^{\infin}\frac{t^n}{n!}\varphi_n(x)
 \tag{1}
     $$
-&lt;p&gt;  左方的函数称为Bernoulli多项式的&lt;strong&gt;生成函数&lt;/strong&gt;。级数在 $|t|&amp;lt;2\pi$ 时收敛，因为左方函数离 $t=0$ 最近的奇点是 $t=\pm 2\pi i$ （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“复变函数”还未上线~&#39;)&#34;&gt;复变函数&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;  左方的函数称为Bernoulli多项式的&lt;strong&gt;生成函数&lt;/strong&gt;。级数在 $|t|&amp;lt;2\pi$ 时收敛，因为左方函数离 $t=0$ 最近的奇点是 $t=\pm 2\pi i$ （ $|t|&amp;lt;2\pi$ 时没有奇点故收敛）。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -596,6 +596,24 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\le
 \tag{17}
     $$
 &lt;p&gt;  证毕。&lt;/p&gt;
+&lt;p&gt;  我们先将3D高斯椭球从世界坐标系下变换到相机坐标系下（只是平移和旋转）。这个变换可以写为&lt;/p&gt;
+&lt;span id=&#34;20241006235447CST&#34;&gt;&lt;/span&gt;$$
+\bm{x}^{\prime\prime}=\phi^{\prime\prime}(\bm{x})=\bm{W}\bm{x}+\bm{b}
+\tag{18}
+    $$
+&lt;p&gt;  其中 $\bm{W}$ 和 $\bm{b}$ 可以由相机坐标系的旋转矩阵 $\bm{R}$ 和位置坐标 $\bm{t}$ 得来。&lt;/p&gt;
+&lt;span id=&#34;20241007001846CST&#34;&gt;&lt;/span&gt;$$
+\bm{W}=\bm{R}^T\\[5pt]
+\bm{b}=-\bm{R}^T\bm{t}
+\tag{19}
+    $$
+&lt;p&gt;  使用&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;，我们可以得到经过该变换后的期望值 $\bm{\mu}^{\prime\prime}$ 协方差矩阵 $\bm{\Sigma}^{\prime\prime}$&lt;/p&gt;
+&lt;span id=&#34;20241007005219CST&#34;&gt;&lt;/span&gt;$$
+\bm{\mu}^{\prime\prime}=\phi(\bm{\mu})\\[5pt]
+\bm{\Sigma}^{\prime\prime}=\bm{W}\bm{\Sigma}\bm{W}^T
+\tag{20}
+    $$
+&lt;p&gt;  然后，在相机坐标系下，我们需要使用一个&lt;strong&gt;透视变换&lt;/strong&gt;将其变换到视图坐标系（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机图形学”还未上线~&#39;)&#34;&gt;透视变换&lt;/a&gt;）&lt;/p&gt;
 </description>
         </item>
         <item>
