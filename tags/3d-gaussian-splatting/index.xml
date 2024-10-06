@@ -383,9 +383,9 @@ f_i(\bm{n})_{SH}=&amp;\sum_{l=0}^{3}\sum_{-l}^{l}C_l^m(i)\mathcal{Y}_l^m(\bm{n})
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;  这是在实球谐函数一侧进行合成的方法。但是我们还需要将其换算到RGB通道参数。为了方便合成与分解（减少精度损失），3DGS采用如下变换联系实球谐函数和RGB通道参数：&lt;/p&gt;
+&lt;p&gt;  这是在实球谐函数一侧进行合成的方法。但是我们还需要将其换算到RGB通道参数。为了方便合成与分解（减少精度损失）和让展开更对称，3DGS采用如下变换联系实球谐函数和RGB通道参数：&lt;/p&gt;
 &lt;span id=&#34;20241005133050CST&#34;&gt;&lt;/span&gt;$$
-f_i(\bm{n})_{SH}=\frac{f_i(\bm{n})_{RGB}-0.5}{\mathcal{Y}_0^0(\bm{n})}
+f_i(\bm{n})_{SH}=f_i(\bm{n})_{RGB}-0.5
 \tag{11}
     $$
 &lt;p&gt;  在初始化的时候，3DGS将 $C_0^0(i)$ 初始化成稀疏点云中的RGB通道值（需要通过上式变换到球谐函数侧），其他参数均初始化为0。&lt;/p&gt;
