@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 07 Oct 2024 01:08:39 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 07 Oct 2024 01:34:49 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>三维重建（一）：3D高斯泼溅算法</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/</link>
         <pubDate>Mon, 23 Sep 2024 19:43:18 +0800</pubDate>
@@ -459,7 +459,18 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\le
 \bm{\Sigma}^{\prime\prime}=\bm{W}\bm{\Sigma}\bm{W}^T
 \tag{20}
     $$
-&lt;p&gt;  然后，在相机坐标系下，我们需要使用一个&lt;strong&gt;透视变换&lt;/strong&gt;将其变换到视图坐标系（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机图形学”还未上线~&#39;)&#34;&gt;透视变换&lt;/a&gt;）&lt;/p&gt;
+&lt;p&gt;  然后，在相机坐标系下，我们需要使用一个&lt;strong&gt;透视变换&lt;/strong&gt;将其变换到视图坐标系（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机图形学”还未上线~&#39;)&#34;&gt;透视变换&lt;/a&gt;）。注意3DGS使用了和UnrealEngine相同的左手坐标系。&lt;/p&gt;
+&lt;span id=&#34;20241007011830CST&#34;&gt;&lt;/span&gt;$$
+\bm{M}=
+\begin{pmatrix}
+\displaystyle\frac{2z_{near}}{x_{right}-x_{left}} &amp; 0 &amp; \displaystyle\frac{x_{right}+x_{left}}{x_{right}-x_{left}} &amp; 0 \\[20pt]
+0 &amp; \displaystyle\frac{2z_{near}}{y_{top}-y_{bottom}} &amp; \displaystyle\frac{y_{top}+y_{bottom}}{y_{top}-y_{bottom}} &amp; 0\\[20pt]
+0 &amp; 0 &amp; \displaystyle\frac{z_{far}}{z_{far}-z_{near}} &amp; \displaystyle-\frac{z_{far}z_{near}}{z_{far}-z_{near}}\\[20pt]
+0 &amp; 0 &amp; 1 &amp; 0
+\end{pmatrix}
+\tag{21}
+    $$
+&lt;p&gt;  该矩阵是在&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机图形学”还未上线~&#39;)&#34;&gt;齐次坐标&lt;/a&gt;下的矩阵，所以是4维的。其三维变换不是仿射变换，但我们可以尝试写出它。由 $\bm{P}^{\prime}=\bm{M}\bm{P}$ 得&lt;/p&gt;
 </description>
         </item>
         
