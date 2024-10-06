@@ -398,7 +398,7 @@ f_i(\bm{n})_{SH}=\frac{f_i(\bm{n})_{RGB}-0.5}{\mathcal{Y}_0^0(\bm{n})}
 &lt;h3 id=&#34;渲染&#34;&gt;渲染
 &lt;/h3&gt;&lt;p&gt;  得到一组3D高斯椭球集之后，我们需要把他渲染出来。渲染操作的输入是3D高斯椭球集的各个参数和相机参数，输出是相机看到的图片。首先，我们需要将3D高斯椭球集投影到相机对应的2D平面内，然后再采用可微分块光栅化的办法进行渲染。&lt;/p&gt;
 &lt;h4 id=&#34;投影&#34;&gt;投影
-&lt;/h4&gt;&lt;p&gt;  如何将3D高斯椭球投影到2D平面进行渲染中非常重要的关键点。首先我们来证明一个重要的结论：&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  如何将3D高斯椭球投影到2D平面进行渲染是3DGS中非常重要的关键点。首先我们来证明一个重要的结论：&lt;br&gt;
   &lt;span id=&#34;20241006001351CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;结论1&lt;/strong&gt;：多维高斯分布的概率分布函数 $\displaystyle f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)$ ，对仿射变换 $u=\phi(\bm{x})=\bm{M}\bm{x}+\bm{c}$ ，有&lt;/p&gt;
 &lt;span id=&#34;20241006001745CST&#34;&gt;&lt;/span&gt;$$
 f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{u}|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)
