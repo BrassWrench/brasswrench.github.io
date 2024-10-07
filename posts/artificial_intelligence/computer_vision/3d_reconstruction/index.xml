@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 07 Oct 2024 13:01:50 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 07 Oct 2024 15:29:28 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>三维重建（一）：3D高斯泼溅算法</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/</link>
         <pubDate>Mon, 23 Sep 2024 19:43:18 +0800</pubDate>
@@ -209,11 +209,11 @@
 &lt;/h2&gt;&lt;h3 id=&#34;运动结构恢复&#34;&gt;运动结构恢复
 &lt;/h3&gt;&lt;p&gt;  由于该步骤并不是3D Gaussian Splatting的主要内容（详细请见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机视觉”还未上线~&#39;)&#34;&gt;运动结构恢复&lt;/a&gt;），而且已经有较成熟的算法和软件可以实现这部分内容（例如COLMAP），因此在此不做过多介绍。&lt;/p&gt;
 &lt;h3 id=&#34;3d高斯椭球集的创建及描述&#34;&gt;3D高斯椭球集的创建及描述
-&lt;/h3&gt;&lt;p&gt;  拿到相机的位置、姿态和稀疏点云后，就可以开始创建初始的3D高斯椭球集。描述一个3D高斯椭球需要四种信息：位置、形状、颜色和透明度。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  拿到相机的位置、姿态和稀疏点云后，就可以开始创建初始的3D高斯椭球集。描述一个3D高斯椭球需要四种信息：位置、形状、颜色和不透明度。&lt;/p&gt;
 &lt;h4 id=&#34;3d高斯椭球&#34;&gt;3D高斯椭球
 &lt;/h4&gt;&lt;p&gt;  在概率论中我们已经学到了&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论“还未上线~&#39;)&#34;&gt;多维高斯分布&lt;/a&gt;的表达式如下：&lt;/p&gt;
 &lt;span id=&#34;20241003225449CST&#34;&gt;&lt;/span&gt;$$
-f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}\right|}}\exp \left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
+f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}\right|}}\exp\left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
 \tag{1}
     $$
 &lt;p&gt;  其中 $\bm{\mu}$ 是均值， $\bm{\Sigma}$ 是协方差矩阵，它是对称且正定的。在三维空间中，我们将这么一个三维高斯分布叫做一个&lt;strong&gt;3D高斯椭球&lt;/strong&gt;。&lt;/p&gt;
@@ -389,12 +389,14 @@ f_i(\bm{n})_{SH}=f_i(\bm{n})_{RGB}-0.5
 \tag{11}
     $$
 &lt;p&gt;  在初始化的时候，3DGS将 $C_0^0(i)$ 初始化成稀疏点云中的RGB通道值（需要通过上式变换到球谐函数侧），其他参数均初始化为0。&lt;/p&gt;
-&lt;h4 id=&#34;透明度&#34;&gt;透明度
-&lt;/h4&gt;&lt;p&gt;  除了位置、形状和颜色，每个3D高斯椭球还有一个透明度参数 $\alpha$ 。这个参数现在暂时不用过多介绍，在讲渲染的时候会讲清楚它的作用。初始化的时候，每个3D高斯椭球的透明度均被初始化成&lt;/p&gt;
-&lt;span id=&#34;20241005134418CST&#34;&gt;&lt;/span&gt;$$
-\alpha_0=\ln\frac{0.1}{1-0.1}=-2.197224577336219
+&lt;span id=&#34;20241007152703CST&#34;&gt;&lt;/span&gt;
+&lt;h4 id=&#34;不透明度&#34;&gt;不透明度
+&lt;/h4&gt;&lt;p&gt;  除了位置、形状和颜色，每个3D高斯椭球还有一个不透明度参数 $\omicron$ 。此时对于某个点 $(x,y,z)$ ，其不透明度为：&lt;/p&gt;
+&lt;span id=&#34;20241007145425CST&#34;&gt;&lt;/span&gt;$$
+\alpha(x,y,z)=\omicron\cdot\exp\left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
 \tag{12}
     $$
+&lt;p&gt;  这个不透明度会在下文渲染部分仔细讲解。初始化的时候，每个3D高斯椭球的透明度均被初始化成 $0.1$ 。&lt;/p&gt;
 &lt;h3 id=&#34;渲染&#34;&gt;渲染
 &lt;/h3&gt;&lt;p&gt;  得到一组3D高斯椭球集之后，我们需要把他渲染出来。渲染操作的输入是3D高斯椭球集的各个参数和相机参数，输出是相机看到的图片。首先，我们需要将3D高斯椭球集投影到相机对应的2D平面内，然后再采用可微分块光栅化的办法进行渲染。&lt;/p&gt;
 &lt;h4 id=&#34;投影&#34;&gt;投影
@@ -558,7 +560,19 @@ z^{\prime\prime}
 \bm{\Sigma}^{\prime}==\bm{J}\bm{W}\bm{\Sigma}\bm{W}^T\bm{J}^T
 \tag{28}
     $$
-&lt;p&gt;   $\bm{\mu}$ 按照点坐标规则变换就行。这样我们就将3D高斯椭球变换到了视图坐标系内。&lt;/p&gt;
+&lt;p&gt;   $\bm{\mu}$ 按照点坐标规则变换就行。这样我们就将3D高斯椭球变换到了视图坐标系内。但是，在3DGS算法中， $\bm{\Sigma}^{\prime}$ 实际上是 $2\times 2$ 的2D形式，也就是忽略 $z$ 坐标而直接投影到了 $xy$ 平面。这也很简单，把&lt;a class=&#34;link&#34; href=&#34;#20241007114146CST&#34;&gt;式28&lt;/a&gt;中的 $\bm{J}$ 的第三行去掉，变成 $2 \times 3$ 的矩阵，此时容易验证&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;仍然适用。此时得到的 $\bm{\Sigma}^{\prime}$ 就是投影到 $xy$ 平面上的2D矩阵了。&lt;/p&gt;
+&lt;h4 id=&#34;着色&#34;&gt;着色
+&lt;/h4&gt;&lt;p&gt;  3DGS采用的是&lt;strong&gt;Alpha-Blending&lt;/strong&gt;着色技术。假设我们让视图平面某个点 $(x,y)$ 对N个高斯进行采样，那么该点的颜色为&lt;/p&gt;
+&lt;span id=&#34;20241007150621CST&#34;&gt;&lt;/span&gt;$$
+C(x,y)=\sum_{i=1}^{N}c_i(x,y)\alpha_i(x,y)\prod_{j=1}^{i-1}(1-\alpha_j(x,y))
+\tag{29}
+    $$
+&lt;p&gt;  这N个高斯按照距离相机由近到远（视图坐标系下 $z^{\prime}$ 从小到大）的顺序排序。 $c_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的颜色（在世界坐标系下用&lt;a class=&#34;link&#34; href=&#34;#20241005000157CST&#34;&gt;式10&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241005133050CST&#34;&gt;式11&lt;/a&gt;求出）。 $\alpha_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的不透明度，在二维平面中&lt;a class=&#34;link&#34; href=&#34;#20241007145425CST&#34;&gt;式12&lt;/a&gt;也适用，因此有&lt;/p&gt;
+&lt;span id=&#34;20241007152146CST&#34;&gt;&lt;/span&gt;$$
+\alpha_i(x^{\prime},y^{\prime})=\omicron_i\cdot\exp\left(-\frac{1}{2}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)^{T}\left(\bm{\Sigma}^{\prime}\right)^{-1}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)\right)
+\tag{30}
+    $$
+&lt;p&gt;   $\omicron_i$ 就是由&lt;a class=&#34;link&#34; href=&#34;#20241007152703CST&#34;&gt;不透明度&lt;/a&gt;定义的第 $i$ 个3D高斯椭球的不透明度。注意，&lt;a class=&#34;link&#34; href=&#34;#20241007150621CST&#34;&gt;式29&lt;/a&gt;中的 $C(x,y)$ 是三个RGB通道各自的颜色值，取值范围为 $[0,1]$ 。也就是三个RGB通道各自独立混合后，再一起作为 $(x,y)$ 点处的颜色。&lt;/p&gt;
 </description>
         </item>
         
