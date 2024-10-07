@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 07 Oct 2024 17:51:52 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 07 Oct 2024 22:26:52 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>特殊函数（一）：函数的无穷级数和无穷乘积展开</title>
         <link>https://www.brasswrench.com/posts/mathematics/special_functions/infinite_expansions/</link>
         <pubDate>Sun, 06 Oct 2024 22:21:34 +0800</pubDate>
@@ -615,7 +615,7 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\le
 \bm{\Sigma}^{\prime\prime}=\bm{W}\bm{\Sigma}\bm{W}^T
 \tag{20}
     $$
-&lt;p&gt;  然后，在相机坐标系下，我们需要使用一个&lt;strong&gt;透视变换&lt;/strong&gt;将其变换到视图坐标系（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机图形学”还未上线~&#39;)&#34;&gt;透视变换&lt;/a&gt;）。注意3DGS使用了和UnrealEngine相同的左手坐标系。&lt;/p&gt;
+&lt;p&gt;  然后，在相机坐标系下，我们需要使用一个&lt;strong&gt;透视变换&lt;/strong&gt;将其变换到图像坐标系（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机图形学”还未上线~&#39;)&#34;&gt;透视变换&lt;/a&gt;）。注意3DGS使用了和UnrealEngine相同的左手坐标系。&lt;/p&gt;
 &lt;span id=&#34;20241007011830CST&#34;&gt;&lt;/span&gt;$$
 \bm{M}=
 \begin{pmatrix}
@@ -714,21 +714,23 @@ z^{\prime\prime}
 \bm{\Sigma}^{\prime}==\bm{J}\bm{W}\bm{\Sigma}\bm{W}^T\bm{J}^T
 \tag{28}
     $$
-&lt;p&gt;   $\bm{\mu}$ 按照点坐标规则变换就行。这样我们就将3D高斯椭球变换到了视图坐标系内。但是，在3DGS算法中， $\bm{\Sigma}^{\prime}$ 实际上是 $2\times 2$ 的2D形式，也就是忽略 $z$ 坐标而直接投影到了 $xy$ 平面。这也很简单，把&lt;a class=&#34;link&#34; href=&#34;#20241007114146CST&#34;&gt;式28&lt;/a&gt;中的 $\bm{J}$ 的第三行去掉，变成 $2 \times 3$ 的矩阵，此时容易验证&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;仍然适用。此时得到的 $\bm{\Sigma}^{\prime}$ 就是投影到 $xy$ 平面上的2D矩阵了。&lt;/p&gt;
+&lt;p&gt;   $\bm{\mu}$ 按照点坐标规则变换就行。这样我们就将3D高斯椭球变换到了图像坐标系内。但是，在3DGS算法中， $\bm{\Sigma}^{\prime}$ 实际上是 $2\times 2$ 的2D形式，也就是忽略 $z$ 坐标而直接投影到了 $xy$ 平面。这也很简单，把&lt;a class=&#34;link&#34; href=&#34;#20241007114146CST&#34;&gt;式28&lt;/a&gt;中的 $\bm{J}$ 的第三行去掉，变成 $2 \times 3$ 的矩阵，此时容易验证&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;仍然适用。此时得到的 $\bm{\Sigma}^{\prime}$ 就是投影到 $xy$ 平面上的2D矩阵了。&lt;/p&gt;
 &lt;h4 id=&#34;着色&#34;&gt;着色
-&lt;/h4&gt;&lt;p&gt;  3DGS采用的是&lt;strong&gt;Alpha-Blending&lt;/strong&gt;着色算法。假设我们让视图平面某个点 $(x,y)$ 对N个高斯进行采样，那么该点的颜色为&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  3DGS采用的是&lt;strong&gt;Alpha-Blending&lt;/strong&gt;和&lt;strong&gt;体渲染光线行进&lt;/strong&gt;着色算法。假设我们让视图平面某个点 $(x,y)$ 对N个高斯进行采样，那么该点的颜色为&lt;/p&gt;
 &lt;span id=&#34;20241007150621CST&#34;&gt;&lt;/span&gt;$$
 C(x,y)=\sum_{i=1}^{N}c_i(x,y)\alpha_i(x,y)\prod_{j=1}^{i-1}(1-\alpha_j(x,y))
 \tag{29}
     $$
-&lt;p&gt;  这N个高斯按照世界坐标系下距离 $(x,y)$ 由近到远的顺序排序。 $c_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的颜色（在世界坐标系下用&lt;a class=&#34;link&#34; href=&#34;#20241005000157CST&#34;&gt;式10&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241005133050CST&#34;&gt;式11&lt;/a&gt;求出）。 $\alpha_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的不透明度，在二维平面中&lt;a class=&#34;link&#34; href=&#34;#20241007145425CST&#34;&gt;式12&lt;/a&gt;也适用，因此有&lt;/p&gt;
+&lt;p&gt;  这N个高斯按照世界坐标系下与 $(x,y)$ 的距离（&lt;strong&gt;深度&lt;/strong&gt;）由近到远的顺序排序。 $c_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的颜色（在世界坐标系下用&lt;a class=&#34;link&#34; href=&#34;#20241005000157CST&#34;&gt;式10&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241005133050CST&#34;&gt;式11&lt;/a&gt;求出）。 $\alpha_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的不透明度，在二维平面中&lt;a class=&#34;link&#34; href=&#34;#20241007145425CST&#34;&gt;式12&lt;/a&gt;也适用，因此有&lt;/p&gt;
 &lt;span id=&#34;20241007152146CST&#34;&gt;&lt;/span&gt;$$
 \alpha_i(x^{\prime},y^{\prime})=\omicron_i\cdot\exp\left(-\frac{1}{2}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)^{T}\left(\bm{\Sigma}^{\prime}\right)^{-1}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)\right)
 \tag{30}
     $$
 &lt;p&gt;   $\omicron_i$ 就是由&lt;a class=&#34;link&#34; href=&#34;#20241007152703CST&#34;&gt;不透明度&lt;/a&gt;定义的第 $i$ 个3D高斯椭球的不透明度。注意，&lt;a class=&#34;link&#34; href=&#34;#20241007150621CST&#34;&gt;式29&lt;/a&gt;中的 $C(x,y)$ 是三个RGB通道各自的颜色值，取值范围为 $[0,1]$ 。也就是三个RGB通道各自独立混合后，再一起作为 $(x,y)$ 点处的颜色。&lt;/p&gt;
 &lt;h4 id=&#34;分块&#34;&gt;分块
-&lt;/h4&gt;</description>
+&lt;/h4&gt;&lt;p&gt;  如果对于每个像素，相对所有高斯（2D）都进行一次光线行进，那这将耗费巨大的计算资源而且还不一定能起到很好的效果。因此，3DGS提出了一种&lt;strong&gt;分块渲染&lt;/strong&gt;的方法。其思想是将屏幕分成每个大小为 $16\times 16$ 像素的块，在渲染每个块中的像素的时候只考虑和这个块有交叠的高斯。对于不同的块，可以采用&lt;strong&gt;并行计算&lt;/strong&gt;的方法加快渲染速度。&lt;br&gt;
+  那么该如何判断某个高斯与某个块是否有交叠呢？首先，这个高斯必须位于相机的视锥内部，这样可以预先排除掉很大一部分高斯。判断某个高斯是否在视锥内部的方法也很简单，只需要判断其在图像坐标系下 $(x,y)$ 坐标是否在取景框内即可。&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>操作系统（一）：操作系统引论</title>
