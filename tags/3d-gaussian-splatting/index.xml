@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 07 Oct 2024 01:34:49 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/3d-gaussian-splatting/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 07 Oct 2024 11:43:27 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/3d-gaussian-splatting/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>三维重建（一）：3D高斯泼溅算法</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/</link>
         <pubDate>Mon, 23 Sep 2024 19:43:18 +0800</pubDate>
@@ -470,7 +470,82 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\le
 \end{pmatrix}
 \tag{21}
     $$
-&lt;p&gt;  该矩阵是在&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机图形学”还未上线~&#39;)&#34;&gt;齐次坐标&lt;/a&gt;下的矩阵，所以是4维的。其三维变换不是仿射变换，但我们可以尝试写出它。由 $\bm{P}^{\prime}=\bm{M}\bm{P}$ 得&lt;/p&gt;
+&lt;p&gt;  该矩阵是在&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机图形学”还未上线~&#39;)&#34;&gt;齐次坐标&lt;/a&gt;下的变换矩阵，所以是4维的。其中， $z_{near}$ 是近平面， $z_{far}$ 是远平面， $y_{top},y_{bottom},x_{left},x_{right}$ 分别是相机取景框的上下左右边框。可以将其用 $x,y$ 轴的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“计算机图形学”还未上线~&#39;)&#34;&gt;视场角&lt;/a&gt;表示&lt;/p&gt;
+&lt;span id=&#34;20241007110054CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+&amp;x_{right}=z_{near}\tan\left(\frac{fov_x}{2}\right)\\[5pt]
+&amp;x_{left}=-x_{right}\\[5pt]
+&amp;y_{top}=z_{near}\tan\left(\frac{fov_y}{2}\right)\\[5pt]
+&amp;y_{bottom}=-y_{top}
+\end{aligned}
+\tag{22}
+    $$
+&lt;p&gt;  透视变换的三维形式不是仿射变换，但我们可以尝试写出它。对于 $\bm{P}^{\prime\prime}=(x^{\prime\prime},y^{\prime\prime},z^{\prime\prime},1)^T$ ，由 $\bm{P}^{\prime}=\bm{M}\bm{P}^{\prime\prime}$ 得&lt;/p&gt;
+&lt;span id=&#34;20241007105619CST&#34;&gt;&lt;/span&gt;$$
+\bm{P}^{\prime}=
+\begin{pmatrix}
+\displaystyle\frac{2z_{near}}{x_{right}-x_{left}}x^{\prime\prime}+\displaystyle\frac{x_{right}+x_{left}}{x_{right}-x_{left}}z^{\prime\prime}\\[20pt]
+\displaystyle\frac{2z_{near}}{y_{top}-y_{bottom}}y^{\prime\prime}+\displaystyle\frac{y_{top}+y_{bottom}}{y_{top}-y_{bottom}}z^{\prime\prime}\\[20pt]
+\displaystyle\frac{z_{far}}{z_{far}-z_{near}}z^{\prime\prime}\displaystyle-\frac{z_{far}z_{near}}{z_{far}-z_{near}}\\[20pt]
+z^{\prime\prime}
+\end{pmatrix}
+\tag{23}
+    $$
+&lt;p&gt;  将其齐次化后可得&lt;/p&gt;
+&lt;span id=&#34;20241007111414CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+x^{\prime}=&amp;\displaystyle\frac{2z_{near}}{x_{right}-x_{left}}\frac{x^{\prime\prime}}{z^{\prime\prime}}+\displaystyle\frac{x_{right}+x_{left}}{x_{right}-x_{left}}\\[20pt]
+y^{\prime}=&amp;\displaystyle\frac{2z_{near}}{y_{top}-y_{bottom}}\frac{y^{\prime\prime}}{z^{\prime\prime}}+\displaystyle\frac{y_{top}+y_{bottom}}{y_{top}-y_{bottom}}\\[20pt]
+z^{\prime}=&amp;\displaystyle\frac{z_{far}}{z_{far}-z_{near}}-\displaystyle\frac{z_{far}z_{near}}{z_{far}-z_{near}}\frac{1}{z^{\prime\prime}}
+\end{aligned}
+\tag{24}
+    $$
+&lt;p&gt;  这不是一个仿射变换。但是，考虑到3D高斯椭球都很小，我们可以将右端的式子在 $\bm{\mu}^{\prime\prime}=\phi(\bm{\mu})$ 处展开。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”多元函数部分还未上线~&#39;)&#34;&gt;多元函数展开&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;20241007112255CST&#34;&gt;&lt;/span&gt;$$
+\begin{pmatrix}
+x^{\prime}\\
+y^{\prime}\\
+z^{\prime}
+\end{pmatrix}
+=\bm{\mu}^{\prime\prime}+\bm{J}(\bm{\mu}^{\prime\prime})
+\begin{pmatrix}
+x^{\prime\prime}\\
+y^{\prime\prime}\\
+z^{\prime\prime}
+\end{pmatrix}
+\tag{25}
+    $$
+&lt;p&gt;  其中 $\bm{J}(\bm{\mu}^{\prime\prime})$ 是上述变换的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;Jacobi矩阵&lt;/a&gt;。具体来说对&lt;a class=&#34;link&#34; href=&#34;#20241007111414CST&#34;&gt;式24&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;20241007112854CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+\bm{J}(\bm{\mu}^{\prime\prime})=&amp;
+\left.
+\begin{pmatrix}
+\displaystyle\frac{\partial x^{\prime}}{\partial x^{\prime\prime}} &amp;
+\displaystyle\frac{\partial x^{\prime}}{\partial y^{\prime\prime}} &amp;
+\displaystyle\frac{\partial x^{\prime}}{\partial z^{\prime\prime}}\\[10pt]
+\displaystyle\frac{\partial y^{\prime}}{\partial x^{\prime\prime}} &amp;
+\displaystyle\frac{\partial y^{\prime}}{\partial y^{\prime\prime}} &amp;
+\displaystyle\frac{\partial y^{\prime}}{\partial z^{\prime\prime}}\\[10pt]
+\displaystyle\frac{\partial z^{\prime}}{\partial x^{\prime\prime}} &amp;
+\displaystyle\frac{\partial z^{\prime}}{\partial y^{\prime\prime}} &amp;
+\displaystyle\frac{\partial z^{\prime}}{\partial z^{\prime\prime}}\\[10pt]
+\end{pmatrix}
+\right._{\bm{x}^{\prime\prime}=\bm{\mu}^{\prime\prime}}
+\end{aligned}
+\tag{26}
+    $$
+&lt;p&gt;  这样就可以把透视变换近似为一个仿射变换。因此可以使用&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;20241007113916CST&#34;&gt;&lt;/span&gt;$$
+\bm{\Sigma}^{\prime}=\bm{J}\bm{\Sigma}^{\prime\prime}\bm{J}^T
+\tag{27}
+    $$
+&lt;p&gt;  综合&lt;a class=&#34;link&#34; href=&#34;#20241007005219CST&#34;&gt;式20&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241007113916CST&#34;&gt;式27&lt;/a&gt;可得在相机视角下&lt;/p&gt;
+&lt;span id=&#34;20241007114146CST&#34;&gt;&lt;/span&gt;$$
+\bm{\Sigma}^{\prime}==\bm{J}\bm{W}\bm{\Sigma}\bm{W}^T\bm{J}^T
+\tag{28}
+    $$
+&lt;p&gt;   $\bm{\mu}$ 按照点坐标规则变换就行。&lt;/p&gt;
 </description>
         </item>
         
