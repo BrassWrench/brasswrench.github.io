@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='3D Gaussian Splatting' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-10-07T15:29:28&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='3D Gaussian Splatting' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-10-07T17:51:52&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
 <meta name="twitter:title" content="三维重建（一）：3D高斯泼溅算法">
 <meta name="twitter:description" content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
@@ -605,6 +605,7 @@
           <ol>
             <li><a href="#投影">投影</a></li>
             <li><a href="#着色">着色</a></li>
+            <li><a href="#分块">分块</a></li>
           </ol>
         </li>
       </ol>
@@ -942,7 +943,7 @@
 </svg>
 
             <time class="article-words">
-                4023 字
+                4017 字
             </time>
         </div>
 
@@ -1540,18 +1541,19 @@ z^{\prime\prime}
     $$
 <p>   $\bm{\mu}$ 按照点坐标规则变换就行。这样我们就将3D高斯椭球变换到了视图坐标系内。但是，在3DGS算法中， $\bm{\Sigma}^{\prime}$ 实际上是 $2\times 2$ 的2D形式，也就是忽略 $z$ 坐标而直接投影到了 $xy$ 平面。这也很简单，把<a class="link" href="#20241007114146CST">式28</a>中的 $\bm{J}$ 的第三行去掉，变成 $2 \times 3$ 的矩阵，此时容易验证<a class="link" href="#20241006001351CST">结论1</a>仍然适用。此时得到的 $\bm{\Sigma}^{\prime}$ 就是投影到 $xy$ 平面上的2D矩阵了。</p>
 <h4 id="着色">着色
-</h4><p>  3DGS采用的是<strong>Alpha-Blending</strong>着色技术。假设我们让视图平面某个点 $(x,y)$ 对N个高斯进行采样，那么该点的颜色为</p>
+</h4><p>  3DGS采用的是<strong>Alpha-Blending</strong>着色算法。假设我们让视图平面某个点 $(x,y)$ 对N个高斯进行采样，那么该点的颜色为</p>
 <span id="20241007150621CST"></span>$$
 C(x,y)=\sum_{i=1}^{N}c_i(x,y)\alpha_i(x,y)\prod_{j=1}^{i-1}(1-\alpha_j(x,y))
 \tag{29}
     $$
-<p>  这N个高斯按照距离相机由近到远（视图坐标系下 $z^{\prime}$ 从小到大）的顺序排序。 $c_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的颜色（在世界坐标系下用<a class="link" href="#20241005000157CST">式10</a>和<a class="link" href="#20241005133050CST">式11</a>求出）。 $\alpha_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的不透明度，在二维平面中<a class="link" href="#20241007145425CST">式12</a>也适用，因此有</p>
+<p>  这N个高斯按照世界坐标系下距离 $(x,y)$ 由近到远的顺序排序。 $c_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的颜色（在世界坐标系下用<a class="link" href="#20241005000157CST">式10</a>和<a class="link" href="#20241005133050CST">式11</a>求出）。 $\alpha_i(x^{\prime},y^{\prime})$ 是第 $i$ 个高斯在 $(x^{\prime},y^{\prime})$ 处的不透明度，在二维平面中<a class="link" href="#20241007145425CST">式12</a>也适用，因此有</p>
 <span id="20241007152146CST"></span>$$
 \alpha_i(x^{\prime},y^{\prime})=\omicron_i\cdot\exp\left(-\frac{1}{2}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)^{T}\left(\bm{\Sigma}^{\prime}\right)^{-1}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)\right)
 \tag{30}
     $$
 <p>   $\omicron_i$ 就是由<a class="link" href="#20241007152703CST">不透明度</a>定义的第 $i$ 个3D高斯椭球的不透明度。注意，<a class="link" href="#20241007150621CST">式29</a>中的 $C(x,y)$ 是三个RGB通道各自的颜色值，取值范围为 $[0,1]$ 。也就是三个RGB通道各自独立混合后，再一起作为 $(x,y)$ 点处的颜色。</p>
-
+<h4 id="分块">分块
+</h4>
     </div>
 </section>
 
@@ -1590,7 +1592,7 @@ C(x,y)=\sum_{i=1}^{N}c_i(x,y)\alpha_i(x,y)\prod_{j=1}^{i-1}(1-\alpha_j(x,y))
 
 
         <span>
-            最后更新于 Oct 07, 2024 15:29 CST
+            最后更新于 Oct 07, 2024 17:51 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1713,7 +1715,7 @@ C(x,y)=\sum_{i=1}^{N}c_i(x,y)\alpha_i(x,y)\prod_{j=1}^{i-1}(1-\alpha_j(x,y))
             
             
         
-        <span>本图书馆累计发布了6篇文章 共32149字</span>
+        <span>本图书馆累计发布了6篇文章 共32143字</span>
     </section>
 
     <section class="site-visit-count">
