@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 07 Oct 2024 22:26:52 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 07 Oct 2024 23:39:55 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>三维重建（一）：3D高斯泼溅算法</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/</link>
         <pubDate>Mon, 23 Sep 2024 19:43:18 +0800</pubDate>
@@ -38,7 +38,7 @@
 &lt;/h1&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;p&gt;  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，&lt;strong&gt;3D高斯泼溅算法（3D Gaussian Splatting，简称3DGS）&lt;/strong&gt;‌作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。&lt;br&gt;
   3D高斯泼溅算法的创新在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯球，利用三维高斯函数的数学性质，将离散的数据点或体素转换为可视化的效果。这一过程中，三维高斯球的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。&lt;br&gt;
-  对比 Nerf 和传统的 Mesh：一个是纯连续的、隐式表达在可微空间内；一个是纯离散的（虽然可以插值）、显式表达在三维空间内，3D高斯是在离散和连续间的一个平衡：在高斯球内部是连续的、可微的；在整个空间中，每个高斯球又是离散的。&lt;br&gt;
+  对比NeRF和传统的Mesh：一个是纯连续的、隐式表达在可微空间内；一个是纯离散的（虽然可以插值）、显式表达在三维空间内，3D高斯是在离散和连续间的一个平衡：在高斯球内部是连续的、可微的；在整个空间中，每个高斯球又是离散的。&lt;br&gt;
   本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。&lt;/p&gt;
 &lt;h2 id=&#34;算法框架&#34;&gt;算法框架
 &lt;/h2&gt;&lt;p&gt;  3DGS的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。&lt;/p&gt;
@@ -575,7 +575,14 @@ C(x,y)=\sum_{i=1}^{N}c_i(x,y)\alpha_i(x,y)\prod_{j=1}^{i-1}(1-\alpha_j(x,y))
 &lt;p&gt;   $\omicron_i$ 就是由&lt;a class=&#34;link&#34; href=&#34;#20241007152703CST&#34;&gt;不透明度&lt;/a&gt;定义的第 $i$ 个3D高斯椭球的不透明度。注意，&lt;a class=&#34;link&#34; href=&#34;#20241007150621CST&#34;&gt;式29&lt;/a&gt;中的 $C(x,y)$ 是三个RGB通道各自的颜色值，取值范围为 $[0,1]$ 。也就是三个RGB通道各自独立混合后，再一起作为 $(x,y)$ 点处的颜色。&lt;/p&gt;
 &lt;h4 id=&#34;分块&#34;&gt;分块
 &lt;/h4&gt;&lt;p&gt;  如果对于每个像素，相对所有高斯（2D）都进行一次光线行进，那这将耗费巨大的计算资源而且还不一定能起到很好的效果。因此，3DGS提出了一种&lt;strong&gt;分块渲染&lt;/strong&gt;的方法。其思想是将屏幕分成每个大小为 $16\times 16$ 像素的块，在渲染每个块中的像素的时候只考虑和这个块有交叠的高斯。对于不同的块，可以采用&lt;strong&gt;并行计算&lt;/strong&gt;的方法加快渲染速度。&lt;br&gt;
-  那么该如何判断某个高斯与某个块是否有交叠呢？首先，这个高斯必须位于相机的视锥内部，这样可以预先排除掉很大一部分高斯。判断某个高斯是否在视锥内部的方法也很简单，只需要判断其在图像坐标系下 $(x,y)$ 坐标是否在取景框内即可。&lt;/p&gt;
+  那么该如何判断某个高斯与某个块是否有交叠呢？首先得确定它的边界。3DGS采用 $99\%$ 作为置信区间，也就是以概率为 $99\%$ 作为边界。即&lt;/p&gt;
+&lt;span id=&#34;20241007230616CST&#34;&gt;&lt;/span&gt;$$
+f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}^\prime\right|}}\exp\left(-\frac{1}{2}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)^{T}\left(\bm{\Sigma}^{\prime}\right)^{-1}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)\right)=0.99
+\tag{31}
+    $$
+&lt;p&gt;  由于 $\bm{\Sigma}^\prime$ 是正定矩阵，因此这是一个椭圆。椭圆方程可以被求出来，再结合某个块的四条边的参数，就可以判断出是否交叠。（当然，在实际代码中并没有采用上述椭圆方程的求法，也没有采用传统的椭圆和矩形的碰撞检测算法，因为这样会增加不必要的计算量，因此在3DGS的代码实现中将2D高斯的碰撞箱简化为了一个矩形，再用这个矩形做碰撞判断，具体见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，代码解析还没写到~&#39;)&#34;&gt;代码&lt;/a&gt;）。&lt;br&gt;
+  我们先对所有高斯做一个预处理。对于我们需要处理的高斯，首先，这个高斯必须位于相机的视锥内部（或与其相交），这样可以预先排除掉很大一部分高斯。然后，这个高斯不能距离摄像机过近或过远（一般来说，会将 $z^\prime$ 控制在某一个区间内）。最后再执行判断这个高斯与某个块是否有交叠的操作。&lt;br&gt;
+  接下来的问题是如何得到与某个块有交叠的所有高斯，并按照深度进行排序方便进行着色。&lt;/p&gt;
 </description>
         </item>
         
