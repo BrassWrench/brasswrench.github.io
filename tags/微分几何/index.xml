@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 08 Oct 2024 22:35:13 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 08 Oct 2024 23:55:48 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclidean空间与向量函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -79,6 +79,67 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 |AB|+|BC|\ge|AC|
 \tag{8}
     $$
+&lt;p&gt;  向量 $\bm{a}$ 的长度 $|\bm{a}|$ 定义为代表它的有向线段 $\bm{a}=\overrightarrow{AB}$ 的&lt;strong&gt;长度&lt;/strong&gt;。这样，向量 $\bm{a}$ 与实数 $c$ 的乘积 $c\cdot\bm{a}$ 可以定义为与 $\bm{a}$ &lt;strong&gt;平行&lt;/strong&gt;的向量。当 $c&amp;gt;0$ 时 $c\cdot\bm{a}$ 与 $\bm{a}$ 同向，当 $c&amp;lt;0$ 时 $c\cdot\bm{a}$ 与 $\bm{a}$ 反向，并且 $c\cdot\bm{a}$ 的长度 $|c\cdot\bm{a}|$ 是 $\bm{a}$ 的长度 $|\bm{a}|$ 的 $|c|$ 倍；当 $c=0$ 时， $c\cdot\bm{a}=0$ 。容易验证，向量与实数的乘法遵循下面的运算规则&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241008225439CST&#34;&gt;&lt;/span&gt;$$
+\lambda(\bm{a}+\bm{b})=\lambda\bm{a}+\lambda\bm{b}
+\tag{9}
+    $$
+&lt;span id=&#34;20241008230110CST&#34;&gt;&lt;/span&gt;$$
+(\lambda+\mu)\bm{a}=\lambda\bm{a}+\mu\bm{a}
+\tag{10}
+    $$
+&lt;span id=&#34;20241008230202CST&#34;&gt;&lt;/span&gt;$$
+(\lambda\mu)\bm{a}=\lambda(\mu\bm{a})
+\tag{11}
+    $$&lt;/p&gt;
+&lt;p&gt;  其中 $\lambda,\mu$ 是任意实数。&lt;br&gt;
+  向量 $\bm{a}$ 和 $\bm{b}$ 的&lt;strong&gt;点乘&lt;/strong&gt; $\bm{a}\cdot\bm{b}$ 定义为实数&lt;/p&gt;
+&lt;span id=&#34;20241008230417CST&#34;&gt;&lt;/span&gt;$$
+\bm{a}\cdot\bm{b}=|\bm{a}|\cdot|\bm{b}|\cdot\cos\angle(\bm{a},\bm{b})
+\tag{12}
+    $$
+&lt;p&gt;  很明显，向量的点乘遵循下面的运算法则&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241008230515CST&#34;&gt;&lt;/span&gt;$$
+\bm{c}\cdot(\bm{a}+\bm{b})=\bm{c}\cdot\bm{a}+\bm{c}\cdot\bm{b}
+\tag{13}
+    $$
+&lt;span id=&#34;20241008230543CST&#34;&gt;&lt;/span&gt;$$
+(\lambda\bm{a})\cdot\bm{b}=\lambda(\bm{a}\cdot\bm{b})
+\tag{14}
+    $$
+&lt;span id=&#34;20241008230618CST&#34;&gt;&lt;/span&gt;$$
+\bm{a}\cdot\bm{b}=\bm{b}\cdot\bm{a}
+\tag{15}
+    $$&lt;/p&gt;
+&lt;p&gt;  由此可见&lt;/p&gt;
+&lt;span id=&#34;20241008230724CST&#34;&gt;&lt;/span&gt;$$
+|\bm{a}|^2=\bm{a}\cdot\bm{a}\ge0
+\tag{16}
+    $$
+&lt;p&gt;  当向量 $\bm{a}$ 和向量 $\bm{b}$ 平行时，规定它们的&lt;strong&gt;叉乘&lt;/strong&gt;为零向量。当 $\bm{a}$ 和 $\bm{}$ 不平行时，规定向量 $\bm{}$ 和 $\bm{b}$ 的&lt;strong&gt;叉乘&lt;/strong&gt; $\bm{a}\times\bm{b}$ 是与已知向量 $ \bm{a}$ 和 $ \bm{b}$ 都垂直的一个向量，其长度等于向量 $\bm{a}$ 和 $\bm{}$ 所张成的平行四边形的面积，即&lt;/p&gt;
+&lt;span id=&#34;20241008231025CST&#34;&gt;&lt;/span&gt;$$
+|\bm{a}\times \bm{b}|=|\bm{a}|\cdot|\bm{b}|\sin\angle(\bm{a},\bm{b})
+\tag{17}
+    $$
+&lt;p&gt;  并且它和 $\bm{a},\bm{b}$ 构成右手系。容易验证，向量的叉乘遵循下面的运算法则&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241008231144CST&#34;&gt;&lt;/span&gt;$$
+\bm{c}\times(\bm{a}+\bm{b})=\bm{c}\times\bm{a}+\bm{c}\times\bm{b}
+\tag{18}
+    $$
+&lt;span id=&#34;20241008231535CST&#34;&gt;&lt;/span&gt;
+    $$
+(\lambda\bm{a})\times\bm{b}=\lambda(\bm{a}\times\bm{b})
+$$
+&lt;span id=&#34;20241008231557CST&#34;&gt;&lt;/span&gt;
+    $$
+\bm{a}\times\bm{b}=-\bm{b}\times\bm{a}
+$$&lt;/p&gt;
+&lt;p&gt;  根据定义，向量 $\bm{a}$ 和 $\bm{b}$ 平行的充分必要条件是&lt;/p&gt;
+&lt;span id=&#34;20241008231650CST&#34;&gt;&lt;/span&gt;
+    $$
+\bm{a}\times\bm{b}=\bm{0}
+$$
+&lt;p&gt;  在 $E^3$ 中取定不共面的4个点，把其中一点记作 $O$ ，把另外三点分别记为 $A,B,C$ ，于是得到由一点 $O$ 和 $3$ 个不共面的向量 $\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}$ 构成的图形 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 。这样的一个图形称为 $E^3$ 中的一个&lt;strong&gt;标架&lt;/strong&gt;，其中点 $O$ 称为该标架的&lt;strong&gt;原点&lt;/strong&gt;。在 $E^3$ 中取定一个标架 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 之后，则空间 $E^3$ 中的任意一点 $P$ 可以唯一地表示为 $3$ 个有序的实数 $(x,y,z)$ 。事实上，从点 $P$ 出发可以作唯一的一个平面与平面 $OBC$ 平行，它和直线 $OA$ 有唯一的交点，记为 $P_1$ ，那么向量 $\overrightarrow{OP_1}$ 与 $\overrightarrow{OA}$ 共线，于是有实数 $x$ ，使得 $\overrightarrow{OP_1}=x\space\overrightarrow{OA}$ 。&lt;/p&gt;
 </description>
         </item>
         

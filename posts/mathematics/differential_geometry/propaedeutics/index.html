@@ -131,7 +131,7 @@
 <meta property='og:description' content="具有Euclidean度量的实数向量空间及其向量函数">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='欧氏空间' /><meta property='article:tag' content='向量函数' /><meta property='article:published_time' content='2024-10-08T15:55:08&#43;08:00'/><meta property='article:modified_time' content='2024-10-08T22:35:13&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/figures/image.zh-cn.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='欧氏空间' /><meta property='article:tag' content='向量函数' /><meta property='article:published_time' content='2024-10-08T15:55:08&#43;08:00'/><meta property='article:modified_time' content='2024-10-08T23:55:48&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/figures/image.zh-cn.svg' />
 <meta name="twitter:title" content="微分几何（一）：Euclidean空间与向量函数">
 <meta name="twitter:description" content="具有Euclidean度量的实数向量空间及其向量函数"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/figures/image.zh-cn.svg' />
@@ -902,7 +902,7 @@
 </svg>
 
             <time class="article-words">
-                1052 字
+                1590 字
             </time>
         </div>
 
@@ -917,7 +917,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -1017,6 +1017,67 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 |AB|+|BC|\ge|AC|
 \tag{8}
     $$
+<p>  向量 $\bm{a}$ 的长度 $|\bm{a}|$ 定义为代表它的有向线段 $\bm{a}=\overrightarrow{AB}$ 的<strong>长度</strong>。这样，向量 $\bm{a}$ 与实数 $c$ 的乘积 $c\cdot\bm{a}$ 可以定义为与 $\bm{a}$ <strong>平行</strong>的向量。当 $c&gt;0$ 时 $c\cdot\bm{a}$ 与 $\bm{a}$ 同向，当 $c&lt;0$ 时 $c\cdot\bm{a}$ 与 $\bm{a}$ 反向，并且 $c\cdot\bm{a}$ 的长度 $|c\cdot\bm{a}|$ 是 $\bm{a}$ 的长度 $|\bm{a}|$ 的 $|c|$ 倍；当 $c=0$ 时， $c\cdot\bm{a}=0$ 。容易验证，向量与实数的乘法遵循下面的运算规则</p>
+<p><span id="20241008225439CST"></span>$$
+\lambda(\bm{a}+\bm{b})=\lambda\bm{a}+\lambda\bm{b}
+\tag{9}
+    $$
+<span id="20241008230110CST"></span>$$
+(\lambda+\mu)\bm{a}=\lambda\bm{a}+\mu\bm{a}
+\tag{10}
+    $$
+<span id="20241008230202CST"></span>$$
+(\lambda\mu)\bm{a}=\lambda(\mu\bm{a})
+\tag{11}
+    $$</p>
+<p>  其中 $\lambda,\mu$ 是任意实数。<br>
+  向量 $\bm{a}$ 和 $\bm{b}$ 的<strong>点乘</strong> $\bm{a}\cdot\bm{b}$ 定义为实数</p>
+<span id="20241008230417CST"></span>$$
+\bm{a}\cdot\bm{b}=|\bm{a}|\cdot|\bm{b}|\cdot\cos\angle(\bm{a},\bm{b})
+\tag{12}
+    $$
+<p>  很明显，向量的点乘遵循下面的运算法则</p>
+<p><span id="20241008230515CST"></span>$$
+\bm{c}\cdot(\bm{a}+\bm{b})=\bm{c}\cdot\bm{a}+\bm{c}\cdot\bm{b}
+\tag{13}
+    $$
+<span id="20241008230543CST"></span>$$
+(\lambda\bm{a})\cdot\bm{b}=\lambda(\bm{a}\cdot\bm{b})
+\tag{14}
+    $$
+<span id="20241008230618CST"></span>$$
+\bm{a}\cdot\bm{b}=\bm{b}\cdot\bm{a}
+\tag{15}
+    $$</p>
+<p>  由此可见</p>
+<span id="20241008230724CST"></span>$$
+|\bm{a}|^2=\bm{a}\cdot\bm{a}\ge0
+\tag{16}
+    $$
+<p>  当向量 $\bm{a}$ 和向量 $\bm{b}$ 平行时，规定它们的<strong>叉乘</strong>为零向量。当 $\bm{a}$ 和 $\bm{}$ 不平行时，规定向量 $\bm{}$ 和 $\bm{b}$ 的<strong>叉乘</strong> $\bm{a}\times\bm{b}$ 是与已知向量 $ \bm{a}$ 和 $ \bm{b}$ 都垂直的一个向量，其长度等于向量 $\bm{a}$ 和 $\bm{}$ 所张成的平行四边形的面积，即</p>
+<span id="20241008231025CST"></span>$$
+|\bm{a}\times \bm{b}|=|\bm{a}|\cdot|\bm{b}|\sin\angle(\bm{a},\bm{b})
+\tag{17}
+    $$
+<p>  并且它和 $\bm{a},\bm{b}$ 构成右手系。容易验证，向量的叉乘遵循下面的运算法则</p>
+<p><span id="20241008231144CST"></span>$$
+\bm{c}\times(\bm{a}+\bm{b})=\bm{c}\times\bm{a}+\bm{c}\times\bm{b}
+\tag{18}
+    $$
+<span id="20241008231535CST"></span>
+    $$
+(\lambda\bm{a})\times\bm{b}=\lambda(\bm{a}\times\bm{b})
+$$
+<span id="20241008231557CST"></span>
+    $$
+\bm{a}\times\bm{b}=-\bm{b}\times\bm{a}
+$$</p>
+<p>  根据定义，向量 $\bm{a}$ 和 $\bm{b}$ 平行的充分必要条件是</p>
+<span id="20241008231650CST"></span>
+    $$
+\bm{a}\times\bm{b}=\bm{0}
+$$
+<p>  在 $E^3$ 中取定不共面的4个点，把其中一点记作 $O$ ，把另外三点分别记为 $A,B,C$ ，于是得到由一点 $O$ 和 $3$ 个不共面的向量 $\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}$ 构成的图形 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 。这样的一个图形称为 $E^3$ 中的一个<strong>标架</strong>，其中点 $O$ 称为该标架的<strong>原点</strong>。在 $E^3$ 中取定一个标架 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 之后，则空间 $E^3$ 中的任意一点 $P$ 可以唯一地表示为 $3$ 个有序的实数 $(x,y,z)$ 。事实上，从点 $P$ 出发可以作唯一的一个平面与平面 $OBC$ 平行，它和直线 $OA$ 有唯一的交点，记为 $P_1$ ，那么向量 $\overrightarrow{OP_1}$ 与 $\overrightarrow{OA}$ 共线，于是有实数 $x$ ，使得 $\overrightarrow{OP_1}=x\space\overrightarrow{OA}$ 。</p>
 
     </div>
 </section>
@@ -1060,7 +1121,7 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 
 
         <span>
-            最后更新于 Oct 08, 2024 22:35 CST
+            最后更新于 Oct 08, 2024 23:55 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1186,7 +1247,7 @@ x=x(t),\quad y=y(t),\quad z=z(t)
             
             
         
-        <span>本图书馆累计发布了7篇文章 共38527字</span>
+        <span>本图书馆累计发布了7篇文章 共39045字</span>
     </section>
 
     <section class="site-visit-count">
