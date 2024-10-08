@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 08 Oct 2024 22:09:03 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 08 Oct 2024 22:35:13 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclidean空间与向量函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -47,8 +47,38 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 \tag{2}
     $$
 &lt;p&gt;  在本章，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclidean空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclidean空间中标架的概念，为在三维Euclidean空间中研究曲线和曲面做好准备。&lt;/p&gt;
-&lt;h2 id=&#34;三维欧氏空间中的标架&#34;&gt;三维欧氏空间中的标架
-&lt;/h2&gt;&lt;p&gt;  通常把我们所处的空间称为&lt;strong&gt;三维Euclidean空间&lt;/strong&gt;。确切的说，所谓的三维Euclidean空间 $E^3$ 是一个非空的集合，其中的元素称为“点”，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 $E^3$ 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的平行公理&lt;/p&gt;
+&lt;h2 id=&#34;三维euclidean空间中的标架&#34;&gt;三维Euclidean空间中的标架
+&lt;/h2&gt;&lt;p&gt;  通常把我们所处的空间称为&lt;strong&gt;三维Euclidean空间&lt;/strong&gt;。确切的说，所谓的三维Euclidean空间 $E^3$ 是一个非空的集合，其中的元素称为&lt;strong&gt;点&lt;/strong&gt;，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 $E^3$ 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的&lt;strong&gt;平行公理&lt;/strong&gt;。&lt;br&gt;
+  任意两个点 $A,B \in E^3$ 都可以连接成一条直线段 $AB$ 。指定 $A$ 为起点、 $B$ 为终点的线段 $AB$ 称为&lt;strong&gt;有向线段&lt;/strong&gt;，记作 $\overrightarrow{AB}$ 。设 $\overrightarrow{AB}$ 和 $\overrightarrow{CD}$ 是两条有向线段，如果 $ABDC$ 成为一个平行四边形，则称这两条有向线段是&lt;strong&gt;相等&lt;/strong&gt;的，记为&lt;/p&gt;
+&lt;span id=&#34;20241008221323CST&#34;&gt;&lt;/span&gt;$$
+\overrightarrow{AB}=\overrightarrow{CD}
+\tag{3}
+    $$
+&lt;p&gt;  所有相等的有向线段的集合称为一个&lt;strong&gt;向量&lt;/strong&gt;。因此，在三维Euclidean空间 $E^3$ 中，一个向量可以表示为 $E^3$ 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。&lt;br&gt;
+  按照&lt;strong&gt;三角形法则&lt;/strong&gt;，可以定义向量的加法如下：设 $\bm{a},\bm{b}$ 是两个向量，并且假定它们用有向线段 $\overrightarrow{AB}$ 和 $\overrightarrow{BC}$ 来表示，则连接 $A$ 和 $C$ 的有向线段 $\overrightarrow{AC}$ 就代表向量 $\bm{a}+\bm{b}$ 。我们把起点和终点相同的有向线段的集合称为&lt;strong&gt;零向量&lt;/strong&gt;，记为 $\bm{0}$ ，于是任意一个向量与零向量之和为该向量自身，即&lt;/p&gt;
+&lt;span id=&#34;20241008222604CST&#34;&gt;&lt;/span&gt;$$
+\bm{a}+\bm{0}=\bm{a}
+\tag{4}
+    $$
+&lt;p&gt;  另外，若向量 $a$ 用有向线段 $\overrightarrow{AB}$ 来表示，并且把有向线段 $\overrightarrow{BA}$ 所代表的向量记为 $-\bm{a}$ ，于是&lt;/p&gt;
+&lt;span id=&#34;20241008222801CST&#34;&gt;&lt;/span&gt;$$
+\bm{a}+(-\bm{a})=\bm{0}
+\tag{5}
+    $$
+&lt;p&gt;  我们把向量 $-\bm{a}$ 称为 $\bm{a}$ 的&lt;strong&gt;反向量&lt;/strong&gt;。容易验证，向量的加法遵循下面的运算法则
+&lt;span id=&#34;20241008223158CST&#34;&gt;&lt;/span&gt;$$
+\bm{a}+\bm{b}=\bm{b}+\bm{a}
+\tag{6}
+    $$
+&lt;span id=&#34;20241008223239CST&#34;&gt;&lt;/span&gt;$$
+(\bm{a}+\bm{b})+\bm{c}=\bm{a}+(\bm{b}+\bm{c})
+\tag{7}
+    $$&lt;/p&gt;
+&lt;p&gt;  在三维Euclidean空间 $E^3$ 中还规定线段 $AB$ 的长度是点 $A$ 到点 $B$ 的距离，记为 $|AB|$ ，并对于任意三点 $A,B,C$ ，下面的三角形不等式成立&lt;/p&gt;
+&lt;span id=&#34;20241008223354CST&#34;&gt;&lt;/span&gt;$$
+|AB|+|BC|\ge|AC|
+\tag{8}
+    $$
 </description>
         </item>
         <item>
