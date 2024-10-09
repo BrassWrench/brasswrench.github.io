@@ -131,7 +131,7 @@
 <meta property='og:description' content="具有Euclidean度量的实数向量空间及其向量函数">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='欧氏空间' /><meta property='article:tag' content='向量函数' /><meta property='article:published_time' content='2024-10-08T15:55:08&#43;08:00'/><meta property='article:modified_time' content='2024-10-09T12:55:03&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/figures/image.zh-cn.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='欧氏空间' /><meta property='article:tag' content='向量函数' /><meta property='article:published_time' content='2024-10-08T15:55:08&#43;08:00'/><meta property='article:modified_time' content='2024-10-10T00:56:53&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/figures/image.zh-cn.svg' />
 <meta name="twitter:title" content="微分几何（一）：Euclidean空间与向量函数">
 <meta name="twitter:description" content="具有Euclidean度量的实数向量空间及其向量函数"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/figures/image.zh-cn.svg' />
@@ -902,7 +902,7 @@
 </svg>
 
             <time class="article-words">
-                2264 字
+                2762 字
             </time>
         </div>
 
@@ -917,7 +917,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -974,135 +974,135 @@
 
 <h1 id="euclidean空间与向量函数">Euclidean空间与向量函数
 </h1><h2 id="引言">引言
-</h2><p>  我们知道，一元函数 $y=f(x)$ 的图像是一条曲线，二元函数 $z=f(x,y)$ 的图像是一张曲面。但是，把曲线和曲面表示成参数方程则更加便利于研究，这种表示方法首先是由Euler引进的。例如，在空间中取定Cartesian直角坐标系之后一条曲线可以表示为三个一元函数</p>
-<span id="20241008215458CST"></span>$$
+</h2><p>  我们知道，一元函数 \(y=f(x)\) 的图像是一条曲线，二元函数 \(z=f(x,y)\) 的图像是一张曲面。但是，把曲线和曲面表示成参数方程则更加便利于研究，这种表示方法首先是由Euler引进的。例如，在空间中取定Cartesian直角坐标系之后一条曲线可以表示为三个一元函数</p>
+<span id="20241008215458CST"></span>\[
 x=x(t),\quad y=y(t),\quad z=z(t)
 \tag{1}
-    $$
+    \]
 <p>  在向量的概念出现之后，空间中的一条曲线可以自然地表示为一个一元向量函数</p>
-<span id="20241008215554CST"></span>$$
+<span id="20241008215554CST"></span>\[
 \bm{r}=\bm{r}(t)=(x(t),y(t),z(t))
 \tag{2}
-    $$
+    \]
 <p>  在本章，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclidean空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclidean空间中标架的概念，为在三维Euclidean空间中研究曲线和曲面做好准备。</p>
 <h2 id="三维euclidean空间中的标架">三维Euclidean空间中的标架
-</h2><p>  通常把我们所处的空间称为<strong>三维Euclidean空间</strong>。确切的说，所谓的三维Euclidean空间 $E^3$ 是一个非空的集合，其中的元素称为<strong>点</strong>，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 $E^3$ 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的<strong>平行公理</strong>。<br>
-  任意两个点 $A,B \in E^3$ 都可以连接成一条直线段 $AB$ 。指定 $A$ 为起点、 $B$ 为终点的线段 $AB$ 称为<strong>有向线段</strong>，记作 $\overrightarrow{AB}$ 。设 $\overrightarrow{AB}$ 和 $\overrightarrow{CD}$ 是两条有向线段，如果 $ABDC$ 成为一个平行四边形，则称这两条有向线段是<span id="20241009104842CST"></span><strong>相等</strong>的，记为</p>
-<span id="20241008221323CST"></span>$$
+</h2><p>  通常把我们所处的空间称为<strong>三维Euclidean空间</strong>。确切的说，所谓的三维Euclidean空间 \(E^3\) 是一个非空的集合，其中的元素称为<strong>点</strong>，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 \(E^3\) 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的<strong>平行公理</strong>。<br>
+  任意两个点 \(A,B \in E^3\) 都可以连接成一条直线段 \(AB\) 。指定 \(A\) 为起点、 \(B\) 为终点的线段 \(AB\) 称为<strong>有向线段</strong>，记作 \(\overrightarrow{AB}\) 。设 \(\overrightarrow{AB}\) 和 \(\overrightarrow{CD}\) 是两条有向线段，如果 \(ABDC\) 成为一个平行四边形，则称这两条有向线段是<span id="20241009104842CST"></span><strong>相等</strong>的，记为</p>
+<span id="20241008221323CST"></span>\[
 \overrightarrow{AB}=\overrightarrow{CD}
 \tag{3}
-    $$
-<p>  所有相等的有向线段的集合称为一个<strong>向量</strong>。因此，在三维Euclidean空间 $E^3$ 中，一个向量可以表示为 $E^3$ 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。<br>
-  按照<strong>三角形法则</strong>，可以定义向量的加法如下：设 $\bm{a},\bm{b}$ 是两个向量，并且假定它们用有向线段 $\overrightarrow{AB}$ 和 $\overrightarrow{BC}$ 来表示，则连接 $A$ 和 $C$ 的有向线段 $\overrightarrow{AC}$ 就代表向量 $\bm{a}+\bm{b}$ 。我们把起点和终点相同的有向线段的集合称为<strong>零向量</strong>，记为 $\bm{0}$ ，于是任意一个向量与零向量之和为该向量自身，即</p>
-<span id="20241008222604CST"></span>$$
+    \]
+<p>  所有相等的有向线段的集合称为一个<strong>向量</strong>。因此，在三维Euclidean空间 \(E^3\) 中，一个向量可以表示为 \(E^3\) 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。<br>
+  按照<strong>三角形法则</strong>，可以定义向量的加法如下：设 \(\bm{a},\bm{b}\) 是两个向量，并且假定它们用有向线段 \(\overrightarrow{AB}\) 和 \(\overrightarrow{BC}\) 来表示，则连接 \(A\) 和 \(C\) 的有向线段 \(\overrightarrow{AC}\) 就代表向量 \(\bm{a}+\bm{b}\) 。我们把起点和终点相同的有向线段的集合称为<strong>零向量</strong>，记为 \(\bm{0}\) ，于是任意一个向量与零向量之和为该向量自身，即</p>
+<span id="20241008222604CST"></span>\[
 \bm{a}+\bm{0}=\bm{a}
 \tag{4}
-    $$
-<p>  另外，若向量 $a$ 用有向线段 $\overrightarrow{AB}$ 来表示，并且把有向线段 $\overrightarrow{BA}$ 所代表的向量记为 $-\bm{a}$ ，于是</p>
-<span id="20241008222801CST"></span>$$
+    \]
+<p>  另外，若向量 \(a\) 用有向线段 \(\overrightarrow{AB}\) 来表示，并且把有向线段 \(\overrightarrow{BA}\) 所代表的向量记为 \(-\bm{a}\) ，于是</p>
+<span id="20241008222801CST"></span>\[
 \bm{a}+(-\bm{a})=\bm{0}
 \tag{5}
-    $$
-<p>  我们把向量 $-\bm{a}$ 称为 $\bm{a}$ 的<strong>反向量</strong>。容易验证，向量的加法遵循下面的运算法则
-<span id="20241008223158CST"></span>$$
+    \]
+<p>  我们把向量 \(-\bm{a}\) 称为 \(\bm{a}\) 的<strong>反向量</strong>。容易验证，向量的加法遵循下面的运算法则
+<span id="20241008223158CST"></span>\[
 \bm{a}+\bm{b}=\bm{b}+\bm{a}
 \tag{6}
-    $$
-<span id="20241008223239CST"></span>$$
+    \]
+<span id="20241008223239CST"></span>\[
 (\bm{a}+\bm{b})+\bm{c}=\bm{a}+(\bm{b}+\bm{c})
 \tag{7}
-    $$</p>
-<p>  在三维Euclidean空间 $E^3$ 中还规定线段 $AB$ 的<strong>长度</strong>是点 $A$ 到点 $B$ 的距离，记为 $|AB|$ ，并对于任意三点 $A,B,C$ ，下面的三角形不等式成立</p>
-<span id="20241008223354CST"></span>$$
+    \]</p>
+<p>  在三维Euclidean空间 \(E^3\) 中还规定线段 \(AB\) 的<strong>长度</strong>是点 \(A\) 到点 \(B\) 的距离，记为 \(|AB|\) ，并对于任意三点 \(A,B,C\) ，下面的三角形不等式成立</p>
+<span id="20241008223354CST"></span>\[
 |AB|+|BC|\ge|AC|
 \tag{8}
-    $$
-<p>  向量 $\bm{a}$ 的<strong>长度</strong> $|\bm{a}|$ 定义为代表它的有向线段 $\bm{a}=\overrightarrow{AB}$ 的长度。这样，向量 $\bm{a}$ 与实数 $c$ 的乘积 $c\cdot\bm{a}$ 可以定义为与 $\bm{a}$ <strong>平行</strong>的向量。当 $c&gt;0$ 时 $c\cdot\bm{a}$ 与 $\bm{a}$ 同向，当 $c&lt;0$ 时 $c\cdot\bm{a}$ 与 $\bm{a}$ 反向，并且 $c\cdot\bm{a}$ 的长度 $|c\cdot\bm{a}|$ 是 $\bm{a}$ 的长度 $|\bm{a}|$ 的 $|c|$ 倍；当 $c=0$ 时， $c\cdot\bm{a}=0$ 。容易验证，向量与实数的乘法遵循下面的运算规则</p>
-<p><span id="20241008225439CST"></span>$$
+    \]
+<p>  向量 \(\bm{a}\) 的<strong>长度</strong> \(|\bm{a}|\) 定义为代表它的有向线段 \(\bm{a}=\overrightarrow{AB}\) 的长度。这样，向量 \(\bm{a}\) 与实数 \(c\) 的乘积 \(c\cdot\bm{a}\) 可以定义为与 \(\bm{a}\) <strong>平行</strong>的向量。当 \(c>0\) 时 \(c\cdot\bm{a}\) 与 \(\bm{a}\) 同向，当 \(c<0\) 时 \(c\cdot\bm{a}\) 与 \(\bm{a}\) 反向，并且 \(c\cdot\bm{a}\) 的长度 \(|c\cdot\bm{a}|\) 是 \(\bm{a}\) 的长度 \(|\bm{a}|\) 的 \(|c|\) 倍；当 \(c=0\) 时， \(c\cdot\bm{a}=0\) 。容易验证，向量与实数的乘法遵循下面的运算规则</p>
+<p><span id="20241008225439CST"></span>\[
 \lambda(\bm{a}+\bm{b})=\lambda\bm{a}+\lambda\bm{b}
 \tag{9}
-    $$
-<span id="20241008230110CST"></span>$$
+    \]
+<span id="20241008230110CST"></span>\[
 (\lambda+\mu)\bm{a}=\lambda\bm{a}+\mu\bm{a}
 \tag{10}
-    $$
-<span id="20241008230202CST"></span>$$
+    \]
+<span id="20241008230202CST"></span>\[
 (\lambda\mu)\bm{a}=\lambda(\mu\bm{a})
 \tag{11}
-    $$</p>
-<p>  其中 $\lambda,\mu$ 是任意实数。<br>
-  向量 $\bm{a}$ 和 $\bm{b}$ 的<strong>点乘</strong> $\bm{a}\cdot\bm{b}$ 定义为实数</p>
-<span id="20241008230417CST"></span>$$
+    \]</p>
+<p>  其中 \(\lambda,\mu\) 是任意实数。<br>
+  向量 \(\bm{a}\) 和 \(\bm{b}\) 的<strong>点乘</strong> \(\bm{a}\cdot\bm{b}\) 定义为实数</p>
+<span id="20241008230417CST"></span>\[
 \bm{a}\cdot\bm{b}=|\bm{a}|\cdot|\bm{b}|\cdot\cos\angle(\bm{a},\bm{b})
 \tag{12}
-    $$
+    \]
 <p>  很明显，向量的点乘遵循下面的运算法则</p>
-<p><span id="20241008230515CST"></span>$$
+<p><span id="20241008230515CST"></span>\[
 \bm{c}\cdot(\bm{a}+\bm{b})=\bm{c}\cdot\bm{a}+\bm{c}\cdot\bm{b}
 \tag{13}
-    $$
-<span id="20241008230543CST"></span>$$
+    \]
+<span id="20241008230543CST"></span>\[
 (\lambda\bm{a})\cdot\bm{b}=\lambda(\bm{a}\cdot\bm{b})
 \tag{14}
-    $$
-<span id="20241008230618CST"></span>$$
+    \]
+<span id="20241008230618CST"></span>\[
 \bm{a}\cdot\bm{b}=\bm{b}\cdot\bm{a}
 \tag{15}
-    $$</p>
+    \]</p>
 <p>  由此可见</p>
-<span id="20241008230724CST"></span>$$
+<span id="20241008230724CST"></span>\[
 |\bm{a}|^2=\bm{a}\cdot\bm{a}\ge0
 \tag{16}
-    $$
-<p>  当向量 $\bm{a}$ 和向量 $\bm{b}$ 平行时，规定它们的<strong>叉乘</strong>为零向量。当 $\bm{a}$ 和 $\bm{b}$ 不平行时，规定向量 $\bm{a}$ 和 $\bm{b}$ 的<strong>叉乘</strong> $\bm{a}\times\bm{b}$ 是与已知向量 $ \bm{a}$ 和 $ \bm{b}$ 都垂直的一个向量，其长度等于向量 $\bm{a}$ 和 $\bm{b}$ 所张成的平行四边形的面积，即</p>
-<span id="20241008231025CST"></span>$$
+    \]
+<p>  当向量 \(\bm{a}\) 和向量 \(\bm{b}\) 平行时，规定它们的<strong>叉乘</strong>为零向量。当 \(\bm{a}\) 和 \(\bm{b}\) 不平行时，规定向量 \(\bm{a}\) 和 \(\bm{b}\) 的<strong>叉乘</strong> \(\bm{a}\times\bm{b}\) 是与已知向量 \( \bm{a}\) 和 \( \bm{b}\) 都垂直的一个向量，其长度等于向量 \(\bm{a}\) 和 \(\bm{b}\) 所张成的平行四边形的面积，即</p>
+<span id="20241008231025CST"></span>\[
 |\bm{a}\times \bm{b}|=|\bm{a}|\cdot|\bm{b}|\sin\angle(\bm{a},\bm{b})
 \tag{17}
-    $$
-<p>  并且它和 $\bm{a},\bm{b}$ 构成右手系。容易验证，向量的叉乘遵循下面的运算法则</p>
-<p><span id="20241008231144CST"></span>$$
+    \]
+<p>  并且它和 \(\bm{a},\bm{b}\) 构成右手系。容易验证，向量的叉乘遵循下面的运算法则</p>
+<p><span id="20241008231144CST"></span>\[
 \bm{c}\times(\bm{a}+\bm{b})=\bm{c}\times\bm{a}+\bm{c}\times\bm{b}
 \tag{18}
-    $$
-<span id="20241008231535CST"></span>$$
+    \]
+<span id="20241008231535CST"></span>\[
 (\lambda\bm{a})\times\bm{b}=\lambda(\bm{a}\times\bm{b})
 \tag{19}
-    $$
-<span id="20241008231557CST"></span>$$
+    \]
+<span id="20241008231557CST"></span>\[
 \bm{a}\times\bm{b}=-\bm{b}\times\bm{a}
 \tag{20}
-    $$</p>
-<p>  根据定义，向量 $\bm{a}$ 和 $\bm{b}$ 平行的充分必要条件是</p>
-<span id="20241008231650CST"></span>$$
+    \]</p>
+<p>  根据定义，向量 \(\bm{a}\) 和 \(\bm{b}\) 平行的充分必要条件是</p>
+<span id="20241008231650CST"></span>\[
 \bm{a}\times\bm{b}=\bm{0}
 \tag{21}
-    $$
-<p>  在 $E^3$ 中取定不共面的4个点，把其中一点记作 $O$ ，把另外三点分别记为 $A,B,C$ ，于是得到由一点 $O$ 和 $3$ 个不共面的向量 $\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}$ 构成的图形 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 。这样的一个图形称为 $E^3$ 中的一个<strong>标架</strong>，其中点 $O$ 称为该标架的<strong>原点</strong>。在 $E^3$ 中取定一个标架 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 之后，则空间 $E^3$ 中的任意一点 $P$ 可以唯一地表示为 $3$ 个有序的实数 $(x,y,z)$ 。事实上，从点 $P$ 出发可以作唯一的一个平面与平面 $OBC$ 平行，它和直线 $OA$ 有唯一的交点，记为 $P_1$ ，那么向量 $\overrightarrow{OP_1}$ 与 $\overrightarrow{OA}$ 共线，于是有实数 $x$ ，使得 $\overrightarrow{OP_1}=x\space\overrightarrow{OA}$ 。同理，从点 $P$ 出发可以作唯一的一个平面与平面 $OAC$ 平行，它和直线 $OB$ 有唯一的交点，记为 $P_2$ ，从点 $P$ 出发可以作唯一的一个平面与平面 $OAB$ 平行，它和直线 $OC$ 有唯一的交点，记为 $P_3$ ，并且有实数 $y,z$ ，使得 $\overrightarrow{OP_2}=y\space\overrightarrow{OB}$ ， $\overrightarrow{OP_3}=z\space\overrightarrow{OC}$ ，那么</p>
-<span id="20241009093408CST"></span>$$
+    \]
+<p>  在 \(E^3\) 中取定不共面的4个点，把其中一点记作 \(O\) ，把另外三点分别记为 \(A,B,C\) ，于是得到由一点 \(O\) 和 \(3\) 个不共面的向量 \(\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}\) 构成的图形 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 。这样的一个图形称为 \(E^3\) 中的一个<strong>标架</strong>，其中点 \(O\) 称为该标架的<strong>原点</strong>。在 \(E^3\) 中取定一个标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，则空间 \(E^3\) 中的任意一点 \(P\) 可以唯一地表示为 \(3\) 个有序的实数 \((x,y,z)\) 。事实上，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OBC\) 平行，它和直线 \(OA\) 有唯一的交点，记为 \(P_1\) ，那么向量 \(\overrightarrow{OP_1}\) 与 \(\overrightarrow{OA}\) 共线，于是有实数 \(x\) ，使得 \(\overrightarrow{OP_1}=x\space\overrightarrow{OA}\) 。同理，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAC\) 平行，它和直线 \(OB\) 有唯一的交点，记为 \(P_2\) ，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAB\) 平行，它和直线 \(OC\) 有唯一的交点，记为 \(P_3\) ，并且有实数 \(y,z\) ，使得 \(\overrightarrow{OP_2}=y\space\overrightarrow{OB}\) ， \(\overrightarrow{OP_3}=z\space\overrightarrow{OC}\) ，那么</p>
+<span id="20241009093408CST"></span>\[
 \overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}=x\space\overrightarrow{OA}+y\space\overrightarrow{OB}+z\space\overrightarrow{OC}
 \tag{22}
-    $$
-<p>  因此，在 $E^3$ 中取定标架 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 之后，点 $P$ 和有序的 $3$ 个实数构成的组 $(x,y,z)$ 是一一对应的，该数组称为点 $P$ 关于已知标架 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 的<strong>坐标</strong>。</p>
-<p>  <strong>注</strong>：在此简单证明一下为什么 $\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}$ 。构造点 $P^\prime$ 使得 $\overrightarrow{OP^\prime}=\overrightarrow{P_3P}$ ，由<a class="link" href="#20241009104842CST">相等</a>的定义知 $OP_3PP^\prime$ 构成一个平行四边形，故也有 $\overrightarrow{OP_3}=\overrightarrow{P^\prime P}$ 。由 $P_3$ 的定义知 $\overrightarrow{P_3P}$ 平行于平面 $OAB$ ，因此 $OP^\prime$ 平行于平面 $OAB$ ，故 $P^\prime$ 在平面 $OAB$ 上。在平面 $OAB$ 上过 $P^\prime$ 可作唯一直线平行于直线 $OA$ ，设这条直线和直线 $OB$ 交于点 $P_2^\prime$ ，现在来证 $P_2^\prime$ 就是点 $P_2$ 。由 $P_2^\prime$ 、 $P^\prime$ 和 $P_3$ 的定义知 $\overrightarrow{P_2^\prime P^\prime}\parallel\overrightarrow{OA}$ 且 $\overrightarrow{P^\prime P}\parallel\overrightarrow{OP_3}\parallel\overrightarrow{OC}$ ，因此平面 $PP^\prime P_2^\prime$ 与平面 $OAC$ 平行。注意从 $P$ 出发只有唯一的一个平面能与平面 $OAC$ 平行，因此平面 $PP^\prime P_2^\prime$ 就是这个平面，其与直线 $OB$ 的唯一交点 $P_2^\prime$ 就是 $P_2$ 。同理可以证明类似定义的 $P_1^\prime$ 就是 $P_1$ 。故 $\overrightarrow{P_2 P^\prime}\parallel\overrightarrow{OA}\parallel\overrightarrow{OP_1}$ ， $\overrightarrow{P_1 P^\prime}\parallel\overrightarrow{OB}\parallel\overrightarrow{OP_2}$ ，因此 $OP_1P^\prime P_2$ 构成平行四边形，因此 $\overrightarrow{OP^\prime}=\overrightarrow{OP_1}+\overrightarrow{OP_2}$ 。综上所述，$\overrightarrow{OP}=\overrightarrow{OP^\prime}+\overrightarrow{P^\prime P}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}$ 。</p>
-<p>  设 $\set{O;\bm{i},\bm{j},\bm{k}}$ 是 $E^3$ 的一个标架，并且 $\bm{i},\bm{j},\bm{k}$ 是彼此垂直的、构成右手系的 $3$ 个单位向量，于是</p>
-<span id="20241009122753CST"></span>$$
+    \]
+<p>  因此，在 \(E^3\) 中取定标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，点 \(P\) 和有序的 \(3\) 个实数构成的组 \((x,y,z)\) 是一一对应的，该数组称为点 \(P\) 关于已知标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 的<strong>坐标</strong>。</p>
+<p>  <strong>注</strong>：在此简单证明一下为什么 \(\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。构造点 \(P^\prime\) 使得 \(\overrightarrow{OP^\prime}=\overrightarrow{P_3P}\) ，由<a class="link" href="#20241009104842CST">相等</a>的定义知 \(OP_3PP^\prime\) 构成一个平行四边形，故也有 \(\overrightarrow{OP_3}=\overrightarrow{P^\prime P}\) 。由 \(P_3\) 的定义知 \(\overrightarrow{P_3P}\) 平行于平面 \(OAB\) ，因此 \(OP^\prime\) 平行于平面 \(OAB\) ，故 \(P^\prime\) 在平面 \(OAB\) 上。在平面 \(OAB\) 上过 \(P^\prime\) 可作唯一直线平行于直线 \(OA\) ，设这条直线和直线 \(OB\) 交于点 \(P_2^\prime\) ，现在来证 \(P_2^\prime\) 就是点 \(P_2\) 。由 \(P_2^\prime\) 、 \(P^\prime\) 和 \(P_3\) 的定义知 \(\overrightarrow{P_2^\prime P^\prime}\parallel\overrightarrow{OA}\) 且 \(\overrightarrow{P^\prime P}\parallel\overrightarrow{OP_3}\parallel\overrightarrow{OC}\) ，因此平面 \(PP^\prime P_2^\prime\) 与平面 \(OAC\) 平行。注意从 \(P\) 出发只有唯一的一个平面能与平面 \(OAC\) 平行，因此平面 \(PP^\prime P_2^\prime\) 就是这个平面，其与直线 \(OB\) 的唯一交点 \(P_2^\prime\) 就是 \(P_2\) 。同理可以证明类似定义的 \(P_1^\prime\) 就是 \(P_1\) 。故 \(\overrightarrow{P_2 P^\prime}\parallel\overrightarrow{OA}\parallel\overrightarrow{OP_1}\) ， \(\overrightarrow{P_1 P^\prime}\parallel\overrightarrow{OB}\parallel\overrightarrow{OP_2}\) ，因此 \(OP_1P^\prime P_2\) 构成平行四边形，因此 \(\overrightarrow{OP^\prime}=\overrightarrow{OP_1}+\overrightarrow{OP_2}\) 。综上所述， \(\overrightarrow{OP}=\overrightarrow{OP^\prime}+\overrightarrow{P^\prime P}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。</p>
+<p>  设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是 \(E^3\) 的一个标架，并且 \(\bm{i},\bm{j},\bm{k}\) 是彼此垂直的、构成右手系的 \(3\) 个单位向量，于是</p>
+<span id="20241009122753CST"></span>\[
 \bm{i}\cdot\bm{i}=\bm{j}\cdot\bm{j}=\bm{k}\cdot\bm{k}=1,\quad\bm{i}\cdot\bm{j}=\bm{i}\cdot\bm{k}=\bm{j}\cdot\bm{k}=0
 \tag{23}
-    $$
+    \]
 <p>  并且</p>
-<span id="20241009123616CST"></span>$$
+<span id="20241009123616CST"></span>\[
 \bm{i}\times\bm{j}=\bm{k},\quad\bm{j}\times\bm{k}=\bm{i},\quad\bm{k}\times\bm{i}=\bm{j}
 \tag{24}
-    $$
-<p>  这样的标架称为<strong>右手单位正交标架</strong>，简称为<strong>正交标架</strong>。由正交标架给出的坐标系称为Cartesian直角坐标系。在Cartesian直角坐标系下，设向量 $\bm{a}$ 和 $\bm{b}$ 的分量分别是 $(x_1,y_1,z_1)$ 和 $(x_2,y_2,z_2)$ ，则</p>
-<p><span id="20241009123917CST"></span>$$
+    \]
+<p>  这样的标架称为<strong>右手单位正交标架</strong>，简称为<strong>正交标架</strong>。由正交标架给出的坐标系称为Cartesian直角坐标系。在Cartesian直角坐标系下，设向量 \(\bm{a}\) 和 \(\bm{b}\) 的分量分别是 \((x_1,y_1,z_1)\) 和 \((x_2,y_2,z_2)\) ，则</p>
+<p><span id="20241009123917CST"></span>\[
 \begin{aligned}
 \bm{a}\cdot\bm{b}=&(x_1\bm{i}+y_1\bm{j}+z_1\bm{k})\cdot(x_2\bm{i}+y_2\bm{j}+z_2\bm{k})\hspace{4em}\\[5pt]
 =&x_1x_2+y_1y_2+z_1z_2
 \end{aligned}
 \tag{25}
-    $$
-<span id="20241009124319CST"></span>$$
+    \]
+<span id="20241009124319CST"></span>\[
 \begin{aligned}
 \bm{a}\times\bm{b}=&(x_1\bm{i}+y_1\bm{j}+z_1\bm{k})\times(x_2\bm{i}+y_2\bm{j}+z_2\bm{k})\\[5pt]
 =&(x_1y_2-x_2y_1)(\bm{i}\times\bm{j})+(y_1z_2-y_2z_1)(\bm{j}\times\bm{k})\\[5pt]
@@ -1132,7 +1132,79 @@ x_2 & y_2 & z_2
 \end{vmatrix}
 \end{aligned}
 \tag{26}
-    $$</p>
+    \]</p>
+<p>  设点 \(A,B\) 的坐标分别是 \((x_1,y_1,z_1)\) 和 \((x_2,y_2,z_2)\) ，则线段 \(AB\) 的长度是</p>
+<span id="20241009210101CST"></span>\[
+|AB|=\sqrt{\overrightarrow{AB}\cdot\overrightarrow{AB}}=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}
+\tag{27}
+    \]
+<p>  因此，通常我们把三维Euclidean空间 \(E^3\) 写成 \(\R^3\) ，并且把 \(\R^3\) 中的向量 \((x,y,z)\) 的长度直接定义为 \(\sqrt{x^2+y^2+z^2}\) 。事实上，这样的 \(\R^3\) 是三维欧氏空间 \(E^3\) 在取定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后的具体表现形式。为简单起见，我们经常把三维Euclidean空间理解为上面所说的 \(\R^3\) 。<br>
+  现在我们来考察由 \(E^3\) 中全体正交标架所构成的集合。设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是在 \(E^3\) 中的一个固定的正交标架，则 \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 可以如下来确定</p>
+<span id="20241009210942CST"></span>\[
+\begin{cases}
+\overrightarrow{OP}=a_1\bm{i}+a_2\bm{j}+a_3\bm{k}\\[5pt]
+\bm{e}_1=a_{11}\bm{i}+a_{12}\bm{j}+a_{13}\bm{k}\\[5pt]
+\bm{e}_2=a_{21}\bm{i}+a_{22}\bm{j}+a_{23}\bm{k}\\[5pt]
+\bm{e}_3=a_{31}\bm{i}+a_{32}\bm{j}+a_{33}\bm{k}\\[5pt]
+\end{cases}
+\tag{28}
+    \]
+<p>  因为 \(\bm{e}_i\) 是彼此正交的单位向量，所以</p>
+<span id="20241009211406CST"></span>\[
+\bm{e}_i\cdot\bm{e}_j=\sum_{k=1}^{3}a_{ik}a_{jk}=\delta{ij}=
+\begin{cases}
+1,\quad i=j\\[5pt]
+0,\quad i \ne j
+\end{cases}
+\tag{29}
+    \]
+<p>  由于 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 构成右手系，所以</p>
+<span id="20241009213413CST"></span>\[
+\bm{e}_1\times\bm{e}_2=\bm{e}_3
+\tag{30}
+    \]
+<p>  因而 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 的混合积</p>
+<span id="20241009213456CST"></span>\[
+\begin{aligned}
+(\bm{e}_1,\bm{e}_2,\bm{e}_3)=&(\bm{e}_1\times\bm{e}_2)\cdot\bm{e}_3=\bm{e}_3\cdot\bm{e}_3\\[10pt]
+=&
+\begin{vmatrix}
+a_{11} & a_{12} & a_{13} \\[5pt]
+a_{21} & a_{22} & a_{23} \\[5pt]
+a_{31} & a_{32} & a_{33}
+\end{vmatrix}
+=1
+\end{aligned}
+\tag{31}
+    \]
+<p>  令</p>
+<p><span id="20241009214507CST"></span>\[
+\bm{a}=(a_1,a_2,a_3)
+\tag{32}
+    \]
+<span id="20241009214525CST"></span>\[
+\bm{A}=
+\begin{pmatrix}
+a_{11} & a_{12} & a_{13} \\[5pt]
+a_{21} & a_{22} & a_{23} \\[5pt]
+a_{31} & a_{32} & a_{33}
+\end{pmatrix}
+\tag{33}
+    \]</p>
+<p>  由<a class="link" href="#20241009211406CST">式29</a>可得 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ，由<a class="link" href="#20241009213456CST">式31</a>可得 \(|\bm{A}|=1\) ，因此 \(\bm{A}\) 是行列式为 \(1\) 的正交矩阵，即 \(A \in SO(3)\) （见<a class="link" onclick="alert('抱歉，“群论”还未上线~')">SO(3)群</a>）。在取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下， \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e_3}}\) 与矩阵 \((\bm{a},\bm{A})\) 是一一对应的，因此 \(E^3\) 中的全体正交标架的集合可以与集合 \(E^3\times SO(3)\) （<a class="link" onclick="alert('抱歉，“集合论”还未上线~')">Cartesian乘积</a>）等同起来。注意到正交矩阵的条件<a class="link" href="#20241009211406CST">式29</a>是矩阵元素 \(a_{ij}\) 所满足的 \(6\) 个关系式。</p>
+<span id="20241010000020CST"></span>\[
+\begin{cases}
+(a_{11})^2+(a_{12})^2+(a_{13})^2=1\\[5pt]
+(a_{21})^2+(a_{22})^2+(a_{33})^2=1\\[5pt]
+(a_{31})^2+(a_{32})^2+(a_{33})^2=1\\[5pt]
+a_{11}a_{21}+a_{12}a_{22}+a_{13}a_{23}=0\\[5pt]
+a_{11}a_{31}+a_{12}a_{32}+a_{13}a_{33}=0\\[5pt]
+a_{21}a_{31}+a_{22}a_{32}+a_{23}a_{33}=0\\[5pt]
+\end{cases}
+\tag{34}
+    \]
+<p>  因此，其行列式为 \(1\) 的正交矩阵的集合 \(SO(3)\)有 \(3\) 个自由度，因而 \(E^3\times SO(3)\) 是一个 \(6\) 维空间。<br>
+  在 \(E^3\) 中两个不同的正交标架给出了两个不同的Cartesian直角坐标系，设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是 \(E^3\) 中的两个正交标架。</p>
 
     </div>
 </section>
@@ -1176,7 +1248,7 @@ x_2 & y_2 & z_2
 
 
         <span>
-            最后更新于 Oct 09, 2024 12:55 CST
+            最后更新于 Oct 10, 2024 00:56 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1224,7 +1296,7 @@ x_2 & y_2 & z_2
                 "\\ge": "\\geqslant",
                 "\\le": "\\leqslant",
                 "\\geq": "\\geqslant",
-                "\\leq": "\\leqslant"
+                "\\leq": "\\leqslant",
             },
             ignoredClasses: ["gist"],
             maxExpand: 3000,
@@ -1302,7 +1374,7 @@ x_2 & y_2 & z_2
             
             
         
-        <span>本图书馆累计发布了7篇文章 共39719字</span>
+        <span>本图书馆累计发布了7篇文章 共33871字</span>
     </section>
 
     <section class="site-visit-count">

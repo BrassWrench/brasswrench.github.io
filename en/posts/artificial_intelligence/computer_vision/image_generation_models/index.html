@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="一类通过逐步添加噪声并学习逆过程以恢复原始数据分布，从而生成新数据的深度学习生成模型">
-<title>图像生成模型（一）：扩散模型</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Learn from a given data distribution and generate new image content that conform to that distribution">
+<title>Topic: Image Generation Models</title>
 
-<link rel='canonical' href='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/image_generative_model/diffusion_model/'>
+<link rel='canonical' href='https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/image_generation_models/'>
 
 <link rel="stylesheet" href="/scss/style.min.4c7414552c07b5b18843dde7bd505ba2452bd69a5641f0c83c8e422bd145d3fe.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
@@ -127,14 +127,13 @@
             });
         }
     });
-</script><meta property='og:title' content="图像生成模型（一）：扩散模型">
-<meta property='og:description' content="一类通过逐步添加噪声并学习逆过程以恢复原始数据分布，从而生成新数据的深度学习生成模型">
-<meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/image_generative_model/diffusion_model/'>
-<meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='生成模型' /><meta property='article:tag' content='扩散模型' /><meta property='article:published_time' content='2024-09-26T13:00:05&#43;08:00'/><meta property='article:modified_time' content='2024-10-08T21:07:20&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/image_generative_model/diffusion_model/figures/image.zh-cn.svg' />
-<meta name="twitter:title" content="图像生成模型（一）：扩散模型">
-<meta name="twitter:description" content="一类通过逐步添加噪声并学习逆过程以恢复原始数据分布，从而生成新数据的深度学习生成模型"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/image_generative_model/diffusion_model/figures/image.zh-cn.svg' />
+</script><meta property='og:title' content="Topic: Image Generation Models">
+<meta property='og:description' content="Learn from a given data distribution and generate new image content that conform to that distribution">
+<meta property='og:url' content='https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/image_generation_models/'>
+<meta property='og:site_name' content='Brass Wrench&#39;s Library'>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2024-10-10T00:56:53&#43;08:00 '/>
+<meta name="twitter:title" content="Topic: Image Generation Models">
+<meta name="twitter:description" content="Learn from a given data distribution and generate new image content that conform to that distribution"><link rel="alternate" type="application/rss&#43;xml" href="https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/image_generation_models/index.xml">
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-3M2EFBT99V"></script>
@@ -173,9 +172,7 @@
 </script>
 
     </head>
-    <body class="
-    article-page
-    ">
+    <body class="">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
@@ -199,7 +196,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -209,7 +206,7 @@
         
             
             <figure class="site-avatar">
-                <a href="/">
+                <a href="/en/">
                 
                     
                     
@@ -228,8 +225,8 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">黄铜扳手的图书馆</a></h1>
-            <h2 class="site-description">一片静谧之地</h2>
+            <h1 class="site-name"><a href="/en">Brass Wrench&#39;s Library</a></h1>
+            <h2 class="site-description">A quiet and peaceful place</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -337,7 +334,7 @@
         
         
         <li >
-            <a href='/' >
+            <a href='/en/' >
                 
                 
                 
@@ -351,13 +348,13 @@
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/categories/' >
+            <a href='/en/categories/' >
                 
                 
                 
@@ -372,13 +369,13 @@
 
 
                 
-                <span>分类</span>
+                <span>Categories</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/tagcloud/' >
+            <a href='/en/tagcloud/' >
                 
                 
                 
@@ -391,13 +388,13 @@
 
 
                 
-                <span>标签</span>
+                <span>Tags</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives/' >
+            <a href='/en/archives/' >
                 
                 
                 
@@ -411,13 +408,13 @@
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/search/' >
+            <a href='/en/search/' >
                 
                 
                 
@@ -430,13 +427,13 @@
 
 
                 
-                <span>搜索</span>
+                <span>Search</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/about/' >
+            <a href='/en/about/' >
                 
                 
                 
@@ -449,13 +446,13 @@
 
 
                 
-                <span>关于</span>
+                <span>About</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/message/' >
+            <a href='/en/message/' >
                 
                 
                 
@@ -466,13 +463,13 @@
     <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
 </svg>
                 
-                <span>留言</span>
+                <span>Message</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/link/' >
+            <a href='/en/link/' >
                 
                 
                 
@@ -485,7 +482,7 @@
 
 
                 
-                <span>链接</span>
+                <span>Link</span>
             </a>
         </li>
         
@@ -506,9 +503,9 @@
 
                             <select class = "language_select" name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
                                 
-                                    <option value="https://www.brasswrench.com/en/" >English</option>
+                                    <option value="https://www.brasswrench.com/en/" selected>English</option>
                                 
-                                    <option value="https://www.brasswrench.com/" selected>简体中文</option>
+                                    <option value="https://www.brasswrench.com/" >简体中文</option>
                                 
                             </select>
                         </li>
@@ -536,7 +533,7 @@
     <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
     <path d="M19 11h2m-1 -1v2" />
 </svg>
-                        <span>暗色模式</span>
+                        <span>Dark Mode</span>
                     </li>
                 
 
@@ -548,12 +545,12 @@
     <aside class="sidebar right-sidebar sticky">
         
             
-                <form action="/search/" class="search-form widget" >
+                <form action="/en/search/" class="search-form widget" >
         <p>
-            <label>搜索</label>
-            <input name="keyword" required placeholder="输入关键词..." />
+            <label>Search</label>
+            <input name="keyword" required placeholder="Type something..." />
         
-            <button title="搜索">
+            <button title="Search">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="10" cy="10" r="7" />
@@ -565,6 +562,125 @@
             </button>
         </p>
     </form>
+            
+        
+            
+                <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-infinity" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M9.828 9.172a4 4 0 1 0 0 5.656 a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828 a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Archives</h2>
+
+        
+        
+        
+        
+        
+        <div class="widget-archive--list">
+            <div class="archives-year">
+                    <a href="/en/archives/#2024-oct">
+                        
+                            <span class="year">2024 Oct</span>
+                            <span class="count">3</span>
+                        
+                    </a> 
+                </div>
+            <div class="archives-year">
+                    <a href="/en/archives/#2024-sep">
+                        
+                            <span class="year">2024 Sep</span>
+                            <span class="count">4</span>
+                        
+                    </a> 
+                </div>
+            
+        </div>
+    </section>
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">Categories</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/en/categories/mathematics/" class="font_size_3">
+                Mathematics
+            </a>
+        
+            <a href="/en/categories/artificial_intelligence/" class="font_size_1">
+                Artificial Intelligence
+            </a>
+        
+            <a href="/en/categories/computer_science/" class="font_size_1">
+                Computer Science
+            </a>
+        
+    </div>
+</section>
+
+            
+        
+            
+                <section class="widget tagCloud">
+    <div class="widget-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+    </div>
+    <h2 class="widget-title section-title">Tags</h2>
+
+    <div class="tagCloud-tags">
+        
+            <a href="/en/tags/infinite-expansions/" class="font_size_2">
+                Infinite Expansions
+            </a>
+        
+            <a href="/en/tags/c-k-equation/" class="font_size_1">
+                C-K Equation
+            </a>
+        
+            <a href="/en/tags/legendre-function/" class="font_size_1">
+                Legendre Function
+            </a>
+        
+            <a href="/en/tags/markov-chain/" class="font_size_1">
+                Markov Chain
+            </a>
+        
+            <a href="/en/tags/markov-process/" class="font_size_1">
+                Markov Process
+            </a>
+        
+            <a href="/en/tags/spherical-harmonics/" class="font_size_1">
+                Spherical Harmonics
+            </a>
+        
+    </div>
+</section>
             
         
             
@@ -615,7 +731,7 @@
             </svg>
         </div>
         <p style="font-size: 2.4rem; font-weight: bold; margin: 0;text-align:center; ">
-            <span class="shake">👋</span><span class="jump-text1">欢迎</span><span class="jump-text2">来到</span><span class="jump-text3" style="color:#e99312;">黄铜</span><span class="jump-text5" style="color:#e99312;">扳手</span><span class="jump-text6" style="color:#e99312;">的</span><span class="jump-text7" style="color:#e99312;">图书馆</span>
+            <span class="shake">👋</span><span class="jump-text1">Welcome </span><span class="jump-text2">to </span><span class="jump-text3" style="color:#e99312;">Brass </span><span class="jump-text5" style="color:#e99312;">Wrench</span><span class="jump-text6" style="color:#e99312;">&#39;s </span><span class="jump-text7" style="color:#e99312;">Library</span>
         </p>
         <div id="motto2" style="width: 200px; height: 40px; margin-left: 10px; margin-right: 10px;">
             <svg id="功夫到家" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 752 160">
@@ -750,354 +866,40 @@
     }
 </style>
 
-    <article class="has-image main-article">
-
-
-    <header class="article-header">
-    <div class="article-details">
-    
-        <header class="article-category">
+    <header>
+        <h3 class="section-title">
             
+                Computer Vision
             
-            
-            
-            
-            
-                 
-
-                     
-
-                    
-                
-            
-                 
-
-                     
-                        
-                        
-                        
-                        
-                            
-                        
-                        <a href="/categories/artificial_intelligence/" ZgotmplZ>人工智能</a>
-
-                    
-                
-            
-                 
-
-                     
-                        
-                             
-                        
-                         
-                        
-                        
-                        
-                            
-                        
-                        <a href="/posts/artificial_intelligence/computer_vision/" ZgotmplZ>计算机视觉</a>
-
-                    
-                
-            
-                 
-
-                     
-                        
-                         
-                        
-                        
-                        
-                            
-                        
-                        <a href="/posts/artificial_intelligence/computer_vision/image_generative_model/" ZgotmplZ>专题：图像生成模型</a>
-
-                    
-                
-            
-                
-            
-                
-            
-            
-                <a id="draft-tag">草稿</a>
-            
-        </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/posts/artificial_intelligence/computer_vision/image_generative_model/diffusion_model/">图像生成模型（一）：扩散模型</a>
-        </h2>
-
-        
-        <h3 class="article-subtitle">
-            一类通过逐步添加噪声并学习逆过程以恢复原始数据分布，从而生成新数据的深度学习生成模型
         </h3>
-        
-    </div>
-        <div class="article-image">
-            
-            
-            
-            
-                <svg fill="#000000" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 275 275" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path color-rendering="auto" image-rendering="auto" shape-rendering="auto" color-interpolation="sRGB" d="M37.5,0 c-19.271,0-35,15.729-35,35c0,19.271,15.729,35,35,35c7.84,0,15.093-2.604,20.939-6.99l43.93,43.932 C96.202,114.644,92.5,124.399,92.5,135c0,11.367,4.256,21.764,11.246,29.697l-50.068,55.074C49.003,216.758,43.449,215,37.5,215 c-16.509,0-30,13.491-30,30s13.491,30,30,30c16.509,0,30-13.491,30-30c0-6.968-2.409-13.393-6.428-18.498l50.07-55.074 c7.417,5.384,16.522,8.572,26.357,8.572c16.379,0,30.753-8.821,38.625-21.955l47.016,21.377c-0.414,1.796-0.641,3.661-0.641,5.578 c0,13.748,11.252,25,25,25c13.748,0,25-11.252,25-25c0-13.748-11.252-25-25-25c-8.276,0-15.642,4.083-20.199,10.328l-47.027-21.383 c1.439-4.395,2.227-9.079,2.227-13.945c0-24.794-20.206-45-45-45c-10.601,0-20.356,3.702-28.059,9.869L65.51,55.94 C69.896,50.093,72.5,42.84,72.5,35C72.5,15.729,56.771,0,37.5,0L37.5,0z M37.5,10c13.866,0,25,11.134,25,25 c0,13.866-11.134,25-25,25c-13.866,0-25-11.134-25-25C12.5,21.134,23.634,10,37.5,10z M137.5,100c19.389,0,35,15.611,35,35 c0,19.389-15.611,35-35,35c-19.389,0-35-15.611-35-35C102.5,115.611,118.111,100,137.5,100z M247.5,170c8.344,0,15,6.656,15,15 c0,8.343-6.656,15-15,15s-15-6.657-15-15C232.5,176.656,239.157,170,247.5,170z M37.5,225c11.105,0,20,8.895,20,20s-8.895,20-20,20 c-11.105,0-20-8.895-20-20C17.5,233.895,26.395,225,37.5,225L37.5,225z"></path> </g></svg>
-            
-        </div>
-    
 
-
-    
-    
-    
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">
-                    Sep 26, 2024 13:00 CST
-                </time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-    <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
-</svg>
-                <time class="article-words">
-                    中国 山东省 威海市 哈尔滨工业大学威海校区 云杉书院
-                </time>
-            </div>
-        
-
-
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-    <path d="M9 8l1 8l2 -5l2 5l1 -8" />
-</svg>
-
-            <time class="article-words">
-                0 字
-            </time>
-        </div>
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    阅读时长: 0 分钟
-                </time>
-            </div>
-        
-
-    </footer>
-    
-
-    
-        <footer class="article-translations">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-            <div>
+        <div class="section-card">
+            <div class="section-details">
+                <h3 class="section-count">1 page</h3>
+                <h1 class="section-term">Topic: Image Generation Models</h1>
                 
-                    <a href="https://www.brasswrench.com/en/posts/artificial_intelligence/computer_vision/image_generative_model/diffusion_model/" class="link">English</a>
+                    <h2 class="section-description">Learn from a given data distribution and generate new image content that conform to that distribution</h2>
                 
             </div>
-        </footer>
+        </div>
+    </header>
     
-</div>
-
-</header><section class="article-content">
-    <div style="text-align: justify">
+    <section class="article-list--compact">
         
         
-        
-
-
-
-
-
-
-
-<iframe
-  class="netease-cloud-music-frame"
-  title="song&#39;s 1980337835"
-  frameborder="no"
-  border="0"
-  marginwidth="0"
-  marginheight="0"
-  width="100%"
-  height="86"
-  loading="lazy"
-  src="https://music.163.com/outchain/player?type=2&amp;id=1980337835&amp;auto=0&amp;height=66">
-</iframe>
-
-
-    </div>
-</section>
-
-
-
-    
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B/">生成模型</a>
-        
-            <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/">扩散模型</a>
-        
-    </section>
-
-
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
-    <section class="article-lastmod">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-        <span>
-            最后更新于 Oct 08, 2024 21:07 CST
-        </span>
-    </section><section class="page-visit-count">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-    <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-</svg>
-        <span id="busuanzi_container_page_pv">
-  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-</span>
-    </section>
-</footer>
-
-
-    
-        <link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm&#43;ZU03BU6SQNC66uf4l5&#43;"crossorigin="anonymous"
-            ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/&#43;rCMvRwr4yROQP43s0Xk"crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js"integrity="sha384-ifpG&#43;NlgMq0kvOSGqGQxW1mJKpjjMDmZdpKGq3tbvD3WPhyshCEEYClriK/wRVU0"crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js"integrity="sha384-HORx6nWi8j5/mYA&#43;y57/9/CZc5z8HnEw4WUZWy5yOn9ToKBv1l58vJaufFAn9Zzi"crossorigin="anonymous"
-                defer
-                >
-            </script><script>
-    window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.body, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            macros: {
-                "\\ge": "\\geqslant",
-                "\\le": "\\leqslant",
-                "\\geq": "\\geqslant",
-                "\\leq": "\\leqslant"
-            },
-            ignoredClasses: ["gist"],
-            maxExpand: 3000,
-            throwOnError: true,
-            errorColor: "#cc0000"
-        });})
-</script>
-
-    
-
+            <article>
+    <a href="/en/posts/artificial_intelligence/computer_vision/image_generation_models/diffusion_model/">
+        <div class="article-details">
+            <h2 class="article-title">Image Generative Model(Ⅰ): Diffusion Model</h2>
+            <footer class="article-time">
+                <time datetime='2024-09-26T13:01:13&#43;08:00'>Sep 26, 2024 13:01 CST</time>
+            </footer>
+        </div>
+    </a>
 </article>
-
-
-
-    
-
-    
-
-     
-    
         
-    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
-<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
-<div id="waline" class="waline-container"></div>
-<meta name="lang" content="zh-cn">
-<style>
-    .waline-container {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-        --waline-font-size: var(--article-font-size);
-    }
-    .waline-container .wl-count {
-        color: var(--card-text-color-main);
-    }
-</style><script>
-    setTimeout(function() {
-        const waline = Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.2.0/alus","https://unpkg.com/@waline/emojis@1.2.0/bilibili","https://unpkg.com/@waline/emojis@1.2.0/bmoji","https://unpkg.com/@waline/emojis@1.2.0/qq","https://unpkg.com/@waline/emojis@1.2.0/tieba","https://unpkg.com/@waline/emojis@1.2.0/tw-emoji","https://unpkg.com/@waline/emojis@1.2.0/weibo"],"lang":"zh-cn","locale":{"admin":"Admin","placeholder":null},"pageview":false,"requiredMeta":["name","email","url"],"serverURL":"https://waline.brasswrench.com"});
-        waline.update({"lang": document.querySelector('meta[name="lang"]').getAttribute('content')})
-    }, 300);
-</script>
-
-    
-
-    <footer class="site-footer">
+    </section>
+<footer class="site-footer">
     
     <section class="running-time">
         
@@ -1129,15 +931,15 @@
             
             
         
-        <span>本图书馆累计发布了7篇文章 共39719字</span>
+        <span>This library has published 7 articles with a total of 0 words</span>
     </section>
 
     <section class="site-visit-count">
         <span id="busuanzi_container_site_uv">
-  本图书馆访客数<span id="busuanzi_value_site_uv"></span>人
+  This library has been visited by <span id="busuanzi_value_site_uv"></span> people
 </span>
         <span id="busuanzi_container_site_pv">
-  访问量<span id="busuanzi_value_site_pv"></span>次
+   for <span id="busuanzi_value_site_pv"></span> times
 </span>
     </section>
 
@@ -1196,85 +998,6 @@
 </footer>
 
 
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
-
-
             </main>
         </div>
         <script 
@@ -1316,22 +1039,22 @@
 <script>
 
     const translations = {
-        prefix: "本图书馆已稳定运行",
+        prefix: "This library has been running stably for ",
         days: {
-            one: "天",
-            other: "天"
+            one: " day ",
+            other: " days "
         },
         hours: {
-            one: "小时",
-            other: "小时"
+            one: " hour ",
+            other: " hours "
         },
         minutes: {
-            one: "分钟",
-            other: "分钟"
+            one: " minute ",
+            other: " minutes "
         },
         seconds: {
-            one: "秒",
-            other: "秒"
+            one: " second",
+            other: " seconds"
         }
     };
 
