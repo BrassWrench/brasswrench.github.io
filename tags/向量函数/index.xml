@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 09 Oct 2024 12:26:14 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 09 Oct 2024 12:55:03 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclidean空间与向量函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -116,7 +116,7 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 |\bm{a}|^2=\bm{a}\cdot\bm{a}\ge0
 \tag{16}
     $$
-&lt;p&gt;  当向量 $\bm{a}$ 和向量 $\bm{b}$ 平行时，规定它们的&lt;strong&gt;叉乘&lt;/strong&gt;为零向量。当 $\bm{a}$ 和 $\bm{}$ 不平行时，规定向量 $\bm{}$ 和 $\bm{b}$ 的&lt;strong&gt;叉乘&lt;/strong&gt; $\bm{a}\times\bm{b}$ 是与已知向量 $ \bm{a}$ 和 $ \bm{b}$ 都垂直的一个向量，其长度等于向量 $\bm{a}$ 和 $\bm{}$ 所张成的平行四边形的面积，即&lt;/p&gt;
+&lt;p&gt;  当向量 $\bm{a}$ 和向量 $\bm{b}$ 平行时，规定它们的&lt;strong&gt;叉乘&lt;/strong&gt;为零向量。当 $\bm{a}$ 和 $\bm{b}$ 不平行时，规定向量 $\bm{a}$ 和 $\bm{b}$ 的&lt;strong&gt;叉乘&lt;/strong&gt; $\bm{a}\times\bm{b}$ 是与已知向量 $ \bm{a}$ 和 $ \bm{b}$ 都垂直的一个向量，其长度等于向量 $\bm{a}$ 和 $\bm{b}$ 所张成的平行四边形的面积，即&lt;/p&gt;
 &lt;span id=&#34;20241008231025CST&#34;&gt;&lt;/span&gt;$$
 |\bm{a}\times \bm{b}|=|\bm{a}|\cdot|\bm{b}|\sin\angle(\bm{a},\bm{b})
 \tag{17}
@@ -146,6 +146,55 @@ x=x(t),\quad y=y(t),\quad z=z(t)
     $$
 &lt;p&gt;  因此，在 $E^3$ 中取定标架 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 之后，点 $P$ 和有序的 $3$ 个实数构成的组 $(x,y,z)$ 是一一对应的，该数组称为点 $P$ 关于已知标架 $\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}$ 的&lt;strong&gt;坐标&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下为什么 $\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}$ 。构造点 $P^\prime$ 使得 $\overrightarrow{OP^\prime}=\overrightarrow{P_3P}$ ，由&lt;a class=&#34;link&#34; href=&#34;#20241009104842CST&#34;&gt;相等&lt;/a&gt;的定义知 $OP_3PP^\prime$ 构成一个平行四边形，故也有 $\overrightarrow{OP_3}=\overrightarrow{P^\prime P}$ 。由 $P_3$ 的定义知 $\overrightarrow{P_3P}$ 平行于平面 $OAB$ ，因此 $OP^\prime$ 平行于平面 $OAB$ ，故 $P^\prime$ 在平面 $OAB$ 上。在平面 $OAB$ 上过 $P^\prime$ 可作唯一直线平行于直线 $OA$ ，设这条直线和直线 $OB$ 交于点 $P_2^\prime$ ，现在来证 $P_2^\prime$ 就是点 $P_2$ 。由 $P_2^\prime$ 、 $P^\prime$ 和 $P_3$ 的定义知 $\overrightarrow{P_2^\prime P^\prime}\parallel\overrightarrow{OA}$ 且 $\overrightarrow{P^\prime P}\parallel\overrightarrow{OP_3}\parallel\overrightarrow{OC}$ ，因此平面 $PP^\prime P_2^\prime$ 与平面 $OAC$ 平行。注意从 $P$ 出发只有唯一的一个平面能与平面 $OAC$ 平行，因此平面 $PP^\prime P_2^\prime$ 就是这个平面，其与直线 $OB$ 的唯一交点 $P_2^\prime$ 就是 $P_2$ 。同理可以证明类似定义的 $P_1^\prime$ 就是 $P_1$ 。故 $\overrightarrow{P_2 P^\prime}\parallel\overrightarrow{OA}\parallel\overrightarrow{OP_1}$ ， $\overrightarrow{P_1 P^\prime}\parallel\overrightarrow{OB}\parallel\overrightarrow{OP_2}$ ，因此 $OP_1P^\prime P_2$ 构成平行四边形，因此 $\overrightarrow{OP^\prime}=\overrightarrow{OP_1}+\overrightarrow{OP_2}$ 。综上所述，$\overrightarrow{OP}=\overrightarrow{OP^\prime}+\overrightarrow{P^\prime P}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}$ 。&lt;/p&gt;
+&lt;p&gt;  设 $\set{O;\bm{i},\bm{j},\bm{k}}$ 是 $E^3$ 的一个标架，并且 $\bm{i},\bm{j},\bm{k}$ 是彼此垂直的、构成右手系的 $3$ 个单位向量，于是&lt;/p&gt;
+&lt;span id=&#34;20241009122753CST&#34;&gt;&lt;/span&gt;$$
+\bm{i}\cdot\bm{i}=\bm{j}\cdot\bm{j}=\bm{k}\cdot\bm{k}=1,\quad\bm{i}\cdot\bm{j}=\bm{i}\cdot\bm{k}=\bm{j}\cdot\bm{k}=0
+\tag{23}
+    $$
+&lt;p&gt;  并且&lt;/p&gt;
+&lt;span id=&#34;20241009123616CST&#34;&gt;&lt;/span&gt;$$
+\bm{i}\times\bm{j}=\bm{k},\quad\bm{j}\times\bm{k}=\bm{i},\quad\bm{k}\times\bm{i}=\bm{j}
+\tag{24}
+    $$
+&lt;p&gt;  这样的标架称为&lt;strong&gt;右手单位正交标架&lt;/strong&gt;，简称为&lt;strong&gt;正交标架&lt;/strong&gt;。由正交标架给出的坐标系称为Cartesian直角坐标系。在Cartesian直角坐标系下，设向量 $\bm{a}$ 和 $\bm{b}$ 的分量分别是 $(x_1,y_1,z_1)$ 和 $(x_2,y_2,z_2)$ ，则&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241009123917CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+\bm{a}\cdot\bm{b}=&amp;(x_1\bm{i}+y_1\bm{j}+z_1\bm{k})\cdot(x_2\bm{i}+y_2\bm{j}+z_2\bm{k})\hspace{4em}\\[5pt]
+=&amp;x_1x_2+y_1y_2+z_1z_2
+\end{aligned}
+\tag{25}
+    $$
+&lt;span id=&#34;20241009124319CST&#34;&gt;&lt;/span&gt;$$
+\begin{aligned}
+\bm{a}\times\bm{b}=&amp;(x_1\bm{i}+y_1\bm{j}+z_1\bm{k})\times(x_2\bm{i}+y_2\bm{j}+z_2\bm{k})\\[5pt]
+=&amp;(x_1y_2-x_2y_1)(\bm{i}\times\bm{j})+(y_1z_2-y_2z_1)(\bm{j}\times\bm{k})\\[5pt]
+&amp;+(z_1x_2-z_2x_1)(\bm{k}\times\bm{i})\\[5pt]
+=&amp;\left(
+\begin{vmatrix}
+y_1 &amp; z_1 \\[5pt]
+y_2 &amp; z_2
+\end{vmatrix}
+,
+\begin{vmatrix}
+z_1 &amp; x_1 \\[5pt]
+z_2 &amp; x_2
+\end{vmatrix}
+,
+\begin{vmatrix}
+x_1 &amp; y_1 \\[5pt]
+x_2 &amp; y_2
+\end{vmatrix}
+\right)
+\\[15pt]
+=&amp;
+\begin{vmatrix}
+\bm{i} &amp; \bm{j} &amp; \bm{k} \\[5pt]
+x_1 &amp; y_1 &amp; z_1 \\[5pt]
+x_2 &amp; y_2 &amp; z_2
+\end{vmatrix}
+\end{aligned}
+\tag{26}
+    $$&lt;/p&gt;
 </description>
         </item>
         
