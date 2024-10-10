@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 10 Oct 2024 14:00:43 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 10 Oct 2024 14:44:04 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclidean空间与向量函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -472,8 +472,10 @@ z
 \tag{39}
     \]
 &lt;h3 id=&#34;刚体运动&#34;&gt;刚体运动
-&lt;/h3&gt;&lt;p&gt;  正交标架的重要性还在予它能够用来表示Euclidean空间\(E^3\)中刚体的运动。所谓刚体运动原是物理学中的一个概念．如果一个物体在空间中的运动不改变它的形状及其大小，只改变它在空问中的位置，那么该物体的这种运动称为刚体运动．要确定一个刚体在岱中的位置，只要确定在该刚体上不共线的三个点的位置就行了，而刚体上其他的点可以通过它到已知的三个点的距离、以及所成的三个向量构成右手系还是左手系来确定。但是，在 \(E^3\) 中正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是由点 \(P\) 和两个彼此正交的单位向量 \(\bm{e}_1,\bm{e}_2\) 决定的，它们恰好相当于空间中不共线的三个点。这样，在刚体上安装一个正交标架，则这个标架在空间中的位置代表了这个刚体的位置。如果把空间和刚体捆绑在一起，把刚体在空间中的运动看作空间自身在空间中的刚体运动，则这是空间 \(E^3\) 到它自身的一个变换，这个变换保持该空间中任意两点之间的距离不变。&lt;br&gt;
-  设在刚体上安装的正交标架是 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 。假定它在初始位置时该标架与空间中取定的正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 重合，经过刚体运动 \(\sigma\) 达到了现在的位置，那么空间中的任意一点 \(Q\) 在刚体运动 \(\sigma\) 下变成了像点&lt;/p&gt;
+&lt;/h3&gt;&lt;h4 id=&#34;定义-1&#34;&gt;定义
+&lt;/h4&gt;&lt;p&gt;  正交标架的重要性还在予它能够用来表示Euclidean空间\(E^3\)中刚体的运动。所谓刚体运动原是物理学中的一个概念．如果一个物体在空间中的运动不改变它的形状及其大小，只改变它在空问中的位置，那么该物体的这种运动称为&lt;strong&gt;刚体运动&lt;/strong&gt;.要确定一个刚体在岱中的位置，只要确定在该刚体上不共线的三个点的位置就行了，而刚体上其他的点可以通过它到已知的三个点的距离、以及所成的三个向量构成右手系还是左手系来确定。但是，在 \(E^3\) 中正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是由点 \(P\) 和两个彼此正交的单位向量 \(\bm{e}_1,\bm{e}_2\) 决定的，它们恰好相当于空间中不共线的三个点。这样，在刚体上安装一个正交标架，则这个标架在空间中的位置代表了这个刚体的位置。如果把空间和刚体捆绑在一起，把刚体在空间中的运动看作空间自身在空间中的刚体运动，则这是空间 \(E^3\) 到它自身的一个变换，这个变换保持该空间中任意两点之间的距离不变。&lt;/p&gt;
+&lt;h4 id=&#34;刚体运动与标架&#34;&gt;刚体运动与标架
+&lt;/h4&gt;&lt;p&gt;  设在刚体上安装的正交标架是 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 。假定它在初始位置时该标架与空间中取定的正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 重合，经过刚体运动 \(\sigma\) 达到了现在的位置，那么空间中的任意一点 \(Q\) 在刚体运动 \(\sigma\) 下变成了像点&lt;/p&gt;
 &lt;span id=&#34;20241010122819CST&#34;&gt;&lt;/span&gt;\[
 \tilde{Q}=\sigma(Q)
 \tag{40}
@@ -695,6 +697,35 @@ z
     &lt;/g&gt;
   &lt;/g&gt;
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;刚体运动&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;  我们可以把上述讨论总结成下面的定理。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241010140246CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理1&lt;/strong&gt;： \(E^3\) 中的刚体运动把一个正交标架变成另一个正交标架；反过来，对于 \(E^3\) 中的任意两个正交标架，必有 \(E^3\) 的一个刚体运动把其中一个正交标架变成另一个正交标架。&lt;/p&gt;
+&lt;h4 id=&#34;等距变换&#34;&gt;等距变换
+&lt;/h4&gt;&lt;p&gt;  距离不变的变换称为&lt;strong&gt;等距变换&lt;/strong&gt;。刚体运动是一种等距变换。容易证明，等距变换把共线的三个点变为共线的三个点，并且保持它们的分比不变，进而可以证明等距变换是如&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;给出的线性变换，但是此时只能证明其中的矩阵 \(\bm{A}\) 是正交矩阵，而不要求它的行列式的值是正的因此等距变换把单位正交标架变成一个另单位正交标架，但是可能把右手系变成左手系。换句话说刚体运动是保持右手系不变的等距变换，而等距变换或者是一个刚体运动，或者是一个刚体运动与关于某个平面的反射的合成。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;给出的变换是等距变换（ \(\bm{A}\) 是正交矩阵，满足 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ）。设有 \(P_1=(x_1,y_1,z_1),P_2=(x_2,y_2,z_2)\) 被&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;变换为 \(\tilde{P}_1(\tilde{x}_1,\tilde{y}_1,\tilde{z}_1),\tilde{P}_2=(\tilde{x}_2,\tilde{y}_2,\tilde{z}_2)\) 。其距离被变换为&lt;/p&gt;
+&lt;span id=&#34;20241010141443CST&#34;&gt;&lt;/span&gt;
+    \[
+\begin{aligned}
+\left|\tilde{P}_1\tilde{P}_2\right|=&amp;\sqrt{(\tilde{x}_1-\tilde{x}_2)^2+(\tilde{y}_1-\tilde{y}_2)^2+(\tilde{z}_1-\tilde{z}_2)^2}\\[5pt]
+=&amp;\sqrt{\left(\begin{pmatrix}\tilde{x}_1&amp;\tilde{y}_1&amp;\tilde{z}_1\end{pmatrix}-\begin{pmatrix}\tilde{x}_2&amp;\tilde{y}_2&amp;\tilde{z}_2\end{pmatrix}\right)\cdot\left(\begin{pmatrix}\tilde{x}_1&amp;\tilde{y}_1&amp;\tilde{z}_1\end{pmatrix}-\begin{pmatrix}\tilde{x}_2&amp;\tilde{y}_2&amp;\tilde{z}_2\end{pmatrix}\right)^T}\\[5pt]
+=&amp;\sqrt{\left(\begin{pmatrix}x_1&amp;y_1&amp;z_1\end{pmatrix}-\begin{pmatrix}x_2&amp;y_2&amp;z_2\end{pmatrix}\right)\bm{A}\cdot\bm{A}^T\left(\begin{pmatrix}x_1&amp;y_1&amp;z_1\end{pmatrix}-\begin{pmatrix}x_2&amp;y_2&amp;z_2\end{pmatrix}\right)^T}\\[5pt]
+=&amp;\sqrt{\left(\begin{pmatrix}x_1&amp;y_1&amp;z_1\end{pmatrix}-\begin{pmatrix}x_2&amp;y_2&amp;z_2\end{pmatrix}\right)\cdot\left(\begin{pmatrix}x_1&amp;y_1&amp;z_1\end{pmatrix}-\begin{pmatrix}x_2&amp;y_2&amp;z_2\end{pmatrix}\right)^T}\\[5pt]
+=&amp;\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}=|P_1P_2|
+\end{aligned}
+\]
+&lt;p&gt;  故距离不变。对于共线的三个点 \(P_1,P_2,P_3\) ，必存在不为零的 \(\lambda,\mu\) 使得&lt;/p&gt;
+&lt;span id=&#34;20241010142938CST&#34;&gt;&lt;/span&gt;
+    \[
+(x_1,y_1,z_1)=\lambda\cdot(x_2,y_2,z_2)+\mu\cdot(x_3,y_3,z_3)
+\]
+&lt;p&gt;  而&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;是个线性变换，因此变换后上式也能满足（容易代入验证），因此三点共线的性质不变。&lt;/p&gt;
+&lt;p&gt;  在空间 \(E^3\) 中取定Cartesian直角坐标系之后，几何图形就能够用坐标来表达，几何图形固有的性质自然也可以用坐标来表达，但是所表达的性质应该与Cartesian直角坐标系的取法无关。反过来，如果儿何图形的一个用笛卡儿直角坐标表示的量与笛卡儿直角坐标系的取法无关，则这个量应该是几何图形所固有的量；另外，这个量在几何图形的刚体运动下是保持不变的。我们所研究的就是几何图形的这种不变量。&lt;/p&gt;
+&lt;h3 id=&#34;仿射标架&#34;&gt;仿射标架
+&lt;/h3&gt;&lt;p&gt;  除了正交标架外，我们还经常使用&lt;strong&gt;仿射标架&lt;/strong&gt;。所谓仿射标架，是指空间中的一个点 \(P\) 和在该点的三个不共面的向量 \(\bm{e}_1,bm{e}_2,bm{e}_3\) 组成的图形 \(\set{P;\bm{e}_1,bm{e}_2,bm{e}_3}\) ，但是对该图形不要求这三个向量有单位正交的性质。令&lt;/p&gt;
+&lt;span id=&#34;20241010143839CST&#34;&gt;&lt;/span&gt;
+    \[
+g_{ij}=\bm{e}_i\cdot\bm{e}_j\quad 1 \le i,j \le 3
+\]
+&lt;p&gt;  我们把 \((g_{ij})\) 称为仿射标架 \(\set{P;\bm{e}_1,bm{e}_2,bm{e}_3}\) 的度量系数。空间 \(E^3\) 的刚体运动把仿射标架变成仿射标架，并且保持它的度量系数不变，保持标架的定向不变。反过来，对于对于 \(E^3\) 中任意两个有相同度量系数的、成右手系的仿射标架，必有 \(E^3\) 中的一个刚体运动把其中一个仿射标架变成另一个仿射标架。很明显， \(E^3\) 中的全体仿射标架的集合可以等同于 \(E^3\times GL(3)\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;GL(3)群&lt;/a&gt;），其中 \(GL(3)\) 表示可逆的 \(3\times 3\) 矩阵的集合。因此，\(E^3\) 的全体仿射标架构成一个 \(12\) 维的空间。&lt;/p&gt;
 </description>
         </item>
         
