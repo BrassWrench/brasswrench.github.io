@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 10 Oct 2024 00:56:53 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 10 Oct 2024 10:24:09 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclidean空间与向量函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -48,14 +48,18 @@ x=x(t),\quad y=y(t),\quad z=z(t)
     \]
 &lt;p&gt;  在本章，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclidean空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclidean空间中标架的概念，为在三维Euclidean空间中研究曲线和曲面做好准备。&lt;/p&gt;
 &lt;h2 id=&#34;三维euclidean空间中的标架&#34;&gt;三维Euclidean空间中的标架
-&lt;/h2&gt;&lt;p&gt;  通常把我们所处的空间称为&lt;strong&gt;三维Euclidean空间&lt;/strong&gt;。确切的说，所谓的三维Euclidean空间 \(E^3\) 是一个非空的集合，其中的元素称为&lt;strong&gt;点&lt;/strong&gt;，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 \(E^3\) 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的&lt;strong&gt;平行公理&lt;/strong&gt;。&lt;br&gt;
-  任意两个点 \(A,B \in E^3\) 都可以连接成一条直线段 \(AB\) 。指定 \(A\) 为起点、 \(B\) 为终点的线段 \(AB\) 称为&lt;strong&gt;有向线段&lt;/strong&gt;，记作 \(\overrightarrow{AB}\) 。设 \(\overrightarrow{AB}\) 和 \(\overrightarrow{CD}\) 是两条有向线段，如果 \(ABDC\) 成为一个平行四边形，则称这两条有向线段是&lt;span id=&#34;20241009104842CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;相等&lt;/strong&gt;的，记为&lt;/p&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;euclidean空间&#34;&gt;Euclidean空间
+&lt;/h3&gt;&lt;p&gt;  通常把我们所处的空间称为&lt;strong&gt;三维Euclidean空间&lt;/strong&gt;。确切的说，所谓的三维Euclidean空间 \(E^3\) 是一个非空的集合，其中的元素称为&lt;strong&gt;点&lt;/strong&gt;，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 \(E^3\) 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的&lt;strong&gt;平行公理&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;向量&#34;&gt;向量
+&lt;/h3&gt;&lt;h4 id=&#34;定义&#34;&gt;定义
+&lt;/h4&gt;&lt;p&gt;  任意两个点 \(A,B \in E^3\) 都可以连接成一条直线段 \(AB\) 。指定 \(A\) 为起点、 \(B\) 为终点的线段 \(AB\) 称为&lt;strong&gt;有向线段&lt;/strong&gt;，记作 \(\overrightarrow{AB}\) 。设 \(\overrightarrow{AB}\) 和 \(\overrightarrow{CD}\) 是两条有向线段，如果 \(ABDC\) 成为一个平行四边形，则称这两条有向线段是&lt;span id=&#34;20241009104842CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;相等&lt;/strong&gt;的，记为&lt;/p&gt;
 &lt;span id=&#34;20241008221323CST&#34;&gt;&lt;/span&gt;\[
 \overrightarrow{AB}=\overrightarrow{CD}
 \tag{3}
     \]
-&lt;p&gt;  所有相等的有向线段的集合称为一个&lt;strong&gt;向量&lt;/strong&gt;。因此，在三维Euclidean空间 \(E^3\) 中，一个向量可以表示为 \(E^3\) 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。&lt;br&gt;
-  按照&lt;strong&gt;三角形法则&lt;/strong&gt;，可以定义向量的加法如下：设 \(\bm{a},\bm{b}\) 是两个向量，并且假定它们用有向线段 \(\overrightarrow{AB}\) 和 \(\overrightarrow{BC}\) 来表示，则连接 \(A\) 和 \(C\) 的有向线段 \(\overrightarrow{AC}\) 就代表向量 \(\bm{a}+\bm{b}\) 。我们把起点和终点相同的有向线段的集合称为&lt;strong&gt;零向量&lt;/strong&gt;，记为 \(\bm{0}\) ，于是任意一个向量与零向量之和为该向量自身，即&lt;/p&gt;
+&lt;p&gt;  所有相等的有向线段的集合称为一个&lt;strong&gt;向量&lt;/strong&gt;。因此，在三维Euclidean空间 \(E^3\) 中，一个向量可以表示为 \(E^3\) 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。&lt;/p&gt;
+&lt;h4 id=&#34;加法&#34;&gt;加法
+&lt;/h4&gt;&lt;p&gt;  按照&lt;strong&gt;三角形法则&lt;/strong&gt;，可以定义向量的加法如下：设 \(\bm{a},\bm{b}\) 是两个向量，并且假定它们用有向线段 \(\overrightarrow{AB}\) 和 \(\overrightarrow{BC}\) 来表示，则连接 \(A\) 和 \(C\) 的有向线段 \(\overrightarrow{AC}\) 就代表向量 \(\bm{a}+\bm{b}\) 。我们把起点和终点相同的有向线段的集合称为&lt;strong&gt;零向量&lt;/strong&gt;，记为 \(\bm{0}\) ，于是任意一个向量与零向量之和为该向量自身，即&lt;/p&gt;
 &lt;span id=&#34;20241008222604CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}+\bm{0}=\bm{a}
 \tag{4}
@@ -74,7 +78,8 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 (\bm{a}+\bm{b})+\bm{c}=\bm{a}+(\bm{b}+\bm{c})
 \tag{7}
     \]&lt;/p&gt;
-&lt;p&gt;  在三维Euclidean空间 \(E^3\) 中还规定线段 \(AB\) 的&lt;strong&gt;长度&lt;/strong&gt;是点 \(A\) 到点 \(B\) 的距离，记为 \(|AB|\) ，并对于任意三点 \(A,B,C\) ，下面的三角形不等式成立&lt;/p&gt;
+&lt;h4 id=&#34;长度&#34;&gt;长度
+&lt;/h4&gt;&lt;p&gt;  在三维Euclidean空间 \(E^3\) 中还规定线段 \(AB\) 的&lt;strong&gt;长度&lt;/strong&gt;是点 \(A\) 到点 \(B\) 的距离，记为 \(|AB|\) ，并对于任意三点 \(A,B,C\) ，下面的三角形不等式成立&lt;/p&gt;
 &lt;span id=&#34;20241008223354CST&#34;&gt;&lt;/span&gt;\[
 |AB|+|BC|\ge|AC|
 \tag{8}
@@ -92,7 +97,8 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 (\lambda\mu)\bm{a}=\lambda(\mu\bm{a})
 \tag{11}
     \]&lt;/p&gt;
-&lt;p&gt;  其中 \(\lambda,\mu\) 是任意实数。&lt;br&gt;
+&lt;h4 id=&#34;点乘&#34;&gt;点乘
+&lt;/h4&gt;&lt;p&gt;  其中 \(\lambda,\mu\) 是任意实数。&lt;br&gt;
   向量 \(\bm{a}\) 和 \(\bm{b}\) 的&lt;strong&gt;点乘&lt;/strong&gt; \(\bm{a}\cdot\bm{b}\) 定义为实数&lt;/p&gt;
 &lt;span id=&#34;20241008230417CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}\cdot\bm{b}=|\bm{a}|\cdot|\bm{b}|\cdot\cos\angle(\bm{a},\bm{b})
@@ -116,7 +122,8 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 |\bm{a}|^2=\bm{a}\cdot\bm{a}\ge0
 \tag{16}
     \]
-&lt;p&gt;  当向量 \(\bm{a}\) 和向量 \(\bm{b}\) 平行时，规定它们的&lt;strong&gt;叉乘&lt;/strong&gt;为零向量。当 \(\bm{a}\) 和 \(\bm{b}\) 不平行时，规定向量 \(\bm{a}\) 和 \(\bm{b}\) 的&lt;strong&gt;叉乘&lt;/strong&gt; \(\bm{a}\times\bm{b}\) 是与已知向量 \( \bm{a}\) 和 \( \bm{b}\) 都垂直的一个向量，其长度等于向量 \(\bm{a}\) 和 \(\bm{b}\) 所张成的平行四边形的面积，即&lt;/p&gt;
+&lt;h4 id=&#34;叉乘&#34;&gt;叉乘
+&lt;/h4&gt;&lt;p&gt;  当向量 \(\bm{a}\) 和向量 \(\bm{b}\) 平行时，规定它们的&lt;strong&gt;叉乘&lt;/strong&gt;为零向量。当 \(\bm{a}\) 和 \(\bm{b}\) 不平行时，规定向量 \(\bm{a}\) 和 \(\bm{b}\) 的&lt;strong&gt;叉乘&lt;/strong&gt; \(\bm{a}\times\bm{b}\) 是与已知向量 \( \bm{a}\) 和 \( \bm{b}\) 都垂直的一个向量，其长度等于向量 \(\bm{a}\) 和 \(\bm{b}\) 所张成的平行四边形的面积，即&lt;/p&gt;
 &lt;span id=&#34;20241008231025CST&#34;&gt;&lt;/span&gt;\[
 |\bm{a}\times \bm{b}|=|\bm{a}|\cdot|\bm{b}|\sin\angle(\bm{a},\bm{b})
 \tag{17}
@@ -139,14 +146,17 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 \bm{a}\times\bm{b}=\bm{0}
 \tag{21}
     \]
-&lt;p&gt;  在 \(E^3\) 中取定不共面的4个点，把其中一点记作 \(O\) ，把另外三点分别记为 \(A,B,C\) ，于是得到由一点 \(O\) 和 \(3\) 个不共面的向量 \(\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}\) 构成的图形 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 。这样的一个图形称为 \(E^3\) 中的一个&lt;strong&gt;标架&lt;/strong&gt;，其中点 \(O\) 称为该标架的&lt;strong&gt;原点&lt;/strong&gt;。在 \(E^3\) 中取定一个标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，则空间 \(E^3\) 中的任意一点 \(P\) 可以唯一地表示为 \(3\) 个有序的实数 \((x,y,z)\) 。事实上，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OBC\) 平行，它和直线 \(OA\) 有唯一的交点，记为 \(P_1\) ，那么向量 \(\overrightarrow{OP_1}\) 与 \(\overrightarrow{OA}\) 共线，于是有实数 \(x\) ，使得 \(\overrightarrow{OP_1}=x\space\overrightarrow{OA}\) 。同理，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAC\) 平行，它和直线 \(OB\) 有唯一的交点，记为 \(P_2\) ，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAB\) 平行，它和直线 \(OC\) 有唯一的交点，记为 \(P_3\) ，并且有实数 \(y,z\) ，使得 \(\overrightarrow{OP_2}=y\space\overrightarrow{OB}\) ， \(\overrightarrow{OP_3}=z\space\overrightarrow{OC}\) ，那么&lt;/p&gt;
+&lt;h3 id=&#34;标架&#34;&gt;标架
+&lt;/h3&gt;&lt;h4 id=&#34;标架的定义&#34;&gt;标架的定义
+&lt;/h4&gt;&lt;p&gt;  在 \(E^3\) 中取定不共面的4个点，把其中一点记作 \(O\) ，把另外三点分别记为 \(A,B,C\) ，于是得到由一点 \(O\) 和 \(3\) 个不共面的向量 \(\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}\) 构成的图形 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 。这样的一个图形称为 \(E^3\) 中的一个&lt;strong&gt;标架&lt;/strong&gt;，其中点 \(O\) 称为该标架的&lt;strong&gt;原点&lt;/strong&gt;。在 \(E^3\) 中取定一个标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，则空间 \(E^3\) 中的任意一点 \(P\) 可以唯一地表示为 \(3\) 个有序的实数 \((x,y,z)\) 。事实上，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OBC\) 平行，它和直线 \(OA\) 有唯一的交点，记为 \(P_1\) ，那么向量 \(\overrightarrow{OP_1}\) 与 \(\overrightarrow{OA}\) 共线，于是有实数 \(x\) ，使得 \(\overrightarrow{OP_1}=x\space\overrightarrow{OA}\) 。同理，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAC\) 平行，它和直线 \(OB\) 有唯一的交点，记为 \(P_2\) ，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAB\) 平行，它和直线 \(OC\) 有唯一的交点，记为 \(P_3\) ，并且有实数 \(y,z\) ，使得 \(\overrightarrow{OP_2}=y\space\overrightarrow{OB}\) ， \(\overrightarrow{OP_3}=z\space\overrightarrow{OC}\) ，那么&lt;/p&gt;
 &lt;span id=&#34;20241009093408CST&#34;&gt;&lt;/span&gt;\[
 \overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}=x\space\overrightarrow{OA}+y\space\overrightarrow{OB}+z\space\overrightarrow{OC}
 \tag{22}
     \]
 &lt;p&gt;  因此，在 \(E^3\) 中取定标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，点 \(P\) 和有序的 \(3\) 个实数构成的组 \((x,y,z)\) 是一一对应的，该数组称为点 \(P\) 关于已知标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 的&lt;strong&gt;坐标&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下为什么 \(\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。构造点 \(P^\prime\) 使得 \(\overrightarrow{OP^\prime}=\overrightarrow{P_3P}\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241009104842CST&#34;&gt;相等&lt;/a&gt;的定义知 \(OP_3PP^\prime\) 构成一个平行四边形，故也有 \(\overrightarrow{OP_3}=\overrightarrow{P^\prime P}\) 。由 \(P_3\) 的定义知 \(\overrightarrow{P_3P}\) 平行于平面 \(OAB\) ，因此 \(OP^\prime\) 平行于平面 \(OAB\) ，故 \(P^\prime\) 在平面 \(OAB\) 上。在平面 \(OAB\) 上过 \(P^\prime\) 可作唯一直线平行于直线 \(OA\) ，设这条直线和直线 \(OB\) 交于点 \(P_2^\prime\) ，现在来证 \(P_2^\prime\) 就是点 \(P_2\) 。由 \(P_2^\prime\) 、 \(P^\prime\) 和 \(P_3\) 的定义知 \(\overrightarrow{P_2^\prime P^\prime}\parallel\overrightarrow{OA}\) 且 \(\overrightarrow{P^\prime P}\parallel\overrightarrow{OP_3}\parallel\overrightarrow{OC}\) ，因此平面 \(PP^\prime P_2^\prime\) 与平面 \(OAC\) 平行。注意从 \(P\) 出发只有唯一的一个平面能与平面 \(OAC\) 平行，因此平面 \(PP^\prime P_2^\prime\) 就是这个平面，其与直线 \(OB\) 的唯一交点 \(P_2^\prime\) 就是 \(P_2\) 。同理可以证明类似定义的 \(P_1^\prime\) 就是 \(P_1\) 。故 \(\overrightarrow{P_2 P^\prime}\parallel\overrightarrow{OA}\parallel\overrightarrow{OP_1}\) ， \(\overrightarrow{P_1 P^\prime}\parallel\overrightarrow{OB}\parallel\overrightarrow{OP_2}\) ，因此 \(OP_1P^\prime P_2\) 构成平行四边形，因此 \(\overrightarrow{OP^\prime}=\overrightarrow{OP_1}+\overrightarrow{OP_2}\) 。综上所述， \(\overrightarrow{OP}=\overrightarrow{OP^\prime}+\overrightarrow{P^\prime P}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。&lt;/p&gt;
-&lt;p&gt;  设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是 \(E^3\) 的一个标架，并且 \(\bm{i},\bm{j},\bm{k}\) 是彼此垂直的、构成右手系的 \(3\) 个单位向量，于是&lt;/p&gt;
+&lt;h4 id=&#34;正交标架&#34;&gt;正交标架
+&lt;/h4&gt;&lt;p&gt;  设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是 \(E^3\) 的一个标架，并且 \(\bm{i},\bm{j},\bm{k}\) 是彼此垂直的、构成右手系的 \(3\) 个单位向量，于是&lt;/p&gt;
 &lt;span id=&#34;20241009122753CST&#34;&gt;&lt;/span&gt;\[
 \bm{i}\cdot\bm{i}=\bm{j}\cdot\bm{j}=\bm{k}\cdot\bm{k}=1,\quad\bm{i}\cdot\bm{j}=\bm{i}\cdot\bm{k}=\bm{j}\cdot\bm{k}=0
 \tag{23}
@@ -200,8 +210,9 @@ x_2 &amp; y_2 &amp; z_2
 |AB|=\sqrt{\overrightarrow{AB}\cdot\overrightarrow{AB}}=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}
 \tag{27}
     \]
-&lt;p&gt;  因此，通常我们把三维Euclidean空间 \(E^3\) 写成 \(\R^3\) ，并且把 \(\R^3\) 中的向量 \((x,y,z)\) 的长度直接定义为 \(\sqrt{x^2+y^2+z^2}\) 。事实上，这样的 \(\R^3\) 是三维欧氏空间 \(E^3\) 在取定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后的具体表现形式。为简单起见，我们经常把三维Euclidean空间理解为上面所说的 \(\R^3\) 。&lt;br&gt;
-  现在我们来考察由 \(E^3\) 中全体正交标架所构成的集合。设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是在 \(E^3\) 中的一个固定的正交标架，则 \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 可以如下来确定&lt;/p&gt;
+&lt;p&gt;  因此，通常我们把三维Euclidean空间 \(E^3\) 写成 \(\R^3\) ，并且把 \(\R^3\) 中的向量 \((x,y,z)\) 的长度直接定义为 \(\sqrt{x^2+y^2+z^2}\) 。事实上，这样的 \(\R^3\) 是三维欧氏空间 \(E^3\) 在取定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后的具体表现形式。为简单起见，我们经常把三维Euclidean空间理解为上面所说的 \(\R^3\) 。&lt;/p&gt;
+&lt;h4 id=&#34;标架变换&#34;&gt;标架变换
+&lt;/h4&gt;&lt;p&gt;  现在我们来考察由 \(E^3\) 中全体正交标架所构成的集合。设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是在 \(E^3\) 中的一个固定的正交标架，则 \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 可以如下来确定&lt;/p&gt;
 &lt;span id=&#34;20241009210942CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
 \overrightarrow{OP}=a_1\bm{i}+a_2\bm{j}+a_3\bm{k}\\[5pt]
@@ -253,7 +264,7 @@ a_{31} &amp; a_{32} &amp; a_{33}
 \end{pmatrix}
 \tag{33}
     \]&lt;/p&gt;
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式29&lt;/a&gt;可得 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241009213456CST&#34;&gt;式31&lt;/a&gt;可得 \(|\bm{A}|=1\) ，因此 \(\bm{A}\) 是行列式为 \(1\) 的正交矩阵，即 \(A \in SO(3)\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;SO(3)群&lt;/a&gt;）。在取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下， \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e_3}}\) 与矩阵 \((\bm{a},\bm{A})\) 是一一对应的，因此 \(E^3\) 中的全体正交标架的集合可以与集合 \(E^3\times SO(3)\) （&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;Cartesian乘积&lt;/a&gt;）等同起来。注意到正交矩阵的条件&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式29&lt;/a&gt;是矩阵元素 \(a_{ij}\) 所满足的 \(6\) 个关系式。&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式29&lt;/a&gt;可得 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241009213456CST&#34;&gt;式31&lt;/a&gt;可得 \(|\bm{A}|=1\) ，因此 \(\bm{A}\) 是行列式为 \(1\) 的正交矩阵，即 \(A \in SO(3)\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;SO(3)群&lt;/a&gt;）。在取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下， \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e_3}}\) 与矩阵 \((\bm{a},\bm{A})\) 是一一对应的，因此 \(E^3\) 中的全体正交标架的集合可以与集合 \(E^3\times SO(3)\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;Cartesian乘积&lt;/a&gt;）等同起来。注意到正交矩阵的条件&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式29&lt;/a&gt;是矩阵元素 \(a_{ij}\) 所满足的 \(6\) 个关系式。&lt;/p&gt;
 &lt;span id=&#34;20241010000020CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
 (a_{11})^2+(a_{12})^2+(a_{13})^2=1\\[5pt]
@@ -261,12 +272,195 @@ a_{31} &amp; a_{32} &amp; a_{33}
 (a_{31})^2+(a_{32})^2+(a_{33})^2=1\\[5pt]
 a_{11}a_{21}+a_{12}a_{22}+a_{13}a_{23}=0\\[5pt]
 a_{11}a_{31}+a_{12}a_{32}+a_{13}a_{33}=0\\[5pt]
-a_{21}a_{31}+a_{22}a_{32}+a_{23}a_{33}=0\\[5pt]
+a_{21}a_{31}+a_{22}a_{32}+a_{23}a_{33}=0
 \end{cases}
 \tag{34}
     \]
-&lt;p&gt;  因此，其行列式为 \(1\) 的正交矩阵的集合 \(SO(3)\)有 \(3\) 个自由度，因而 \(E^3\times SO(3)\) 是一个 \(6\) 维空间。&lt;br&gt;
-  在 \(E^3\) 中两个不同的正交标架给出了两个不同的Cartesian直角坐标系，设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是 \(E^3\) 中的两个正交标架。&lt;/p&gt;
+&lt;p&gt;  因此，其行列式为 \(1\) 的正交矩阵的集合 \(SO(3)\)有 \(3\) 个自由度，因而 \(E^3\times SO(3)\) 是一个 \(6\) 维空间。&lt;/p&gt;
+&lt;h4 id=&#34;坐标变换&#34;&gt;坐标变换
+&lt;/h4&gt;&lt;p&gt;  在 \(E^3\) 中两个不同的正交标架给出了两个不同的Cartesian直角坐标系，设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是 \(E^3\) 中的两个正交标架。它们的关系由&lt;a class=&#34;link&#34; href=&#34;#20241009210942CST&#34;&gt;式28&lt;/a&gt;给出。假定点 \(q\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标是 \((x,y,z)\) ，关于 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的坐标是 \((\tilde{x},\tilde{y},\tilde{z})\)&lt;/p&gt;
+&lt;span id=&#34;20241010100103CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 403.7&#34;&gt;
+  &lt;defs&gt;
+    &lt;style&gt;
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-4 {
+        font-family: NotoSerifSC-Regular, &#39;Noto Serif SC&#39;;
+        font-size: 18px;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+    &lt;/style&gt;
+  &lt;/defs&gt;
+  &lt;!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  --&gt;
+  &lt;g&gt;
+    &lt;g id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34;&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;253.8&#34; y1=&#34;308.5&#34; x2=&#34;195.5&#34; y2=&#34;384.4&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;253.8&#34; y1=&#34;308.5&#34; x2=&#34;199.1&#34; y2=&#34;379.6&#34;/&gt;
+          &lt;polygon points=&#34;197.9 375.1 199.9 378.6 203.8 379.7 195.5 384.4 197.9 375.1&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;253.8&#34; y1=&#34;308.5&#34; x2=&#34;397.7&#34; y2=&#34;308.5&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;253.8&#34; y1=&#34;308.5&#34; x2=&#34;391.7&#34; y2=&#34;308.5&#34;/&gt;
+          &lt;polygon points=&#34;388.9 312.2 390.5 308.5 388.9 304.8 397.7 308.5 388.9 312.2&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;253.8&#34; y1=&#34;308.6&#34; x2=&#34;253.8&#34; y2=&#34;157.7&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;253.8&#34; y1=&#34;308.6&#34; x2=&#34;253.8&#34; y2=&#34;163.6&#34;/&gt;
+          &lt;polygon points=&#34;257.5 166.5 253.8 164.9 250.1 166.5 253.8 157.7 257.5 166.5&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;545.8&#34; y1=&#34;139.7&#34; x2=&#34;666.5&#34; y2=&#34;139.7&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;545.8&#34; y1=&#34;139.7&#34; x2=&#34;660.5&#34; y2=&#34;139.7&#34;/&gt;
+          &lt;polygon points=&#34;657.7 143.4 659.2 139.7 657.7 136 666.5 139.7 657.7 143.4&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;545.7&#34; y1=&#34;139.7&#34; x2=&#34;492.9&#34; y2=&#34;25.9&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;545.7&#34; y1=&#34;139.7&#34; x2=&#34;495.4&#34; y2=&#34;31.3&#34;/&gt;
+          &lt;polygon points=&#34;499.9 32.3 495.9 32.4 493.2 35.4 492.9 25.9 499.9 32.3&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;253.6&#34; y1=&#34;308.6&#34; x2=&#34;545.8&#34; y2=&#34;139.7&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;253.6&#34; y1=&#34;308.6&#34; x2=&#34;540.6&#34; y2=&#34;142.7&#34;/&gt;
+          &lt;polygon points=&#34;540.1 147.3 539.6 143.3 536.3 140.9 545.8 139.7 540.1 147.3&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;546.1&#34; y1=&#34;139.7&#34; x2=&#34;494.6&#34; y2=&#34;254.3&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;546.1&#34; y1=&#34;139.7&#34; x2=&#34;497&#34; y2=&#34;248.8&#34;/&gt;
+          &lt;polygon points=&#34;494.8 244.7 497.5 247.7 501.6 247.8 494.6 254.3 494.8 244.7&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;545.7&#34; y1=&#34;140.2&#34; x2=&#34;435.2&#34; y2=&#34;110&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;545.7&#34; y1=&#34;140.2&#34; x2=&#34;441&#34; y2=&#34;111.5&#34;/&gt;
+          &lt;polygon points=&#34;444.7 108.7 442.2 111.9 442.7 115.8 435.2 110 444.7 108.7&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(426.6 97.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;q&lt;/tspan&gt;&lt;/text&gt;
+      &lt;g&gt;
+        &lt;line class=&#34;cls-2&#34; x1=&#34;253.8&#34; y1=&#34;308.5&#34; x2=&#34;435.2&#34; y2=&#34;110&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;253.8&#34; y1=&#34;308.5&#34; x2=&#34;431.2&#34; y2=&#34;114.4&#34;/&gt;
+          &lt;polygon points=&#34;432 118.9 430.4 115.3 426.6 113.9 435.2 110 432 118.9&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(260.6 171.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;k&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(205.8 391.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;i&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(390.3 327.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;j&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(549.3 156)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;p&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(502.3 261)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-4&#34; transform=&#34;translate(512.1 263) scale(.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(654.3 156)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-4&#34; transform=&#34;translate(664.2 158) scale(.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(497.9 25.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-4&#34; transform=&#34;translate(507.7 27.1) scale(.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;坐标变换&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;  则一方面有&lt;/p&gt;
+&lt;span id=&#34;20241010100344CST&#34;&gt;&lt;/span&gt;\[
+\overrightarrow{OQ}=x\bm{i}+y\bm{j}+z\bm{k}=
+\begin{pmatrix}
+x &amp; y &amp; z
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+\bm{i}\\[5pt]
+\bm{j}\\[5pt]
+\bm{k}
+\end{pmatrix}
+\tag{35}
+    \]
+&lt;p&gt;  另一方面有&lt;/p&gt;
+&lt;span id=&#34;20241010100600CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\overrightarrow{OQ}=&amp;\overrightarrow{OP}+\overrightarrow{PQ}\\[5pt]
+=&amp;
+\begin{pmatrix}
+a_1 &amp; a_2 &amp; a_3
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+\bm{i}\\[5pt]
+\bm{j}\\[5pt]
+\bm{k}
+\end{pmatrix}
++\begin{pmatrix}
+\tilde{x} &amp; \tilde{y} &amp; \tilde{z}
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+\bm{e}_1\\[5pt]
+\bm{e}_2\\[5pt]
+\bm{e}_3
+\end{pmatrix}\\
+=&amp;\left(\bm{a}+\begin{pmatrix}\tilde{x}&amp;\tilde{y}&amp;\tilde{z}\end{pmatrix}\cdot\bm{A}\right)\cdot
+\begin{pmatrix}
+\bm{i}\\[5pt]
+\bm{j}\\[5pt]
+\bm{k}
+\end{pmatrix}
+\end{aligned}
+\tag{36}
+    \]
+&lt;p&gt;  因此，点 \(q\) 在两个不同的Cartesian直角坐标系 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 下分别有坐标 \((x,y,z)\) 和 \((\tilde{x},\tilde{y},\tilde{z})\) ，它们满足如下的关系式&lt;/p&gt;
+&lt;span id=&#34;20241010101530CST&#34;&gt;&lt;/span&gt;\[
+(x,y,z)=\bm{a}+\begin{pmatrix}\tilde{x}&amp;\tilde{y}&amp;\tilde{z}\end{pmatrix}\cdot\bm{A}
+\tag{37}
+    \]
+&lt;p&gt;  即&lt;/p&gt;
+&lt;span id=&#34;20241010101847CST&#34;&gt;&lt;/span&gt;\[
+\begin{cases}
+x=a_1+a_{11}\tilde{x}+a_{21}\tilde{y}+a_{31}\tilde{z}\\[5pt]
+y=a_2+a_{12}\tilde{x}+a_{22}\tilde{y}+a_{32}\tilde{z}\\[5pt]
+z=a_3+a_{13}\tilde{x}+a_{23}\tilde{y}+a_{33}\tilde{z}
+\end{cases}
+\tag{38}
+    \]
+&lt;p&gt;  也可以写成&lt;/p&gt;
+&lt;span id=&#34;20241010102137CST&#34;&gt;&lt;/span&gt;\[
+\begin{pmatrix}
+x\\[5pt]
+y\\[5pt]
+z
+\end{pmatrix}
+=
+\bm{a}^T+
+\bm{A}^T
+\cdot
+\begin{pmatrix}
+\tilde{x}\\[5pt]
+\tilde{y}\\[5pt]
+\tilde{z}
+\end{pmatrix}
+\tag{39}
+    \]
 </description>
         </item>
         
