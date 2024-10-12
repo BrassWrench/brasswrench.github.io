@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 12 Oct 2024 20:00:11 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 12 Oct 2024 23:46:02 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclidean空间与向量函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -264,7 +264,7 @@ a_{31} &amp; a_{32} &amp; a_{33}
 \end{pmatrix}
 \tag{33}
     \]&lt;/p&gt;
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式29&lt;/a&gt;可得 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241009213456CST&#34;&gt;式31&lt;/a&gt;可得 \(|\bm{A}|=1\) ，因此 \(\bm{A}\) 是行列式为 \(1\) 的正交矩阵，即 \(A \in \rm{SO(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;SO(3)群&lt;/a&gt;）。在取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下， \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e_3}}\) 与矩阵 \((\bm{a},\bm{A})\) 是一一对应的，因此 \(E^3\) 中的全体正交标架的集合可以与集合 \(E^3\times \rm{SO(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;Cartesian乘积&lt;/a&gt;）等同起来。注意到正交矩阵的条件&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式29&lt;/a&gt;是矩阵元素 \(a_{ij}\) 所满足的 \(6\) 个关系式。&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式(29)&lt;/a&gt;可得 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241009213456CST&#34;&gt;式(31)&lt;/a&gt;可得 \(|\bm{A}|=1\) ，因此 \(\bm{A}\) 是行列式为 \(1\) 的正交矩阵，即 \(A \in \rm{SO(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;SO(3)群&lt;/a&gt;）。在取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下， \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e_3}}\) 与矩阵 \((\bm{a},\bm{A})\) 是一一对应的，因此 \(E^3\) 中的全体正交标架的集合可以与集合 \(E^3\times \rm{SO(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;Cartesian乘积&lt;/a&gt;）等同起来。注意到正交矩阵的条件&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式(29)&lt;/a&gt;是矩阵元素 \(a_{ij}\) 所满足的 \(6\) 个关系式。&lt;/p&gt;
 &lt;span id=&#34;20241010000020CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
 (a_{11})^2+(a_{12})^2+(a_{13})^2=1\\[5pt]
@@ -278,7 +278,7 @@ a_{21}a_{31}+a_{22}a_{32}+a_{23}a_{33}=0
     \]
 &lt;p&gt;  因此，其行列式为 \(1\) 的正交矩阵的集合 \(\rm{SO(3)}\) 有 \(3\) 个自由度，因而 \(E^3\times \rm{SO(3)}\) 是一个 \(6\) 维空间。&lt;/p&gt;
 &lt;h4 id=&#34;坐标变换&#34;&gt;坐标变换
-&lt;/h4&gt;&lt;p&gt;  在 \(E^3\) 中两个不同的正交标架给出了两个不同的Cartesian直角坐标系，设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是 \(E^3\) 中的两个正交标架。它们的关系由&lt;a class=&#34;link&#34; href=&#34;#20241009210942CST&#34;&gt;式28&lt;/a&gt;给出。假定点 \(q\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标是 \((x,y,z)\) ，关于 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的坐标是 \((\tilde{x},\tilde{y},\tilde{z})\)&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  在 \(E^3\) 中两个不同的正交标架给出了两个不同的Cartesian直角坐标系，设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是 \(E^3\) 中的两个正交标架。它们的关系由&lt;a class=&#34;link&#34; href=&#34;#20241009210942CST&#34;&gt;式(28)&lt;/a&gt;给出。假定点 \(q\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标是 \((x,y,z)\) ，关于 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的坐标是 \((\tilde{x},\tilde{y},\tilde{z})\)&lt;/p&gt;
 &lt;span id=&#34;20241010100103CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 403.7&#34;&gt;
   &lt;defs&gt;
@@ -553,7 +553,7 @@ z
 \end{pmatrix}
 \tag{46}
     \]
-&lt;p&gt;  因此如果把正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 变到 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的刚体运动同时把点 \(q=(x,y,z)\) 变到点 \(\tilde{q}=(\tilde{x},\tilde{y},\tilde{z})\) （它们分别是点 \(q\) 和 \(\tilde{q}\) 关于正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标），则 \((\tilde{x},\tilde{y},\tilde{z})\) 与 \((x,y,z)\) 之间的关系恰好是由&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;给出的．注意到&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241010101530CST&#34;&gt;式37&lt;/a&gt;有很大的相似性，但是它们的意义却是完全不同的，前者是点不变而标架变换，后者是点随标架一起同步变换。这种在公式上的相似性说明刚体运动在某种意义上可以看作一种坐标变换（参看&lt;a class=&#34;link&#34; href=&#34;#20241010131827CST&#34;&gt;图2&lt;/a&gt;）。具体地说，&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;可以解读为把点 \(\tilde{q}\) 在标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 下的坐标 \((x,y,z)\) 变换为在标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下的坐标 \((\tilde{x},\tilde{y},\tilde{z})\) 的公式。&lt;/p&gt;
+&lt;p&gt;  因此如果把正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 变到 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的刚体运动同时把点 \(q=(x,y,z)\) 变到点 \(\tilde{q}=(\tilde{x},\tilde{y},\tilde{z})\) （它们分别是点 \(q\) 和 \(\tilde{q}\) 关于正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标），则 \((\tilde{x},\tilde{y},\tilde{z})\) 与 \((x,y,z)\) 之间的关系恰好是由&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的．注意到&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241010101530CST&#34;&gt;式(37)&lt;/a&gt;有很大的相似性，但是它们的意义却是完全不同的，前者是点不变而标架变换，后者是点随标架一起同步变换。这种在公式上的相似性说明刚体运动在某种意义上可以看作一种坐标变换（参看&lt;a class=&#34;link&#34; href=&#34;#20241010131827CST&#34;&gt;图2&lt;/a&gt;）。具体地说，&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;可以解读为把点 \(\tilde{q}\) 在标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 下的坐标 \((x,y,z)\) 变换为在标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下的坐标 \((\tilde{x},\tilde{y},\tilde{z})\) 的公式。&lt;/p&gt;
 &lt;span id=&#34;20241010131827CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 403.7&#34;&gt;
   &lt;defs&gt;
@@ -697,8 +697,8 @@ z
 &lt;p&gt;  我们可以把上述讨论总结成下面的定理。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241010140246CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理1&lt;/strong&gt;： \(E^3\) 中的刚体运动把一个正交标架变成另一个正交标架；反过来，对于 \(E^3\) 中的任意两个正交标架，必有 \(E^3\) 的一个刚体运动把其中一个正交标架变成另一个正交标架。&lt;/p&gt;
 &lt;h4 id=&#34;等距变换&#34;&gt;等距变换
-&lt;/h4&gt;&lt;p&gt;  距离不变的变换称为&lt;strong&gt;等距变换&lt;/strong&gt;。刚体运动是一种等距变换。容易证明，等距变换把共线的三个点变为共线的三个点，并且保持它们的分比不变，进而可以证明等距变换是如&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;给出的线性变换，但是此时只能证明其中的矩阵 \(\bm{A}\) 是正交矩阵，而不要求它的行列式的值是正的因此等距变换把单位正交标架变成一个另单位正交标架，但是可能把右手系变成左手系。换句话说刚体运动是保持右手系不变的等距变换，而等距变换或者是一个刚体运动，或者是一个刚体运动与关于某个平面的反射的合成。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;给出的变换是等距变换（ \(\bm{A}\) 是正交矩阵，满足 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ）。设有 \(P_1=(x_1,y_1,z_1),P_2=(x_2,y_2,z_2)\) 被&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;变换为 \(\tilde{P}_1(\tilde{x}_1,\tilde{y}_1,\tilde{z}_1),\tilde{P}_2=(\tilde{x}_2,\tilde{y}_2,\tilde{z}_2)\) 。其距离被变换为&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  距离不变的变换称为&lt;strong&gt;等距变换&lt;/strong&gt;。刚体运动是一种等距变换。容易证明，等距变换把共线的三个点变为共线的三个点，并且保持它们的分比不变，进而可以证明等距变换是如&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的线性变换，但是此时只能证明其中的矩阵 \(\bm{A}\) 是正交矩阵，而不要求它的行列式的值是正的因此等距变换把单位正交标架变成一个另单位正交标架，但是可能把右手系变成左手系。换句话说刚体运动是保持右手系不变的等距变换，而等距变换或者是一个刚体运动，或者是一个刚体运动与关于某个平面的反射的合成。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的变换是等距变换（ \(\bm{A}\) 是正交矩阵，满足 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ）。设有 \(P_1=(x_1,y_1,z_1),P_2=(x_2,y_2,z_2)\) 被&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;变换为 \(\tilde{P}_1(\tilde{x}_1,\tilde{y}_1,\tilde{z}_1),\tilde{P}_2=(\tilde{x}_2,\tilde{y}_2,\tilde{z}_2)\) 。其距离被变换为&lt;/p&gt;
 &lt;span id=&#34;20241010141443CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \left|\tilde{P}_1\tilde{P}_2\right|=&amp;\sqrt{(\tilde{x}_1-\tilde{x}_2)^2+(\tilde{y}_1-\tilde{y}_2)^2+(\tilde{z}_1-\tilde{z}_2)^2}\\[5pt]
@@ -714,7 +714,7 @@ z
 (x_1,y_1,z_1)=\lambda\cdot(x_2,y_2,z_2)+\mu\cdot(x_3,y_3,z_3)
 \tag{48}
     \]
-&lt;p&gt;  而&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式44&lt;/a&gt;是个线性变换，因此变换后上式也能满足（容易代入验证），因此三点共线的性质不变。&lt;/p&gt;
+&lt;p&gt;  而&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;是个线性变换，因此变换后上式也能满足（容易代入验证），因此三点共线的性质不变。&lt;/p&gt;
 &lt;p&gt;  在空间 \(E^3\) 中取定Cartesian直角坐标系之后，几何图形就能够用坐标来表达，几何图形固有的性质自然也可以用坐标来表达，但是所表达的性质应该与Cartesian直角坐标系的取法无关。反过来，如果儿何图形的一个用笛卡儿直角坐标表示的量与笛卡儿直角坐标系的取法无关，则这个量应该是几何图形所固有的量；另外，这个量在几何图形的刚体运动下是保持不变的。我们所研究的就是几何图形的这种不变量。&lt;/p&gt;
 &lt;h3 id=&#34;仿射标架&#34;&gt;仿射标架
 &lt;/h3&gt;&lt;p&gt;  除了正交标架外，我们还经常使用&lt;strong&gt;仿射标架&lt;/strong&gt;。所谓仿射标架，是指空间中的一个点 \(P\) 和在该点的三个不共面的向量 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 组成的图形 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) ，但是对该图形不要求这三个向量有单位正交的性质。令&lt;/p&gt;
@@ -814,16 +814,101 @@ c_1 &amp; c_2 &amp; c_3
 &lt;p&gt;  &lt;span id=&#34;20241012181641CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理2&lt;/strong&gt;：假定 \(\bm{a}(t),\bm{b}(t),\bm{c}(t)\) 是三个可微的向量函数，则它们的内积、向量积和混合积的导数有下面的公式&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241012195223CST&#34;&gt;&lt;/span&gt;\[
 (\bm{a}(t)\cdot\bm{b}(t))^\prime=\bm{a}^\prime(t)\cdot\bm{b}(t)+\bm{a}(t)\cdot\bm{b}^\prime(t)
-\tag{60}
+\tag{58}
     \]
-&lt;span id=&#34;20241012195223CST&#34;&gt;&lt;/span&gt;\[
+&lt;span id=&#34;20241012221040CST&#34;&gt;&lt;/span&gt;\[
 (\bm{a}(t)\times\bm{b}(t))^\prime=\bm{a}^\prime(t)\times\bm{b}(t)+\bm{a}(t)\times\bm{b}^\prime(t)
-\tag{60}
+\tag{59}
     \]
-&lt;span id=&#34;20241012195223CST&#34;&gt;&lt;/span&gt;\[
+&lt;span id=&#34;20241012231920CST&#34;&gt;&lt;/span&gt;\[
 (\bm{a}(t),\bm{b}(t),\bm{c}(t))^\prime=(\bm{a}^\prime(t),\bm{b}(t),\bm{c}(t))+(\bm{a}(t),\bm{b}^\prime(t),\bm{c}(t))+(\bm{a}(t),\bm{b}(t),\bm{c}^\prime(t))
 \tag{60}
     \]&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241012181641CST&#34;&gt;定理2&lt;/a&gt;）&lt;/strong&gt;：对&lt;a class=&#34;link&#34; href=&#34;#20241012195223CST&#34;&gt;式(58)&lt;/a&gt;，由&lt;a class=&#34;link&#34; href=&#34;#20241012143454CST&#34;&gt;式(51)&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241012222826CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+(\bm{a}(t)\cdot\bm{b}(t))&#39;=&amp;(a_1(t)b_1(t))&#39;+(a_2(t)b_2(t))&#39;+(a_3(t)b_3(t))&#39;\\[5pt]
+=&amp;a_1&#39;(t)b_1(t)+a_2&#39;(t)b_2(t)+a_3&#39;(t)b_3(t)+a_1(t)b_1&#39;(t)+a_2(t)b_2&#39;(t)+a_3(t)b_3&#39;(t)\\[5pt]
+=&amp;\bm{a}&#39;(t)\cdot\bm{b}(t)+\bm{a}(t)\cdot\bm{b}&#39;(t)
+\end{aligned}
+\tag{61}
+    \]
+&lt;p&gt;  对&lt;a class=&#34;link&#34; href=&#34;#20241012221040CST&#34;&gt;式(59)&lt;/a&gt;，由&lt;a class=&#34;link&#34; href=&#34;#20241012143803CST&#34;&gt;式(52)&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241012223743CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+(\bm{a}\times\bm{b})&#39;=&amp;\left(
+\frac{d}{dt}
+\begin{vmatrix}
+a_2(t) &amp; a_3(t) \\[5pt]
+b_2(t) &amp; b_3(t)
+\end{vmatrix}
+,
+\frac{d}{dt}
+\begin{vmatrix}
+a_3(t) &amp; a_1(t) \\[5pt]
+b_3(t) &amp; b_1(t)
+\end{vmatrix}
+,
+\frac{d}{dt}
+\begin{vmatrix}
+a_1(t) &amp; a_2(t) \\[5pt]
+b_1(t) &amp; b_2(t)
+\end{vmatrix}
+\right)\\[20pt]
+=&amp;\left(
+\frac{d}{dt}(a_2(t)b_3(t)-a_3(t)b_2(t)), \frac{d}{dt}(a_3(t)b_1(t)-a_1(t)b_3(t)), \frac{d}{dt}(a_1(t)b_2(t)-a_2(t)b_1(t))
+\right)\\[20pt]
+=&amp;((a_2&#39;(t)b_3(t)-a_3&#39;(t)b_2(t))+(a_2(t)b_3&#39;(t)-a_3(t)b_2&#39;(t)),\\[20pt]
+&amp;(a_3&#39;(t)b_1(t)-a_1&#39;(t)b_3(t))+(a_3(t)b_1&#39;(t)-a_1(t)b_3&#39;(t)),\\[20pt]
+&amp;(a_1&#39;(t)b_2(t)-a_2&#39;(t)b_1(t))+(a_1(t)b_2&#39;(t)-a_2(t)b_1&#39;(t)))\\[20pt]
+=&amp;(a_2&#39;(t)b_3(t)-a_3&#39;(t)b_2(t), a_3&#39;(t)b_1(t)-a_1&#39;(t)b_3(t),(a_1&#39;(t)b_2(t)-a_2&#39;(t)b_1(t)))+\\[20pt]
+&amp;(a_2(t)b_3&#39;(t)-a_3(t)b_2&#39;(t),a_3(t)b_1&#39;(t)-a_1(t)b_3&#39;(t),a_1(t)b_2&#39;(t)-a_2(t)b_1&#39;(t))\\[20pt]
+=&amp;\left(
+\begin{vmatrix}
+a_2&#39;(t) &amp; a_3&#39;(t) \\[5pt]
+b_2(t) &amp; b_3(t)
+\end{vmatrix}
+,
+\begin{vmatrix}
+a_3&#39;(t) &amp; a_1&#39;(t) \\[5pt]
+b_3(t) &amp; b_1(t)
+\end{vmatrix}
+,
+\begin{vmatrix}
+a_1&#39;(t) &amp; a_2&#39;(t) \\[5pt]
+b_1(t) &amp; b_2(t)
+\end{vmatrix}
+\right)+
+\left(
+\begin{vmatrix}
+a_2(t) &amp; a_3(t) \\[5pt]
+b_2&#39;(t) &amp; b_3&#39;(t)
+\end{vmatrix}
+,
+\begin{vmatrix}
+a_3(t) &amp; a_1(t) \\[5pt]
+b_3&#39;(t) &amp; b_1&#39;(t)
+\end{vmatrix}
+,
+\begin{vmatrix}
+a_1(t) &amp; a_2(t) \\[5pt]
+b_1&#39;(t) &amp; b_2&#39;(t)
+\end{vmatrix}
+\right)\\[20pt]
+=&amp;\bm{a}^\prime(t)\times\bm{b}(t)+\bm{a}(t)\times\bm{b}^\prime(t)
+\end{aligned}
+\tag{62}
+    \]
+&lt;p&gt;  对&lt;a class=&#34;link&#34; href=&#34;#20241012231920CST&#34;&gt;式(60)&lt;/a&gt;，由&lt;a class=&#34;link&#34; href=&#34;#20241012195223CST&#34;&gt;式(58)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241012221040CST&#34;&gt;式(59)&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;20241012231955CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+(\bm{a}(t),\bm{b}(t),\bm{c}(t))^\prime=&amp;(\bm{a}(t)\times\bm{b}(t)\cdot\bm{c}(t))&#39;\\[5pt]
+=&amp;(\bm{a}(t)\times\bm{b}(t))&#39;\cdot\bm{c}(t)+(\bm{a}(t)\times\bm{b}(t))\cdot(\bm{c}(t))&#39;\\[5pt]
+=&amp;\bm{a}&#39;(t)\times\bm{b}(t)\cdot\bm{c}(t)+\bm{a}(t)\times\bm{b}&#39;(t)\cdot\bm{c}(t)+(\bm{a}(t)\times\bm{b}(t))\cdot\bm{c}&#39;(t)\\[5pt]
+=&amp;(\bm{a}^\prime(t),\bm{b}(t),\bm{c}(t))+(\bm{a}(t),\bm{b}^\prime(t),\bm{c}(t))+(\bm{a}(t),\bm{b}(t),\bm{c}^\prime(t))
+\end{aligned}
+\tag{63}
+    \]
 </description>
         </item>
         <item>
@@ -1198,7 +1283,7 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\lef
 \bm{\Sigma}=\bm{R}\bm{S}\bm{S}^T\bm{R}^T
 \tag{2}
     \]
-&lt;p&gt;  我们注意看这个式子的几何意义。由于 \(\bm{S}\) 是一个对角矩阵，因此其可以被看成一个&lt;strong&gt;放缩变换&lt;/strong&gt;，而 \(\bm{R}\) 是一个正交矩阵，因此可以看成一个&lt;strong&gt;旋转变换&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“解析几何”还未上线~&#39;)&#34;&gt;旋转变换&lt;/a&gt;）。将其代回&lt;a class=&#34;link&#34; href=&#34;#20241003225449CST&#34;&gt;式1&lt;/a&gt;，易得实际上这个操作就是把正交基先拉伸后旋转，再将去均值的随机向量 \(\bm{x}-\bm{\mu}\) 投影到新的正交基上的操作。&lt;br&gt;
+&lt;p&gt;  我们注意看这个式子的几何意义。由于 \(\bm{S}\) 是一个对角矩阵，因此其可以被看成一个&lt;strong&gt;放缩变换&lt;/strong&gt;，而 \(\bm{R}\) 是一个正交矩阵，因此可以看成一个&lt;strong&gt;旋转变换&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“解析几何”还未上线~&#39;)&#34;&gt;旋转变换&lt;/a&gt;）。将其代回&lt;a class=&#34;link&#34; href=&#34;#20241003225449CST&#34;&gt;式(1)&lt;/a&gt;，易得实际上这个操作就是把正交基先拉伸后旋转，再将去均值的随机向量 \(\bm{x}-\bm{\mu}\) 投影到新的正交基上的操作。&lt;br&gt;
   对于三维对角矩阵 \(\bm{S}\) ，只需要一个三维向量 \(\bm{s}\) 描述即可，该向量的每个分量对应对角矩阵 \(\bm{S}\) 的每个对角分量。即&lt;/p&gt;
 &lt;span id=&#34;20241004154012CST&#34;&gt;&lt;/span&gt;\[
 \bm{S}\left(\bm{s}\right)=
@@ -1253,7 +1338,7 @@ C_l^m=\int_0^\pi\int_0^{2\pi}\mathcal{Y}_l^m(\theta,\varphi)f(\theta,\varphi)\si
 \tag{9}
     \]
 &lt;p&gt;  3DGS算法使用 \(3\) 阶球函数近似，使用RGB颜色来进行渲染。也就是，一共有三个通道，每个通道由区间 \([0,1]\) 的一个数来映射到每个通道表示颜色的 \(0\text{\textasciitilde}255\) 的一个数字。将每个RGB通道展开成一个 \(3\) 阶球函数需要 \((3+1)^2=16\) 个系数。由此可得，要想表示一个3D高斯椭球的颜色信息，需要 \(3\times (3+1)^2=48\) 个参数。&lt;br&gt;
-  具体的，当我们拿到这 \(48\) 个参数和一个方向向量 \(\bm{n}=(x,y,z)\) 以后，利用&lt;a class=&#34;link&#34; href=&#34;#20241004231613CST&#34;&gt;式8&lt;/a&gt;，我们可以通过如下推导得到该方向的球谐函数值&lt;/p&gt;
+  具体的，当我们拿到这 \(48\) 个参数和一个方向向量 \(\bm{n}=(x,y,z)\) 以后，利用&lt;a class=&#34;link&#34; href=&#34;#20241004231613CST&#34;&gt;式(8)&lt;/a&gt;，我们可以通过如下推导得到该方向的球谐函数值&lt;/p&gt;
 &lt;span id=&#34;20241005000157CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 f_i(\bm{n})_{SH}=&amp;\sum_{l=0}^{3}\sum_{-l}^{l}C_l^m(i)\mathcal{Y}_l^m(\bm{n})\\[5pt]
@@ -1264,7 +1349,7 @@ f_i(\bm{n})_{SH}=&amp;\sum_{l=0}^{3}\sum_{-l}^{l}C_l^m(i)\mathcal{Y}_l^m(\bm{n})
 \end{aligned}
 \tag{10}
     \]
-&lt;p&gt;   \(i\) 取 \(1,2,3\) 表示 \(3\) 个RGB通道， \(C_{00}(i)\text{\textasciitilde}C_{33}(i)\) 均已知，下面给出 \(\mathcal{Y}_{00}(\bm{n})\text{\textasciitilde}\mathcal{Y}_{33}(\bm{n})\) 的表达式（可直接根据&lt;a class=&#34;link&#34; href=&#34;#20241004221955CST&#34;&gt;式5&lt;/a&gt;得到）&lt;/p&gt;
+&lt;p&gt;   \(i\) 取 \(1,2,3\) 表示 \(3\) 个RGB通道， \(C_{00}(i)\text{\textasciitilde}C_{33}(i)\) 均已知，下面给出 \(\mathcal{Y}_{00}(\bm{n})\text{\textasciitilde}\mathcal{Y}_{33}(\bm{n})\) 的表达式（可直接根据&lt;a class=&#34;link&#34; href=&#34;#20241004221955CST&#34;&gt;式(5)&lt;/a&gt;得到）&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1379,7 +1464,7 @@ f_i(\bm{n})_{SH}=f_i(\bm{n})_{RGB}-0.5
 f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{u}|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)
 \tag{13}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;）&lt;/strong&gt;：由上式和&lt;a class=&#34;link&#34; href=&#34;#20241003225449CST&#34;&gt;式1&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;）&lt;/strong&gt;：由上式和&lt;a class=&#34;link&#34; href=&#34;#20241003225449CST&#34;&gt;式(1)&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241006002545CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 &amp;\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{u}|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)\\
@@ -1490,7 +1575,7 @@ z^{\prime\prime}
 \end{pmatrix}
 \tag{25}
     \]
-&lt;p&gt;  其中 \(\bm{J}(\bm{\mu}^{\prime\prime})\) 是上述变换的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;Jacobi矩阵&lt;/a&gt;。具体来说对&lt;a class=&#34;link&#34; href=&#34;#20241007111414CST&#34;&gt;式24&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  其中 \(\bm{J}(\bm{\mu}^{\prime\prime})\) 是上述变换的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;Jacobi矩阵&lt;/a&gt;。具体来说对&lt;a class=&#34;link&#34; href=&#34;#20241007111414CST&#34;&gt;式(24)&lt;/a&gt;&lt;/p&gt;
 &lt;span id=&#34;20241007112854CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \bm{J}(\bm{\mu}^{\prime\prime})=&amp;
@@ -1528,24 +1613,24 @@ z^{\prime\prime}
 \bm{\Sigma}^{\prime}=\bm{J}\bm{\Sigma}^{\prime\prime}\bm{J}^T
 \tag{27}
     \]
-&lt;p&gt;  综合&lt;a class=&#34;link&#34; href=&#34;#20241007005219CST&#34;&gt;式20&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241007113916CST&#34;&gt;式27&lt;/a&gt;可得在相机视角下&lt;/p&gt;
+&lt;p&gt;  综合&lt;a class=&#34;link&#34; href=&#34;#20241007005219CST&#34;&gt;式(20)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241007113916CST&#34;&gt;式(27)&lt;/a&gt;可得在相机视角下&lt;/p&gt;
 &lt;span id=&#34;20241007114146CST&#34;&gt;&lt;/span&gt;\[
 \bm{\Sigma}^{\prime}==\bm{J}\bm{W}\bm{\Sigma}\bm{W}^T\bm{J}^T
 \tag{28}
     \]
-&lt;p&gt;   \(\bm{\mu}\) 按照点坐标规则变换就行。这样我们就将3D高斯椭球变换到了图像坐标系内。但是，在3DGS算法中， \(\bm{\Sigma}^{\prime}\) 实际上是 \(2\times 2\) 的2D形式，也就是忽略 \(z\) 坐标而直接投影到了 \(xy\) 平面。这也很简单，把&lt;a class=&#34;link&#34; href=&#34;#20241007114146CST&#34;&gt;式28&lt;/a&gt;中的 \(\bm{J}\) 的第三行去掉，变成 \(2 \times 3\) 的矩阵，此时容易验证&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;仍然适用。此时得到的 \(\bm{\Sigma}^{\prime}\) 就是投影到 \(xy\) 平面上的2D矩阵了。&lt;/p&gt;
+&lt;p&gt;   \(\bm{\mu}\) 按照点坐标规则变换就行。这样我们就将3D高斯椭球变换到了图像坐标系内。但是，在3DGS算法中， \(\bm{\Sigma}^{\prime}\) 实际上是 \(2\times 2\) 的2D形式，也就是忽略 \(z\) 坐标而直接投影到了 \(xy\) 平面。这也很简单，把&lt;a class=&#34;link&#34; href=&#34;#20241007114146CST&#34;&gt;式(28)&lt;/a&gt;中的 \(\bm{J}\) 的第三行去掉，变成 \(2 \times 3\) 的矩阵，此时容易验证&lt;a class=&#34;link&#34; href=&#34;#20241006001351CST&#34;&gt;结论1&lt;/a&gt;仍然适用。此时得到的 \(\bm{\Sigma}^{\prime}\) 就是投影到 \(xy\) 平面上的2D矩阵了。&lt;/p&gt;
 &lt;h4 id=&#34;着色&#34;&gt;着色
 &lt;/h4&gt;&lt;p&gt;  3DGS采用的是&lt;strong&gt;Alpha-Blending&lt;/strong&gt;和&lt;strong&gt;体渲染光线行进&lt;/strong&gt;着色算法。假设我们让视图平面某个点 \((x,y)\) 对N个高斯进行采样，那么该点的颜色为&lt;/p&gt;
 &lt;span id=&#34;20241007150621CST&#34;&gt;&lt;/span&gt;\[
 C(x,y)=\sum_{i=1}^{N}c_i(x,y)\alpha_i(x,y)\prod_{j=1}^{i-1}(1-\alpha_j(x,y))
 \tag{29}
     \]
-&lt;p&gt;  这N个高斯按照世界坐标系下与 \((x,y)\) 的距离（&lt;strong&gt;深度&lt;/strong&gt;）由近到远的顺序排序。 \(c_i(x^{\prime},y^{\prime})\) 是第 \(i\) 个高斯在 \((x^{\prime},y^{\prime})\) 处的颜色（在世界坐标系下用&lt;a class=&#34;link&#34; href=&#34;#20241005000157CST&#34;&gt;式10&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241005133050CST&#34;&gt;式11&lt;/a&gt;求出）。 \(\alpha_i(x^{\prime},y^{\prime})\) 是第 \(i\) 个高斯在 \((x^{\prime},y^{\prime})\) 处的不透明度，在二维平面中&lt;a class=&#34;link&#34; href=&#34;#20241007145425CST&#34;&gt;式12&lt;/a&gt;也适用，因此有&lt;/p&gt;
+&lt;p&gt;  这N个高斯按照世界坐标系下与 \((x,y)\) 的距离（&lt;strong&gt;深度&lt;/strong&gt;）由近到远的顺序排序。 \(c_i(x^{\prime},y^{\prime})\) 是第 \(i\) 个高斯在 \((x^{\prime},y^{\prime})\) 处的颜色（在世界坐标系下用&lt;a class=&#34;link&#34; href=&#34;#20241005000157CST&#34;&gt;式(10)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241005133050CST&#34;&gt;式(11)&lt;/a&gt;求出）。 \(\alpha_i(x^{\prime},y^{\prime})\) 是第 \(i\) 个高斯在 \((x^{\prime},y^{\prime})\) 处的不透明度，在二维平面中&lt;a class=&#34;link&#34; href=&#34;#20241007145425CST&#34;&gt;式(12)&lt;/a&gt;也适用，因此有&lt;/p&gt;
 &lt;span id=&#34;20241007152146CST&#34;&gt;&lt;/span&gt;\[
 \alpha_i(x^{\prime},y^{\prime})=\omicron_i\cdot\exp\left(-\frac{1}{2}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)^{T}\left(\bm{\Sigma}^{\prime}\right)^{-1}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)\right)
 \tag{30}
     \]
-&lt;p&gt;   \(\omicron_i\) 就是由&lt;a class=&#34;link&#34; href=&#34;#20241007152703CST&#34;&gt;不透明度&lt;/a&gt;定义的第 \(i\) 个3D高斯椭球的不透明度。注意，&lt;a class=&#34;link&#34; href=&#34;#20241007150621CST&#34;&gt;式29&lt;/a&gt;中的 \(C(x,y)\) 是三个RGB通道各自的颜色值，取值范围为 \([0,1]\) 。也就是三个RGB通道各自独立混合后，再一起作为 \((x,y)\) 点处的颜色。&lt;/p&gt;
+&lt;p&gt;   \(\omicron_i\) 就是由&lt;a class=&#34;link&#34; href=&#34;#20241007152703CST&#34;&gt;不透明度&lt;/a&gt;定义的第 \(i\) 个3D高斯椭球的不透明度。注意，&lt;a class=&#34;link&#34; href=&#34;#20241007150621CST&#34;&gt;式(29)&lt;/a&gt;中的 \(C(x,y)\) 是三个RGB通道各自的颜色值，取值范围为 \([0,1]\) 。也就是三个RGB通道各自独立混合后，再一起作为 \((x,y)\) 点处的颜色。&lt;/p&gt;
 &lt;h4 id=&#34;分块&#34;&gt;分块
 &lt;/h4&gt;&lt;p&gt;  如果对于每个像素，相对所有高斯（2D）都进行一次光线行进，那这将耗费巨大的计算资源而且还不一定能起到很好的效果。因此，3DGS提出了一种&lt;strong&gt;分块渲染&lt;/strong&gt;的方法。其思想是将屏幕分成每个大小为 \(16\times 16\) 像素的块，在渲染每个块中的像素的时候只考虑和这个块有交叠的高斯。对于不同的块，可以采用&lt;strong&gt;并行计算&lt;/strong&gt;的方法加快渲染速度。&lt;br&gt;
   那么该如何判断某个高斯与某个块是否有交叠呢？首先得确定它的边界。3DGS采用 \(99\\%\) 作为置信区间，也就是以概率为 \(99\\%\) 作为边界。即&lt;/p&gt;
@@ -2151,10 +2236,10 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
     \]
 &lt;p&gt;  则称随机过程 \(\set{X_n,n=0,1,2,\cdots}\) 为&lt;strong&gt;Markov链&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;markov性&#34;&gt;Markov性
-&lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929203518CST&#34;&gt;式1&lt;/a&gt;刻画了Markov链的特性，故称为&lt;strong&gt;Markov性&lt;/strong&gt;。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929203518CST&#34;&gt;式(1)&lt;/a&gt;刻画了Markov链的特性，故称为&lt;strong&gt;Markov性&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;转移概率&#34;&gt;转移概率
 &lt;/h3&gt;&lt;h4 id=&#34;转移概率的定义&#34;&gt;转移概率的定义
-&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203544CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（一步转移概率）&lt;/strong&gt;：称&lt;a class=&#34;link&#34; href=&#34;#20240929203518CST&#34;&gt;式1&lt;/a&gt;中的条件概率 \(P\set{X_{n+1}=j|X_n=i}\) 为Markov链 \(\set{X_n\left(n=0,1,2,\cdots\right)}\) 的&lt;strong&gt;一步转移概率&lt;/strong&gt;，简称&lt;strong&gt;转移概率&lt;/strong&gt;。&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203544CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（一步转移概率）&lt;/strong&gt;：称&lt;a class=&#34;link&#34; href=&#34;#20240929203518CST&#34;&gt;式(1)&lt;/a&gt;中的条件概率 \(P\set{X_{n+1}=j|X_n=i}\) 为Markov链 \(\set{X_n\left(n=0,1,2,\cdots\right)}\) 的&lt;strong&gt;一步转移概率&lt;/strong&gt;，简称&lt;strong&gt;转移概率&lt;/strong&gt;。&lt;br&gt;
   一般情况下，转移概率与状态 \(i,j\) 和时刻 \(n\) 有关。&lt;/p&gt;
 &lt;h4 id=&#34;时齐markov链&#34;&gt;时齐Markov链
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203556CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3（时齐）&lt;/strong&gt;：当Markov链的转移概率只与状态 \(i,j\) 有关，而与 \(n\) 无关时，称Markov链为&lt;strong&gt;时齐&lt;/strong&gt;的，并记 \(p_{ij}=P\set{X_{n+1}=j|X_n=i}\left(n \ge 0\right)\) ；否则，就称之为&lt;strong&gt;非时齐&lt;/strong&gt;的。&lt;br&gt;
@@ -2222,7 +2307,7 @@ p_{ij}^{\left(m+n\right)}&amp;=P\set{X_{m+n}=j|X_0=i}\\[5pt]
 \end{aligned}
 \tag{9}
     \]
-&lt;p&gt;  由矩阵乘法易得&lt;a class=&#34;link&#34; href=&#34;#20240929204308CST&#34;&gt;式8&lt;/a&gt;是&lt;a class=&#34;link&#34; href=&#34;#20240929204257CST&#34;&gt;式7&lt;/a&gt;的矩阵形式。&lt;/p&gt;
+&lt;p&gt;  由矩阵乘法易得&lt;a class=&#34;link&#34; href=&#34;#20240929204308CST&#34;&gt;式(8)&lt;/a&gt;是&lt;a class=&#34;link&#34; href=&#34;#20240929204257CST&#34;&gt;式(7)&lt;/a&gt;的矩阵形式。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240930161109CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;结论1&lt;/strong&gt;：对任意 \(n_1,n_2,n_3,\cdots,n_m\left(n_i\ge0\right)\) 和  \(k_1,k_2,k_3,\cdots,k_m\left(k_j \in S\right)\) ，有&lt;/p&gt;
 &lt;span id=&#34;20240930161207CST&#34;&gt;&lt;/span&gt;\[
 p_{ij}^{\left(n_1+n_2+n_3+\cdots+n_m\right)}\ge p_{ik_1}^{\left(n_1\right)}p_{k_1k_2}^{\left(n_2\right)}p_{k_2k_3}^{\left(n_3\right)}\cdots p_{k_{m-1}j}^{\left(n_m\right)}
@@ -2412,7 +2497,7 @@ p_{ii}^{\left(md+s+h\right)} \ge p_{ij}^{\left(md+s\right)}p_{ji}^{\left(h\right
 \tag{29}
     \]
 &lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义可知 \(nd+r+h\) 和 \(md+s+h\) 都可以被 \(d\) 整除。省去前面的 \(n\) 和 \(m\) 可得 \(r+h\) 和 \(s+h\) 都可被 \(d\) 整除。从而其差 \(\left(r+h\right)-\left(s+h\right)=r-s\) 都能被 \(d\) 整除\left(见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;\right)。但是 \(0 \le r \le d-1,0 \le s \le d-1\) ，故 \(0 \le r-s \le d-1\) ，因此 \(r-s\) 只能为 \(0\) ，也就是 \(r=s\) 。故 \(S_r=S_s\) ，假设不成立，故 \(S_r\) 不相交。&lt;br&gt;
-  接下来证明自 \(S_r\) 任意状态出发，经 \(1\) 步转移必进入 \(S_{r+1}\) 中（其中 \(S_d=S_0\) ）。等价于证明对任意 \(j \in S_r\) ，有 \(\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{\left(1\right)}}=1\) 。事实上，由 &lt;a class=&#34;link&#34; href=&#34;#20240929213348CST&#34;&gt;式28&lt;/a&gt;可知 \(p_{ij}^{\left(nd+r\right)}&gt;0\) ，同样可知对 \(k \notin S_{r+1}\) 必有 \(p_{ik}^{\left(nd+r+1\right)}=0\) 。因此由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可推导：&lt;/p&gt;
+  接下来证明自 \(S_r\) 任意状态出发，经 \(1\) 步转移必进入 \(S_{r+1}\) 中（其中 \(S_d=S_0\) ）。等价于证明对任意 \(j \in S_r\) ，有 \(\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{\left(1\right)}}=1\) 。事实上，由 &lt;a class=&#34;link&#34; href=&#34;#20240929213348CST&#34;&gt;式(28)&lt;/a&gt;可知 \(p_{ij}^{\left(nd+r\right)}&gt;0\) ，同样可知对 \(k \notin S_{r+1}\) 必有 \(p_{ik}^{\left(nd+r+1\right)}=0\) 。因此由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可推导：&lt;/p&gt;
 &lt;span id=&#34;20240929213405CST&#34;&gt;&lt;/span&gt;\[
 0=p_{ik}^{\left(nd+r+1\right)} \ge p_{ij}^{\left(nd+r\right)}p_{jk}^{\left(1\right)}&gt;0
 \tag{30}
@@ -2516,7 +2601,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\left(\sum_{v=1,v \ne s}^{\infin}f_{v}\right)\limsup\limits_{m \rightarrow \infin}p_{n_md}
 \tag{44}
     \]
-&lt;p&gt;  注意状态 \(j\) 是&lt;a class=&#34;link&#34; href=&#34;#20240930164408CST&#34;&gt;常返&lt;/a&gt;的，所以 \(\displaystyle\sum_{v=1}^{\infin}f_{v}=1\) ，也就是 \(\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s\) 。而将&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式41&lt;/a&gt;代入&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式44&lt;/a&gt;后再将&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式44&lt;/a&gt;代回&lt;a class=&#34;link&#34; href=&#34;#20240929213539CST&#34;&gt;式42&lt;/a&gt;得&lt;/p&gt;
+&lt;p&gt;  注意状态 \(j\) 是&lt;a class=&#34;link&#34; href=&#34;#20240930164408CST&#34;&gt;常返&lt;/a&gt;的，所以 \(\displaystyle\sum_{v=1}^{\infin}f_{v}=1\) ，也就是 \(\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s\) 。而将&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(41)&lt;/a&gt;代入&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式(44)&lt;/a&gt;后再将&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式(44)&lt;/a&gt;代回&lt;a class=&#34;link&#34; href=&#34;#20240929213539CST&#34;&gt;式(42)&lt;/a&gt;得&lt;/p&gt;
 &lt;span id=&#34;20240929213611CST&#34;&gt;&lt;/span&gt;\[
 \lambda\le f_s\liminf\limits_{m \rightarrow \infin}p_{n_md-s}+\left(1-f_s\right)\lambda
 \tag{45}
@@ -2526,12 +2611,12 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda
 \tag{46}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义和 \(f_s&gt;0\) 知 \(d\) 必整除 \(s\) 。因此 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda\) 。但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的定义&lt;/a&gt;可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\) ，即 \(\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda\) 。故由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda\) 。又由&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式41&lt;/a&gt;可得：&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义和 \(f_s&gt;0\) 知 \(d\) 必整除 \(s\) 。因此 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda\) 。但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的定义&lt;/a&gt;可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\) ，即 \(\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda\) 。故由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda\) 。又由&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(41)&lt;/a&gt;可得：&lt;/p&gt;
 &lt;span id=&#34;20240929213629CST&#34;&gt;&lt;/span&gt;\[
 \lambda=\lim\limits_{m \rightarrow \infin}p_{n_md}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-2s}=\cdots
 \tag{47}
     \]
-&lt;p&gt;  任取 \(l\) 个正整数 \(c_i\) 和满足 \(f_{d_i}&gt;0\) 的 \(l\) 个正整数 \(d_i,i=1,2,\cdots,l\) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929213629CST&#34;&gt;式47&lt;/a&gt;可知有&lt;/p&gt;
+&lt;p&gt;  任取 \(l\) 个正整数 \(c_i\) 和满足 \(f_{d_i}&gt;0\) 的 \(l\) 个正整数 \(d_i,i=1,2,\cdots,l\) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929213629CST&#34;&gt;式(47)&lt;/a&gt;可知有&lt;/p&gt;
 &lt;span id=&#34;20240929213639CST&#34;&gt;&lt;/span&gt;\[
 \lim\limits_{m \rightarrow \infin}p_{n_md-c_id_i}=\lambda
 \tag{48}
@@ -2546,7 +2631,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \lim\limits_{m \rightarrow \infin}p_{n_m^\prime d}=\lambda
 \tag{50}
     \]
-&lt;p&gt;  我们发现上式和&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式41&lt;/a&gt;形式完全一样，因此再次重复从&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式41&lt;/a&gt;到&lt;a class=&#34;link&#34; href=&#34;#20240929213639CST&#34;&gt;式48&lt;/a&gt;的推导又可以得到&lt;/p&gt;
+&lt;p&gt;  我们发现上式和&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(41)&lt;/a&gt;形式完全一样，因此再次重复从&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(41)&lt;/a&gt;到&lt;a class=&#34;link&#34; href=&#34;#20240929213639CST&#34;&gt;式(48)&lt;/a&gt;的推导又可以得到&lt;/p&gt;
 &lt;span id=&#34;20240929213656CST&#34;&gt;&lt;/span&gt;\[
 \lambda=\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d}=\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d-s^\prime}=\lim\limits_{m \rightarrow \infin}p_{n_m^\prime d-2s^\prime}=\cdots
 \tag{51}
@@ -2571,7 +2656,7 @@ kd=\sum_{i=1}^{l}c_id_i
 \lim\limits_{n \rightarrow \infin}p_{\left(n_m-k\right)d}=\lambda
 \tag{55}
     \]
-&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20240929213519CST&#34;&gt;式39&lt;/a&gt;中令 \(n=\left(n_m-k_0\right)d\) ， 并注意到 \(v\) 不是 \(d\) 的整数倍时 \(p_v=0\) ，故可把 \(v\) 替换为 \(vd\) ，则得&lt;/p&gt;
+&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20240929213519CST&#34;&gt;式(39)&lt;/a&gt;中令 \(n=\left(n_m-k_0\right)d\) ， 并注意到 \(v\) 不是 \(d\) 的整数倍时 \(p_v=0\) ，故可把 \(v\) 替换为 \(vd\) ，则得&lt;/p&gt;
 &lt;span id=&#34;20240929213734CST&#34;&gt;&lt;/span&gt;\[
 \sum_{v=0}^{n_m-k_0}r_{vd}p_{\left(n_m-k_0-v\right)d}=1
 \tag{56}
@@ -2581,22 +2666,22 @@ kd=\sum_{i=1}^{l}c_id_i
 \lambda=\frac{1}{\displaystyle\sum_{v=0}^{\infin}r_{vd}}
 \tag{57}
     \]
-&lt;p&gt;  因为当 \(v\) 不是 \(d\) 的整数倍时， \(f_v=0\) ，由&lt;a class=&#34;link&#34; href=&#34;#20240929213442CST&#34;&gt;式35&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  因为当 \(v\) 不是 \(d\) 的整数倍时， \(f_v=0\) ，由&lt;a class=&#34;link&#34; href=&#34;#20240929213442CST&#34;&gt;式(35)&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929213747CST&#34;&gt;&lt;/span&gt;\[
 r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
 \tag{58}
     \]
-&lt;p&gt;  从而由&lt;a class=&#34;link&#34; href=&#34;#20240929213450CST&#34;&gt;式36&lt;/a&gt;得&lt;/p&gt;
+&lt;p&gt;  从而由&lt;a class=&#34;link&#34; href=&#34;#20240929213450CST&#34;&gt;式(36)&lt;/a&gt;得&lt;/p&gt;
 &lt;span id=&#34;20240929213756CST&#34;&gt;&lt;/span&gt;\[
 \sum_{v=0}^{\infin}r_{vd}=\frac{1}{d}\sum_{v=0}^{\infin}\sum_{j=vd}^{vd+d-1}r_j=\frac{1}{d}\sum_{v=0}^{\infin}r_v=\frac{\mu_j}{d}
 \tag{59}
     \]
-&lt;p&gt;  代入&lt;a class=&#34;link&#34; href=&#34;#20240929213740CST&#34;&gt;式57&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  代入&lt;a class=&#34;link&#34; href=&#34;#20240929213740CST&#34;&gt;式(57)&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929213802CST&#34;&gt;&lt;/span&gt;\[
 \lambda = \frac{d}{\mu_j}
 \tag{60}
     \]
-&lt;p&gt;  把&lt;a class=&#34;link&#34; href=&#34;#20240929213526CST&#34;&gt;式40&lt;/a&gt;换成 \(\lambda=\liminf\limits_{n \rightarrow \infin}p_{nd}\) ，下面的推导过程完全相同，仍可以得到 \(\lambda = \displaystyle\frac{d}{\mu_j}\) 。因此，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;可知&lt;/p&gt;
+&lt;p&gt;  把&lt;a class=&#34;link&#34; href=&#34;#20240929213526CST&#34;&gt;式(40)&lt;/a&gt;换成 \(\lambda=\liminf\limits_{n \rightarrow \infin}p_{nd}\) ，下面的推导过程完全相同，仍可以得到 \(\lambda = \displaystyle\frac{d}{\mu_j}\) 。因此，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;可知&lt;/p&gt;
 &lt;span id=&#34;20240929213809CST&#34;&gt;&lt;/span&gt;\[
 \lim\limits_{n \rightarrow \infin}p_{nd}=\frac{d}{\mu_j}
 \tag{61}
@@ -2631,7 +2716,7 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\r
     \]
 &lt;p&gt;  定理得证。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929212119CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论2&lt;/strong&gt;：有限状态的Markov链，不可能全为非常返状态，也不可能有零常返状态，从而不可约的有限Markov链是正常返的。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;）&lt;/strong&gt;‌：设状态空间 \(S=\set{1,2,\cdots,N}\) ，若全部 \(N\) 个状态都是非常返，则任取其中两个状态 \(i,j\) ，若 \(i \rightarrow j \( ，有 \(p_{ij}^{\left(n\right)}\rightarrow 0\) （&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;）；若 \(i \nrightarrow j\) ，则对 \(\forall n\) ， \(p_{ij}^{\left(n\right)}=0\) 。不管是哪种情况， \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}\to 0\) ，但是 \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}=1\) （与&lt;a class=&#34;link&#34; href=&#34;#20240929204123CST&#34;&gt;式4&lt;/a&gt;类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。&lt;br&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;）&lt;/strong&gt;‌：设状态空间 \(S=\set{1,2,\cdots,N}\) ，若全部 \(N\) 个状态都是非常返，则任取其中两个状态 \(i,j\) ，若 \(i \rightarrow j \( ，有 \(p_{ij}^{\left(n\right)}\rightarrow 0\) （&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;）；若 \(i \nrightarrow j\) ，则对 \(\forall n\) ， \(p_{ij}^{\left(n\right)}=0\) 。不管是哪种情况， \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}\to 0\) ，但是 \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}=1\) （与&lt;a class=&#34;link&#34; href=&#34;#20240929204123CST&#34;&gt;式(4)&lt;/a&gt;类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。&lt;br&gt;
   若 \(S\) 中有零常返状态，设为 \(i\) ，令 \(C=\set{j | i \rightarrow j}\) ，则有 \(\displaystyle\sum_{j \in C}p_{ij}^{\left(n\right)}=1\) 且 \(j \rightarrow i\) （ \(j \nrightarrow i\) 与 \(i\) 的常返性相矛盾，类似&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;的证明）。故 \(i \leftrightarrow j\) ，从而 \(j\) 也为零常返状态（&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;）。则 \(\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}=0\) （&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;），从而 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}\to 0\) 。但是由 \(j\) 的定义知 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}=1\) ，矛盾。因此有限状态的Markov链不可能有零常返状态。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929212124CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论3&lt;/strong&gt;：若Markov链有一个零常返状态，则必有无限个零常返状态。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212124CST&#34;&gt;推论3&lt;/a&gt;）&lt;/strong&gt;‌：假设Markov链有一个零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;可知这个零常返状态必然存在于某个不可约类中，又有&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知这个类必然全都是零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。&lt;/p&gt;
@@ -2789,7 +2874,7 @@ P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 1=\lim\limits_{n \to \infin}\sum_{j \in S}p_{ij}^{\left(n\right)}\ge\sum_{j \in S}\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}=\sum_{j \in S}\pi_j
 \tag{91}
     \]
-&lt;p&gt;  因此 \(\displaystyle\sum_{j \in S}\pi_j\le 1\) 有限。将&lt;a class=&#34;link&#34; href=&#34;#20240929214143CST&#34;&gt;式90&lt;/a&gt;左右两边取 \(n \to \infin\) 并由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Lebesgue控制收敛定理&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  因此 \(\displaystyle\sum_{j \in S}\pi_j\le 1\) 有限。将&lt;a class=&#34;link&#34; href=&#34;#20240929214143CST&#34;&gt;式(90)&lt;/a&gt;左右两边取 \(n \to \infin\) 并由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Lebesgue控制收敛定理&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214155CST&#34;&gt;&lt;/span&gt;\[
 \pi_j=\lim\limits_{n \to \infin}\sum_{k \in S}\pi_kp_{kj}^{\left(n\right)}=\sum_{k \in S}\lim\limits_{n \to \infin}\pi_kp_{kj}^{\left(n\right)}=\pi_j\left(\sum_{k \in S}\pi_k\right)
 \tag{92}
@@ -2979,7 +3064,7 @@ p_{ij}\left(t\right)=&amp;\sum_k{p_{ik}\left(nh\right)p_{kj}\left(t-nh\right)}\\
 \sum_{m=1}^{n}{_jp_{ij}\left(mh\right)} \le \frac{\varepsilon}{1-\varepsilon}
 \tag{112}
     \]
-&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929214359CST&#34;&gt;式108&lt;/a&gt;取 \(k=i\) 可得&lt;/p&gt;
+&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929214359CST&#34;&gt;式(108)&lt;/a&gt;取 \(k=i\) 可得&lt;/p&gt;
 &lt;span id=&#34;20240929214438CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 _jp_{ii}\left(mh\right)=&amp;p_{ii}\left(mh\right)-\sum_{l=1}^{m-1}{_jp_{ij}\left(\left(lh\right)p_{ji}\left(\left(m-l\right)h\right)\right)}\\
@@ -2988,7 +3073,7 @@ _jp_{ii}\left(mh\right)=&amp;p_{ii}\left(mh\right)-\sum_{l=1}^{m-1}{_jp_{ij}\lef
 \end{aligned}
 \tag{113}
     \]
-&lt;p&gt;  因此由&lt;a class=&#34;link&#34; href=&#34;#20240929214413CST&#34;&gt;式110&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  因此由&lt;a class=&#34;link&#34; href=&#34;#20240929214413CST&#34;&gt;式(110)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214445CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 p_{ij}\left(t\right)=&amp;\sum_{m=1}^{n}{_jp_{ij}\left(mh\right)p_{jj}\left(t-mh\right)}\\[5pt]
@@ -2998,7 +3083,7 @@ p_{ij}\left(t\right)=&amp;\sum_{m=1}^{n}{_jp_{ij}\left(mh\right)p_{jj}\left(t-mh
 \end{aligned}
 \tag{114}
     \]
-&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929214343CST&#34;&gt;式106&lt;/a&gt;得证。两边除以 \(h\) 并注意当 \(h \to 0\) 时 \(nh \to t\) ，得&lt;/p&gt;
+&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20240929214343CST&#34;&gt;式(106)&lt;/a&gt;得证。两边除以 \(h\) 并注意当 \(h \to 0\) 时 \(nh \to t\) ，得&lt;/p&gt;
 &lt;span id=&#34;20240929214451CST&#34;&gt;&lt;/span&gt;\[
 \limsup\limits_{h \to 0}\frac{p_{ij}\left(h\right)}{h} \le \frac{1}{1+3\varepsilon}\frac{p_{ij}\left(t\right)}{t} &lt; \infin
 \tag{115}
@@ -3029,7 +3114,7 @@ q_{ii}=\sum_{j \ne i}q_{ij} &lt; +\infin
 \tag{119}
     \]
 &lt;h4 id=&#34;保守性&#34;&gt;保守性
-&lt;/h4&gt;&lt;p&gt;  对于无限状态的情况，一般只能得到 \(q_{ii} \ge \displaystyle\sum_{j \ne i}q_{ij}\) （&lt;a class=&#34;link&#34; href=&#34;#20240929214518CST&#34;&gt;式119&lt;/a&gt;中积分和求和不可交换，因此只能使用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;）。设状态空间为 \(S=\set{1,2,\cdots,n,\cdots}\) ，此时记&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  对于无限状态的情况，一般只能得到 \(q_{ii} \ge \displaystyle\sum_{j \ne i}q_{ij}\) （&lt;a class=&#34;link&#34; href=&#34;#20240929214518CST&#34;&gt;式(119)&lt;/a&gt;中积分和求和不可交换，因此只能使用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;）。设状态空间为 \(S=\set{1,2,\cdots,n,\cdots}\) ，此时记&lt;/p&gt;
 &lt;span id=&#34;20240929214526CST&#34;&gt;&lt;/span&gt;\[
 \bm{Q}=
 \begin{pmatrix}
