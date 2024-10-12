@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 12 Oct 2024 23:46:02 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 13 Oct 2024 01:17:18 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclidean空间与向量函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -811,7 +811,8 @@ c_1 &amp; c_2 &amp; c_3
 \tag{57}
     \]&lt;/p&gt;
 &lt;p&gt;  其中 \(a=t_0 &lt; t_1 &lt; \cdots &lt; t_n = b\) 是区间 \([a,b]\) 的任意一个分割， \(\Delta t_i=t_i-t_{i-1},\space t_i^\prime \in [t_{i-1},t_i]\) ，并且 \(\lambda=\max\set{\Delta t_i;i=1,\cdots,n}\) 。这就是说，向量函数的求导和积分归结为它的分量函数的求导和积分，因此向量函数的可微性和可积性归结为它的分量函数的可微性和可积性。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241012181641CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理2&lt;/strong&gt;：假定 \(\bm{a}(t),\bm{b}(t),\bm{c}(t)\) 是三个可微的向量函数，则它们的内积、向量积和混合积的导数有下面的公式&lt;/p&gt;
+&lt;h4 id=&#34;求导公式&#34;&gt;求导公式
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241012181641CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理2&lt;/strong&gt;：假定 \(\bm{a}(t),\bm{b}(t),\bm{c}(t)\) 是三个可微的向量函数，则它们的内积、向量积和混合积的导数有下面的公式&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241012195223CST&#34;&gt;&lt;/span&gt;\[
 (\bm{a}(t)\cdot\bm{b}(t))^\prime=\bm{a}^\prime(t)\cdot\bm{b}(t)+\bm{a}(t)\cdot\bm{b}^\prime(t)
 \tag{58}
@@ -909,6 +910,113 @@ b_1&#39;(t) &amp; b_2&#39;(t)
 \end{aligned}
 \tag{63}
     \]
+&lt;h4 id=&#34;不变条件&#34;&gt;不变条件
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241012234715CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理3&lt;/strong&gt;：设 \(\bm{a}(t)\) 是一个处处非零的连续可微的向量函数，则&lt;br&gt;
+  ①向量函数 \(\bm{a}(t)\) 的长度是常熟当且仅当 \(\bm{a}&#39;(t)\cdot\bm{a}(t)\equiv 0\) 。&lt;br&gt;
+  ②向量函数 \(\bm{a}(t)\) 的方向不变当且仅当 \(\bm{a}&#39;(t)\times\bm{a}(t)\equiv 0\) 。&lt;br&gt;
+  ③如果向量函数 \(\bm{a}(t)\) 与某一个固定的方向垂直，那么&lt;/p&gt;
+&lt;span id=&#34;20241012235212CST&#34;&gt;&lt;/span&gt;\[
+((\bm{a}(t),(\bm{a}&#39;(t),(\bm{a}&#39;&#39;(t))\equiv 0
+\tag{64}
+    \]
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241012234715CST&#34;&gt;定理3&lt;/a&gt;）&lt;/strong&gt;：对①，因为&lt;/p&gt;
+&lt;span id=&#34;20241012235435CST&#34;&gt;&lt;/span&gt;\[
+\frac{d}{dt}|\bm{a}(t)|^2=\frac{d(\bm{a}(t)\cdot\bm{a}(t))}{dt}=2\bm{a}&#39;(t)\cdot\bm{a}(t)
+\tag{65}
+    \]
+&lt;p&gt;  所以 \(|\bm{a}(t)|^2\) 是常数，当且仅当 \(\bm{a}&#39;(t)\cdot\bm{a}(t)\equiv 0\) 。&lt;/p&gt;
+&lt;p&gt;  对②，如果向量函数 \(\bm{a}(t)\) 的方向不变，则有一个固定的单位向量 \(\bm{b}\) ，使得向量函数 \(\bm{a}(t)\) 能够写成&lt;/p&gt;
+&lt;span id=&#34;20241012235743CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}(t)=f(t)\cdot\bm{b}
+\tag{66}
+    \]
+&lt;p&gt;  两边乘以 \(\bm{b}\) 并利用单位向量的特性得 \(f(t)=\bm{a}(t)\cdot\bm{b}\) 。其中 \(f(t)\) 是一个处处非零的连续可微函数，因此&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241012235927CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}&#39;(t)=f&#39;(t)\cdot\bm{b}
+\tag{67}
+    \]
+&lt;span id=&#34;20241013000054CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}&#39;(t)\times\bm{a}(t)=0
+\tag{68}
+    \]&lt;/p&gt;
+&lt;p&gt;  反过来，设 \(\bm{a}&#39;(t)\times\bm{a}(t)=0\) ，令 \(\displaystyle\bm{b}(t)=\frac{\bm{a}(t)}{|\bm{a}(t)|}\) ，有 \(|\bm{b}(t)|=1\) 。我们要证明 \(\bm{b}(t)\) 是常向量函数。因为 \(\bm{b}(t)\) 的长度是 \(1\) ，故由①可知 \(\bm{b}&#39;(t)\cdot\bm{b}(t)\equiv 0\) ，即&lt;/p&gt;
+&lt;span id=&#34;20241013002058CST&#34;&gt;&lt;/span&gt;\[
+\bm{b}&#39;(t)\cdot\bm{a}(t)\equiv 0
+\tag{69}
+    \]
+&lt;p&gt;  由 \(\bm{b}(t)\) 的定义得知&lt;/p&gt;
+&lt;span id=&#34;20241013000920CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}(t)=f(t)\bm{b}(t)
+\tag{70}
+    \]
+&lt;p&gt;  其中 \(f(t)=|\bm{a}(t)|\) 处处不为零，故&lt;/p&gt;
+&lt;span id=&#34;20241013001311CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}&#39;(t)=f&#39;(t)\bm{b}(t)+f(t)\bm{b}&#39;(t)
+\tag{71}
+    \]
+&lt;p&gt;  注意由假设条件 \(\bm{a}(t)\times\bm{a}&#39;(t)\equiv 0\) ，因此有&lt;/p&gt;
+&lt;span id=&#34;20241013001333CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}(t)\times\bm{a}&#39;(t)=f&#39;(t)\bm{a}(t)\times\bm{b}(t)+f(t)\bm{a}(t)\times\bm{b}&#39;(t)=f(t)\bm{a}(t)\times\bm{b}&#39;(t)\equiv\bm{0}
+\tag{72}
+    \]
+&lt;p&gt;  故 \(\bm{a}(t)\times\bm{b}&#39;(t)\equiv 0\) ，即 \(\bm{b}&#39;(t)\) 和 \(\bm{a}(t)\) 共线，故存在 \(\lambda(t)\) 使得&lt;/p&gt;
+&lt;span id=&#34;20241013001927CST&#34;&gt;&lt;/span&gt;\[
+\bm{b}&#39;(t)=\lambda(t)\bm{a}(t)
+\tag{73}
+    \]
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241013002058CST&#34;&gt;式(69)&lt;/a&gt;得&lt;/p&gt;
+&lt;span id=&#34;20241013002200CST&#34;&gt;&lt;/span&gt;\[
+\bm{b}&#39;(t)\cdot\bm{a}(t)=\lambda(t)\bm{a}(t)\cdot\bm{a}(t)=\lambda(t)f^2(t) \equiv 0
+\tag{74}
+    \]
+&lt;p&gt;   注意 \(f(t)\) 处处不为零，因此 \(\lambda(t)\equiv 0\) ，即&lt;/p&gt;
+&lt;span id=&#34;20241013002347CST&#34;&gt;&lt;/span&gt;\[
+\bm{b}&#39;(t)\equiv \bm{0}
+\tag{75}
+    \]
+&lt;p&gt;  故 \(\bm{}(t)\) 是常向量，所以向量函数 \(\bm{a}(t)\) 的方向不变。&lt;/p&gt;
+&lt;p&gt;  对③，设有单位常向量 \(\bm{b}\) ，使得 \(\bm{a}(t)\cdot\bm{b}\equiv 0\) 。对此式求导数得到&lt;/p&gt;
+&lt;span id=&#34;20241013002559CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}&#39;(t)\cdot\bm{b}\equiv 0,\quad \bm{a}&#39;&#39;(t)\cdot\bm{b}\equiv 0
+\tag{76}
+    \]
+&lt;p&gt;  因此对于任意 \(t\) ，向量 \(\bm{a}(t),\bm{a}&#39;(t),\bm{a}&#39;&#39;(t)\) 共面，于是&lt;/p&gt;
+&lt;span id=&#34;20241013002822CST&#34;&gt;&lt;/span&gt;\[
+((\bm{a}(t),(\bm{a}&#39;(t),(\bm{a}&#39;&#39;(t))\equiv 0
+\tag{77}
+    \]
+&lt;p&gt;  反过来，假定上面的式子成立，则&lt;/p&gt;
+&lt;span id=&#34;20241013002834CST&#34;&gt;&lt;/span&gt;\[
+(\bm{a}(t)\times\bm{a}&#39;(t))\cdot\bm{a}&#39;&#39;(t)\equiv 0
+\tag{78}
+    \]
+&lt;p&gt;  对于 \(\bm{a}(t)\times\bm{a}&#39;(t)=\bm{0}\) 的情况，由②的结论可以得到 \(\bm{a}(t)\) 的方向不变，因此③直接成立。对于 \(\bm{a}(t)\times\bm{a}&#39;(t)\ne\bm{0}\) ，令&lt;/p&gt;
+&lt;span id=&#34;20241013003551CST&#34;&gt;&lt;/span&gt;\[
+\bm{b}(t)=\bm{a}&#39;(t)\times\bm{a}(t)
+\tag{79}
+    \]
+&lt;p&gt;   \(\bm{b}(t)\) 与 \(\bm{a}(t)\) 垂直。有&lt;/p&gt;
+&lt;span id=&#34;20241013005757CST&#34;&gt;&lt;/span&gt;\[
+\bm{b}&#39;(t)=\bm{a}&#39;&#39;(t)\times\bm{a}(t)+\bm{a}&#39;(t)\times\bm{a}&#39;(t)=\bm{a}&#39;&#39;(t)\times\bm{a}(t)
+\tag{80}
+    \]
+&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“公式”还未上线~&#39;)&#34;&gt;三向量叉乘公式&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241013002834CST&#34;&gt;式(78)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241013003551CST&#34;&gt;式(79)&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;20241013005840CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\bm{b}(t)\times\bm{b}&#39;(t)=&amp;\bm{b}(t)\times(\bm{a}&#39;&#39;(t)\times\bm{a}(t))\\[5pt]
+=&amp;(\bm{b}(t)\cdot\bm{a}(t))\bm{a}&#39;&#39;(t)-(\bm{b}(t)\cdot\bm{a}&#39;&#39;(t))\bm{a}(t)\text{（三向量叉乘公式）}\\[5pt]
+=&amp;-((\bm{a}&#39;(t)\times\bm{a}(t))\cdot\bm{a}&#39;&#39;(t))\bm{a}(t)\text{（式(79)）}\\[5pt]
+=&amp;((\bm{a}(t)\times\bm{a}&#39;(t))\cdot\bm{a}&#39;&#39;(t))\bm{a}(t)\\[5pt]
+=&amp;(\bm{a}(t),\bm{a}&#39;(t),\bm{a}&#39;&#39;(t))\bm{a}(t)\equiv 0\text{（式(78)）}
+\end{aligned}
+\tag{81}
+    \]
+&lt;p&gt;  根据②的结论，向量函数 \(\bm{b}(t)\) 有确定的方向，令 \(\displaystyle\bm{b}_0=\frac{\bm{b}(t)}{|\bm{b}(t)|}\) ，则 \(\bm{b}_0\) 是单位常向量，并且&lt;/p&gt;
+&lt;span id=&#34;20241013011539CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}(t)\cdot\bm{b}_0=\frac{\bm{a}(t)\cdot\bm{b}(t)}{|\bm{b}(t)|}\equiv 0
+\tag{82}
+    \]
+&lt;p&gt;证毕。&lt;/p&gt;
 </description>
         </item>
         
