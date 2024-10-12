@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 12 Oct 2024 14:23:37 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 12 Oct 2024 15:03:09 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclidean空间与向量函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -724,7 +724,93 @@ g_{ij}=\bm{e}_i\cdot\bm{e}_j\quad 1 \le i,j \le 3
     \]
 &lt;p&gt;  我们把 \((g_{ij})\) 称为仿射标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的度量系数。空间 \(E^3\) 的刚体运动把仿射标架变成仿射标架，并且保持它的度量系数不变，保持标架的定向不变。反过来，对于对于 \(E^3\) 中任意两个有相同度量系数的、成右手系的仿射标架，必有 \(E^3\) 中的一个刚体运动把其中一个仿射标架变成另一个仿射标架。很明显， \(E^3\) 中的全体仿射标架的集合可以等同于 \(E^3\times\rm{GL(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;GL(3)群&lt;/a&gt;），其中 \(\rm{GL(3)}\) 表示可逆的 \(3\times 3\) 矩阵的集合。因此，\(E^3\) 的全体仿射标架构成一个 \(12\) 维的空间。&lt;/p&gt;
 &lt;h2 id=&#34;向量函数&#34;&gt;向量函数
-&lt;/h2&gt;&lt;p&gt;  由三维Euclidean空间 \(E^3\) 中的全体向量组成的空间称为三维Euclidean向量空间。&lt;/p&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;向量空间&#34;&gt;向量空间
+&lt;/h3&gt;&lt;h4 id=&#34;定义-3&#34;&gt;定义
+&lt;/h4&gt;&lt;p&gt;  由三维Euclidean空间 \(E^3\) 中的全体向量组成的空间称为三维Euclidean向量空间。在给定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后，该空间等同于由有序的三个实数的组构成的空间 \(\R^3\) 。&lt;/p&gt;
+&lt;h4 id=&#34;数量积&#34;&gt;数量积
+&lt;/h4&gt;&lt;p&gt;设有 \(\R^3\) 中的三个向量&lt;/p&gt;
+&lt;span id=&#34;20241012143200CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}=(a_1,a_2,a_3)\\[5pt]
+\bm{b}=(b_1,b_2,b_3)\\[5pt]
+\bm{c}=(c_1,c_2,c_3)
+\tag{50}
+    \]
+&lt;p&gt;  则 \(\bm{a}\) 和 \(\bm{b}\) 的点乘（以后也称为&lt;strong&gt;内积&lt;/strong&gt;，或&lt;strong&gt;数量积&lt;/strong&gt;）是&lt;/p&gt;
+&lt;span id=&#34;20241012143454CST&#34;&gt;&lt;/span&gt;\[
+\bm{a}\cdot\bm{b}=|\bm{a}|\cdot|\bm{b}|\cdot\cos\angle(\bm{a},\bm{b})=a_1b_1+a_2b_2+a_3b_3
+\tag{51}
+    \]
+&lt;h4 id=&#34;向量积&#34;&gt;向量积
+&lt;/h4&gt;&lt;p&gt;   \(\bm{a}\) 和 \(\bm{b}\) 的叉乘（也称为&lt;strong&gt;向量积&lt;/strong&gt;）是&lt;/p&gt;
+&lt;span id=&#34;20241012143803CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\bm{a}\times\bm{b}=&amp;\left(
+\begin{vmatrix}
+a_2 &amp; a_3 \\[5pt]
+b_2 &amp; b_3
+\end{vmatrix}
+,
+\begin{vmatrix}
+a_3 &amp; a_1 \\[5pt]
+b_3 &amp; b_1
+\end{vmatrix}
+,
+\begin{vmatrix}
+a_1 &amp; a_2 \\[5pt]
+b_1 &amp; b_2
+\end{vmatrix}
+\right)
+\\[15pt]
+=&amp;
+\begin{vmatrix}
+\bm{i} &amp; \bm{j} &amp; \bm{k} \\[5pt]
+a_1 &amp; a_2 &amp; a_3 \\[5pt]
+b_1 &amp; b_2 &amp; b_3
+\end{vmatrix}
+\end{aligned}
+\tag{52}
+    \]
+&lt;p&gt;  因此 \(\bm{a}\times\bm{b}\perp\bm{a}, \bm{a}\times\bm{b}\perp\bm{b}\) 。向量 \(\bm{a},\bm{b}\) 和 \(\bm{a}\times\bm{b}\) 构成右手系，并且&lt;/p&gt;
+&lt;span id=&#34;20241012144354CST&#34;&gt;&lt;/span&gt;\[
+|\bm{a}\times\bm{b}|=|\bm{a}|\cdot|\bm{b}|\cdot\sin\angle(\bm{a},\bm{b})
+\tag{53}
+    \]
+&lt;h4 id=&#34;混合积&#34;&gt;混合积
+&lt;/h4&gt;&lt;p&gt;   \(\bm{a},\bm{b}\) 和 \(\bm{c}\) 的混合积是&lt;/p&gt;
+&lt;span id=&#34;20241012144456CST&#34;&gt;&lt;/span&gt;\[
+(\bm{a},\bm{b},\bm{c})=(\bm{a}\times\bm{b})\cdot\bm{c}=
+\begin{vmatrix}
+a_1 &amp; a_2 &amp; a_3 \\[5pt]
+b_1 &amp; b_2 &amp; b_3 \\[5pt]
+c_1 &amp; c_2 &amp; c_3
+\end{vmatrix}
+\tag{54}
+    \]
+&lt;p&gt;  它的几何意义是由向量 \(\bm{a},\bm{b}\) 和 \(\bm{c}\) 所张城的平行六面体的有向体积。&lt;/p&gt;
+&lt;h3 id=&#34;向量函数-1&#34;&gt;向量函数
+&lt;/h3&gt;&lt;h4 id=&#34;定义-4&#34;&gt;定义
+&lt;/h4&gt;&lt;p&gt;  所谓向量函数是指从它的定义域到 \(\R^3\) 中的映射，也就是三个有序的实函数。设有定义在区间[a,b]上的向量函数&lt;/p&gt;
+&lt;span id=&#34;20241012144828CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}(t)=(x(t),y(t),z(t))\quad a \le t \le b
+\tag{55}
+    \]
+&lt;h4 id=&#34;微积分&#34;&gt;微积分
+&lt;/h4&gt;&lt;p&gt;  如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续函数，则称向量函数 \(\bm{r}(t)\) 是连续的；如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续可微函数，则称向量函数 \(\bm{r}(t)\) 是连续可微的。向量函数 \(bm{r}(t)\) 的导数和积分的定义与数值函数的导数和积分的定义是相同的，即&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241012145201CST&#34;&gt;&lt;/span&gt;
+    \[
+\begin{aligned}
+\left.\frac{d\bm{r}}{dt}\right|_{t=t_0}=&amp;\lim\limits_{\Delta t \to 0}\frac{\bm{r}(t_0+\Delta t)-\bm{r}(t_0)}{\Delta t}\\[10pt]
+=&amp;\lim\limits_{\Delta t \to 0}\left(\frac{x(t_0+\Delta t)-x(t_0)}{\Delta t},\frac{y(t_0+\Delta t)-y(t_0)}{\Delta t},\frac{z(t_0+\Delta t)-z(t_0)}{\Delta t}\right)
+\end{aligned}
+\]
+&lt;span id=&#34;20241012145649CST&#34;&gt;&lt;/span&gt;
+    \[
+\begin{aligned}
+\int_{a}^{b}\bm{r}(t)dt=&amp;\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}\bm{r}(t_i^\prime)\Delta t_i\\[10pt]
+=&amp;\left(\int_{a}^{b}x(t)dt,\int_{a}^{b}y(t)dt,\int_{a}^{b}z(t)dt\right)
+\end{aligned}
+\]&lt;/p&gt;
+&lt;p&gt;  其中 \(a=t_0 &lt; t_1 &lt; \cdots &lt; t_n = b\) 是区间 \([a,b]\) 的任意一个分割， \(\Delta t_i=t_i-t_{i-1},\space t_i^\prime \in [t_{i-1},t_i]\) ，并且 \(\lambda=\max\set{\Delta t_i;i=1,\cdots,n}\) 。这就是说，向量函数的求导和积分归结为它的分量函数的求导和积分，因此向量函数的可微性和可积性归结为它的分量函数的可微性和可积性。&lt;/p&gt;
 </description>
         </item>
         
