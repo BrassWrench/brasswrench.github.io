@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 14 Oct 2024 21:57:40 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 14 Oct 2024 23:27:51 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -35,7 +35,36 @@
 &lt;/iframe&gt;
 
 &lt;h1 id=&#34;曲线论&#34;&gt;曲线论
-&lt;/h1&gt;&lt;p&gt;在本章，我们要给出在 \(E^3\) 中刻画曲线形状的几何不变量，即曲线的弧长、曲率和挠率，这些量可以用坐标来表示，但是它们与空间 \(E^3\) 中的笛卡儿直角坐标系的选择是无关的，并且当曲线在空间萨中作刚体运动时这些量也是保持不变的。最后，我们要证明这三个量构成了空间曲线的完全不变量系统，即给出了曲率和挠率作为弧长的函数，则在空间 \(E^3\) 中除了位置以外唯一地确定了一条曲线以给定的函数为它的曲率和挠率，这就是所谓的曲线论基本定理。在方法上至为重要的是，在空间曲线的每一点依附了一个正交标架，称为Frenet标架．当点在曲线上运动时，Frenet标架跟着一起运动，而且它的运动状态正好刻画了曲线的形状特征。&lt;/p&gt;
+&lt;/h1&gt;&lt;p&gt;  在本章，我们要给出在 \(E^3\) 中刻画曲线形状的几何不变量，即曲线的弧长、曲率和挠率，这些量可以用坐标来表示，但是它们与空间 \(E^3\) 中的笛卡儿直角坐标系的选择是无关的，并且当曲线在空间萨中作刚体运动时这些量也是保持不变的。最后，我们要证明这三个量构成了空间曲线的完全不变量系统，即给出了曲率和挠率作为弧长的函数，则在空间 \(E^3\) 中除了位置以外唯一地确定了一条曲线以给定的函数为它的曲率和挠率，这就是所谓的曲线论基本定理。在方法上至为重要的是，在空间曲线的每一点依附了一个正交标架，称为Frenet标架．当点在曲线上运动时，Frenet标架跟着一起运动，而且它的运动状态正好刻画了曲线的形状特征。&lt;/p&gt;
+&lt;h2 id=&#34;正则参数曲线&#34;&gt;正则参数曲线
+&lt;/h2&gt;&lt;p&gt;  在本节我们要对所研究的曲线做一些假定。在直观上， \(E^3\) 中的一条曲线是指 \(E^3\) 中的一个点随时间的变化而运动时所描出的轨迹。换言之， \(E^3\) 中的一条曲线 \(C\) 是从区间 \([a,b]\) 到 \(E^3\) 中的一个连续映射，记为&lt;/p&gt;
+&lt;span id=&#34;20241014221139CST&#34;&gt;&lt;/span&gt;\[
+p:[a,b]\to E^3
+\tag{1}
+    \]
+&lt;p&gt;  称为&lt;strong&gt;参数曲线&lt;/strong&gt;。在 \(E^3\) 中取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) ，则曲线 \(C\) 上的点 \(p(t)(a\le t \le b)\) 和向量 \(\overrightarrow{Op(t)}\) 是等同的。命 \(\bm{r}(t)=\overrightarrow{Op(t)}\) ，则 \(\bm{r}(t)\) 可以用标架向量 \(\bm{i},\bm{j},\bm{k}}\) 表示为&lt;/p&gt;
+&lt;span id=&#34;20241014221732CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}(t)=x(t)\bm{i}+y(t)\bm{j}+z(t)\bm{k}
+\tag{2}
+    \]
+&lt;p&gt;  这样，&lt;a class=&#34;link&#34; href=&#34;#20241014221139CST&#34;&gt;式(1)&lt;/a&gt;的映射等价于三个实函数 \(x(t),y(t),z(t)\) 。因此，我们通常在固定的Cartesian直角坐标系 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下把曲线 \(C\) 直接记成&lt;/p&gt;
+&lt;span id=&#34;20241014221914CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}(t)=(x(t),y(t),z(t))\quad t \in [a,b]
+\tag{3}
+    \]
+&lt;p&gt;  其中 \(t\) 是曲线参数，上式称为曲线 \(C\) 的&lt;strong&gt;参数方程&lt;/strong&gt;。&lt;br&gt;
+  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;导数的定义&lt;/a&gt;可知&lt;/p&gt;
+&lt;span id=&#34;20241014223108CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;(t)=\lim\limits_{\Delta t \to 0}\frac{\bm{r}(t+\Delta t)-\bm{r}(t)}{\Delta t}=(x&#39;(t),y&#39;(t),z&#39;(t))
+\tag{4}
+    \]
+&lt;p&gt;  如果坐标函数 \(x&#39;(t),y&#39;(t),z&#39;(t)\) 是连续可微的，则称曲线 \(\bm{r}(t)\) 是连续可微的，并且与Cartesian坐标系无关（因为Cartesian坐标变换是线性变换）。&lt;br&gt;
+  导数 \(\bm{r}(t)\) 有明显的几何意义。 \(\bm{r}(t+\Delta t)-\bm{r}(t)\) 表示从点 \(\bm{r}(t)\) 到点 \(\bm{r}(t+\Delta t)\) 的有向线段，因此&lt;/p&gt;
+&lt;span id=&#34;20241014223551CST&#34;&gt;&lt;/span&gt;\[
+\frac{\bm{r}(t+\Delta t)-\bm{r}(t)}{\Delta t}
+\tag{5}
+    \]
+&lt;p&gt;  代表经过点 \(\bm{r}(t)\) 和点 \(\bm{r}(t+\Delta t)\) 的割线 \(l\) 的方向向量。当 \(\Delta t \to 0\) 时，割线 \(l\) 的极限位置就是曲线在点 \(\bm{r}(t)\) 的&lt;strong&gt;切线&lt;/strong&gt;。如果 \(\bm{r}&#39;(t)\ne 0\) ，则 \(\bm{r}&#39;(t)\) 是该曲线在点 \(\bm{r}(t)\) 的切线的方向向量，称为该参数曲线的&lt;strong&gt;切向量&lt;/strong&gt;。&lt;/p&gt;
 </description>
         </item>
         

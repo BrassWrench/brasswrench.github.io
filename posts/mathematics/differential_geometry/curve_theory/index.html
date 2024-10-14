@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-14T21:57:40&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-14T23:27:51&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -569,6 +569,30 @@
         
             
                 
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#正则参数曲线">正则参数曲线</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
             
         
 
@@ -878,7 +902,7 @@
 </svg>
 
             <time class="article-words">
-                289 字
+                731 字
             </time>
         </div>
 
@@ -893,7 +917,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -930,7 +954,36 @@
 </iframe>
 
 <h1 id="曲线论">曲线论
-</h1><p>在本章，我们要给出在 \(E^3\) 中刻画曲线形状的几何不变量，即曲线的弧长、曲率和挠率，这些量可以用坐标来表示，但是它们与空间 \(E^3\) 中的笛卡儿直角坐标系的选择是无关的，并且当曲线在空间萨中作刚体运动时这些量也是保持不变的。最后，我们要证明这三个量构成了空间曲线的完全不变量系统，即给出了曲率和挠率作为弧长的函数，则在空间 \(E^3\) 中除了位置以外唯一地确定了一条曲线以给定的函数为它的曲率和挠率，这就是所谓的曲线论基本定理。在方法上至为重要的是，在空间曲线的每一点依附了一个正交标架，称为Frenet标架．当点在曲线上运动时，Frenet标架跟着一起运动，而且它的运动状态正好刻画了曲线的形状特征。</p>
+</h1><p>  在本章，我们要给出在 \(E^3\) 中刻画曲线形状的几何不变量，即曲线的弧长、曲率和挠率，这些量可以用坐标来表示，但是它们与空间 \(E^3\) 中的笛卡儿直角坐标系的选择是无关的，并且当曲线在空间萨中作刚体运动时这些量也是保持不变的。最后，我们要证明这三个量构成了空间曲线的完全不变量系统，即给出了曲率和挠率作为弧长的函数，则在空间 \(E^3\) 中除了位置以外唯一地确定了一条曲线以给定的函数为它的曲率和挠率，这就是所谓的曲线论基本定理。在方法上至为重要的是，在空间曲线的每一点依附了一个正交标架，称为Frenet标架．当点在曲线上运动时，Frenet标架跟着一起运动，而且它的运动状态正好刻画了曲线的形状特征。</p>
+<h2 id="正则参数曲线">正则参数曲线
+</h2><p>  在本节我们要对所研究的曲线做一些假定。在直观上， \(E^3\) 中的一条曲线是指 \(E^3\) 中的一个点随时间的变化而运动时所描出的轨迹。换言之， \(E^3\) 中的一条曲线 \(C\) 是从区间 \([a,b]\) 到 \(E^3\) 中的一个连续映射，记为</p>
+<span id="20241014221139CST"></span>\[
+p:[a,b]\to E^3
+\tag{1}
+    \]
+<p>  称为<strong>参数曲线</strong>。在 \(E^3\) 中取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) ，则曲线 \(C\) 上的点 \(p(t)(a\le t \le b)\) 和向量 \(\overrightarrow{Op(t)}\) 是等同的。命 \(\bm{r}(t)=\overrightarrow{Op(t)}\) ，则 \(\bm{r}(t)\) 可以用标架向量 \(\bm{i},\bm{j},\bm{k}}\) 表示为</p>
+<span id="20241014221732CST"></span>\[
+\bm{r}(t)=x(t)\bm{i}+y(t)\bm{j}+z(t)\bm{k}
+\tag{2}
+    \]
+<p>  这样，<a class="link" href="#20241014221139CST">式(1)</a>的映射等价于三个实函数 \(x(t),y(t),z(t)\) 。因此，我们通常在固定的Cartesian直角坐标系 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下把曲线 \(C\) 直接记成</p>
+<span id="20241014221914CST"></span>\[
+\bm{r}(t)=(x(t),y(t),z(t))\quad t \in [a,b]
+\tag{3}
+    \]
+<p>  其中 \(t\) 是曲线参数，上式称为曲线 \(C\) 的<strong>参数方程</strong>。<br>
+  由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">导数的定义</a>可知</p>
+<span id="20241014223108CST"></span>\[
+\bm{r}'(t)=\lim\limits_{\Delta t \to 0}\frac{\bm{r}(t+\Delta t)-\bm{r}(t)}{\Delta t}=(x'(t),y'(t),z'(t))
+\tag{4}
+    \]
+<p>  如果坐标函数 \(x'(t),y'(t),z'(t)\) 是连续可微的，则称曲线 \(\bm{r}(t)\) 是连续可微的，并且与Cartesian坐标系无关（因为Cartesian坐标变换是线性变换）。<br>
+  导数 \(\bm{r}(t)\) 有明显的几何意义。 \(\bm{r}(t+\Delta t)-\bm{r}(t)\) 表示从点 \(\bm{r}(t)\) 到点 \(\bm{r}(t+\Delta t)\) 的有向线段，因此</p>
+<span id="20241014223551CST"></span>\[
+\frac{\bm{r}(t+\Delta t)-\bm{r}(t)}{\Delta t}
+\tag{5}
+    \]
+<p>  代表经过点 \(\bm{r}(t)\) 和点 \(\bm{r}(t+\Delta t)\) 的割线 \(l\) 的方向向量。当 \(\Delta t \to 0\) 时，割线 \(l\) 的极限位置就是曲线在点 \(\bm{r}(t)\) 的<strong>切线</strong>。如果 \(\bm{r}'(t)\ne 0\) ，则 \(\bm{r}'(t)\) 是该曲线在点 \(\bm{r}(t)\) 的切线的方向向量，称为该参数曲线的<strong>切向量</strong>。</p>
 
     </div>
 </section>
@@ -972,7 +1025,7 @@
 
 
         <span>
-            最后更新于 Oct 14, 2024 21:57 CST
+            最后更新于 Oct 14, 2024 23:27 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1122,7 +1175,7 @@
             
             
         
-        <span>本图书馆累计发布了8篇文章 共58882字</span>
+        <span>本图书馆累计发布了8篇文章 共59297字</span>
     </section>
 
     <section class="site-visit-count">
