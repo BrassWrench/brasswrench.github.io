@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 14 Oct 2024 17:01:29 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 14 Oct 2024 17:07:14 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclidean空间与向量函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -2643,19 +2643,26 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;p&gt;  对象中的变量（数据）对外是隐蔽的，因而外界不能对它直接进行访问，必须通过该对象中的一组方法（操作函数）对它进行访问。例如要想对&lt;a class=&#34;link&#34; href=&#34;#20241014132606CST&#34;&gt;图9&lt;/a&gt;所示的文件A执行打开操作，必须用该对象中的打开过程去打开它。同样地，对象中的一组方法的实现细节也是隐蔽的，因此对象中的变量可以得到很好的保护，而不会允许未经受权者使用和对它进行不正确的操作。&lt;/p&gt;
 &lt;span id=&#34;20241014132606CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 181.7&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 246.1&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
-        fill: none;
-        stroke: #000;
         stroke-miterlimit: 10;
       }
 
-      .cls-2 {
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #000;
+      }
+
+      .cls-3 {
         font-family: NotoSerifSC-Light, &#39;Noto Serif SC&#39;;
         font-size: 18px;
         font-weight: 300;
+      }
+
+      .cls-2 {
+        stroke-linejoin: round;
       }
     &lt;/style&gt;
   &lt;/defs&gt;
@@ -2663,19 +2670,42 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
   &lt;g&gt;
     &lt;g id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34;&gt;
       &lt;g&gt;
-        &lt;ellipse class=&#34;cls-1&#34; cx=&#34;414.5&#34; cy=&#34;28&#34; rx=&#34;105.5&#34; ry=&#34;23.2&#34;/&gt;
-        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(378.5 115)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;继承部分&lt;/tspan&gt;&lt;/text&gt;
-        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(272.3 34.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;A&lt;/tspan&gt;&lt;/text&gt;
-        &lt;ellipse class=&#34;cls-1&#34; cx=&#34;414.5&#34; cy=&#34;129.5&#34; rx=&#34;105.5&#34; ry=&#34;47.1&#34;/&gt;
-        &lt;line class=&#34;cls-1&#34; x1=&#34;309&#34; y1=&#34;129.5&#34; x2=&#34;520&#34; y2=&#34;129.5&#34;/&gt;
-        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(378.5 159.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;增加部分&lt;/tspan&gt;&lt;/text&gt;
-        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(272.3 134.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;B&lt;/tspan&gt;&lt;/text&gt;
-        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(524.1 75.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;从A继承&lt;/tspan&gt;&lt;/text&gt;
-        &lt;path d=&#34;M414.5,51.3&#34;/&gt;
-        &lt;g&gt;
-          &lt;line class=&#34;cls-1&#34; x1=&#34;414.5&#34; y1=&#34;82.4&#34; x2=&#34;414.5&#34; y2=&#34;57.2&#34;/&gt;
-          &lt;polygon points=&#34;418.2 60 414.5 58.5 410.8 60 414.5 51.3 418.2 60&#34;/&gt;
-        &lt;/g&gt;
+        &lt;rect class=&#34;cls-1&#34; x=&#34;147.8&#34; y=&#34;124.9&#34; width=&#34;105.9&#34; height=&#34;114&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(182.8 150.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;类名&lt;/tspan&gt;&lt;/text&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;173.9&#34; y1=&#34;162.5&#34; x2=&#34;227.7&#34; y2=&#34;162.5&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(182.8 188.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;属性&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(182.8 226.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操作&lt;/tspan&gt;&lt;/text&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;173.9&#34; y1=&#34;200.7&#34; x2=&#34;227.7&#34; y2=&#34;200.7&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(191.8 114.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;类&lt;/tspan&gt;&lt;/text&gt;
+        &lt;rect class=&#34;cls-2&#34; x=&#34;277.7&#34; y=&#34;124.9&#34; width=&#34;139&#34; height=&#34;114&#34; rx=&#34;20&#34; ry=&#34;20&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(294.3 150.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(类名)对象名&lt;/tspan&gt;&lt;/text&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;320.3&#34; y1=&#34;162.5&#34; x2=&#34;374.1&#34; y2=&#34;162.5&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(320.1 188.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;属性值&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(329.2 226.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操作&lt;/tspan&gt;&lt;/text&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;320.3&#34; y1=&#34;200.7&#34; x2=&#34;374.1&#34; y2=&#34;200.7&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(301.9 114.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;类的实例&lt;/tspan&gt;&lt;/text&gt;
+        &lt;rect class=&#34;cls-2&#34; x=&#34;462&#34; y=&#34;5.7&#34; width=&#34;93&#34; height=&#34;233.2&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(490.1 31)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;文件&lt;/tspan&gt;&lt;/text&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;481.5&#34; y1=&#34;40.6&#34; x2=&#34;535.4&#34; y2=&#34;40.6&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(490.1 62.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;类型&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(483.6 149.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;打开()&lt;/tspan&gt;&lt;/text&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;481.5&#34; y1=&#34;126.2&#34; x2=&#34;535.4&#34; y2=&#34;126.2&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(490.4 89.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;大小&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(481.4 116.7)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;创建者&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(492.7 174.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;读()&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(492.7 200.3)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;写()&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(483.6 225.7)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;关闭()&lt;/tspan&gt;&lt;/text&gt;
+        &lt;rect class=&#34;cls-2&#34; x=&#34;585&#34; y=&#34;5.7&#34; width=&#34;130.9&#34; height=&#34;233.2&#34; rx=&#34;20&#34; ry=&#34;20&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(594.4 31)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;（文件）文件&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(632.1 62.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;图表&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(625.6 149.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;打开()&lt;/tspan&gt;&lt;/text&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;607.7&#34; y1=&#34;126.2&#34; x2=&#34;693.2&#34; y2=&#34;126.2&#34;/&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(634.2 89.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;20K&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(626.1 116.7)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;X用户&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(634.6 174.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;读()&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(634.6 200.3)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;写()&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-3&#34; transform=&#34;translate(625.6 225.7)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;关闭()&lt;/tspan&gt;&lt;/text&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;607.7&#34; y1=&#34;40.6&#34; x2=&#34;693.2&#34; y2=&#34;40.6&#34;/&gt;
       &lt;/g&gt;
     &lt;/g&gt;
   &lt;/g&gt;
