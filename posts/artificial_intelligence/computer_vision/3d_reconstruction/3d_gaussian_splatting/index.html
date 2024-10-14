@@ -131,10 +131,10 @@
 <meta property='og:description' content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='三维重建' /><meta property='article:tag' content='可微渲染' /><meta property='article:tag' content='实时渲染' /><meta property='article:tag' content='3D高斯泼溅' /><meta property='article:tag' content='机器学习' /><meta property='article:tag' content='多维高斯分布' /><meta property='article:tag' content='球谐函数' /><meta property='article:tag' content='辐射场' /><meta property='article:tag' content='光栅化' /><meta property='article:tag' content='四元数' /><meta property='article:tag' content='透视变换' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-10-13T01:17:35&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='三维重建' /><meta property='article:tag' content='可微渲染' /><meta property='article:tag' content='实时渲染' /><meta property='article:tag' content='3D高斯泼溅' /><meta property='article:tag' content='机器学习' /><meta property='article:tag' content='多维高斯分布' /><meta property='article:tag' content='球谐函数' /><meta property='article:tag' content='辐射场' /><meta property='article:tag' content='光栅化' /><meta property='article:tag' content='四元数' /><meta property='article:tag' content='透视变换' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-10-14T17:01:29&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="三维重建（一）：3D高斯泼溅算法">
 <meta name="twitter:description" content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg' />
+    <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-3M2EFBT99V"></script>
@@ -587,7 +587,6 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#引言">引言</a></li>
     <li><a href="#算法框架">算法框架</a></li>
     <li><a href="#算法内容">算法内容</a>
       <ol>
@@ -888,47 +887,48 @@
             
             
             
+            
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 64 64">
-  <defs>
-    <style>
-      .cls-1 {
-        stroke-miterlimit: 10;
-        stroke-width: 2px;
-      }
+    <defs>
+        <style>
+            .cls-1 {
+            stroke-miterlimit: 10;
+            stroke-width: 2px;
+            }
 
-      .cls-1, .cls-2, .cls-3, .cls-4 {
-        fill: none;
-        stroke: #000;
-      }
+            .cls-1, .cls-2, .cls-3, .cls-4 {
+            fill: none;
+            stroke: #000;
+            }
 
-      .cls-2 {
-        stroke-miterlimit: 10;
-        stroke-width: 2px;
-      }
+            .cls-2 {
+            stroke-miterlimit: 10;
+            stroke-width: 2px;
+            }
 
-      .cls-3 {
-        stroke-miterlimit: 10;
-        stroke-width: 2px;
-      }
+            .cls-3 {
+            stroke-miterlimit: 10;
+            stroke-width: 2px;
+            }
 
-      .cls-4 {
-        stroke-miterlimit: 10;
-        stroke-width: 2px;
-      }
-    </style>
-  </defs>
-  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
-  <g>
-    <g id="_图层_1" data-name="图层_1">
-      <g id="_图层_1-2" data-name="_图层_1">
-        <ellipse class="cls-4" cx="41" cy="23.9" rx="11.8" ry="21.8" transform="translate(4.7 54.5) rotate(-70.4)"/>
-        <ellipse class="cls-2" cx="21.5" cy="18.6" rx="21.8" ry="11.7" transform="translate(-6.5 13.7) rotate(-31)"/>
-        <ellipse class="cls-3" cx="31" cy="36.9" rx="15.8" ry="20.1" transform="translate(-12.8 16.9) rotate(-25.5)"/>
-        <ellipse class="cls-1" cx="32.7" cy="53.4" rx="26.9" ry="8"/>
-      </g>
+            .cls-4 {
+            stroke-miterlimit: 10;
+            stroke-width: 2px;
+            }
+        </style>
+    </defs>
+    <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+    <g>
+        <g id="_图层_1" data-name="图层_1">
+            <g id="_图层_1-2" data-name="_图层_1">
+                <ellipse class="cls-4" cx="41" cy="23.9" rx="11.8" ry="21.8" transform="translate(4.7 54.5) rotate(-70.4)"/>
+                <ellipse class="cls-2" cx="21.5" cy="18.6" rx="21.8" ry="11.7" transform="translate(-6.5 13.7) rotate(-31)"/>
+                <ellipse class="cls-3" cx="31" cy="36.9" rx="15.8" ry="20.1" transform="translate(-12.8 16.9) rotate(-25.5)"/>
+                <ellipse class="cls-1" cx="32.7" cy="53.4" rx="26.9" ry="8"/>
+            </g>
+        </g>
     </g>
-  </g>
 </svg>
             
         </div>
@@ -979,7 +979,7 @@
 </svg>
 
             <time class="article-words">
-                4609 字
+                4607 字
             </time>
         </div>
 
@@ -1050,14 +1050,14 @@
 </iframe>
 
 <h1 id="3d高斯泼溅算法">3D高斯泼溅算法
-</h1><h2 id="引言">引言
-</h2><p>  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，<strong>3D高斯泼溅算法（3D Gaussian Splatting，简称3DGS）</strong>‌作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。<br>
+</h1><p>  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，<strong>3D高斯泼溅算法（3D Gaussian Splatting，简称3DGS）</strong>‌作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。<br>
   3D高斯泼溅算法的创新在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯球，利用三维高斯函数的数学性质，将离散的数据点或体素转换为可视化的效果。这一过程中，三维高斯球的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。<br>
   对比NeRF和传统的Mesh：一个是纯连续的、隐式表达在可微空间内；一个是纯离散的（虽然可以插值）、显式表达在三维空间内，3D高斯是在离散和连续间的一个平衡：在高斯球内部是连续的、可微的；在整个空间中，每个高斯球又是离散的。<br>
   本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。</p>
 <h2 id="算法框架">算法框架
 </h2><p>  3DGS的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。</p>
-<span id="20241001163933CST"></span><div class="svg-figure"><?xml version="1.0" encoding="UTF-8"?>
+<span id="20241001163933CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 863.7 212.2">
   <defs>
     <radialGradient id="_未命名的渐变" data-name="未命名的渐变" cx="489.86" cy="2044.53" fx="489.86" fy="2044.53" r="13.9" gradientTransform="translate(912.53 -394.06) rotate(90) scale(1 .3)" gradientUnits="userSpaceOnUse">
@@ -1657,7 +1657,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 
 
         <span>
-            最后更新于 Oct 13, 2024 01:17 CST
+            最后更新于 Oct 14, 2024 17:01 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1779,7 +1779,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
             
             
         
-        <span>本图书馆累计发布了7篇文章 共48808字</span>
+        <span>本图书馆累计发布了7篇文章 共58479字</span>
     </section>
 
     <section class="site-visit-count">

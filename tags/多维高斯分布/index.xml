@@ -7,13 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 13 Oct 2024 01:17:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%A4%9A%E7%BB%B4%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 14 Oct 2024 17:01:29 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%A4%9A%E7%BB%B4%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>三维重建（一）：3D高斯泼溅算法</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/</link>
         <pubDate>Mon, 23 Sep 2024 19:43:18 +0800</pubDate>
         
         <guid>https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/</guid>
-        <description>&lt;img src="https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/figures/image.zh-cn.svg" alt="Featured image of post 三维重建（一）：3D高斯泼溅算法" /&gt;
+        <description>&lt;img src="https://www.brasswrench.com/image.svg" alt="Featured image of post 三维重建（一）：3D高斯泼溅算法" /&gt;
 
 
 
@@ -35,14 +35,14 @@
 &lt;/iframe&gt;
 
 &lt;h1 id=&#34;3d高斯泼溅算法&#34;&gt;3D高斯泼溅算法
-&lt;/h1&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
-&lt;/h2&gt;&lt;p&gt;  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，&lt;strong&gt;3D高斯泼溅算法（3D Gaussian Splatting，简称3DGS）&lt;/strong&gt;‌作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。&lt;br&gt;
+&lt;/h1&gt;&lt;p&gt;  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，&lt;strong&gt;3D高斯泼溅算法（3D Gaussian Splatting，简称3DGS）&lt;/strong&gt;‌作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。&lt;br&gt;
   3D高斯泼溅算法的创新在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯球，利用三维高斯函数的数学性质，将离散的数据点或体素转换为可视化的效果。这一过程中，三维高斯球的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。&lt;br&gt;
   对比NeRF和传统的Mesh：一个是纯连续的、隐式表达在可微空间内；一个是纯离散的（虽然可以插值）、显式表达在三维空间内，3D高斯是在离散和连续间的一个平衡：在高斯球内部是连续的、可微的；在整个空间中，每个高斯球又是离散的。&lt;br&gt;
   本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。&lt;/p&gt;
 &lt;h2 id=&#34;算法框架&#34;&gt;算法框架
 &lt;/h2&gt;&lt;p&gt;  3DGS的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。&lt;/p&gt;
-&lt;span id=&#34;20241001163933CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;span id=&#34;20241001163933CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 212.2&#34;&gt;
   &lt;defs&gt;
     &lt;radialGradient id=&#34;_未命名的渐变&#34; data-name=&#34;未命名的渐变&#34; cx=&#34;489.86&#34; cy=&#34;2044.53&#34; fx=&#34;489.86&#34; fy=&#34;2044.53&#34; r=&#34;13.9&#34; gradientTransform=&#34;translate(912.53 -394.06) rotate(90) scale(1 .3)&#34; gradientUnits=&#34;userSpaceOnUse&#34;&gt;
