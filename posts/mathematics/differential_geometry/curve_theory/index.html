@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="具有Euclidean度量的实数向量空间及其向量函数">
-<title>微分几何（一）：Euclidean空间与向量函数</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="微分几何中的参数曲线与曲率分析">
+<title>微分几何（二）：曲线论</title>
 
-<link rel='canonical' href='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/'>
+<link rel='canonical' href='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 
-<link rel="stylesheet" href="/scss/style.min.73e9e933d96a0a0daee9088353014589bb1c48b495c61200a6cb05e9640bae87.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.bfc17855a2cadd300e22a8e53e86710d249c609481107e2d12c75c0559e4897e.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -127,13 +127,13 @@
             });
         }
     });
-</script><meta property='og:title' content="微分几何（一）：Euclidean空间与向量函数">
-<meta property='og:description' content="具有Euclidean度量的实数向量空间及其向量函数">
-<meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/propaedeutics/'>
+</script><meta property='og:title' content="微分几何（二）：曲线论">
+<meta property='og:description' content="微分几何中的参数曲线与曲率分析">
+<meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='Euclidean空间' /><meta property='article:tag' content='向量函数' /><meta property='article:published_time' content='2024-10-08T15:55:08&#43;08:00'/><meta property='article:modified_time' content='2024-10-14T17:01:29&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
-<meta name="twitter:title" content="微分几何（一）：Euclidean空间与向量函数">
-<meta name="twitter:description" content="具有Euclidean度量的实数向量空间及其向量函数"><meta name="twitter:card" content="summary_large_image">
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-14T21:43:08&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta name="twitter:title" content="微分几何（二）：曲线论">
+<meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -569,79 +569,6 @@
         
             
                 
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">目录</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#三维euclidean空间中的标架">三维Euclidean空间中的标架</a>
-      <ol>
-        <li><a href="#euclidean空间">Euclidean空间</a></li>
-        <li><a href="#向量">向量</a>
-          <ol>
-            <li><a href="#定义">定义</a></li>
-            <li><a href="#加法">加法</a></li>
-            <li><a href="#数乘">数乘</a></li>
-            <li><a href="#点乘">点乘</a></li>
-            <li><a href="#叉乘">叉乘</a></li>
-          </ol>
-        </li>
-        <li><a href="#标架">标架</a>
-          <ol>
-            <li><a href="#定义-1">定义</a></li>
-            <li><a href="#正交标架">正交标架</a></li>
-            <li><a href="#标架变换">标架变换</a></li>
-            <li><a href="#坐标变换">坐标变换</a></li>
-          </ol>
-        </li>
-        <li><a href="#刚体运动">刚体运动</a>
-          <ol>
-            <li><a href="#定义-2">定义</a></li>
-            <li><a href="#刚体运动与标架">刚体运动与标架</a></li>
-            <li><a href="#等距变换">等距变换</a></li>
-          </ol>
-        </li>
-        <li><a href="#仿射标架">仿射标架</a></li>
-      </ol>
-    </li>
-    <li><a href="#向量函数">向量函数</a>
-      <ol>
-        <li><a href="#向量空间">向量空间</a>
-          <ol>
-            <li><a href="#定义-3">定义</a></li>
-            <li><a href="#数量积">数量积</a></li>
-            <li><a href="#向量积">向量积</a></li>
-            <li><a href="#混合积">混合积</a></li>
-          </ol>
-        </li>
-        <li><a href="#向量函数-1">向量函数</a>
-          <ol>
-            <li><a href="#定义-4">定义</a></li>
-            <li><a href="#微积分">微积分</a></li>
-            <li><a href="#求导公式">求导公式</a></li>
-            <li><a href="#不变条件">不变条件</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
             
         
 
@@ -879,17 +806,19 @@
                 
             
             
+                <a id="draft-tag">草稿</a>
+            
         </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/posts/mathematics/differential_geometry/propaedeutics/">微分几何（一）：Euclidean空间与向量函数</a>
+            <a href="/posts/mathematics/differential_geometry/curve_theory/">微分几何（二）：曲线论</a>
         </h2>
 
         
         <h3 class="article-subtitle">
-            具有Euclidean度量的实数向量空间及其向量函数
+            微分几何中的参数曲线与曲率分析
         </h3>
         
     </div>
@@ -899,7 +828,7 @@
             
             
             
-                <svg fill="#000000" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.989 511.989" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <path d="M388.839,352.921l-122.133-61.013v-142.4c0-5.333-3.84-10.133-9.067-10.88c-6.613-0.96-12.267,4.16-12.267,10.56v142.72 l-122.133,61.013c-5.227,2.667-7.36,9.067-4.8,14.293c2.56,5.227,9.067,7.36,14.293,4.8l123.307-61.653l123.2,61.653 c5.227,2.667,11.627,0.533,14.293-4.8S394.065,355.588,388.839,352.921z"></path> <path d="M245.372,56.601v39.147c0,5.333,3.84,10.133,9.067,10.88c6.613,0.96,12.267-4.16,12.267-10.56V56.601l39.467-38.187 c4.267-4.16,4.267-10.88,0.213-15.147c-4.053-4.267-10.88-4.373-15.147-0.213l-35.2,34.133l-35.2-34.133 c-4.267-4.16-10.987-4.053-15.147,0.213c-4.16,4.267-4.053,10.987,0.213,15.147L245.372,56.601z"></path> <path d="M85.265,480.068H34.172l59.2-67.627c3.84-4.48,3.413-11.2-0.96-15.04c-1.92-1.707-4.373-2.667-6.933-2.667H11.025 c-5.333,0-10.133,3.84-10.88,9.067c-0.96,6.613,4.16,12.267,10.56,12.267h51.2l-59.2,67.627c-3.84,4.48-3.413,11.2,1.067,15.04 c1.92,1.707,4.48,2.667,7.04,2.667h74.24c5.333,0,10.133-3.84,10.88-9.067C96.785,485.721,91.772,480.068,85.265,480.068z"></path> <path d="M508.839,493.828l-31.147-35.627l31.147-35.627c4.16-4.16,4.16-10.88,0-15.04c-4.16-4.16-10.88-4.16-15.04,0 c-0.32,0.32-0.64,0.747-0.96,1.067l-29.333,33.493l-29.227-33.493c-3.627-4.693-10.24-5.547-14.933-2.027 c-4.693,3.627-5.547,10.24-2.027,14.933c0.32,0.427,0.64,0.747,0.96,1.067l31.147,35.627l-31.147,35.627 c-4.16,4.16-4.16,10.88,0,15.04c4.16,4.16,10.88,4.16,15.04,0c0.32-0.32,0.64-0.747,0.96-1.067l29.333-33.493l29.227,33.493 c3.627,4.693,10.24,5.547,14.933,2.027c4.693-3.627,5.547-10.24,2.027-14.933C509.479,494.468,509.159,494.148,508.839,493.828z"></path> </g> </g> </g> </g></svg>
+                <svg fill="#000000" height="64px" width="64px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="turf-bezier"> <circle cx="40.274" cy="39.666" r="4.763"></circle> <path d="M12.729,63.898l-5.714,5.6c-0.789,0.773-0.802,2.04-0.028,2.828c0.392,0.4,0.91,0.601,1.428,0.601 c0.505,0,1.011-0.19,1.4-0.571l5.714-5.6c0.789-0.773,0.802-2.04,0.028-2.828C14.784,63.137,13.518,63.127,12.729,63.898z"></path> <path d="M24.156,52.699l-5.714,5.6c-0.789,0.773-0.802,2.04-0.028,2.828c0.392,0.4,0.91,0.601,1.428,0.601 c0.505,0,1.011-0.19,1.4-0.571l5.714-5.6c0.789-0.773,0.802-2.04,0.028-2.828C26.212,51.938,24.945,51.928,24.156,52.699z"></path> <path d="M47.017,35.834c0.048-0.027,0.097-0.053,0.145-0.08l2.648-2.595c0.789-0.773,0.802-2.039,0.028-2.828 c-0.773-0.789-2.039-0.802-2.828-0.028l-2.762,2.707C45.396,33.698,46.353,34.67,47.017,35.834z"></path> <path d="M54.124,28.131c0.505,0,1.011-0.19,1.399-0.571l5.714-5.599c0.789-0.773,0.802-2.04,0.029-2.829 c-0.773-0.79-2.041-0.802-2.828-0.029l-5.714,5.599c-0.789,0.773-0.802,2.04-0.029,2.829C53.087,27.93,53.605,28.131,54.124,28.131 z"></path> <path d="M65.552,16.932c0.505,0,1.011-0.19,1.399-0.572l5.714-5.6c0.789-0.773,0.802-2.039,0.029-2.828 c-0.772-0.788-2.041-0.802-2.828-0.028l-5.714,5.6c-0.789,0.773-0.802,2.039-0.029,2.828 C64.515,16.731,65.033,16.932,65.552,16.932z"></path> <path d="M92.917,42.969C80.419,30.471,61.223,27.94,47.162,35.754l-0.121,0.119c0.632,1.123,0.997,2.415,0.997,3.793 c0,0.072-0.009,0.142-0.011,0.214c12.618-7.75,30.503-5.642,42.062,5.916c0.781,0.781,2.047,0.781,2.828,0 C93.698,45.016,93.698,43.75,92.917,42.969z"></path> <path d="M47.041,35.873l0.121-0.119c-0.048,0.027-0.097,0.053-0.145,0.08C47.025,35.847,47.033,35.86,47.041,35.873z"></path> <path d="M42.688,90.66c-6.166-6.166-9.561-14.437-9.561-23.29c0-7.347,2.346-14.29,6.666-19.965 c-1.252-0.077-2.422-0.45-3.445-1.053c-0.172-0.101-0.342-0.206-0.505-0.32c-0.944-0.659-1.733-1.522-2.307-2.525L29.87,47.1 c-0.789,0.773-0.802,2.04-0.029,2.829c0.392,0.399,0.91,0.6,1.429,0.6c0.505,0,1.011-0.19,1.4-0.571l1.672-1.638 c-3.398,5.669-5.214,12.206-5.214,19.051c0,9.922,3.812,19.197,10.733,26.118c0.39,0.391,0.902,0.586,1.414,0.586 s1.024-0.195,1.414-0.586C43.47,92.707,43.47,91.441,42.688,90.66z"></path> <path d="M42.097,39.228c0.196,0.062,0.397,0.102,0.6,0.102c0.505,0,1.011-0.19,1.4-0.572l0.659-0.646 c-0.081-0.235-0.181-0.458-0.296-0.674C43.649,37.996,42.862,38.594,42.097,39.228z"></path> </g> <g id="Layer_1"> </g> </g></svg>
             
         </div>
     
@@ -922,7 +851,7 @@
   <path d="M18 16.496v1.504l1 1" />
 </svg>
                 <time class="article-time--published">
-                    Oct 08, 2024 15:55 CST
+                    Oct 14, 2024 20:01 CST
                 </time>
             </div>
         
@@ -949,7 +878,7 @@
 </svg>
 
             <time class="article-words">
-                6393 字
+                0 字
             </time>
         </div>
 
@@ -964,7 +893,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 13 分钟
+                    阅读时长: 0 分钟
                 </time>
             </div>
         
@@ -972,25 +901,6 @@
     </footer>
     
 
-    
-        <footer class="article-translations">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-            <div>
-                
-                    <a href="https://www.brasswrench.com/en/posts/mathematics/differential_geometry/propaedeutics/" class="link">English</a>
-                
-            </div>
-        </footer>
     
 </div>
 
@@ -1008,7 +918,7 @@
 
 <iframe
   class="netease-cloud-music-frame"
-  title="song&#39;s 1930226368"
+  title="song&#39;s 517566417"
   frameborder="no"
   border="0"
   marginwidth="0"
@@ -1016,993 +926,9 @@
   width="100%"
   height="86"
   loading="lazy"
-  src="https://music.163.com/outchain/player?type=2&amp;id=1930226368&amp;auto=0&amp;height=66">
+  src="https://music.163.com/outchain/player?type=2&amp;id=517566417&amp;auto=0&amp;height=66">
 </iframe>
 
-<h1 id="euclidean空间与向量函数">Euclidean空间与向量函数
-</h1><p>  我们知道，一元函数 \(y=f(x)\) 的图像是一条曲线，二元函数 \(z=f(x,y)\) 的图像是一张曲面。但是，把曲线和曲面表示成参数方程则更加便利于研究，这种表示方法首先是由Euler引进的。例如，在空间中取定Cartesian直角坐标系之后一条曲线可以表示为三个一元函数</p>
-<span id="20241008215458CST"></span>\[
-x=x(t),\quad y=y(t),\quad z=z(t)
-\tag{1}
-    \]
-<p>  在向量的概念出现之后，空间中的一条曲线可以自然地表示为一个一元向量函数</p>
-<span id="20241008215554CST"></span>\[
-\bm{r}=\bm{r}(t)=(x(t),y(t),z(t))
-\tag{2}
-    \]
-<p>  在本章，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclidean空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclidean空间中标架的概念，为在三维Euclidean空间中研究曲线和曲面做好准备。</p>
-<h2 id="三维euclidean空间中的标架">三维Euclidean空间中的标架
-</h2><h3 id="euclidean空间">Euclidean空间
-</h3><p>  通常把我们所处的空间称为<strong>三维Euclidean空间</strong>。确切的说，所谓的三维Euclidean空间 \(E^3\) 是一个非空的集合，其中的元素称为<strong>点</strong>，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 \(E^3\) 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的<strong>平行公理</strong>。</p>
-<h3 id="向量">向量
-</h3><h4 id="定义">定义
-</h4><p>  任意两个点 \(A,B \in E^3\) 都可以连接成一条直线段 \(AB\) 。指定 \(A\) 为起点、 \(B\) 为终点的线段 \(AB\) 称为<strong>有向线段</strong>，记作 \(\overrightarrow{AB}\) 。设 \(\overrightarrow{AB}\) 和 \(\overrightarrow{CD}\) 是两条有向线段，如果 \(ABDC\) 成为一个平行四边形，则称这两条有向线段是<span id="20241009104842CST"></span><strong>相等</strong>的，记为</p>
-<span id="20241008221323CST"></span>\[
-\overrightarrow{AB}=\overrightarrow{CD}
-\tag{3}
-    \]
-<p>  所有相等的有向线段的集合称为一个<strong>向量</strong>。因此，在三维Euclidean空间 \(E^3\) 中，一个向量可以表示为 \(E^3\) 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。</p>
-<h4 id="加法">加法
-</h4><p>  按照<strong>三角形法则</strong>，可以定义向量的加法如下：设 \(\bm{a},\bm{b}\) 是两个向量，并且假定它们用有向线段 \(\overrightarrow{AB}\) 和 \(\overrightarrow{BC}\) 来表示，则连接 \(A\) 和 \(C\) 的有向线段 \(\overrightarrow{AC}\) 就代表向量 \(\bm{a}+\bm{b}\) 。我们把起点和终点相同的有向线段的集合称为<strong>零向量</strong>，记为 \(\bm{0}\) ，于是任意一个向量与零向量之和为该向量自身，即</p>
-<span id="20241008222604CST"></span>\[
-\bm{a}+\bm{0}=\bm{a}
-\tag{4}
-    \]
-<p>  另外，若向量 \(a\) 用有向线段 \(\overrightarrow{AB}\) 来表示，并且把有向线段 \(\overrightarrow{BA}\) 所代表的向量记为 \(-\bm{a}\) ，于是</p>
-<span id="20241008222801CST"></span>\[
-\bm{a}+(-\bm{a})=\bm{0}
-\tag{5}
-    \]
-<p>  我们把向量 \(-\bm{a}\) 称为 \(\bm{a}\) 的<strong>反向量</strong>。容易验证，向量的加法遵循下面的运算法则
-<span id="20241008223158CST"></span>\[
-\bm{a}+\bm{b}=\bm{b}+\bm{a}
-\tag{6}
-    \]
-<span id="20241008223239CST"></span>\[
-(\bm{a}+\bm{b})+\bm{c}=\bm{a}+(\bm{b}+\bm{c})
-\tag{7}
-    \]</p>
-<h4 id="数乘">数乘
-</h4><p>  在三维Euclidean空间 \(E^3\) 中还规定线段 \(AB\) 的<strong>长度</strong>是点 \(A\) 到点 \(B\) 的距离，记为 \(|AB|\) ，并对于任意三点 \(A,B,C\) ，下面的三角形不等式成立</p>
-<span id="20241008223354CST"></span>\[
-|AB|+|BC|\ge|AC|
-\tag{8}
-    \]
-<p>  向量 \(\bm{a}\) 的<strong>长度</strong> \(|\bm{a}|\) 定义为代表它的有向线段 \(\bm{a}=\overrightarrow{AB}\) 的长度。这样，向量 \(\bm{a}\) 与实数 \(c\) 的乘积 \(c\cdot\bm{a}\) 可以定义为与 \(\bm{a}\) <strong>平行</strong>的向量。当 \(c>0\) 时 \(c\cdot\bm{a}\) 与 \(\bm{a}\) 同向，当 \(c<0\) 时 \(c\cdot\bm{a}\) 与 \(\bm{a}\) 反向，并且 \(c\cdot\bm{a}\) 的长度 \(|c\cdot\bm{a}|\) 是 \(\bm{a}\) 的长度 \(|\bm{a}|\) 的 \(|c|\) 倍；当 \(c=0\) 时， \(c\cdot\bm{a}=0\) 。容易验证，向量与实数的乘法遵循下面的运算规则</p>
-<p><span id="20241008225439CST"></span>\[
-\lambda(\bm{a}+\bm{b})=\lambda\bm{a}+\lambda\bm{b}
-\tag{9}
-    \]
-<span id="20241008230110CST"></span>\[
-(\lambda+\mu)\bm{a}=\lambda\bm{a}+\mu\bm{a}
-\tag{10}
-    \]
-<span id="20241008230202CST"></span>\[
-(\lambda\mu)\bm{a}=\lambda(\mu\bm{a})
-\tag{11}
-    \]</p>
-<p>  其中 \(\lambda,\mu\) 是任意实数。</p>
-<h4 id="点乘">点乘
-</h4><p>  向量 \(\bm{a}\) 和 \(\bm{b}\) 的<strong>点乘</strong> \(\bm{a}\cdot\bm{b}\) 定义为实数</p>
-<span id="20241008230417CST"></span>\[
-\bm{a}\cdot\bm{b}=|\bm{a}|\cdot|\bm{b}|\cdot\cos\angle(\bm{a},\bm{b})
-\tag{12}
-    \]
-<p>  很明显，向量的点乘遵循下面的运算法则</p>
-<p><span id="20241008230515CST"></span>\[
-\bm{c}\cdot(\bm{a}+\bm{b})=\bm{c}\cdot\bm{a}+\bm{c}\cdot\bm{b}
-\tag{13}
-    \]
-<span id="20241008230543CST"></span>\[
-(\lambda\bm{a})\cdot\bm{b}=\lambda(\bm{a}\cdot\bm{b})
-\tag{14}
-    \]
-<span id="20241008230618CST"></span>\[
-\bm{a}\cdot\bm{b}=\bm{b}\cdot\bm{a}
-\tag{15}
-    \]</p>
-<p>  由此可见</p>
-<span id="20241008230724CST"></span>\[
-|\bm{a}|^2=\bm{a}\cdot\bm{a}\ge0
-\tag{16}
-    \]
-<h4 id="叉乘">叉乘
-</h4><p>  当向量 \(\bm{a}\) 和向量 \(\bm{b}\) 平行时，规定它们的<strong>叉乘</strong>为零向量。当 \(\bm{a}\) 和 \(\bm{b}\) 不平行时，规定向量 \(\bm{a}\) 和 \(\bm{b}\) 的<strong>叉乘</strong> \(\bm{a}\times\bm{b}\) 是与已知向量 \( \bm{a}\) 和 \( \bm{b}\) 都垂直的一个向量，其长度等于向量 \(\bm{a}\) 和 \(\bm{b}\) 所张成的平行四边形的面积，即</p>
-<span id="20241008231025CST"></span>\[
-|\bm{a}\times \bm{b}|=|\bm{a}|\cdot|\bm{b}|\sin\angle(\bm{a},\bm{b})
-\tag{17}
-    \]
-<p>  并且它和 \(\bm{a},\bm{b}\) 构成右手系。容易验证，向量的叉乘遵循下面的运算法则</p>
-<p><span id="20241008231144CST"></span>\[
-\bm{c}\times(\bm{a}+\bm{b})=\bm{c}\times\bm{a}+\bm{c}\times\bm{b}
-\tag{18}
-    \]
-<span id="20241008231535CST"></span>\[
-(\lambda\bm{a})\times\bm{b}=\lambda(\bm{a}\times\bm{b})
-\tag{19}
-    \]
-<span id="20241008231557CST"></span>\[
-\bm{a}\times\bm{b}=-\bm{b}\times\bm{a}
-\tag{20}
-    \]</p>
-<p>  根据定义，向量 \(\bm{a}\) 和 \(\bm{b}\) 平行的充分必要条件是</p>
-<span id="20241008231650CST"></span>\[
-\bm{a}\times\bm{b}=\bm{0}
-\tag{21}
-    \]
-<h3 id="标架">标架
-</h3><h4 id="定义-1">定义
-</h4><p>  在 \(E^3\) 中取定不共面的4个点，把其中一点记作 \(O\) ，把另外三点分别记为 \(A,B,C\) ，于是得到由一点 \(O\) 和 \(3\) 个不共面的向量 \(\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}\) 构成的图形 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 。这样的一个图形称为 \(E^3\) 中的一个<strong>标架</strong>，其中点 \(O\) 称为该标架的<strong>原点</strong>。在 \(E^3\) 中取定一个标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，则空间 \(E^3\) 中的任意一点 \(P\) 可以唯一地表示为 \(3\) 个有序的实数 \((x,y,z)\) 。事实上，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OBC\) 平行，它和直线 \(OA\) 有唯一的交点，记为 \(P_1\) ，那么向量 \(\overrightarrow{OP_1}\) 与 \(\overrightarrow{OA}\) 共线，于是有实数 \(x\) ，使得 \(\overrightarrow{OP_1}=x\space\overrightarrow{OA}\) 。同理，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAC\) 平行，它和直线 \(OB\) 有唯一的交点，记为 \(P_2\) ，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAB\) 平行，它和直线 \(OC\) 有唯一的交点，记为 \(P_3\) ，并且有实数 \(y,z\) ，使得 \(\overrightarrow{OP_2}=y\space\overrightarrow{OB}\) ， \(\overrightarrow{OP_3}=z\space\overrightarrow{OC}\) ，那么</p>
-<span id="20241009093408CST"></span>\[
-\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}=x\space\overrightarrow{OA}+y\space\overrightarrow{OB}+z\space\overrightarrow{OC}
-\tag{22}
-    \]
-<p>  因此，在 \(E^3\) 中取定标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，点 \(P\) 和有序的 \(3\) 个实数构成的组 \((x,y,z)\) 是一一对应的，该数组称为点 \(P\) 关于已知标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 的<strong>坐标</strong>。</p>
-<p>  <strong>注</strong>：在此简单证明一下为什么 \(\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。构造点 \(P^\prime\) 使得 \(\overrightarrow{OP^\prime}=\overrightarrow{P_3P}\) ，由<a class="link" href="#20241009104842CST">相等</a>的定义知 \(OP^\prime PP_3\) 构成一个平行四边形，故也有 \(\overrightarrow{OP_3}=\overrightarrow{P^\prime P}\) 。由 \(P_3\) 的定义知 \(\overrightarrow{P_3P}\) 平行于平面 \(OAB\) ，因此 \(OP^\prime\) 平行于平面 \(OAB\) ，故 \(P^\prime\) 在平面 \(OAB\) 上。在平面 \(OAB\) 上过 \(P^\prime\) 可作唯一直线平行于直线 \(OA\) ，设这条直线和直线 \(OB\) 交于点 \(P_2^\prime\) ，现在来证 \(P_2^\prime\) 就是点 \(P_2\) 。由 \(P_2^\prime\) 、 \(P^\prime\) 和 \(P_3\) 的定义知 \(\overrightarrow{P_2^\prime P^\prime}\parallel\overrightarrow{OA}\) 且 \(\overrightarrow{P^\prime P}\parallel\overrightarrow{OP_3}\parallel\overrightarrow{OC}\) ，因此平面 \(PP^\prime P_2^\prime\) 与平面 \(OAC\) 平行。注意从 \(P\) 出发只有唯一的一个平面能与平面 \(OAC\) 平行，因此平面 \(PP^\prime P_2^\prime\) 就是这个平面，其与直线 \(OB\) 的唯一交点 \(P_2^\prime\) 就是 \(P_2\) 。同理可以证明类似定义的 \(P_1^\prime\) 就是 \(P_1\) 。故 \(\overrightarrow{P_2 P^\prime}\parallel\overrightarrow{OA}\parallel\overrightarrow{OP_1}\) ， \(\overrightarrow{P_1 P^\prime}\parallel\overrightarrow{OB}\parallel\overrightarrow{OP_2}\) ，因此 \(OP_1P^\prime P_2\) 构成平行四边形，因此 \(\overrightarrow{OP^\prime}=\overrightarrow{OP_1}+\overrightarrow{OP_2}\) 。综上所述， \(\overrightarrow{OP}=\overrightarrow{OP^\prime}+\overrightarrow{P^\prime P}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。</p>
-<h4 id="正交标架">正交标架
-</h4><p>  设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是 \(E^3\) 的一个标架，并且 \(\bm{i},\bm{j},\bm{k}\) 是彼此垂直的、构成右手系的 \(3\) 个单位向量，于是</p>
-<span id="20241009122753CST"></span>\[
-\bm{i}\cdot\bm{i}=\bm{j}\cdot\bm{j}=\bm{k}\cdot\bm{k}=1,\quad\bm{i}\cdot\bm{j}=\bm{i}\cdot\bm{k}=\bm{j}\cdot\bm{k}=0
-\tag{23}
-    \]
-<p>  并且</p>
-<span id="20241009123616CST"></span>\[
-\bm{i}\times\bm{j}=\bm{k},\quad\bm{j}\times\bm{k}=\bm{i},\quad\bm{k}\times\bm{i}=\bm{j}
-\tag{24}
-    \]
-<p>  这样的标架称为<strong>右手单位正交标架</strong>，简称为<strong>正交标架</strong>。由正交标架给出的坐标系称为Cartesian直角坐标系。在Cartesian直角坐标系下，设向量 \(\bm{a}\) 和 \(\bm{b}\) 的分量分别是 \((x_1,y_1,z_1)\) 和 \((x_2,y_2,z_2)\) ，则</p>
-<p><span id="20241009123917CST"></span>\[
-\begin{aligned}
-\bm{a}\cdot\bm{b}=&(x_1\bm{i}+y_1\bm{j}+z_1\bm{k})\cdot(x_2\bm{i}+y_2\bm{j}+z_2\bm{k})\hspace{4em}\\[5pt]
-=&x_1x_2+y_1y_2+z_1z_2
-\end{aligned}
-\tag{25}
-    \]
-<span id="20241009124319CST"></span>\[
-\begin{aligned}
-\bm{a}\times\bm{b}=&(x_1\bm{i}+y_1\bm{j}+z_1\bm{k})\times(x_2\bm{i}+y_2\bm{j}+z_2\bm{k})\\[5pt]
-=&(x_1y_2-x_2y_1)(\bm{i}\times\bm{j})+(y_1z_2-y_2z_1)(\bm{j}\times\bm{k})\\[5pt]
-&+(z_1x_2-z_2x_1)(\bm{k}\times\bm{i})\\[5pt]
-=&\left(
-\begin{vmatrix}
-y_1 & z_1 \\[5pt]
-y_2 & z_2
-\end{vmatrix}
-,
-\begin{vmatrix}
-z_1 & x_1 \\[5pt]
-z_2 & x_2
-\end{vmatrix}
-,
-\begin{vmatrix}
-x_1 & y_1 \\[5pt]
-x_2 & y_2
-\end{vmatrix}
-\right)
-\\[15pt]
-=&
-\begin{vmatrix}
-\bm{i} & \bm{j} & \bm{k} \\[5pt]
-x_1 & y_1 & z_1 \\[5pt]
-x_2 & y_2 & z_2
-\end{vmatrix}
-\end{aligned}
-\tag{26}
-    \]</p>
-<p>  设点 \(A,B\) 的坐标分别是 \((x_1,y_1,z_1)\) 和 \((x_2,y_2,z_2)\) ，则线段 \(AB\) 的长度是</p>
-<span id="20241009210101CST"></span>\[
-|AB|=\sqrt{\overrightarrow{AB}\cdot\overrightarrow{AB}}=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}
-\tag{27}
-    \]
-<p>  因此，通常我们把三维Euclidean空间 \(E^3\) 写成 \(\R^3\) ，并且把 \(\R^3\) 中的向量 \((x,y,z)\) 的长度直接定义为 \(\sqrt{x^2+y^2+z^2}\) 。事实上，这样的 \(\R^3\) 是三维欧氏空间 \(E^3\) 在取定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后的具体表现形式。为简单起见，我们经常把三维Euclidean空间理解为上面所说的 \(\R^3\) 。</p>
-<h4 id="标架变换">标架变换
-</h4><p>  现在我们来考察由 \(E^3\) 中全体正交标架所构成的集合。设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是在 \(E^3\) 中的一个固定的正交标架，则 \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 可以如下来确定</p>
-<span id="20241009210942CST"></span>\[
-\begin{cases}
-\overrightarrow{OP}=a_1\bm{i}+a_2\bm{j}+a_3\bm{k}\\[5pt]
-\bm{e}_1=a_{11}\bm{i}+a_{12}\bm{j}+a_{13}\bm{k}\\[5pt]
-\bm{e}_2=a_{21}\bm{i}+a_{22}\bm{j}+a_{23}\bm{k}\\[5pt]
-\bm{e}_3=a_{31}\bm{i}+a_{32}\bm{j}+a_{33}\bm{k}\\[5pt]
-\end{cases}
-\tag{28}
-    \]
-<p>  因为 \(\bm{e}_i\) 是彼此正交的单位向量，所以</p>
-<span id="20241009211406CST"></span>\[
-\bm{e}_i\cdot\bm{e}_j=\sum_{k=1}^{3}a_{ik}a_{jk}=\delta{ij}=
-\begin{cases}
-1,\quad i=j\\[5pt]
-0,\quad i \ne j
-\end{cases}
-\tag{29}
-    \]
-<p>  由于 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 构成右手系，所以</p>
-<span id="20241009213413CST"></span>\[
-\bm{e}_1\times\bm{e}_2=\bm{e}_3
-\tag{30}
-    \]
-<p>  因而 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 的混合积</p>
-<span id="20241009213456CST"></span>\[
-\begin{aligned}
-(\bm{e}_1,\bm{e}_2,\bm{e}_3)=&(\bm{e}_1\times\bm{e}_2)\cdot\bm{e}_3=\bm{e}_3\cdot\bm{e}_3\\[10pt]
-=&
-\begin{vmatrix}
-a_{11} & a_{12} & a_{13} \\[5pt]
-a_{21} & a_{22} & a_{23} \\[5pt]
-a_{31} & a_{32} & a_{33}
-\end{vmatrix}
-=1
-\end{aligned}
-\tag{31}
-    \]
-<p>  令</p>
-<p><span id="20241009214507CST"></span>\[
-\bm{a}=(a_1,a_2,a_3)
-\tag{32}
-    \]
-<span id="20241009214525CST"></span>\[
-\bm{A}=
-\begin{pmatrix}
-a_{11} & a_{12} & a_{13} \\[5pt]
-a_{21} & a_{22} & a_{23} \\[5pt]
-a_{31} & a_{32} & a_{33}
-\end{pmatrix}
-\tag{33}
-    \]</p>
-<p>  由<a class="link" href="#20241009211406CST">式(29)</a>可得 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ，由<a class="link" href="#20241009213456CST">式(31)</a>可得 \(|\bm{A}|=1\) ，因此 \(\bm{A}\) 是行列式为 \(1\) 的正交矩阵，即 \(A \in \rm{SO(3)}\) （见<a class="link" onclick="alert('抱歉，“群论”还未上线~')">SO(3)群</a>）。在取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下， \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e_3}}\) 与矩阵 \((\bm{a},\bm{A})\) 是一一对应的，因此 \(E^3\) 中的全体正交标架的集合可以与集合 \(E^3\times \rm{SO(3)}\) （见<a class="link" onclick="alert('抱歉，“集合论”还未上线~')">Cartesian乘积</a>）等同起来。注意到正交矩阵的条件<a class="link" href="#20241009211406CST">式(29)</a>是矩阵元素 \(a_{ij}\) 所满足的 \(6\) 个关系式。</p>
-<span id="20241010000020CST"></span>\[
-\begin{cases}
-(a_{11})^2+(a_{12})^2+(a_{13})^2=1\\[5pt]
-(a_{21})^2+(a_{22})^2+(a_{33})^2=1\\[5pt]
-(a_{31})^2+(a_{32})^2+(a_{33})^2=1\\[5pt]
-a_{11}a_{21}+a_{12}a_{22}+a_{13}a_{23}=0\\[5pt]
-a_{11}a_{31}+a_{12}a_{32}+a_{13}a_{33}=0\\[5pt]
-a_{21}a_{31}+a_{22}a_{32}+a_{23}a_{33}=0
-\end{cases}
-\tag{34}
-    \]
-<p>  因此，其行列式为 \(1\) 的正交矩阵的集合 \(\rm{SO(3)}\) 有 \(3\) 个自由度，因而 \(E^3\times \rm{SO(3)}\) 是一个 \(6\) 维空间。</p>
-<h4 id="坐标变换">坐标变换
-</h4><p>  在 \(E^3\) 中两个不同的正交标架给出了两个不同的Cartesian直角坐标系，设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是 \(E^3\) 中的两个正交标架。它们的关系由<a class="link" href="#20241009210942CST">式(28)</a>给出。假定点 \(q\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标是 \((x,y,z)\) ，关于 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的坐标是 \((\tilde{x},\tilde{y},\tilde{z})\)</p>
-<span id="20241010100103CST"></span><div class="svg-figure">
-            <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 403.7">
-  <defs>
-    <style>
-      .cls-1 {
-        font-size: 11.8px;
-      }
-
-      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
-        font-style: italic;
-      }
-
-      .cls-1, .cls-2, .cls-3, .cls-4, .cls-7 {
-        font-family: 'KaTeX_Math-Italic', KaTeX_Math;
-      }
-
-      .cls-1, .cls-2, .cls-4, .cls-5, .cls-6, .cls-8, .cls-9 {
-        isolation: isolate;
-      }
-
-      .cls-10 {
-        font-family: AdobeSongStd-Light-GBpc-EUC-H, 'Adobe Song Std';
-        font-weight: 300;
-      }
-
-      .cls-11 {
-        stroke: #000;
-        stroke-miterlimit: 10;
-      }
-
-      .cls-11, .cls-12 {
-        fill: none;
-      }
-
-      .cls-2, .cls-6, .cls-9 {
-        font-size: 18px;
-      }
-
-      .cls-3 {
-        font-size: 11.5px;
-      }
-
-      .cls-4 {
-        font-size: 10.8px;
-      }
-
-      .cls-5 {
-        font-size: 20.7px;
-      }
-
-      .cls-5, .cls-6 {
-        font-family: 'KaTeX_Math-BoldItalic', KaTeX_Math;
-        font-weight: 700;
-      }
-
-      .cls-8 {
-        font-family: NotoSerifSC-Regular, 'Noto Serif SC';
-        font-size: 14.8px;
-      }
-    </style>
-  </defs>
-  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
-  <g>
-    <g id="_图层_1" data-name="图层_1">
-      <line class="cls-12" x1="253.8" y1="308.5" x2="195.5" y2="384.4"/>
-      <line class="cls-11" x1="253.8" y1="308.5" x2="199.1" y2="379.6"/>
-      <polygon points="197.9 375.1 199.9 378.6 203.8 379.7 195.5 384.4 197.9 375.1"/>
-      <line class="cls-12" x1="253.8" y1="308.5" x2="397.7" y2="308.5"/>
-      <line class="cls-11" x1="253.8" y1="308.5" x2="391.7" y2="308.5"/>
-      <polygon points="388.9 312.2 390.5 308.5 388.9 304.8 397.7 308.5 388.9 312.2"/>
-      <line class="cls-12" x1="253.8" y1="308.6" x2="253.8" y2="157.7"/>
-      <line class="cls-11" x1="253.8" y1="308.6" x2="253.8" y2="163.6"/>
-      <polygon points="257.5 166.5 253.8 164.9 250.1 166.5 253.8 157.7 257.5 166.5"/>
-      <line class="cls-12" x1="543.7" y1="140.6" x2="659.1" y2="105.1"/>
-      <line class="cls-11" x1="543.7" y1="140.6" x2="653.3" y2="106.8"/>
-      <polygon points="651.8 111.2 652.1 107.2 649.6 104.1 659.1 105.1 651.8 111.2"/>
-      <line class="cls-12" x1="545.7" y1="139.7" x2="492.9" y2="25.9"/>
-      <line class="cls-11" x1="545.7" y1="139.7" x2="495.4" y2="31.3"/>
-      <polygon points="499.9 32.3 495.9 32.4 493.2 35.4 492.9 25.9 499.9 32.3"/>
-      <line class="cls-12" x1="253.6" y1="308.6" x2="545.8" y2="139.7"/>
-      <line class="cls-11" x1="253.6" y1="308.6" x2="540.6" y2="142.7"/>
-      <polygon points="540.1 147.3 539.6 143.3 536.3 140.9 545.8 139.7 540.1 147.3"/>
-      <line class="cls-12" x1="545.5" y1="140.8" x2="515.5" y2="262.9"/>
-      <line class="cls-11" x1="545.5" y1="140.8" x2="516.9" y2="257"/>
-      <polygon points="514 253.4 517.2 255.8 521.2 255.2 515.5 262.9 514 253.4"/>
-      <line class="cls-12" x1="545.7" y1="140.2" x2="435.2" y2="110"/>
-      <line class="cls-11" x1="545.7" y1="140.2" x2="441" y2="111.5"/>
-      <polygon points="444.7 108.7 442.2 111.9 442.7 115.8 435.2 110 444.7 108.7"/>
-      <text class="cls-2" transform="translate(429.9 99.3)"><tspan x="0" y="0">Q</tspan></text>
-      <line class="cls-12" x1="253.8" y1="308.5" x2="435.2" y2="110"/>
-      <line class="cls-11" x1="253.8" y1="308.5" x2="431.2" y2="114.4"/>
-      <polygon points="432 118.9 430.4 115.3 426.6 113.9 435.2 110 432 118.9"/>
-      <text class="cls-1" transform="translate(531 264.4) scale(.9 1)"><tspan x="0" y="0">1</tspan></text>
-      <text class="cls-5" transform="translate(653.3 120.1) scale(.9 1)"><tspan x="0" y="0">e</tspan></text>
-      <text class="cls-4" transform="translate(505.9 25.1)"><tspan x="0" y="0">3</tspan></text>
-      <text class="cls-3" transform="translate(662.6 121) scale(.8 1)"><tspan x="0" y="0">2</tspan></text>
-      <text class="cls-6" transform="translate(260.6 171.9)"><tspan x="0" y="0">k</tspan></text>
-      <text class="cls-6" transform="translate(205.8 391.9)"><tspan x="0" y="0">i</tspan></text>
-      <text class="cls-6" transform="translate(390.3 327.5)"><tspan x="0" y="0">j</tspan></text>
-      <circle cx="435.4" cy="110" r="2.8"/>
-      <text class="cls-2" transform="translate(549.1 159.2)"><tspan x="0" y="0">P</tspan></text>
-      <text class="cls-2" transform="translate(254.6 327.6)"><tspan x="0" y="0">O</tspan></text>
-      <circle cx="253.8" cy="308.1" r="2.8"/>
-      <circle cx="545.5" cy="139.9" r="2.8"/>
-      <text class="cls-9" transform="translate(306 192.9)"><tspan class="cls-10" x="0" y="0">(</tspan><tspan class="cls-7" x="6.7" y="0">x</tspan><tspan class="cls-10" x="17" y="0">,</tspan><tspan class="cls-7" x="21.3" y="0">y</tspan><tspan class="cls-10" x="30.1" y="0">,</tspan><tspan class="cls-7" x="34.4" y="0">z</tspan><tspan class="cls-10" x="42.8" y="0">)</tspan></text>
-      <text class="cls-9" transform="translate(467.9 114.4)"><tspan class="cls-10" x="0" y="0">(</tspan><tspan class="cls-7" x="6.7" y="0">x</tspan><tspan class="cls-10" x="17" y="0">,</tspan><tspan class="cls-7" x="21.3" y="0">y</tspan><tspan class="cls-10" x="30.1" y="0">,</tspan><tspan class="cls-7" x="34.4" y="0">z</tspan><tspan class="cls-10" x="42.8" y="0">)</tspan></text>
-      <text class="cls-8" transform="translate(475.3 108.6) scale(1.1 1)"><tspan x="0" y="0">~</tspan></text>
-      <text class="cls-8" transform="translate(489.3 108.6) scale(1.1 1)"><tspan x="0" y="0">~</tspan></text>
-      <text class="cls-8" transform="translate(502.5 108.9) scale(1.1 1)"><tspan x="0" y="0">~</tspan></text>
-      <text class="cls-5" transform="translate(496.6 25.3) scale(.9 1)"><tspan x="0" y="0">e</tspan></text>
-      <text class="cls-5" transform="translate(522 264) scale(.9 1)"><tspan x="0" y="0">e</tspan></text>
-    </g>
-  </g>
-</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;坐标变换</p></div>
-<p>  则一方面有</p>
-<span id="20241010100344CST"></span>\[
-\overrightarrow{OQ}=x\bm{i}+y\bm{j}+z\bm{k}=
-\begin{pmatrix}
-x & y & z
-\end{pmatrix}
-\cdot
-\begin{pmatrix}
-\bm{i}\\[5pt]
-\bm{j}\\[5pt]
-\bm{k}
-\end{pmatrix}
-\tag{35}
-    \]
-<p>  另一方面有</p>
-<span id="20241010100600CST"></span>\[
-\begin{aligned}
-\overrightarrow{OQ}=&\overrightarrow{OP}+\overrightarrow{PQ}\\[5pt]
-=&
-\begin{pmatrix}
-a_1 & a_2 & a_3
-\end{pmatrix}
-\cdot
-\begin{pmatrix}
-\bm{i}\\[5pt]
-\bm{j}\\[5pt]
-\bm{k}
-\end{pmatrix}
-+\begin{pmatrix}
-\tilde{x} & \tilde{y} & \tilde{z}
-\end{pmatrix}
-\cdot
-\begin{pmatrix}
-\bm{e}_1\\[5pt]
-\bm{e}_2\\[5pt]
-\bm{e}_3
-\end{pmatrix}\\
-=&\left(\bm{a}+\begin{pmatrix}\tilde{x}&\tilde{y}&\tilde{z}\end{pmatrix}\cdot\bm{A}\right)\cdot
-\begin{pmatrix}
-\bm{i}\\[5pt]
-\bm{j}\\[5pt]
-\bm{k}
-\end{pmatrix}
-\end{aligned}
-\tag{36}
-    \]
-<p>  因此，点 \(q\) 在两个不同的Cartesian直角坐标系 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 下分别有坐标 \((x,y,z)\) 和 \((\tilde{x},\tilde{y},\tilde{z})\) ，它们满足如下的关系式</p>
-<span id="20241010101530CST"></span>\[
-(x,y,z)=\bm{a}+\begin{pmatrix}\tilde{x}&\tilde{y}&\tilde{z}\end{pmatrix}\cdot\bm{A}
-\tag{37}
-    \]
-<p>  即</p>
-<span id="20241010101847CST"></span>\[
-\begin{cases}
-x=a_1+a_{11}\tilde{x}+a_{21}\tilde{y}+a_{31}\tilde{z}\\[5pt]
-y=a_2+a_{12}\tilde{x}+a_{22}\tilde{y}+a_{32}\tilde{z}\\[5pt]
-z=a_3+a_{13}\tilde{x}+a_{23}\tilde{y}+a_{33}\tilde{z}
-\end{cases}
-\tag{38}
-    \]
-<p>  也可以写成</p>
-<span id="20241010102137CST"></span>\[
-\begin{pmatrix}
-x\\[5pt]
-y\\[5pt]
-z
-\end{pmatrix}
-=
-\bm{a}^T+
-\bm{A}^T
-\cdot
-\begin{pmatrix}
-\tilde{x}\\[5pt]
-\tilde{y}\\[5pt]
-\tilde{z}
-\end{pmatrix}
-\tag{39}
-    \]
-<h3 id="刚体运动">刚体运动
-</h3><h4 id="定义-2">定义
-</h4><p>  正交标架的重要性还在予它能够用来表示Euclidean空间\(E^3\)中刚体的运动。所谓刚体运动原是物理学中的一个概念．如果一个物体在空间中的运动不改变它的形状及其大小，只改变它在空问中的位置，那么该物体的这种运动称为<strong>刚体运动</strong>。要确定一个刚体在 \(E^3\) 中的位置，只要确定在该刚体上不共线的三个点的位置就行了，而刚体上其他的点可以通过它到已知的三个点的距离、以及所成的三个向量构成右手系还是左手系来确定。但是，在 \(E^3\) 中正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是由点 \(P\) 和两个彼此正交的单位向量 \(\bm{e}_1,\bm{e}_2\) 决定的，它们恰好相当于空间中不共线的三个点。这样，在刚体上安装一个正交标架，则这个标架在空间中的位置代表了这个刚体的位置。如果把空间和刚体捆绑在一起，把刚体在空间中的运动看作空间自身在空间中的刚体运动，则这是空间 \(E^3\) 到它自身的一个变换，这个变换保持该空间中任意两点之间的距离不变。</p>
-<h4 id="刚体运动与标架">刚体运动与标架
-</h4><p>  设在刚体上安装的正交标架是 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 。假定它在初始位置时该标架与空间中取定的正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 重合，经过刚体运动 \(\sigma\) 达到了现在的位置，那么空间中的任意一点 \(Q\) 在刚体运动 \(\sigma\) 下变成了像点</p>
-<span id="20241010122819CST"></span>\[
-\tilde{Q}=\sigma(Q)
-\tag{40}
-    \]
-<p>  它关于标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的相对位置与 \(Q\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的相对位置是一样的。若设</p>
-<span id="20241010123031CST"></span>\[
-\overrightarrow{OQ}=
-\begin{pmatrix}
-x & y & z
-\end{pmatrix}
-\cdot
-\begin{pmatrix}
-\bm{i}\\[5pt]
-\bm{j}\\[5pt]
-\bm{k}
-\end{pmatrix}
-\tag{41}
-    \]
-<p>  则也有</p>
-<span id="20241010123241CST"></span>\[
-\overrightarrow{P\tilde{Q}}=
-\begin{pmatrix}
-x & y & z
-\end{pmatrix}
-\cdot
-\begin{pmatrix}
-\bm{e}_1\\[5pt]
-\bm{e}_2\\[5pt]
-\bm{e}_3
-\end{pmatrix}
-\tag{42}
-    \]
-<p>  所以</p>
-<span id="20241010123323CST"></span>\[
-\begin{aligned}
-\overrightarrow{O\tilde{Q}}=&\overrightarrow{OP}+\overrightarrow{P\tilde{Q}}\\
-=&\left(\bm{a}+\begin{pmatrix}x&y&z\end{pmatrix}\cdot\bm{A}\right)\cdot
-\begin{pmatrix}
-\bm{i}\\[5pt]
-\bm{j}\\[5pt]
-\bm{k}
-\end{pmatrix}
-\end{aligned}
-\tag{43}
-    \]
-<p>  这就是说，像点 \(\tilde{q}=\sigma(q)\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标是</p>
-<span id="20241010124511CST"></span>\[
-\begin{pmatrix}\tilde{x}&\tilde{y}&\tilde{z}\end{pmatrix}=\bm{a}+\begin{pmatrix}x&y&z\end{pmatrix}\cdot\bm{A}
-\tag{44}
-    \]
-<p>  即</p>
-<span id="20241010124705CST"></span>\[
-\begin{cases}
-\tilde{x}=a_1+a_{11}x+a_{21}y+a_{31}z\\[5pt]
-\tilde{y}=a_2+a_{12}x+a_{22}y+a_{32}z\\[5pt]
-\tilde{z}=a_3+a_{13}x+a_{23}y+a_{33}z
-\end{cases}
-\tag{45}
-    \]
-<p>  也可以写成</p>
-<span id="20241010125059CST"></span>\[
-\begin{pmatrix}
-\tilde{x}\\[5pt]
-\tilde{y}\\[5pt]
-\tilde{z}
-\end{pmatrix}
-=
-\bm{a}^T+
-\bm{A}^T
-\cdot
-\begin{pmatrix}
-x\\[5pt]
-y\\[5pt]
-z
-\end{pmatrix}
-\tag{46}
-    \]
-<p>  因此如果把正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 变到 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的刚体运动同时把点 \(q=(x,y,z)\) 变到点 \(\tilde{q}=(\tilde{x},\tilde{y},\tilde{z})\) （它们分别是点 \(q\) 和 \(\tilde{q}\) 关于正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标），则 \((\tilde{x},\tilde{y},\tilde{z})\) 与 \((x,y,z)\) 之间的关系恰好是由<a class="link" href="#20241010124511CST">式(44)</a>给出的．注意到<a class="link" href="#20241010124511CST">式(44)</a>和<a class="link" href="#20241010101530CST">式(37)</a>有很大的相似性，但是它们的意义却是完全不同的，前者是点不变而标架变换，后者是点随标架一起同步变换。这种在公式上的相似性说明刚体运动在某种意义上可以看作一种坐标变换（参看<a class="link" href="#20241010131827CST">图2</a>）。具体地说，<a class="link" href="#20241010124511CST">式(44)</a>可以解读为把点 \(\tilde{q}\) 在标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 下的坐标 \((x,y,z)\) 变换为在标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下的坐标 \((\tilde{x},\tilde{y},\tilde{z})\) 的公式。</p>
-<span id="20241010131827CST"></span><div class="svg-figure">
-            <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 403.7">
-  <defs>
-    <style>
-      .cls-1 {
-        font-size: 11.8px;
-      }
-
-      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
-        font-style: italic;
-      }
-
-      .cls-1, .cls-2, .cls-3, .cls-4, .cls-7 {
-        font-family: 'KaTeX_Math-Italic', KaTeX_Math;
-      }
-
-      .cls-1, .cls-2, .cls-4, .cls-5, .cls-6, .cls-8, .cls-9 {
-        isolation: isolate;
-      }
-
-      .cls-10 {
-        font-family: AdobeSongStd-Light-GBpc-EUC-H, 'Adobe Song Std';
-        font-weight: 300;
-      }
-
-      .cls-11 {
-        stroke: #000;
-        stroke-miterlimit: 10;
-      }
-
-      .cls-11, .cls-12 {
-        fill: none;
-      }
-
-      .cls-2, .cls-6, .cls-9 {
-        font-size: 18px;
-      }
-
-      .cls-3 {
-        font-size: 11.5px;
-      }
-
-      .cls-4 {
-        font-size: 10.8px;
-      }
-
-      .cls-5 {
-        font-size: 20.7px;
-      }
-
-      .cls-5, .cls-6 {
-        font-family: 'KaTeX_Math-BoldItalic', KaTeX_Math;
-        font-weight: 700;
-      }
-
-      .cls-8 {
-        font-family: NotoSerifSC-Regular, 'Noto Serif SC';
-        font-size: 14.8px;
-      }
-    </style>
-  </defs>
-  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
-  <g>
-    <g id="_图层_1" data-name="图层_1">
-      <line class="cls-12" x1="265" y1="308.5" x2="206.7" y2="384.4"/>
-      <g>
-        <line class="cls-11" x1="265" y1="308.5" x2="210.3" y2="379.6"/>
-        <polygon points="209.1 375.1 211.1 378.6 215 379.7 206.7 384.4 209.1 375.1"/>
-      </g>
-      <line class="cls-12" x1="265" y1="308.5" x2="408.9" y2="308.5"/>
-      <g>
-        <line class="cls-11" x1="265" y1="308.5" x2="402.9" y2="308.5"/>
-        <polygon points="400.1 312.2 401.7 308.5 400.1 304.8 408.9 308.5 400.1 312.2"/>
-      </g>
-      <line class="cls-12" x1="265" y1="308.6" x2="265" y2="157.7"/>
-      <g>
-        <line class="cls-11" x1="265" y1="308.6" x2="265" y2="163.6"/>
-        <polygon points="268.7 166.5 265 164.9 261.3 166.5 265 157.7 268.7 166.5"/>
-      </g>
-      <line class="cls-12" x1="264.8" y1="308.6" x2="557" y2="139.7"/>
-      <g>
-        <line class="cls-11" x1="264.8" y1="308.6" x2="551.8" y2="142.7"/>
-        <polygon points="551.3 147.3 550.8 143.3 547.5 140.9 557 139.7 551.3 147.3"/>
-      </g>
-      <path class="cls-12" d="M446.4,110"/>
-      <path class="cls-12" d="M556.9,140.2"/>
-      <g>
-        <path class="cls-11" d="M452.2,111.5"/>
-        <path class="cls-11" d="M556.9,140.2"/>
-      </g>
-      <text class="cls-2" transform="translate(574.2 44.7)"><tspan x="0" y="0">Q</tspan></text>
-      <text class="cls-6" transform="translate(271.8 171.9)"><tspan x="0" y="0">k</tspan></text>
-      <text class="cls-6" transform="translate(217 391.9)"><tspan x="0" y="0">i</tspan></text>
-      <text class="cls-6" transform="translate(401.5 327.5)"><tspan x="0" y="0">j</tspan></text>
-      <text class="cls-2" transform="translate(584.6 152)"><tspan x="0" y="0">P</tspan></text>
-      <text class="cls-1" transform="translate(600.6 219.7) scale(.9 1)"><tspan x="0" y="0">1</tspan></text>
-      <text class="cls-4" transform="translate(499.8 64.5)"><tspan x="0" y="0">3</tspan></text>
-      <g>
-        <line class="cls-11" x1="556.9" y1="139.9" x2="569.8" y2="55.1"/>
-        <polygon points="572.3 57.5 571.1 46.3 566.6 56.6 572.3 57.5"/>
-      </g>
-      <g>
-        <line class="cls-11" x1="265" y1="308.5" x2="564.4" y2="52.1"/>
-        <polygon points="564.8 55.6 571.1 46.3 561 51.2 564.8 55.6"/>
-      </g>
-      <text class="cls-8" transform="translate(577.1 34.5) scale(1.1 1)"><tspan x="0" y="0">~</tspan></text>
-      <text class="cls-3" transform="translate(652.4 101.7) scale(.8 1)"><tspan x="0" y="0">2</tspan></text>
-      <g>
-        <line class="cls-11" x1="265" y1="308.8" x2="303.3" y2="232.1"/>
-        <polygon points="305 235.2 307.3 224.2 299.8 232.6 305 235.2"/>
-      </g>
-      <text class="cls-2" transform="translate(305.6 218.1)"><tspan x="0" y="0">Q</tspan></text>
-      <circle cx="306.3" cy="224.7" r="2.8"/>
-      <circle cx="570.9" cy="46.3" r="2.8"/>
-      <text class="cls-2" transform="translate(265 328.4)"><tspan x="0" y="0">O</tspan></text>
-      <circle cx="264.9" cy="308.6" r="2.8"/>
-      <circle cx="556.9" cy="139.7" r="2.8"/>
-      <text class="cls-9" transform="translate(245.3 247.5)"><tspan class="cls-10" x="0" y="0">(</tspan><tspan class="cls-7" x="6.7" y="0">x</tspan><tspan class="cls-10" x="17" y="0">,</tspan><tspan class="cls-7" x="21.3" y="0">y</tspan><tspan class="cls-10" x="30.1" y="0">,</tspan><tspan class="cls-7" x="34.4" y="0">z</tspan><tspan class="cls-10" x="42.8" y="0">)</tspan></text>
-      <text class="cls-9" transform="translate(387.4 159.4)"><tspan class="cls-10" x="0" y="0">(</tspan><tspan class="cls-7" x="6.7" y="0">x</tspan><tspan class="cls-10" x="17" y="0">,</tspan><tspan class="cls-7" x="21.3" y="0">y</tspan><tspan class="cls-10" x="30.1" y="0">,</tspan><tspan class="cls-7" x="34.4" y="0">z</tspan><tspan class="cls-10" x="42.8" y="0">)</tspan></text>
-      <text class="cls-8" transform="translate(394.8 153.5) scale(1.1 1)"><tspan x="0" y="0">~</tspan></text>
-      <text class="cls-8" transform="translate(408.8 153.5) scale(1.1 1)"><tspan x="0" y="0">~</tspan></text>
-      <text class="cls-8" transform="translate(422 153.8) scale(1.1 1)"><tspan x="0" y="0">~</tspan></text>
-      <text class="cls-5" transform="translate(591.6 219.1) scale(.9 1)"><tspan x="0" y="0">e</tspan></text>
-      <text class="cls-5" transform="translate(643.1 100.7) scale(.9 1)"><tspan x="0" y="0">e</tspan></text>
-      <text class="cls-5" transform="translate(490.1 65.4) scale(.9 1)"><tspan x="0" y="0">e</tspan></text>
-      <g>
-        <line class="cls-11" x1="556.9" y1="139.7" x2="587.6" y2="220.1"/>
-        <polygon points="583.1 218.8 587.1 218.9 590 216.1 589.7 225.6 583.1 218.8"/>
-      </g>
-      <g>
-        <line class="cls-11" x1="557.7" y1="139.4" x2="642.4" y2="86"/>
-        <polygon points="642 90.6 641.4 86.6 638.1 84.4 647.5 82.8 642 90.6"/>
-      </g>
-      <g>
-        <line class="cls-11" x1="556.9" y1="139.4" x2="488.2" y2="70.4"/>
-        <polygon points="492.8 69.8 489.1 71.3 487.6 75 484 66.2 492.8 69.8"/>
-      </g>
-    </g>
-  </g>
-</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;刚体运动</p></div>
-<p>  我们可以把上述讨论总结成下面的定理。</p>
-<p>  <span id="20241010140246CST"></span><strong>定理1</strong>： \(E^3\) 中的刚体运动把一个正交标架变成另一个正交标架；反过来，对于 \(E^3\) 中的任意两个正交标架，必有 \(E^3\) 的一个刚体运动把其中一个正交标架变成另一个正交标架。</p>
-<h4 id="等距变换">等距变换
-</h4><p>  距离不变的变换称为<strong>等距变换</strong>。刚体运动是一种等距变换。容易证明，等距变换把共线的三个点变为共线的三个点，并且保持它们的分比不变，进而可以证明等距变换是如<a class="link" href="#20241010124511CST">式(44)</a>给出的线性变换，但是此时只能证明其中的矩阵 \(\bm{A}\) 是正交矩阵，而不要求它的行列式的值是正的因此等距变换把单位正交标架变成一个另单位正交标架，但是可能把右手系变成左手系。换句话说刚体运动是保持右手系不变的等距变换，而等距变换或者是一个刚体运动，或者是一个刚体运动与关于某个平面的反射的合成。</p>
-<p>  <strong>注</strong>：在此简单证明一下<a class="link" href="#20241010124511CST">式(44)</a>给出的变换是等距变换（ \(\bm{A}\) 是正交矩阵，满足 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ）。设有 \(P_1=(x_1,y_1,z_1),P_2=(x_2,y_2,z_2)\) 被<a class="link" href="#20241010124511CST">式(44)</a>变换为 \(\tilde{P}_1(\tilde{x}_1,\tilde{y}_1,\tilde{z}_1),\tilde{P}_2=(\tilde{x}_2,\tilde{y}_2,\tilde{z}_2)\) 。其距离被变换为</p>
-<span id="20241010141443CST"></span>\[
-\begin{aligned}
-\left|\tilde{P}_1\tilde{P}_2\right|=&\sqrt{(\tilde{x}_1-\tilde{x}_2)^2+(\tilde{y}_1-\tilde{y}_2)^2+(\tilde{z}_1-\tilde{z}_2)^2}\\[5pt]
-=&\sqrt{\left(\begin{pmatrix}\tilde{x}_1&\tilde{y}_1&\tilde{z}_1\end{pmatrix}-\begin{pmatrix}\tilde{x}_2&\tilde{y}_2&\tilde{z}_2\end{pmatrix}\right)\cdot\left(\begin{pmatrix}\tilde{x}_1&\tilde{y}_1&\tilde{z}_1\end{pmatrix}-\begin{pmatrix}\tilde{x}_2&\tilde{y}_2&\tilde{z}_2\end{pmatrix}\right)^T}\\[5pt]
-=&\sqrt{\left(\begin{pmatrix}x_1&y_1&z_1\end{pmatrix}-\begin{pmatrix}x_2&y_2&z_2\end{pmatrix}\right)\bm{A}\cdot\bm{A}^T\left(\begin{pmatrix}x_1&y_1&z_1\end{pmatrix}-\begin{pmatrix}x_2&y_2&z_2\end{pmatrix}\right)^T}\\[5pt]
-=&\sqrt{\left(\begin{pmatrix}x_1&y_1&z_1\end{pmatrix}-\begin{pmatrix}x_2&y_2&z_2\end{pmatrix}\right)\cdot\left(\begin{pmatrix}x_1&y_1&z_1\end{pmatrix}-\begin{pmatrix}x_2&y_2&z_2\end{pmatrix}\right)^T}\\[5pt]
-=&\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}=|P_1P_2|
-\end{aligned}
-\tag{47}
-    \]
-<p>  故距离不变。对于共线的三个点 \(P_1,P_2,P_3\) ，必存在不为零的 \(\lambda,\mu\) 使得</p>
-<span id="20241010142938CST"></span>\[
-(x_1,y_1,z_1)=\lambda\cdot(x_2,y_2,z_2)+\mu\cdot(x_3,y_3,z_3)
-\tag{48}
-    \]
-<p>  而<a class="link" href="#20241010124511CST">式(44)</a>是个线性变换，因此变换后上式也能满足（容易代入验证），因此三点共线的性质不变。</p>
-<p>  在空间 \(E^3\) 中取定Cartesian直角坐标系之后，几何图形就能够用坐标来表达，几何图形固有的性质自然也可以用坐标来表达，但是所表达的性质应该与Cartesian直角坐标系的取法无关。反过来，如果儿何图形的一个用笛卡儿直角坐标表示的量与笛卡儿直角坐标系的取法无关，则这个量应该是几何图形所固有的量；另外，这个量在几何图形的刚体运动下是保持不变的。我们所研究的就是几何图形的这种不变量。</p>
-<h3 id="仿射标架">仿射标架
-</h3><p>  除了正交标架外，我们还经常使用<strong>仿射标架</strong>。所谓仿射标架，是指空间中的一个点 \(P\) 和在该点的三个不共面的向量 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 组成的图形 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) ，但是对该图形不要求这三个向量有单位正交的性质。令</p>
-<span id="20241010143839CST"></span>\[
-g_{ij}=\bm{e}_i\cdot\bm{e}_j\quad 1 \le i,j \le 3
-\tag{49}
-    \]
-<p>  我们把 \((g_{ij})\) 称为仿射标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的度量系数。空间 \(E^3\) 的刚体运动把仿射标架变成仿射标架，并且保持它的度量系数不变，保持标架的定向不变。反过来，对于对于 \(E^3\) 中任意两个有相同度量系数的、成右手系的仿射标架，必有 \(E^3\) 中的一个刚体运动把其中一个仿射标架变成另一个仿射标架。很明显， \(E^3\) 中的全体仿射标架的集合可以等同于 \(E^3\times\rm{GL(3)}\) （见<a class="link" onclick="alert('抱歉，“群论”还未上线~')">GL(3)群</a>），其中 \(\rm{GL(3)}\) 表示可逆的 \(3\times 3\) 矩阵的集合。因此，\(E^3\) 的全体仿射标架构成一个 \(12\) 维的空间。</p>
-<h2 id="向量函数">向量函数
-</h2><h3 id="向量空间">向量空间
-</h3><h4 id="定义-3">定义
-</h4><p>  由三维Euclidean空间 \(E^3\) 中的全体向量组成的空间称为三维Euclidean向量空间。在给定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后，该空间等同于由有序的三个实数的组构成的空间 \(\R^3\) 。</p>
-<h4 id="数量积">数量积
-</h4><p>设有 \(\R^3\) 中的三个向量</p>
-<span id="20241012143200CST"></span>\[
-\bm{a}=(a_1,a_2,a_3)\\[5pt]
-\bm{b}=(b_1,b_2,b_3)\\[5pt]
-\bm{c}=(c_1,c_2,c_3)
-\tag{50}
-    \]
-<p>  则 \(\bm{a}\) 和 \(\bm{b}\) 的点乘（以后也称为<strong>内积</strong>，或<strong>数量积</strong>）是</p>
-<span id="20241012143454CST"></span>\[
-\bm{a}\cdot\bm{b}=|\bm{a}|\cdot|\bm{b}|\cdot\cos\angle(\bm{a},\bm{b})=a_1b_1+a_2b_2+a_3b_3
-\tag{51}
-    \]
-<h4 id="向量积">向量积
-</h4><p>   \(\bm{a}\) 和 \(\bm{b}\) 的叉乘（也称为<strong>向量积</strong>）是</p>
-<span id="20241012143803CST"></span>\[
-\begin{aligned}
-\bm{a}\times\bm{b}=&\left(
-\begin{vmatrix}
-a_2 & a_3 \\[5pt]
-b_2 & b_3
-\end{vmatrix}
-,
-\begin{vmatrix}
-a_3 & a_1 \\[5pt]
-b_3 & b_1
-\end{vmatrix}
-,
-\begin{vmatrix}
-a_1 & a_2 \\[5pt]
-b_1 & b_2
-\end{vmatrix}
-\right)
-\\[15pt]
-=&
-\begin{vmatrix}
-\bm{i} & \bm{j} & \bm{k} \\[5pt]
-a_1 & a_2 & a_3 \\[5pt]
-b_1 & b_2 & b_3
-\end{vmatrix}
-\end{aligned}
-\tag{52}
-    \]
-<p>  因此 \(\bm{a}\times\bm{b}\perp\bm{a}, \bm{a}\times\bm{b}\perp\bm{b}\) 。向量 \(\bm{a},\bm{b}\) 和 \(\bm{a}\times\bm{b}\) 构成右手系，并且</p>
-<span id="20241012144354CST"></span>\[
-|\bm{a}\times\bm{b}|=|\bm{a}|\cdot|\bm{b}|\cdot\sin\angle(\bm{a},\bm{b})
-\tag{53}
-    \]
-<h4 id="混合积">混合积
-</h4><p>   \(\bm{a},\bm{b}\) 和 \(\bm{c}\) 的混合积是</p>
-<span id="20241012144456CST"></span>\[
-(\bm{a},\bm{b},\bm{c})=(\bm{a}\times\bm{b})\cdot\bm{c}=
-\begin{vmatrix}
-a_1 & a_2 & a_3 \\[5pt]
-b_1 & b_2 & b_3 \\[5pt]
-c_1 & c_2 & c_3
-\end{vmatrix}
-\tag{54}
-    \]
-<p>  它的几何意义是由向量 \(\bm{a},\bm{b}\) 和 \(\bm{c}\) 所张成的平行六面体的有向体积。</p>
-<h3 id="向量函数-1">向量函数
-</h3><h4 id="定义-4">定义
-</h4><p>  所谓向量函数是指从它的定义域到 \(\R^3\) 中的映射，也就是三个有序的实函数。设有定义在区间[a,b]上的向量函数</p>
-<span id="20241012144828CST"></span>\[
-\bm{r}(t)=(x(t),y(t),z(t))\quad a \le t \le b
-\tag{55}
-    \]
-<h4 id="微积分">微积分
-</h4><p>  如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续函数，则称向量函数 \(\bm{r}(t)\) 是连续的；如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续可微函数，则称向量函数 \(\bm{r}(t)\) 是连续可微的。向量函数 \(\bm{r}(t)\) 的导数和积分的定义与数值函数的导数和积分的定义是相同的，即</p>
-<p><span id="20241012145201CST"></span>\[
-\begin{aligned}
-\left.\frac{d\bm{r}}{dt}\right|_{t=t_0}=&\lim\limits_{\Delta t \to 0}\frac{\bm{r}(t_0+\Delta t)-\bm{r}(t_0)}{\Delta t}\\[10pt]
-=&\lim\limits_{\Delta t \to 0}\left(\frac{x(t_0+\Delta t)-x(t_0)}{\Delta t},\frac{y(t_0+\Delta t)-y(t_0)}{\Delta t},\frac{z(t_0+\Delta t)-z(t_0)}{\Delta t}\right)
-\end{aligned}
-\tag{56}
-    \]
-<span id="20241012145649CST"></span>\[
-\begin{aligned}
-\int_{a}^{b}\bm{r}(t)dt=&\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}\bm{r}(t_i^\prime)\Delta t_i\\[10pt]
-=&\left(\int_{a}^{b}x(t)dt,\int_{a}^{b}y(t)dt,\int_{a}^{b}z(t)dt\right)
-\end{aligned}
-\tag{57}
-    \]</p>
-<p>  其中 \(a=t_0 < t_1 < \cdots < t_n = b\) 是区间 \([a,b]\) 的任意一个分割， \(\Delta t_i=t_i-t_{i-1},\space t_i^\prime \in [t_{i-1},t_i]\) ，并且 \(\lambda=\max\set{\Delta t_i;i=1,\cdots,n}\) 。这就是说，向量函数的求导和积分归结为它的分量函数的求导和积分，因此向量函数的可微性和可积性归结为它的分量函数的可微性和可积性。</p>
-<h4 id="求导公式">求导公式
-</h4><p>  <span id="20241012181641CST"></span><strong>定理2</strong>：假定 \(\bm{a}(t),\bm{b}(t),\bm{c}(t)\) 是三个可微的向量函数，则它们的内积、向量积和混合积的导数有下面的公式</p>
-<p><span id="20241012195223CST"></span>\[
-(\bm{a}(t)\cdot\bm{b}(t))^\prime=\bm{a}^\prime(t)\cdot\bm{b}(t)+\bm{a}(t)\cdot\bm{b}^\prime(t)
-\tag{58}
-    \]
-<span id="20241012221040CST"></span>\[
-(\bm{a}(t)\times\bm{b}(t))^\prime=\bm{a}^\prime(t)\times\bm{b}(t)+\bm{a}(t)\times\bm{b}^\prime(t)
-\tag{59}
-    \]
-<span id="20241012231920CST"></span>\[
-(\bm{a}(t),\bm{b}(t),\bm{c}(t))^\prime=(\bm{a}^\prime(t),\bm{b}(t),\bm{c}(t))+(\bm{a}(t),\bm{b}^\prime(t),\bm{c}(t))+(\bm{a}(t),\bm{b}(t),\bm{c}^\prime(t))
-\tag{60}
-    \]</p>
-<p>  <strong>证明（<a class="link" href="#20241012181641CST">定理2</a>）</strong>：对<a class="link" href="#20241012195223CST">式(58)</a>，由<a class="link" href="#20241012143454CST">式(51)</a>可得</p>
-<span id="20241012222826CST"></span>\[
-\begin{aligned}
-(\bm{a}(t)\cdot\bm{b}(t))'=&(a_1(t)b_1(t))'+(a_2(t)b_2(t))'+(a_3(t)b_3(t))'\\[5pt]
-=&a_1'(t)b_1(t)+a_2'(t)b_2(t)+a_3'(t)b_3(t)+a_1(t)b_1'(t)+a_2(t)b_2'(t)+a_3(t)b_3'(t)\\[5pt]
-=&\bm{a}'(t)\cdot\bm{b}(t)+\bm{a}(t)\cdot\bm{b}'(t)
-\end{aligned}
-\tag{61}
-    \]
-<p>  对<a class="link" href="#20241012221040CST">式(59)</a>，由<a class="link" href="#20241012143803CST">式(52)</a>可得</p>
-<span id="20241012223743CST"></span>\[
-\begin{aligned}
-(\bm{a}\times\bm{b})'=&\left(
-\frac{d}{dt}
-\begin{vmatrix}
-a_2(t) & a_3(t) \\[5pt]
-b_2(t) & b_3(t)
-\end{vmatrix}
-,
-\frac{d}{dt}
-\begin{vmatrix}
-a_3(t) & a_1(t) \\[5pt]
-b_3(t) & b_1(t)
-\end{vmatrix}
-,
-\frac{d}{dt}
-\begin{vmatrix}
-a_1(t) & a_2(t) \\[5pt]
-b_1(t) & b_2(t)
-\end{vmatrix}
-\right)\\[20pt]
-=&\left(
-\frac{d}{dt}(a_2(t)b_3(t)-a_3(t)b_2(t)), \frac{d}{dt}(a_3(t)b_1(t)-a_1(t)b_3(t)), \frac{d}{dt}(a_1(t)b_2(t)-a_2(t)b_1(t))
-\right)\\[20pt]
-=&((a_2'(t)b_3(t)-a_3'(t)b_2(t))+(a_2(t)b_3'(t)-a_3(t)b_2'(t)),\\[20pt]
-&(a_3'(t)b_1(t)-a_1'(t)b_3(t))+(a_3(t)b_1'(t)-a_1(t)b_3'(t)),\\[20pt]
-&(a_1'(t)b_2(t)-a_2'(t)b_1(t))+(a_1(t)b_2'(t)-a_2(t)b_1'(t)))\\[20pt]
-=&(a_2'(t)b_3(t)-a_3'(t)b_2(t), a_3'(t)b_1(t)-a_1'(t)b_3(t),(a_1'(t)b_2(t)-a_2'(t)b_1(t)))+\\[20pt]
-&(a_2(t)b_3'(t)-a_3(t)b_2'(t),a_3(t)b_1'(t)-a_1(t)b_3'(t),a_1(t)b_2'(t)-a_2(t)b_1'(t))\\[20pt]
-=&\left(
-\begin{vmatrix}
-a_2'(t) & a_3'(t) \\[5pt]
-b_2(t) & b_3(t)
-\end{vmatrix}
-,
-\begin{vmatrix}
-a_3'(t) & a_1'(t) \\[5pt]
-b_3(t) & b_1(t)
-\end{vmatrix}
-,
-\begin{vmatrix}
-a_1'(t) & a_2'(t) \\[5pt]
-b_1(t) & b_2(t)
-\end{vmatrix}
-\right)+
-\left(
-\begin{vmatrix}
-a_2(t) & a_3(t) \\[5pt]
-b_2'(t) & b_3'(t)
-\end{vmatrix}
-,
-\begin{vmatrix}
-a_3(t) & a_1(t) \\[5pt]
-b_3'(t) & b_1'(t)
-\end{vmatrix}
-,
-\begin{vmatrix}
-a_1(t) & a_2(t) \\[5pt]
-b_1'(t) & b_2'(t)
-\end{vmatrix}
-\right)\\[20pt]
-=&\bm{a}^\prime(t)\times\bm{b}(t)+\bm{a}(t)\times\bm{b}^\prime(t)
-\end{aligned}
-\tag{62}
-    \]
-<p>  对<a class="link" href="#20241012231920CST">式(60)</a>，由<a class="link" href="#20241012195223CST">式(58)</a>和<a class="link" href="#20241012221040CST">式(59)</a></p>
-<span id="20241012231955CST"></span>\[
-\begin{aligned}
-(\bm{a}(t),\bm{b}(t),\bm{c}(t))^\prime=&(\bm{a}(t)\times\bm{b}(t)\cdot\bm{c}(t))'\\[5pt]
-=&(\bm{a}(t)\times\bm{b}(t))'\cdot\bm{c}(t)+(\bm{a}(t)\times\bm{b}(t))\cdot(\bm{c}(t))'\\[5pt]
-=&\bm{a}'(t)\times\bm{b}(t)\cdot\bm{c}(t)+\bm{a}(t)\times\bm{b}'(t)\cdot\bm{c}(t)+(\bm{a}(t)\times\bm{b}(t))\cdot\bm{c}'(t)\\[5pt]
-=&(\bm{a}^\prime(t),\bm{b}(t),\bm{c}(t))+(\bm{a}(t),\bm{b}^\prime(t),\bm{c}(t))+(\bm{a}(t),\bm{b}(t),\bm{c}^\prime(t))
-\end{aligned}
-\tag{63}
-    \]
-<h4 id="不变条件">不变条件
-</h4><p>  <span id="20241012234715CST"></span><strong>定理3</strong>：设 \(\bm{a}(t)\) 是一个处处非零的连续可微的向量函数，则<br>
-  1. 向量函数 \(\bm{a}(t)\) 的长度是常熟当且仅当 \(\bm{a}'(t)\cdot\bm{a}(t)\equiv 0\) 。<br>
-  2. 向量函数 \(\bm{a}(t)\) 的方向不变当且仅当 \(\bm{a}'(t)\times\bm{a}(t)\equiv 0\) 。<br>
-  3.  如果向量函数 \(\bm{a}(t)\) 与某一个固定的方向垂直，那么</p>
-<span id="20241012235212CST"></span>\[
-((\bm{a}(t),(\bm{a}'(t),(\bm{a}''(t))\equiv 0
-\tag{64}
-    \]
-<p>  <strong>证明（<a class="link" href="#20241012234715CST">定理3</a>）</strong>：对1. ，因为</p>
-<span id="20241012235435CST"></span>\[
-\frac{d}{dt}|\bm{a}(t)|^2=\frac{d(\bm{a}(t)\cdot\bm{a}(t))}{dt}=2\bm{a}'(t)\cdot\bm{a}(t)
-\tag{65}
-    \]
-<p>  所以 \(|\bm{a}(t)|^2\) 是常数，当且仅当 \(\bm{a}'(t)\cdot\bm{a}(t)\equiv 0\) 。</p>
-<p>  对2. ，如果向量函数 \(\bm{a}(t)\) 的方向不变，则有一个固定的单位向量 \(\bm{b}\) ，使得向量函数 \(\bm{a}(t)\) 能够写成</p>
-<span id="20241012235743CST"></span>\[
-\bm{a}(t)=f(t)\cdot\bm{b}
-\tag{66}
-    \]
-<p>  两边乘以 \(\bm{b}\) 并利用单位向量的特性得 \(f(t)=\bm{a}(t)\cdot\bm{b}\) 。其中 \(f(t)\) 是一个处处非零的连续可微函数，因此</p>
-<p><span id="20241012235927CST"></span>\[
-\bm{a}'(t)=f'(t)\cdot\bm{b}
-\tag{67}
-    \]
-<span id="20241013000054CST"></span>\[
-\bm{a}'(t)\times\bm{a}(t)=0
-\tag{68}
-    \]</p>
-<p>  反过来，设 \(\bm{a}'(t)\times\bm{a}(t)=0\) ，令 \(\displaystyle\bm{b}(t)=\frac{\bm{a}(t)}{|\bm{a}(t)|}\) ，有 \(|\bm{b}(t)|=1\) 。我们要证明 \(\bm{b}(t)\) 是常向量函数。因为 \(\bm{b}(t)\) 的长度是 \(1\) ，故由1. 可知 \(\bm{b}'(t)\cdot\bm{b}(t)\equiv 0\) ，即</p>
-<span id="20241013002058CST"></span>\[
-\bm{b}'(t)\cdot\bm{a}(t)\equiv 0
-\tag{69}
-    \]
-<p>  由 \(\bm{b}(t)\) 的定义得知</p>
-<span id="20241013000920CST"></span>\[
-\bm{a}(t)=f(t)\bm{b}(t)
-\tag{70}
-    \]
-<p>  其中 \(f(t)=|\bm{a}(t)|\) 处处不为零，故</p>
-<span id="20241013001311CST"></span>\[
-\bm{a}'(t)=f'(t)\bm{b}(t)+f(t)\bm{b}'(t)
-\tag{71}
-    \]
-<p>  注意由假设条件 \(\bm{a}(t)\times\bm{a}'(t)\equiv 0\) ，因此有</p>
-<span id="20241013001333CST"></span>\[
-\bm{a}(t)\times\bm{a}'(t)=f'(t)\bm{a}(t)\times\bm{b}(t)+f(t)\bm{a}(t)\times\bm{b}'(t)=f(t)\bm{a}(t)\times\bm{b}'(t)\equiv\bm{0}
-\tag{72}
-    \]
-<p>  故 \(\bm{a}(t)\times\bm{b}'(t)\equiv 0\) ，即 \(\bm{b}'(t)\) 和 \(\bm{a}(t)\) 共线，故存在 \(\lambda(t)\) 使得</p>
-<span id="20241013001927CST"></span>\[
-\bm{b}'(t)=\lambda(t)\bm{a}(t)
-\tag{73}
-    \]
-<p>  由<a class="link" href="#20241013002058CST">式(69)</a>得</p>
-<span id="20241013002200CST"></span>\[
-\bm{b}'(t)\cdot\bm{a}(t)=\lambda(t)\bm{a}(t)\cdot\bm{a}(t)=\lambda(t)f^2(t) \equiv 0
-\tag{74}
-    \]
-<p>   注意 \(f(t)\) 处处不为零，因此 \(\lambda(t)\equiv 0\) ，即</p>
-<span id="20241013002347CST"></span>\[
-\bm{b}'(t)\equiv \bm{0}
-\tag{75}
-    \]
-<p>  故 \(\bm{}(t)\) 是常向量，所以向量函数 \(\bm{a}(t)\) 的方向不变。</p>
-<p>  对3.  ，设有单位常向量 \(\bm{b}\) ，使得 \(\bm{a}(t)\cdot\bm{b}\equiv 0\) 。对此式求导数得到</p>
-<span id="20241013002559CST"></span>\[
-\bm{a}'(t)\cdot\bm{b}\equiv 0,\quad \bm{a}''(t)\cdot\bm{b}\equiv 0
-\tag{76}
-    \]
-<p>  因此对于任意 \(t\) ，向量 \(\bm{a}(t),\bm{a}'(t),\bm{a}''(t)\) 共面，于是</p>
-<span id="20241013002822CST"></span>\[
-((\bm{a}(t),(\bm{a}'(t),(\bm{a}''(t))\equiv 0
-\tag{77}
-    \]
-<p>  反过来，假定上面的式子成立，则</p>
-<span id="20241013002834CST"></span>\[
-(\bm{a}(t)\times\bm{a}'(t))\cdot\bm{a}''(t)\equiv 0
-\tag{78}
-    \]
-<p>  对于 \(\bm{a}(t)\times\bm{a}'(t)=\bm{0}\) 的情况，由2. 的结论可以得到 \(\bm{a}(t)\) 的方向不变，因此3.  直接成立。对于 \(\bm{a}(t)\times\bm{a}'(t)\ne\bm{0}\) ，令</p>
-<span id="20241013003551CST"></span>\[
-\bm{b}(t)=\bm{a}'(t)\times\bm{a}(t)
-\tag{79}
-    \]
-<p>   \(\bm{b}(t)\) 与 \(\bm{a}(t)\) 垂直。有</p>
-<span id="20241013005757CST"></span>\[
-\bm{b}'(t)=\bm{a}''(t)\times\bm{a}(t)+\bm{a}'(t)\times\bm{a}'(t)=\bm{a}''(t)\times\bm{a}(t)
-\tag{80}
-    \]
-<p>  由<a class="link" onclick="alert('抱歉，“公式”还未上线~')">三向量叉乘公式</a>、<a class="link" href="#20241013002834CST">式(78)</a>和<a class="link" href="#20241013003551CST">式(79)</a></p>
-<span id="20241013005840CST"></span>\[
-\begin{aligned}
-\bm{b}(t)\times\bm{b}'(t)=&\bm{b}(t)\times(\bm{a}''(t)\times\bm{a}(t))\\[5pt]
-=&(\bm{b}(t)\cdot\bm{a}(t))\bm{a}''(t)-(\bm{b}(t)\cdot\bm{a}''(t))\bm{a}(t)\text{（三向量叉乘公式）}\\[5pt]
-=&-((\bm{a}'(t)\times\bm{a}(t))\cdot\bm{a}''(t))\bm{a}(t)\text{（式(79)）}\\[5pt]
-=&((\bm{a}(t)\times\bm{a}'(t))\cdot\bm{a}''(t))\bm{a}(t)\\[5pt]
-=&(\bm{a}(t),\bm{a}'(t),\bm{a}''(t))\bm{a}(t)\equiv 0\text{（式(78)）}
-\end{aligned}
-\tag{81}
-    \]
-<p>  根据2. 的结论，向量函数 \(\bm{b}(t)\) 有确定的方向，令 \(\displaystyle\bm{b}_0=\frac{\bm{b}(t)}{|\bm{b}(t)|}\) ，则 \(\bm{b}_0\) 是单位常向量，并且</p>
-<span id="20241013011539CST"></span>\[
-\bm{a}(t)\cdot\bm{b}_0=\frac{\bm{a}(t)\cdot\bm{b}(t)}{|\bm{b}(t)|}\equiv 0
-\tag{82}
-    \]
-<p>  证毕。</p>
 
     </div>
 </section>
@@ -2017,9 +943,7 @@ b_1'(t) & b_2'(t)
         
             <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/">微分几何</a>
         
-            <a href="/tags/euclidean%E7%A9%BA%E9%97%B4/">Euclidean空间</a>
-        
-            <a href="/tags/%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0/">向量函数</a>
+            <a href="/tags/%E6%9B%B2%E7%BA%BF/">曲线</a>
         
     </section>
 
@@ -2046,7 +970,7 @@ b_1'(t) & b_2'(t)
 
 
         <span>
-            最后更新于 Oct 14, 2024 17:01 CST
+            最后更新于 Oct 14, 2024 21:43 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2107,8 +1031,33 @@ b_1'(t) & b_2'(t)
 
     
 
+    <div class="article-list--compact related-contents">
     
+        <article>
+            <a href="/posts/mathematics/euclidean_spaces_and_vector_functions/">
+                <div class="article-details">
+                    <h2 class="article-title">上一篇：Euclidean空间与向量函数</h2>
+                    
+                </div>
 
+                
+                
+            </a>
+        </article>
+    
+        <article>
+            <a href="/posts/mathematics/differential_geometry/">
+                <div class="article-details">
+                    <h2 class="article-title">返回：微分几何</h2>
+                    
+                </div>
+
+                
+                
+            </a>
+        </article>
+    
+</div>
      
     
         
@@ -2168,7 +1117,10 @@ b_1'(t) & b_2'(t)
             
             
         
-        <span>本图书馆累计发布了7篇文章 共58537字</span>
+            
+            
+        
+        <span>本图书馆累计发布了8篇文章 共58566字</span>
     </section>
 
     <section class="site-visit-count">
