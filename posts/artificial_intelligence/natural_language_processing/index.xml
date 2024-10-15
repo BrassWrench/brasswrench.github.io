@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 15 Oct 2024 21:12:27 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 15 Oct 2024 21:26:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（一）：自然语言处理概论</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/introduction_to_natural_language_processing/</link>
         <pubDate>Tue, 15 Oct 2024 19:05:40 +0800</pubDate>
@@ -50,11 +50,11 @@
 &lt;h3 id=&#34;进化性&#34;&gt;进化性
 &lt;/h3&gt;&lt;p&gt;  任何一种“活着&amp;quot;的语言都是在不断发展变化的，即语言具有明显的进化性，也称创造性。这主要体现在两方面：一方面是新词汇层出不穷，如&amp;quot;超女”“非典”&amp;ldquo;新冠&amp;quot;等；另一方面则体现在旧词汇被赋予新的含义，如&amp;quot;腐败&amp;rdquo;“杯具”等。除了词汇，语言的语法等也在不断变化，新的用法层出不穷。&lt;/p&gt;
 &lt;h3 id=&#34;非规范性&#34;&gt;非规范性
-&lt;/h3&gt;&lt;p&gt;  在互联网上，尤其是在用户产生的内容中，经常有一些有意或无意造成的非规范文本，为自然语言处理带来了不小的挑战，如音近词（&amp;ldquo;为什么” \(\to\) “为森么&amp;rdquo;，&amp;ldquo;怎么了”一&amp;quot;肿么了&amp;rdquo;）、单词的简写或变形（please \(\to\) pls、cool \(\to\) coooooooool）、新造词（“喜大普奔”“不明觉厉”）和错别字等。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  在互联网上，尤其是在用户产生的内容中，经常有一些有意或无意造成的非规范文本，为自然语言处理带来了不小的挑战，如音近词（&amp;ldquo;为什么” \(\to\) “为森么&amp;rdquo;，&amp;ldquo;怎么了” \(\to\) &amp;ldquo;肿么了&amp;rdquo;）、单词的简写或变形（please \(\to\) pls、cool \(\to\) coooooooool）、新造词（“喜大普奔”“不明觉厉”）和错别字等。&lt;/p&gt;
 &lt;h3 id=&#34;主观性&#34;&gt;主观性
 &lt;/h3&gt;&lt;p&gt;  和感知智能问题不同，属于认知智能的自然语言处理问题往往具有一定的主观性，这不但提高了数据标注的难度，还为准确评价系统的表现带来了一定的困难。如在分词这一最基本的中文自然语言处理任务中，关于什么是&amp;quot;词”的定义都尚不明确，比如&amp;quot;打篮球&amp;quot;是一个词还是两个词呢？所以，在标注自然语言处理任务的数据时，往往需要对标注人员进行一定的培训，使得很难通过众包的方式招募大量的标注人员，导致自然语言处理任务的标注数据规模往往比图像识别、语音识别的标注数据规模要小得多。此外，由于不同的分词系统往往标准都不尽相同，所以通过准确率等客观指标对比不同的分词系统本身就是不客观的。难以评价的问题在人机对话等任务中体现得更为明显，由于对话回复的主观性，很难有一个所谓的标准回复，所以如何自动评价人机对话系统仍然是一个开放的问题。&lt;/p&gt;
 &lt;h3 id=&#34;知识性&#34;&gt;知识性
-&lt;/h3&gt;&lt;p&gt;  理解语言通常需要背景知识以及基于这些知识的推理能力。例如，针对句子&amp;quot;张三打了李四,然后他倒了&amp;quot;，问其中的&amp;quot;他&amp;quot;指代的是&amp;quot;张三&amp;quot;还是&amp;quot;李四”？只有具备了“被打的人更容易倒”这一知识，才能推出&amp;quot;他”很可能指代的是“李四”。而如果将&amp;quot;倒”替换为&amp;quot;笑”，则&amp;quot;他”很可能指代的是“张三”，因为“被打的人不太容易笑&amp;quot;。但是，如何表示、获取并利用这些知识呢？目前的自然语言处理技术并没有提供很好的答案。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  理解语言通常需要背景知识以及基于这些知识的推理能力。例如，针对句子&amp;quot;张三打了李四,然后他倒了&amp;rdquo;，问其中的&amp;quot;他&amp;quot;指代的是&amp;quot;张三&amp;quot;还是&amp;quot;李四”？只有具备了“被打的人更容易倒”这一知识，才能推出&amp;quot;他”很可能指代的是“李四”。而如果将&amp;quot;倒”替换为&amp;quot;笑”，则&amp;quot;他”很可能指代的是“张三”，因为“被打的人不太容易笑&amp;quot;。但是，如何表示、获取并利用这些知识呢？目前的自然语言处理技术并没有提供很好的答案。&lt;/p&gt;
 &lt;h3 id=&#34;难移植性&#34;&gt;难移植性
 &lt;/h3&gt;&lt;p&gt;  由于自然语言处理涉及的任务和领域众多，并且它们之间的差异较大，造成了难移植性的问题。如下一节将要介绍的，自然语言处理任务根据层级可以分为分词、词性标注、句法分析和语义分析等基础任务，以及信息抽取、问答系统和对话系统等应用任务，由于这些任务的目标和数据各不相同，很难使用统一的技术或模型加以解决，因此不得不针对不同的任务设计不同的算法或训练不同的模型。另外，由于不同领域的用词以及表达方式不尽相同，因此在一个领域上学习的模型也很难应用于其他领域，这也给提高自然语言处理系统的可移植性带来了极大的困难。&lt;/p&gt;
 &lt;p&gt;  综上所述，由于自然语言处理面临的众多问题，使其成为目前制约人工智能取得更大突破和更广泛应用的瓶颈之一。因此自然语言处理又被誉为&amp;quot;人工智能皇冠上的明珠”，并吸引了越来越多的人工智能研究者加入。&lt;/p&gt;
