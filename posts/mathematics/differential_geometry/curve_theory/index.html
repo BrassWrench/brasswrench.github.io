@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-15T10:27:31&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-15T13:39:23&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -587,7 +587,15 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#正则参数曲线">正则参数曲线</a></li>
+    <li><a href="#正则参数曲线">正则参数曲线</a>
+      <ol>
+        <li><a href="#参数曲线">参数曲线</a></li>
+        <li><a href="#切线">切线</a></li>
+        <li><a href="#正则参数曲线-1">正则参数曲线</a></li>
+        <li><a href="#正则曲线">正则曲线</a></li>
+        <li><a href="#曲线的坐标参数表示">曲线的坐标参数表示</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -902,7 +910,7 @@
 </svg>
 
             <time class="article-words">
-                762 字
+                2325 字
             </time>
         </div>
 
@@ -917,7 +925,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -956,7 +964,8 @@
 <h1 id="曲线论">曲线论
 </h1><p>  在本章，我们要给出在 \(E^3\) 中刻画曲线形状的几何不变量，即曲线的弧长、曲率和挠率，这些量可以用坐标来表示，但是它们与空间 \(E^3\) 中的笛卡儿直角坐标系的选择是无关的，并且当曲线在空间萨中作刚体运动时这些量也是保持不变的。最后，我们要证明这三个量构成了空间曲线的完全不变量系统，即给出了曲率和挠率作为弧长的函数，则在空间 \(E^3\) 中除了位置以外唯一地确定了一条曲线以给定的函数为它的曲率和挠率，这就是所谓的曲线论基本定理。在方法上至为重要的是，在空间曲线的每一点依附了一个正交标架，称为Frenet标架．当点在曲线上运动时，Frenet标架跟着一起运动，而且它的运动状态正好刻画了曲线的形状特征。</p>
 <h2 id="正则参数曲线">正则参数曲线
-</h2><p>  在本节我们要对所研究的曲线做一些假定。在直观上， \(E^3\) 中的一条曲线是指 \(E^3\) 中的一个点随时间的变化而运动时所描出的轨迹。换言之， \(E^3\) 中的一条曲线 \(C\) 是从区间 \([a,b]\) 到 \(E^3\) 中的一个连续映射，记为</p>
+</h2><h3 id="参数曲线">参数曲线
+</h3><p>  在本节我们要对所研究的曲线做一些假定。在直观上， \(E^3\) 中的一条曲线是指 \(E^3\) 中的一个点随时间的变化而运动时所描出的轨迹。换言之， \(E^3\) 中的一条曲线 \(C\) 是从区间 \([a,b]\) 到 \(E^3\) 中的一个连续映射，记为</p>
 <span id="20241014221139CST"></span>\[
 p:[a,b]\to E^3
 \tag{1}
@@ -971,8 +980,9 @@ p:[a,b]\to E^3
 \bm{r}(t)=(x(t),y(t),z(t))\quad t \in [a,b]
 \tag{3}
     \]
-<p>  其中 \(t\) 是曲线参数，上式称为曲线 \(C\) 的<strong>参数方程</strong>。<br>
-  由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">导数的定义</a>可知</p>
+<p>  其中 \(t\) 是曲线参数，上式称为曲线 \(C\) 的<strong>参数方程</strong>。</p>
+<h3 id="切线">切线
+</h3><p>  由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">导数的定义</a>可知</p>
 <span id="20241014223108CST"></span>\[
 \bm{r}'(t)=\lim\limits_{\Delta t \to 0}\frac{\bm{r}(t+\Delta t)-\bm{r}(t)}{\Delta t}=(x'(t),y'(t),z'(t))
 \tag{4}
@@ -1070,6 +1080,131 @@ p:[a,b]\to E^3
     </g>
   </g>
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;曲线的切线</p></div>
+<h3 id="正则参数曲线-1">正则参数曲线
+</h3><p>  此时，曲线在点 \(\bm{r}(t)\) 的切线是完全确定的，这样的点称为曲线的<strong>正则点</strong>．曲线在正则点的切线方程是</p>
+<span id="20241015103107CST"></span>\[
+\bm{X}(u)=\bm{r}(t)+u\bm{r}'(t)
+\tag{6}
+    \]
+<p>  其中 \(t\) 是固定的， \(u\) 是切线上点的参数， \(\bm{X}(u)\) 是从原点 \(O\) 指向切线上参数为 \(u\) 的点的有向线段。</p>
+<p>  这样，我们所研究的参数曲线 \(\bm{r}(t)\) 要满足下面两个条件：</p>
+<ol>
+<li>\(\bm{r}(t)\) 至少是自变量 \(t\) 的三次以上连续可微的向量函数（因为曲线的几何不变量涉及 \(\bm{r}(t)\) 的三次导数）。</li>
+<li>处处是正则点，即对于任意的 \(t\) 有 \(\bm{r}'(t) \ne \bm{0}\) 。</li>
+</ol>
+<p>  这样的参数曲线称为<strong>正则参数曲线</strong>。我们还把参数增大的方向称为该参数曲线的正向，因此 \(\bm{r}'(t)\) 正好指向曲线的正向。<br>
+  当然，曲线的参数方程的表达式与空间 \(E^3\) 中Cartesian直角坐标系的选取有关。另外，在固定的Cartesian直角坐标系下，曲线的参数方程的参数还容许做一定的变换。为了保证正则参数曲线所满足的两个条件在参数变换下保持不变，则要求参数的变换 \(t=t(u)\) 满足下面两个条件：</p>
+<ol>
+<li>\(t(u)\) 是 \(u\) 的三次以上连续可微函数。</li>
+<li>\(t'(u)\) 处处不为零。</li>
+</ol>
+<h3 id="正则曲线">正则曲线
+</h3><p>  实际上，在参数变换 \(t=t(u)\) 下，曲线的参数方程成为 \(\bm{r}(t(u))\) ，为简单起见仍然把它记为 \(\bm{r}(u)\) ．当 \(t(u)\) 是 \(u\) 的三次以上的连续可微函数时， \(\bm{r}(t(u))\) 自然是 \(u\) 的三次以上的连续可微函数。另外，根据求导的<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">链式法则</a></p>
+<span id="20241015104759CST"></span>\[
+\bm{r}'(u)=\frac{d}{du}\bm{r}(t(u))=\bm{r}'(t(u))\cdot t'(u)
+\tag{7}
+    \]
+<p>  在 \(\bm{r}'(t)\ne\bm{0}\) 的情况下， \(\bm{r}'(u)\ne 0\) 的充分必要条件是 \(t'(u)\ne 0\) 。如上的参数变换在正则参数曲线之间建立了一种等价关系，等价的正则参数曲线被看作是同一条曲线。由全体等价的正则参数曲线构成的集合称为一条<strong>正则曲线</strong>。</p>
+<p>  如果对于容许的参数变换还要求 \(t'(u)>0\) ，则这种容许的参数变换保持曲线的定向不变。如果一条正则参数曲线只容许做保持定向的参数变换，则这样的正则参数曲线的等价类被称为是一条<strong>有向的正则曲线</strong>。</p>
+<h3 id="曲线的坐标参数表示">曲线的坐标参数表示
+</h3><p>  用参数方程表示曲线是从Euler开始的。曲线还能够用坐标之间的函数关系来表示，例如</p>
+<span id="20241015122157CST"></span>\[
+y=y(x),\quad z=z(x)
+\tag{8}
+    \]
+<p>  不过，这只是参数方程的一种特殊情形，即可以把 \(x\) 作为曲线的参数，记成</p>
+<span id="20241015122308CST"></span>\[
+\bm{r}(x)=(x,y(x),z(x))
+\tag{9}
+    \]
+<p>  如上表示的参数曲线必定是正则的，因为在此时有</p>
+<span id="20241015123139CST"></span>\[
+\bm{r}'(x)=(1,y'(x),z'(x))\ne\bm{0}
+\tag{10}
+    \]
+<p>  正则参数曲线在每一点的附近都能够表示成如<a class="link" href="#20241015122308CST">式(9)</a>的形式．例如，在 \(\bm{r}'(t)=(x'(t),y'(t),z'(t))\ne\bm{0}\) 时，不妨假定在点 \(t_0\) 有 \(x'(t_0)\ne 0\) ,则存在 \(\varepsilon > 0\) 使得函数 \(x(t)\) 在区间 \((t_0-\varepsilon, t_0+\varepsilon)\) 上有反函数（见<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">反函数存在定理</a>），记为 \(t=t(x)\) ．于是参数方程 \(\bm{r}(t)=(x(t),y(t),z(t))\) 经过参数变换 \(t=t(x)\) 成为</p>
+<span id="20241015123815CST"></span>\[
+\bm{r}(t(x))=(x,y(t(x)),z(t(x)))
+\tag{11}
+    \]
+<p>  这正是如<a class="link" href="#20241015122308CST">式(9)</a>的表达式。<br>
+  曲线还能够用坐标的隐式方程来表示。例如，一条曲线是两个联立方程</p>
+<span id="20241015123933CST"></span>\[
+\begin{cases}
+f(x,y,z)=0\\[5pt]
+g(x,y,z)=0
+\end{cases}
+\tag{12}
+    \]
+<p>  的解 \((x,y,z)\) 的集合，其中 \(f(x,y,z)\) 和 \(g(x,y,z)\) 是两个巳知的连续可微函数。在直观上，这两个方程分别代表两张曲面，而所考虑的曲线是这两张曲面的交线．如果这条曲线的参数方程是 \(\bm{r}(t)=(x(t),y(t),z(t))\) ，将其代入<a class="link" href="#20241015123933CST">式(12)</a>得到恒等式</p>
+<span id="20241015124151CST"></span>\[
+\begin{cases}
+f(x(t),y(t),z(t))\equiv 0\\[5pt]
+g(x(t),y(t),z(t))\equiv 0
+\end{cases}
+\tag{13}
+    \]
+<p>  将上面的方程对 \(t\) 求导，得到</p>
+<span id="20241015124338CST"></span>\[
+\begin{cases}
+\displaystyle\frac{\partial f}{\partial x}\cdot x'(t)+\frac{\partial f}{\partial y}\cdot y'(t)+\frac{\partial f}{\partial z}\cdot z'(t)=0\\[10pt]
+\displaystyle\frac{\partial g}{\partial x}\cdot x'(t)+\frac{\partial g}{\partial y}\cdot y'(t)+\frac{\partial g}{\partial z}\cdot z'(t)=0
+\end{cases}
+\tag{14}
+    \]
+<p>  由上式和<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">三向量叉乘公式</a>，这意味着</p>
+<span id="20241015124846CST"></span>\[
+\begin{aligned}
+&\bm{r}'(t)\times\left(\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\times\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\right)\\[15pt]
+=&\left((x'(t),y'(t),z'(t))\cdot\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\right)\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)-\\[15pt]
+&\left((x'(t),y'(t),z'(t))\cdot\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\right)\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\text{（三向量叉乘公式）}\\[15pt]
+=&\left(\frac{\partial g}{\partial x}\cdot x'(t)+\frac{\partial g}{\partial y}\cdot y'(t)+\frac{\partial g}{\partial z}\cdot z'(t)\right)\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)-\\[15pt]
+&\left(\frac{\partial f}{\partial x}\cdot x'(t)+\frac{\partial f}{\partial y}\cdot y'(t)+\frac{\partial f}{\partial z}\cdot z'(t)\right)\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\\[15pt]
+=&\space \bm{0}
+\end{aligned}
+\tag{15}
+    \]
+<p>  由<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241008231650CST">Euclidean空间-式(21)</a>，这意味着切向量 \(\bm{r}'(t)=(x'(t),y'(t),z'(t))\) 平行于向量</p>
+<span id="20241015130135CST"></span>\[
+\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\times\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)
+\tag{16}
+    \]
+<p>  上式向量不为零的条件可以等价于如下矩阵的秩为 \(2\) 。</p>
+<span id="20241015130812CST"></span>\[
+\begin{pmatrix}
+\displaystyle\frac{\partial f}{\partial x} & \displaystyle\frac{\partial f}{\partial y} & \displaystyle\frac{\partial f}{\partial z} \\[15pt]
+\displaystyle\frac{\partial g}{\partial x} & \displaystyle\frac{\partial g}{\partial y} & \displaystyle\frac{\partial g}{\partial z}
+\end{pmatrix}
+\tag{17}
+    \]
+<p>  见<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')">矩阵的秩</a>和<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012143803CST">Euclidean空间-式(52)</a>，实际上，上式矩阵存在 \(2\) 阶子式不为 \(0\) 条件刚好就是<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012143803CST">Euclidean空间-式(52)</a>中的向量不为 \(\bm{0}\) 的条件，因此等价于其秩为 \(2\) 。因此由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">隐函数存在定理</a>，从<a class="link" href="#20241015123933CST">式(12)</a>的方程组中可以解出其中两个坐标作为第三个坐标的函数。例如，当</p>
+<span id="20241015132636CST"></span>\[
+\begin{vmatrix}
+\displaystyle\frac{\partial f}{\partial y} & \displaystyle\frac{\partial f}{\partial z}\\[10pt]
+\displaystyle\frac{\partial g}{\partial y} & \displaystyle\frac{\partial g}{\partial z}
+\end{vmatrix}
+\ne 0
+\tag{18}
+    \]
+<p>  时，可以解出</p>
+<span id="20241015132745CST"></span>\[
+y=y(x),\quad z=z(x)
+\tag{19}
+    \]
+<p>  使得</p>
+<span id="20241015132839CST"></span>\[
+\begin{cases}
+f(x,y(x),z(x))\equiv 0\\[5pt]
+g(x,y(x),z(x))\equiv 0
+\end{cases}
+\tag{20}
+    \]
+<p>  于是该曲线的参数方程是</p>
+<span id="20241015132926CST"></span>\[
+\bm{r}(x)=(x,y(x),z(x))
+\tag{21}
+    \]
+<p>  由此可见，如果 \(f(x,y,z)\) 和 \(g(x,y,z)\) 是连续可微函数， \(p(x_0,y_0,z_0)\) 是方程组<a class="link" href="#20241015123933CST">式(12)</a>的一个解，并且矩阵<a class="link" href="#20241015130812CST">式(17)</a>的秩是 \(2\) ，则方程组<a class="link" href="#20241015123933CST">式(12)</a>在点 \(p\) 的一个邻域内的解是经过点 \(p\) 的一条正则曲线。</p>
 
     </div>
 </section>
@@ -1111,7 +1246,7 @@ p:[a,b]\to E^3
 
 
         <span>
-            最后更新于 Oct 15, 2024 10:27 CST
+            最后更新于 Oct 15, 2024 13:39 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1261,7 +1396,7 @@ p:[a,b]\to E^3
             
             
         
-        <span>本图书馆累计发布了8篇文章 共59328字</span>
+        <span>本图书馆累计发布了8篇文章 共60891字</span>
     </section>
 
     <section class="site-visit-count">
