@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 15 Oct 2024 14:26:17 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 15 Oct 2024 14:54:56 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>点集拓扑（一）：拓扑空间</title>
         <link>https://www.brasswrench.com/posts/mathematics/point_set_topology/topological_space/</link>
         <pubDate>Tue, 15 Oct 2024 14:00:15 +0800</pubDate>
@@ -34,6 +34,12 @@
   src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=1960642479&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
 &lt;/iframe&gt;
 
+&lt;h1 id=&#34;拓扑空间&#34;&gt;拓扑空间
+&lt;/h1&gt;&lt;p&gt;  拓扑学分很多不同的分支领域，最基础的拓扑空间和连续性的定义属于点集拓扑。这些概念可以说是大多数现代数学领域的语言基础，甚至于像实变函数或者讲得稍微深入一点的数学分析课程，都要对这些概念作些介绍，否则将完全无法解释想要讲述的思想。&lt;br&gt;
+  顾名思义，点集拓扑是研究一般的集合的拓扑的，所以大家首先要习惯一件事情：我们所谓的&lt;strong&gt;空间（space）&lt;/strong&gt;‌其实是集合的同义词，而不是狭义的、我们生活的这个空间，也不是线性空间，或者其他的什么大家已经习惯了的、看得见摸得着的具体空间。而我们所谓的&lt;strong&gt;点（point）&lt;/strong&gt;‌其实就是集合中的元素。定义拓扑结构的目的是要在这种最一般的空间里定义什么是连续映射，所以一个集合上可以有很多不同的拓扑结构，表达出很多不同的（可能是很稀奇古怪的）连续性。&lt;br&gt;
+  拓扑空间和连续映射定义的诞生，其实和拓扑学的那些早期例子不甚相关，甚至比代数拓扑的诞生还晚。实际上这些基本概念和术语是从Cantor开始才有人研究的。Cantor最初想做的事情只是推广三角级数的唯一性定理，说明该定理即使遇到不连续的函数，在某些情况下仍然成立。为了能够更方便准确地写出不连续点的集合需要满足的条件，Cantor发明了聚点、导集、开集、闭集等拓扑术语。有趣的是，正是这些研究工作把他从分析学引到了集合论这一领域。&lt;br&gt;
+  为了严格化泛函分析中变分法的演算，特别是为了严格化由函数构成的抽象空间中的极限概念，直Fréchet提出了度量空间的概念，并且把Cantor的那些术语推广到了度量空间之中。&lt;br&gt;
+  1909年Riesz提出了一套以极限点概念为核心的公理体系，而1914年Hausdorff在他的经典教材《Grundzüge der Mengenlehre》（集合论基础）中则提出了另一套以邻域概念为核心的公理体系。这两套公理体系都突破了度量空间的限制。从形式上讲，Hausdorff的公理体系和现代通用的公理体系更接近一些，准确地讲只多了一个条件，这个条件后来被单独拆出来，称为Hausdorff性质或 \(T_2\) 分离公理，下一篇我们会讲到。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -64,7 +70,7 @@
 &lt;/iframe&gt;
 
 &lt;h1 id=&#34;曲线论&#34;&gt;曲线论
-&lt;/h1&gt;&lt;p&gt;  在本章，我们要给出在 \(E^3\) 中刻画曲线形状的几何不变量，即曲线的弧长、曲率和挠率，这些量可以用坐标来表示，但是它们与空间 \(E^3\) 中的笛卡儿直角坐标系的选择是无关的，并且当曲线在空间萨中作刚体运动时这些量也是保持不变的。最后，我们要证明这三个量构成了空间曲线的完全不变量系统，即给出了曲率和挠率作为弧长的函数，则在空间 \(E^3\) 中除了位置以外唯一地确定了一条曲线以给定的函数为它的曲率和挠率，这就是所谓的曲线论基本定理。在方法上至为重要的是，在空间曲线的每一点依附了一个正交标架，称为Frenet标架．当点在曲线上运动时，Frenet标架跟着一起运动，而且它的运动状态正好刻画了曲线的形状特征。&lt;/p&gt;
+&lt;/h1&gt;&lt;p&gt;  在本篇，我们要给出在 \(E^3\) 中刻画曲线形状的几何不变量，即曲线的弧长、曲率和挠率，这些量可以用坐标来表示，但是它们与空间 \(E^3\) 中的笛卡儿直角坐标系的选择是无关的，并且当曲线在空间萨中作刚体运动时这些量也是保持不变的。最后，我们要证明这三个量构成了空间曲线的完全不变量系统，即给出了曲率和挠率作为弧长的函数，则在空间 \(E^3\) 中除了位置以外唯一地确定了一条曲线以给定的函数为它的曲率和挠率，这就是所谓的曲线论基本定理。在方法上至为重要的是，在空间曲线的每一点依附了一个正交标架，称为Frenet标架．当点在曲线上运动时，Frenet标架跟着一起运动，而且它的运动状态正好刻画了曲线的形状特征。&lt;/p&gt;
 &lt;h2 id=&#34;正则参数曲线&#34;&gt;正则参数曲线
 &lt;/h2&gt;&lt;h3 id=&#34;参数曲线&#34;&gt;参数曲线
 &lt;/h3&gt;&lt;p&gt;  在本节我们要对所研究的曲线做一些假定。在直观上， \(E^3\) 中的一条曲线是指 \(E^3\) 中的一个点随时间的变化而运动时所描出的轨迹。换言之， \(E^3\) 中的一条曲线 \(C\) 是从区间 \([a,b]\) 到 \(E^3\) 中的一个连续映射，记为&lt;/p&gt;
@@ -336,7 +342,7 @@ g(x,y(x),z(x))\equiv 0
   src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=1930226368&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
 &lt;/iframe&gt;
 
-&lt;h1 id=&#34;euclidean空间与向量函数&#34;&gt;Euclidean空间与向量函数
+&lt;h1 id=&#34;euclidean空间&#34;&gt;Euclidean空间
 &lt;/h1&gt;&lt;p&gt;  我们知道，一元函数 \(y=f(x)\) 的图像是一条曲线，二元函数 \(z=f(x,y)\) 的图像是一张曲面。但是，把曲线和曲面表示成参数方程则更加便利于研究，这种表示方法首先是由Euler引进的。例如，在空间中取定Cartesian直角坐标系之后一条曲线可以表示为三个一元函数&lt;/p&gt;
 &lt;span id=&#34;20241008215458CST&#34;&gt;&lt;/span&gt;\[
 x=x(t),\quad y=y(t),\quad z=z(t)
@@ -347,9 +353,9 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 \bm{r}=\bm{r}(t)=(x(t),y(t),z(t))
 \tag{2}
     \]
-&lt;p&gt;  在本章，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclidean空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclidean空间中标架的概念，为在三维Euclidean空间中研究曲线和曲面做好准备。&lt;/p&gt;
+&lt;p&gt;  在本篇，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclidean空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclidean空间中标架的概念，为在三维Euclidean空间中研究曲线和曲面做好准备。&lt;/p&gt;
 &lt;h2 id=&#34;三维euclidean空间中的标架&#34;&gt;三维Euclidean空间中的标架
-&lt;/h2&gt;&lt;h3 id=&#34;euclidean空间&#34;&gt;Euclidean空间
+&lt;/h2&gt;&lt;h3 id=&#34;euclidean空间-1&#34;&gt;Euclidean空间
 &lt;/h3&gt;&lt;p&gt;  通常把我们所处的空间称为&lt;strong&gt;三维Euclidean空间&lt;/strong&gt;。确切的说，所谓的三维Euclidean空间 \(E^3\) 是一个非空的集合，其中的元素称为&lt;strong&gt;点&lt;/strong&gt;，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 \(E^3\) 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的&lt;strong&gt;平行公理&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;向量&#34;&gt;向量
 &lt;/h3&gt;&lt;h4 id=&#34;定义&#34;&gt;定义
@@ -1393,7 +1399,7 @@ b_1&#39;(t) &amp; b_2&#39;(t)
 &lt;/iframe&gt;
 
 &lt;h1 id=&#34;legendre函数&#34;&gt;Legendre函数
-&lt;/h1&gt;&lt;p&gt;  Legendre函数是一类特殊函数，在数学和物理学中扮演着重要的角色，特别是在涉及到球面和多项式近似的领域。作为一类正交多项式，勒让德多项式具有独特的性质，使其在数值分析、量子力学和电磁学等多个领域中广泛应用。尽管勒让德函数的应用十分广泛，但它们的理论基础及其数学性质同样值得深入研究。本篇文章将重点探讨勒让德函数的定义、性质以及相关的数学工具，旨在为读者提供对这一重要数学对象的全面理解。&lt;/p&gt;
+&lt;/h1&gt;&lt;p&gt;  Legendre函数是一类特殊函数，在数学和物理学中扮演着重要的角色，特别是在涉及到球面和多项式近似的领域。作为一类正交多项式，勒让德多项式具有独特的性质，使其在数值分析、量子力学和电磁学等多个领域中广泛应用。尽管勒让德函数的应用十分广泛，但它们的理论基础及其数学性质同样值得深入研究。本篇文篇将重点探讨勒让德函数的定义、性质以及相关的数学工具，旨在为读者提供对这一重要数学对象的全面理解。&lt;/p&gt;
 &lt;h2 id=&#34;legendre函数-1&#34;&gt;Legendre函数
 &lt;/h2&gt;&lt;span id=&#34;20241004222628CST&#34;&gt;&lt;/span&gt;
 &lt;h3 id=&#34;普通legendre函数&#34;&gt;普通Legendre函数
@@ -3966,7 +3972,7 @@ P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 &lt;p&gt;  成立，则称 \(\set{X\left(t\right),t \ge 0}\) 是一个&lt;strong&gt;连续时间Markov链&lt;/strong&gt;。&lt;br&gt;
   条件概率 \(P\set{X\left(t+s\right)=j|X\left(s\right)=i}\) 记作 \(p_{ij}\left(s,t\right)\) 表示过程在时刻 \(s\) 处处于状态 \(i\) ，经过 \(t\) 时间后转移到 \(j\) 的&lt;strong&gt;转移概率&lt;/strong&gt;，并称 \(\bm{P}\left(s,t\right)=\left(p_{ij}\left(s,t\right)\right)\) 为相应的&lt;strong&gt;转移概率矩阵&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;时齐连续时间markov链&#34;&gt;时齐连续时间Markov链
-&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203714CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义16（时齐性）&lt;/strong&gt;：称连续时间Markov链是&lt;strong&gt;时齐的&lt;/strong&gt;，若 \(p_{ij}\left(s,t\right)\) 与 \(s\) 无关。简记 \(p_{ij}\left(s,t\right)=p_{ij}\left(t\right)\) ，相应的记 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) 。本章只讨论时齐的连续时间Markov链，并简称为连续时间Markov链。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203714CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义16（时齐性）&lt;/strong&gt;：称连续时间Markov链是&lt;strong&gt;时齐的&lt;/strong&gt;，若 \(p_{ij}\left(s,t\right)\) 与 \(s\) 无关。简记 \(p_{ij}\left(s,t\right)=p_{ij}\left(t\right)\) ，相应的记 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) 。本篇只讨论时齐的连续时间Markov链，并简称为连续时间Markov链。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929205735CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理13&lt;/strong&gt;：设 \(\set{X\left(t\right),t\ge 0}\) 是连续时间Markov链，假定在时刻0过程刚刚到达 \(i\) ，以 \(\tau_i\) 记过程离开 \(i\) 之前在 \(i\) 停留的时间，则 \(\tau_i\) 服从指数分布。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205735CST&#34;&gt;定理13&lt;/a&gt;）&lt;/strong&gt;‌：只需证明 \(\tau_i\) 是无记忆性的，即证明对 \(s,t \ge 0\) 有（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;指数分布&lt;/a&gt;）&lt;/p&gt;
 &lt;span id=&#34;20240929214220CST&#34;&gt;&lt;/span&gt;\[
