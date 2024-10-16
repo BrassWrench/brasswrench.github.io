@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 15 Oct 2024 14:54:56 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 16 Oct 2024 19:08:07 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -171,6 +171,7 @@ p:[a,b]\to E^3
 &lt;li&gt;\(t(u)\) 是 \(u\) 的三次以上连续可微函数。&lt;/li&gt;
 &lt;li&gt;\(t&#39;(u)\) 处处不为零。&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;  称满足上面条件的参数变换为&lt;strong&gt;容许参数变换&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;正则曲线&#34;&gt;正则曲线
 &lt;/h3&gt;&lt;p&gt;  实际上，在参数变换 \(t=t(u)\) 下，曲线的参数方程成为 \(\bm{r}(t(u))\) ，为简单起见仍然把它记为 \(\bm{r}(u)\) ．当 \(t(u)\) 是 \(u\) 的三次以上的连续可微函数时， \(\bm{r}(t(u))\) 自然是 \(u\) 的三次以上的连续可微函数。另外，根据求导的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;链式法则&lt;/a&gt;&lt;/p&gt;
 &lt;span id=&#34;20241015104759CST&#34;&gt;&lt;/span&gt;\[
@@ -178,7 +179,7 @@ p:[a,b]\to E^3
 \tag{7}
     \]
 &lt;p&gt;  在 \(\bm{r}&#39;(t)\ne\bm{0}\) 的情况下， \(\bm{r}&#39;(u)\ne 0\) 的充分必要条件是 \(t&#39;(u)\ne 0\) 。如上的参数变换在正则参数曲线之间建立了一种等价关系，等价的正则参数曲线被看作是同一条曲线。由全体等价的正则参数曲线构成的集合称为一条&lt;strong&gt;正则曲线&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;  如果对于容许的参数变换还要求 \(t&#39;(u)&gt;0\) ，则这种容许的参数变换保持曲线的定向不变。如果一条正则参数曲线只容许做保持定向的参数变换，则这样的正则参数曲线的等价类被称为是一条&lt;strong&gt;有向的正则曲线&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  如果对于容许的参数变换还要求 \(t&#39;(u)&gt;0\) ，则这种容许的参数变换保持曲线的定向不变，称这种参数变换为&lt;strong&gt;定向的容许参数变换&lt;/strong&gt;。如果一条正则参数曲线只容许做保持定向的参数变换，则这样的正则参数曲线的等价类被称为是一条&lt;strong&gt;有向的正则曲线&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;曲线的坐标参数表示&#34;&gt;曲线的坐标参数表示
 &lt;/h3&gt;&lt;p&gt;  用参数方程表示曲线是从Euler开始的。曲线还能够用坐标之间的函数关系来表示，例如&lt;/p&gt;
 &lt;span id=&#34;20241015122157CST&#34;&gt;&lt;/span&gt;\[
@@ -278,6 +279,39 @@ g(x,y(x),z(x))\equiv 0
 \tag{21}
     \]
 &lt;p&gt;  由此可见，如果 \(f(x,y,z)\) 和 \(g(x,y,z)\) 是连续可微函数， \(p(x_0,y_0,z_0)\) 是方程组&lt;a class=&#34;link&#34; href=&#34;#20241015123933CST&#34;&gt;式(12)&lt;/a&gt;的一个解，并且矩阵&lt;a class=&#34;link&#34; href=&#34;#20241015130812CST&#34;&gt;式(17)&lt;/a&gt;的秩是 \(2\) ，则方程组&lt;a class=&#34;link&#34; href=&#34;#20241015123933CST&#34;&gt;式(12)&lt;/a&gt;在点 \(p\) 的一个邻域内的解是经过点 \(p\) 的一条正则曲线。&lt;/p&gt;
+&lt;h2 id=&#34;曲线的弧长&#34;&gt;曲线的弧长
+&lt;/h2&gt;&lt;h3 id=&#34;定义&#34;&gt;定义
+&lt;/h3&gt;&lt;p&gt;  设 \(E^3\) 中的一条正则曲线 \(C\) 的参数方程是 \(\bm{r}=\bm{r}(t),\space a \le t \le b\) 。命&lt;/p&gt;
+&lt;span id=&#34;20241016162756CST&#34;&gt;&lt;/span&gt;\[
+s=\int_{a}^{b}\left|\bm{r}&#39;(t)\right|dt
+\tag{22}
+    \]
+&lt;p&gt;  则 \(s\) 是该曲线的一个不变量，即它与空间 \(E^3\) 中的Cartesian直角坐标系的选取无关，也与该曲线的保持定向的容许参数变换无关。前者是因为Cartesian直角坐标变换是个等距变换（见&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241016163512CST&#34;&gt;Euclidean空间-等距变换&lt;/a&gt;），切向量的长度 \(\left|\bm{r}&#39;(t)\right|\) 是不变的，故 \(s\) 不变。关于后者，不妨设参数变换是&lt;/p&gt;
+&lt;span id=&#34;20241016164342CST&#34;&gt;&lt;/span&gt;\[
+t=t(u),\quad t&#39;(u)&gt;0, \quad \alpha \le u \le \beta
+\tag{23}
+    \]
+&lt;p&gt;  并且&lt;/p&gt;
+&lt;span id=&#34;20241016183100CST&#34;&gt;&lt;/span&gt;\[
+t(\alpha)=a,\quad t(\beta)=b
+\tag{24}
+    \]
+&lt;p&gt;  因此&lt;/p&gt;
+&lt;span id=&#34;20241016184016CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\left|\frac{d\bm{r}(t(u))}{du}\right|=&amp;\sqrt{\left(\frac{dx(t(u))}{du}\right)^2+\left(\frac{dy(t(u))}{du}\right)^2+\left(\frac{dz(t(u))}{du}\right)^2}\\[15pt]
+=&amp;\sqrt{\left(\frac{dx(t(u))}{dt}\frac{dt}{du}\right)^2+\left(\frac{dy(t(u))}{dt}\frac{dt}{du}\right)^2+\left(\frac{dz(t(u))}{dt}\frac{dt}{du}\right)^2}\\[15pt]
+=&amp;\sqrt{\left(\frac{dx(t(u))}{dt}\right)^2+\left(\frac{dy(t(u))}{dt}\right)^2+\left(\frac{dz(t(u))}{dt}\right)^2}\cdot\left|\frac{dt}{du}\right|\\[15pt]
+=&amp;\left|\frac{d\bm{r}(t(u))}{dt}\right|\cdot\frac{dt}{du}
+\end{aligned}
+\tag{25}
+    \]
+&lt;p&gt;  根据积分的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;变量替换公式&lt;/a&gt;有&lt;/p&gt;
+&lt;span id=&#34;20241016184516CST&#34;&gt;&lt;/span&gt;\[
+\int_a^b\left|\frac{d\bm{r}(t)}{dt}\right|dt=\int_a^b\left|\frac{d\bm{r}(t(u))}{dt}\right|\cdot\frac{dt}{du}du=\int_a^b\left|\frac{d\bm{r}(t(u))}{du}\right|du
+\tag{26}
+    \]
+&lt;p&gt;  所以 \(s\) 与参数变换&lt;a class=&#34;link&#34; href=&#34;#20241016164342CST&#34;&gt;式(23)&lt;/a&gt;是无关的。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -970,8 +1004,9 @@ z
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;刚体运动&lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;  我们可以把上述讨论总结成下面的定理。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241010140246CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理1&lt;/strong&gt;： \(E^3\) 中的刚体运动把一个正交标架变成另一个正交标架；反过来，对于 \(E^3\) 中的任意两个正交标架，必有 \(E^3\) 的一个刚体运动把其中一个正交标架变成另一个正交标架。&lt;/p&gt;
+&lt;span id=&#34;20241016163512CST&#34;&gt;&lt;/span&gt;
 &lt;h4 id=&#34;等距变换&#34;&gt;等距变换
-&lt;/h4&gt;&lt;p&gt;  距离不变的变换称为&lt;strong&gt;等距变换&lt;/strong&gt;。刚体运动是一种等距变换。容易证明，等距变换把共线的三个点变为共线的三个点，并且保持它们的分比不变，进而可以证明等距变换是如&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的线性变换，但是此时只能证明其中的矩阵 \(\bm{A}\) 是正交矩阵，而不要求它的行列式的值是正的因此等距变换把单位正交标架变成一个另单位正交标架，但是可能把右手系变成左手系。换句话说刚体运动是保持右手系不变的等距变换，而等距变换或者是一个刚体运动，或者是一个刚体运动与关于某个平面的反射的合成。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  距离不变的变换称为&lt;strong&gt;等距变换&lt;/strong&gt;。刚体运动是一种等距变换。容易证明，等距变换把共线的三个点变为共线的三个点，并且保持它们的分比不变，进而可以证明等距变换是如&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的线性变换，但是此时只能证明其中的矩阵 \(\bm{A}\) 是正交矩阵，而不要求它的行列式的值是正的。因此等距变换把单位正交标架变成一个另单位正交标架，但是可能把右手系变成左手系。换句话说刚体运动是保持右手系不变的等距变换，而等距变换或者是一个刚体运动，或者是一个刚体运动与关于某个平面的反射的合成。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的变换是等距变换（ \(\bm{A}\) 是正交矩阵，满足 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ）。设有 \(P_1=(x_1,y_1,z_1),P_2=(x_2,y_2,z_2)\) 被&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;变换为 \(\tilde{P}_1(\tilde{x}_1,\tilde{y}_1,\tilde{z}_1),\tilde{P}_2=(\tilde{x}_2,\tilde{y}_2,\tilde{z}_2)\) 。其距离被变换为&lt;/p&gt;
 &lt;span id=&#34;20241010141443CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}

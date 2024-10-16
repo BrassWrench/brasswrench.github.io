@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-15T14:54:56&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-16T19:08:07&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -596,6 +596,11 @@
         <li><a href="#曲线的坐标参数表示">曲线的坐标参数表示</a></li>
       </ol>
     </li>
+    <li><a href="#曲线的弧长">曲线的弧长</a>
+      <ol>
+        <li><a href="#定义">定义</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -910,7 +915,7 @@
 </svg>
 
             <time class="article-words">
-                2325 字
+                2599 字
             </time>
         </div>
 
@@ -925,7 +930,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 6 分钟
                 </time>
             </div>
         
@@ -1098,6 +1103,7 @@ p:[a,b]\to E^3
 <li>\(t(u)\) 是 \(u\) 的三次以上连续可微函数。</li>
 <li>\(t'(u)\) 处处不为零。</li>
 </ol>
+<p>  称满足上面条件的参数变换为<strong>容许参数变换</strong>。</p>
 <h3 id="正则曲线">正则曲线
 </h3><p>  实际上，在参数变换 \(t=t(u)\) 下，曲线的参数方程成为 \(\bm{r}(t(u))\) ，为简单起见仍然把它记为 \(\bm{r}(u)\) ．当 \(t(u)\) 是 \(u\) 的三次以上的连续可微函数时， \(\bm{r}(t(u))\) 自然是 \(u\) 的三次以上的连续可微函数。另外，根据求导的<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">链式法则</a></p>
 <span id="20241015104759CST"></span>\[
@@ -1105,7 +1111,7 @@ p:[a,b]\to E^3
 \tag{7}
     \]
 <p>  在 \(\bm{r}'(t)\ne\bm{0}\) 的情况下， \(\bm{r}'(u)\ne 0\) 的充分必要条件是 \(t'(u)\ne 0\) 。如上的参数变换在正则参数曲线之间建立了一种等价关系，等价的正则参数曲线被看作是同一条曲线。由全体等价的正则参数曲线构成的集合称为一条<strong>正则曲线</strong>。</p>
-<p>  如果对于容许的参数变换还要求 \(t'(u)>0\) ，则这种容许的参数变换保持曲线的定向不变。如果一条正则参数曲线只容许做保持定向的参数变换，则这样的正则参数曲线的等价类被称为是一条<strong>有向的正则曲线</strong>。</p>
+<p>  如果对于容许的参数变换还要求 \(t'(u)>0\) ，则这种容许的参数变换保持曲线的定向不变，称这种参数变换为<strong>定向的容许参数变换</strong>。如果一条正则参数曲线只容许做保持定向的参数变换，则这样的正则参数曲线的等价类被称为是一条<strong>有向的正则曲线</strong>。</p>
 <h3 id="曲线的坐标参数表示">曲线的坐标参数表示
 </h3><p>  用参数方程表示曲线是从Euler开始的。曲线还能够用坐标之间的函数关系来表示，例如</p>
 <span id="20241015122157CST"></span>\[
@@ -1205,6 +1211,39 @@ g(x,y(x),z(x))\equiv 0
 \tag{21}
     \]
 <p>  由此可见，如果 \(f(x,y,z)\) 和 \(g(x,y,z)\) 是连续可微函数， \(p(x_0,y_0,z_0)\) 是方程组<a class="link" href="#20241015123933CST">式(12)</a>的一个解，并且矩阵<a class="link" href="#20241015130812CST">式(17)</a>的秩是 \(2\) ，则方程组<a class="link" href="#20241015123933CST">式(12)</a>在点 \(p\) 的一个邻域内的解是经过点 \(p\) 的一条正则曲线。</p>
+<h2 id="曲线的弧长">曲线的弧长
+</h2><h3 id="定义">定义
+</h3><p>  设 \(E^3\) 中的一条正则曲线 \(C\) 的参数方程是 \(\bm{r}=\bm{r}(t),\space a \le t \le b\) 。命</p>
+<span id="20241016162756CST"></span>\[
+s=\int_{a}^{b}\left|\bm{r}'(t)\right|dt
+\tag{22}
+    \]
+<p>  则 \(s\) 是该曲线的一个不变量，即它与空间 \(E^3\) 中的Cartesian直角坐标系的选取无关，也与该曲线的保持定向的容许参数变换无关。前者是因为Cartesian直角坐标变换是个等距变换（见<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241016163512CST">Euclidean空间-等距变换</a>），切向量的长度 \(\left|\bm{r}'(t)\right|\) 是不变的，故 \(s\) 不变。关于后者，不妨设参数变换是</p>
+<span id="20241016164342CST"></span>\[
+t=t(u),\quad t'(u)>0, \quad \alpha \le u \le \beta
+\tag{23}
+    \]
+<p>  并且</p>
+<span id="20241016183100CST"></span>\[
+t(\alpha)=a,\quad t(\beta)=b
+\tag{24}
+    \]
+<p>  因此</p>
+<span id="20241016184016CST"></span>\[
+\begin{aligned}
+\left|\frac{d\bm{r}(t(u))}{du}\right|=&\sqrt{\left(\frac{dx(t(u))}{du}\right)^2+\left(\frac{dy(t(u))}{du}\right)^2+\left(\frac{dz(t(u))}{du}\right)^2}\\[15pt]
+=&\sqrt{\left(\frac{dx(t(u))}{dt}\frac{dt}{du}\right)^2+\left(\frac{dy(t(u))}{dt}\frac{dt}{du}\right)^2+\left(\frac{dz(t(u))}{dt}\frac{dt}{du}\right)^2}\\[15pt]
+=&\sqrt{\left(\frac{dx(t(u))}{dt}\right)^2+\left(\frac{dy(t(u))}{dt}\right)^2+\left(\frac{dz(t(u))}{dt}\right)^2}\cdot\left|\frac{dt}{du}\right|\\[15pt]
+=&\left|\frac{d\bm{r}(t(u))}{dt}\right|\cdot\frac{dt}{du}
+\end{aligned}
+\tag{25}
+    \]
+<p>  根据积分的<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">变量替换公式</a>有</p>
+<span id="20241016184516CST"></span>\[
+\int_a^b\left|\frac{d\bm{r}(t)}{dt}\right|dt=\int_a^b\left|\frac{d\bm{r}(t(u))}{dt}\right|\cdot\frac{dt}{du}du=\int_a^b\left|\frac{d\bm{r}(t(u))}{du}\right|du
+\tag{26}
+    \]
+<p>  所以 \(s\) 与参数变换<a class="link" href="#20241016164342CST">式(23)</a>是无关的。</p>
 
     </div>
 </section>
@@ -1246,7 +1285,7 @@ g(x,y(x),z(x))\equiv 0
 
 
         <span>
-            最后更新于 Oct 15, 2024 14:54 CST
+            最后更新于 Oct 16, 2024 19:08 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1402,7 +1441,7 @@ g(x,y(x),z(x))\equiv 0
             
             
         
-        <span>本图书馆累计发布了10篇文章 共65048字</span>
+        <span>本图书馆累计发布了10篇文章 共65323字</span>
     </section>
 
     <section class="site-visit-count">
