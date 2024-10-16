@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 15 Oct 2024 17:42:40 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/point_set_topology/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 16 Oct 2024 12:44:58 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/point_set_topology/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>点集拓扑（一）：拓扑空间</title>
         <link>https://www.brasswrench.com/posts/mathematics/point_set_topology/topological_space/</link>
         <pubDate>Tue, 15 Oct 2024 14:00:15 +0800</pubDate>
@@ -35,11 +35,21 @@
 &lt;/iframe&gt;
 
 &lt;h1 id=&#34;拓扑空间&#34;&gt;拓扑空间
-&lt;/h1&gt;&lt;p&gt;  拓扑学分很多不同的分支领域，最基础的拓扑空间和连续性的定义属于点集拓扑。这些概念可以说是大多数现代数学领域的语言基础，甚至于像实变函数或者讲得稍微深入一点的数学分析课程，都要对这些概念作些介绍，否则将完全无法解释想要讲述的思想。&lt;br&gt;
-  顾名思义，点集拓扑是研究一般的集合的拓扑的，所以大家首先要习惯一件事情：我们所谓的&lt;strong&gt;空间（space）&lt;/strong&gt;‌其实是集合的同义词，而不是狭义的、我们生活的这个空间，也不是线性空间，或者其他的什么大家已经习惯了的、看得见摸得着的具体空间。而我们所谓的&lt;strong&gt;点（point）&lt;/strong&gt;‌其实就是集合中的元素。定义拓扑结构的目的是要在这种最一般的空间里定义什么是连续映射，所以一个集合上可以有很多不同的拓扑结构，表达出很多不同的（可能是很稀奇古怪的）连续性。&lt;br&gt;
-  拓扑空间和连续映射定义的诞生，其实和拓扑学的那些早期例子不甚相关，甚至比代数拓扑的诞生还晚。实际上这些基本概念和术语是从Cantor开始才有人研究的。Cantor最初想做的事情只是推广三角级数的唯一性定理，说明该定理即使遇到不连续的函数，在某些情况下仍然成立。为了能够更方便准确地写出不连续点的集合需要满足的条件，Cantor发明了聚点、导集、开集、闭集等拓扑术语。有趣的是，正是这些研究工作把他从分析学引到了集合论这一领域。&lt;br&gt;
-  为了严格化泛函分析中变分法的演算，特别是为了严格化由函数构成的抽象空间中的极限概念，Fréchet提出了度量空间的概念，并且把Cantor的那些术语推广到了度量空间之中。&lt;br&gt;
-  1909年Riesz提出了一套以极限点概念为核心的公理体系，而1914年Hausdorff在他的经典教材《Grundzüge der Mengenlehre》（集合论基础）中则提出了另一套以邻域概念为核心的公理体系。这两套公理体系都突破了度量空间的限制。从形式上讲，Hausdorff的公理体系和现代通用的公理体系更接近一些，准确地讲只多了一个条件，这个条件后来被单独拆出来，称为Hausdorff性质或 \(T_2\) 分离公理，下一篇我们会讲到。&lt;/p&gt;
+&lt;/h1&gt;&lt;h2 id=&#34;拓扑空间-1&#34;&gt;拓扑空间
+&lt;/h2&gt;&lt;h3 id=&#34;拓扑空间的定义&#34;&gt;拓扑空间的定义
+&lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241015215625CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1（拓扑空间）&lt;/strong&gt;：设 \(X\) 是一非空集合， \(X\) 的一个子集族 \(\tau\) 称为 \(X\) 的一个&lt;strong&gt;拓扑&lt;/strong&gt;，如果它满足&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;\(X,\varnothing\) 都包含在 \(\tau\) 中。&lt;/li&gt;
+&lt;li&gt;\(\tau\) 中任意多个成员的并集仍在 \(\tau\) 中。&lt;/li&gt;
+&lt;li&gt;\(\tau\) 中有限多个成员的交集仍在 \(\tau\) 中。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  集合 \(X\) 和它的一个拓扑 \(\tau\) 一起称为一个&lt;strong&gt;拓扑空间&lt;/strong&gt;，记作 \((X,\tau)\) 。称 \(\tau\) 中的成员为这个拓扑空间的&lt;strong&gt;开集&lt;/strong&gt;。&lt;br&gt;
+  定义中的三个条件称为&lt;strong&gt;拓扑公理&lt;/strong&gt;。3. 可等价地换为&lt;/p&gt;
+&lt;p&gt;  3\(&#39;\). \(\tau\) 中两个成员的交集仍在 \(\tau\) 中。&lt;/p&gt;
+&lt;p&gt;  3. 蕴含 3\(&#39;\). ，另一方面易用归纳法从3\(&#39;\). 推出 3. 。&lt;/p&gt;
+&lt;p&gt;  从定义看出，给出集合的一个拓扑就是规定它的哪些子集是开集。这种规定不是任意的，必须满足三条拓扑公理。但一般来说一个集合上可以规定许多不相同的拓扑，因此说到一个拓扑空间时，要同时指明集合及所规定的拓扑，以后在不会引起误解的情况下，也常常只用集合来称呼一个拓扑空间，如拓扑空间 \(X\) ，拓扑空间 \(Y\) 等。&lt;br&gt;
+  设 \(X\) 是一非空集合，显然 \(2^X\) 满足三个拓扑公理（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;幂集&lt;/a&gt;），构成 \(X\) 上的拓扑，称为 \(X\) 上的&lt;strong&gt;离散拓扑&lt;/strong&gt;；\(\set{X,\varnothing}\) 也是 \(X\) 上的拓扑，称为 \(X\) 上的&lt;strong&gt;平凡拓扑&lt;/strong&gt;。当 \(X\) 中包含多余一个点时，这两个拓扑不相同，并且 \(X\) 还有许多别的拓扑。例如设 \(X=\set{a,b,c}\) ，则 \(\set{X,\varnothing,\set{a}}\) 、 \(\set{X,\varnothing,\set{a,b}}\) 、 \(\set{X,\varnothing,\set{a},\set{a,b}}\) 都是 \(X\) 上的拓扑；但 \(\set{X,\varnothing,\set{a},\set{b}}\) 不是拓扑，因为条件2. 不满足。&lt;br&gt;
+  设 \(\tau_1,\tau_2\) 是集合 \(X\) 上的两个拓扑，如果 \(\tau_1 \subset \tau_2\) ，则说 \(\tau_2\) 比 \(\tau_1\) &lt;strong&gt;大&lt;/strong&gt;（或者说 \(\tau_2\) 比 \(\tau_1\) &lt;strong&gt;精细&lt;/strong&gt;）。离散拓扑比任何别的拓扑都大，而平凡拓扑比任何拓扑都小。&lt;/p&gt;
 </description>
         </item>
         

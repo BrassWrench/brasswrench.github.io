@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="定义在一个集合上并满足特定条件的子集族所构成的结构">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="定义在一个集合上并满足拓扑公理的子集族所构成的结构">
 <title>点集拓扑（一）：拓扑空间</title>
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/mathematics/point_set_topology/topological_space/'>
@@ -128,12 +128,12 @@
         }
     });
 </script><meta property='og:title' content="点集拓扑（一）：拓扑空间">
-<meta property='og:description' content="定义在一个集合上并满足特定条件的子集族所构成的结构">
+<meta property='og:description' content="定义在一个集合上并满足拓扑公理的子集族所构成的结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/point_set_topology/topological_space/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-10-15T17:42:40&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-10-16T12:44:58&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="点集拓扑（一）：拓扑空间">
-<meta name="twitter:description" content="定义在一个集合上并满足特定条件的子集族所构成的结构"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="定义在一个集合上并满足拓扑公理的子集族所构成的结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -569,6 +569,34 @@
         
             
                 
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#拓扑空间-1">拓扑空间</a>
+      <ol>
+        <li><a href="#拓扑空间的定义">拓扑空间的定义</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
             
         
 
@@ -818,7 +846,7 @@
 
         
         <h3 class="article-subtitle">
-            定义在一个集合上并满足特定条件的子集族所构成的结构
+            定义在一个集合上并满足拓扑公理的子集族所构成的结构
         </h3>
         
     </div>
@@ -878,7 +906,7 @@
 </svg>
 
             <time class="article-words">
-                843 字
+                565 字
             </time>
         </div>
 
@@ -930,11 +958,21 @@
 </iframe>
 
 <h1 id="拓扑空间">拓扑空间
-</h1><p>  拓扑学分很多不同的分支领域，最基础的拓扑空间和连续性的定义属于点集拓扑。这些概念可以说是大多数现代数学领域的语言基础，甚至于像实变函数或者讲得稍微深入一点的数学分析课程，都要对这些概念作些介绍，否则将完全无法解释想要讲述的思想。<br>
-  顾名思义，点集拓扑是研究一般的集合的拓扑的，所以大家首先要习惯一件事情：我们所谓的<strong>空间（space）</strong>‌其实是集合的同义词，而不是狭义的、我们生活的这个空间，也不是线性空间，或者其他的什么大家已经习惯了的、看得见摸得着的具体空间。而我们所谓的<strong>点（point）</strong>‌其实就是集合中的元素。定义拓扑结构的目的是要在这种最一般的空间里定义什么是连续映射，所以一个集合上可以有很多不同的拓扑结构，表达出很多不同的（可能是很稀奇古怪的）连续性。<br>
-  拓扑空间和连续映射定义的诞生，其实和拓扑学的那些早期例子不甚相关，甚至比代数拓扑的诞生还晚。实际上这些基本概念和术语是从Cantor开始才有人研究的。Cantor最初想做的事情只是推广三角级数的唯一性定理，说明该定理即使遇到不连续的函数，在某些情况下仍然成立。为了能够更方便准确地写出不连续点的集合需要满足的条件，Cantor发明了聚点、导集、开集、闭集等拓扑术语。有趣的是，正是这些研究工作把他从分析学引到了集合论这一领域。<br>
-  为了严格化泛函分析中变分法的演算，特别是为了严格化由函数构成的抽象空间中的极限概念，Fréchet提出了度量空间的概念，并且把Cantor的那些术语推广到了度量空间之中。<br>
-  1909年Riesz提出了一套以极限点概念为核心的公理体系，而1914年Hausdorff在他的经典教材《Grundzüge der Mengenlehre》（集合论基础）中则提出了另一套以邻域概念为核心的公理体系。这两套公理体系都突破了度量空间的限制。从形式上讲，Hausdorff的公理体系和现代通用的公理体系更接近一些，准确地讲只多了一个条件，这个条件后来被单独拆出来，称为Hausdorff性质或 \(T_2\) 分离公理，下一篇我们会讲到。</p>
+</h1><h2 id="拓扑空间-1">拓扑空间
+</h2><h3 id="拓扑空间的定义">拓扑空间的定义
+</h3><p>  <span id="20241015215625CST"></span><strong>定义1（拓扑空间）</strong>：设 \(X\) 是一非空集合， \(X\) 的一个子集族 \(\tau\) 称为 \(X\) 的一个<strong>拓扑</strong>，如果它满足</p>
+<ol>
+<li>\(X,\varnothing\) 都包含在 \(\tau\) 中。</li>
+<li>\(\tau\) 中任意多个成员的并集仍在 \(\tau\) 中。</li>
+<li>\(\tau\) 中有限多个成员的交集仍在 \(\tau\) 中。</li>
+</ol>
+<p>  集合 \(X\) 和它的一个拓扑 \(\tau\) 一起称为一个<strong>拓扑空间</strong>，记作 \((X,\tau)\) 。称 \(\tau\) 中的成员为这个拓扑空间的<strong>开集</strong>。<br>
+  定义中的三个条件称为<strong>拓扑公理</strong>。3. 可等价地换为</p>
+<p>  3\('\). \(\tau\) 中两个成员的交集仍在 \(\tau\) 中。</p>
+<p>  3. 蕴含 3\('\). ，另一方面易用归纳法从3\('\). 推出 3. 。</p>
+<p>  从定义看出，给出集合的一个拓扑就是规定它的哪些子集是开集。这种规定不是任意的，必须满足三条拓扑公理。但一般来说一个集合上可以规定许多不相同的拓扑，因此说到一个拓扑空间时，要同时指明集合及所规定的拓扑，以后在不会引起误解的情况下，也常常只用集合来称呼一个拓扑空间，如拓扑空间 \(X\) ，拓扑空间 \(Y\) 等。<br>
+  设 \(X\) 是一非空集合，显然 \(2^X\) 满足三个拓扑公理（见<a class="link" onclick="alert('抱歉，“集合论”还未上线~')">幂集</a>），构成 \(X\) 上的拓扑，称为 \(X\) 上的<strong>离散拓扑</strong>；\(\set{X,\varnothing}\) 也是 \(X\) 上的拓扑，称为 \(X\) 上的<strong>平凡拓扑</strong>。当 \(X\) 中包含多余一个点时，这两个拓扑不相同，并且 \(X\) 还有许多别的拓扑。例如设 \(X=\set{a,b,c}\) ，则 \(\set{X,\varnothing,\set{a}}\) 、 \(\set{X,\varnothing,\set{a,b}}\) 、 \(\set{X,\varnothing,\set{a},\set{a,b}}\) 都是 \(X\) 上的拓扑；但 \(\set{X,\varnothing,\set{a},\set{b}}\) 不是拓扑，因为条件2. 不满足。<br>
+  设 \(\tau_1,\tau_2\) 是集合 \(X\) 上的两个拓扑，如果 \(\tau_1 \subset \tau_2\) ，则说 \(\tau_2\) 比 \(\tau_1\) <strong>大</strong>（或者说 \(\tau_2\) 比 \(\tau_1\) <strong>精细</strong>）。离散拓扑比任何别的拓扑都大，而平凡拓扑比任何拓扑都小。</p>
 
     </div>
 </section>
@@ -976,7 +1014,7 @@
 
 
         <span>
-            最后更新于 Oct 15, 2024 17:42 CST
+            最后更新于 Oct 16, 2024 12:44 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1135,7 +1173,7 @@
             
             
         
-        <span>本图书馆累计发布了11篇文章 共65326字</span>
+        <span>本图书馆累计发布了11篇文章 共65048字</span>
     </section>
 
     <section class="site-visit-count">
