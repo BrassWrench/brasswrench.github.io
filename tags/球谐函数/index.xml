@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 15 Oct 2024 14:54:56 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E7%90%83%E8%B0%90%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 16 Oct 2024 21:44:19 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E7%90%83%E8%B0%90%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>特殊函数（五）：Legendre函数</title>
         <link>https://www.brasswrench.com/posts/mathematics/special_functions/legendre_functions/</link>
         <pubDate>Tue, 01 Oct 2024 13:25:22 +0800</pubDate>
@@ -41,14 +41,14 @@
 &lt;h3 id=&#34;普通legendre函数&#34;&gt;普通Legendre函数
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241003121244CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1（Legendre方程）&lt;/strong&gt;：将如下方程定义为&lt;strong&gt;Legendre方程（普通Legendre方程）&lt;/strong&gt;&lt;/p&gt;
 &lt;span id=&#34;20241002161944CST&#34;&gt;&lt;/span&gt;\[
-(1-x^2)\frac{d^2y}{dx^2}-2x\frac{dy}{dx}+\nu(\nu+1)y=0
+(1-x^2)\frac{\mathrm{d}^2y}{\mathrm{d}x^2}-2x\frac{\mathrm{d}y}{\mathrm{d}x}+\nu(\nu+1)y=0
 \tag{1}
     \]
 &lt;p&gt;   \(\nu\) 和 \(x\) 可以是任何复数。该方程的解称为&lt;strong&gt;Legendre函数（普通Legendre函数）&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;连带legendre函数&#34;&gt;连带Legendre函数
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241003121340CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（连带Legendre方程）&lt;/strong&gt;：将如下方程定义为&lt;strong&gt;连带Legendre方程&lt;/strong&gt;&lt;/p&gt;
 &lt;span id=&#34;20241003121412CST&#34;&gt;&lt;/span&gt;\[
-(1-x^2)\frac{d^2y}{dx^2}-2x\frac{dy}{dx}+\left(\nu(\nu+1)-\frac{\mu}{1-x^2}\right)y=0
+(1-x^2)\frac{\mathrm{d}^2y}{\mathrm{d}x^2}-2x\frac{\mathrm{d}y}{\mathrm{d}x}+\left(\nu(\nu+1)-\frac{\mu}{1-x^2}\right)y=0
 \tag{2}
     \]
 &lt;p&gt;  该方程的解称为&lt;strong&gt;连带Legendre函数&lt;/strong&gt;。可以看到，&lt;a class=&#34;link&#34; href=&#34;#20241003121244CST&#34;&gt;Legendre方程&lt;/a&gt;是连带Legendre方程在 \(\mu=0\) 时的特殊情况。&lt;br&gt;
@@ -87,7 +87,7 @@ P
 &lt;/h2&gt;&lt;h3 id=&#34;legendre多项式的定义&#34;&gt;Legendre多项式的定义
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241003131533CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3（Legendre多项式）&lt;/strong&gt;：&lt;strong&gt;Legendre多项式&lt;/strong&gt;是如下Legendre方程的多项式解&lt;/p&gt;
 &lt;span id=&#34;20241003131611CST&#34;&gt;&lt;/span&gt;\[
-(1-x^2)\frac{d^2y}{dx^2}-2x\frac{dy}{dx}+n(n+1)y=0\quad(n=0,1,2,\cdots)
+(1-x^2)\frac{\mathrm{d}^2y}{\mathrm{d}x^2}-2x\frac{\mathrm{d}y}{\mathrm{d}x}+n(n+1)y=0\quad(n=0,1,2,\cdots)
 \tag{4}
     \]
 </description>
@@ -351,7 +351,7 @@ K_l^m=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-|m|\right)!}{\left(l+|m|\right)!}}
     \]
 &lt;p&gt;  是归一化系数。 \(P^m_l\left(\cos\theta\right)\) 是&lt;strong&gt;连带Legendre多项式&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：Legendre函数”还没写完~&#39;)&#34;&gt;连带Legendre多项式&lt;/a&gt;），定义如下：&lt;/p&gt;
 &lt;span id=&#34;20241004223430CST&#34;&gt;&lt;/span&gt;\[
-P^m_l\left(x\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^ll!}\frac{d^{l+m}}{dx^{l+m}}(x^2-1)^l
+P^m_l\left(x\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^ll!}\frac{\mathrm{d}^{l+m}}{\mathrm{d}x^{l+m}}(x^2-1)^l
 \tag{7}
     \]
 &lt;p&gt;  类似于Tayler展开和Fourier展开，任何一个在球面上连续的实函数 \(f(\theta,\varphi)\)  可以用 \(Y_{lm}(\theta,\varphi)\) 展开为一平均收敛的级数&lt;/p&gt;

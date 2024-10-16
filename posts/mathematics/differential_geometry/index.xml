@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 16 Oct 2024 19:08:07 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 16 Oct 2024 21:44:19 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -160,7 +160,8 @@ p:[a,b]\to E^3
 \tag{6}
     \]
 &lt;p&gt;  其中 \(t\) 是固定的， \(u\) 是切线上点的参数， \(\bm{X}(u)\) 是从原点 \(O\) 指向切线上参数为 \(u\) 的点的有向线段。&lt;/p&gt;
-&lt;p&gt;  这样，我们所研究的参数曲线 \(\bm{r}(t)\) 要满足下面两个条件：&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241016212013CST&#34;&gt;&lt;/span&gt;
+  这样，我们所研究的参数曲线 \(\bm{r}(t)\) 要满足下面两个条件：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;\(\bm{r}(t)\) 至少是自变量 \(t\) 的三次以上连续可微的向量函数（因为曲线的几何不变量涉及 \(\bm{r}(t)\) 的三次导数）。&lt;/li&gt;
 &lt;li&gt;处处是正则点，即对于任意的 \(t\) 有 \(\bm{r}&#39;(t) \ne \bm{0}\) 。&lt;/li&gt;
@@ -175,7 +176,7 @@ p:[a,b]\to E^3
 &lt;h3 id=&#34;正则曲线&#34;&gt;正则曲线
 &lt;/h3&gt;&lt;p&gt;  实际上，在参数变换 \(t=t(u)\) 下，曲线的参数方程成为 \(\bm{r}(t(u))\) ，为简单起见仍然把它记为 \(\bm{r}(u)\) ．当 \(t(u)\) 是 \(u\) 的三次以上的连续可微函数时， \(\bm{r}(t(u))\) 自然是 \(u\) 的三次以上的连续可微函数。另外，根据求导的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;链式法则&lt;/a&gt;&lt;/p&gt;
 &lt;span id=&#34;20241015104759CST&#34;&gt;&lt;/span&gt;\[
-\bm{r}&#39;(u)=\frac{d}{du}\bm{r}(t(u))=\bm{r}&#39;(t(u))\cdot t&#39;(u)
+\bm{r}&#39;(u)=\frac{\mathrm{d}}{\mathrm{d}u}\bm{r}(t(u))=\bm{r}&#39;(t(u))\cdot t&#39;(u)
 \tag{7}
     \]
 &lt;p&gt;  在 \(\bm{r}&#39;(t)\ne\bm{0}\) 的情况下， \(\bm{r}&#39;(u)\ne 0\) 的充分必要条件是 \(t&#39;(u)\ne 0\) 。如上的参数变换在正则参数曲线之间建立了一种等价关系，等价的正则参数曲线被看作是同一条曲线。由全体等价的正则参数曲线构成的集合称为一条&lt;strong&gt;正则曲线&lt;/strong&gt;。&lt;/p&gt;
@@ -283,10 +284,11 @@ g(x,y(x),z(x))\equiv 0
 &lt;/h2&gt;&lt;h3 id=&#34;定义&#34;&gt;定义
 &lt;/h3&gt;&lt;p&gt;  设 \(E^3\) 中的一条正则曲线 \(C\) 的参数方程是 \(\bm{r}=\bm{r}(t),\space a \le t \le b\) 。命&lt;/p&gt;
 &lt;span id=&#34;20241016162756CST&#34;&gt;&lt;/span&gt;\[
-s=\int_{a}^{b}\left|\bm{r}&#39;(t)\right|dt
+s=\int_{a}^{b}\left|\bm{r}&#39;(t)\right|\mathrm{d}t
 \tag{22}
     \]
-&lt;p&gt;  则 \(s\) 是该曲线的一个不变量，即它与空间 \(E^3\) 中的Cartesian直角坐标系的选取无关，也与该曲线的保持定向的容许参数变换无关。前者是因为Cartesian直角坐标变换是个等距变换（见&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241016163512CST&#34;&gt;Euclidean空间-等距变换&lt;/a&gt;），切向量的长度 \(\left|\bm{r}&#39;(t)\right|\) 是不变的，故 \(s\) 不变。关于后者，不妨设参数变换是&lt;/p&gt;
+&lt;h3 id=&#34;不变性&#34;&gt;不变性
+&lt;/h3&gt;&lt;p&gt;  则 \(s\) 是该曲线的一个不变量，即它与空间 \(E^3\) 中的Cartesian直角坐标系的选取无关，也与该曲线的保持定向的容许参数变换无关。前者是因为Cartesian直角坐标变换是个等距变换（见&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241016163512CST&#34;&gt;Euclidean空间-等距变换&lt;/a&gt;），切向量的长度 \(\left|\bm{r}&#39;(t)\right|\) 是不变的，故 \(s\) 不变。关于后者，不妨设参数变换是&lt;/p&gt;
 &lt;span id=&#34;20241016164342CST&#34;&gt;&lt;/span&gt;\[
 t=t(u),\quad t&#39;(u)&gt;0, \quad \alpha \le u \le \beta
 \tag{23}
@@ -299,19 +301,165 @@ t(\alpha)=a,\quad t(\beta)=b
 &lt;p&gt;  因此&lt;/p&gt;
 &lt;span id=&#34;20241016184016CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
-\left|\frac{d\bm{r}(t(u))}{du}\right|=&amp;\sqrt{\left(\frac{dx(t(u))}{du}\right)^2+\left(\frac{dy(t(u))}{du}\right)^2+\left(\frac{dz(t(u))}{du}\right)^2}\\[15pt]
-=&amp;\sqrt{\left(\frac{dx(t(u))}{dt}\frac{dt}{du}\right)^2+\left(\frac{dy(t(u))}{dt}\frac{dt}{du}\right)^2+\left(\frac{dz(t(u))}{dt}\frac{dt}{du}\right)^2}\\[15pt]
-=&amp;\sqrt{\left(\frac{dx(t(u))}{dt}\right)^2+\left(\frac{dy(t(u))}{dt}\right)^2+\left(\frac{dz(t(u))}{dt}\right)^2}\cdot\left|\frac{dt}{du}\right|\\[15pt]
-=&amp;\left|\frac{d\bm{r}(t(u))}{dt}\right|\cdot\frac{dt}{du}
+\left|\frac{\mathrm{d}\bm{r}(t(u))}{\mathrm{d}u}\right|=&amp;\sqrt{\left(\frac{\mathrm{d}x(t(u))}{\mathrm{d}u}\right)^2+\left(\frac{\mathrm{d}y(t(u))}{\mathrm{d}u}\right)^2+\left(\frac{\mathrm{d}z(t(u))}{\mathrm{d}u}\right)^2}\\[15pt]
+=&amp;\sqrt{\left(\frac{\mathrm{d}x(t(u))}{\mathrm{d}t}\frac{\mathrm{d}t}{\mathrm{d}u}\right)^2+\left(\frac{\mathrm{d}y(t(u))}{\mathrm{d}t}\frac{\mathrm{d}t}{\mathrm{d}u}\right)^2+\left(\frac{\mathrm{d}z(t(u))}{\mathrm{d}t}\frac{\mathrm{d}t}{\mathrm{d}u}\right)^2}\\[15pt]
+=&amp;\sqrt{\left(\frac{\mathrm{d}x(t(u))}{\mathrm{d}t}\right)^2+\left(\frac{\mathrm{d}y(t(u))}{\mathrm{d}t}\right)^2+\left(\frac{\mathrm{d}z(t(u))}{\mathrm{d}t}\right)^2}\cdot\left|\frac{\mathrm{d}t}{\mathrm{d}u}\right|\\[15pt]
+=&amp;\left|\frac{\mathrm{d}\bm{r}(t(u))}{\mathrm{d}t}\right|\cdot\frac{\mathrm{d}t}{\mathrm{d}u}
 \end{aligned}
 \tag{25}
     \]
 &lt;p&gt;  根据积分的&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;变量替换公式&lt;/a&gt;有&lt;/p&gt;
 &lt;span id=&#34;20241016184516CST&#34;&gt;&lt;/span&gt;\[
-\int_a^b\left|\frac{d\bm{r}(t)}{dt}\right|dt=\int_a^b\left|\frac{d\bm{r}(t(u))}{dt}\right|\cdot\frac{dt}{du}du=\int_a^b\left|\frac{d\bm{r}(t(u))}{du}\right|du
+\int_a^b\left|\frac{\mathrm{d}\bm{r}(t)}{\mathrm{d}t}\right|\mathrm{d}t=\int_a^b\left|\frac{\mathrm{d}\bm{r}(t(u))}{\mathrm{d}t}\right|\cdot\frac{\mathrm{d}t}{\mathrm{d}u}\mathrm{d}u=\int_a^b\left|\frac{\mathrm{d}\bm{r}(t(u))}{\mathrm{d}u}\right|\mathrm{d}u
 \tag{26}
     \]
 &lt;p&gt;  所以 \(s\) 与参数变换&lt;a class=&#34;link&#34; href=&#34;#20241016164342CST&#34;&gt;式(23)&lt;/a&gt;是无关的。&lt;/p&gt;
+&lt;p&gt;  实际上 \(s\) 的几何意义就是该曲线段的长度。实际上，根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;定积分的定义&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241016192102CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+s=&amp;\int_{a}^{b}\left|\bm{r}&#39;(t)\right|\mathrm{d}t\\[10pt]
+=&amp;\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}|\bm{r}&#39;(t_i)|\Delta t_i
+\end{aligned}
+\tag{27}
+    \]
+&lt;p&gt;  其中 \(a= t_0 &lt; t_1 &lt; \cdots &lt; t_n=b \) 是区间 \([a,b]\) 的任意一个分割，其中 \(\Delta t_i = t_i - t_{i-1}\) ， \(\lambda = \max\{ |\Delta t_i|; i=1,\cdots,n \}\) 。注意 \(\lambda \to 0\) 时 \(\Delta t_i \to 0\) 。因此由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241012145201CST&#34;&gt;向量函数的导数定义&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;20241016193024CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+s=&amp;\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}|\bm{r}&#39;(t_i)|\Delta t_i\\[15pt]
+=&amp;\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}\lim\limits_{\Delta t_i \to 0}\left|\frac{
+\bm{r}(t_i+\Delta t_i)-\bm{r}(t_i)}{\Delta t_i}\right|\Delta t_i\\[15pt]
+=&amp;\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}\left|
+\bm{r}(t_i+\Delta t_i)-\bm{r}(t_i)\right|\\[15pt]
+\end{aligned}
+\tag{28}
+    \]
+&lt;p&gt;  上式的结果表达的是顶点依次为 \(\bm{r}(t_0),\bm{r}(t_1),\cdots,\bm{r}(t_n)\) 的折线长度，因此 \(\displaystyle\int_a^b|\bm{r}&#39;(t)|dt\) 是将曲线不断地细分所得的折线的长度的极限，也就是该曲线的长度，称为该曲线的&lt;strong&gt;弧长&lt;/strong&gt;。&lt;/p&gt;
+&lt;span id=&#34;20241016202528CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 289&#34;&gt;
+  &lt;path id=&#34;_曲线1&#34; d=&#34;M162.2,223.5c29.7,11.5,73.3,25.9,127.4,34.9,107.2,17.7,188.3,2.9,217.7-3.4,50.9-10.9,99.8-22,141.1-63.4,17-17,42.1-43,41.7-81.1-.3-30.2-16.7-64.2-48.6-81.1-29.7-15.8-59-9.4-66.9-7.4&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;circle cx=&#34;162.5&#34; cy=&#34;223.6&#34; r=&#34;3.5&#34;/&gt;
+  &lt;circle cx=&#34;388.6&#34; cy=&#34;266.8&#34; r=&#34;3.5&#34;/&gt;
+  &lt;circle cx=&#34;546.7&#34; cy=&#34;245.7&#34; r=&#34;3.5&#34;/&gt;
+  &lt;circle cx=&#34;667.9&#34; cy=&#34;169.8&#34; r=&#34;3.5&#34;/&gt;
+  &lt;circle cx=&#34;686.7&#34; cy=&#34;86.4&#34; r=&#34;3.5&#34;/&gt;
+  &lt;circle cx=&#34;619.7&#34; cy=&#34;21.2&#34; r=&#34;3.5&#34;/&gt;
+  &lt;circle cx=&#34;574.9&#34; cy=&#34;21.9&#34; r=&#34;3.5&#34;/&gt;
+  &lt;polyline points=&#34;162.5 223.6 388.6 266.8 546.7 245.7 667.9 169.8 686.7 86.4 619.7 21.2 574.9 21.9&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(143.5905 244.1949)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;a&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(153.3607 244.8)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;=&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(167.3284 244.9296)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(174.0344 244.9297)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 10.8px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;0&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(385.1 285.5)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(391.6001 286.5)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 10.8px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(543.1 264.3)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 18px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(549.6001 265.2998)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 10.8px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(694.9 91.5)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(701.4004 92.5)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 10.8px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;n-&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(711.3604 92.5)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 10.8px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(620.9 13.4)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(627.4004 14.3999)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 10.8px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;n-&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(637.3604 14.3999)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 10.8px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(554.6 12.3)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(561.1001 13.2998)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 10.8px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;n&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g style=&#34;isolation: isolate;&#34;&gt;
+    &lt;g style=&#34;isolation: isolate;&#34;&gt;
+      &lt;text transform=&#34;translate(566.9 12.7)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;=b&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;曲线的弧长&lt;/p&gt;&lt;/div&gt;
+&lt;h3 id=&#34;弧长参数&#34;&gt;弧长参数
+&lt;/h3&gt;&lt;p&gt;  现在对于任意的 \(a \le t \le b\) ，命&lt;/p&gt;
+&lt;span id=&#34;20241016204418CST&#34;&gt;&lt;/span&gt;\[
+s(t)=\int_a^t|\bm{r}&#39;(t&#39;)|\mathrm{d}t&#39;
+\tag{29}
+    \]
+&lt;p&gt;  则 \(s(t)\) 是曲线 \(C\) 从 \(a\) 到 \(t\) 的弧长。&lt;/p&gt;
+&lt;p&gt;  注意到&lt;/p&gt;
+&lt;span id=&#34;20241016204853CST&#34;&gt;&lt;/span&gt;\[
+\frac{\mathrm{d}s(t)}{\mathrm{d}t}=|\bm{r}&#39;(t)|&gt;0
+\tag{30}
+    \]
+&lt;p&gt;  并且&lt;/p&gt;
+&lt;span id=&#34;20241016211115CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\frac{\mathrm{d}^3s(t)}{\mathrm{d}^3t}=&amp;\frac{\mathrm{d}^2}{\mathrm{d}^2t}|\bm{r}&#39;(t)|\\[10pt]
+=&amp;\frac{\mathrm{d}^2}{\mathrm{d}^2t}\sqrt{(x&#39;(t))^2+(y&#39;(t))^2+(z&#39;(t))^2}
+\end{aligned}
+\tag{31}
+    \]
+&lt;p&gt;  是关于 \(x(t),y(t),z(t)\) 的三阶导数。而由&lt;a class=&#34;link&#34; href=&#34;#20241016212013CST&#34;&gt;正则参数曲线的定义&lt;/a&gt;可得 \(x(t),y(t),z(t)\) 是三次以上的连续可微函数，因此 \(s(t)\) 也是三次以上连续可微函数。故&lt;a class=&#34;link&#34; href=&#34;#20241016204418CST&#34;&gt;式(29)&lt;/a&gt;可以看成一个定向的容许参数变换。换句话说，我们总是可以把正则曲线的弧长作为它的参数，这种参数称为曲线的&lt;strong&gt;弧长参数&lt;/strong&gt;。弧长参数由长参数由曲线本身确定，至多差一个常数（这反映了量度曲线长度的起点不同），与表示曲线的Cartesian直角坐标系的选取无关，与曲线原来的参数的取法也无关。由&lt;a class=&#34;link&#34; href=&#34;#20241016204418CST&#34;&gt;式(29)&lt;/a&gt;得到&lt;/p&gt;
+&lt;span id=&#34;20241016212442CST&#34;&gt;&lt;/span&gt;\[
+\mathrm{d}s=|\bm{r}&#39;(t)|\mathrm{d}t
+\tag{32}
+    \]
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241016184016CST&#34;&gt;式(25)&lt;/a&gt;可知对于 \(t=t(u)\)&lt;/p&gt;
+&lt;span id=&#34;20241016212934CST&#34;&gt;&lt;/span&gt;\[
+\mathrm{d}s=|\bm{r}&#39;(t(u))|\mathrm{d}u=|\bm{r}&#39;(t)|\frac{\mathrm{d}t}{\mathrm{d}u}\mathrm{d}u=\bm{r}&#39;(t)\mathrm{d}t
+\tag{33}
+    \]
+&lt;p&gt;  因此 \(\mathrm{d}s\) 也是一个曲线不变量，称为曲线的&lt;strong&gt;弧长元素&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;判断弧长参数&#34;&gt;判断弧长参数
+&lt;/h3&gt;&lt;p&gt;  注意到积分&lt;a class=&#34;link&#34; href=&#34;#20241016204418CST&#34;&gt;式(29)&lt;/a&gt;往往不能够用显式来表示，也就是说要显式地写出弧长函数的表达式往往是不可能的，因此判定已知参数 \(t\) 何时是弧长参数是十分重要的。下面给出判断方法。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241016213554CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理1&lt;/strong&gt;：设 \(\bm{r}=\bm{r}(t)(a \le t \le b)\) 是 \(E^3\) 中的一条正则曲线，则 \(t\) 是它的弧长参数的充分必要条件是 \(|\bm{r}&#39;(t)|\equiv 1\) 。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;）&lt;/strong&gt;：因为 \(\displaystyle\frac{\mathrm{d}s}{\mathrm{d}t}=|\bm{r}&#39;(t)|\) ，当 \(t\) 是它的弧长参数 \(s\) 时， \(\mathrm{d}s=\mathrm{d}t\) ，所以由&lt;a class=&#34;link&#34; href=&#34;#20241016212442CST&#34;&gt;式(32)&lt;/a&gt;可知 \(|\bm{r}&#39;(t)|\equiv 1\) ，反之亦然，证毕。&lt;/p&gt;
+&lt;p&gt;  上述定理的几何意义是：曲线以弧长为参数的充分必要条件是它的切向量场是单位切向量场。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1107,15 +1255,15 @@ c_1 &amp; c_2 &amp; c_3
 &lt;/h4&gt;&lt;p&gt;  如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续函数，则称向量函数 \(\bm{r}(t)\) 是连续的；如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续可微函数，则称向量函数 \(\bm{r}(t)\) 是连续可微的。向量函数 \(\bm{r}(t)\) 的导数和积分的定义与数值函数的导数和积分的定义是相同的，即&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241012145201CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
-\left.\frac{d\bm{r}}{dt}\right|_{t=t_0}=&amp;\lim\limits_{\Delta t \to 0}\frac{\bm{r}(t_0+\Delta t)-\bm{r}(t_0)}{\Delta t}\\[10pt]
+\left.\frac{\mathrm{d}\bm{r}}{\mathrm{d}t}\right|_{t=t_0}=&amp;\lim\limits_{\Delta t \to 0}\frac{\bm{r}(t_0+\Delta t)-\bm{r}(t_0)}{\Delta t}\\[10pt]
 =&amp;\lim\limits_{\Delta t \to 0}\left(\frac{x(t_0+\Delta t)-x(t_0)}{\Delta t},\frac{y(t_0+\Delta t)-y(t_0)}{\Delta t},\frac{z(t_0+\Delta t)-z(t_0)}{\Delta t}\right)
 \end{aligned}
 \tag{56}
     \]
 &lt;span id=&#34;20241012145649CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
-\int_{a}^{b}\bm{r}(t)dt=&amp;\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}\bm{r}(t_i^\prime)\Delta t_i\\[10pt]
-=&amp;\left(\int_{a}^{b}x(t)dt,\int_{a}^{b}y(t)dt,\int_{a}^{b}z(t)dt\right)
+\int_{a}^{b}\bm{r}(t)\mathrm{d}t=&amp;\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}\bm{r}(t_i^\prime)\Delta t_i\\[10pt]
+=&amp;\left(\int_{a}^{b}x(t)\mathrm{d}t,\int_{a}^{b}y(t)\mathrm{d}t,\int_{a}^{b}z(t)\mathrm{d}t\right)
 \end{aligned}
 \tag{57}
     \]&lt;/p&gt;
@@ -1147,26 +1295,26 @@ c_1 &amp; c_2 &amp; c_3
 &lt;span id=&#34;20241012223743CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 (\bm{a}\times\bm{b})&#39;=&amp;\left(
-\frac{d}{dt}
+\frac{\mathrm{d}}{\mathrm{d}t}
 \begin{vmatrix}
 a_2(t) &amp; a_3(t) \\[5pt]
 b_2(t) &amp; b_3(t)
 \end{vmatrix}
 ,
-\frac{d}{dt}
+\frac{\mathrm{d}}{\mathrm{d}t}
 \begin{vmatrix}
 a_3(t) &amp; a_1(t) \\[5pt]
 b_3(t) &amp; b_1(t)
 \end{vmatrix}
 ,
-\frac{d}{dt}
+\frac{\mathrm{d}}{\mathrm{d}t}
 \begin{vmatrix}
 a_1(t) &amp; a_2(t) \\[5pt]
 b_1(t) &amp; b_2(t)
 \end{vmatrix}
 \right)\\[20pt]
 =&amp;\left(
-\frac{d}{dt}(a_2(t)b_3(t)-a_3(t)b_2(t)), \frac{d}{dt}(a_3(t)b_1(t)-a_1(t)b_3(t)), \frac{d}{dt}(a_1(t)b_2(t)-a_2(t)b_1(t))
+\frac{\mathrm{d}}{\mathrm{d}t}(a_2(t)b_3(t)-a_3(t)b_2(t)), \frac{\mathrm{d}}{\mathrm{d}t}(a_3(t)b_1(t)-a_1(t)b_3(t)), \frac{\mathrm{d}}{\mathrm{d}t}(a_1(t)b_2(t)-a_2(t)b_1(t))
 \right)\\[20pt]
 =&amp;((a_2&#39;(t)b_3(t)-a_3&#39;(t)b_2(t))+(a_2(t)b_3&#39;(t)-a_3(t)b_2&#39;(t)),\\[20pt]
 &amp;(a_3&#39;(t)b_1(t)-a_1&#39;(t)b_3(t))+(a_3(t)b_1&#39;(t)-a_1(t)b_3&#39;(t)),\\[20pt]
@@ -1230,7 +1378,7 @@ b_1&#39;(t) &amp; b_2&#39;(t)
     \]
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241012234715CST&#34;&gt;定理3&lt;/a&gt;）&lt;/strong&gt;：对1. ，因为&lt;/p&gt;
 &lt;span id=&#34;20241012235435CST&#34;&gt;&lt;/span&gt;\[
-\frac{d}{dt}|\bm{a}(t)|^2=\frac{d(\bm{a}(t)\cdot\bm{a}(t))}{dt}=2\bm{a}&#39;(t)\cdot\bm{a}(t)
+\frac{\mathrm{d}}{\mathrm{d}t}|\bm{a}(t)|^2=\frac{\mathrm{d}(\bm{a}(t)\cdot\bm{a}(t))}{\mathrm{d}t}=2\bm{a}&#39;(t)\cdot\bm{a}(t)
 \tag{65}
     \]
 &lt;p&gt;  所以 \(|\bm{a}(t)|^2\) 是常数，当且仅当 \(\bm{a}&#39;(t)\cdot\bm{a}(t)\equiv 0\) 。&lt;/p&gt;
