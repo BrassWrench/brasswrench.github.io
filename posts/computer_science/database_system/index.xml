@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 15 Oct 2024 19:27:56 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 16 Oct 2024 23:17:28 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（一）：数据库系统概论</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/</link>
         <pubDate>Tue, 15 Oct 2024 16:49:13 +0800</pubDate>
@@ -34,6 +34,172 @@
   src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=2069265735&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
 &lt;/iframe&gt;
 
+&lt;h1 id=&#34;数据库系统概论&#34;&gt;数据库系统概论
+&lt;/h1&gt;&lt;p&gt;  数据库是数据管理的有效技术，是计算机科学的重要分支。今天，信息资源已成为各个部门的重要财富和资源。建立一个满足各级部门信息处理要求的行，之有效的信息系统也成为一个企业或组织生存和发展的重要条件。因此，作为信息系统核心和基础的数据库技术得到越来越广泛的应用，从小型单项事务处理系统到大型信息系统，从联机事务处理（On-LineTransactionProcessing，OLTP）到联机分析处理（On-LineAnalysisProcessing，OLAP），从一般企业管理到计算机辅助设计与制造（CAD/CAM）、计算机集成制造系统（CIMS）、电子政务（e-Government）、电子商务（e-Commerce）、地理信息系统（GIS）等，越来越多的应用领域采用数据库技术来存储和处理信息资源。特别是随着互联网的发展，广大用户可以直接访问并使用数据库，例如通过网上订购图书、日用品、机票、火车票，通过网上银行转账存款取款、检索和管理赈户，等等。数据库已经成为每个人生活中不可缺少的部分。&lt;/p&gt;
+&lt;h2 id=&#34;数据库系统概述&#34;&gt;数据库系统概述
+&lt;/h2&gt;&lt;p&gt;  在系统地介绍数据库的基本概念之前，这里首先介绍一些数据库最常用的术语和基本概念。&lt;/p&gt;
+&lt;h3 id=&#34;数据库的四个基本概念&#34;&gt;数据库的四个基本概念
+&lt;/h3&gt;&lt;p&gt;  数据、数据库、数据库管理系统和数据库系统是与数据库技术密切相关的4个基本概念。&lt;/p&gt;
+&lt;h4 id=&#34;数据data&#34;&gt;数据（Data）
+&lt;/h4&gt;&lt;p&gt;  数据是数据库中存储的基本对象。数据在大多数人头脑中的第一个反应就是数字，例如93、1000、99.5、-330.86、¥6880、$726等。其实数字只是最简单的一种数据，是数据的一种传统和狭义的理解。广义的理解认为数据的种类很多，例如文本（text）、图形（graph）、图像（image）、音频（audio）、视频（video）、学生的档案记录、货物的运输情况等，这些都是数据。&lt;br&gt;
+  可以对数据做如下定义：描述事物的符号记录称为&lt;strong&gt;数据&lt;/strong&gt;。描述事物的符号可以是数字，也可以是文字、图形、图像、音频、视频等。数据有多种表现形式，它们都可以经过数字化后存入计算机。&lt;br&gt;
+  在现代计算机系统中数据的概念是广义的。早期的计算机系统主要用于科学计算，处理的数据是数值型数据，如整数、实数、浮点数等。现在计算机存储和处理的对象十分广泛，表示这些对象的数据也随之变得越来越复杂。&lt;br&gt;
+  数据的表现形式还不能完全表达其内容，需要经过解释，数据和关于数据的解释是不可分的。例如，93是一个数据，可以是一个同学某门课的成绩，也可以是某个人的体重，还可以是计算机系2013级的学生人数。数据的解释是指对数据含义的说明，数据的含义称为数据的&lt;strong&gt;语义&lt;/strong&gt;，数据与其语义是不可分的。&lt;br&gt;
+  在日常生活中，人们可以直接用自然语言（如汉语）来描述事物。例如，可以这样来描述某校计算机系一位同学的基本情况：李明同学，男，1995年5月生，江苏省南京市人，2013年入学。在计算机中常常这样来描述：&lt;br&gt;
+  （李明，男，199505，江苏省南京市，计算机系，2013）&lt;br&gt;
+  即把学生的姓名、性别、出生年月、出生地、所在院系、入学时间等组织在一起，构成一个&lt;strong&gt;记录&lt;/strong&gt;。这里的学生记录就是描述学生的数据。这样的数据是有&lt;strong&gt;结构&lt;/strong&gt;的。记录是计算机中表示和存储数据的一种格式或一种方法。&lt;/p&gt;
+&lt;h4 id=&#34;数据库databasedb&#34;&gt;数据库（DataBase,DB）
+&lt;/h4&gt;&lt;p&gt;  数据库，顾名思义，是存放数据的仓库。只不过这个仓库是在计算机存储设备上，而且数据是按一定的格式存放的。&lt;br&gt;
+  人们收集并抽取出一个应用所需要的大量数据之后，应将其保存起来，以供进一步加工处理，抽取有用信息。在科学技术飞速发展的今天，人们的视野越来越广，数据量急剧增加。过去人们把数据存放在文件柜里，现在人们借助计算机和数据库技术科学地保存和管理大量复杂的数据，以便能方便而充分地利用这些宝贵的信息资源。&lt;br&gt;
+  严格地讲，&lt;strong&gt;数据库&lt;/strong&gt;是长期储存在计算机内、有组织的、可共享的大量数据的集合。数据库中的数据按一定的数据模型组织、描述和储存，具有较小的冗余度（redundancy）、较高的数据独立性（data independency）和易扩展性（scalability）,并可为各种用户共享。&lt;br&gt;
+  概括地讲，数据库数据具有永久存储、有组织和可共享三个基本特点。&lt;/p&gt;
+&lt;h4 id=&#34;数据库管理系统database-management-systemdbms&#34;&gt;数据库管理系统(DataBase Management System,DBMS)
+&lt;/h4&gt;&lt;p&gt;  了解了数据和数据库的概念，下一个问题就是如何科学地组织和存储数据，如何高效地获取和维护数据。完成这个任务的是一个系统软件&amp;mdash;&amp;mdash;数据库管理系统。&lt;strong&gt;数据库管理系统&lt;/strong&gt;是位于用户与操作系统之间的一层数据管理软件。数据库管理系统和操作系统一样是计算机的基础软件，也是一个大型复杂的软件系统。它的主要功能包括以下几个方面：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 数据定义功能&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据库管理系统提供&lt;strong&gt;数据定义语言（Data Definition Language,DDL）&lt;/strong&gt;，用户通过它可以方便地对数据库中的数据对象的组成与结构进行定义。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 数据组织、存储和管理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据库管理系统要分类组织、存储和管理各种数据，包括数据字典、用户数据、数据的存取路径等。要确定以何种文件结构和存取方式在存储级上组织这些数据，如何实现数据之间的联系。数据组织和存储的基本目标是提高存储空间利用率和方便存取，提供多种存取方法（如索引查找、hash查找、顺序查找等）来提高存取效率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 数据操纵功能&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据库管理系统还提供&lt;strong&gt;数据操纵语言（DataManipulationLanguage,DML）&lt;/strong&gt;，用户可以使用它操纵数据，实现对数据库的基本操作，如查询、插入、删除和修改等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. 数据库的事务管理和运行管理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据库在建立、运用和维护时由数据库管理系统统一管理和控制，以保证事务的正确运行，保证数据的安全性、完整性、多用户对数据的并发使用及发生故障后的系统恢复。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5. 数据库的建立和维护功能&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据库的建立和维护功能包括数据库初始数据的输入、转换功能，数据库的转储、恢复功能，数据库的重组织功能和性能监视、分析功能等。这些功能通常是由一些实用程序或管理工具完成的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6. 其他功能&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  其他功能包括数据库管理系统与网络中其他软件系统的通信功能，一个数据库管理系统与另一个数据库管理系统或文件系统的数据转换功能，异构数据库之间的互访和互操作功能等。&lt;/p&gt;
+&lt;h4 id=&#34;数据库系统&#34;&gt;数据库系统
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;数据库系统&lt;/strong&gt;是由数据库、数据库管理系统（及其应用开发工具）、应用程序和数据库管理员（DataBase Administrator,DBA）组成的存储、管理、处理和维护数据的系统。应当指出的是，数据库的建立、使用和维护等工作只靠一个数据库管理系统远远不够，还要有专门的人员来完成，这些人被称为&lt;strong&gt;数据库管理员&lt;/strong&gt;。&lt;br&gt;
+  数据库系统可以用图1.1表示。其中数据库提供数据的存储功能，数据库管理系统提供数据的组织、存取、管理和维护等基础功能，数据库应用系统根据应用需求使用数据库，数据库管理员负责全面管理数据库系统。图1.2是引入数据库后计算机系统的层次结构。&lt;br&gt;
+  在一般不引起混淆的情况下，人们常常把数据库系统简称为数据库。&lt;/p&gt;
+&lt;span id=&#34;20241016225051CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 507.4&#34;&gt;
+  &lt;defs&gt;
+    &lt;style&gt;
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2, .cls-3 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        font-family: NotoSerifSC-ExtraLight, &#39;Noto Serif SC&#39;;
+        font-size: 18px;
+        font-weight: 200;
+      }
+    &lt;/style&gt;
+  &lt;/defs&gt;
+  &lt;!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  --&gt;
+  &lt;g&gt;
+    &lt;g id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34;&gt;
+      &lt;g id=&#34;_图层_1-2&#34; data-name=&#34;_图层_1&#34;&gt;
+        &lt;g&gt;
+          &lt;g&gt;
+            &lt;rect class=&#34;cls-1&#34; x=&#34;204.1&#34; y=&#34;6.2&#34; width=&#34;83.4&#34; height=&#34;34.9&#34;/&gt;
+            &lt;g class=&#34;cls-2&#34;&gt;
+              &lt;text class=&#34;cls-3&#34; transform=&#34;translate(227.8 31.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+            &lt;/g&gt;
+          &lt;/g&gt;
+          &lt;g&gt;
+            &lt;rect class=&#34;cls-1&#34; x=&#34;298.3&#34; y=&#34;6.2&#34; width=&#34;83.4&#34; height=&#34;34.9&#34;/&gt;
+            &lt;g class=&#34;cls-2&#34;&gt;
+              &lt;text class=&#34;cls-3&#34; transform=&#34;translate(322.1 31.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+            &lt;/g&gt;
+          &lt;/g&gt;
+          &lt;g class=&#34;cls-2&#34;&gt;
+            &lt;text class=&#34;cls-3&#34; transform=&#34;translate(401.9 31.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;···&lt;/tspan&gt;&lt;/text&gt;
+          &lt;/g&gt;
+          &lt;g&gt;
+            &lt;rect class=&#34;cls-1&#34; x=&#34;441.8&#34; y=&#34;6.2&#34; width=&#34;83.4&#34; height=&#34;34.9&#34;/&gt;
+            &lt;g class=&#34;cls-2&#34;&gt;
+              &lt;text class=&#34;cls-3&#34; transform=&#34;translate(465.5 31.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
+            &lt;/g&gt;
+          &lt;/g&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;polygon class=&#34;cls-1&#34; points=&#34;385.1 262 294.2 262 248.7 283.8 294.2 305.6 385.1 305.6 430.6 283.8 385.1 262&#34;/&gt;
+          &lt;g class=&#34;cls-2&#34;&gt;
+            &lt;text class=&#34;cls-3&#34; transform=&#34;translate(276.2 291.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据库管理系统&lt;/tspan&gt;&lt;/text&gt;
+          &lt;/g&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;polygon class=&#34;cls-1&#34; points=&#34;385.1 181.6 294.2 181.6 248.7 203.4 294.2 225.2 385.1 225.2 430.6 203.4 385.1 181.6&#34;/&gt;
+          &lt;g class=&#34;cls-2&#34;&gt;
+            &lt;text class=&#34;cls-3&#34; transform=&#34;translate(285.5 211.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用开发工具&lt;/tspan&gt;&lt;/text&gt;
+          &lt;/g&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;polygon class=&#34;cls-1&#34; points=&#34;385.1 101.3 294.2 101.3 248.7 123.1 294.2 144.9 385.1 144.9 430.6 123.1 385.1 101.3&#34;/&gt;
+          &lt;g class=&#34;cls-2&#34;&gt;
+            &lt;text class=&#34;cls-3&#34; transform=&#34;translate(303.3 130.7)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用系统&lt;/tspan&gt;&lt;/text&gt;
+          &lt;/g&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;polygon class=&#34;cls-1&#34; points=&#34;385.1 342.3 294.2 342.3 248.7 364.1 294.2 385.9 385.1 385.9 430.6 364.1 385.1 342.3&#34;/&gt;
+          &lt;g class=&#34;cls-2&#34;&gt;
+            &lt;text class=&#34;cls-3&#34; transform=&#34;translate(303.3 371.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操作系统&lt;/tspan&gt;&lt;/text&gt;
+          &lt;/g&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;ellipse class=&#34;cls-1&#34; cx=&#34;339.7&#34; cy=&#34;438.2&#34; rx=&#34;59.3&#34; ry=&#34;12.3&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;280.4&#34; y1=&#34;438.2&#34; x2=&#34;280.4&#34; y2=&#34;492&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;398.9&#34; y1=&#34;438.2&#34; x2=&#34;398.9&#34; y2=&#34;492&#34;/&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M398.9,492c0,6.8-26.5,12.3-59.3,12.3s-59.3-5.5-59.3-12.3&#34;/&gt;
+          &lt;g class=&#34;cls-2&#34;&gt;
+            &lt;text class=&#34;cls-3&#34; transform=&#34;translate(312.4 483)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据库&lt;/tspan&gt;&lt;/text&gt;
+          &lt;/g&gt;
+        &lt;/g&gt;
+        &lt;g class=&#34;cls-2&#34;&gt;
+          &lt;text class=&#34;cls-3&#34; transform=&#34;translate(530.3 291.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据库管理员&lt;/tspan&gt;&lt;/text&gt;
+        &lt;/g&gt;
+        &lt;rect class=&#34;cls-1&#34; x=&#34;507.6&#34; y=&#34;258.1&#34; width=&#34;152&#34; height=&#34;51.4&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;245.8&#34; y1=&#34;41&#34; x2=&#34;269.8&#34; y2=&#34;106.4&#34;/&gt;
+          &lt;polygon points=&#34;265.4 105 269.4 105.2 272.3 102.5 271.9 112 265.4 105&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;339.7&#34; y1=&#34;41&#34; x2=&#34;339.7&#34; y2=&#34;95.3&#34;/&gt;
+          &lt;polygon points=&#34;335.9 92.5 339.7 94.1 343.4 92.5 339.7 101.3 335.9 92.5&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;483.5&#34; y1=&#34;41&#34; x2=&#34;412.2&#34; y2=&#34;107.9&#34;/&gt;
+          &lt;polygon points=&#34;411.7 103.3 413.1 107 416.8 108.7 407.8 112 411.7 103.3&#34;/&gt;
+        &lt;/g&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;340.1&#34; y1=&#34;144.9&#34; x2=&#34;340.1&#34; y2=&#34;181.6&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;339.7&#34; y1=&#34;225.2&#34; x2=&#34;339.7&#34; y2=&#34;262&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;340.1&#34; y1=&#34;306.3&#34; x2=&#34;340.1&#34; y2=&#34;341.7&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;339.7&#34; y1=&#34;385.9&#34; x2=&#34;339.7&#34; y2=&#34;425.9&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;507.6&#34; y1=&#34;283.8&#34; x2=&#34;436.6&#34; y2=&#34;283.8&#34;/&gt;
+          &lt;polygon points=&#34;439.4 280.1 437.8 283.8 439.4 287.5 430.6 283.8 439.4 280.1&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;polyline class=&#34;cls-1&#34; points=&#34;584.4 309.5 584.4 468.3 404.9 468.3&#34;/&gt;
+          &lt;polygon points=&#34;407.7 464.6 406.1 468.3 407.7 472 398.9 468.3 407.7 464.6&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;数据库系统&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;‌&lt;/p&gt;
+&lt;span id=&#34;20241016231208CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 330.8571&#34;&gt;
+  &lt;text transform=&#34;translate(386.8169 124.8063)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操&lt;/tspan&gt;&lt;tspan x=&#34;24.3369&#34; y=&#34;-12.5889&#34;&gt;作&lt;/tspan&gt;&lt;tspan x=&#34;51.6899&#34; y=&#34;-11.5469&#34;&gt;系&lt;/tspan&gt;&lt;tspan x=&#34;74.9624&#34; y=&#34;2.8149&#34;&gt;统&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M431.8502,240.5527c-41.7816,0-75.7738-33.9917-75.7738-75.7729s33.9922-75.7738,75.7738-75.7738,75.7733,33.9922,75.7733,75.7738-33.9917,75.7729-75.7733,75.7729Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;circle cx=&#34;431.85&#34; cy=&#34;164.7794&#34; r=&#34;42.6667&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(413.85 172.3167)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;硬件&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(361.1325 106.5733)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数&lt;/tspan&gt;&lt;tspan x=&#34;17.8223&#34; y=&#34;-14.4136&#34;&gt;据&lt;/tspan&gt;&lt;tspan x=&#34;38.9492&#34; y=&#34;-23.5679&#34;&gt;库&lt;/tspan&gt;&lt;tspan x=&#34;62.0601&#34; y=&#34;-26.6685&#34;&gt;管&lt;/tspan&gt;&lt;tspan x=&#34;84.5176&#34; y=&#34;-23.5591&#34;&gt;理&lt;/tspan&gt;&lt;tspan x=&#34;105.6396&#34; y=&#34;-14.397&#34;&gt;系&lt;/tspan&gt;&lt;tspan x=&#34;123.457&#34; y=&#34;.0229&#34;&gt;统&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M431.8503,272.4402c-59.3645,0-107.6615-48.2964-107.6615-107.6602s48.297-107.6615,107.6615-107.6615,107.6608,48.297,107.6608,107.6615-48.2964,107.6602-107.6608,107.6602Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(370.8686 61.6257)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应&lt;/tspan&gt;&lt;tspan x=&#34;19.9224&#34; y=&#34;-7.8442&#34;&gt;用&lt;/tspan&gt;&lt;tspan x=&#34;40.9834&#34; y=&#34;-11.8496&#34;&gt;开&lt;/tspan&gt;&lt;tspan x=&#34;62.3418&#34; y=&#34;-11.9087&#34;&gt;发&lt;/tspan&gt;&lt;tspan x=&#34;83.4004&#34; y=&#34;-8.0278&#34;&gt;工&lt;/tspan&gt;&lt;tspan x=&#34;103.3975&#34; y=&#34;-.2847&#34;&gt;具&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M431.8504,299.054c-74.0394,0-134.2754-60.2353-134.2754-134.2738S357.811,30.5047,431.8504,30.5047s134.2746,60.2361,134.2746,134.2754-60.2353,134.2738-134.2746,134.2738Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(390.2727 27.5708)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应&lt;/tspan&gt;&lt;tspan x=&#34;20.4604&#34; y=&#34;-3.2822&#34;&gt;用&lt;/tspan&gt;&lt;tspan x=&#34;41.0854&#34; y=&#34;-3.5439&#34;&gt;系&lt;/tspan&gt;&lt;tspan x=&#34;61.603&#34; y=&#34;-.7944&#34;&gt;统&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M431.8505,327.1564c-89.5351,0-162.378-72.8419-162.378-162.3761S342.3154,2.4023,431.8505,2.4023s162.377,72.8429,162.377,162.378-72.8419,162.3761-162.377,162.3761Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;引入数据库后计算机系统的层次结构&lt;/p&gt;&lt;/div&gt;
 </description>
         </item>
         
