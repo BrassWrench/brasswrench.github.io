@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-16T21:53:06&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T01:01:44&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -604,6 +604,7 @@
         <li><a href="#判断弧长参数">判断弧长参数</a></li>
       </ol>
     </li>
+    <li><a href="#曲线的曲率和frenet标架">曲线的曲率和Frenet标架</a></li>
   </ol>
 </nav>
         </div>
@@ -918,7 +919,7 @@
 </svg>
 
             <time class="article-words">
-                3337 字
+                3797 字
             </time>
         </div>
 
@@ -933,7 +934,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 7 分钟
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -1007,83 +1008,114 @@ p:[a,b]\to E^3
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 336">
   <defs>
     <style>
-      .cls-1, .cls-2 {
+      .cls-1 {
+        font-family: 'KaTeX_Main-Italic', KaTeX_Main;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        isolation: isolate;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-6 {
+        font-size: 18px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-6 {
+        font-style: italic;
+      }
+
+      .cls-7, .cls-8 {
         fill: none;
         stroke: #000;
         stroke-miterlimit: 10;
       }
 
-      .cls-3, .cls-4 {
-        font-style: italic;
+      .cls-2 {
+        font-family: 'KaTeX_Math-Italic', KaTeX_Math;
       }
 
-      .cls-3, .cls-4, .cls-5 {
-        font-size: 18px;
+      .cls-3 {
+        font-family: Arial-ItalicMT, Arial;
       }
 
       .cls-4 {
-        font-family: 'KaTeX_Math-Italic', KaTeX_Math;
+        font-family: AdobeSongStd-Light-GBpc-EUC-H, 'Adobe Song Std';
+        font-weight: 300;
+      }
+
+      .cls-8 {
+        stroke-width: 2px;
       }
 
       .cls-6 {
         font-family: 'KaTeX_Math-BoldItalic', KaTeX_Math;
         font-weight: 700;
       }
-
-      .cls-5 {
-        font-family: AdobeSongStd-Light-GBpc-EUC-H, 'Adobe Song Std';
-        font-weight: 300;
-      }
-
-      .cls-2 {
-        stroke-width: 2px;
-      }
-
-      .cls-7 {
-        font-family: 'KaTeX_Main-Italic', KaTeX_Main;
-      }
     </style>
   </defs>
   <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
   <g>
     <g id="_图层_1" data-name="图层_1">
-      <g>
+      <g id="_图层_1-2" data-name="_图层_1">
         <g>
-          <line class="cls-1" x1="320.3" y1="256.9" x2="260.2" y2="317"/>
-          <polygon points="259.5 312.4 261 316.2 264.8 317.7 255.9 321.3 259.5 312.4"/>
+          <g>
+            <line class="cls-7" x1="320.3" y1="256.9" x2="260.2" y2="317"/>
+            <polygon points="259.5 312.4 261 316.2 264.8 317.7 255.9 321.3 259.5 312.4"/>
+          </g>
+          <g>
+            <line class="cls-7" x1="320.3" y1="18" x2="320.3" y2="256.9"/>
+            <polygon points="316.6 20.8 320.3 19.2 324 20.8 320.3 12 316.6 20.8"/>
+          </g>
+          <g>
+            <line class="cls-7" x1="320.3" y1="256.9" x2="369.6" y2="122.3"/>
+            <polygon points="372.1 126.2 369.1 123.5 365.1 123.7 371.6 116.7 372.1 126.2"/>
+          </g>
+          <g>
+            <line class="cls-7" x1="605.7" y1="256.9" x2="320.3" y2="256.9"/>
+            <polygon points="602.9 253.2 604.5 256.9 602.9 260.6 611.7 256.9 602.9 253.2"/>
+          </g>
+          <g class="cls-5">
+            <text class="cls-2" transform="translate(269.8 328.2)"><tspan x="0" y="0">x</tspan></text>
+          </g>
+          <g class="cls-5">
+            <text class="cls-1" transform="translate(600.3 275.7)"><tspan x="0" y="0">y</tspan></text>
+          </g>
+          <g class="cls-5">
+            <text class="cls-1" transform="translate(316.6 272.4)"><tspan x="0" y="0">O</tspan></text>
+          </g>
+          <g class="cls-5">
+            <text class="cls-1" transform="translate(329.9 12)"><tspan x="0" y="0">z</tspan></text>
+          </g>
+          <path class="cls-8" d="M252,246.2c16.7-37.2,52-98.1,119.6-129.5,45.1-21,114.9-33.6,128.8-10.3,7,11.8-1.7,30.2-11,45"/>
+          <path class="cls-7" d="M420.6,90.6c23.5-12.1,39.8-20.4,39.8-20.4"/>
+          <g>
+            <path class="cls-7" d="M266.1,170.1c1.6-1.1,96.4-49.7,153-78.7"/>
+            <polygon points="418.2 96 417.9 92 414.9 89.4 424.4 88.7 418.2 96"/>
+          </g>
+          <path class="cls-7" d="M292.9,123.1c2.2,0,267-21.6,267-21.6"/>
+          <g class="cls-5">
+            <text class="cls-6" transform="translate(416.9 68.3)"><tspan x="0" y="0">r</tspan></text>
+            <text class="cls-1" transform="translate(426.4 68.3)"><tspan x="0" y="0">(t)</tspan></text>
+          </g>
+          <g class="cls-5">
+            <text class="cls-4" transform="translate(423.1 70.3)"><tspan x="0" y="0">′</tspan></text>
+          </g>
+          <g class="cls-5">
+            <text class="cls-3" transform="translate(563.6 105.5)"><tspan x="0" y="0">l</tspan></text>
+          </g>
+          <g>
+            <line class="cls-7" x1="320.3" y1="256.9" x2="495.8" y2="110.3"/>
+            <polygon points="496 114.9 494.9 111 491.3 109.2 500.4 106.4 496 114.9"/>
+          </g>
+          <g class="cls-5">
+            <text class="cls-6" transform="translate(352.7 184.5)"><tspan x="0" y="0">r</tspan></text>
+            <text class="cls-1" transform="translate(362.2 184.5)"><tspan x="0" y="0">(t)</tspan></text>
+          </g>
+          <g class="cls-5">
+            <text class="cls-6" transform="translate(426.4 181.7)"><tspan x="0" y="0">r</tspan></text>
+            <text class="cls-1" transform="translate(435.9 181.7)"><tspan x="0" y="0">(t+Δt)</tspan></text>
+          </g>
         </g>
-        <g>
-          <line class="cls-1" x1="320.3" y1="18" x2="320.3" y2="256.9"/>
-          <polygon points="316.6 20.8 320.3 19.2 324 20.8 320.3 12 316.6 20.8"/>
-        </g>
-        <g>
-          <line class="cls-1" x1="320.3" y1="256.9" x2="369.6" y2="122.3"/>
-          <polygon points="372.1 126.2 369.1 123.5 365.1 123.7 371.6 116.7 372.1 126.2"/>
-        </g>
-        <g>
-          <line class="cls-1" x1="605.7" y1="256.9" x2="320.3" y2="256.9"/>
-          <polygon points="602.9 253.2 604.5 256.9 602.9 260.6 611.7 256.9 602.9 253.2"/>
-        </g>
-        <text class="cls-4" transform="translate(269.8 328.2)"><tspan x="0" y="0">x</tspan></text>
-        <text class="cls-4" transform="translate(600.3 275.7)"><tspan x="0" y="0">y</tspan></text>
-        <text class="cls-4" transform="translate(316.6 272.4)"><tspan x="0" y="0">O</tspan></text>
-        <text class="cls-4" transform="translate(329.9 12)"><tspan x="0" y="0">z</tspan></text>
-        <path class="cls-2" d="M252,246.2c16.7-37.2,52-98.1,119.6-129.5,45.1-21,114.9-33.6,128.8-10.3,7,11.8-1.7,30.2-11,45"/>
-        <path class="cls-1" d="M420.6,90.6c23.5-12.1,39.8-20.4,39.8-20.4"/>
-        <g>
-          <path class="cls-1" d="M266.1,170.1c1.6-1.1,96.4-49.7,153-78.7"/>
-          <polygon points="418.2 96 417.9 92 414.9 89.4 424.4 88.7 418.2 96"/>
-        </g>
-        <path class="cls-1" d="M292.9,123.1c2.2.1,267-21.6,267-21.6"/>
-        <text class="cls-3" transform="translate(416.9 68.3)"><tspan class="cls-6" x="0" y="0">r</tspan><tspan class="cls-7" x="9.5" y="0">(t)</tspan></text>
-        <text class="cls-5" transform="translate(423.1 70.3)"><tspan x="0" y="0">′</tspan></text>
-        <text class="cls-4" transform="translate(563.6 105.5)"><tspan x="0" y="0">l</tspan></text>
-        <g>
-          <line class="cls-1" x1="320.3" y1="256.9" x2="495.8" y2="110.3"/>
-          <polygon points="496 114.9 494.9 111 491.3 109.2 500.4 106.4 496 114.9"/>
-        </g>
-        <text class="cls-3" transform="translate(352.7 184.5)"><tspan class="cls-6" x="0" y="0">r</tspan><tspan class="cls-7" x="9.5" y="0">(t)</tspan></text>
-        <text class="cls-3" transform="translate(426.4 181.7)"><tspan class="cls-6" x="0" y="0">r</tspan><tspan class="cls-7" x="9.5" y="0">(t+Δt)</tspan></text>
       </g>
     </g>
   </g>
@@ -1395,6 +1427,175 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 <p>  <span id="20241016213554CST"></span><strong>定理1</strong>：设 \(\bm{r}=\bm{r}(t)(a \le t \le b)\) 是 \(E^3\) 中的一条正则曲线，则 \(t\) 是它的弧长参数的充分必要条件是 \(|\bm{r}'(t)|\equiv 1\) 。</p>
 <p>  <strong>证明（<a class="link" href="#20241016213554CST">定理1</a>）</strong>：因为 \(\displaystyle\frac{\mathrm{d}s}{\mathrm{d}t}=|\bm{r}'(t)|\) ，当 \(t\) 是它的弧长参数 \(s\) 时， \(\mathrm{d}s=\mathrm{d}t\) ，所以由<a class="link" href="#20241016212442CST">式(32)</a>可知 \(|\bm{r}'(t)|\equiv 1\) ，反之亦然，证毕。</p>
 <p>  上述定理的几何意义是：曲线以弧长为参数的充分必要条件是它的切向量场是单位切向量场。</p>
+<h2 id="曲线的曲率和frenet标架">曲线的曲率和Frenet标架
+</h2><p>  设曲线 \(C\) 的方程是 \(\bm{r}(s)\) ，其中 \(s\) 是曲线的弧长参数。根据<a class="link" href="#20241016213554CST">定理1</a>可知 \(\bm{r}'(s)\) 是曲线 \(C\) 的单位切向量场。命</p>
+<span id="20241017212549CST"></span>\[
+\bm{\alpha}(s)=\bm{r}'(s)
+\tag{34}
+    \]
+<p>  下面我们要研究如何刻画曲线的弯曲程度。从直观上看， \(\bm{\alpha}(s)\) 是曲线 \(C\) 在 \(s\) 处的方向向量，因此当一点沿曲线以单位速率前进时，方向向量转动的快慢反映了曲线的弯曲程度，而方向向量 \(\bm{\alpha}(s)\) 转动的快慢恰好是用 \(\displaystyle\left|\frac{\mathrm{d}\bm{\alpha}}{\mathrm{d}s}\right|\) 来衡量的。</p>
+<p>  <span id="20241017222926CST"></span><strong>定理2</strong>：设 \(\bm{\alpha}(s)\) 是曲线 \(\bm{r}(s)\) 的单位切向量场， \(s\) 是弧长参数，用 \(\Delta\theta\) 表示切向量 \(\bm{\alpha}(s+\Delta s)\) 和 \(\bm{\alpha}(s)\) 之间的夹角，则</p>
+<span id="20241017223545CST"></span>\[
+\lim\limits_{\Delta s \to 0}\left|\frac{\Delta\theta}{\Delta s}\right|=\left|\frac{\mathrm{d}\bm{\alpha}}{\mathrm{d}s}\right|
+\tag{35}
+    \]
+<p>  <strong>证明（<a class="link" href="#20241017222926CST">定理2</a>）</strong>：</p>
+<span id="20241017235314CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 166">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: 'KaTeX_Main-Italic', KaTeX_Main;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        isolation: isolate;
+      }
+
+      .cls-1, .cls-2, .cls-4 {
+        font-size: 18px;
+        font-style: italic;
+      }
+
+      .cls-5 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-5, .cls-6 {
+        fill: none;
+      }
+
+      .cls-2 {
+        font-family: 'KaTeX_Math-Italic', KaTeX_Math;
+      }
+
+      .cls-7 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        font-family: 'KaTeX_Math-BoldItalic', KaTeX_Math;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g>
+    <g id="_图层_1" data-name="图层_1">
+      <g id="_图层_1-2" data-name="_图层_1">
+        <path class="cls-5" d="M56.9,106.1c2.1,4.3,23.2,46.3,70.1,54.1,27.1,4.5,55-3.7,73.9-19.8,22.3-19,26.6-34,50.4-56.2,23.6-22,33.7-30.7,53.2-37.5,16.6-5.8,80-21.9,130.3,16,22,16.6,33.9,38.1,40.4,54.1"/>
+        <circle cx="293.3" cy="51.1" r="2.6"/>
+        <g>
+          <path class="cls-7" d="M293.3,50.9c28.2-13.3,69.1-32.7,69.1-32.7"/>
+          <g>
+            <path class="cls-5" d="M293.3,50.9c20.5-9.7,47.8-22.6,61.1-28.9"/>
+            <polygon points="353.8 25.5 362.4 18.2 351.4 20.2 353.8 25.5"/>
+          </g>
+        </g>
+        <g>
+          <line class="cls-6" x1="408.1" y1="47.6" x2="487.3" y2="77.8"/>
+          <g>
+            <line class="cls-5" x1="408.1" y1="47.6" x2="479" y2="74.7"/>
+            <polygon points="476.1 76.7 487.3 77.8 478.2 71.2 476.1 76.7"/>
+          </g>
+        </g>
+        <g class="cls-3">
+          <g class="cls-3">
+            <text class="cls-4" transform="translate(362.4 13.5)"><tspan x="0" y="0">α</tspan></text>
+          </g>
+          <g class="cls-3">
+            <text class="cls-1" transform="translate(376.1 13.5)"><tspan x="0" y="0">(s)</tspan></text>
+          </g>
+        </g>
+        <g class="cls-3">
+          <g class="cls-3">
+            <text class="cls-4" transform="translate(473.4 95.1)"><tspan x="0" y="0">α</tspan></text>
+          </g>
+          <g class="cls-3">
+            <text class="cls-1" transform="translate(487.1 95.1)"><tspan x="0" y="0">(s+Δs)</tspan></text>
+          </g>
+        </g>
+        <g class="cls-3">
+          <g class="cls-3">
+            <text class="cls-1" transform="translate(293.3 64.5)"><tspan x="0" y="0">s</tspan></text>
+          </g>
+        </g>
+        <g class="cls-3">
+          <g class="cls-3">
+            <text class="cls-1" transform="translate(370.4 66.5)"><tspan x="0" y="0">s+Δs</tspan></text>
+          </g>
+        </g>
+        <circle cx="406" cy="46.7" r="2.6"/>
+        <g class="cls-3">
+          <g class="cls-3">
+            <text class="cls-4" transform="translate(667.8 141)"><tspan x="0" y="0">α</tspan></text>
+          </g>
+          <g class="cls-3">
+            <text class="cls-1" transform="translate(681.5 141)"><tspan x="0" y="0">(s+Δs)</tspan></text>
+          </g>
+        </g>
+        <g class="cls-3">
+          <g class="cls-3">
+            <text class="cls-4" transform="translate(696.2 88.1)"><tspan x="0" y="0">α</tspan></text>
+          </g>
+          <g class="cls-3">
+            <text class="cls-1" transform="translate(709.9 88.1)"><tspan x="0" y="0">(s+Δs)-</tspan></text>
+          </g>
+          <g class="cls-3">
+            <text class="cls-4" transform="translate(774.3 88.1)"><tspan x="0" y="0">α</tspan></text>
+          </g>
+          <g class="cls-3">
+            <text class="cls-1" transform="translate(788 88.1)"><tspan x="0" y="0">(s)</tspan></text>
+          </g>
+        </g>
+        <g class="cls-3">
+          <g class="cls-3">
+            <text class="cls-4" transform="translate(648.4 47.8)"><tspan x="0" y="0">α</tspan></text>
+          </g>
+          <g class="cls-3">
+            <text class="cls-1" transform="translate(662.1 47.8)"><tspan x="0" y="0">(s)</tspan></text>
+          </g>
+        </g>
+        <path class="cls-5" d="M634.6,81.6c3,.9,5.4,3.7,6,7.2.7,3.7-.6,7.5-3.3,9.7"/>
+        <g class="cls-3">
+          <g class="cls-3">
+            <text class="cls-2" transform="translate(643.6 96.4)"><tspan x="0" y="0">Δθ</tspan></text>
+          </g>
+        </g>
+        <g>
+          <path class="cls-5" d="M676.5,112.5c-18.5-6.6-61.1-21.7-61.3-21.8"/>
+          <polygon points="675.6 109.1 684.8 115.4 673.7 114.5 675.6 109.1"/>
+        </g>
+        <g>
+          <line class="cls-5" x1="681.8" y1="59.9" x2="684.4" y2="106.6"/>
+          <polygon points="681.3 104.8 684.8 115.4 687.1 104.4 681.3 104.8"/>
+        </g>
+        <g>
+          <path class="cls-5" d="M674.5,63.5c-17.9,8.1-59.1,26.7-59.2,26.8"/>
+          <polygon points="671.5 61.7 682.5 59.9 673.9 67 671.5 61.7"/>
+        </g>
+        <g class="cls-3">
+          <g class="cls-3">
+            <text class="cls-2" transform="translate(600.2 95.2)"><tspan x="0" y="0">O</tspan></text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;曲线方向向量的转动</p></div>
+<p>  把曲线 \(C\) 上所有的单位切向量 \(\bm{\alpha}(s)\) 平行移动，使它们的起点都放在原点 \(O\) 处，则这些向量的端点便描出单位球面上的一条曲线，于是由弧长公式 \(L=R\theta\) ，切向量 \(\bm{\alpha}(s+\Delta s)\) 和 \(\bm{\alpha}(s)\) 之间的夹角 \(\Delta\theta\) 是在单位球面上从 \(\bm{\alpha}(s+\Delta s)\) 和 \(\bm{\alpha}(s)\) 的大圆弧的弧长，而 \(|\bm{\alpha}(s+\Delta s)-\bm{\alpha}(s)|\) 正好是该角所对的弦长，所以可推导出（注意由 \(\bm{\alpha}(s)\) 的定义可知其模长恒为 \(1\) ）</p>
+<span id="20241018001406CST"></span>\[
+\begin{aligned}
+\left|\frac{\mathrm{d}\bm{\alpha}}{\mathrm{d}s}\right|=&\lim\limits_{\Delta s \to 0}\frac{|\bm{\alpha}(s+\Delta s)-\bm{\alpha}(s)|}{|\Delta s|}\\[15pt]
+=&\lim\limits_{\Delta s \to 0}\frac{2|\bm{\alpha}(s)|\left|\sin \cfrac{\Delta\theta}{2}\right|}{|\Delta s|}\\[15pt]
+=&\lim\limits_{\Delta s \to 0}\frac{2\left|\sin \cfrac{\Delta\theta}{2}\right|}{|\Delta s|}\\[15pt]
+=&\lim\limits_{\Delta s \to 0}\left|\frac{\Delta\theta}{\Delta s}\right|
+\end{aligned}
+\tag{36}
+    \]
+<p>  最有一步使用了 \(\sin x \backsim x\) （见<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">等价无穷小</a>）。证毕。</p>
 
     </div>
 </section>
@@ -1436,7 +1637,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 
 
         <span>
-            最后更新于 Oct 16, 2024 21:53 CST
+            最后更新于 Oct 18, 2024 01:01 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1592,7 +1793,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
             
             
         
-        <span>本图书馆累计发布了10篇文章 共80628字</span>
+        <span>本图书馆累计发布了10篇文章 共81088字</span>
     </section>
 
     <section class="site-visit-count">
