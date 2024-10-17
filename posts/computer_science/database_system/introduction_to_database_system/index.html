@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库系统概述与基本结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-10-17T20:04:08&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-10-17T20:12:19&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="数据库系统（一）：数据库系统概论">
 <meta name="twitter:description" content="数据库系统概述与基本结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -630,7 +630,11 @@
             <li><a href="#数据的完整性约束条件">数据的完整性约束条件</a></li>
           </ol>
         </li>
-        <li><a href="#常用数据模型">常用数据模型</a></li>
+        <li><a href="#常用数据模型">常用数据模型</a>
+          <ol>
+            <li><a href="#层次模型">层次模型</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -947,7 +951,7 @@
 </svg>
 
             <time class="article-words">
-                13717 字
+                14422 字
             </time>
         </div>
 
@@ -962,7 +966,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 28 分钟
+                    阅读时长: 29 分钟
                 </time>
             </div>
         
@@ -1541,10 +1545,18 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">STUDENT</span><span class="p">(</span><span class="n">Sno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">Ssex</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Major</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">STUDENT</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Sno</span><span class="w">     </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Sname</span><span class="w">   </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Ssex</span><span class="w">    </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Sage</span><span class="w">    </span><span class="nb">SMALLINT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Major</span><span class="w">   </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">AWARD</span><span class="p">(</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="n">Details</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2000</span><span class="p">));</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -2018,6 +2030,20 @@
     </g>
   </g>
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;基本层次联系</p></div>
+<h4 id="层次模型">层次模型
+</h4><p>  层次模型是数据库系统中最早出现的数据模型，层次数据库系统采用层次模型作为数据的组织方式。层次数据库系统的典型代表是IBM公司的IMS（Information Management System），这是1968年IBM公司推出的第一个大型商用数据库管理系统，曾经得到广泛的使用。<br>
+  层次模型用树形结构来表示各类实体以及实体间的联系。现实世界中许多实体之间的联系本来就呈现出一种很自然的层次关系，如行政机构、家族关系等。</p>
+<p><strong>1. 层次模型的数据结构</strong></p>
+<p>  在数据库中定义满足下面两个条件的基本层次联系的集合为层次模型：</p>
+<ol>
+<li>有且只有一个结点没有双亲结点，这个结点称为根结点。</li>
+<li>根以外的其他结点有且只有一个双亲结点。</li>
+</ol>
+<p>  在层次模型中，每个结点表示一个记录类型，记录类型之间的联系用结点之间的连线（有向边）表示，这种联系是父子之间的一对多的联系。这就使得层次数据库系统只能处理一对多的实体联系。<br>
+  每个记录类型可包含若干个字段，这里记录类型描述的是实体，字段描述实体的属性。各个记录类型及其字段都必须命名。各个记录类型、同一记录类型中各个字段不能同名。每个记录类型可以定义一个排序字段，也称为<strong>码字段</strong>，如果定义该排序字段的值是唯一的，则它能唯一地标识一个记录值。<br>
+  一个层次模型在理论上可以包含任意有限个记录类型和字段，但任何实际的系统都会因为存储容量或实现复杂度而限制层次模型中包含的记录类型个数和字段的个数。<br>
+  在层次模型中，同一双亲的子女结点称为<strong>兄弟结点（twin或sibling）</strong>，没有子女结点的结点称为叶结点。<span style="color:red;">[未知图片引用]</span>给出了一个层次模型的例子。其中， \(R_1\) 为根结点； \(R_2\) 和 \(R_3\) 为兄弟结点，是 \(R_1\) 的子女结点； \(R_4\) 和 \(R_5\) 为兄弟结点，是 \(R_2\) 的子女结点； \(R_3\) 、 \(R_4\) 和 \(R_5\) 为叶结点。</p>
+
 
     </div>
 </section>
@@ -2051,7 +2077,7 @@
 
 
         <span>
-            最后更新于 Oct 17, 2024 20:04 CST
+            最后更新于 Oct 17, 2024 20:12 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2207,7 +2233,7 @@
             
             
         
-        <span>本图书馆累计发布了10篇文章 共79788字</span>
+        <span>本图书馆累计发布了10篇文章 共80493字</span>
     </section>
 
     <section class="site-visit-count">
