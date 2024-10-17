@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 17 Oct 2024 20:13:34 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 17 Oct 2024 20:50:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（一）：自然语言处理概论</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/introduction_to_natural_language_processing/</link>
         <pubDate>Tue, 15 Oct 2024 19:05:40 +0800</pubDate>
@@ -1233,8 +1233,76 @@
 &lt;p&gt;  在层次模型中，每个结点表示一个记录类型，记录类型之间的联系用结点之间的连线（有向边）表示，这种联系是父子之间的一对多的联系。这就使得层次数据库系统只能处理一对多的实体联系。&lt;br&gt;
   每个记录类型可包含若干个字段，这里记录类型描述的是实体，字段描述实体的属性。各个记录类型及其字段都必须命名。各个记录类型、同一记录类型中各个字段不能同名。每个记录类型可以定义一个排序字段，也称为&lt;strong&gt;码字段&lt;/strong&gt;，如果定义该排序字段的值是唯一的，则它能唯一地标识一个记录值。&lt;br&gt;
   一个层次模型在理论上可以包含任意有限个记录类型和字段，但任何实际的系统都会因为存储容量或实现复杂度而限制层次模型中包含的记录类型个数和字段的个数。&lt;br&gt;
-  在层次模型中，同一双亲的子女结点称为&lt;strong&gt;兄弟结点（twin或sibling）&lt;/strong&gt;，没有子女结点的结点称为叶结点。&lt;span style=&#34;color:red;&#34;&gt;[未知图片引用]&lt;/span&gt;给出了一个层次模型的例子。其中， \(R_1\) 为根结点； \(R_2\) 和 \(R_3\) 为兄弟结点，是 \(R_1\) 的子女结点； \(R_4\) 和 \(R_5\) 为兄弟结点，是 \(R_2\) 的子女结点； \(R_3\) 、 \(R_4\) 和 \(R_5\) 为叶结点。&lt;/p&gt;
-
+  在层次模型中，同一双亲的子女结点称为&lt;strong&gt;兄弟结点（twin或sibling）&lt;/strong&gt;，没有子女结点的结点称为叶结点。&lt;a class=&#34;link&#34; href=&#34;#20241017200708CST&#34;&gt;图9&lt;/a&gt;给出了一个层次模型的例子。其中， \(R_1\) 为根结点； \(R_2\) 和 \(R_3\) 为兄弟结点，是 \(R_1\) 的子女结点； \(R_4\) 和 \(R_5\) 为兄弟结点，是 \(R_2\) 的子女结点； \(R_3\) 、 \(R_4\) 和 \(R_5\) 为叶结点。&lt;/p&gt;
+&lt;span id=&#34;20241017200708CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 200.9756&#34;&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(513.1897 21.6234)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;根结点&lt;/tspan&gt;&lt;/text&gt;
+    &lt;g&gt;
+      &lt;rect x=&#34;440.4162&#34; y=&#34;.5&#34; width=&#34;62.5873&#34; height=&#34;29.7143&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;g&gt;
+        &lt;text transform=&#34;translate(462.4368 21.6237)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;R&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text transform=&#34;translate(475.7362 23.6362) scale(.5151 .583)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 20.3719px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;g&gt;
+      &lt;rect x=&#34;354.4625&#34; y=&#34;73.8625&#34; width=&#34;62.5873&#34; height=&#34;29.7143&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;g&gt;
+        &lt;text transform=&#34;translate(376.4831 94.9863)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;R&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text transform=&#34;translate(389.7826 96.7896) scale(.4765 .583)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 22.0249px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+    &lt;g&gt;
+      &lt;rect x=&#34;526.3699&#34; y=&#34;73.8625&#34; width=&#34;62.5873&#34; height=&#34;29.7143&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;g&gt;
+        &lt;text transform=&#34;translate(548.3905 94.9862)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;R&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text transform=&#34;translate(561.6898 95.3009) scale(.583)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 18px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+    &lt;text transform=&#34;translate(435.71 94.9861)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;兄弟结点&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;g&gt;
+      &lt;rect x=&#34;274.7328&#34; y=&#34;147.225&#34; width=&#34;62.5873&#34; height=&#34;29.7143&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;g&gt;
+        &lt;text transform=&#34;translate(296.7535 168.3488)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;R&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text transform=&#34;translate(310.0528 168.6634) scale(.583)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 18px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;4&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+    &lt;g&gt;
+      &lt;rect x=&#34;434.1921&#34; y=&#34;147.225&#34; width=&#34;62.5873&#34; height=&#34;29.7143&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;g&gt;
+        &lt;text transform=&#34;translate(456.2127 168.3488)&#34; style=&#34;font-family: &amp;apos;KaTeX_Main-Italic&amp;apos;, KaTeX_Main; font-size: 18px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;R&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text transform=&#34;translate(469.5121 168.6634) scale(.583)&#34; style=&#34;font-family: &amp;apos;KaTeX_Math-Italic&amp;apos;, KaTeX_Math; font-size: 18px; font-style: italic;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;5&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+    &lt;text transform=&#34;translate(349.756 167.7162)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;兄弟结点&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(531.3869 124.7849)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;叶节点&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(280.2204 196.4039)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;叶节点&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(442.1013 196.4042)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;叶节点&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;polyline points=&#34;471.7098 30.2143 471.7098 47.4048 385.7561 47.4048 385.7561 67.8928&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;382.053 65.0842 385.7561 66.6574 389.4593 65.0842 385.7561 73.8625 382.053 65.0842&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;polyline points=&#34;471.7098 47.4048 557.6635 47.4048 557.6635 67.8928&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;553.9604 65.0842 557.6635 66.6574 561.3666 65.0842 557.6635 73.8625 553.9604 65.0842&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;polyline points=&#34;385.7561 102.961 385.7561 120.1515 306.0265 120.1515 306.0265 141.2553&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;302.3234 138.4467 306.0265 140.0199 309.7296 138.4467 306.0265 147.225 302.3234 138.4467&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;polyline points=&#34;385.7561 120.1515 465.4858 120.1515 465.4858 141.2553&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;461.7827 138.4467 465.4858 140.0199 469.1889 138.4467 465.4858 147.225 461.7827 138.4467&#34;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图9&amp;emsp;一个层次模型的示例&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;  从&lt;a class=&#34;link&#34; href=&#34;#20241017200708CST&#34;&gt;图9&lt;/a&gt;上可以看出层次模型像一棵倒立的树，结点的双亲是唯一的。&lt;br&gt;
+  层次模型的一个基本的特点是，任何一个给定的记录值只能按其层次路径查看，没有一个子女记录值能够脱离双亲记录值而独立存在。&lt;/p&gt;
 </description>
         </item>
         <item>
