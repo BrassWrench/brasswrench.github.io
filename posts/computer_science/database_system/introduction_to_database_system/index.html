@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/'>
 
-<link rel="stylesheet" href="/scss/style.min.5f6a1ebad1e9554e7a9fe11a4f9b406fab8859aa930d5395f5e54e88747db3ab.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.6476ae1ce9f265ee8a26ff8bc7a03e1a7bf5cc1b8bfd2ba5827c25a7172927ed.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库系统概述与基本结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-10-17T13:21:45&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-10-17T16:49:11&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="数据库系统（一）：数据库系统概论">
 <meta name="twitter:description" content="数据库系统概述与基本结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -604,6 +604,14 @@
             <li><a href="#数据库系统阶段">数据库系统阶段</a></li>
           </ol>
         </li>
+        <li><a href="#数据库系统的特点">数据库系统的特点</a>
+          <ol>
+            <li><a href="#数据结构化">数据结构化</a></li>
+            <li><a href="#数据的共享性高冗余度低且易扩充">数据的共享性高、冗余度低且易扩充</a></li>
+            <li><a href="#数据独立性高">数据独立性高</a></li>
+            <li><a href="#数据由数据库管理系统统一管理和控制">数据由数据库管理系统统一管理和控制</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -920,7 +928,7 @@
 </svg>
 
             <time class="article-words">
-                5041 字
+                9090 字
             </time>
         </div>
 
@@ -935,7 +943,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 19 分钟
                 </time>
             </div>
         
@@ -1140,7 +1148,7 @@
 <h3 id="数据管理技术的产生和发展">数据管理技术的产生和发展
 </h3><p>  数据库技术是应数据管理任务的需要而产生的。数据管理是指对数据进行分类、组织、编码、存储、检索和维护，它是数据处理的中心问题。而数据的处理是指对各种数据进行收集、存储、加工和传播的一系列活动的总和。<br>
   在应用需求的推动下，在计算机硬件、软件发展的基础上，数据管理技术经历了人工管理、文件系统、数据库系统三个阶段。这三个阶段的特点及其比较如下表所示。</p>
-<span id="20241017110434CST"></span><div class="table-wrapper"><table>
+<span id="20241017110434CST"></span><div class="normal-table"><div class="table-wrapper"><table>
     <tr>
         <th colspan="2"></th>
         <th>人工管理阶段</th>
@@ -1210,7 +1218,7 @@
         <td>由数据库管理系统提供数据安全性、完整性，并发控制和恢复能力</td>
     </tr>
 </table></div>
-<p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;数据管理三个阶段的比较</p>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;数据管理三个阶段的比较</p>
 <h4 id="人工管理阶段">人工管理阶段
 </h4><p>  20世纪50年代中期以前，计算机主要用于科学计算。当时的硬件状况是，外存只有纸带、卡片、磁带，没有磁盘等直接存取的存储设备；软件状况是，没有操作系统，没有管理数据的专门软件；数据处理方式是批处理。人工管理数据具有如下特点：</p>
 <p><strong>1. 数据不保存</strong></p>
@@ -1382,6 +1390,408 @@
 </h4><p>  20世纪60年代后期以来，计算机管理的对象规模越来越大，应用范围越来越广泛，数据量急剧增长，同时多种应用、多种语言互相覆盖地共享数据集合的要求越来越强烈。<br>
   这时硬件已有大容量磁盘，硬件价格下降；软件则价格上升，为编制和维护系统软件及应用程序所需的成本相对增加；在处理方式上，联机实时处理要求更多，并开始提出和考虑分布处理。在这种背景下，以文件系统作为数据管理手段已经不能满足应用的需求，于是为解决多用户、多应用共享数据的需求，使数据为尽可能多的应用服务，数据库技术便应运而生，出现了统一管理数据的专门软件系统&mdash;&mdash;数据库管理系统。<br>
   用数据库系统来管理数据比文件系统具有明显的优点，从文件系统到数据库系统标志着数据管理技术的飞跃。</p>
+<h3 id="数据库系统的特点">数据库系统的特点
+</h3><p>  下面首先通过一个简单的例子&mdash;&ndash;学生学籍管理系统来比较文件系统和数据库系统的差异，从而阐述数据库系统的特点。</p>
+<p>  <span id="20241017145814CST"></span><strong>例1</strong>：设一个学生的信息包括学号、姓名、性别、年龄、专业和奖励。部分学生的情况如<a class="link" href="#20241017145939CST">表2</a>所示。假设该学籍管理系统具有录入学生信息、根据学号可以找到一个学生信息等功能。</p>
+<span id="20241017145939CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">学号</th>
+          <th style="text-align: center">姓名</th>
+          <th style="text-align: center">性别</th>
+          <th style="text-align: center">年龄</th>
+          <th style="text-align: center">专业</th>
+          <th style="text-align: center">奖励</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">20100001</td>
+          <td style="text-align: center">史玉明</td>
+          <td style="text-align: center">女</td>
+          <td style="text-align: center">20</td>
+          <td style="text-align: center">计算机</td>
+          <td style="text-align: center">2011校奖学金，2012国家奖学金</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">20100100</td>
+          <td style="text-align: center">李明虎</td>
+          <td style="text-align: center">男</td>
+          <td style="text-align: center">21</td>
+          <td style="text-align: center">机械</td>
+          <td style="text-align: center">2012校优秀学生</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">20100234</td>
+          <td style="text-align: center">张翔</td>
+          <td style="text-align: center">男</td>
+          <td style="text-align: center">21</td>
+          <td style="text-align: center">化工</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表2&emsp;学生一览表</p>
+<p><strong>1. 采用文件系统实现学籍管理</strong></p>
+<p>  首先是如何存储学生数据。计算机操作系统实现了文件系统，可以把每个学生都具备的信息采用<strong>定长记录方式</strong>存放在一个“学生基本信息”文件中。有关奖励的数据有的学生较多，有的学生没有，因此采用<strong>变长记录方式</strong>把它存放在另外一个“奖励”文件中。“学生基本信息”文件的记录包括学号、姓名、性别、年龄、专业、位置和长度等字段，如<a class="link" href="#20241017150719CST">表3</a>所示。其中位置和长度描述的是另一个奖励文件（<a class="link" href="#20241017152311CST">表4</a>所示）中记录的开始位置和长度。文件系统管理的文件是流式文件，或者说只是一些字节流。因此，<a class="link" href="#20241017150719CST">表3</a>和<a class="link" href="#20241017152311CST">表4</a>是为了方便程序员理解的结构。程序员必须把它们在应用程序中加以说明和描述。</p>
+<span id="20241017150719CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+          <th>专业</th>
+          <th>位置</th>
+          <th>长度</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>20100001</td>
+          <td>史玉明</td>
+          <td>女</td>
+          <td>20</td>
+          <td>计算机</td>
+          <td>0</td>
+          <td>30</td>
+      </tr>
+      <tr>
+          <td>20100100</td>
+          <td>李明虎</td>
+          <td>男</td>
+          <td>21</td>
+          <td>机械</td>
+          <td>30</td>
+          <td>15</td>
+      </tr>
+      <tr>
+          <td>20100234</td>
+          <td>张翔</td>
+          <td>男</td>
+          <td>21</td>
+          <td>化工</td>
+          <td>45</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表3&emsp;“学生基本信息”文件的结构和内容</p>
+<span id="20241017152311CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>奖励</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2011 校奖学金，2012 国家奖学金</td>
+      </tr>
+      <tr>
+          <td>2012 校优秀学生</td>
+      </tr>
+      <tr>
+          <td>···</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表4&emsp;“奖励”文件的结构内容</p>
+<p>  确定了学生数据的存储方式后，需要编写程序来实现数据的录入功能和查询功能。录入功能的基本过程包括从键盘读入学生信息，把基本信息写到&quot;学生基本信息”文件中，把奖励情况写到“奖励”文件中。特别要注意的是，为了能正确地表达“学生基本信息”文件中一条记录和“奖励”文件中记录的对应关系，在程序中要把奖励情况在文件中的开始位置和长度再写回&quot;学生基本信息”文件中。<br>
+  查询功能采用顺序查找方法。首先从“学生基本信息”文件中读入第1条记录，然后比较学号字段的值是否和要查找的学号相同。如果相同，读出该学生的信息，并根据位置字段和长度字段的值到“奖励”文件中读出该学生的奖励信息，查找过程结束；如果不相同，则从“学生基本信息”文件中读入下一条记录，直到找到该学号的记录，或者读到文件末尾也没有该学号的学生为止。</p>
+<p><strong>2. 采用数据库系统实现学籍管理</strong></p>
+<p>  首先在数据库中建立两张表：<code>STUDENT</code>存放学生的基本信息，<code>AWARD</code>存放学生的奖励情况。这可以用数据库管理系统的两条<code>CREATE</code>语句来实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">STUDENT</span><span class="p">(</span><span class="n">Sno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">Ssex</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Major</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">AWARD</span><span class="p">(</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="n">Details</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2000</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  建立好表结构后，向数据库管理系统提交下面的两条插入命令就可以把学生的基本信 息和奖励情况保存到<code>STUDENT</code>和<code>AWARD</code>表中，完成录入功能。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">STUDENT</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="p">,</span><span class="n">Sage</span><span class="p">,</span><span class="w"> </span><span class="n">Major</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;2O1OOOO1&#39;</span><span class="p">,</span><span class="s1">&#39;史玉明&#39;</span><span class="p">,</span><span class="s1">&#39;女&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;计算机&#39;</span><span class="p">)</span><span class="w"> </span><span class="cm">/*插入学生的基本信息*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">AWARD</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Deteils</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;20100001&#39;</span><span class="p">,</span><span class="s1">&#39;2011校奖学金,2012国家奖学金&#39;</span><span class="p">)</span><span class="w"> </span><span class="cm">/*插入学生获得的奖励*/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  查询功能可用一条查询语句实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="p">,</span><span class="w"> </span><span class="n">Major</span><span class="p">,</span><span class="w"> </span><span class="n">Details</span><span class="w"> </span><span class="cm">/*查询学号为20100001 学生的信息*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">STUDENT</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">AWARD</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">B</span><span class="p">.</span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;20100001&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  可以看出，无论采用文件系统还是数据库系统都可以实现本例中学籍管理的功能。但是，使用文件系统时，程序员要关注记录的结构和不同文件中记录之间的联系，使用文件系统提供的<code>fopen</code>（打开）、<code>fread</code>（读）、<code>fwrite</code>（写）、<code>fseek</code>（移动读写位置）、<code>fclose</code>（关闭）等操作来编程，工作量大、编程复杂，且开发速度慢；而数据库系统提供了功能强大的操作，如查询操作只需要写一条语句就可以实现，程序员的开发效率大大提高。</p>
+<p>  与人工管理和文件系统相比，数据库系统的特点主要有一下几个方面。</p>
+<h4 id="数据结构化">数据结构化
+</h4><p>  数据库系统实现整体数据的结构化，这是数据库的主要特征之一，也是数据库系统与文件系统的本质区别。<br>
+  在文件系统中，文件中的记录内部具有结构，但是记录的结构和记录之间的联系被固化在程序中，需要由程序员加以维护。这种工作模式既加重了程序员的负担，又不利于结构的变动。<br>
+  所谓“整体”结构化是指数据库中的数据不再仅仅针对某一个应用，而是面向整个组织或企业：不仅数据内部是结构化的，而且整体是结构化的，数据之间是具有联系的。也就是说，不仅要考虑某个应用的数据结构，还要考虑整个组织的数据结构。例如，一个学校的信息系统中不仅要考虑教务处的课程管理、学生选课管理、成绩管理，还要考虑学生处的学生学籍管理，同时还要考虑研究生院的研究生管理、人事处的教员人事管理、科研处的科研管理等。因此，学校信息系统中的学生数据就要面向各个处室的应用，而不仅仅是教务处的一个学生选课应用。可以参照下图为该校的信息系统组织其中的学生数据。</p>
+<span id="20241017145652CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 258.9">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        font-family: NotoSerifSC-ExtraLight, 'Noto Serif SC';
+        font-size: 18px;
+        font-weight: 200;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g>
+    <g id="_图层_1" data-name="图层_1">
+      <g>
+        <g>
+          <rect class="cls-1" x="41.6" y="213.8" width="152.4" height="38.4"/>
+          <text class="cls-2" transform="translate(50.3 240.1)"><tspan x="0" y="0">日期</tspan></text>
+          <text class="cls-2" transform="translate(109.8 240.1)"><tspan x="0" y="0">奖惩条目</tspan></text>
+          <path class="cls-1" d="M83.7,233"/>
+          <line class="cls-1" x1="97.7" y1="213.8" x2="97.7" y2="252.2"/>
+        </g>
+        <g>
+          <rect class="cls-1" x="210.1" y="213.8" width="277.3" height="38.4"/>
+          <text class="cls-2" transform="translate(218.8 240.1)"><tspan x="0" y="0">姓名</tspan></text>
+          <text class="cls-2" transform="translate(278.3 240.1)"><tspan x="0" y="0">与本人关系</tspan></text>
+          <path class="cls-1" d="M252.2,233"/>
+          <line class="cls-1" x1="266.2" y1="213.8" x2="266.2" y2="252.2"/>
+          <text class="cls-2" transform="translate(398.9 240.4)"><tspan x="0" y="0">详细情况</tspan></text>
+          <line class="cls-1" x1="382.8" y1="213.8" x2="382.8" y2="252.2"/>
+        </g>
+        <g>
+          <rect class="cls-1" x="563.7" y="214.7" width="168.5" height="38.4"/>
+          <text class="cls-2" transform="translate(572.4 240.1)"><tspan x="0" y="0">课程号</tspan></text>
+          <text class="cls-2" transform="translate(649.9 240.1)"><tspan x="0" y="0">课程名称</tspan></text>
+          <path class="cls-1" d="M605.8,233"/>
+          <line class="cls-1" x1="636.8" y1="213.8" x2="636.8" y2="252.2"/>
+        </g>
+        <g>
+          <rect class="cls-1" x="41.6" y="108.8" width="244.5" height="38.4"/>
+          <text class="cls-2" transform="translate(50.3 135)"><tspan x="0" y="0">家庭出身</tspan></text>
+          <text class="cls-2" transform="translate(143.8 135.1)"><tspan x="0" y="0">籍贯</tspan></text>
+          <path class="cls-1" d="M83.7,128"/>
+          <line class="cls-1" x1="131.7" y1="108.8" x2="131.7" y2="147.1"/>
+          <text class="cls-2" transform="translate(202.4 135.4)"><tspan x="0" y="0">政治面貌</tspan></text>
+          <line class="cls-1" x1="191.3" y1="108.8" x2="191.3" y2="147.1"/>
+        </g>
+        <g>
+          <rect class="cls-1" x="314.4" y="108.8" width="188.4" height="38.4"/>
+          <text class="cls-2" transform="translate(323.1 135)"><tspan x="0" y="0">日期</tspan></text>
+          <text class="cls-2" transform="translate(382.6 135.1)"><tspan x="0" y="0">学校</tspan></text>
+          <path class="cls-1" d="M356.5,128"/>
+          <line class="cls-1" x1="371.5" y1="108.8" x2="371.5" y2="147.1"/>
+          <text class="cls-2" transform="translate(439.3 135.4)"><tspan x="0" y="0">学历名</tspan></text>
+          <line class="cls-1" x1="428.1" y1="108.8" x2="428.1" y2="147.1"/>
+        </g>
+        <g>
+          <rect class="cls-1" x="563.7" y="109.2" width="258.4" height="38.4"/>
+          <text class="cls-2" transform="translate(572.4 135.5)"><tspan x="0" y="0">学号</tspan></text>
+          <text class="cls-2" transform="translate(631.9 135.5)"><tspan x="0" y="0">课程号</tspan></text>
+          <path class="cls-1" d="M605.8,128.4"/>
+          <line class="cls-1" x1="620.8" y1="109.2" x2="620.8" y2="147.6"/>
+          <text class="cls-2" transform="translate(711.6 135.8)"><tspan x="0" y="0">学期</tspan></text>
+          <line class="cls-1" x1="698.4" y1="109.2" x2="698.4" y2="147.6"/>
+          <text class="cls-2" transform="translate(773.7 135.8)"><tspan x="0" y="0">成绩</tspan></text>
+          <line class="cls-1" x1="760.7" y1="108.8" x2="760.7" y2="147.1"/>
+        </g>
+        <g>
+          <rect class="cls-1" x="41.6" y="4.2" width="282.3" height="38.4"/>
+          <text class="cls-2" transform="translate(50.3 30.5)"><tspan x="0" y="0">学号</tspan></text>
+          <text class="cls-2" transform="translate(109.8 30.5)"><tspan x="0" y="0">姓名</tspan></text>
+          <path class="cls-1" d="M83.7,23.4"/>
+          <line class="cls-1" x1="98.7" y1="4.2" x2="98.7" y2="42.6"/>
+          <text class="cls-2" transform="translate(169.4 30.8)"><tspan x="0" y="0">性别</tspan></text>
+          <line class="cls-1" x1="156.3" y1="4.2" x2="156.3" y2="42.6"/>
+          <text class="cls-2" transform="translate(231.5 30.8)"><tspan x="0" y="0">年龄</tspan></text>
+          <line class="cls-1" x1="218.6" y1="3.7" x2="218.6" y2="42.1"/>
+          <line class="cls-1" x1="280" y1="4.2" x2="280" y2="42.5"/>
+          <text class="cls-2" transform="translate(293.2 30.1)"><tspan x="0" y="0">系</tspan></text>
+        </g>
+        <g>
+          <line class="cls-1" x1="68.3" y1="42.1" x2="68.3" y2="102.8"/>
+          <polygon points="64.6 100 68.3 101.6 72 100 68.3 108.8 64.6 100"/>
+        </g>
+        <text class="cls-2" transform="translate(74.5 97.8)"><tspan x="0" y="0">学生人事记录</tspan></text>
+        <g>
+          <line class="cls-1" x1="68.3" y1="147.1" x2="68.3" y2="207.8"/>
+          <polygon points="64.6 205 68.3 206.6 72 205 68.3 213.8 64.6 205"/>
+        </g>
+        <text class="cls-2" transform="translate(73.7 202)"><tspan x="0" y="0">奖惩情况记录</tspan></text>
+        <g>
+          <line class="cls-1" x1="237.1" y1="147.6" x2="237.1" y2="208.3"/>
+          <polygon points="233.4 205.4 237.1 207 240.9 205.4 237.1 214.2 233.4 205.4"/>
+        </g>
+        <text class="cls-2" transform="translate(242.6 202.4)"><tspan x="0" y="0">家庭成员记录</tspan></text>
+        <g>
+          <line class="cls-1" x1="590.4" y1="153.5" x2="590.4" y2="214.2"/>
+          <polygon points="586.7 156.3 590.4 154.8 594.1 156.3 590.4 147.6 586.7 156.3"/>
+        </g>
+        <text class="cls-2" transform="translate(595.9 202.4)"><tspan x="0" y="0">课程记录</tspan></text>
+        <g>
+          <polyline class="cls-1" points="187.5 43.4 187.5 82 341.2 82 341.2 102.8"/>
+          <polygon points="337.5 100 341.2 101.6 344.9 100 341.2 108.8 337.5 100"/>
+        </g>
+        <text class="cls-2" transform="translate(348.7 97.8)"><tspan x="0" y="0">学生学籍记录</tspan></text>
+        <g>
+          <polyline class="cls-1" points="302.3 43.4 302.3 63.5 590.4 63.5 590.4 102.8"/>
+          <polygon points="586.7 100 590.4 101.6 594.1 100 590.4 108.8 586.7 100"/>
+        </g>
+        <text class="cls-2" transform="translate(595.8 96.1)"><tspan x="0" y="0">学生选课记录</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;某学校信息系统中的学生数据</p></div>
+<p>  <a class="link" href="#20241017145652CST">图5</a>的数据组织方式为各部门的应用提供了必要的记录，使整体数据结构化了。这就要求在描述数据时不仅要描述数据本身，还要描述数据之间的联系。在数据库系统中，记录的结构和记录之间的联系由数据库管理系统维护，从而减轻了程序员的工作量，提高了工作效率。<br>
+  在数据库系统中，不仅数据是整体结构化的，而且存取数据的方式也很灵活，可以存取数据库中的某一个或一组数据项、一个记录或一组记录；而在文件系统中，数据的存取单位是记录，粒度不能细到数据项。</p>
+<h4 id="数据的共享性高冗余度低且易扩充">数据的共享性高、冗余度低且易扩充
+</h4><p>  数据库系统从整体角度看待和描述数据，数据不再面向某个应用而是面向整个系统，因此数据可以被多个用户、多个应用共享使用。数据共享可以大大减少数据冗余，节约存储空间。数据共享还能够避免数据之间的不相容性与不一致性。<br>
+  所谓数据的不一致性是指同一数据不同副本的值不一样。采用人工管理或文件系统管理时，由于数据被重复存储，当不同的应用使用和修改不同的副本时就很容易造成数据的不一致。在数据库中数据共享减少了由于数据冗余造成的不一致现象。<br>
+  由于数据面向整个系统，是有结构的数据，不仅可以被多个应用共享使用，而且容易增加新的应用，这就使得数据库系统弹性大，易于扩充，可以适应各种用户的要求。可以选取整体数据的各种子集用于不同的应用系统，当应用需求改变或增加时，只要重新选取不同的子集或加上一部分数据便可以满足新的需求。</p>
+<h4 id="数据独立性高">数据独立性高
+</h4><p>  <strong>数据独立性</strong>是借助数据库管理数据的一个显著优点，它已成为数据库领域中一个常用术语和重要概念，包括数据的物理独立性和逻辑独立性。<br>
+  <strong>物理独立性</strong>是指用户的应用程序与数据库中数据的物理存储是相互独立的。也就是说，数据在数据库中怎样存储是由数据库管理系统管理的，用户程序不需要了解，应用程序要处理的只是数据的逻辑结构，这样当数据的物理存储改变时应用程序不用改变。<br>
+  <strong>逻辑独立性</strong>是指用户的应用程序与数据库的逻辑结构是相互独立的。也就是说，数据的逻辑结构改变时用户程序也可以不变。<br>
+  数据独立性是由数据库管理系统提供的二级映像功能来保证的，将在后面的内容中进行讨论。<br>
+  数据与程序的独立把数据的定义从程序中分离出去，加上存取数据的方法又由数据库管理系统负责提供，从而简化了应用程序的编制，大大减少了应用程序的维护和修改。</p>
+<h4 id="数据由数据库管理系统统一管理和控制">数据由数据库管理系统统一管理和控制
+</h4><p>  数据库的共享将会带来数据库的安全隐患，而数据库的共享是<strong>并发的（concurrency）</strong>‌共享，即多个用户可以同时存取数据库中的数据，甚至可以同时存取数据库中同一个数据，这又会带来不同用户间相互干扰的隐患。另外，数据库中数据的正确与一致也必须得到保障。为此，数据库管理系统还必须提供以下几方面的数据控制功能。</p>
+<ol>
+<li>数据的安全性（security）保护。数据的安全性是指保护数据以防止不合法使用造成的数据泄密和破坏。每个用户只能按规定对某些数据以某些方式进行使用和处理。</li>
+<li>数据的完整性（integrity）检查。数据的完整性指数据的正确性、有效性和相容性。完整性检查将数据控制在有效的范围内，并保证数据之间满足一定的关系。</li>
+<li>并发（concurrency）控制。当多个用户的并发进程同时存取、修改数据库时，可能会发生相互干扰而得到错误的结果或使得数据库的完整性遭到破坏，因此必须对多用户的并发操作加以控制和协调。</li>
+<li>数据库恢复（recovery）。计算机系统的硬件故障、软件故障、操作员的失误以及故意破坏也会影响数据库中数据的正确性，甚至造成数据库部分或全部数据的丢失。数据库管理系统必须具有将数据库从错误状态恢复到某一己知的正确状态（亦称为完整状态或一致状态）的功能，这就是数据库的恢复功能。</li>
+</ol>
+<p>  数据库系统阶段应用程序与数据之间的对应关系可用<a class="link" href="#20241017164256CST">图6</a>表示。</p>
+<span id="20241017164256CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 243">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2, .cls-3 {
+        isolation: isolate;
+      }
+
+      .cls-3, .cls-4 {
+        font-family: NotoSerifSC-ExtraLight, 'Noto Serif SC';
+        font-size: 18px;
+        font-weight: 200;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g>
+    <g id="_图层_1" data-name="图层_1">
+      <g>
+        <polygon class="cls-1" points="499.2 76 423.8 76 386.1 119.3 423.8 162.6 499.2 162.6 536.9 119.3 499.2 76"/>
+        <text class="cls-4" transform="translate(434.5 114.1)"><tspan x="0" y="0">数据库</tspan><tspan x="-9" y="21.6">管理系统</tspan></text>
+        <g>
+          <rect class="cls-1" x="158.4" y="3.2" width="118.5" height="44.2"/>
+          <text class="cls-4" transform="translate(176.9 32.5)"><tspan x="0" y="0">应用程序1</tspan></text>
+        </g>
+        <g>
+          <rect class="cls-1" x="158.4" y="82.7" width="118.5" height="44.2"/>
+          <text class="cls-4" transform="translate(176.9 112)"><tspan x="0" y="0">应用程序2</tspan></text>
+        </g>
+        <g>
+          <circle class="cls-1" cx="161.1" cy="200.5" r="7.7"/>
+          <path class="cls-1" d="M142.2,238l9-7.4c-2.5-19.6,10-22.3,10-22.3l16.7,6.3"/>
+          <line class="cls-1" x1="161.1" y1="208.2" x2="174.6" y2="219.4"/>
+          <line class="cls-1" x1="151.1" y1="230.5" x2="161.1" y2="238"/>
+          <rect class="cls-1" x="177.8" y="195.3" width="99" height="19.2"/>
+          <polyline class="cls-1" points="276.9 214.7 268.2 226 169.2 226 178 214.7"/>
+        </g>
+        <g>
+          <circle cx="215.2" cy="169" r="1.9"/>
+          <circle cx="215.2" cy="158" r="1.9"/>
+          <circle cx="215.2" cy="147" r="1.9"/>
+        </g>
+        <line class="cls-1" x1="276.9" y1="25.3" x2="404.4" y2="98.3"/>
+        <line class="cls-1" x1="276.8" y1="104.8" x2="386.1" y2="119.3"/>
+        <line class="cls-1" x1="276.8" y1="200.5" x2="405.8" y2="141.9"/>
+        <g>
+          <ellipse class="cls-1" cx="662.2" cy="52.4" rx="59.3" ry="23.5"/>
+          <line class="cls-1" x1="602.9" y1="52.4" x2="602.9" y2="175.9"/>
+          <line class="cls-1" x1="721.4" y1="52.4" x2="721.4" y2="175.9"/>
+          <g class="cls-2">
+            <g class="cls-2">
+              <text class="cls-3" transform="translate(635.2 59.7)"><tspan x="0" y="0">数据库</tspan></text>
+            </g>
+          </g>
+          <path class="cls-1" d="M721.5,175.9c0,13-26.5,23.5-59.3,23.5s-59.3-10.5-59.3-23.5"/>
+          <rect class="cls-1" x="615.6" y="91.6" width="37.5" height="15.4"/>
+          <rect class="cls-1" x="615.6" y="123.8" width="37.5" height="15.4"/>
+          <rect class="cls-1" x="668.9" y="123.8" width="37.5" height="15.4"/>
+          <rect class="cls-1" x="643.5" y="156.6" width="37.5" height="15.4"/>
+          <g>
+            <path class="cls-1" d="M634.3,107c0,.6,0,6.2,0,10.8"/>
+            <polygon points="630.6 115 634.3 116.6 638 115 634.3 123.8 630.6 115"/>
+          </g>
+          <g>
+            <path class="cls-1" d="M644.3,139.2c.4,0,3,6.7,4.9,11.7"/>
+            <polygon points="644.8 149.7 648.8 149.8 651.7 147 651.4 156.6 644.8 149.7"/>
+          </g>
+          <g>
+            <line class="cls-1" x1="674" y1="139" x2="670.3" y2="150.9"/>
+            <polygon points="667.6 147.1 670.7 149.7 674.7 149.3 668.5 156.6 667.6 147.1"/>
+          </g>
+        </g>
+        <line class="cls-1" x1="536.9" y1="119.3" x2="602.9" y2="119.3"/>
+      </g>
+    </g>
+  </g>
+</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图6&emsp;数据库系统阶段应用程序与数据之间的对应关系</p></div>
+<p>  综上所述，数据库是长期存储在计算机内有组织、大量、共享的数据集合。它可以供各种用户共享，具有最小冗余度和较高的数据独立性。数据库管理系统在数据库建立、运用和维护时对数据库进行统一控制，以保证数据的完整性和安全性，并在多用户同时使用数据库时进行并发控制，在发生故障后对数据库进行恢复。<br>
+  数据库系统的出现使信息系统从以加工数据的程序为中心转向围绕共享的数据库为中心的新阶段。这样既便于数据的集中管理，又能简化应用程序的研制和维护，提高了数据的利用率和相容性，提高了决策的可靠性。<br>
+  目前，数据库已经成为现代信息系统的重要组成部分。具有数百G、数百T、甚至数百P字节的数据库已经普遍存在于科学技术、工业、农业、商业、服务业和政府部门的信息系统中。</p>
 
     </div>
 </section>
@@ -1415,7 +1825,7 @@
 
 
         <span>
-            最后更新于 Oct 17, 2024 13:21 CST
+            最后更新于 Oct 17, 2024 16:49 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1571,7 +1981,7 @@
             
             
         
-        <span>本图书馆累计发布了10篇文章 共71112字</span>
+        <span>本图书馆累计发布了10篇文章 共75161字</span>
     </section>
 
     <section class="site-visit-count">

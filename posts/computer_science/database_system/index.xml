@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 17 Oct 2024 13:21:45 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 17 Oct 2024 16:49:11 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（一）：数据库系统概论</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/</link>
         <pubDate>Tue, 15 Oct 2024 16:49:13 +0800</pubDate>
@@ -203,7 +203,7 @@
 &lt;h3 id=&#34;数据管理技术的产生和发展&#34;&gt;数据管理技术的产生和发展
 &lt;/h3&gt;&lt;p&gt;  数据库技术是应数据管理任务的需要而产生的。数据管理是指对数据进行分类、组织、编码、存储、检索和维护，它是数据处理的中心问题。而数据的处理是指对各种数据进行收集、存储、加工和传播的一系列活动的总和。&lt;br&gt;
   在应用需求的推动下，在计算机硬件、软件发展的基础上，数据管理技术经历了人工管理、文件系统、数据库系统三个阶段。这三个阶段的特点及其比较如下表所示。&lt;/p&gt;
-&lt;span id=&#34;20241017110434CST&#34;&gt;&lt;/span&gt;&lt;table&gt;
+&lt;span id=&#34;20241017110434CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
     &lt;tr&gt;
         &lt;th colspan=&#34;2&#34;&gt;&lt;/th&gt;
         &lt;th&gt;人工管理阶段&lt;/th&gt;
@@ -273,7 +273,7 @@
         &lt;td&gt;由数据库管理系统提供数据安全性、完整性，并发控制和恢复能力&lt;/td&gt;
     &lt;/tr&gt;
 &lt;/table&gt;
-&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp;数据管理三个阶段的比较&lt;/p&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp;数据管理三个阶段的比较&lt;/p&gt;
 &lt;h4 id=&#34;人工管理阶段&#34;&gt;人工管理阶段
 &lt;/h4&gt;&lt;p&gt;  20世纪50年代中期以前，计算机主要用于科学计算。当时的硬件状况是，外存只有纸带、卡片、磁带，没有磁盘等直接存取的存储设备；软件状况是，没有操作系统，没有管理数据的专门软件；数据处理方式是批处理。人工管理数据具有如下特点：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 数据不保存&lt;/strong&gt;&lt;/p&gt;
@@ -445,6 +445,408 @@
 &lt;/h4&gt;&lt;p&gt;  20世纪60年代后期以来，计算机管理的对象规模越来越大，应用范围越来越广泛，数据量急剧增长，同时多种应用、多种语言互相覆盖地共享数据集合的要求越来越强烈。&lt;br&gt;
   这时硬件已有大容量磁盘，硬件价格下降；软件则价格上升，为编制和维护系统软件及应用程序所需的成本相对增加；在处理方式上，联机实时处理要求更多，并开始提出和考虑分布处理。在这种背景下，以文件系统作为数据管理手段已经不能满足应用的需求，于是为解决多用户、多应用共享数据的需求，使数据为尽可能多的应用服务，数据库技术便应运而生，出现了统一管理数据的专门软件系统&amp;mdash;&amp;mdash;数据库管理系统。&lt;br&gt;
   用数据库系统来管理数据比文件系统具有明显的优点，从文件系统到数据库系统标志着数据管理技术的飞跃。&lt;/p&gt;
+&lt;h3 id=&#34;数据库系统的特点&#34;&gt;数据库系统的特点
+&lt;/h3&gt;&lt;p&gt;  下面首先通过一个简单的例子&amp;mdash;&amp;ndash;学生学籍管理系统来比较文件系统和数据库系统的差异，从而阐述数据库系统的特点。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241017145814CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例1&lt;/strong&gt;：设一个学生的信息包括学号、姓名、性别、年龄、专业和奖励。部分学生的情况如&lt;a class=&#34;link&#34; href=&#34;#20241017145939CST&#34;&gt;表2&lt;/a&gt;所示。假设该学籍管理系统具有录入学生信息、根据学号可以找到一个学生信息等功能。&lt;/p&gt;
+&lt;span id=&#34;20241017145939CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;学号&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;姓名&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;性别&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;年龄&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;专业&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;奖励&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;20100001&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;史玉明&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;女&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;20&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;计算机&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2011校奖学金，2012国家奖学金&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;20100100&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;李明虎&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;男&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;21&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;机械&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2012校优秀学生&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;20100234&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;张翔&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;男&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;21&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;化工&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;···&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;···&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;···&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;···&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;···&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;···&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;学生一览表&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 采用文件系统实现学籍管理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  首先是如何存储学生数据。计算机操作系统实现了文件系统，可以把每个学生都具备的信息采用&lt;strong&gt;定长记录方式&lt;/strong&gt;存放在一个“学生基本信息”文件中。有关奖励的数据有的学生较多，有的学生没有，因此采用&lt;strong&gt;变长记录方式&lt;/strong&gt;把它存放在另外一个“奖励”文件中。“学生基本信息”文件的记录包括学号、姓名、性别、年龄、专业、位置和长度等字段，如&lt;a class=&#34;link&#34; href=&#34;#20241017150719CST&#34;&gt;表3&lt;/a&gt;所示。其中位置和长度描述的是另一个奖励文件（&lt;a class=&#34;link&#34; href=&#34;#20241017152311CST&#34;&gt;表4&lt;/a&gt;所示）中记录的开始位置和长度。文件系统管理的文件是流式文件，或者说只是一些字节流。因此，&lt;a class=&#34;link&#34; href=&#34;#20241017150719CST&#34;&gt;表3&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241017152311CST&#34;&gt;表4&lt;/a&gt;是为了方便程序员理解的结构。程序员必须把它们在应用程序中加以说明和描述。&lt;/p&gt;
+&lt;span id=&#34;20241017150719CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;学号&lt;/th&gt;
+          &lt;th&gt;姓名&lt;/th&gt;
+          &lt;th&gt;性别&lt;/th&gt;
+          &lt;th&gt;年龄&lt;/th&gt;
+          &lt;th&gt;专业&lt;/th&gt;
+          &lt;th&gt;位置&lt;/th&gt;
+          &lt;th&gt;长度&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;20100001&lt;/td&gt;
+          &lt;td&gt;史玉明&lt;/td&gt;
+          &lt;td&gt;女&lt;/td&gt;
+          &lt;td&gt;20&lt;/td&gt;
+          &lt;td&gt;计算机&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+          &lt;td&gt;30&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;20100100&lt;/td&gt;
+          &lt;td&gt;李明虎&lt;/td&gt;
+          &lt;td&gt;男&lt;/td&gt;
+          &lt;td&gt;21&lt;/td&gt;
+          &lt;td&gt;机械&lt;/td&gt;
+          &lt;td&gt;30&lt;/td&gt;
+          &lt;td&gt;15&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;20100234&lt;/td&gt;
+          &lt;td&gt;张翔&lt;/td&gt;
+          &lt;td&gt;男&lt;/td&gt;
+          &lt;td&gt;21&lt;/td&gt;
+          &lt;td&gt;化工&lt;/td&gt;
+          &lt;td&gt;45&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;···&lt;/td&gt;
+          &lt;td&gt;···&lt;/td&gt;
+          &lt;td&gt;···&lt;/td&gt;
+          &lt;td&gt;···&lt;/td&gt;
+          &lt;td&gt;···&lt;/td&gt;
+          &lt;td&gt;···&lt;/td&gt;
+          &lt;td&gt;···&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表3&amp;emsp;“学生基本信息”文件的结构和内容&lt;/p&gt;
+&lt;span id=&#34;20241017152311CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;奖励&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2011 校奖学金，2012 国家奖学金&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2012 校优秀学生&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;···&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表4&amp;emsp;“奖励”文件的结构内容&lt;/p&gt;
+&lt;p&gt;  确定了学生数据的存储方式后，需要编写程序来实现数据的录入功能和查询功能。录入功能的基本过程包括从键盘读入学生信息，把基本信息写到&amp;quot;学生基本信息”文件中，把奖励情况写到“奖励”文件中。特别要注意的是，为了能正确地表达“学生基本信息”文件中一条记录和“奖励”文件中记录的对应关系，在程序中要把奖励情况在文件中的开始位置和长度再写回&amp;quot;学生基本信息”文件中。&lt;br&gt;
+  查询功能采用顺序查找方法。首先从“学生基本信息”文件中读入第1条记录，然后比较学号字段的值是否和要查找的学号相同。如果相同，读出该学生的信息，并根据位置字段和长度字段的值到“奖励”文件中读出该学生的奖励信息，查找过程结束；如果不相同，则从“学生基本信息”文件中读入下一条记录，直到找到该学号的记录，或者读到文件末尾也没有该学号的学生为止。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 采用数据库系统实现学籍管理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  首先在数据库中建立两张表：&lt;code&gt;STUDENT&lt;/code&gt;存放学生的基本信息，&lt;code&gt;AWARD&lt;/code&gt;存放学生的奖励情况。这可以用数据库管理系统的两条&lt;code&gt;CREATE&lt;/code&gt;语句来实现：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;STUDENT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ssex&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;SMALLINT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Major&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AWARD&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Details&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;VARCHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  建立好表结构后，向数据库管理系统提交下面的两条插入命令就可以把学生的基本信 息和奖励情况保存到&lt;code&gt;STUDENT&lt;/code&gt;和&lt;code&gt;AWARD&lt;/code&gt;表中，完成录入功能。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;STUDENT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ssex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Major&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VALUES&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;2O1OOOO1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;史玉明&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;女&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;计算机&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*插入学生的基本信息*/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AWARD&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Deteils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VALUES&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;20100001&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;2011校奖学金,2012国家奖学金&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*插入学生获得的奖励*/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  查询功能可用一条查询语句实现：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ssex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Major&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Details&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*查询学号为20100001 学生的信息*/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;STUDENT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LEFT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;JOIN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AWARD&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;20100001&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  可以看出，无论采用文件系统还是数据库系统都可以实现本例中学籍管理的功能。但是，使用文件系统时，程序员要关注记录的结构和不同文件中记录之间的联系，使用文件系统提供的&lt;code&gt;fopen&lt;/code&gt;（打开）、&lt;code&gt;fread&lt;/code&gt;（读）、&lt;code&gt;fwrite&lt;/code&gt;（写）、&lt;code&gt;fseek&lt;/code&gt;（移动读写位置）、&lt;code&gt;fclose&lt;/code&gt;（关闭）等操作来编程，工作量大、编程复杂，且开发速度慢；而数据库系统提供了功能强大的操作，如查询操作只需要写一条语句就可以实现，程序员的开发效率大大提高。&lt;/p&gt;
+&lt;p&gt;  与人工管理和文件系统相比，数据库系统的特点主要有一下几个方面。&lt;/p&gt;
+&lt;h4 id=&#34;数据结构化&#34;&gt;数据结构化
+&lt;/h4&gt;&lt;p&gt;  数据库系统实现整体数据的结构化，这是数据库的主要特征之一，也是数据库系统与文件系统的本质区别。&lt;br&gt;
+  在文件系统中，文件中的记录内部具有结构，但是记录的结构和记录之间的联系被固化在程序中，需要由程序员加以维护。这种工作模式既加重了程序员的负担，又不利于结构的变动。&lt;br&gt;
+  所谓“整体”结构化是指数据库中的数据不再仅仅针对某一个应用，而是面向整个组织或企业：不仅数据内部是结构化的，而且整体是结构化的，数据之间是具有联系的。也就是说，不仅要考虑某个应用的数据结构，还要考虑整个组织的数据结构。例如，一个学校的信息系统中不仅要考虑教务处的课程管理、学生选课管理、成绩管理，还要考虑学生处的学生学籍管理，同时还要考虑研究生院的研究生管理、人事处的教员人事管理、科研处的科研管理等。因此，学校信息系统中的学生数据就要面向各个处室的应用，而不仅仅是教务处的一个学生选课应用。可以参照下图为该校的信息系统组织其中的学生数据。&lt;/p&gt;
+&lt;span id=&#34;20241017145652CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 258.9&#34;&gt;
+  &lt;defs&gt;
+    &lt;style&gt;
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        font-family: NotoSerifSC-ExtraLight, &#39;Noto Serif SC&#39;;
+        font-size: 18px;
+        font-weight: 200;
+      }
+    &lt;/style&gt;
+  &lt;/defs&gt;
+  &lt;!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  --&gt;
+  &lt;g&gt;
+    &lt;g id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34;&gt;
+      &lt;g&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;41.6&#34; y=&#34;213.8&#34; width=&#34;152.4&#34; height=&#34;38.4&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(50.3 240.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;日期&lt;/tspan&gt;&lt;/text&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(109.8 240.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;奖惩条目&lt;/tspan&gt;&lt;/text&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M83.7,233&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;97.7&#34; y1=&#34;213.8&#34; x2=&#34;97.7&#34; y2=&#34;252.2&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;210.1&#34; y=&#34;213.8&#34; width=&#34;277.3&#34; height=&#34;38.4&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(218.8 240.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;姓名&lt;/tspan&gt;&lt;/text&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(278.3 240.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;与本人关系&lt;/tspan&gt;&lt;/text&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M252.2,233&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;266.2&#34; y1=&#34;213.8&#34; x2=&#34;266.2&#34; y2=&#34;252.2&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(398.9 240.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;详细情况&lt;/tspan&gt;&lt;/text&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;382.8&#34; y1=&#34;213.8&#34; x2=&#34;382.8&#34; y2=&#34;252.2&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;563.7&#34; y=&#34;214.7&#34; width=&#34;168.5&#34; height=&#34;38.4&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(572.4 240.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;课程号&lt;/tspan&gt;&lt;/text&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(649.9 240.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;课程名称&lt;/tspan&gt;&lt;/text&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M605.8,233&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;636.8&#34; y1=&#34;213.8&#34; x2=&#34;636.8&#34; y2=&#34;252.2&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;41.6&#34; y=&#34;108.8&#34; width=&#34;244.5&#34; height=&#34;38.4&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(50.3 135)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;家庭出身&lt;/tspan&gt;&lt;/text&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(143.8 135.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;籍贯&lt;/tspan&gt;&lt;/text&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M83.7,128&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;131.7&#34; y1=&#34;108.8&#34; x2=&#34;131.7&#34; y2=&#34;147.1&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(202.4 135.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;政治面貌&lt;/tspan&gt;&lt;/text&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;191.3&#34; y1=&#34;108.8&#34; x2=&#34;191.3&#34; y2=&#34;147.1&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;314.4&#34; y=&#34;108.8&#34; width=&#34;188.4&#34; height=&#34;38.4&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(323.1 135)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;日期&lt;/tspan&gt;&lt;/text&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(382.6 135.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学校&lt;/tspan&gt;&lt;/text&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M356.5,128&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;371.5&#34; y1=&#34;108.8&#34; x2=&#34;371.5&#34; y2=&#34;147.1&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(439.3 135.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学历名&lt;/tspan&gt;&lt;/text&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;428.1&#34; y1=&#34;108.8&#34; x2=&#34;428.1&#34; y2=&#34;147.1&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;563.7&#34; y=&#34;109.2&#34; width=&#34;258.4&#34; height=&#34;38.4&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(572.4 135.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学号&lt;/tspan&gt;&lt;/text&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(631.9 135.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;课程号&lt;/tspan&gt;&lt;/text&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M605.8,128.4&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;620.8&#34; y1=&#34;109.2&#34; x2=&#34;620.8&#34; y2=&#34;147.6&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(711.6 135.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学期&lt;/tspan&gt;&lt;/text&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;698.4&#34; y1=&#34;109.2&#34; x2=&#34;698.4&#34; y2=&#34;147.6&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(773.7 135.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;成绩&lt;/tspan&gt;&lt;/text&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;760.7&#34; y1=&#34;108.8&#34; x2=&#34;760.7&#34; y2=&#34;147.1&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;41.6&#34; y=&#34;4.2&#34; width=&#34;282.3&#34; height=&#34;38.4&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(50.3 30.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学号&lt;/tspan&gt;&lt;/text&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(109.8 30.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;姓名&lt;/tspan&gt;&lt;/text&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M83.7,23.4&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;98.7&#34; y1=&#34;4.2&#34; x2=&#34;98.7&#34; y2=&#34;42.6&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(169.4 30.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;性别&lt;/tspan&gt;&lt;/text&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;156.3&#34; y1=&#34;4.2&#34; x2=&#34;156.3&#34; y2=&#34;42.6&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(231.5 30.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;年龄&lt;/tspan&gt;&lt;/text&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;218.6&#34; y1=&#34;3.7&#34; x2=&#34;218.6&#34; y2=&#34;42.1&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;280&#34; y1=&#34;4.2&#34; x2=&#34;280&#34; y2=&#34;42.5&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(293.2 30.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;系&lt;/tspan&gt;&lt;/text&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;68.3&#34; y1=&#34;42.1&#34; x2=&#34;68.3&#34; y2=&#34;102.8&#34;/&gt;
+          &lt;polygon points=&#34;64.6 100 68.3 101.6 72 100 68.3 108.8 64.6 100&#34;/&gt;
+        &lt;/g&gt;
+        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(74.5 97.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学生人事记录&lt;/tspan&gt;&lt;/text&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;68.3&#34; y1=&#34;147.1&#34; x2=&#34;68.3&#34; y2=&#34;207.8&#34;/&gt;
+          &lt;polygon points=&#34;64.6 205 68.3 206.6 72 205 68.3 213.8 64.6 205&#34;/&gt;
+        &lt;/g&gt;
+        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(73.7 202)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;奖惩情况记录&lt;/tspan&gt;&lt;/text&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;237.1&#34; y1=&#34;147.6&#34; x2=&#34;237.1&#34; y2=&#34;208.3&#34;/&gt;
+          &lt;polygon points=&#34;233.4 205.4 237.1 207 240.9 205.4 237.1 214.2 233.4 205.4&#34;/&gt;
+        &lt;/g&gt;
+        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(242.6 202.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;家庭成员记录&lt;/tspan&gt;&lt;/text&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;590.4&#34; y1=&#34;153.5&#34; x2=&#34;590.4&#34; y2=&#34;214.2&#34;/&gt;
+          &lt;polygon points=&#34;586.7 156.3 590.4 154.8 594.1 156.3 590.4 147.6 586.7 156.3&#34;/&gt;
+        &lt;/g&gt;
+        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(595.9 202.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;课程记录&lt;/tspan&gt;&lt;/text&gt;
+        &lt;g&gt;
+          &lt;polyline class=&#34;cls-1&#34; points=&#34;187.5 43.4 187.5 82 341.2 82 341.2 102.8&#34;/&gt;
+          &lt;polygon points=&#34;337.5 100 341.2 101.6 344.9 100 341.2 108.8 337.5 100&#34;/&gt;
+        &lt;/g&gt;
+        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(348.7 97.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学生学籍记录&lt;/tspan&gt;&lt;/text&gt;
+        &lt;g&gt;
+          &lt;polyline class=&#34;cls-1&#34; points=&#34;302.3 43.4 302.3 63.5 590.4 63.5 590.4 102.8&#34;/&gt;
+          &lt;polygon points=&#34;586.7 100 590.4 101.6 594.1 100 590.4 108.8 586.7 100&#34;/&gt;
+        &lt;/g&gt;
+        &lt;text class=&#34;cls-2&#34; transform=&#34;translate(595.8 96.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学生选课记录&lt;/tspan&gt;&lt;/text&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;某学校信息系统中的学生数据&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241017145652CST&#34;&gt;图5&lt;/a&gt;的数据组织方式为各部门的应用提供了必要的记录，使整体数据结构化了。这就要求在描述数据时不仅要描述数据本身，还要描述数据之间的联系。在数据库系统中，记录的结构和记录之间的联系由数据库管理系统维护，从而减轻了程序员的工作量，提高了工作效率。&lt;br&gt;
+  在数据库系统中，不仅数据是整体结构化的，而且存取数据的方式也很灵活，可以存取数据库中的某一个或一组数据项、一个记录或一组记录；而在文件系统中，数据的存取单位是记录，粒度不能细到数据项。&lt;/p&gt;
+&lt;h4 id=&#34;数据的共享性高冗余度低且易扩充&#34;&gt;数据的共享性高、冗余度低且易扩充
+&lt;/h4&gt;&lt;p&gt;  数据库系统从整体角度看待和描述数据，数据不再面向某个应用而是面向整个系统，因此数据可以被多个用户、多个应用共享使用。数据共享可以大大减少数据冗余，节约存储空间。数据共享还能够避免数据之间的不相容性与不一致性。&lt;br&gt;
+  所谓数据的不一致性是指同一数据不同副本的值不一样。采用人工管理或文件系统管理时，由于数据被重复存储，当不同的应用使用和修改不同的副本时就很容易造成数据的不一致。在数据库中数据共享减少了由于数据冗余造成的不一致现象。&lt;br&gt;
+  由于数据面向整个系统，是有结构的数据，不仅可以被多个应用共享使用，而且容易增加新的应用，这就使得数据库系统弹性大，易于扩充，可以适应各种用户的要求。可以选取整体数据的各种子集用于不同的应用系统，当应用需求改变或增加时，只要重新选取不同的子集或加上一部分数据便可以满足新的需求。&lt;/p&gt;
+&lt;h4 id=&#34;数据独立性高&#34;&gt;数据独立性高
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;数据独立性&lt;/strong&gt;是借助数据库管理数据的一个显著优点，它已成为数据库领域中一个常用术语和重要概念，包括数据的物理独立性和逻辑独立性。&lt;br&gt;
+  &lt;strong&gt;物理独立性&lt;/strong&gt;是指用户的应用程序与数据库中数据的物理存储是相互独立的。也就是说，数据在数据库中怎样存储是由数据库管理系统管理的，用户程序不需要了解，应用程序要处理的只是数据的逻辑结构，这样当数据的物理存储改变时应用程序不用改变。&lt;br&gt;
+  &lt;strong&gt;逻辑独立性&lt;/strong&gt;是指用户的应用程序与数据库的逻辑结构是相互独立的。也就是说，数据的逻辑结构改变时用户程序也可以不变。&lt;br&gt;
+  数据独立性是由数据库管理系统提供的二级映像功能来保证的，将在后面的内容中进行讨论。&lt;br&gt;
+  数据与程序的独立把数据的定义从程序中分离出去，加上存取数据的方法又由数据库管理系统负责提供，从而简化了应用程序的编制，大大减少了应用程序的维护和修改。&lt;/p&gt;
+&lt;h4 id=&#34;数据由数据库管理系统统一管理和控制&#34;&gt;数据由数据库管理系统统一管理和控制
+&lt;/h4&gt;&lt;p&gt;  数据库的共享将会带来数据库的安全隐患，而数据库的共享是&lt;strong&gt;并发的（concurrency）&lt;/strong&gt;‌共享，即多个用户可以同时存取数据库中的数据，甚至可以同时存取数据库中同一个数据，这又会带来不同用户间相互干扰的隐患。另外，数据库中数据的正确与一致也必须得到保障。为此，数据库管理系统还必须提供以下几方面的数据控制功能。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数据的安全性（security）保护。数据的安全性是指保护数据以防止不合法使用造成的数据泄密和破坏。每个用户只能按规定对某些数据以某些方式进行使用和处理。&lt;/li&gt;
+&lt;li&gt;数据的完整性（integrity）检查。数据的完整性指数据的正确性、有效性和相容性。完整性检查将数据控制在有效的范围内，并保证数据之间满足一定的关系。&lt;/li&gt;
+&lt;li&gt;并发（concurrency）控制。当多个用户的并发进程同时存取、修改数据库时，可能会发生相互干扰而得到错误的结果或使得数据库的完整性遭到破坏，因此必须对多用户的并发操作加以控制和协调。&lt;/li&gt;
+&lt;li&gt;数据库恢复（recovery）。计算机系统的硬件故障、软件故障、操作员的失误以及故意破坏也会影响数据库中数据的正确性，甚至造成数据库部分或全部数据的丢失。数据库管理系统必须具有将数据库从错误状态恢复到某一己知的正确状态（亦称为完整状态或一致状态）的功能，这就是数据库的恢复功能。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  数据库系统阶段应用程序与数据之间的对应关系可用&lt;a class=&#34;link&#34; href=&#34;#20241017164256CST&#34;&gt;图6&lt;/a&gt;表示。&lt;/p&gt;
+&lt;span id=&#34;20241017164256CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 243&#34;&gt;
+  &lt;defs&gt;
+    &lt;style&gt;
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2, .cls-3 {
+        isolation: isolate;
+      }
+
+      .cls-3, .cls-4 {
+        font-family: NotoSerifSC-ExtraLight, &#39;Noto Serif SC&#39;;
+        font-size: 18px;
+        font-weight: 200;
+      }
+    &lt;/style&gt;
+  &lt;/defs&gt;
+  &lt;!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  --&gt;
+  &lt;g&gt;
+    &lt;g id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34;&gt;
+      &lt;g&gt;
+        &lt;polygon class=&#34;cls-1&#34; points=&#34;499.2 76 423.8 76 386.1 119.3 423.8 162.6 499.2 162.6 536.9 119.3 499.2 76&#34;/&gt;
+        &lt;text class=&#34;cls-4&#34; transform=&#34;translate(434.5 114.1)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据库&lt;/tspan&gt;&lt;tspan x=&#34;-9&#34; y=&#34;21.6&#34;&gt;管理系统&lt;/tspan&gt;&lt;/text&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;158.4&#34; y=&#34;3.2&#34; width=&#34;118.5&#34; height=&#34;44.2&#34;/&gt;
+          &lt;text class=&#34;cls-4&#34; transform=&#34;translate(176.9 32.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序1&lt;/tspan&gt;&lt;/text&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;158.4&#34; y=&#34;82.7&#34; width=&#34;118.5&#34; height=&#34;44.2&#34;/&gt;
+          &lt;text class=&#34;cls-4&#34; transform=&#34;translate(176.9 112)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序2&lt;/tspan&gt;&lt;/text&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;circle class=&#34;cls-1&#34; cx=&#34;161.1&#34; cy=&#34;200.5&#34; r=&#34;7.7&#34;/&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M142.2,238l9-7.4c-2.5-19.6,10-22.3,10-22.3l16.7,6.3&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;161.1&#34; y1=&#34;208.2&#34; x2=&#34;174.6&#34; y2=&#34;219.4&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;151.1&#34; y1=&#34;230.5&#34; x2=&#34;161.1&#34; y2=&#34;238&#34;/&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;177.8&#34; y=&#34;195.3&#34; width=&#34;99&#34; height=&#34;19.2&#34;/&gt;
+          &lt;polyline class=&#34;cls-1&#34; points=&#34;276.9 214.7 268.2 226 169.2 226 178 214.7&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;circle cx=&#34;215.2&#34; cy=&#34;169&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;215.2&#34; cy=&#34;158&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;215.2&#34; cy=&#34;147&#34; r=&#34;1.9&#34;/&gt;
+        &lt;/g&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;276.9&#34; y1=&#34;25.3&#34; x2=&#34;404.4&#34; y2=&#34;98.3&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;276.8&#34; y1=&#34;104.8&#34; x2=&#34;386.1&#34; y2=&#34;119.3&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;276.8&#34; y1=&#34;200.5&#34; x2=&#34;405.8&#34; y2=&#34;141.9&#34;/&gt;
+        &lt;g&gt;
+          &lt;ellipse class=&#34;cls-1&#34; cx=&#34;662.2&#34; cy=&#34;52.4&#34; rx=&#34;59.3&#34; ry=&#34;23.5&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;602.9&#34; y1=&#34;52.4&#34; x2=&#34;602.9&#34; y2=&#34;175.9&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;721.4&#34; y1=&#34;52.4&#34; x2=&#34;721.4&#34; y2=&#34;175.9&#34;/&gt;
+          &lt;g class=&#34;cls-2&#34;&gt;
+            &lt;g class=&#34;cls-2&#34;&gt;
+              &lt;text class=&#34;cls-3&#34; transform=&#34;translate(635.2 59.7)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据库&lt;/tspan&gt;&lt;/text&gt;
+            &lt;/g&gt;
+          &lt;/g&gt;
+          &lt;path class=&#34;cls-1&#34; d=&#34;M721.5,175.9c0,13-26.5,23.5-59.3,23.5s-59.3-10.5-59.3-23.5&#34;/&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;615.6&#34; y=&#34;91.6&#34; width=&#34;37.5&#34; height=&#34;15.4&#34;/&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;615.6&#34; y=&#34;123.8&#34; width=&#34;37.5&#34; height=&#34;15.4&#34;/&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;668.9&#34; y=&#34;123.8&#34; width=&#34;37.5&#34; height=&#34;15.4&#34;/&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;643.5&#34; y=&#34;156.6&#34; width=&#34;37.5&#34; height=&#34;15.4&#34;/&gt;
+          &lt;g&gt;
+            &lt;path class=&#34;cls-1&#34; d=&#34;M634.3,107c0,.6,0,6.2,0,10.8&#34;/&gt;
+            &lt;polygon points=&#34;630.6 115 634.3 116.6 638 115 634.3 123.8 630.6 115&#34;/&gt;
+          &lt;/g&gt;
+          &lt;g&gt;
+            &lt;path class=&#34;cls-1&#34; d=&#34;M644.3,139.2c.4,0,3,6.7,4.9,11.7&#34;/&gt;
+            &lt;polygon points=&#34;644.8 149.7 648.8 149.8 651.7 147 651.4 156.6 644.8 149.7&#34;/&gt;
+          &lt;/g&gt;
+          &lt;g&gt;
+            &lt;line class=&#34;cls-1&#34; x1=&#34;674&#34; y1=&#34;139&#34; x2=&#34;670.3&#34; y2=&#34;150.9&#34;/&gt;
+            &lt;polygon points=&#34;667.6 147.1 670.7 149.7 674.7 149.3 668.5 156.6 667.6 147.1&#34;/&gt;
+          &lt;/g&gt;
+        &lt;/g&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;536.9&#34; y1=&#34;119.3&#34; x2=&#34;602.9&#34; y2=&#34;119.3&#34;/&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6&amp;emsp;数据库系统阶段应用程序与数据之间的对应关系&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;  综上所述，数据库是长期存储在计算机内有组织、大量、共享的数据集合。它可以供各种用户共享，具有最小冗余度和较高的数据独立性。数据库管理系统在数据库建立、运用和维护时对数据库进行统一控制，以保证数据的完整性和安全性，并在多用户同时使用数据库时进行并发控制，在发生故障后对数据库进行恢复。&lt;br&gt;
+  数据库系统的出现使信息系统从以加工数据的程序为中心转向围绕共享的数据库为中心的新阶段。这样既便于数据的集中管理，又能简化应用程序的研制和维护，提高了数据的利用率和相容性，提高了决策的可靠性。&lt;br&gt;
+  目前，数据库已经成为现代信息系统的重要组成部分。具有数百G、数百T、甚至数百P字节的数据库已经普遍存在于科学技术、工业、农业、商业、服务业和政府部门的信息系统中。&lt;/p&gt;
 </description>
         </item>
         
