@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 16 Oct 2024 23:17:28 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 17 Oct 2024 13:21:45 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（一）：数据库系统概论</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/</link>
         <pubDate>Tue, 15 Oct 2024 16:49:13 +0800</pubDate>
@@ -70,7 +70,7 @@
 &lt;h4 id=&#34;数据库系统&#34;&gt;数据库系统
 &lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;数据库系统&lt;/strong&gt;是由数据库、数据库管理系统（及其应用开发工具）、应用程序和数据库管理员（DataBase Administrator,DBA）组成的存储、管理、处理和维护数据的系统。应当指出的是，数据库的建立、使用和维护等工作只靠一个数据库管理系统远远不够，还要有专门的人员来完成，这些人被称为&lt;strong&gt;数据库管理员&lt;/strong&gt;。&lt;br&gt;
   数据库系统可以用图1.1表示。其中数据库提供数据的存储功能，数据库管理系统提供数据的组织、存取、管理和维护等基础功能，数据库应用系统根据应用需求使用数据库，数据库管理员负责全面管理数据库系统。图1.2是引入数据库后计算机系统的层次结构。&lt;br&gt;
-  在一般不引起混淆的情况下，人们常常把数据库系统简称为数据库。&lt;/p&gt;
+  在一般不引起混淆的情况下，人们常常把数据库系统简称为&lt;strong&gt;数据库&lt;/strong&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241016225051CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 507.4&#34;&gt;
@@ -200,6 +200,251 @@
   &lt;text transform=&#34;translate(390.2727 27.5708)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应&lt;/tspan&gt;&lt;tspan x=&#34;20.4604&#34; y=&#34;-3.2822&#34;&gt;用&lt;/tspan&gt;&lt;tspan x=&#34;41.0854&#34; y=&#34;-3.5439&#34;&gt;系&lt;/tspan&gt;&lt;tspan x=&#34;61.603&#34; y=&#34;-.7944&#34;&gt;统&lt;/tspan&gt;&lt;/text&gt;
   &lt;path d=&#34;M431.8505,327.1564c-89.5351,0-162.378-72.8419-162.378-162.3761S342.3154,2.4023,431.8505,2.4023s162.377,72.8429,162.377,162.378-72.8419,162.3761-162.377,162.3761Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;引入数据库后计算机系统的层次结构&lt;/p&gt;&lt;/div&gt;
+&lt;h3 id=&#34;数据管理技术的产生和发展&#34;&gt;数据管理技术的产生和发展
+&lt;/h3&gt;&lt;p&gt;  数据库技术是应数据管理任务的需要而产生的。数据管理是指对数据进行分类、组织、编码、存储、检索和维护，它是数据处理的中心问题。而数据的处理是指对各种数据进行收集、存储、加工和传播的一系列活动的总和。&lt;br&gt;
+  在应用需求的推动下，在计算机硬件、软件发展的基础上，数据管理技术经历了人工管理、文件系统、数据库系统三个阶段。这三个阶段的特点及其比较如下表所示。&lt;/p&gt;
+&lt;span id=&#34;20241017110434CST&#34;&gt;&lt;/span&gt;&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th colspan=&#34;2&#34;&gt;&lt;/th&gt;
+        &lt;th&gt;人工管理阶段&lt;/th&gt;
+        &lt;th&gt;文件系统阶段&lt;/th&gt;
+        &lt;th&gt;数据库系统阶段&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td rowspan=&#34;4&#34;&gt;背景&lt;/td&gt;
+        &lt;td&gt;应用背景&lt;/td&gt;
+        &lt;td&gt;科学计算&lt;/td&gt;
+        &lt;td&gt;科学计算、数据管理&lt;/td&gt;
+        &lt;td&gt;大规模数据管理&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;硬件背景&lt;/td&gt;
+        &lt;td&gt;无直接存储设备&lt;/td&gt;
+        &lt;td&gt;磁盘、磁鼓&lt;/td&gt;
+        &lt;td&gt;大容量磁盘、磁盘阵列&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;软件背景&lt;/td&gt;
+        &lt;td&gt;没有操作系统&lt;/td&gt;
+        &lt;td&gt;有文件系统&lt;/td&gt;
+        &lt;td&gt;有数据库管理系统&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;处理方式&lt;/td&gt;
+        &lt;td&gt;批处理&lt;/td&gt;
+        &lt;td&gt;联机实时处理、批处理&lt;/td&gt;
+        &lt;td&gt;联机实时处理、分布处理、批处理&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td rowspan=&#34;7&#34;&gt;特点&lt;/td&gt;
+        &lt;td&gt;数据的管理者&lt;/td&gt;
+        &lt;td&gt;用户（程序员）&lt;/td&gt;
+        &lt;td&gt;文件系统&lt;/td&gt;
+        &lt;td&gt;数据库管理系统&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据面向的对象&lt;/td&gt;
+        &lt;td&gt;某一应用程序&lt;/td&gt;
+        &lt;td&gt;某一应用&lt;/td&gt;
+        &lt;td&gt;现实世界（一个部门、企业、跨国组织等）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据的共享程度&lt;/td&gt;
+        &lt;td&gt;无共享，冗余度极大&lt;/td&gt;
+        &lt;td&gt;共享性差，冗余度大&lt;/td&gt;
+        &lt;td&gt;共享性高，冗余度小&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据的独立性&lt;/td&gt;
+        &lt;td&gt;不独立，完全依赖于程序&lt;/td&gt;
+        &lt;td&gt;独立性差&lt;/td&gt;
+        &lt;td&gt;具有高度的物理独立性和一定的逻辑独立性&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据的结构化&lt;/td&gt;
+        &lt;td&gt;无结构&lt;/td&gt;
+        &lt;td&gt;记录内有结构，整体无结构&lt;/td&gt;
+        &lt;td&gt;整体结构化，用数据模型描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据控制能力&lt;/td&gt;
+        &lt;td&gt;应用程序自己控制&lt;/td&gt;
+        &lt;td&gt;应用程序自己控制&lt;/td&gt;
+        &lt;td&gt;由数据库管理系统提供数据安全性、完整性，并发控制和恢复能力&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp;数据管理三个阶段的比较&lt;/p&gt;
+&lt;h4 id=&#34;人工管理阶段&#34;&gt;人工管理阶段
+&lt;/h4&gt;&lt;p&gt;  20世纪50年代中期以前，计算机主要用于科学计算。当时的硬件状况是，外存只有纸带、卡片、磁带，没有磁盘等直接存取的存储设备；软件状况是，没有操作系统，没有管理数据的专门软件；数据处理方式是批处理。人工管理数据具有如下特点：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 数据不保存&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  由于当时计算机主要用于科学计算，一般不需要将数据长期保存，只是在计算某一课题时将数据输入，用完就撤走。不仅对用户数据如此处置，对系统软件有时也是这样。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 应用程序管理数据&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据需要由应用程序自己设计、说明（定义）和管理，没有相应的软件系统负责数据的管理工作。应用程序中不仅要规定数据的逻辑结构，而且要设计物理结构，包括存储结构、存取方法、输入方式等。因此程序员负担很重。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 数据不共享&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据是面向应用程序的，一组数据只能对应一个程序。当多个应用程序涉及某些相同的数据时必须各自定义，无法互相利用、互相参照，因此程序与程序之间有大量的冗余数据。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. 数据不具有独立性&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据的逻辑结构或物理结构发生变化后，必须对应用程序做相应的修改，数据完全依赖于应用程序，称之为数据缺乏独立性，这就加重了程序员的负担。&lt;br&gt;
+  在人工管理阶段，应用程序与数据之间的一一对应关系可用下图表示。&lt;/p&gt;
+&lt;span id=&#34;20241017124034CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 309.4&#34;&gt;
+  &lt;defs&gt;
+    &lt;style&gt;
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        font-family: NotoSerifSC-ExtraLight, &#39;Noto Serif SC&#39;;
+        font-size: 18px;
+        font-weight: 200;
+      }
+    &lt;/style&gt;
+  &lt;/defs&gt;
+  &lt;!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  --&gt;
+  &lt;g&gt;
+    &lt;g id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34;&gt;
+      &lt;g&gt;
+        &lt;g&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;215.7&#34; y=&#34;6.3&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(265 39.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序1&lt;/tspan&gt;&lt;/text&gt;
+          &lt;rect class=&#34;cls-1&#34; x=&#34;467.8&#34; y=&#34;6.3&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+          &lt;text class=&#34;cls-2&#34; transform=&#34;translate(525.8 39.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据集1&lt;/tspan&gt;&lt;/text&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;395.9&#34; y1=&#34;32.7&#34; x2=&#34;467.8&#34; y2=&#34;32.7&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;g&gt;
+            &lt;rect class=&#34;cls-1&#34; x=&#34;215.7&#34; y=&#34;106.9&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+            &lt;text class=&#34;cls-2&#34; transform=&#34;translate(265 140.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序2&lt;/tspan&gt;&lt;/text&gt;
+            &lt;rect class=&#34;cls-1&#34; x=&#34;467.8&#34; y=&#34;106.9&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+            &lt;text class=&#34;cls-2&#34; transform=&#34;translate(525.8 140.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据集2&lt;/tspan&gt;&lt;/text&gt;
+            &lt;line class=&#34;cls-1&#34; x1=&#34;395.9&#34; y1=&#34;133.3&#34; x2=&#34;467.8&#34; y2=&#34;133.3&#34;/&gt;
+          &lt;/g&gt;
+          &lt;g&gt;
+            &lt;rect class=&#34;cls-1&#34; x=&#34;215.7&#34; y=&#34;252.1&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+            &lt;text class=&#34;cls-2&#34; transform=&#34;translate(263.7 285.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序n&lt;/tspan&gt;&lt;/text&gt;
+            &lt;rect class=&#34;cls-1&#34; x=&#34;467.8&#34; y=&#34;252.1&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+            &lt;text class=&#34;cls-2&#34; transform=&#34;translate(524.7 285.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据集n&lt;/tspan&gt;&lt;/text&gt;
+            &lt;line class=&#34;cls-1&#34; x1=&#34;395.9&#34; y1=&#34;278.5&#34; x2=&#34;467.8&#34; y2=&#34;278.5&#34;/&gt;
+          &lt;/g&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;circle cx=&#34;305.8&#34; cy=&#34;216.5&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;305.8&#34; cy=&#34;205.5&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;305.8&#34; cy=&#34;194.5&#34; r=&#34;1.9&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;circle cx=&#34;557.9&#34; cy=&#34;216.5&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;557.9&#34; cy=&#34;205.5&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;557.9&#34; cy=&#34;194.5&#34; r=&#34;1.9&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;人工管理阶段应用程序与数据之间的一一对应关系&lt;/p&gt;&lt;/div&gt;
+&lt;h4 id=&#34;文件系统阶段&#34;&gt;文件系统阶段
+&lt;/h4&gt;&lt;p&gt;  20世纪50年代后期到60年代中期，这时硬件方面已有了磁盘、磁鼓等直接存取存储设备：软件方面，操作系统中已经有了专门的数据管理软件，一般称为文件系统；处理方式上不仅有了批处理，而且能够联机实时处理。&lt;br&gt;
+  用文件系统管理数据具有如下特点：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 数据可以长期保存&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  由于计算机大量用于数据处理，数据需要长期保留在外存上反复进行查询、修改、插入和删除等操作。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 由文件系统管理数据&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  由专门的软件即文件系统进行数据管理，文件系统把数据组织成相互独立的数据文件，利用“按文件名访问，按记录进行存取”的管理技术，提供了对文件进行打开与关闭、对记录读取和写入等存取方式。文件系统实现了记录内的结构性。但是，文件系统仍存在以下缺点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数据共享性差，冗余度大。在文件系统中，一个(或一组)文件基本上对应于一个应用程序，即文件仍然是面向应用的。当不同的应用程序具有部分相同的数据时，也必须建立各自的文件，而不能共享相同的数据，因此数据的冗余度大，浪费存储空间。同时由于相同数据的重复存储、各自管理，容易造成数据的不一致性，给数据的修改和维护带来了困难。&lt;/li&gt;
+&lt;li&gt;数据独立性差。文件系统中的文件是为某一特定应用服务的，文件的逻辑结构是针对具体的应用来设计和优化的，因此要想对文件中的数据再增加一些新的应用会很困难。而且，当数据的逻辑结构改变时，应用程序中文件结构的定义必须修改，应用程序中对数据的使用也要改变,因此数据依赖于应用程序，缺乏独立性。可见，文件系统仍然是一个不具有弹性的无整体结构的数据集合，即文件之间是孤立的，不能反映现实世界事物之间的内在联系。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  文件系统阶段应用程序与数据之间的关系如下图所示。&lt;/p&gt;
+&lt;span id=&#34;20241017130053CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 361.1&#34;&gt;
+  &lt;defs&gt;
+    &lt;style&gt;
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke-dasharray: 12.2 10.1;
+      }
+
+      .cls-3, .cls-4 {
+        isolation: isolate;
+      }
+
+      .cls-4, .cls-5 {
+        font-family: NotoSerifSC-ExtraLight, &#39;Noto Serif SC&#39;;
+        font-size: 18px;
+        font-weight: 200;
+      }
+    &lt;/style&gt;
+  &lt;/defs&gt;
+  &lt;!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  --&gt;
+  &lt;g&gt;
+    &lt;g id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34;&gt;
+      &lt;g&gt;
+        &lt;rect class=&#34;cls-1&#34; x=&#34;106.7&#34; y=&#34;4.3&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+        &lt;g class=&#34;cls-3&#34;&gt;
+          &lt;text class=&#34;cls-4&#34; transform=&#34;translate(156 37.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序1&lt;/tspan&gt;&lt;/text&gt;
+        &lt;/g&gt;
+        &lt;rect class=&#34;cls-1&#34; x=&#34;576.8&#34; y=&#34;4.3&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+        &lt;rect class=&#34;cls-1&#34; x=&#34;106.7&#34; y=&#34;83.9&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+        &lt;g class=&#34;cls-3&#34;&gt;
+          &lt;text class=&#34;cls-4&#34; transform=&#34;translate(156 117.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序2&lt;/tspan&gt;&lt;/text&gt;
+        &lt;/g&gt;
+        &lt;rect class=&#34;cls-1&#34; x=&#34;576.8&#34; y=&#34;83.9&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+        &lt;rect class=&#34;cls-1&#34; x=&#34;106.7&#34; y=&#34;306.1&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+        &lt;g class=&#34;cls-3&#34;&gt;
+          &lt;text class=&#34;cls-4&#34; transform=&#34;translate(154.7 339.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序n&lt;/tspan&gt;&lt;/text&gt;
+        &lt;/g&gt;
+        &lt;rect class=&#34;cls-1&#34; x=&#34;576.8&#34; y=&#34;306.1&#34; width=&#34;180.2&#34; height=&#34;52&#34;/&gt;
+        &lt;g&gt;
+          &lt;circle cx=&#34;196.8&#34; cy=&#34;233.5&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;196.8&#34; cy=&#34;222.5&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;196.8&#34; cy=&#34;211.5&#34; r=&#34;1.9&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;circle cx=&#34;666.9&#34; cy=&#34;233.5&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;666.9&#34; cy=&#34;222.5&#34; r=&#34;1.9&#34;/&gt;
+          &lt;circle cx=&#34;666.9&#34; cy=&#34;211.5&#34; r=&#34;1.9&#34;/&gt;
+        &lt;/g&gt;
+        &lt;text class=&#34;cls-5&#34; transform=&#34;translate(635.1 37.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;文件组1&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-5&#34; transform=&#34;translate(635.1 117.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;文件组2&lt;/tspan&gt;&lt;/text&gt;
+        &lt;text class=&#34;cls-5&#34; transform=&#34;translate(633.8 339.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;文件组n&lt;/tspan&gt;&lt;/text&gt;
+        &lt;ellipse class=&#34;cls-1&#34; cx=&#34;431.9&#34; cy=&#34;222.5&#34; rx=&#34;70.9&#34; ry=&#34;52.4&#34;/&gt;
+        &lt;text class=&#34;cls-5&#34; transform=&#34;translate(413.8 219.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;存取&lt;/tspan&gt;&lt;tspan x=&#34;0&#34; y=&#34;21.6&#34;&gt;方法&lt;/tspan&gt;&lt;/text&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;286.9&#34; y1=&#34;56.3&#34; x2=&#34;407.5&#34; y2=&#34;173.2&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;577.3&#34; y1=&#34;56.3&#34; x2=&#34;456.7&#34; y2=&#34;173.2&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;286.9&#34; y1=&#34;135.9&#34; x2=&#34;381.1&#34; y2=&#34;185.9&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;577.3&#34; y1=&#34;135.9&#34; x2=&#34;483.1&#34; y2=&#34;185.9&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;286.9&#34; y1=&#34;306.1&#34; x2=&#34;378.5&#34; y2=&#34;257&#34;/&gt;
+        &lt;line class=&#34;cls-1&#34; x1=&#34;576&#34; y1=&#34;306.1&#34; x2=&#34;484.4&#34; y2=&#34;257&#34;/&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;286.9&#34; y1=&#34;30.3&#34; x2=&#34;292.9&#34; y2=&#34;30.3&#34;/&gt;
+          &lt;line class=&#34;cls-2&#34; x1=&#34;303&#34; y1=&#34;30.3&#34; x2=&#34;565.7&#34; y2=&#34;30.7&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;570.8&#34; y1=&#34;30.8&#34; x2=&#34;576.8&#34; y2=&#34;30.8&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;286.9&#34; y1=&#34;110.4&#34; x2=&#34;292.9&#34; y2=&#34;110.4&#34;/&gt;
+          &lt;line class=&#34;cls-2&#34; x1=&#34;303&#34; y1=&#34;110.4&#34; x2=&#34;565.7&#34; y2=&#34;110.9&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;570.8&#34; y1=&#34;110.9&#34; x2=&#34;576.8&#34; y2=&#34;110.9&#34;/&gt;
+        &lt;/g&gt;
+        &lt;g&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;286.1&#34; y1=&#34;331.8&#34; x2=&#34;292.1&#34; y2=&#34;331.8&#34;/&gt;
+          &lt;line class=&#34;cls-2&#34; x1=&#34;302.3&#34; y1=&#34;331.8&#34; x2=&#34;564.9&#34; y2=&#34;332.3&#34;/&gt;
+          &lt;line class=&#34;cls-1&#34; x1=&#34;570&#34; y1=&#34;332.3&#34; x2=&#34;576&#34; y2=&#34;332.3&#34;/&gt;
+        &lt;/g&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;文件系统阶段应用程序与数据之间的对应关系&lt;/p&gt;&lt;/div&gt;
+&lt;h4 id=&#34;数据库系统阶段&#34;&gt;数据库系统阶段
+&lt;/h4&gt;&lt;p&gt;  20世纪60年代后期以来，计算机管理的对象规模越来越大，应用范围越来越广泛，数据量急剧增长，同时多种应用、多种语言互相覆盖地共享数据集合的要求越来越强烈。&lt;br&gt;
+  这时硬件已有大容量磁盘，硬件价格下降；软件则价格上升，为编制和维护系统软件及应用程序所需的成本相对增加；在处理方式上，联机实时处理要求更多，并开始提出和考虑分布处理。在这种背景下，以文件系统作为数据管理手段已经不能满足应用的需求，于是为解决多用户、多应用共享数据的需求，使数据为尽可能多的应用服务，数据库技术便应运而生，出现了统一管理数据的专门软件系统&amp;mdash;&amp;mdash;数据库管理系统。&lt;br&gt;
+  用数据库系统来管理数据比文件系统具有明显的优点，从文件系统到数据库系统标志着数据管理技术的飞跃。&lt;/p&gt;
 </description>
         </item>
         

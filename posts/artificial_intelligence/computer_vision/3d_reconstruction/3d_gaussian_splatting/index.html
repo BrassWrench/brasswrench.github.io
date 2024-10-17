@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/'>
 
-<link rel="stylesheet" href="/scss/style.min.bfc17855a2cadd300e22a8e53e86710d249c609481107e2d12c75c0559e4897e.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.5f6a1ebad1e9554e7a9fe11a4f9b406fab8859aa930d5395f5e54e88747db3ab.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/computer_vision/3d_reconstruction/3d_gaussian_splatting/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='三维重建' /><meta property='article:tag' content='可微渲染' /><meta property='article:tag' content='实时渲染' /><meta property='article:tag' content='3D高斯泼溅' /><meta property='article:tag' content='机器学习' /><meta property='article:tag' content='多维高斯分布' /><meta property='article:tag' content='球谐函数' /><meta property='article:tag' content='辐射场' /><meta property='article:tag' content='光栅化' /><meta property='article:tag' content='四元数' /><meta property='article:tag' content='透视变换' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-10-16T21:44:19&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='三维重建' /><meta property='article:tag' content='可微渲染' /><meta property='article:tag' content='实时渲染' /><meta property='article:tag' content='3D高斯泼溅' /><meta property='article:tag' content='机器学习' /><meta property='article:tag' content='多维高斯分布' /><meta property='article:tag' content='球谐函数' /><meta property='article:tag' content='辐射场' /><meta property='article:tag' content='光栅化' /><meta property='article:tag' content='四元数' /><meta property='article:tag' content='透视变换' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-10-17T13:21:45&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="三维重建（一）：3D高斯泼溅算法">
 <meta name="twitter:description" content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -979,7 +979,7 @@
 </svg>
 
             <time class="article-words">
-                4607 字
+                4624 字
             </time>
         </div>
 
@@ -1288,7 +1288,7 @@ f_i(\bm{n})_{SH}=&\sum_{l=0}^{3}\sum_{-l}^{l}C_l^m(i)\mathcal{Y}_l^m(\bm{n})\\[5
 \tag{10}
     \]
 <p>   \(i\) 取 \(1,2,3\) 表示 \(3\) 个RGB通道， \(C_{00}(i)\text{\textasciitilde}C_{33}(i)\) 均已知，下面给出 \(\mathcal{Y}_{00}(\bm{n})\text{\textasciitilde}\mathcal{Y}_{33}(\bm{n})\) 的表达式（可直接根据<a class="link" href="#20241004221955CST">式(5)</a>得到）</p>
-<div class="table-wrapper"><table>
+<span id="20241017102134CST"></span><div class="table-wrapper"><table>
   <thead>
       <tr>
           <th style="text-align: center">实球谐函数</th>
@@ -1379,6 +1379,7 @@ f_i(\bm{n})_{SH}=&\sum_{l=0}^{3}\sum_{-l}^{l}C_l^m(i)\mathcal{Y}_l^m(\bm{n})\\[5
       </tr>
   </tbody>
 </table></div>
+<p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;球谐函数表达式及值</p>
 <p>  这是在实球谐函数一侧进行合成的方法。但是我们还需要将其换算到RGB通道参数。为了方便合成与分解（减少精度损失）和让展开更对称，3DGS采用如下变换联系实球谐函数和RGB通道参数：</p>
 <span id="20241005133050CST"></span>\[
 f_i(\bm{n})_{SH}=f_i(\bm{n})_{RGB}-0.5
@@ -1638,7 +1639,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 
 
         <span>
-            最后更新于 Oct 16, 2024 21:44 CST
+            最后更新于 Oct 17, 2024 13:21 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1794,7 +1795,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
             
             
         
-        <span>本图书馆累计发布了10篇文章 共68913字</span>
+        <span>本图书馆累计发布了10篇文章 共71112字</span>
     </section>
 
     <section class="site-visit-count">
