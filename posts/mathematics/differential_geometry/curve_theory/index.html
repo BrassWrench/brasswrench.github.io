@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T11:08:57&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T11:55:29&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -925,7 +925,7 @@
 </svg>
 
             <time class="article-words">
-                4096 字
+                4683 字
             </time>
         </div>
 
@@ -940,7 +940,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 9 分钟
+                    阅读时长: 10 分钟
                 </time>
             </div>
         
@@ -1623,13 +1623,29 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 \tag{39}
     \]
 <p>  所以</p>
-<span id="20241018103727CST"></span>
-    \[
+<span id="20241018103727CST"></span>\[
 \kappa(s)=\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}
-\]
+\tag{40}
+    \]
 <p>  这就是说，曲线的曲率 \(\kappa(s)\) 是曲线的切线像的弧长元素与曲线的弧长元素之比。</p>
 <h3 id="frenet标架">Frenet标架
-</h3><p>  因为 \(|\bm{\alpha}(s)|=1\) ，根据</p>
+</h3><p>  因为 \(|\bm{\alpha}(s)|=1\) ，根据<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST">Euclidean空间-定理3</a>的1. ， \(\bm{\alpha}(s)\cdot\bm{\alpha}'(s)=0\) ，即 \(\bm{\alpha}(s)\perp\bm{\alpha}'(s)\) ，所以 \(\bm{\alpha}'(s)\) 是曲线 \(C\) 的一个法向量。如果</p>
+<span id="20241018111258CST"></span>\[
+\kappa(s) \ne 0
+\tag{41}
+    \]
+<p>  则向量 \(\bm{\alpha}'(s)\) 有完全确定的方向，将这个方向的单位向量记作 \(\bm{\beta}(s)\) ，称为其为曲线 \(C\) 的<strong>主法向量</strong>。于是由<a class="link" href="#20241018100528CST">式(37)</a>，曲率向量 \(\bm{\alpha}'(s)\) 可以表示为</p>
+<span id="20241018111648CST"></span>\[
+\bm{\alpha}'(s)=\kappa(s)\bm{\beta}(s)
+\tag{42}
+    \]
+<p>  曲线的单位切向量 \(\bm{\alpha}(s)\) 和主法向量 \(\bm{\beta}(s)\) 唯一地确定了曲线的第二个法向量</p>
+<span id="20241018111830CST"></span>\[
+\bm{\gamma}(s)=\bm{\alpha}(s)\times\bm{\beta}(s)
+\tag{43}
+    \]
+<p>  称其为曲线的次法向量。这样，在正则曲线上曲率 \(\kappa(s)\) 不为零的点有一个完全确定的右手单位正交标架 \(\set{\bm{r}(s);\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)}\) ，它与表示曲线的Cartesian直角坐标系的选取无关（因为 \(s\) 和 \(\mathrm{d}s\) 都和Cartesian直角坐标系无关），也不受曲线作保持定向的容许参数变换的影响，称为曲线在该点的<strong>Frenet标架</strong>。<br>
+  如上所述，曲线在 \(\kappa(s)=0\) 的点，Frenet标架是没有定义的。如果在一个区间 \((s_0-\varepsilon, s_0+\varepsilon)\) 内有 \(\kappa(s)\equiv 0\) ，则该曲线段是一条直线。对于直线而言，通常取它的两个彼此正交的法向量 \(\bm{\beta},\bm{\gamma}\) ，而且使 \(\bm{\alpha},\bm{\beta},\bm{\gamma}\) 构成右手系，然后让它们沿直线作平行移动，这样得到的标架场 \(\set{\bm{r}(s);\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)}\) 可以被看作是直线的Frenet标架场。如果 \(s_0\) 是曲率 \(\kappa(s)\) 的孤立零点，则情形就变得十分复杂了。在 \(s_0\) 的两侧，曲线的曲率 \(\kappa(s)\) 不为零，所以有确定的Frenet标架场。如果在 \(s \to s_0 \pm 0\) 时它们的极限是同一个，则可以把该极限定义为Frenet标架场在 \(s_0\) 处的值，这就是说Frenet标架场可以延拓到 \(\kappa(s)\) 的孤立零点 \(s_0\) 。如果在 \(s \to s_0 \pm 0\) 时，Frenet标架场的极限不是同一个，则Frenet标架场不能够延拓到 \(\kappa(s)\) 的孤立零点 \(s_0\) 。</p>
 
     </div>
 </section>
@@ -1671,7 +1687,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 
 
         <span>
-            最后更新于 Oct 18, 2024 11:08 CST
+            最后更新于 Oct 18, 2024 11:55 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1827,7 +1843,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
             
             
         
-        <span>本图书馆累计发布了10篇文章 共81387字</span>
+        <span>本图书馆累计发布了10篇文章 共81974字</span>
     </section>
 
     <section class="site-visit-count">
