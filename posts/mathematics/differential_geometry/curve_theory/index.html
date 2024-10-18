@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T11:55:29&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T13:27:08&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -609,8 +609,10 @@
         <li><a href="#切向量的转动">切向量的转动</a></li>
         <li><a href="#曲率">曲率</a></li>
         <li><a href="#frenet标架">Frenet标架</a></li>
+        <li><a href="#frenet标架的计算">Frenet标架的计算</a></li>
       </ol>
     </li>
+    <li><a href="#曲线的挠率和frenet公式">曲线的挠率和Frenet公式</a></li>
   </ol>
 </nav>
         </div>
@@ -925,7 +927,7 @@
 </svg>
 
             <time class="article-words">
-                4683 字
+                5326 字
             </time>
         </div>
 
@@ -940,7 +942,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 10 分钟
+                    阅读时长: 11 分钟
                 </time>
             </div>
         
@@ -1645,8 +1647,101 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 \tag{43}
     \]
 <p>  称其为曲线的次法向量。这样，在正则曲线上曲率 \(\kappa(s)\) 不为零的点有一个完全确定的右手单位正交标架 \(\set{\bm{r}(s);\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)}\) ，它与表示曲线的Cartesian直角坐标系的选取无关（因为 \(s\) 和 \(\mathrm{d}s\) 都和Cartesian直角坐标系无关），也不受曲线作保持定向的容许参数变换的影响，称为曲线在该点的<strong>Frenet标架</strong>。<br>
-  如上所述，曲线在 \(\kappa(s)=0\) 的点，Frenet标架是没有定义的。如果在一个区间 \((s_0-\varepsilon, s_0+\varepsilon)\) 内有 \(\kappa(s)\equiv 0\) ，则该曲线段是一条直线。对于直线而言，通常取它的两个彼此正交的法向量 \(\bm{\beta},\bm{\gamma}\) ，而且使 \(\bm{\alpha},\bm{\beta},\bm{\gamma}\) 构成右手系，然后让它们沿直线作平行移动，这样得到的标架场 \(\set{\bm{r}(s);\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)}\) 可以被看作是直线的Frenet标架场。如果 \(s_0\) 是曲率 \(\kappa(s)\) 的孤立零点，则情形就变得十分复杂了。在 \(s_0\) 的两侧，曲线的曲率 \(\kappa(s)\) 不为零，所以有确定的Frenet标架场。如果在 \(s \to s_0 \pm 0\) 时它们的极限是同一个，则可以把该极限定义为Frenet标架场在 \(s_0\) 处的值，这就是说Frenet标架场可以延拓到 \(\kappa(s)\) 的孤立零点 \(s_0\) 。如果在 \(s \to s_0 \pm 0\) 时，Frenet标架场的极限不是同一个，则Frenet标架场不能够延拓到 \(\kappa(s)\) 的孤立零点 \(s_0\) 。</p>
-
+  如上所述，曲线在 \(\kappa(s)=0\) 的点，Frenet标架是没有定义的。如果在一个区间 \((s_0-\varepsilon, s_0+\varepsilon)\) 内有 \(\kappa(s)\equiv 0\) ，则该曲线段是一条直线。对于直线而言，通常取它的两个彼此正交的法向量 \(\bm{\beta},\bm{\gamma}\) ，而且使 \(\bm{\alpha},\bm{\beta},\bm{\gamma}\) 构成右手系，然后让它们沿直线作平行移动，这样得到的标架场 \(\set{\bm{r}(s);\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)}\) 可以被看作是直线的Frenet标架场。如果 \(s_0\) 是曲率 \(\kappa(s)\) 的孤立零点，则情形就变得十分复杂了。在 \(s_0\) 的两侧，曲线的曲率 \(\kappa(s)\) 不为零，所以有确定的Frenet标架场。如果在 \(s \to s_0 \pm 0\) 时它们的极限是同一个，则可以把该极限定义为Frenet标架场在 \(s_0\) 处的值，这就是说Frenet标架场可以延拓到 \(\kappa(s)\) 的孤立零点 \(s_0\) 。如果在 \(s \to s_0 \pm 0\) 时，Frenet标架场的极限不是同一个，则Frenet标架场不能够延拓到 \(\kappa(s)\) 的孤立零点 \(s_0\) 。<br>
+  在曲率 \(\kappa(s)\) 处处不为零的正则曲线上有内在地确定的Frenet标架场，这样一来， \(E^3\) 中的正则曲线便成为在 \(E^3\) 内由全体右手单位正交标架构成的6维空间中的一条曲线。这种看法有基本的重要性。事实上，在下一节我们会知道，在给定了描写曲线形状的全部几何不变量之后，从 \(E^3\) 内由全体右手单位正交标架所构成的6维空间中来看，曲线所满足的微分方程是一个一阶常微分方程组。<br>
+  在曲率 \(\kappa(s)\) 不为零的点，Frenet标架 \(\set{\bm{r}(s);\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)}\) 的三根轴分别称为曲线的<strong>切线</strong>，<strong>主法线</strong>和<strong>次法线</strong>；三个坐标面分别称为曲线的<strong>法平面</strong>（以 \(\bm{\alpha}\) 为法向量的平面），<strong>从切平面</strong>（以 \(\bm{\beta}\) 为法向量的平面）和<strong>密切平面</strong>（以 \(\bm{\gamma}\) 为法向量的平面），它们的方程分别为</p>
+<ul>
+<li>法平面： \((\bm{X}-\bm{r}(s))\cdot\bm{\alpha}(s)=0\)</li>
+<li>从切平面： \((\bm{X}-\bm{r}(s))\cdot\bm{\beta}(s)=0\)</li>
+<li>密切平面： \((\bm{X}-\bm{r}(s))\cdot\bm{\gamma}(s)=0\)</li>
+</ul>
+<p>  其中 \(\bm{X}\) 是相应平面上的动点的向径。</p>
+<h3 id="frenet标架的计算">Frenet标架的计算
+</h3><p>  下面叙述曲线的曲率和Frenet标架的计算方法。如果曲线 \(\bm{r}=\bm{r}(s)\) 以 \(s\) 为弧长参数，则曲线的曲率和Frenet标架可以根据定义直接计算。实际上</p>
+<p><span id="20241018121927CST"></span>\[
+\bm{\alpha}(s)=\bm{r}'(s)
+\tag{44}
+    \]
+<span id="20241018122023CST"></span>\[
+\kappa(s)=|\bm{\alpha}'(s)|=|\bm{r}''(s)|
+\tag{45}
+    \]</p>
+<p>  如果 \(\kappa(s)\ne 0\) ，则由<a class="link" href="#20241018111648CST">式(42)</a>可得</p>
+<span id="20241018122758CST"></span>\[
+\bm{\beta}(s)=\frac{\bm{r}''(s)}{|\bm{r}''(s)|}
+\tag{46}
+    \]
+<p>  因此</p>
+<span id="20241018122837CST"></span>\[
+\bm{\gamma}(s)=\bm{\alpha}(s)\times\bm{\beta}(s)=\frac{\bm{r}'(s)\times\bm{r}''(s)}{|\bm{r}''(s)|}
+\tag{47}
+    \]
+<p>  如果曲线的方程是 \(\bm{r}=\bm{r}(t)\) ， \(t\) 不是弧长参数，则由<a class="link" href="#20241016212442CST">式(32)</a></p>
+<span id="20241018122951CST"></span>\[
+\frac{\mathrm{d}s}{\mathrm{d}t}=|\bm{r}'(t)|
+\tag{48}
+    \]
+<p>  故</p>
+<span id="20241018123009CST"></span>\[
+\bm{\alpha}(t)=\bm{\alpha}(s(t))=\frac{\mathrm{d}\bm{r}'(s(t))}{\mathrm{d}s}=\frac{\mathrm{d}\bm{r}'(s(t))}{\mathrm{d}t}\frac{\mathrm{d}t}{\mathrm{d}s}=\frac{\left(\cfrac{\mathrm{d}\bm{r}'(s(t))}{\mathrm{d}t}\right)}{\left(\cfrac{\mathrm{d}s}{\mathrm{d}t}\right)}=\frac{\bm{r}'(t)}{|\bm{r}'(t)|}
+\tag{49}
+    \]
+<p>  即</p>
+<span id="20241018123549CST"></span>\[
+\bm{r}'(t)=|\bm{r}'(t)|\cdot\bm{\alpha}(t)
+\tag{50}
+    \]
+<p>  将上式对 \(t\) 求导，由<a class="link" href="#20241018111648CST">式(42)</a>和<a class="link" href="#20241016212442CST">式(32)</a></p>
+<span id="20241018123728CST"></span>\[
+\begin{aligned}
+\bm{r}''(t)=&\frac{\mathrm{d}|\bm{r}'(t)|}{\mathrm{d}t}\bm{\alpha}(t)+|\bm{r}'(t)|\cdot\frac{\mathrm{d}\bm{\alpha}(t)}{\mathrm{d}s}\cdot\frac{\mathrm{d}s}{\mathrm{d}t}\\[10pt]
+=&\frac{\mathrm{d}|\bm{r}'(t)|}{\mathrm{d}t}\bm{\alpha}(t)+|\bm{r}'(t)|^2\cdot\kappa(t)\bm{\beta}(t)
+\end{aligned}
+\tag{51}
+    \]
+<p>  所以由<a class="link" href="#20241018111830CST">式(43)</a></p>
+<span id="20241018124239CST"></span>\[
+\begin{aligned}
+\bm{r}'(t)\times\bm{r}''(t)=&|\bm{r}'(t)|^3\cdot\kappa(t)(\bm{\alpha}(t)\times\bm{\beta}(t))\\[5pt]
+=&|\bm{r}'(t)|^3\cdot\kappa(t)\bm{\gamma}(t)
+\end{aligned}
+\tag{52}
+    \]
+<p>  两边取模再利用 \(\bm{\gamma}(t)\) 单位向量的性质可得</p>
+<span id="20241018125515CST"></span>\[
+\kappa(t)=\cfrac{|\bm{r}'(t)\times\bm{r}''(t)|}{|\bm{r}'(t)|^3}
+\tag{53}
+    \]
+<p>  再代入回<a class="link" href="#20241018124239CST">式(52)</a>可得</p>
+<span id="20241018125609CST"></span>\[
+\bm{\gamma}(t)=\frac{\bm{r}'(t)\times\bm{r}''(t)}{|\bm{r}'(t)\times\bm{r}''(t)|}
+\tag{54}
+    \]
+<p>  由正交标架的性质<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241009123616CST">Euclidean空间-式(24)</a>可得</p>
+<span id="20241018125742CST"></span>\[
+\bm{\beta}(t)=\bm{\gamma}(t)\times\bm{\alpha}(t)
+\tag{55}
+    \]
+<p>  代入<a class="link" href="#20241018125609CST">式(54)</a>和<a class="link" href="#20241018123009CST">式(49)</a>再利用<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">三向量叉乘公式</a>可得</p>
+<span id="20241018125936CST"></span>\[
+\begin{aligned}
+\bm{\beta}(t)=&\frac{(\bm{r}'(t)\times\bm{r}''(t))\times\bm{r}'(t)}{|\bm{r}'(t)|\cdot|\bm{r}'(t)\times\bm{r}''(t)|}\\[10pt]
+=&\frac{|\bm{r}'(t)|}{|\bm{r}'(t)\times\bm{r}''(t)|}\bm{r}''(t)-\frac{\bm{r}'(t)\cdot\bm{r}''(t)}{|\bm{r}'(t)|\cdot|\bm{r}'(t)\times\bm{r}''(t)|}\bm{r}'(t)
+\end{aligned}
+\tag{56}
+    \]
+<p>  由此得到Frenet标架的一般计算公式为</p>
+<span id="20241018124947CST"></span>\[
+\begin{cases}
+\kappa(t)=\cfrac{|\bm{r}'(t)\times\bm{r}''(t)|}{|\bm{r}'(t)|^3}\\[10pt]
+\bm{\alpha}(t)=\cfrac{\bm{r}'(t)}{|\bm{r}(t)|}\\[10pt]
+\bm{\beta}(t)=\cfrac{|\bm{r}'(t)|}{|\bm{r}'(t)\times\bm{r}''(t)|}\bm{r}''(t)-\cfrac{\bm{r}'(t)\cdot\bm{r}''(t)}{|\bm{r}'(t)|\cdot|\bm{r}'(t)\times\bm{r}''(t)|}\bm{r}'(t)\\[10pt]
+\bm{\gamma}(t)=\cfrac{\bm{r}'(t)\times\bm{r}''(t)}{|\bm{r}'(t)\times\bm{r}''(t)|}
+\end{cases}
+\tag{57}
+    \]
+<h2 id="曲线的挠率和frenet公式">曲线的挠率和Frenet公式
+</h2>
     </div>
 </section>
 
@@ -1687,7 +1782,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 
 
         <span>
-            最后更新于 Oct 18, 2024 11:55 CST
+            最后更新于 Oct 18, 2024 13:27 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1751,7 +1846,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
     <div class="article-list--compact related-contents">
     
         <article>
-            <a href="/posts/mathematics/euclidean_spaces_and_vector_functions/">
+            <a href="/posts/mathematics/differential_geometry/euclidean_space/">
                 <div class="article-details">
                     <h2 class="article-title">上一篇：Euclidean空间</h2>
                     
@@ -1843,7 +1938,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
             
             
         
-        <span>本图书馆累计发布了10篇文章 共81974字</span>
+        <span>本图书馆累计发布了10篇文章 共82617字</span>
     </section>
 
     <section class="site-visit-count">
