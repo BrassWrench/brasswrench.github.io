@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 18 Oct 2024 01:05:10 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 18 Oct 2024 11:01:49 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -492,7 +492,8 @@ s(t)=\int_a^t|\bm{r}&#39;(t&#39;)|\mathrm{d}t&#39;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;）&lt;/strong&gt;：因为 \(\displaystyle\frac{\mathrm{d}s}{\mathrm{d}t}=|\bm{r}&#39;(t)|\) ，当 \(t\) 是它的弧长参数 \(s\) 时， \(\mathrm{d}s=\mathrm{d}t\) ，所以由&lt;a class=&#34;link&#34; href=&#34;#20241016212442CST&#34;&gt;式(32)&lt;/a&gt;可知 \(|\bm{r}&#39;(t)|\equiv 1\) ，反之亦然，证毕。&lt;/p&gt;
 &lt;p&gt;  上述定理的几何意义是：曲线以弧长为参数的充分必要条件是它的切向量场是单位切向量场。&lt;/p&gt;
 &lt;h2 id=&#34;曲线的曲率和frenet标架&#34;&gt;曲线的曲率和Frenet标架
-&lt;/h2&gt;&lt;p&gt;  设曲线 \(C\) 的方程是 \(\bm{r}(s)\) ，其中 \(s\) 是曲线的弧长参数。根据&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;可知 \(\bm{r}&#39;(s)\) 是曲线 \(C\) 的单位切向量场。命&lt;/p&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;切向量的转动&#34;&gt;切向量的转动
+&lt;/h3&gt;&lt;p&gt;  设曲线 \(C\) 的方程是 \(\bm{r}(s)\) ，其中 \(s\) 是曲线的弧长参数。根据&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;可知 \(\bm{r}&#39;(s)\) 是曲线 \(C\) 的单位切向量场。命&lt;/p&gt;
 &lt;span id=&#34;20241017212549CST&#34;&gt;&lt;/span&gt;\[
 \bm{\alpha}(s)=\bm{r}&#39;(s)
 \tag{34}
@@ -660,7 +661,33 @@ s(t)=\int_a^t|\bm{r}&#39;(t&#39;)|\mathrm{d}t&#39;
 \tag{36}
     \]
 &lt;p&gt;  最后一步使用了 \(\sin x \backsim x\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;等价无穷小&lt;/a&gt;）。证毕。&lt;/p&gt;
-</description>
+&lt;h3 id=&#34;曲率&#34;&gt;曲率
+&lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241018100450CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1&lt;/strong&gt;：设曲线 \(C\) 的方程是 \(\bm{r}(s)\) ，其中 \(s\) 是曲线的弧长参数。命&lt;/p&gt;
+&lt;span id=&#34;20241018100528CST&#34;&gt;&lt;/span&gt;\[
+\kappa(s)=\left|\frac{\mathrm{d}\bm{\alpha}}{\mathrm{d}s}\right|=\left|\bm{r}&#39;&#39;(s)\right|
+\tag{37}
+    \]
+&lt;p&gt;  称 \(\kappa(s)\) 为曲线 \(\bm{r}(s)\) 在 \(s\) 处的&lt;strong&gt;曲率&lt;/strong&gt;，并且称 \(\left|\cfrac{\mathrm{d}\bm{\alpha}}{\mathrm{d}s}\right|\) 为该曲线的&lt;strong&gt;曲率向量&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241018101114CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理3&lt;/strong&gt;：曲线 \(C\) 是一条直线当且仅当它的曲率 \(\kappa(s)\equiv 0\) 。&lt;/p&gt;
+&lt;p&gt;  证明（&lt;a class=&#34;link&#34; href=&#34;#20241018101114CST&#34;&gt;定理3&lt;/a&gt;）：设直线 \(C\) 的参数方程是 \(\bm{r}(s)=\bm{r}_0+\bm{\alpha}_0s\) ，其中 \(\bm{\alpha}_0\) 是该直线的方向向量。因此， \(\bm{r}&#39;(s)=\bm{\alpha}_0,\bm{r}&#39;&#39;(s)=\bm{0}\) ，故 \(\kappa(s)=|\bm{r}&#39;&#39;(s)|\equiv 0\) 。上述推导也可以从后往前推，因此反过来也成立。证毕。&lt;/p&gt;
+&lt;p&gt;  把曲线 \(C\) 的单位切向量 \(\bm{\alpha}(s)\) 平行移动到原点 \(O\) ，其端点所描出的曲线称为曲线 \(C\) 的&lt;strong&gt;切线像&lt;/strong&gt;，它的参数方程是&lt;/p&gt;
+&lt;span id=&#34;20241018103046CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}=\bm{\alpha}(s)
+\tag{38}
+    \]
+&lt;p&gt;  一般说来， \(s\) 不再是曲线的切线像的弧长，而由&lt;a class=&#34;link&#34; href=&#34;#20241016212442CST&#34;&gt;式(32)&lt;/a&gt;，切线像的弧长元素是&lt;/p&gt;
+&lt;span id=&#34;20241018103112CST&#34;&gt;&lt;/span&gt;\[
+\mathrm{d}\tilde{s}=\left|\frac{\mathrm{d}\bm{r}}{\mathrm{d}s}\right|ds=\left|\frac{\mathrm{d}\bm{\alpha}}{\mathrm{d}s}\right|ds=\kappa(s)\mathrm{d}s
+\tag{39}
+    \]
+&lt;p&gt;  所以&lt;/p&gt;
+&lt;span id=&#34;20241018103727CST&#34;&gt;&lt;/span&gt;
+    \[
+\kappa(s)=\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}
+\]
+&lt;p&gt;  这就是说，曲线的曲率 \(\kappa(s)\) 是曲线的切线像的弧长元素与曲线的弧长元素之比。&lt;/p&gt;
+&lt;h3 id=&#34;frenet标架&#34;&gt;Frenet标架
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>微分几何（一）：Euclidean空间</title>
