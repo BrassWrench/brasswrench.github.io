@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T20:40:06&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T23:42:05&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -616,6 +616,9 @@
       <ol>
         <li><a href="#密切平面的转动">密切平面的转动</a></li>
         <li><a href="#挠率">挠率</a></li>
+        <li><a href="#frenet公式">Frenet公式</a></li>
+        <li><a href="#球面曲线">球面曲线</a></li>
+        <li><a href="#挠率的计算">挠率的计算</a></li>
       </ol>
     </li>
   </ol>
@@ -932,7 +935,7 @@
 </svg>
 
             <time class="article-words">
-                6113 字
+                7256 字
             </time>
         </div>
 
@@ -947,7 +950,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 13 分钟
+                    阅读时长: 15 分钟
                 </time>
             </div>
         
@@ -1803,7 +1806,112 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 \tag{67}
     \]
 <p>  这说明曲线 \(\bm{r}=\bm{r}(s)\) 落在经过点 \(\bm{r}(s_0)\) 、以常向量 \(\bm{\gamma}_0\) 为法向量的平面内。证毕。</p>
-
+<h3 id="frenet公式">Frenet公式
+</h3><p>  根据曲率、挠率和Frenet标架的定义，我们已经有下面的公式（见<a class="link" href="#20241017212549CST">式(34)</a>、<a class="link" href="#20241018111648CST">式(42)</a>、<a class="link" href="#20241018150903CST">式(61)</a>）</p>
+<span id="20241018204649CST"></span>\[
+\bm{r}'(s)=\bm{\alpha}(s),\quad \bm{\alpha}'(s)=\kappa(s)\bm{\beta}(s),\quad \bm{\gamma}'(s)=-\tau(s)\bm{\beta}(s)
+\tag{68}
+    \]
+<p>  Frenet标架 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 是随着点在曲线 \(\bm{r}(s)\) 上的运动而运动的，而 \(\bm{r}'(s),\bm{\alpha}'(s),\bm{\gamma}'(s)\) 分别给出Frenet标架的原点 \(\bm{r}(s)\) 和标架向量 \(\bm{\alpha}(s),\bm{\gamma}(s)\) 的运动公式，要获得整个Frenet标架的运动公式，只要求出 \(\bm{\beta}'(s)\) 就行了。由于 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 是空间 \(E^3\) 的一个标架，所以 \(\bm{\beta}'(s)\) 总是可以表示成 \( \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)\) 的线性组合，不妨设</p>
+<span id="20241018214431CST"></span>\[
+\bm{\beta}'(s)=a(s)\bm{\alpha}(s)+b(s)\bm{\beta}(s)+c(s)\bm{\gamma}(s)
+\tag{69}
+    \]
+<p>  将上式分别于 \( \bm{\alpha}(s), \bm{\beta}(s), \bm{\gamma}(s)\) 作点乘，并且利用 \( \bm{\alpha}(s), \bm{\beta}(s), \bm{\gamma}(s)\) 的单位正交性，我们有</p>
+<span id="20241018214644CST"></span>\[
+\begin{cases}
+a(s)=\bm{\beta}'(s)\cdot\bm{\alpha}(s)=-\bm{\beta}(s)\cdot\bm{\alpha}'(s)=-\kappa(s)\\[5pt]
+b(s)=\bm{\beta}'(s)\cdot\bm{\beta}(s)=0\\[5pt]
+c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}'(s)=\tau(s)
+\end{cases}
+\tag{70}
+    \]
+<p>  上式利用了 \(\bm{\alpha}(s)\cdot\bm{\beta}(s)=0\) 两端求导得到的 \(\bm{\alpha}'(s)\cdot\bm{\beta}(s)+\bm{\alpha}(s)\cdot\bm{\beta}'(s)=0\) ， \(\bm{\beta}(s)\cdot\bm{\gamma}(s)=0\) 两端求导得到的 \(\bm{\beta}'(s)\cdot\bm{\gamma}(s)+\bm{\beta}(s)\cdot\bm{\gamma}'(s)=0\) ，以及由<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST">Euclidean空间-定理3</a>的1. 得到的结论 \(\bm{\beta}'(s)\cdot\bm{\beta}(s)=0\) 。代入<a class="link" href="#20241018214431CST">式(69)</a>可得</p>
+<span id="20241018220249CST"></span>\[
+\bm{\beta}'(s)=-\kappa(s)\bm{\alpha}(s)+\tau(s)\bm{\gamma}(s)
+\tag{71}
+    \]
+<p>  把<a class="link" href="#20241018204649CST">式(68)</a>和<a class="link" href="#20241018220249CST">式(71)</a>合并起来可得到Frenet标架 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 沿曲线 \(C\) 运动的公式</p>
+<span id="20241018220731CST"></span>\[
+\begin{cases}
+\bm{r}'(s)=\bm{\alpha}(s)\\[5pt]
+\bm{\alpha}'(s)=\kappa(s)\bm{\beta}(s)\\[5pt]
+\bm{\beta}'(s)=-\kappa(s)\bm{\alpha}(s)+\tau(s)\bm{\gamma}(s)\\[5pt]
+\bm{\gamma}'(s)=-\tau(s)\bm{\beta}(s)
+\end{cases}
+\tag{72}
+    \]
+<p>  上述公式称为<strong>Frenet公式</strong>，是曲线论中最重要、最基本的公式，由法国数学家Serret和Frenet分别在1851和1852年发表（他们给出的是切线、主法线、次法线的方向余弦的导数公式）。Frenet公式中后三个方程可以写成矩阵的形式</p>
+<span id="20241018223651CST"></span>\[
+\begin{pmatrix}
+\bm{\alpha}'(s)\\[5pt]
+\bm{\beta}'(s)\\[5pt]
+\bm{\gamma}'(s)
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & \kappa(s) & 0 \\[5pt]
+-\kappa(s) & 0 & \tau(s)\\[5pt]
+0 & -\tau(s) & 0
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+\bm{\alpha}(s)\\[5pt]
+\bm{\beta}(s)\\[5pt]
+\bm{\gamma}(s)
+\end{pmatrix}
+\tag{73}
+    \]
+<p>  在上面的公式中系数矩阵是反对称矩阵，这不是Frenet标架的导数所特有的。一般地，沿曲线定义的任意一个单位正交标架场的导数公式的系数矩阵都是反对称的。</p>
+<h3 id="球面曲线">球面曲线
+</h3><p>  熟练地运用Frenet公式对于研究曲线的性质是十分要紧的。下面以球面上曲线的特征性质为例来说明这一点。</p>
+<p>  <span id="20241018224037CST"></span><strong>定理5</strong>：设曲线 \(bm{r}=\bm{r}(s)\) 的曲率 \(\kappa(s)\) 和挠率 \(\tau(s)\) 都不为零， \(s\) 是弧长参数。如果该曲线落在一个球面上，则它的曲率和挠率必满足关系式</p>
+<span id="20241018224331CST"></span>\[
+\left(\frac{1}{\kappa(s)}\right)^2+\left(\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\right)^2=常数
+\tag{74}
+    \]
+<p>  <strong>证明（<a class="link" href="#20241018224037CST">定理5</a>）</strong>：假定曲线 \(\bm{r}=\bm{r}(s)\) 落在一个球面上，该球面的球心是 \(\bm{r}_0\) ，半径是 \(a\) ，则有关系式</p>
+<span id="20241018224733CST"></span>\[
+(\bm{r}(s)-\bm{r}_0)^2=a^2
+\tag{75}
+    \]
+<p>  将上式两边对 \(s\) 求导并利用<a class="link" href="#20241017212549CST">式(34)</a></p>
+<span id="20241018224907CST"></span>\[
+\bm{\alpha}(s)\cdot(\bm{r}(s)-\bm{r}_0)=0
+\tag{76}
+    \]
+<p>  故 \((\bm{r}(s)-\bm{r}_0)\) 垂直于切线，因此是曲线的法向量。不妨设</p>
+<span id="20241018225119CST"></span>\[
+\bm{r}(s)-\bm{r}_0=\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)
+\tag{77}
+    \]
+<p>  将上式对于 \(s\) 求导并且利用Frenet公式<a class="link" href="#20241018220731CST">式(72)</a>得到</p>
+<span id="20241018225238CST"></span>\[
+\bm{\alpha}(s)=-\lambda(s)\kappa(s)\bm{\alpha}(s)+(\lambda'(s)-\mu(s)\tau(s))\bm{\beta}(s)+(\lambda(s)\tau(s)+\mu'(s))\bm{\gamma}(s)
+\tag{78}
+    \]
+<p>  比较等式两边的系数得到</p>
+<span id="20241018231209CST"></span>\[
+\lambda(s)\kappa(s)=-1,\quad \lambda'(s)=\mu(s)\tau(s),\quad \mu'(s)=\lambda(s)\tau(s)
+\tag{79}
+    \]
+<p>  于是</p>
+<span id="20241018231851CST"></span>\[
+\lambda=-\frac{1}{\kappa(s)},\quad \mu(s)=\frac{\lambda'(s)}{\tau(s)}=-\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)
+\tag{80}
+    \]
+<p>  将<a class="link" href="#20241018231851CST">式(80)</a>代入到<a class="link" href="#20241018225119CST">式(77)</a>可得</p>
+<span id="20241018233600CST"></span>\[
+\bm{r}(s)-\bm{r}_0=-\frac{1}{\kappa(s)}\bm{\beta}(s)-\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\bm{\gamma}(s)
+\tag{81}
+    \]
+<p>  因此根据<a class="link" href="#20241018224733CST">式(75)</a>和 \(\bm{\beta}(s)\) 和 \(\bm{\gamma}(s)\) 的正交性得到</p>
+<span id="20241018233932CST"></span>\[
+\left(\frac{1}{\kappa(s)}\right)^2+\left(\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\right)^2=常数
+\tag{82}
+    \]
+<h3 id="挠率的计算">挠率的计算
+</h3>
     </div>
 </section>
 
@@ -1844,7 +1952,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 
 
         <span>
-            最后更新于 Oct 18, 2024 20:40 CST
+            最后更新于 Oct 18, 2024 23:42 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2000,7 +2108,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
             
             
         
-        <span>本图书馆累计发布了10篇文章 共83404字</span>
+        <span>本图书馆累计发布了10篇文章 共84547字</span>
     </section>
 
     <section class="site-visit-count">

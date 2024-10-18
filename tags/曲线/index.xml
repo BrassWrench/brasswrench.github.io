@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 18 Oct 2024 20:40:06 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 18 Oct 2024 23:42:05 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -854,7 +854,112 @@ s(t)=\int_a^t|\bm{r}&#39;(t&#39;)|\mathrm{d}t&#39;
 \tag{67}
     \]
 &lt;p&gt;  这说明曲线 \(\bm{r}=\bm{r}(s)\) 落在经过点 \(\bm{r}(s_0)\) 、以常向量 \(\bm{\gamma}_0\) 为法向量的平面内。证毕。&lt;/p&gt;
-</description>
+&lt;h3 id=&#34;frenet公式&#34;&gt;Frenet公式
+&lt;/h3&gt;&lt;p&gt;  根据曲率、挠率和Frenet标架的定义，我们已经有下面的公式（见&lt;a class=&#34;link&#34; href=&#34;#20241017212549CST&#34;&gt;式(34)&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241018111648CST&#34;&gt;式(42)&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241018150903CST&#34;&gt;式(61)&lt;/a&gt;）&lt;/p&gt;
+&lt;span id=&#34;20241018204649CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;(s)=\bm{\alpha}(s),\quad \bm{\alpha}&#39;(s)=\kappa(s)\bm{\beta}(s),\quad \bm{\gamma}&#39;(s)=-\tau(s)\bm{\beta}(s)
+\tag{68}
+    \]
+&lt;p&gt;  Frenet标架 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 是随着点在曲线 \(\bm{r}(s)\) 上的运动而运动的，而 \(\bm{r}&#39;(s),\bm{\alpha}&#39;(s),\bm{\gamma}&#39;(s)\) 分别给出Frenet标架的原点 \(\bm{r}(s)\) 和标架向量 \(\bm{\alpha}(s),\bm{\gamma}(s)\) 的运动公式，要获得整个Frenet标架的运动公式，只要求出 \(\bm{\beta}&#39;(s)\) 就行了。由于 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 是空间 \(E^3\) 的一个标架，所以 \(\bm{\beta}&#39;(s)\) 总是可以表示成 \( \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)\) 的线性组合，不妨设&lt;/p&gt;
+&lt;span id=&#34;20241018214431CST&#34;&gt;&lt;/span&gt;\[
+\bm{\beta}&#39;(s)=a(s)\bm{\alpha}(s)+b(s)\bm{\beta}(s)+c(s)\bm{\gamma}(s)
+\tag{69}
+    \]
+&lt;p&gt;  将上式分别于 \( \bm{\alpha}(s), \bm{\beta}(s), \bm{\gamma}(s)\) 作点乘，并且利用 \( \bm{\alpha}(s), \bm{\beta}(s), \bm{\gamma}(s)\) 的单位正交性，我们有&lt;/p&gt;
+&lt;span id=&#34;20241018214644CST&#34;&gt;&lt;/span&gt;\[
+\begin{cases}
+a(s)=\bm{\beta}&#39;(s)\cdot\bm{\alpha}(s)=-\bm{\beta}(s)\cdot\bm{\alpha}&#39;(s)=-\kappa(s)\\[5pt]
+b(s)=\bm{\beta}&#39;(s)\cdot\bm{\beta}(s)=0\\[5pt]
+c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=\tau(s)
+\end{cases}
+\tag{70}
+    \]
+&lt;p&gt;  上式利用了 \(\bm{\alpha}(s)\cdot\bm{\beta}(s)=0\) 两端求导得到的 \(\bm{\alpha}&#39;(s)\cdot\bm{\beta}(s)+\bm{\alpha}(s)\cdot\bm{\beta}&#39;(s)=0\) ， \(\bm{\beta}(s)\cdot\bm{\gamma}(s)=0\) 两端求导得到的 \(\bm{\beta}&#39;(s)\cdot\bm{\gamma}(s)+\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=0\) ，以及由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST&#34;&gt;Euclidean空间-定理3&lt;/a&gt;的1. 得到的结论 \(\bm{\beta}&#39;(s)\cdot\bm{\beta}(s)=0\) 。代入&lt;a class=&#34;link&#34; href=&#34;#20241018214431CST&#34;&gt;式(69)&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241018220249CST&#34;&gt;&lt;/span&gt;\[
+\bm{\beta}&#39;(s)=-\kappa(s)\bm{\alpha}(s)+\tau(s)\bm{\gamma}(s)
+\tag{71}
+    \]
+&lt;p&gt;  把&lt;a class=&#34;link&#34; href=&#34;#20241018204649CST&#34;&gt;式(68)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241018220249CST&#34;&gt;式(71)&lt;/a&gt;合并起来可得到Frenet标架 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 沿曲线 \(C\) 运动的公式&lt;/p&gt;
+&lt;span id=&#34;20241018220731CST&#34;&gt;&lt;/span&gt;\[
+\begin{cases}
+\bm{r}&#39;(s)=\bm{\alpha}(s)\\[5pt]
+\bm{\alpha}&#39;(s)=\kappa(s)\bm{\beta}(s)\\[5pt]
+\bm{\beta}&#39;(s)=-\kappa(s)\bm{\alpha}(s)+\tau(s)\bm{\gamma}(s)\\[5pt]
+\bm{\gamma}&#39;(s)=-\tau(s)\bm{\beta}(s)
+\end{cases}
+\tag{72}
+    \]
+&lt;p&gt;  上述公式称为&lt;strong&gt;Frenet公式&lt;/strong&gt;，是曲线论中最重要、最基本的公式，由法国数学家Serret和Frenet分别在1851和1852年发表（他们给出的是切线、主法线、次法线的方向余弦的导数公式）。Frenet公式中后三个方程可以写成矩阵的形式&lt;/p&gt;
+&lt;span id=&#34;20241018223651CST&#34;&gt;&lt;/span&gt;\[
+\begin{pmatrix}
+\bm{\alpha}&#39;(s)\\[5pt]
+\bm{\beta}&#39;(s)\\[5pt]
+\bm{\gamma}&#39;(s)
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 &amp; \kappa(s) &amp; 0 \\[5pt]
+-\kappa(s) &amp; 0 &amp; \tau(s)\\[5pt]
+0 &amp; -\tau(s) &amp; 0
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+\bm{\alpha}(s)\\[5pt]
+\bm{\beta}(s)\\[5pt]
+\bm{\gamma}(s)
+\end{pmatrix}
+\tag{73}
+    \]
+&lt;p&gt;  在上面的公式中系数矩阵是反对称矩阵，这不是Frenet标架的导数所特有的。一般地，沿曲线定义的任意一个单位正交标架场的导数公式的系数矩阵都是反对称的。&lt;/p&gt;
+&lt;h3 id=&#34;球面曲线&#34;&gt;球面曲线
+&lt;/h3&gt;&lt;p&gt;  熟练地运用Frenet公式对于研究曲线的性质是十分要紧的。下面以球面上曲线的特征性质为例来说明这一点。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241018224037CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理5&lt;/strong&gt;：设曲线 \(bm{r}=\bm{r}(s)\) 的曲率 \(\kappa(s)\) 和挠率 \(\tau(s)\) 都不为零， \(s\) 是弧长参数。如果该曲线落在一个球面上，则它的曲率和挠率必满足关系式&lt;/p&gt;
+&lt;span id=&#34;20241018224331CST&#34;&gt;&lt;/span&gt;\[
+\left(\frac{1}{\kappa(s)}\right)^2+\left(\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\right)^2=常数
+\tag{74}
+    \]
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241018224037CST&#34;&gt;定理5&lt;/a&gt;）&lt;/strong&gt;：假定曲线 \(\bm{r}=\bm{r}(s)\) 落在一个球面上，该球面的球心是 \(\bm{r}_0\) ，半径是 \(a\) ，则有关系式&lt;/p&gt;
+&lt;span id=&#34;20241018224733CST&#34;&gt;&lt;/span&gt;\[
+(\bm{r}(s)-\bm{r}_0)^2=a^2
+\tag{75}
+    \]
+&lt;p&gt;  将上式两边对 \(s\) 求导并利用&lt;a class=&#34;link&#34; href=&#34;#20241017212549CST&#34;&gt;式(34)&lt;/a&gt;&lt;/p&gt;
+&lt;span id=&#34;20241018224907CST&#34;&gt;&lt;/span&gt;\[
+\bm{\alpha}(s)\cdot(\bm{r}(s)-\bm{r}_0)=0
+\tag{76}
+    \]
+&lt;p&gt;  故 \((\bm{r}(s)-\bm{r}_0)\) 垂直于切线，因此是曲线的法向量。不妨设&lt;/p&gt;
+&lt;span id=&#34;20241018225119CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}(s)-\bm{r}_0=\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)
+\tag{77}
+    \]
+&lt;p&gt;  将上式对于 \(s\) 求导并且利用Frenet公式&lt;a class=&#34;link&#34; href=&#34;#20241018220731CST&#34;&gt;式(72)&lt;/a&gt;得到&lt;/p&gt;
+&lt;span id=&#34;20241018225238CST&#34;&gt;&lt;/span&gt;\[
+\bm{\alpha}(s)=-\lambda(s)\kappa(s)\bm{\alpha}(s)+(\lambda&#39;(s)-\mu(s)\tau(s))\bm{\beta}(s)+(\lambda(s)\tau(s)+\mu&#39;(s))\bm{\gamma}(s)
+\tag{78}
+    \]
+&lt;p&gt;  比较等式两边的系数得到&lt;/p&gt;
+&lt;span id=&#34;20241018231209CST&#34;&gt;&lt;/span&gt;\[
+\lambda(s)\kappa(s)=-1,\quad \lambda&#39;(s)=\mu(s)\tau(s),\quad \mu&#39;(s)=\lambda(s)\tau(s)
+\tag{79}
+    \]
+&lt;p&gt;  于是&lt;/p&gt;
+&lt;span id=&#34;20241018231851CST&#34;&gt;&lt;/span&gt;\[
+\lambda=-\frac{1}{\kappa(s)},\quad \mu(s)=\frac{\lambda&#39;(s)}{\tau(s)}=-\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)
+\tag{80}
+    \]
+&lt;p&gt;  将&lt;a class=&#34;link&#34; href=&#34;#20241018231851CST&#34;&gt;式(80)&lt;/a&gt;代入到&lt;a class=&#34;link&#34; href=&#34;#20241018225119CST&#34;&gt;式(77)&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241018233600CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}(s)-\bm{r}_0=-\frac{1}{\kappa(s)}\bm{\beta}(s)-\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\bm{\gamma}(s)
+\tag{81}
+    \]
+&lt;p&gt;  因此根据&lt;a class=&#34;link&#34; href=&#34;#20241018224733CST&#34;&gt;式(75)&lt;/a&gt;和 \(\bm{\beta}(s)\) 和 \(\bm{\gamma}(s)\) 的正交性得到&lt;/p&gt;
+&lt;span id=&#34;20241018233932CST&#34;&gt;&lt;/span&gt;\[
+\left(\frac{1}{\kappa(s)}\right)^2+\left(\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\right)^2=常数
+\tag{82}
+    \]
+&lt;h3 id=&#34;挠率的计算&#34;&gt;挠率的计算
+&lt;/h3&gt;</description>
         </item>
         
     </channel>
