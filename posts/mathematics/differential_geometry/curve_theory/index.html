@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T13:29:23&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T20:40:06&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -612,7 +612,12 @@
         <li><a href="#frenet标架的计算">Frenet标架的计算</a></li>
       </ol>
     </li>
-    <li><a href="#曲线的挠率和frenet公式">曲线的挠率和Frenet公式</a></li>
+    <li><a href="#曲线的挠率和frenet公式">曲线的挠率和Frenet公式</a>
+      <ol>
+        <li><a href="#密切平面的转动">密切平面的转动</a></li>
+        <li><a href="#挠率">挠率</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -927,7 +932,7 @@
 </svg>
 
             <time class="article-words">
-                5329 字
+                6113 字
             </time>
         </div>
 
@@ -942,7 +947,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 13 分钟
                 </time>
             </div>
         
@@ -1202,7 +1207,7 @@ g(x(t),y(t),z(t))\equiv 0
 \end{cases}
 \tag{14}
     \]
-<p>  由上式和<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">三向量叉乘公式</a>，这意味着</p>
+<p>  由上式和<a class="link" onclick="alert('抱歉，“矢量分析”还未上线~')">三向量叉乘公式</a>，这意味着</p>
 <span id="20241015124846CST"></span>\[
 \begin{aligned}
 &\bm{r}'(t)\times\left(\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\times\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\right)\\[15pt]
@@ -1722,7 +1727,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 \bm{\beta}(t)=\bm{\gamma}(t)\times\bm{\alpha}(t)
 \tag{55}
     \]
-<p>  代入<a class="link" href="#20241018125609CST">式(54)</a>和<a class="link" href="#20241018123009CST">式(49)</a>再利用<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">三向量叉乘公式</a>可得</p>
+<p>  代入<a class="link" href="#20241018125609CST">式(54)</a>和<a class="link" href="#20241018123009CST">式(49)</a>再利用<a class="link" onclick="alert('抱歉，“矢量分析”还未上线~')">三向量叉乘公式</a>可得</p>
 <span id="20241018125936CST"></span>\[
 \begin{aligned}
 \bm{\beta}(t)=&\frac{(\bm{r}'(t)\times\bm{r}''(t))\times\bm{r}'(t)}{|\bm{r}'(t)|\cdot|\bm{r}'(t)\times\bm{r}''(t)|}\\[10pt]
@@ -1741,7 +1746,64 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 \tag{57}
     \]
 <h2 id="曲线的挠率和frenet公式">曲线的挠率和Frenet公式
-</h2>
+</h2><h3 id="密切平面的转动">密切平面的转动
+</h3><p>  曲线在一点的切线和主法线所张的平面是曲线的密切平面，它的法向量是曲线的次法向量 \(\bm{\gamma}\) 。如果曲线本身落在一个平面内，则该平面就是曲线的密切平面，于是它的法向量 \(\bm{\gamma}\) 是常向量。如果曲线不是平面曲线，则 \(\bm{\gamma}\) 必定不是常向量（证明见<a class="link" href="#20241018195123CST">定理4</a>）。根据<a class="link" href="#20241017222926CST">定理2</a>，单位切向量 \(\bm{\alpha}\) 关于弧长参数 \(s\) 的导数的长度 \(|\bm{\alpha}'(s)|\) 反映了曲线的切线方向转动的快慢；同理次法向量 \(\bm{\gamma}\) 关于弧长参数 \(s\) 的导数的长度 \(|\bm{\gamma}'(s)|\) 反映了曲线的密切平面方向转动的快慢，因而它刻画了曲线偏离平面曲线的程度，反映了曲线扭曲的程度，即曲线的“挠率”。</p>
+<p>  由 \(\bm{\gamma}\) 的定义<a class="link" href="#20241018111830CST">式(43)</a></p>
+<span id="20241018143259CST"></span>\[
+\bm{\gamma}=\bm{\alpha}\times\bm{\beta}
+\tag{58}
+    \]
+<p>  并且由<a class="link" href="#20241018111648CST">式(42)</a></p>
+<span id="20241018143357CST"></span>\[
+\bm{\alpha}'(s)\parallel\bm{\beta}(s)
+\tag{59}
+    \]
+<p>  可得</p>
+<span id="20241018143527CST"></span>\[
+\bm{\gamma}'(s)=\bm{\alpha}'(s)\times\bm{\beta}(s)+\bm{\alpha}(s)\times\bm{\beta}'(s)=\bm{\alpha}(s)\times\bm{\beta}'(s)
+\tag{60}
+    \]
+<p>  这说明 \(\bm{\gamma}'(s)\perp\bm{\alpha}(s)\) 。同时，因为 \(\bm{\gamma}(s)\) 是单位向量场，由<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST">Euclidean空间-定理3</a>的1. 可知 \(\bm{\gamma}'(s)\perp\bm{\gamma}(s)\) 。因此 \(\bm{\gamma}'(s)\) 与 \(\bm{\beta}(s)\) 必共线，不妨设</p>
+<span id="20241018150903CST"></span>\[
+\bm{\gamma}'(s)=-\tau\bm{\beta}(s)
+\tag{61}
+    \]
+<p>  两边点乘 \(\bm{\beta}(s)\) 并利用 \(\bm{\beta}(s)\) 的单位向量性质</p>
+<span id="20241018153349CST"></span>\[
+\tau(s)=-\bm{\gamma}'(s)\cdot\bm{\beta}(s)
+\tag{62}
+    \]
+<p>  对<a class="link" href="#20241018150903CST">式(61)</a>两端取模可得</p>
+<span id="20241018153414CST"></span>\[
+|\tau(s)|=|\bm{\gamma}'(s)|
+\tag{63}
+    \]
+<h3 id="挠率">挠率
+</h3><p>  <span id="20241018194810CST"></span><strong>定义2（挠率）</strong>：设 \(\bm{\beta}(s)\) 和 \(\bm{\gamma}(s)\) 分别是曲线 \(C\) 的主法向量和次法向量，其中 \(s\) 是曲线的弧长参数，则 \(\tau(s)=\bm{\gamma}'(s)\cdot\bm{\beta}(s)\) 称为曲线 \(C\) 的<strong>挠率</strong>。</p>
+<p>  <span id="20241018195123CST"></span><strong>定理4</strong>：设曲线 \(C\) 不是直线，则它是平面曲线当且仅当它的挠率为零。</p>
+<p>  <strong>证明（<a class="link" href="#20241018195123CST">定理4</a></strong>）：先讨论必要性。如果曲线 \(C\) 是平面曲线，则其切向量 \(\bm{\alpha}(s)\) 必在该平面内，由<a class="link" href="#20241017235314CST">图3</a>可看出 \(\bm{\alpha}'(s)\) 也在该平面内，故由 \(\bm{\beta}\) 的定义<a class="link" href="#20241018111648CST">式(42)</a>可知 \(\bm{\beta}\) 也在该平面内，那么由 \(\bm{\gamma}\) 的定义<a class="link" href="#20241018111830CST">式(43)</a>可知 \(\bm{\gamma}\) 垂直于该平面且为单位向量，故 \(\bm{\gamma}\) 不变， \(\bm{\gamma}'(s)=0\) ，故曲线挠率为 \(0\) 。<br>
+  再讨论充分性。设曲线 \(C\) 的参数方程式 \(\bm{r}=\bm{r}(s)\) ， \(s\) 是弧长参数，并且 \(\kappa(s)\ne 0,\tau(s)\equiv 0\) 。此时曲线有确定的Frenet标架 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) ，并且</p>
+<span id="20241018200432CST"></span>\[
+\bm{\gamma}'(s)=-\tau(s)\cdot\bm{\beta}(s)\equiv 0
+\tag{64}
+    \]
+<p>  因此 \(\bm{\gamma}(s)=\bm{\gamma}_0=\text{常向量}\) 。又由<a class="link" href="#20241018122837CST">式(47)</a>得</p>
+<span id="20241018200628CST"></span>\[
+0=\bm{r}'(s)\cdot\bm{\gamma}(s)=\bm{r}'(s)\cdot\bm{\gamma}_0=\frac{\mathrm{d}}{\mathrm{d}s}(\bm{r}(s)\cdot\bm{\gamma}_0)
+\tag{65}
+    \]
+<p>  所以</p>
+<span id="20241018203540CST"></span>\[
+\bm{r}(s)\cdot\bm{\gamma}_0=常数=\bm{r}(s_0)\cdot\bm{\gamma}_0
+\tag{66}
+    \]
+<p>  也就是</p>
+<span id="20241018203738CST"></span>\[
+(\bm{r}(s)-\bm{r}(s_0))\cdot\bm{\gamma}_0=0
+\tag{67}
+    \]
+<p>  这说明曲线 \(\bm{r}=\bm{r}(s)\) 落在经过点 \(\bm{r}(s_0)\) 、以常向量 \(\bm{\gamma}_0\) 为法向量的平面内。证毕。</p>
+
     </div>
 </section>
 
@@ -1782,7 +1844,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 
 
         <span>
-            最后更新于 Oct 18, 2024 13:29 CST
+            最后更新于 Oct 18, 2024 20:40 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1938,7 +2000,7 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
             
             
         
-        <span>本图书馆累计发布了10篇文章 共82620字</span>
+        <span>本图书馆累计发布了10篇文章 共83404字</span>
     </section>
 
     <section class="site-visit-count">
