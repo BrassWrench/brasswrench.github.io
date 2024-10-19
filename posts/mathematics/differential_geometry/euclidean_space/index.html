@@ -131,7 +131,7 @@
 <meta property='og:description' content="具有Euclidean度量的实数向量空间">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='Euclidean空间' /><meta property='article:tag' content='向量函数' /><meta property='article:published_time' content='2024-10-08T15:55:08&#43;08:00'/><meta property='article:modified_time' content='2024-10-18T11:08:57&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='Euclidean空间' /><meta property='article:tag' content='向量函数' /><meta property='article:published_time' content='2024-10-08T15:55:08&#43;08:00'/><meta property='article:modified_time' content='2024-10-19T11:06:16&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/image.svg' />
 <meta name="twitter:title" content="微分几何（一）：Euclidean空间">
 <meta name="twitter:description" content="具有Euclidean度量的实数向量空间"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/image.svg' />
@@ -625,6 +625,7 @@
             <li><a href="#数量积">数量积</a></li>
             <li><a href="#向量积">向量积</a></li>
             <li><a href="#混合积">混合积</a></li>
+            <li><a href="#拉格朗日矢量公式">拉格朗日矢量公式</a></li>
           </ol>
         </li>
         <li><a href="#向量函数-1">向量函数</a>
@@ -949,7 +950,7 @@
 </svg>
 
             <time class="article-words">
-                6418 字
+                6468 字
             </time>
         </div>
 
@@ -1755,12 +1756,19 @@ c_1 & c_2 & c_3
 \tag{54}
     \]
 <p>  它的几何意义是由向量 \(\bm{a},\bm{b}\) 和 \(\bm{c}\) 所张成的平行六面体的有向体积。</p>
+<h4 id="拉格朗日矢量公式">拉格朗日矢量公式
+</h4><p>  <span id="20241019105434CST"></span><strong>公式1（拉格朗日矢量公式）</strong>：</p>
+<span id="20241019105509CST"></span>\[
+\bm{a}\times(\bm{b}\times\bm{c})=(\bm{a}\cdot\bm{c})\bm{b}-(\bm{a}\cdot\bm{b})\bm{c}
+\tag{55}
+    \]
+<p>  <strong>证明（<a class="link" href="#20241019105434CST">拉格朗日矢量公式</a>）</strong>：代入 \(\bm{a},\bm{b},\bm{c}\) 的坐标容易验证。</p>
 <h3 id="向量函数-1">向量函数
 </h3><h4 id="定义-4">定义
 </h4><p>  所谓向量函数是指从它的定义域到 \(\R^3\) 中的映射，也就是三个有序的实函数。设有定义在区间[a,b]上的向量函数</p>
 <span id="20241012144828CST"></span>\[
 \bm{r}(t)=(x(t),y(t),z(t))\quad a \le t \le b
-\tag{55}
+\tag{56}
     \]
 <h4 id="微积分">微积分
 </h4><p>  如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续函数，则称向量函数 \(\bm{r}(t)\) 是连续的；如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续可微函数，则称向量函数 \(\bm{r}(t)\) 是连续可微的。向量函数 \(\bm{r}(t)\) 的导数和积分的定义与数值函数的导数和积分的定义是相同的，即</p>
@@ -1769,40 +1777,40 @@ c_1 & c_2 & c_3
 \left.\frac{\mathrm{d}\bm{r}}{\mathrm{d}t}\right|_{t=t_0}=&\lim\limits_{\Delta t \to 0}\frac{\bm{r}(t_0+\Delta t)-\bm{r}(t_0)}{\Delta t}\\[10pt]
 =&\lim\limits_{\Delta t \to 0}\left(\frac{x(t_0+\Delta t)-x(t_0)}{\Delta t},\frac{y(t_0+\Delta t)-y(t_0)}{\Delta t},\frac{z(t_0+\Delta t)-z(t_0)}{\Delta t}\right)
 \end{aligned}
-\tag{56}
+\tag{57}
     \]
 <span id="20241012145649CST"></span>\[
 \begin{aligned}
 \int_{a}^{b}\bm{r}(t)\mathrm{d}t=&\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}\bm{r}(t_i^\prime)\Delta t_i\\[10pt]
 =&\left(\int_{a}^{b}x(t)\mathrm{d}t,\int_{a}^{b}y(t)\mathrm{d}t,\int_{a}^{b}z(t)\mathrm{d}t\right)
 \end{aligned}
-\tag{57}
+\tag{58}
     \]</p>
 <p>  其中 \(a=t_0 < t_1 < \cdots < t_n = b\) 是区间 \([a,b]\) 的任意一个分割， \(\Delta t_i=t_i-t_{i-1},\space t_i^\prime \in [t_{i-1},t_i]\) ，并且 \(\lambda=\max\set{\Delta t_i;i=1,\cdots,n}\) 。这就是说，向量函数的求导和积分归结为它的分量函数的求导和积分，因此向量函数的可微性和可积性归结为它的分量函数的可微性和可积性。</p>
 <h4 id="求导公式">求导公式
 </h4><p>  <span id="20241012181641CST"></span><strong>定理2</strong>：假定 \(\bm{a}(t),\bm{b}(t),\bm{c}(t)\) 是三个可微的向量函数，则它们的内积、向量积和混合积的导数有下面的公式</p>
 <p><span id="20241012195223CST"></span>\[
 (\bm{a}(t)\cdot\bm{b}(t))^\prime=\bm{a}^\prime(t)\cdot\bm{b}(t)+\bm{a}(t)\cdot\bm{b}^\prime(t)
-\tag{58}
+\tag{59}
     \]
 <span id="20241012221040CST"></span>\[
 (\bm{a}(t)\times\bm{b}(t))^\prime=\bm{a}^\prime(t)\times\bm{b}(t)+\bm{a}(t)\times\bm{b}^\prime(t)
-\tag{59}
+\tag{60}
     \]
 <span id="20241012231920CST"></span>\[
 (\bm{a}(t),\bm{b}(t),\bm{c}(t))^\prime=(\bm{a}^\prime(t),\bm{b}(t),\bm{c}(t))+(\bm{a}(t),\bm{b}^\prime(t),\bm{c}(t))+(\bm{a}(t),\bm{b}(t),\bm{c}^\prime(t))
-\tag{60}
+\tag{61}
     \]</p>
-<p>  <strong>证明（<a class="link" href="#20241012181641CST">定理2</a>）</strong>：对<a class="link" href="#20241012195223CST">式(58)</a>，由<a class="link" href="#20241012143454CST">式(51)</a>可得</p>
+<p>  <strong>证明（<a class="link" href="#20241012181641CST">定理2</a>）</strong>：对<a class="link" href="#20241012195223CST">式(59)</a>，由<a class="link" href="#20241012143454CST">式(51)</a>可得</p>
 <span id="20241012222826CST"></span>\[
 \begin{aligned}
 (\bm{a}(t)\cdot\bm{b}(t))'=&(a_1(t)b_1(t))'+(a_2(t)b_2(t))'+(a_3(t)b_3(t))'\\[5pt]
 =&a_1'(t)b_1(t)+a_2'(t)b_2(t)+a_3'(t)b_3(t)+a_1(t)b_1'(t)+a_2(t)b_2'(t)+a_3(t)b_3'(t)\\[5pt]
 =&\bm{a}'(t)\cdot\bm{b}(t)+\bm{a}(t)\cdot\bm{b}'(t)
 \end{aligned}
-\tag{61}
+\tag{62}
     \]
-<p>  对<a class="link" href="#20241012221040CST">式(59)</a>，由<a class="link" href="#20241012143803CST">式(52)</a>可得</p>
+<p>  对<a class="link" href="#20241012221040CST">式(60)</a>，由<a class="link" href="#20241012143803CST">式(52)</a>可得</p>
 <span id="20241012223743CST"></span>\[
 \begin{aligned}
 (\bm{a}\times\bm{b})'=&\left(
@@ -1866,9 +1874,9 @@ b_1'(t) & b_2'(t)
 \right)\\[20pt]
 =&\bm{a}^\prime(t)\times\bm{b}(t)+\bm{a}(t)\times\bm{b}^\prime(t)
 \end{aligned}
-\tag{62}
+\tag{63}
     \]
-<p>  对<a class="link" href="#20241012231920CST">式(60)</a>，由<a class="link" href="#20241012195223CST">式(58)</a>和<a class="link" href="#20241012221040CST">式(59)</a></p>
+<p>  对<a class="link" href="#20241012231920CST">式(61)</a>，由<a class="link" href="#20241012195223CST">式(59)</a>和<a class="link" href="#20241012221040CST">式(60)</a></p>
 <span id="20241012231955CST"></span>\[
 \begin{aligned}
 (\bm{a}(t),\bm{b}(t),\bm{c}(t))^\prime=&(\bm{a}(t)\times\bm{b}(t)\cdot\bm{c}(t))'\\[5pt]
@@ -1876,7 +1884,7 @@ b_1'(t) & b_2'(t)
 =&\bm{a}'(t)\times\bm{b}(t)\cdot\bm{c}(t)+\bm{a}(t)\times\bm{b}'(t)\cdot\bm{c}(t)+(\bm{a}(t)\times\bm{b}(t))\cdot\bm{c}'(t)\\[5pt]
 =&(\bm{a}^\prime(t),\bm{b}(t),\bm{c}(t))+(\bm{a}(t),\bm{b}^\prime(t),\bm{c}(t))+(\bm{a}(t),\bm{b}(t),\bm{c}^\prime(t))
 \end{aligned}
-\tag{63}
+\tag{64}
     \]
 <h4 id="不变条件">不变条件
 </h4><p>  <span id="20241012234715CST"></span><strong>定理3</strong>：设 \(\bm{a}(t)\) 是一个处处非零的连续可微的向量函数，则<br>
@@ -1885,104 +1893,104 @@ b_1'(t) & b_2'(t)
   3.  如果向量函数 \(\bm{a}(t)\) 与某一个固定的方向垂直，那么</p>
 <span id="20241012235212CST"></span>\[
 ((\bm{a}(t),(\bm{a}'(t),(\bm{a}''(t))\equiv 0
-\tag{64}
+\tag{65}
     \]
 <p>  <strong>证明（<a class="link" href="#20241012234715CST">定理3</a>）</strong>：对1. ，因为</p>
 <span id="20241012235435CST"></span>\[
 \frac{\mathrm{d}}{\mathrm{d}t}|\bm{a}(t)|^2=\frac{\mathrm{d}(\bm{a}(t)\cdot\bm{a}(t))}{\mathrm{d}t}=2\bm{a}'(t)\cdot\bm{a}(t)
-\tag{65}
+\tag{66}
     \]
 <p>  所以 \(|\bm{a}(t)|^2\) 是常数，当且仅当 \(\bm{a}'(t)\cdot\bm{a}(t)\equiv 0\) 。</p>
 <p>  对2. ，如果向量函数 \(\bm{a}(t)\) 的方向不变，则有一个固定的单位向量 \(\bm{b}\) ，使得向量函数 \(\bm{a}(t)\) 能够写成</p>
 <span id="20241012235743CST"></span>\[
 \bm{a}(t)=f(t)\cdot\bm{b}
-\tag{66}
+\tag{67}
     \]
 <p>  两边乘以 \(\bm{b}\) 并利用单位向量的特性得 \(f(t)=\bm{a}(t)\cdot\bm{b}\) 。其中 \(f(t)\) 是一个处处非零的连续可微函数，因此</p>
 <p><span id="20241012235927CST"></span>\[
 \bm{a}'(t)=f'(t)\cdot\bm{b}
-\tag{67}
+\tag{68}
     \]
 <span id="20241013000054CST"></span>\[
 \bm{a}'(t)\times\bm{a}(t)=0
-\tag{68}
+\tag{69}
     \]</p>
 <p>  反过来，设 \(\bm{a}'(t)\times\bm{a}(t)=0\) ，令 \(\displaystyle\bm{b}(t)=\frac{\bm{a}(t)}{|\bm{a}(t)|}\) ，有 \(|\bm{b}(t)|=1\) 。我们要证明 \(\bm{b}(t)\) 是常向量函数。因为 \(\bm{b}(t)\) 的长度是 \(1\) ，故由1. 可知 \(\bm{b}'(t)\cdot\bm{b}(t)\equiv 0\) ，即</p>
 <span id="20241013002058CST"></span>\[
 \bm{b}'(t)\cdot\bm{a}(t)\equiv 0
-\tag{69}
+\tag{70}
     \]
 <p>  由 \(\bm{b}(t)\) 的定义得知</p>
 <span id="20241013000920CST"></span>\[
 \bm{a}(t)=f(t)\bm{b}(t)
-\tag{70}
+\tag{71}
     \]
 <p>  其中 \(f(t)=|\bm{a}(t)|\) 处处不为零，故</p>
 <span id="20241013001311CST"></span>\[
 \bm{a}'(t)=f'(t)\bm{b}(t)+f(t)\bm{b}'(t)
-\tag{71}
+\tag{72}
     \]
 <p>  注意由假设条件 \(\bm{a}(t)\times\bm{a}'(t)\equiv 0\) ，因此有</p>
 <span id="20241013001333CST"></span>\[
 \bm{a}(t)\times\bm{a}'(t)=f'(t)\bm{a}(t)\times\bm{b}(t)+f(t)\bm{a}(t)\times\bm{b}'(t)=f(t)\bm{a}(t)\times\bm{b}'(t)\equiv\bm{0}
-\tag{72}
+\tag{73}
     \]
 <p>  故 \(\bm{a}(t)\times\bm{b}'(t)\equiv 0\) ，即 \(\bm{b}'(t)\) 和 \(\bm{a}(t)\) 共线，故存在 \(\lambda(t)\) 使得</p>
 <span id="20241013001927CST"></span>\[
 \bm{b}'(t)=\lambda(t)\bm{a}(t)
-\tag{73}
+\tag{74}
     \]
-<p>  由<a class="link" href="#20241013002058CST">式(69)</a>得</p>
+<p>  由<a class="link" href="#20241013002058CST">式(70)</a>得</p>
 <span id="20241013002200CST"></span>\[
 \bm{b}'(t)\cdot\bm{a}(t)=\lambda(t)\bm{a}(t)\cdot\bm{a}(t)=\lambda(t)f^2(t) \equiv 0
-\tag{74}
+\tag{75}
     \]
 <p>   注意 \(f(t)\) 处处不为零，因此 \(\lambda(t)\equiv 0\) ，即</p>
 <span id="20241013002347CST"></span>\[
 \bm{b}'(t)\equiv \bm{0}
-\tag{75}
+\tag{76}
     \]
 <p>  故 \(\bm{}(t)\) 是常向量，所以向量函数 \(\bm{a}(t)\) 的方向不变。</p>
 <p>  对3.  ，设有单位常向量 \(\bm{b}\) ，使得 \(\bm{a}(t)\cdot\bm{b}\equiv 0\) 。对此式求导数得到</p>
 <span id="20241013002559CST"></span>\[
 \bm{a}'(t)\cdot\bm{b}\equiv 0,\quad \bm{a}''(t)\cdot\bm{b}\equiv 0
-\tag{76}
+\tag{77}
     \]
 <p>  因此对于任意 \(t\) ，向量 \(\bm{a}(t),\bm{a}'(t),\bm{a}''(t)\) 共面，于是</p>
 <span id="20241013002822CST"></span>\[
 ((\bm{a}(t),(\bm{a}'(t),(\bm{a}''(t))\equiv 0
-\tag{77}
+\tag{78}
     \]
 <p>  反过来，假定上面的式子成立，则</p>
 <span id="20241013002834CST"></span>\[
 (\bm{a}(t)\times\bm{a}'(t))\cdot\bm{a}''(t)\equiv 0
-\tag{78}
+\tag{79}
     \]
 <p>  对于 \(\bm{a}(t)\times\bm{a}'(t)=\bm{0}\) 的情况，由2. 的结论可以得到 \(\bm{a}(t)\) 的方向不变，因此3.  直接成立。对于 \(\bm{a}(t)\times\bm{a}'(t)\ne\bm{0}\) ，令</p>
 <span id="20241013003551CST"></span>\[
 \bm{b}(t)=\bm{a}'(t)\times\bm{a}(t)
-\tag{79}
+\tag{80}
     \]
 <p>   \(\bm{b}(t)\) 与 \(\bm{a}(t)\) 垂直。有</p>
 <span id="20241013005757CST"></span>\[
 \bm{b}'(t)=\bm{a}''(t)\times\bm{a}(t)+\bm{a}'(t)\times\bm{a}'(t)=\bm{a}''(t)\times\bm{a}(t)
-\tag{80}
+\tag{81}
     \]
-<p>  由<a class="link" onclick="alert('抱歉，“公式”还未上线~')">三向量叉乘公式</a>、<a class="link" href="#20241013002834CST">式(78)</a>和<a class="link" href="#20241013003551CST">式(79)</a></p>
+<p>  由<a class="link" onclick="alert('抱歉，“公式”还未上线~')">三向量叉乘公式</a>、<a class="link" href="#20241013002834CST">式(79)</a>和<a class="link" href="#20241013003551CST">式(80)</a></p>
 <span id="20241013005840CST"></span>\[
 \begin{aligned}
 \bm{b}(t)\times\bm{b}'(t)=&\bm{b}(t)\times(\bm{a}''(t)\times\bm{a}(t))\\[5pt]
 =&(\bm{b}(t)\cdot\bm{a}(t))\bm{a}''(t)-(\bm{b}(t)\cdot\bm{a}''(t))\bm{a}(t)\text{（三向量叉乘公式）}\\[5pt]
-=&-((\bm{a}'(t)\times\bm{a}(t))\cdot\bm{a}''(t))\bm{a}(t)\text{（式(79)）}\\[5pt]
+=&-((\bm{a}'(t)\times\bm{a}(t))\cdot\bm{a}''(t))\bm{a}(t)\text{（式(80)）}\\[5pt]
 =&((\bm{a}(t)\times\bm{a}'(t))\cdot\bm{a}''(t))\bm{a}(t)\\[5pt]
-=&(\bm{a}(t),\bm{a}'(t),\bm{a}''(t))\bm{a}(t)\equiv 0\text{（式(78)）}
+=&(\bm{a}(t),\bm{a}'(t),\bm{a}''(t))\bm{a}(t)\equiv 0\text{（式(79)）}
 \end{aligned}
-\tag{81}
+\tag{82}
     \]
 <p>  根据2. 的结论，向量函数 \(\bm{b}(t)\) 有确定的方向，令 \(\displaystyle\bm{b}_0=\frac{\bm{b}(t)}{|\bm{b}(t)|}\) ，则 \(\bm{b}_0\) 是单位常向量，并且</p>
 <span id="20241013011539CST"></span>\[
 \bm{a}(t)\cdot\bm{b}_0=\frac{\bm{a}(t)\cdot\bm{b}(t)}{|\bm{b}(t)|}\equiv 0
-\tag{82}
+\tag{83}
     \]
 <p>  证毕。</p>
 <blockquote>
@@ -2033,7 +2041,7 @@ b_1'(t) & b_2'(t)
 
 
         <span>
-            最后更新于 Oct 18, 2024 11:08 CST
+            最后更新于 Oct 19, 2024 11:06 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2201,7 +2209,7 @@ b_1'(t) & b_2'(t)
             
             
         
-        <span>本图书馆累计发布了10篇文章 共84547字</span>
+        <span>本图书馆累计发布了10篇文章 共84657字</span>
     </section>
 
     <section class="site-visit-count">
