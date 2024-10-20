@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 20 Oct 2024 22:53:14 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 21 Oct 2024 00:43:32 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -492,6 +492,7 @@ s(t)=\int_a^t|\bm{r}&#39;(t&#39;)|\mathrm{d}t&#39;
 &lt;p&gt;  &lt;span id=&#34;20241016213554CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理1&lt;/strong&gt;：设 \(\bm{r}=\bm{r}(t)(a \le t \le b)\) 是 \(E^3\) 中的一条正则曲线，则 \(t\) 是它的弧长参数的充分必要条件是 \(|\bm{r}&#39;(t)|\equiv 1\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;）&lt;/strong&gt;：因为 \(\displaystyle\frac{\mathrm{d}s}{\mathrm{d}t}=|\bm{r}&#39;(t)|\) ，当 \(t\) 是它的弧长参数 \(s\) 时， \(\mathrm{d}s=\mathrm{d}t\) ，所以由&lt;a class=&#34;link&#34; href=&#34;#20241016212442CST&#34;&gt;式(32)&lt;/a&gt;可知 \(|\bm{r}&#39;(t)|\equiv 1\) ，反之亦然，证毕。&lt;/p&gt;
 &lt;p&gt;  上述定理的几何意义是：曲线以弧长为参数的充分必要条件是它的切向量场是单位切向量场。&lt;/p&gt;
+&lt;span id=&#34;20241020230735CST&#34;&gt;&lt;/span&gt;
 &lt;h2 id=&#34;曲线的曲率和frenet标架&#34;&gt;曲线的曲率和Frenet标架
 &lt;/h2&gt;&lt;h3 id=&#34;切向量的转动&#34;&gt;切向量的转动
 &lt;/h3&gt;&lt;p&gt;  设曲线 \(C\) 的方程是 \(\bm{r}(s)\) ，其中 \(s\) 是曲线的弧长参数。根据&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;可知 \(\bm{r}&#39;(s)\) 是曲线 \(C\) 的单位切向量场。命&lt;/p&gt;
@@ -1066,6 +1067,39 @@ s(t)=s_1(t)=s_2(\lambda(t))
 \tag{97}
     \]
 &lt;p&gt;  故由&lt;a class=&#34;link&#34; href=&#34;#20241020220039CST&#34;&gt;式(95)&lt;/a&gt;可得 \(\kappa_1(s)=\kappa_2(s)\) 。同理可得 \(\tau_1(s)=\tau_2(s)\) 。此时由&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;可以直接得到&lt;a class=&#34;link&#34; href=&#34;#20241020215207CST&#34;&gt;定理8&lt;/a&gt;的结论。&lt;/p&gt;
+&lt;h3 id=&#34;给定连续可微的曲率和挠率曲率大于零则必有曲线对应&#34;&gt;给定连续可微的曲率和挠率（曲率大于零）则必有曲线对应
+&lt;/h3&gt;&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20241020230735CST&#34;&gt;曲线的曲率和Frenet标架&lt;/a&gt;中已经知道，在曲率 \(\kappa(s)\) 处处不为零的正则曲线上有内在的、确定的Frenet标架场，所以 \(E^3\) 中的曲线便变成在 \(E^3\) 的正交标架空间中的一条曲线．而&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;正好是这个标架场的运动方程其系数恰好是曲线的曲率和挠率，它们完全确定了曲线在空间中的形状。我们的问题是：给定了曲率和挠率作为弧长参数 \(s\) 的函数 \(\kappa(s),\tau(s)\) 之后，在空间 \(E^3\) 中是否存在正则参数曲线以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率？根据上面的分析，我们在 \(E^3\) 上由全体正交标架构成的6维空间中考虑，千是Frenet公式成为现成的已知常微分方程组，它的解是依赖参数 \(s\) 的一族正交标架，其标架原点在 \(E^3\) 中描出的轨迹应该是我们所要的曲线，而这族正交标架本身应该是曲线的Frenet标架场。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241020231130CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理9&lt;/strong&gt;：设 \(\kappa(s),\tau(s)\) 是在区间 \([a,b]\) 上两个任意给定的连续可微函数，并且 \(\kappa(s)&gt;0\) ，则在空间 \(E^3\) 中存在正则参数曲线 \(\bm{r}=\bm{r}(s),a\le s \le b\) ，以 \(s\) 为弧长参数，以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率，且这样的曲线在空间 \(E^3\) 中是完全确定的，其差异至多为曲线在空间中的位置不同。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241020231130CST&#34;&gt;定理9&lt;/a&gt;）&lt;/strong&gt;：定理&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;已经证明这样的曲线在空间 \(E^3\) 中确定到至多差一个位置的不同，因此我们只要证明这样的曲线的存在性。&lt;br&gt;
+  为了能够用和式表示方程组，引进新的函数记号&lt;/p&gt;
+&lt;span id=&#34;20241020232130CST&#34;&gt;&lt;/span&gt;
+    \[
+\begin{pmatrix}
+a_{11}(s) &amp; a_{12}(s) &amp; a_{13}(s) \\[5pt]
+a_{21}(s) &amp; a_{22}(s) &amp; a_{23}(s) \\[5pt]
+a_{31}(s) &amp; a_{32}(s) &amp; a_{33}(s)
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 &amp; \kappa(s) &amp; 0 \\[5pt]
+-\kappa(s) &amp; 0 &amp; \tau(s)\\[5pt]
+0 &amp; -\tau(s) &amp; 0
+\end{pmatrix}
+\]
+&lt;p&gt;  并且用 \(\bm{r},\bm{e}_1,\bm{e}_2,\bm{e}_3\) 记成向量形式的未知函数，每一个向量函数代表 \(3\) 个未知函数，共 \(12\) 个未知函数。考虑一阶常微分方程组&lt;/p&gt;
+&lt;span id=&#34;20241020233735CST&#34;&gt;&lt;/span&gt;
+    \[
+\begin{cases}
+\cfrac{\mathrm{d}\bm{r}}{\mathrm{d}s}=\bm{e}_1\\[10pt]
+\cfrac{\mathrm{d}\bm{e}_i}{\mathrm{d}s}=\displaystyle\sum_{j=1}^{3}a_{ij}(s)\bm{e}_j,\quad 1 \le i \le 3
+\end{cases}
+\]
+&lt;p&gt;  这是由 \(4\) 个向量形式的线性齐次微分方程组组成的方程组（实际上有十二个方程）。由于方程组的系数是连续可微函数，根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“常微分方程”还未上线~&#39;)&#34;&gt;常微分方程解的存在和唯一性-Picard-Lindelöf定理&lt;/a&gt;，对于任意给定的一组初值 \(\bm{r}^{(0)},\bm{e}_1^{(0)},\bm{e}_2^{(0)},\bm{e}_3^{(0)}\) ，方程组有唯一的一组解 \(\bm{r}, \bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s),a\le s \le b\) ，满足初始条件&lt;/p&gt;
+&lt;span id=&#34;20241021003506CST&#34;&gt;&lt;/span&gt;
+    \[
+\bm{r}(s_0)=\bm{r}^{(0)},\quad \bm{e}_i(s_0)=\bm{e}_i^{(0)},\quad 1 \le i \le 3
+\]
+&lt;p&gt;  其中 \(s_0\) 是区间 \([a,b]\) 中任意固定的一点。一般来说，这样的解并不会满足我们的要求。&lt;/p&gt;
 </description>
         </item>
         <item>
