@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 20 Oct 2024 15:23:46 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 20 Oct 2024 21:08:49 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -455,6 +455,7 @@ s=&amp;\lim\limits_{\lambda\to 0}\sum_{i=1}^{n}|\bm{r}&#39;(t_i)|\Delta t_i\\[15
     &lt;/g&gt;
   &lt;/g&gt;
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;曲线的弧长&lt;/p&gt;&lt;/div&gt;
+&lt;span id=&#34;20241020153409CST&#34;&gt;&lt;/span&gt;
 &lt;h3 id=&#34;弧长参数&#34;&gt;弧长参数
 &lt;/h3&gt;&lt;p&gt;  现在对于任意的 \(a \le t \le b\) ，命&lt;/p&gt;
 &lt;span id=&#34;20241016204418CST&#34;&gt;&lt;/span&gt;\[
@@ -1002,6 +1003,51 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=\ta
     \]
 &lt;p&gt;  如果不是一条直线，则由&lt;a class=&#34;link&#34; href=&#34;#20241018195123CST&#34;&gt;定理4&lt;/a&gt;可知 \(\tau(t)\equiv 0\) ，再由&lt;a class=&#34;link&#34; href=&#34;#20241020005546CST&#34;&gt;式(85)&lt;/a&gt;可得 \((\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t)) \equiv 0\) 。&lt;br&gt;
   再证充分性。如果 \((\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t)) \equiv 0\) ，代入&lt;a class=&#34;link&#34; href=&#34;#20241020005546CST&#34;&gt;式(85)&lt;/a&gt;可得 \(\tau(t)\equiv 0\) ，故由&lt;a class=&#34;link&#34; href=&#34;#20241018195123CST&#34;&gt;定理4&lt;/a&gt;可得该直线是平面曲线。&lt;/p&gt;
+&lt;h2 id=&#34;曲线论基本定理&#34;&gt;曲线论基本定理
+&lt;/h2&gt;&lt;h3 id=&#34;曲率和挠率不为零且处处相等的两条曲线必有刚体运动使其相互变换&#34;&gt;曲率和挠率不为零且处处相等的两条曲线必有刚体运动使其相互变换
+&lt;/h3&gt;&lt;p&gt;  根据前面各节的讨论，我们已经知道正则参数曲线的弧长参数、曲率和挠率都是与曲线的保持定向的容许参数变换无关的。实际上，弧长参数的不变性在&lt;a class=&#34;link&#34; href=&#34;#20241020153409CST&#34;&gt;弧长参数&lt;/a&gt;中已经作过讨论，而曲率和挠率是通过曲线的参数方程关于弧长参数的各阶导数作适当的代数运算（点乘和叉乘等）得到的，它们同样不依赖曲线上参数的选择。很明显，这三个量与欧氏空间 \(E^3\) 中的笛卡儿直角坐标系的选取也是无关的。实际上，这三个量的计算公式是用曲线的向量形式的参数方程给出的，该事实本身就蕴涵着它们不依赖空间的笛卡儿直角坐标系的选取。此外，在&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241010140246CST&#34;&gt;Euclidean空间-定理1&lt;/a&gt;处已经解释过，欧氏空间 \(E^3\) 上的刚体运动在某种意义上相当于空间的笛卡儿直角坐标系的变换，因此当曲线在空间中经受一个刚体运动时，曲线的弧长、曲率和挠率是不变的。反过来说如果在空间 \(E^3\) 中有两条曲线，它们的曲率和挠率表示成弧长参数的函数分别是相同的，则这两条曲线的形状是相同的。这个论断可以叙述成下面的基本定理。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241020153808CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理7&lt;/strong&gt;：设 \(\bm{r}=\bm{r}_1(s)\) 和 \(\bm{r}=\bm{r}_2(s)\) 是 \(E^3\) 中两条以弧长 \(s\) 为参数的正则参数曲线，如果它们的曲率处处不为零，并且它们的曲率和挠率分别相等，即 \(\kappa_1(s)=\kappa_2(s),\tau_1(s)=\tau_2(s)\) ，则有 \(E^3\) 中的一个刚体运动 \(\sigma\) ，它把曲线 \(\bm{r}=\bm{r}_1(s)\) 变为曲线 \(\bm{r}=\bm{r}_2(s)\) 。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;）&lt;/strong&gt;：由于这两条曲线的曲率处处不为零，因此沿着这两条曲线有完全确定的Frenet标架。假定它们在 \(s=0\) 处的Frenet标架分别是 \(\set{\bm{r}_1(0);\bm{\alpha}_1(0),\bm{\beta}_1(0),\bm{\gamma}_1(0)}\) 和 \(\set{\bm{r}_2(0);\bm{\alpha}_2(0),\bm{\beta}_2(0),\bm{\gamma}_2(0)}\) 。因为它们都是右手单位正交标架，由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241010140246CST&#34;&gt;Euclidean空间-定理1&lt;/a&gt;，在 \(E^3\) 中有一个刚体运动 \(\sigma\) 把后一个标架变成前一个标架。不妨把第二条曲线经过刚体运动 \(\sigma\) 得到的像仍然记为 \(\bm{r}=\bm{r}_2(s)\) ，那么曲线 \(\bm{r}=\bm{r}_1(s)\) 和 \(\bm{r}=\bm{r}_2(s)\) 在对应点仍旧有相同的曲率和挠率（曲率和挠率是曲线的内禀属性，和Cartesian坐标系无关），并且在 \(s=0\) 处有相同的Frenet标架。我们要证明&lt;/p&gt;
+&lt;span id=&#34;20241020200101CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_1(s)=\bm{r}_2(s),\quad \forall s
+\tag{89}
+    \]
+&lt;p&gt;  为此，首先定义函数&lt;/p&gt;
+&lt;span id=&#34;20241020200554CST&#34;&gt;&lt;/span&gt;\[
+f(s)=(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))^2+(\bm{\beta}_1(s)-\bm{\beta}_2(s))^2+(\bm{\gamma}_1(s)-\bm{\gamma}_2(s))^2
+\tag{90}
+    \]
+&lt;p&gt;  根据假设得知 \(f(0)=0\) 。对 \(f(s)\) 直接求导，利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;并且注意到 \(\kappa_1(s)=\kappa_2(s),\tau_1(s)=\tau_2(s)\) ，则得&lt;/p&gt;
+&lt;span id=&#34;20241020203444CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\frac{1}{2}\frac{\mathrm{d}f(s)}{\mathrm{d}s}=&amp;(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))\cdot(\kappa_1(s)\bm{\beta}_1(s)-\kappa_2(s)\bm{\beta}_2(s))\\[5pt]
+&amp;+(\bm{\beta}_1(s)-\bm{\beta}_2(s))\cdot(-\kappa_1(s)\bm{\alpha}_1(s)+\kappa_2(s)\bm{\alpha}_2(s))\\[5pt]
+&amp;+(\bm{\beta}_1(s)-\bm{\beta}_2(s))\cdot(-\tau_1(s)\bm{\gamma}_1(s)+\tau_2(s)\bm{\gamma}_2(s))\\[5pt]
+&amp;+(\bm{\gamma}_1(s)-\bm{\gamma}_2(s))\cdot(-\tau_1(s)\bm{\beta}_1(s)+\tau_2(s)\bm{\beta}_2(s))\\[5pt]
+=&amp;\kappa_1(s)(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))\cdot(\bm{\beta}_1(s)-\bm{\beta}_2(s))\\[5pt]
+&amp;-\kappa_1(s)(\bm{\beta}_1(s)-\bm{\beta}_2(s))\cdot(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))\\[5pt]
+&amp;+\tau_1(s)(\bm{\beta}_1(s)-\bm{\beta}_2(s))\cdot(\bm{\gamma}_1(s)-\bm{\gamma}_2(s))\\[5pt]
+&amp;-\tau_1(s)(\bm{\gamma}_1(s)-\bm{\gamma}_2(s))\cdot(\bm{\beta}_1(s)-\bm{\beta}_2(s))\\[5pt]
+\equiv &amp; \space 0
+\end{aligned}
+\tag{91}
+    \]
+&lt;p&gt;  故 \(f(s)=f(0)=0\) ，即&lt;/p&gt;
+&lt;span id=&#34;20241020210226CST&#34;&gt;&lt;/span&gt;\[
+\bm{\alpha}_1(s)=\bm{\alpha}_2(s),\quad \bm{\beta}_1(s)=\bm{\beta}_2(s),\quad \bm{\gamma}_1(s)=\bm{\gamma}_2(s)
+\tag{92}
+    \]
+&lt;p&gt;  再定义函数&lt;/p&gt;
+&lt;span id=&#34;20241020210417CST&#34;&gt;&lt;/span&gt;\[
+g(s)=(\bm{r}_1(s)-\bm{r}_2(s))^2,\quad g(0)=0
+\tag{93}
+    \]
+&lt;p&gt;  则&lt;/p&gt;
+&lt;span id=&#34;20241020210444CST&#34;&gt;&lt;/span&gt;\[
+\frac{1}{2}\frac{\mathrm{d}g(s)}{\mathrm{d}s}=(\bm{r}_1(s)-\bm{r}_2(s))\cdot(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))\equiv 0
+\tag{94}
+    \]
+&lt;p&gt;  所以 \(g(s)=g(0)=0\) ，即 \(\bm{r}_1(s)=\bm{r}_2(s),\forall s\) 。证毕。&lt;/p&gt;
 </description>
         </item>
         <item>
