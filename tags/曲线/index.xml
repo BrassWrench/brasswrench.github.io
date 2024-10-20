@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 20 Oct 2024 14:16:30 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 20 Oct 2024 15:23:46 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -967,7 +967,7 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=\ta
 \end{aligned}
 \tag{83}
     \]
-&lt;p&gt;  将上式两边用&lt;a class=&#34;link&#34; href=&#34;#20241018125936CST&#34;&gt;式(56)&lt;/a&gt;作点乘并利用叉乘的性质 \(\bm{a}\cdot(\bm{a}\times\bm{b})=0\) 可得&lt;/p&gt;
+&lt;p&gt;  将上式两边用&lt;a class=&#34;link&#34; href=&#34;#20241018125936CST&#34;&gt;式(56)&lt;/a&gt;作点乘并利用叉乘的性质 \(\bm{a}\cdot(\bm{a}\times\bm{b})=0\) 和&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241020000349CST&#34;&gt;混合积恒等式&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241019220643CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 -\tau(t)|\bm{\beta}(t)|^2\cdot\frac{\mathrm{d}s}{\mathrm{d}t}
@@ -985,6 +985,23 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=\ta
 \tau(t)=\frac{(\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t))}{|\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t)|^2}
 \tag{85}
     \]
+&lt;p&gt;  如果 \(t\) 是弧长参数 \(s\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241020000302CST&#34;&gt;Lagrange恒等式&lt;/a&gt;，上式成为&lt;/p&gt;
+&lt;span id=&#34;20241020142730CST&#34;&gt;&lt;/span&gt;\[
+\tau(s)=\frac{(\bm{r}&#39;(s),\bm{s}&#39;&#39;(s),\bm{s}&#39;&#39;&#39;(s))}{|\bm{r}&#39;&#39;(s)|^2}
+\tag{86}
+    \]
+&lt;p&gt;  &lt;span id=&#34;20241020143444CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理6&lt;/strong&gt;：曲线 \(\bm{r}=\bm{r}(t)\) 是一条平面曲线的充分必要条件是&lt;/p&gt;
+&lt;span id=&#34;20241020143501CST&#34;&gt;&lt;/span&gt;\[
+(\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t)) \equiv 0
+\tag{87}
+    \]
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241020143444CST&#34;&gt;定理6&lt;/a&gt;）&lt;/strong&gt;：先证必要性。如果 \(\bm{r}=\bm{r}(t)\) 是一条直线，由&lt;a class=&#34;link&#34; href=&#34;#20241018101114CST&#34;&gt;定理3&lt;/a&gt;可得 \(\kappa(s)\equiv 0\) ，再由&lt;a class=&#34;link&#34; href=&#34;#20241018125515CST&#34;&gt;式(53)&lt;/a&gt;可得 \(\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t)=\bm{0}\) ，因此由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241020000349CST&#34;&gt;混合积恒等式&lt;/a&gt;得&lt;/p&gt;
+&lt;span id=&#34;20241020151230CST&#34;&gt;&lt;/span&gt;\[
+(\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t))=(\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t))\cdot\bm{r}&#39;&#39;&#39;(t) \equiv 0
+\tag{88}
+    \]
+&lt;p&gt;  如果不是一条直线，则由&lt;a class=&#34;link&#34; href=&#34;#20241018195123CST&#34;&gt;定理4&lt;/a&gt;可知 \(\tau(t)\equiv 0\) ，再由&lt;a class=&#34;link&#34; href=&#34;#20241020005546CST&#34;&gt;式(85)&lt;/a&gt;可得 \((\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t)) \equiv 0\) 。&lt;br&gt;
+  再证充分性。如果 \((\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t)) \equiv 0\) ，代入&lt;a class=&#34;link&#34; href=&#34;#20241020005546CST&#34;&gt;式(85)&lt;/a&gt;可得 \(\tau(t)\equiv 0\) ，故由&lt;a class=&#34;link&#34; href=&#34;#20241018195123CST&#34;&gt;定理4&lt;/a&gt;可得该直线是平面曲线。&lt;/p&gt;
 </description>
         </item>
         
