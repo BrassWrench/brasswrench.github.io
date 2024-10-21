@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 21 Oct 2024 00:43:32 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 21 Oct 2024 12:17:20 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>草稿</title>
         <link>https://www.brasswrench.com/draft/</link>
         <pubDate>Sat, 19 Oct 2024 15:32:20 +0800</pubDate>
@@ -2423,8 +2423,7 @@ s(t)=s_1(t)=s_2(\lambda(t))
 &lt;p&gt;  &lt;span id=&#34;20241020231130CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理9&lt;/strong&gt;：设 \(\kappa(s),\tau(s)\) 是在区间 \([a,b]\) 上两个任意给定的连续可微函数，并且 \(\kappa(s)&gt;0\) ，则在空间 \(E^3\) 中存在正则参数曲线 \(\bm{r}=\bm{r}(s),a\le s \le b\) ，以 \(s\) 为弧长参数，以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率，且这样的曲线在空间 \(E^3\) 中是完全确定的，其差异至多为曲线在空间中的位置不同。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241020231130CST&#34;&gt;定理9&lt;/a&gt;）&lt;/strong&gt;：定理&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;已经证明这样的曲线在空间 \(E^3\) 中确定到至多差一个位置的不同，因此我们只要证明这样的曲线的存在性。&lt;br&gt;
   为了能够用和式表示方程组，引进新的函数记号&lt;/p&gt;
-&lt;span id=&#34;20241020232130CST&#34;&gt;&lt;/span&gt;
-    \[
+&lt;span id=&#34;20241020232130CST&#34;&gt;&lt;/span&gt;\[
 \begin{pmatrix}
 a_{11}(s) &amp; a_{12}(s) &amp; a_{13}(s) \\[5pt]
 a_{21}(s) &amp; a_{22}(s) &amp; a_{23}(s) \\[5pt]
@@ -2436,21 +2435,63 @@ a_{31}(s) &amp; a_{32}(s) &amp; a_{33}(s)
 -\kappa(s) &amp; 0 &amp; \tau(s)\\[5pt]
 0 &amp; -\tau(s) &amp; 0
 \end{pmatrix}
-\]
+\tag{98}
+    \]
 &lt;p&gt;  并且用 \(\bm{r},\bm{e}_1,\bm{e}_2,\bm{e}_3\) 记成向量形式的未知函数，每一个向量函数代表 \(3\) 个未知函数，共 \(12\) 个未知函数。考虑一阶常微分方程组&lt;/p&gt;
-&lt;span id=&#34;20241020233735CST&#34;&gt;&lt;/span&gt;
-    \[
+&lt;span id=&#34;20241020233735CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
 \cfrac{\mathrm{d}\bm{r}}{\mathrm{d}s}=\bm{e}_1\\[10pt]
 \cfrac{\mathrm{d}\bm{e}_i}{\mathrm{d}s}=\displaystyle\sum_{j=1}^{3}a_{ij}(s)\bm{e}_j,\quad 1 \le i \le 3
 \end{cases}
-\]
-&lt;p&gt;  这是由 \(4\) 个向量形式的线性齐次微分方程组组成的方程组（实际上有十二个方程）。由于方程组的系数是连续可微函数，根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“常微分方程”还未上线~&#39;)&#34;&gt;常微分方程解的存在和唯一性-Picard-Lindelöf定理&lt;/a&gt;，对于任意给定的一组初值 \(\bm{r}^{(0)},\bm{e}_1^{(0)},\bm{e}_2^{(0)},\bm{e}_3^{(0)}\) ，方程组有唯一的一组解 \(\bm{r}, \bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s),a\le s \le b\) ，满足初始条件&lt;/p&gt;
-&lt;span id=&#34;20241021003506CST&#34;&gt;&lt;/span&gt;
-    \[
+\tag{99}
+    \]
+&lt;p&gt;  这是由 \(4\) 个向量形式的线性齐次微分方程组组成的方程组（实际上有十二个方程）。由于方程组的系数是连续可微函数，根据&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“常微分方程”还未上线~&#39;)&#34;&gt;解的存在和唯一性-Picard定理&lt;/a&gt;，对于任意给定的一组初值 \(\bm{r}^{(0)},\bm{e}_1^{(0)},\bm{e}_2^{(0)},\bm{e}_3^{(0)}\) ，方程组有唯一的一组解 \(\bm{r}, \bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s),a\le s \le b\) ，满足初始条件&lt;/p&gt;
+&lt;span id=&#34;20241021003506CST&#34;&gt;&lt;/span&gt;\[
 \bm{r}(s_0)=\bm{r}^{(0)},\quad \bm{e}_i(s_0)=\bm{e}_i^{(0)},\quad 1 \le i \le 3
-\]
-&lt;p&gt;  其中 \(s_0\) 是区间 \([a,b]\) 中任意固定的一点。一般来说，这样的解并不会满足我们的要求。&lt;/p&gt;
+\tag{100}
+    \]
+&lt;p&gt;  其中 \(s_0\) 是区间 \([a,b]\) 中任意固定的一点。一般来说，这样的解并不会满足我们的要求。如果 \(\bm{r}=\bm{r}(s)\) 是我们想要的曲线，而 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是曲线的Frenet标架，则我们必须要求初始值 \(\set{\bm{r}^{(0)};\bm{e}_1^{(0)},\bm{e}_2^{(0)},\bm{e}_3^{(0)}}\) 是右手单位正交标架，即它们要满足条件&lt;/p&gt;
+&lt;span id=&#34;20241021103730CST&#34;&gt;&lt;/span&gt;\[
+\begin{cases}
+\bm{e}_i^{(0)}\cdot\bm{e}_j^{(0)}=\delta_{ij},\quad 1\le i,j \le 3\\[10pt]
+(\bm{e}_1^{(0)},\bm{e}_2^{(0)},\bm{e}_3^{(0)})=1
+\end{cases}
+\tag{101}
+    \]
+&lt;p&gt;  我们要证明，当初值满足条件&lt;a class=&#34;link&#34; href=&#34;#20241021103730CST&#34;&gt;式(101)&lt;/a&gt;，方程组&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;满足初始条件&lt;a class=&#34;link&#34; href=&#34;#20241021003506CST&#34;&gt;式(100)&lt;/a&gt;给出的 \(\bm{r}=\bm{r}(s)\) 是一条正则曲线，以 \(s\) 为弧长参数，并以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率。为此，首先证明这组解 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是右手单位正交标架族。命&lt;/p&gt;
+&lt;span id=&#34;20241021104630CST&#34;&gt;&lt;/span&gt;\[
+\bm{g}_{ij}(s)=\bm{e}_i(s)\cdot\bm{e}_j(s),\quad 1\le i,j \le 3
+\tag{102}
+    \]
+&lt;p&gt;  初值所满足的条件&lt;a class=&#34;link&#34; href=&#34;#20241021103730CST&#34;&gt;式(101)&lt;/a&gt;说明&lt;/p&gt;
+&lt;span id=&#34;20241021105002CST&#34;&gt;&lt;/span&gt;\[
+g_{ij}(s_0)=0,\quad 1 \le i,j \le 3
+\tag{103}
+    \]
+&lt;p&gt;  将&lt;a class=&#34;link&#34; href=&#34;#20241021104630CST&#34;&gt;式(102)&lt;/a&gt;求导，并且利用 \(\bm{e}_i(s)\) 满足方程组&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;得到&lt;/p&gt;
+&lt;span id=&#34;20241021105622CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\frac{\mathrm{d}g_{ij}(s)}{\mathrm{d}s}=&amp;\frac{\mathrm{d}\bm{e}_i(s)}{\mathrm{d}s}\cdot\bm{e}_j+\bm{e}_i\cdot\frac{\mathrm{d}\bm{e}_j(s)}{\mathrm{d}s}\\[15pt]
+=&amp;\sum_{k=1}^{3}(a_{ik}\bm{e}_k(s)\cdot\bm{e}_j(s)+a_{jk}\bm{e}_i(s)\cdot\bm{e}_k(s))\\[15pt]
+=&amp;\sum_{k=1}^{3}(a_{ik}g_{kj}(s)+a_{jk}g_{ik}(s))
+\end{aligned}
+\tag{104}
+    \]
+&lt;p&gt;  这是线性齐次常微分方程组且系数连续可微，所以再次由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“常微分方程”还未上线~&#39;)&#34;&gt;解的存在和唯一性-Picard定理&lt;/a&gt;可得它在初值条件&lt;a class=&#34;link&#34; href=&#34;#20241021105002CST&#34;&gt;式(103)&lt;/a&gt;下的解是唯一的，又注意&lt;/p&gt;
+&lt;span id=&#34;20241021120247CST&#34;&gt;&lt;/span&gt;\[
+g_{ij}(s)\equiv 0,\quad 1 \le i,j \le 3
+\tag{105}
+    \]
+&lt;p&gt;  是方程满足初值条件的一个平凡解。由解的唯一性，方程的唯一解只能是这个平凡解。也就是满足&lt;/p&gt;
+&lt;span id=&#34;20241021120438CST&#34;&gt;&lt;/span&gt;\[
+\bm{e}_i(s)\cdot\bm{e}_j(s)=\delta_{ij},\quad 1 \le i,j \le 3
+\tag{106}
+    \]
+&lt;p&gt;  故 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是单位正交标架。这样，向量 \(\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)\) 的混合积 \((\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s))\) 的值是 \(1\) 或 \(-1\) 。注意向量 \(\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)\) 是连续的，因此 \((\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s))\) 也是连续的，因此&lt;/p&gt;
+&lt;span id=&#34;20241021121635CST&#34;&gt;&lt;/span&gt;\[
+(\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s))=1
+\tag{107}
+    \]
 </description>
         </item>
         <item>
