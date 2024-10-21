@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 21 Oct 2024 12:17:20 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 21 Oct 2024 20:11:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -1070,7 +1070,7 @@ s(t)=s_1(t)=s_2(\lambda(t))
 &lt;h3 id=&#34;给定连续可微的曲率和挠率曲率大于零则必有曲线对应&#34;&gt;给定连续可微的曲率和挠率（曲率大于零）则必有曲线对应
 &lt;/h3&gt;&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20241020230735CST&#34;&gt;曲线的曲率和Frenet标架&lt;/a&gt;中已经知道，在曲率 \(\kappa(s)\) 处处不为零的正则曲线上有内在的、确定的Frenet标架场，所以 \(E^3\) 中的曲线便变成在 \(E^3\) 的正交标架空间中的一条曲线．而&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;正好是这个标架场的运动方程其系数恰好是曲线的曲率和挠率，它们完全确定了曲线在空间中的形状。我们的问题是：给定了曲率和挠率作为弧长参数 \(s\) 的函数 \(\kappa(s),\tau(s)\) 之后，在空间 \(E^3\) 中是否存在正则参数曲线以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率？根据上面的分析，我们在 \(E^3\) 上由全体正交标架构成的6维空间中考虑，千是Frenet公式成为现成的已知常微分方程组，它的解是依赖参数 \(s\) 的一族正交标架，其标架原点在 \(E^3\) 中描出的轨迹应该是我们所要的曲线，而这族正交标架本身应该是曲线的Frenet标架场。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241020231130CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理9&lt;/strong&gt;：设 \(\kappa(s),\tau(s)\) 是在区间 \([a,b]\) 上两个任意给定的连续可微函数，并且 \(\kappa(s)&gt;0\) ，则在空间 \(E^3\) 中存在正则参数曲线 \(\bm{r}=\bm{r}(s),a\le s \le b\) ，以 \(s\) 为弧长参数，以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率，且这样的曲线在空间 \(E^3\) 中是完全确定的，其差异至多为曲线在空间中的位置不同。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241020231130CST&#34;&gt;定理9&lt;/a&gt;）&lt;/strong&gt;：定理&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;已经证明这样的曲线在空间 \(E^3\) 中确定到至多差一个位置的不同，因此我们只要证明这样的曲线的存在性。&lt;br&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241020231130CST&#34;&gt;定理9&lt;/a&gt;）&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;已经证明这样的曲线在空间 \(E^3\) 中确定到至多差一个位置的不同，因此我们只要证明这样的曲线的存在性。&lt;br&gt;
   为了能够用和式表示方程组，引进新的函数记号&lt;/p&gt;
 &lt;span id=&#34;20241020232130CST&#34;&gt;&lt;/span&gt;\[
 \begin{pmatrix}
@@ -1141,6 +1141,34 @@ g_{ij}(s)\equiv 0,\quad 1 \le i,j \le 3
 (\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s))=1
 \tag{107}
     \]
+&lt;p&gt;  所以 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是右手单位正交标架族。&lt;br&gt;
+  由方程&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;的第一式可知&lt;/p&gt;
+&lt;span id=&#34;20241021181211CST&#34;&gt;&lt;/span&gt;\[
+\left|\frac{\mathrm{d}\bm{r}(s)}{\mathrm{d}s}\right|=|\bm{e}_1(s)|=1
+\tag{108}
+    \]
+&lt;p&gt;  故由&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;知 \(\bm{r}(s)\) 是正则参数曲线， \(s\) 是弧长参数， \(\bm{\alpha}(s)\bm{e}_1(s)\) 。再由方程&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;的第二式得知&lt;/p&gt;
+&lt;span id=&#34;20241021181437CST&#34;&gt;&lt;/span&gt;\[
+\frac{\mathrm{d}\bm{\alpha}(s)}{\mathrm{d}s}=\frac{\mathrm{d}\bm{e}_1(s)}{\mathrm{d}s}=\kappa(s)\bm{e}_2(s)
+\tag{109}
+    \]
+&lt;p&gt;  对比&lt;a class=&#34;link&#34; href=&#34;#20241018111648CST&#34;&gt;式(42)&lt;/a&gt;可知 \(\kappa(s)\) 就是曲线 \(\bm{r}=\bm{r}(s)\) 的曲率， \(\bm{e}_2(s)\) 是它的主法向量，于是&lt;/p&gt;
+&lt;span id=&#34;20241021200113CST&#34;&gt;&lt;/span&gt;\[
+\bm{\gamma}(s)=\bm{\alpha}(s)\times\bm{\beta}(s)=\bm{e}_1(s)\times\bm{e}_2(s)=\bm{e}_3(s)
+\tag{110}
+    \]
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;的最后一式得到&lt;/p&gt;
+&lt;span id=&#34;20241021200355CST&#34;&gt;&lt;/span&gt;\[
+\frac{\mathrm{d}\bm{e}_3(s)}{\mathrm{d}s}=-\tau(s)\bm{e}_2(s)
+\tag{111}
+    \]
+&lt;p&gt;  两边点乘 \(\bm{e}_2(s)\) 并利用 \(|\bm{e}_2(s)|^2=1\) 可得&lt;/p&gt;
+&lt;span id=&#34;20241021200559CST&#34;&gt;&lt;/span&gt;\[
+\tau(s)=-\frac{\mathrm{d}\bm{e}_3(s)}{\mathrm{d}s}\cdot\bm{e}_2(s)=-\frac{\mathrm{d}\bm{\gamma}(s)}{\mathrm{d}s}\cdot\bm{\beta}(s)
+\tag{112}
+    \]
+&lt;p&gt;  故 \(\tau(s)\) 是曲线 \(\bm{r}=\bm{r}(s)\) 的挠率。证毕。&lt;/p&gt;
+&lt;p&gt;  上面的定理说明，函数 \(\kappa(s)&gt;0\) 于 \(\tau(s)\) 在空间 \(E^3\) 中不计位置差异唯一地确定了一条曲线，因此它们可以看作是该曲线的方程，成为曲线的&lt;strong&gt;内在方程&lt;/strong&gt;，或&lt;strong&gt;自然方程&lt;/strong&gt;。从曲线的自然方程得到参数方程的过程就是求解方程组&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;的过程。一般说来，该过程是比较难的。如果知道方程组&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;的一个特解，则&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;告诉我们，其余的解都是上述特解在 \(E^3\) 的刚体运动下的像。&lt;/p&gt;
 </description>
         </item>
         
