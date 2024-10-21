@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库系统概述与基本结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-10-20T14:16:30&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-10-22T00:06:52&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（一）：数据库系统概论">
 <meta name="twitter:description" content="数据库系统概述与基本结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -647,6 +647,7 @@
         <li><a href="#常用数据模型">常用数据模型</a>
           <ol>
             <li><a href="#层次模型">层次模型</a></li>
+            <li><a href="#网状模型">网状模型</a></li>
           </ol>
         </li>
       </ol>
@@ -962,7 +963,7 @@
 </svg>
 
             <time class="article-words">
-                14540 字
+                16533 字
             </time>
         </div>
 
@@ -977,7 +978,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 30 分钟
+                    阅读时长: 33 分钟
                 </time>
             </div>
         
@@ -2122,9 +2123,371 @@
     <polyline points="385.7561 120.1515 465.4858 120.1515 465.4858 141.2553" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="461.7827 138.4467 465.4858 140.0199 469.1889 138.4467 465.4858 147.225 461.7827 138.4467"/>
   </g>
+<!--  <foreignObject width="200" height="200" x="400" y="6">-->
+<!--    \(R_1\)-->
+<!--  </foreignObject>-->
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图9&emsp;一个层次模型的示例</p></div>
 <p>  从<a class="link" href="#20241017200708CST">图9</a>上可以看出层次模型像一棵倒立的树，结点的双亲是唯一的。<br>
   层次模型的一个基本的特点是，任何一个给定的记录值只能按其层次路径查看，没有一个子女记录值能够脱离双亲记录值而独立存在。</p>
+<p>  <a class="link" href="#20241021222552CST">图10</a>是一个教员学生层次模型。该层次模型有4个记录类型。记录类型系是根结点,由系编号、系名、办公地点三个字段组成。它有两个子女结点教研室和学生。记录类型教研室是系的子女结点，同时又是教员的双亲结点，它由教研室编号、教研室名两个字段组成。记录类型学生由学号、姓名、成绩三个字段组成。记录类型教员由职工号、姓名、研究方向三个字段组成。学生与教员是叶结点，它们没有子女结点。由系到教研室、由教研室到教员、由系到学生均是一对多的联系。</p>
+<span id="20241021222552CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 238.2">
+  <!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .st1 {
+        font-family: NotoSerifSC-ExtraLight, 'Noto Serif SC';
+        font-size: 18px;
+        font-weight: 200;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect class="st0" x="340.2" y="6.2" width="249.9" height="41.5"/>
+    <text class="st1" transform="translate(353.2 34.3)"><tspan x="0" y="0">系编号</tspan></text>
+    <text class="st1" transform="translate(435.2 34.3)"><tspan x="0" y="0">系名</tspan></text>
+    <text class="st1" transform="translate(500.7 34.8)"><tspan x="0" y="0">办公地点</tspan></text>
+    <line class="st0" x1="419.4" y1="6.2" x2="419.4" y2="47.7"/>
+    <line class="st0" x1="486.5" y1="6.2" x2="486.5" y2="47.7"/>
+    <text class="st1" transform="translate(310 34.3)"><tspan x="0" y="0">系</tspan></text>
+  </g>
+  <g>
+    <g>
+      <rect class="st0" x="221.9" y="113.1" width="222.8" height="41.5"/>
+      <text class="st1" transform="translate(235 141.2)"><tspan x="0" y="0">教研室编号</tspan></text>
+      <text class="st1" transform="translate(358.4 141.8)"><tspan x="0" y="0">教研室名</tspan></text>
+      <line class="st0" x1="340.1" y1="113.1" x2="340.1" y2="154.6"/>
+      <text class="st1" transform="translate(153.2 141.2)"><tspan x="0" y="0">教研室</tspan></text>
+    </g>
+    <g>
+      <rect class="st0" x="518.3" y="114.2" width="192.1" height="41.5"/>
+      <text class="st1" transform="translate(531.3 142.3)"><tspan x="0" y="0">学号</tspan></text>
+      <text class="st1" transform="translate(592.8 142.9)"><tspan x="0" y="0">姓名</tspan></text>
+      <line class="st0" x1="579.4" y1="114.2" x2="579.4" y2="155.7"/>
+      <line class="st0" x1="641.9" y1="114.2" x2="641.9" y2="155.7"/>
+      <text class="st1" transform="translate(656.9 143.4)"><tspan x="0" y="0">成绩</tspan></text>
+      <text class="st1" transform="translate(464.5 142.3)"><tspan x="0" y="0">学生</tspan></text>
+    </g>
+  </g>
+  <g>
+    <rect class="st0" x="252.5" y="192.1" width="249.9" height="41.5"/>
+    <text class="st1" transform="translate(265.5 220.3)"><tspan x="0" y="0">职工号</tspan></text>
+    <text class="st1" transform="translate(347.5 220.3)"><tspan x="0" y="0">姓名</tspan></text>
+    <text class="st1" transform="translate(413 220.3)"><tspan x="0" y="0">研究方向</tspan></text>
+    <line class="st0" x1="331.6" y1="192.1" x2="331.6" y2="233.7"/>
+    <line class="st0" x1="398.8" y1="192.1" x2="398.8" y2="233.7"/>
+    <text class="st1" transform="translate(205.5 220.3)"><tspan x="0" y="0">教员</tspan></text>
+  </g>
+  <g>
+    <polyline class="st0" points="453.3 47.7 453.3 72.3 324.1 72.3 324.1 107.1"/>
+    <polygon points="320.4 104.3 324.1 105.9 327.8 104.3 324.1 113.1 320.4 104.3"/>
+  </g>
+  <g>
+    <polyline class="st0" points="453.3 72.3 611.2 72.3 611.2 108.2"/>
+    <polygon points="607.5 105.4 611.2 107 614.9 105.4 611.2 114.2 607.5 105.4"/>
+  </g>
+  <g>
+    <line class="st0" x1="310" y1="154.2" x2="310" y2="186.2"/>
+    <polygon points="306.3 183.4 310 184.9 313.7 183.4 310 192.1 306.3 183.4"/>
+  </g>
+</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图10&emsp;教员学生层次数据库模型</p></div>
+<p>  <a class="link" href="#20241021225153CST">图11</a>是<a class="link" href="#20241021222552CST">图10</a>数据模型对应的一个值。该值是D02系（计算机科学系）记录值及其所有后代记录值组成的一棵树。D02系有三个教研室子女记录值R01、R02、R03和三个学生记录值S63871、S63874,S63876。教研室R01有三个教员记录值E2101、E1709,E3501；教研室R03有两个教员记录值E1101、E3102。</p>
+<span id="20241021225153CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 398.2">
+  <!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .st1, .st2 {
+        isolation: isolate;
+      }
+
+      .st2 {
+        font-family: NotoSerifSC-ExtraLight, 'Noto Serif SC';
+        font-size: 18px;
+        font-weight: 200;
+      }
+    </style>
+  </defs>
+  <rect class="st0" x="340.2" y="6.2" width="254.6" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(354.2 34.3)"><tspan x="0" y="0">D02</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(418.2 34.3)"><tspan x="0" y="0">计算机</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(504.7 34.8)"><tspan x="0" y="0">办公地点</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="403.4" y1="6.2" x2="403.4" y2="47.7"/>
+  <line class="st0" x1="488.5" y1="6.2" x2="488.5" y2="47.7"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(310 34.3)"><tspan x="0" y="0">系</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <g class="st1">
+        <text class="st2" transform="translate(153.2 122.2)"><tspan x="0" y="0">教研室</tspan></text>
+      </g>
+    </g>
+  </g>
+  <rect class="st0" x="518.3" y="114.2" width="231.8" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(531.3 142.3)"><tspan x="0" y="0">S63871</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(617.8 142.9)"><tspan x="0" y="0">文晓静</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="604.4" y1="114.2" x2="604.4" y2="155.7"/>
+  <line class="st0" x1="687.9" y1="114.2" x2="687.9" y2="155.7"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(713.9 143.4)"><tspan x="0" y="0">A</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <g class="st1">
+        <text class="st2" transform="translate(464.5 142.3)"><tspan x="0" y="0">学生</tspan></text>
+      </g>
+    </g>
+  </g>
+  <rect class="st0" x="89.3" y="271" width="283.4" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(102.3 299.2)"><tspan x="0" y="0">E2101</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(183.3 299.2)"><tspan x="0" y="0">王大明</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(284.8 299.2)"><tspan x="0" y="0">数据库</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="168.4" y1="271" x2="168.4" y2="312.6"/>
+  <line class="st0" x1="252.6" y1="271" x2="252.6" y2="312.6"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(391.1 299.2)"><tspan x="0" y="0">教员</tspan></text>
+    </g>
+  </g>
+  <polyline class="st0" points="453.3 47.7 453.3 72.3 324.1 72.3 324.1 107.1"/>
+  <polygon points="320.4 104.3 324.1 105.9 327.8 104.3 324.1 113.1 320.4 104.3"/>
+  <polyline class="st0" points="453.3 72.3 611.2 72.3 611.2 108.2"/>
+  <polygon points="607.5 105.4 611.2 107 614.9 105.4 611.2 114.2 607.5 105.4"/>
+  <rect class="st0" x="234.7" y="154.6" width="167.1" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(247.8 182.7)"><tspan x="0" y="0">R02</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(313.2 183.3)"><tspan x="0" y="0">信息系统</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="294.9" y1="154.6" x2="294.9" y2="196.1"/>
+  <rect class="st0" x="221.6" y="113.1" width="167.1" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(234.7 141.2)"><tspan x="0" y="0">R01</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(309.1 141.8)"><tspan x="0" y="0">数据库</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="281.8" y1="113.1" x2="281.8" y2="154.6"/>
+  <rect class="st0" x="248.8" y="196.1" width="167.1" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(261.9 224.2)"><tspan x="0" y="0">R03</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(343.3 224.8)"><tspan x="0" y="0">网络</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="309" y1="196.1" x2="309" y2="237.6"/>
+  <rect class="st0" x="530.2" y="155.7" width="231.8" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(543.2 183.8)"><tspan x="0" y="0">S63874</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(640.7 184.4)"><tspan x="0" y="0">刘华</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="616.3" y1="155.7" x2="616.3" y2="197.2"/>
+  <line class="st0" x1="699.8" y1="155.7" x2="699.8" y2="197.2"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(724.8 184.9)"><tspan x="0" y="0">C</tspan></text>
+    </g>
+  </g>
+  <rect class="st0" x="544.2" y="197.2" width="231.8" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(557.2 225.3)"><tspan x="0" y="0">S63876</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(654.7 225.9)"><tspan x="0" y="0">张君</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="630.3" y1="197.2" x2="630.3" y2="238.7"/>
+  <line class="st0" x1="713.8" y1="197.2" x2="713.8" y2="238.7"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(738.8 226.4)"><tspan x="0" y="0">A</tspan></text>
+    </g>
+  </g>
+  <rect class="st0" x="103.3" y="312.6" width="283.4" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(116.3 340.8)"><tspan x="0" y="0">E1709</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(206.3 340.8)"><tspan x="0" y="0">冯灵</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(289.8 340.8)"><tspan x="0" y="0">数据仓库</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="182.4" y1="312.6" x2="182.4" y2="354.2"/>
+  <line class="st0" x1="266.6" y1="312.6" x2="266.6" y2="354.2"/>
+  <rect class="st0" x="117.3" y="354.1" width="283.4" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(130.3 382.3)"><tspan x="0" y="0">E3501</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(220.3 382.3)"><tspan x="0" y="0">孟勇</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(295.8 382.3)"><tspan x="0" y="0">并行数据库</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="196.4" y1="354.1" x2="196.4" y2="395.7"/>
+  <line class="st0" x1="280.6" y1="354.1" x2="280.6" y2="395.7"/>
+  <g>
+    <polyline class="st0" points="221.6 133.9 187.2 133.9 187.2 265.1"/>
+    <polygon points="183.5 262.2 187.2 263.8 190.9 262.2 187.2 271 183.5 262.2"/>
+  </g>
+  <rect class="st0" x="441.7" y="271" width="283.4" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(454.7 299.2)"><tspan x="0" y="0">E1101</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(543.7 299.2)"><tspan x="0" y="0">陈芝</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(630.2 299.2)"><tspan x="0" y="0">网络安全</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="520.8" y1="271" x2="520.8" y2="312.6"/>
+  <line class="st0" x1="605" y1="271" x2="605" y2="312.6"/>
+  <rect class="st0" x="455.8" y="312.6" width="283.4" height="41.5"/>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(468.8 340.8)"><tspan x="0" y="0">E3102</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(558.8 340.8)"><tspan x="0" y="0">张豪</tspan></text>
+    </g>
+  </g>
+  <g class="st1">
+    <g class="st1">
+      <text class="st2" transform="translate(642.3 340.8)"><tspan x="0" y="0">网络管理</tspan></text>
+    </g>
+  </g>
+  <line class="st0" x1="534.9" y1="312.6" x2="534.9" y2="354.2"/>
+  <line class="st0" x1="619.1" y1="312.6" x2="619.1" y2="354.2"/>
+  <g>
+    <polyline class="st0" points="415.1 216.9 478.9 216.9 478.9 265.1"/>
+    <polygon points="475.2 262.2 478.9 263.8 482.6 262.2 478.9 271 475.2 262.2"/>
+  </g>
+</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图11&emsp;教员学生层次数据库的一个值</p></div>
+<p><strong>2. 层次模型的数据操纵和完整性约束</strong></p>
+<p>  层次模型的数据操纵主要有查询、插入、删除和更新。进行插入、删除、更新操作时要满足层次模型的完整性约束条件。<br>
+  进行插入操作时，如果没有相应的双亲结点值就不能插入它的子女结点值。例如在<a class="link" href="#20241021225153CST">图11</a>的层次数据库中，若新调入一名教员，但尚未分配到某个教研室，这时就不能将新教员插入到数据库中。<br>
+  进行删除操作时，如果删除双亲结点值，则相应的子女结点值也将被同时删除。例如在<a class="link" href="#20241021222552CST">图10</a>的层次数据库中，若删除网络教研室，则该教研室所有教员的数据将全部丢失。</p>
+<p><strong>3. 层次模型的优缺点</strong></p>
+<p>  层次模型的优点主要有：</p>
+<ol>
+<li>层次模型的数据结构比较简单清晰。</li>
+<li>层次数据库的查询效率高。因为层次模型中记录之间的联系用有向边表示，这种联系在DBMS中常常用指针来实现。因此这种联系也就是记录之间的存取路径。当要存取某个结点的记录值，DBMS就沿着这一条路径很快找到该记录值，所以层次数据库的性能优于关系数据库，不低于网状数据库。</li>
+<li>层次数据模型提供了良好的完整性支持。</li>
+</ol>
+<p>  层次模型的缺点主要有：</p>
+<ol>
+<li>现实世界中很多联系是非层次性的，如结点之间具有多对多联系，不适合用层次模型表示。</li>
+<li>如果一个结点具有多个双亲结点等，用层次模型表示这类联系就很笨拙，只能通过引入冗余数据（易产生不一致性）或创建非自然的数据结构（引入虚拟结点）来解决。对插入和删除操作的限制比较多，因此应用程序的编写比较复杂。</li>
+<li>查询子女结点必须通过双亲结点。</li>
+<li>由于结构严密，层次命令趋于程序化。</li>
+</ol>
+<p>  可见，用层次模型对具有一对多的层次联系的部门描述非常自然、直观，容易理解。这是层次数据库的突出优点。</p>
+<h4 id="网状模型">网状模型
+</h4><p>  在现实世界中事物之间的联系更多的是非层次关系的，用层次模型表示非树形结构是很不直接的，网状模型则可以克服这一弊病。<br>
+  网状数据库系统采用网状模型作为数据的组织方式。网状数据模型的典型代表是DBTG系统，亦称CODASYL系统。这是20世纪70年代数据系统语言研究会（Conference On Data System Language,CODASYL）下属的数据库任务组（Data Base Task Group,DBTG）提出的一个系统方案。DBTG系统虽然不是实际的数据库系统软件，但是它的基本概念、方法和技术具有普遍意义，对于网状数据库系统的研制和发展起了重大的影响。后来不少系统都采用DBTG模型或者简化的DBTG模型，如Cullinet Software公司的IDMS、Univac公司的DMS1100、Honeywell公司的IDS/2、HP公司的IMAGE等。</p>
+<p><strong>1. 网状模型的数据结构</strong></p>
+<p>  在数据库中，把满足以下两个条件的基本层次联系集合称为网状模型：</p>
+<ol>
+<li>允许一个以上的结点无双亲。</li>
+<li>一个结点可以有多于一个的双亲。</li>
+</ol>
+<p>  网状模型是一种比层次模型更具普遍性的结构。它去掉了层次模型的两个限制，允许多个结点没有双亲结点，允许结点有多个双亲结点；此外它还允许两个结点之间有多种联系（称之为复合联系）。因此，网状模型可以更直接地去描述现实世界。而层次模型实际上是网状模型的一个特例。<br>
+  与层次模型一样，网状模型中每个结点表示一个记录类型（实体），每个记录类型可包含若干个字段（实体的属性），结点间的连线表示记录类型（实体）之间一对多的父子联系。<br>
+  从定义可以看出，层次模型中子女结点与双亲结点的联系是唯一的，而在网状模型中这种联系可以不唯一。因此要为每个联系命名，并指出与该联系有关的双亲记录和子女记录。例如图1.12(a)中 \(R_3\) 有两个双亲记录 \(R_1\) 和 \(R_2\) ，因此把 \(R_1\) 与 \(R_3\) 之间的联系命名为 \(L_1\) ， \(R_2\) 与 \(R_3\) 之间的联系命名为 \(L_2\) 。图1.12(a)、(b)、(c)都是网状模型的例子。</p>
 
     </div>
 </section>
@@ -2158,7 +2521,7 @@
 
 
         <span>
-            最后更新于 Oct 20, 2024 14:16 CST
+            最后更新于 Oct 22, 2024 00:06 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2314,7 +2677,7 @@
             
             
         
-        <span>本图书馆累计发布了10篇文章 共87669字</span>
+        <span>本图书馆累计发布了10篇文章 共89676字</span>
     </section>
 
     <section class="site-visit-count">
