@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 24 Oct 2024 15:45:55 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 24 Oct 2024 15:58:14 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -41,9 +41,20 @@
   与System R同期，美国加州大学伯克利分校也研制了INGRES关系数据库实验系统,并由INGRES公司发展成为INGRES数据库产品。&lt;br&gt;
   40多年来，关系数据库系统的研究和开发取得了辉煌的成就。关系数据库系统从实验室走向了社会，成为最重要、应用最广泛的数据库系统，大大促进了数据库应用领域的扩大和深入。因此，关系数据模型的原理、技术和应用十分重要。&lt;/p&gt;
 &lt;h2 id=&#34;关系数据结构及形式化定义&#34;&gt;关系数据结构及形式化定义
-&lt;/h2&gt;&lt;p&gt;  关系数据库系统是支持关系模型的数据库系统。上一篇初步介绍了关系模型及其基本术语。本篇将较深入地介绍关系模型。&lt;br&gt;
-  按照数据模型的三个要素，关系模型由关系数据结构、关系操作集合和关系完整性约束三部分组成。下面将对这三部分内容进行分别介绍。其中2.1节讲解关系数据结构，包括关系的形式化定义及有关概念；2.2节讲解关系操作；2.3节讲解关系的三类完整性约束;2.4节讲解关系代数，这是关系数据库系统中实现关系操作的一种语言；最后，在2.5节介
-绍关系演算。&lt;/p&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;关系&#34;&gt;关系
+&lt;/h3&gt;&lt;p&gt;  关系模型的数据结构非常简单，只包含单一的数据结构&amp;mdash;&amp;mdash;关系。在用户看来，关系模型中数据的逻辑结构是一张扁平的二维表。&lt;br&gt;
+  关系模型的数据结构虽然简单却能够表达丰富的语义，描述出现实世界的实体以及实体间的各种联系。也就是说，在关系模型中，现实世界的实体以及实体间的各种联系均用单一的结构类型，即关系来表示。&lt;br&gt;
+  前面已经非形式化地介绍了关系模型及有关的基本概念。关系模型是建立在集合代数的基础上的，这里从集合论角度给出关系数据结构的形式化定义。&lt;/p&gt;
+&lt;h4 id=&#34;域domain&#34;&gt;域（domain）
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024154841CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1（域）&lt;/strong&gt;：域是一组具有相同数据类型的值的集合。例如，自然数、整数、实数、长度小于25字节的字符串集合、 {0,1} 、 {男,女} 、大于等于0且小于等于100的正整数等，都可以是域。&lt;/p&gt;
+&lt;h4 id=&#34;笛卡儿积cartesian-product&#34;&gt;笛卡儿积（cartesian product）
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024155054CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（笛卡儿积）&lt;/strong&gt;：给定一组域 \(D_1,D_2,\cdots,D_n\) ，允许其中某些域是相同的， \(D_1,D_2,\cdots,D_n\)的笛卡儿积为&lt;/p&gt;
+&lt;span id=&#34;20241024155332CST&#34;&gt;&lt;/span&gt;
+    \[
+D_1\times D_2 \times \cdots \times D_n=\set{(d_1,d_2,\cdots,d_n)|d_i\in D_i,i=1,2,\cdots,n}
+\]
+&lt;p&gt;  其中，每一个元素 \((d_1,d_2,\cdots,d_n)\) 叫作一个&lt;strong&gt;n元组（tuple）&lt;/strong&gt;，或简称&lt;strong&gt;元组（tuple）&lt;/strong&gt;。元素中的每一个值 \(d_i\) 叫做一个&lt;strong&gt;分量（component）&lt;/strong&gt;。&lt;br&gt;
+  一个域允许的不同取值个数称为这个域的&lt;strong&gt;基数（cardinal number）&lt;/strong&gt;。&lt;/p&gt;
 </description>
         </item>
         <item>
