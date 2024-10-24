@@ -131,7 +131,7 @@
 <meta property='og:description' content="支持关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-24T18:21:57&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-24T18:33:40&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="支持关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -611,8 +611,11 @@
           </ol>
         </li>
         <li><a href="#关系模式">关系模式</a></li>
+        <li><a href="#关系数据库-1">关系数据库</a></li>
+        <li><a href="#关系模型的存储结构">关系模型的存储结构</a></li>
       </ol>
     </li>
+    <li><a href="#关系操作">关系操作</a></li>
   </ol>
 </nav>
         </div>
@@ -924,7 +927,7 @@
 </svg>
 
             <time class="article-words">
-                4335 字
+                4864 字
             </time>
         </div>
 
@@ -939,7 +942,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 9 分钟
+                    阅读时长: 10 分钟
                 </time>
             </div>
         
@@ -1194,7 +1197,7 @@ R(D_1,D_2,\times,D_n)
 </h3><p>  在数据库中要区分型和值。关系数据库中，关系模式是型，关系是值。关系模式是对关系的描述，那么一个关系需要描述哪些方面呢？<br>
   关系是元组的集合，因此关系模式必须指出这个元组集合的结构，即它由哪些属性构成，这些属性来自哪些域，以及属性与域之间的映像关系。<br>
   现实世界随着时间在不断地变化，因而在不同的时刻关系模式的关系也会有所变化。但是，现实世界的许多己有事实和规则限定了关系模式所有可能的关系必须满足一定的完整性约束条件。这些约束或者通过对属性取值范围的限定，例如职工年龄小于60岁（60岁以后退休），或者通过属性值间的相互关联反映出来。例如，如果2个元组的主码相等，那么元组的其他值也一定相等，因为主码唯一标识一个元组，主码相等就表示这是同一个元组。关系模式应当刻划出这些完整性约束条件。</p>
-<p>  <span id="20241024181533CST"></span><strong>定义4（关系模式）</strong>关系的描述称为关系模式（relation schema）。它可以形式化地表示为</p>
+<p>  <span id="20241024181533CST"></span><strong>定义4（关系模式）</strong>：关系的描述称为关系模式（relation schema）。它可以形式化地表示为</p>
 <span id="20241024181603CST"></span>\[
 R(U,D,\text{DOM},F)
 \tag{8}
@@ -1216,8 +1219,15 @@ R(U)
 R(A_1,A_2,\cdots,A_n)
 \tag{11}
     \]
-<p>  其中 \(R\) 为关系名， \(A_1,A_2,\cdots,A_n\) 为属性名。而域名及属性向域的映像常常直接说明为属性的类型、长度。</p>
-
+<p>  其中 \(R\) 为关系名， \(A_1,A_2,\cdots,A_n\) 为属性名。而域名及属性向域的映像常常直接说明为属性的类型、长度。<br>
+  关系是关系模式在某一时刻的状态或内容。关系模式是静态的、稳定的，而关系是动态的、随时间不断变化的，因为关系操作在不断地更新着数据库中的数据。例如，学生关系模式在不同的学年，学生关系是不同的。在实际工作中，人们常常把关系模式和关系都笼统地称为关系，这不难从上下文中加以区别，希望读者注意。</p>
+<h3 id="关系数据库-1">关系数据库
+</h3><p>  在关系模型中，实体以及实体间的联系都是用关系来表示的。例如导师实体、研究生实体、导师与研究生之间的一对多联系都可以分别用一个关系来表示。在一个给定的应用领域中，所有关系的集合构成一个关系数据库。<br>
+  关系数据库也有型和值之分。关系数据库的型也称为关系数据库模式，是对关系数据库的描述。关系数据库模式包括若干域的定义，以及在这些域上定义的若干关系模式。关系数据库的值是这些关系模式在某一时刻对应的关系的集合，通常就称为关系数据库。</p>
+<h3 id="关系模型的存储结构">关系模型的存储结构
+</h3><p>  我们已经知道，在关系数据模型中实体及实体间的联系都用表来表示，但表是关系数据的逻辑模型.在关系数据库的物理组织中，有的关系数据库管理系统中一个表对应一个操作系统文件，将物理数据组织交给操作系统完成；有的关系数据库管理系统从操作系统那里申请若干个大的文件，自己划分文件空间，组织表、索引等存储结构，并进行存储管理。</p>
+<h2 id="关系操作">关系操作
+</h2>
     </div>
 </section>
 
@@ -1250,7 +1260,7 @@ R(A_1,A_2,\cdots,A_n)
 
 
         <span>
-            最后更新于 Oct 24, 2024 18:21 CST
+            最后更新于 Oct 24, 2024 18:33 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1314,7 +1324,7 @@ R(A_1,A_2,\cdots,A_n)
     <div class="article-list--compact related-contents">
     
         <article>
-            <a href="/posts/computer_science/database_system/an_introduction_to_database_system/">
+            <a href="/posts/computer_science/database_system/introduction_to_database_system/">
                 <div class="article-details">
                     <h2 class="article-title">上一篇：数据库系统概论</h2>
                     
@@ -1409,7 +1419,7 @@ R(A_1,A_2,\cdots,A_n)
             
             
         
-        <span>本图书馆累计发布了11篇文章 共101914字</span>
+        <span>本图书馆累计发布了11篇文章 共102443字</span>
     </section>
 
     <section class="site-visit-count">
