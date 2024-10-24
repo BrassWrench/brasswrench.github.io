@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库系统概述与基本结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-10-23T19:30:17&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-10-24T13:39:21&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（一）：数据库系统概论">
 <meta name="twitter:description" content="数据库系统概述与基本结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -964,7 +964,7 @@
 </svg>
 
             <time class="article-words">
-                18574 字
+                19368 字
             </time>
         </div>
 
@@ -979,7 +979,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 38 分钟
+                    阅读时长: 39 分钟
                 </time>
             </div>
         
@@ -1956,7 +1956,7 @@
 <li>对象关系数据模型(object relational data model)</li>
 <li>半结构化数据模型(semistructure data model)</li>
 </ul>
-<p>  其中层次模型和网状模型统称为格式化模型。</p>
+<p>  其中层次模型和网状模型统称为<strong>格式化模型</strong>。</p>
 <p>  格式化模型的数据库系统在20世纪70年代至80年代初非常流行，在数据库系统产品中占据了主导地位。层次数据库系统和网状数据库系统在使用和实现上都要涉及数据库物理层的复杂结构，现在已逐渐被关系模型的数据库系统取代。但在美国及欧洲的一些国家里，由于早期开发的应用系统都是基于层次数据库或网状数据库系统的，因此目前仍有一些层次数据库系统或网状数据库系统在继续使用。<br>
   20世纪80年代以来，面向对象的方法和技术在计算机各个领域，包括程序设计语言、软件工程、信息系统设计、计算机硬件设计等方面都产生了深远的影响，也促进数据库中面向对象数据模型的研究和发展。许多关系数据库厂商为了支持面向对象模型，对关系模型做了扩展，从而产生了对象关系数据模型。<br>
   随着Internet的迅速发展，Web上各种半结构化、非结构化数据源已经成为重要的信息来源，产生了以XML为代表的半结构化数据模型和非结构化数据模型。<br>
@@ -2710,11 +2710,105 @@ DBTG提供了&quot;属籍类别”的概念来描述这类约束条件。</li>
 <li><strong>域（domain）</strong>：域是一组具有相同数据类型的值的集合。属性的取值范围来自某个域。 如人的年龄一般在1〜120岁之间，大学生年龄属性的域是（15〜45岁），性别的域是（男，女），系名的域是一个学校所有系名的集合。</li>
 <li><strong>分量</strong>：元组中的一个属性值。</li>
 <li><strong>关系模式</strong>：对关系的描述，一般表示为<br>
-关系名（属性1、属性2、···、属性n）<br>
-  例如，上面的关系可描述为
-学生（堂号，姓名，年龄，性别，系名，年级）
+<span id="20241024103147CST"></span>\[
+关系名（属性1、属性2、···、属性n）  
+\tag{1}
+    \]
+  例如，上面的关系可描述为<br>
+<span id="20241024103204CST"></span>\[
+  学生（堂号，姓名，年龄，性别，系名，年级）  
+\tag{2}
+    \]
   关系模型要求关系必须是规范化的，即要求关系必须满足一定的规范条件，这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项，也就是说，不允许表中还有表。例如，图1.15中工资和扣除是可分的数据项，工资又分为基本工资、岗位津贴和业绩津贴，扣除又分为三险和个人所得税。因此，图1.15的表就不符合关系模型要求。</li>
 </ul>
+<span id="20241024103348CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+    <tr>
+        <th rowspan="2">职工号</th>
+        <th rowspan="2">姓名</th>
+        <th rowspan="2">职称</th>
+        <th colspan="3">工资</th>
+        <th colspan="2">扣除</th>
+        <th rowspan="2">实发</th>
+    </tr>
+    <tr>
+        <th>基本工资</th>
+        <th>岗位津贴</th>
+        <th>业绩津贴</th>
+        <th>三险</th>
+        <th>个人所得税</th>
+    </tr>
+    <tr>
+        <td>86051</td>
+        <td>陈平</td>
+        <td>讲师</td>
+        <td>1305</td>
+        <td>1200</td>
+        <td>2850</td>
+        <td>160</td>
+        <td>112</td>
+        <td>4083</td>
+    </tr>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表6&emsp;一个工资表（表中有表）示例</p>
+<p>  可以把关系和现实生活中的表格所使用的术语做一个粗略的对比，如表L5所示。</p>
+<span id="20241024104838CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>关系术语</th>
+          <th>一般表格的术语</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>关系名</td>
+          <td>表名</td>
+      </tr>
+      <tr>
+          <td>关系模式</td>
+          <td>表头（表格的描述）</td>
+      </tr>
+      <tr>
+          <td>关系</td>
+          <td>（一张）二维表</td>
+      </tr>
+      <tr>
+          <td>元组</td>
+          <td>记录或行</td>
+      </tr>
+      <tr>
+          <td>属性</td>
+          <td>列</td>
+      </tr>
+      <tr>
+          <td>属性名</td>
+          <td>列名</td>
+      </tr>
+      <tr>
+          <td>属性值</td>
+          <td>列值</td>
+      </tr>
+      <tr>
+          <td>分量</td>
+          <td>一条记录中的一个列值</td>
+      </tr>
+      <tr>
+          <td>非规范关系</td>
+          <td>表中有表（大表中嵌有小表）</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表7&emsp;术语对比</p>
+<p><strong>2. 关系模型的数据操纵与完整性约束</strong></p>
+<p>  关系模型的数据操纵主要包括查询、插入、删除和更新数据。这些操作必须满足关系的完整性约束条件。关系的完整性约束条件包括三大类：实体完整性、参照完整性和用户定义的完整性。其具体含义将在后续内容中介绍。<br>
+  关系模型中的数据操作是集合操作，操作对象和操作结果都是关系，即若干元组的集 合，而不像格式化模型中那样是单记录的操作方式。另一方面，关系模型把存取路径向用 户隐蔽起来，用户只要指出“干什么”或&quot;找什么”，不必详细说明&quot;怎么干”或&quot;怎么找”, 从而大大地提高了数据的独立性，提高了用户生产率。</p>
+<p><strong>3. 关系模型的优缺点</strong></p>
+<p>关系模型具有下列优点：</p>
+<ol>
+<li>关系模型与格式化模型不同，它是建立在严格的数学概念的基础上的。</li>
+<li>关系模型的概念单一。无论实体还是实体之间的联系都用关系来表示。对数据的检索和更新结果也是关系（即表）。所以其数据结构简单、清晰，用户易懂易用。</li>
+<li>关系模型的存取路径对用户透明，从而具有更高的数据独立性、更好的安全保密性，也简化了程序员的工作和数据库开发建立的工作。所以关系模型诞生以后发展迅速，深受用户的喜爱。
+当然，关系模型也有缺点，例如，由于存取路径对用户是隐蔽的，查询效率往往不如 格式化数据模型。为了提高性能，数据库管理系统必须对用户的查询请求进行优化，因此增加了开发数据库管理系统的难度。不过用户不必考虑这些系统内部的优化技术细节。</li>
+</ol>
 
     </div>
 </section>
@@ -2748,7 +2842,7 @@ DBTG提供了&quot;属籍类别”的概念来描述这类约束条件。</li>
 
 
         <span>
-            最后更新于 Oct 23, 2024 19:30 CST
+            最后更新于 Oct 24, 2024 13:39 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2904,7 +2998,7 @@ DBTG提供了&quot;属籍类别”的概念来描述这类约束条件。</li>
             
             
         
-        <span>本图书馆累计发布了10篇文章 共91595字</span>
+        <span>本图书馆累计发布了10篇文章 共92389字</span>
     </section>
 
     <section class="site-visit-count">

@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 23 Oct 2024 19:30:17 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 24 Oct 2024 13:39:21 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（一）：数据库系统概论</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/</link>
         <pubDate>Tue, 15 Oct 2024 16:49:13 +0800</pubDate>
@@ -975,7 +975,7 @@
 &lt;li&gt;对象关系数据模型(object relational data model)&lt;/li&gt;
 &lt;li&gt;半结构化数据模型(semistructure data model)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;  其中层次模型和网状模型统称为格式化模型。&lt;/p&gt;
+&lt;p&gt;  其中层次模型和网状模型统称为&lt;strong&gt;格式化模型&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  格式化模型的数据库系统在20世纪70年代至80年代初非常流行，在数据库系统产品中占据了主导地位。层次数据库系统和网状数据库系统在使用和实现上都要涉及数据库物理层的复杂结构，现在已逐渐被关系模型的数据库系统取代。但在美国及欧洲的一些国家里，由于早期开发的应用系统都是基于层次数据库或网状数据库系统的，因此目前仍有一些层次数据库系统或网状数据库系统在继续使用。&lt;br&gt;
   20世纪80年代以来，面向对象的方法和技术在计算机各个领域，包括程序设计语言、软件工程、信息系统设计、计算机硬件设计等方面都产生了深远的影响，也促进数据库中面向对象数据模型的研究和发展。许多关系数据库厂商为了支持面向对象模型，对关系模型做了扩展，从而产生了对象关系数据模型。&lt;br&gt;
   随着Internet的迅速发展，Web上各种半结构化、非结构化数据源已经成为重要的信息来源，产生了以XML为代表的半结构化数据模型和非结构化数据模型。&lt;br&gt;
@@ -1729,11 +1729,105 @@ DBTG提供了&amp;quot;属籍类别”的概念来描述这类约束条件。&lt
 &lt;li&gt;&lt;strong&gt;域（domain）&lt;/strong&gt;：域是一组具有相同数据类型的值的集合。属性的取值范围来自某个域。 如人的年龄一般在1〜120岁之间，大学生年龄属性的域是（15〜45岁），性别的域是（男，女），系名的域是一个学校所有系名的集合。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;分量&lt;/strong&gt;：元组中的一个属性值。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;关系模式&lt;/strong&gt;：对关系的描述，一般表示为&lt;br&gt;
-关系名（属性1、属性2、···、属性n）&lt;br&gt;
-  例如，上面的关系可描述为
-学生（堂号，姓名，年龄，性别，系名，年级）
+&lt;span id=&#34;20241024103147CST&#34;&gt;&lt;/span&gt;\[
+关系名（属性1、属性2、···、属性n）  
+\tag{1}
+    \]
+  例如，上面的关系可描述为&lt;br&gt;
+&lt;span id=&#34;20241024103204CST&#34;&gt;&lt;/span&gt;\[
+  学生（堂号，姓名，年龄，性别，系名，年级）  
+\tag{2}
+    \]
   关系模型要求关系必须是规范化的，即要求关系必须满足一定的规范条件，这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项，也就是说，不允许表中还有表。例如，图1.15中工资和扣除是可分的数据项，工资又分为基本工资、岗位津贴和业绩津贴，扣除又分为三险和个人所得税。因此，图1.15的表就不符合关系模型要求。&lt;/li&gt;
 &lt;/ul&gt;
+&lt;span id=&#34;20241024103348CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th rowspan=&#34;2&#34;&gt;职工号&lt;/th&gt;
+        &lt;th rowspan=&#34;2&#34;&gt;姓名&lt;/th&gt;
+        &lt;th rowspan=&#34;2&#34;&gt;职称&lt;/th&gt;
+        &lt;th colspan=&#34;3&#34;&gt;工资&lt;/th&gt;
+        &lt;th colspan=&#34;2&#34;&gt;扣除&lt;/th&gt;
+        &lt;th rowspan=&#34;2&#34;&gt;实发&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;基本工资&lt;/th&gt;
+        &lt;th&gt;岗位津贴&lt;/th&gt;
+        &lt;th&gt;业绩津贴&lt;/th&gt;
+        &lt;th&gt;三险&lt;/th&gt;
+        &lt;th&gt;个人所得税&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;86051&lt;/td&gt;
+        &lt;td&gt;陈平&lt;/td&gt;
+        &lt;td&gt;讲师&lt;/td&gt;
+        &lt;td&gt;1305&lt;/td&gt;
+        &lt;td&gt;1200&lt;/td&gt;
+        &lt;td&gt;2850&lt;/td&gt;
+        &lt;td&gt;160&lt;/td&gt;
+        &lt;td&gt;112&lt;/td&gt;
+        &lt;td&gt;4083&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;一个工资表（表中有表）示例&lt;/p&gt;
+&lt;p&gt;  可以把关系和现实生活中的表格所使用的术语做一个粗略的对比，如表L5所示。&lt;/p&gt;
+&lt;span id=&#34;20241024104838CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;关系术语&lt;/th&gt;
+          &lt;th&gt;一般表格的术语&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;关系名&lt;/td&gt;
+          &lt;td&gt;表名&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;关系模式&lt;/td&gt;
+          &lt;td&gt;表头（表格的描述）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;关系&lt;/td&gt;
+          &lt;td&gt;（一张）二维表&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;元组&lt;/td&gt;
+          &lt;td&gt;记录或行&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;属性&lt;/td&gt;
+          &lt;td&gt;列&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;属性名&lt;/td&gt;
+          &lt;td&gt;列名&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;属性值&lt;/td&gt;
+          &lt;td&gt;列值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分量&lt;/td&gt;
+          &lt;td&gt;一条记录中的一个列值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;非规范关系&lt;/td&gt;
+          &lt;td&gt;表中有表（大表中嵌有小表）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表7&amp;emsp;术语对比&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 关系模型的数据操纵与完整性约束&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  关系模型的数据操纵主要包括查询、插入、删除和更新数据。这些操作必须满足关系的完整性约束条件。关系的完整性约束条件包括三大类：实体完整性、参照完整性和用户定义的完整性。其具体含义将在后续内容中介绍。&lt;br&gt;
+  关系模型中的数据操作是集合操作，操作对象和操作结果都是关系，即若干元组的集 合，而不像格式化模型中那样是单记录的操作方式。另一方面，关系模型把存取路径向用 户隐蔽起来，用户只要指出“干什么”或&amp;quot;找什么”，不必详细说明&amp;quot;怎么干”或&amp;quot;怎么找”, 从而大大地提高了数据的独立性，提高了用户生产率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 关系模型的优缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;关系模型具有下列优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;关系模型与格式化模型不同，它是建立在严格的数学概念的基础上的。&lt;/li&gt;
+&lt;li&gt;关系模型的概念单一。无论实体还是实体之间的联系都用关系来表示。对数据的检索和更新结果也是关系（即表）。所以其数据结构简单、清晰，用户易懂易用。&lt;/li&gt;
+&lt;li&gt;关系模型的存取路径对用户透明，从而具有更高的数据独立性、更好的安全保密性，也简化了程序员的工作和数据库开发建立的工作。所以关系模型诞生以后发展迅速，深受用户的喜爱。
+当然，关系模型也有缺点，例如，由于存取路径对用户是隐蔽的，查询效率往往不如 格式化数据模型。为了提高性能，数据库管理系统必须对用户的查询请求进行优化，因此增加了开发数据库管理系统的难度。不过用户不必考虑这些系统内部的优化技术细节。&lt;/li&gt;
+&lt;/ol&gt;
 </description>
         </item>
         
