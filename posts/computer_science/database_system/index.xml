@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 24 Oct 2024 15:58:14 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 24 Oct 2024 18:21:57 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -47,14 +47,235 @@
   前面已经非形式化地介绍了关系模型及有关的基本概念。关系模型是建立在集合代数的基础上的，这里从集合论角度给出关系数据结构的形式化定义。&lt;/p&gt;
 &lt;h4 id=&#34;域domain&#34;&gt;域（domain）
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024154841CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1（域）&lt;/strong&gt;：域是一组具有相同数据类型的值的集合。例如，自然数、整数、实数、长度小于25字节的字符串集合、 {0,1} 、 {男,女} 、大于等于0且小于等于100的正整数等，都可以是域。&lt;/p&gt;
-&lt;h4 id=&#34;笛卡儿积cartesian-product&#34;&gt;笛卡儿积（cartesian product）
-&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024155054CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（笛卡儿积）&lt;/strong&gt;：给定一组域 \(D_1,D_2,\cdots,D_n\) ，允许其中某些域是相同的， \(D_1,D_2,\cdots,D_n\)的笛卡儿积为&lt;/p&gt;
-&lt;span id=&#34;20241024155332CST&#34;&gt;&lt;/span&gt;
-    \[
+&lt;h4 id=&#34;cartesian积cartesian-product&#34;&gt;Cartesian积（cartesian product）
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024155054CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（Cartesian积）&lt;/strong&gt;：给定一组域 \(D_1,D_2,\cdots,D_n\) ，允许其中某些域是相同的， \(D_1,D_2,\cdots,D_n\)的Cartesian积为&lt;/p&gt;
+&lt;span id=&#34;20241024155332CST&#34;&gt;&lt;/span&gt;\[
 D_1\times D_2 \times \cdots \times D_n=\set{(d_1,d_2,\cdots,d_n)|d_i\in D_i,i=1,2,\cdots,n}
-\]
+\tag{1}
+    \]
 &lt;p&gt;  其中，每一个元素 \((d_1,d_2,\cdots,d_n)\) 叫作一个&lt;strong&gt;n元组（tuple）&lt;/strong&gt;，或简称&lt;strong&gt;元组（tuple）&lt;/strong&gt;。元素中的每一个值 \(d_i\) 叫做一个&lt;strong&gt;分量（component）&lt;/strong&gt;。&lt;br&gt;
-  一个域允许的不同取值个数称为这个域的&lt;strong&gt;基数（cardinal number）&lt;/strong&gt;。&lt;/p&gt;
+  一个域允许的不同取值个数称为这个域的&lt;strong&gt;基数（cardinal number）&lt;/strong&gt;。若 \(D_i(i=1,2,\cdots,n)\) 为有限集，其计数为 \(m_i(i=1,2,\cdots,n)\) ，则 \((D_1,D_2,\cdots,D_n)\) 的基数 \(M\) 为&lt;/p&gt;
+&lt;span id=&#34;20241024165258CST&#34;&gt;&lt;/span&gt;\[
+M=\prod_{i=1}^{n}m_i
+\tag{2}
+    \]
+&lt;p&gt;  Cartesian积可表示为一张二维表，表中的每行对应一个元组，表中的每一列来自一个域，例如给出三个域&lt;/p&gt;
+&lt;span id=&#34;20241024165605CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+D_1=&amp;\text{导师集合(SUPERVISOR)}=\set{张清玫,刘逸}\\
+D_2=&amp;\text{专业集合(SPECIALITY)}=\set{计算机专业,信息专业}\\
+D_3=&amp;\text{研究生集合(POSTGRADUATE)}=\set{李勇,刘晨,王敏}
+\end{aligned}
+\tag{3}
+    \]
+&lt;p&gt;  则 \(D_1,D_2,D_3\) 的Cartesian积为&lt;/p&gt;
+&lt;span id=&#34;20241024170244CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+D1\times D2\times D3=｛&amp;\\
+&amp;(张清玫,计算机专业,李勇),(张清玫,目算机专业,刘晨),\\[5pt]
+&amp;(张清玫,计算机专业,王敏),(张清玫,信息专业,李勇),\\[5pt]
+&amp;(张清玫,信息专业,刘晨),(张清玫,信息专业,王敏), \\[5pt]
+&amp;(刘逸,计算机专业,李勇),(刘逸,计算机专业,刘晨), \\[5pt]
+&amp;(刘逸,计算机专业,王敏),(刘逸,信息专业,李勇),\\[5pt]
+&amp;(刘逸,信息专业,刘晨),(刘逸,信息专业,王敏)｝
+\end{aligned}
+\tag{4}
+    \]
+&lt;p&gt;  其中，(张清玫,计算机专业,李勇)、(张清玫,计算机专业,刘晨)等都是元组。张清玫、计算机专业、李勇、刘晨等都是分量。该Cartesian积的基数为 \(2\times 2\times 3=12\) ，也就是说， \(D_1\times D_2\times D_3\) 一共有 \(2\times 2 \times 3 = 12\) 个元组。这12个元组可列成一张二维表，如&lt;a class=&#34;link&#34; href=&#34;#20241024171040CST&#34;&gt;表1&lt;/a&gt;所示&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241024171040CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;SUPERVISOR&lt;/th&gt;
+          &lt;th&gt;SPECIALITY&lt;/th&gt;
+          &lt;th&gt;POSTGRADUATE&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;张清攻&lt;/td&gt;
+          &lt;td&gt;计算机专业&lt;/td&gt;
+          &lt;td&gt;李勇&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;张清攻&lt;/td&gt;
+          &lt;td&gt;计算机专业&lt;/td&gt;
+          &lt;td&gt;刘宸&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;张清攻&lt;/td&gt;
+          &lt;td&gt;计算机专业&lt;/td&gt;
+          &lt;td&gt;王敏&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;张清攻&lt;/td&gt;
+          &lt;td&gt;信息专业&lt;/td&gt;
+          &lt;td&gt;李勇&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;张清攻&lt;/td&gt;
+          &lt;td&gt;信息专业&lt;/td&gt;
+          &lt;td&gt;刘宸&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;张清攻&lt;/td&gt;
+          &lt;td&gt;信息专业&lt;/td&gt;
+          &lt;td&gt;王敏&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;刘逸&lt;/td&gt;
+          &lt;td&gt;计算机专业&lt;/td&gt;
+          &lt;td&gt;李勇&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;刘逸&lt;/td&gt;
+          &lt;td&gt;计算机专业&lt;/td&gt;
+          &lt;td&gt;刘宸&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;刘逸&lt;/td&gt;
+          &lt;td&gt;计算机专业&lt;/td&gt;
+          &lt;td&gt;王敏&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;刘逸&lt;/td&gt;
+          &lt;td&gt;信息专业&lt;/td&gt;
+          &lt;td&gt;李勇&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;刘逸&lt;/td&gt;
+          &lt;td&gt;信息专业&lt;/td&gt;
+          &lt;td&gt;刘宸&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;刘逸&lt;/td&gt;
+          &lt;td&gt;信息专业&lt;/td&gt;
+          &lt;td&gt;王敏&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp; \(D_1,D_2,D_3\) 的Cartesian积&lt;/p&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;关系-1&#34;&gt;关系
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024171300CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3（关系）&lt;/strong&gt; \(D_1\times D_2 \times \cdots\times D_n\) 的子集叫做在域 \(D_1,D_2,\times,D_n\) 以上的关系，表示为&lt;/p&gt;
+&lt;span id=&#34;20241024171425CST&#34;&gt;&lt;/span&gt;\[
+R(D_1,D_2,\times,D_n)
+\tag{5}
+    \]
+&lt;p&gt;  这里 \(R\) 表示关系的名字， \(n\) 是关系的&lt;strong&gt;目&lt;/strong&gt;或&lt;strong&gt;度（degree）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  关系中的每个元素是关系中的元组，通常用 \(t\) 表示。&lt;/p&gt;
+&lt;p&gt;  当 \(n=1\) 时，称该关系为&lt;strong&gt;单元关系（unary relation）&lt;/strong&gt;，或&lt;strong&gt;一元关系&lt;/strong&gt;。&lt;br&gt;
+  当 \(n=2\) 时，称该关系为&lt;strong&gt;二元关系（binary relation）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  关系是笛卡儿积的有限子集，所以关系也是一张二维表，表的每行对应一个元组，表的每列对应一个域。由于域可以相同，为了加以区分，必须对每列起一个名字，称为&lt;strong&gt;属性（attribute）&lt;/strong&gt;。n目关系必有n个属性。&lt;/p&gt;
+&lt;p&gt;  若关系中的某一属性组的值能唯一地标识一个元组，而其子集不能，则称该属性组为&lt;strong&gt;候选码（candidate key）&lt;/strong&gt;。若一个关系有多个候选码，则选定其中一个为&lt;strong&gt;主码（primary key）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  候选码的属性称为&lt;strong&gt;主属性（prime attribute）&lt;/strong&gt;。不包含在任何候选码中的属性称为&lt;strong&gt;非主属性（non-prime attribute）&lt;/strong&gt;‌或‌&lt;strong&gt;非码属性（non-key attribute）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  在最简单的情况下，候选码只包含一个属性。在最极端的情况下，关系模式的所有属性是这个关系模式的候选码，称为&lt;strong&gt;全码（all-key）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  一般来说， \(D_1,D_2,\cdots,D_n\) 的笛卡儿积是没有实际语义的，只有它的某个真子集才有实际含义。例如，可以发现&lt;a class=&#34;link&#34; href=&#34;#20241024171040CST&#34;&gt;表1&lt;/a&gt;的笛卡儿积中许多元组是没有意义的。因为在学校中一个专业方向有多个导师，而一个导师只在一个专业方向带研究生；一个导师可以带多名研究生，而一名研究生只有一个导师，学习某一个专业。因此，&lt;a class=&#34;link&#34; href=&#34;#20241024171040CST&#34;&gt;表1&lt;/a&gt;中的一个子集才是有意义的，才可以表示导师与研究生的关系，把该关系取名为 \(\text{SAP}\) ，如&lt;a class=&#34;link&#34; href=&#34;#20241024172840CST&#34;&gt;表2&lt;/a&gt;所示。李勇和刘晨是计算机专业张清玫老师的研究生；王敏是信息专业刘逸老师的研究生。&lt;/p&gt;
+&lt;span id=&#34;20241024172840CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;\(\text{SUPERVISOR}\)&lt;/th&gt;
+          &lt;th&gt;\(\text{SPECIALITY}\)&lt;/th&gt;
+          &lt;th&gt;\(\text{POSTGRADUATE}\)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;张清攻&lt;/td&gt;
+          &lt;td&gt;计算机专业&lt;/td&gt;
+          &lt;td&gt;李勇&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;张清攻&lt;/td&gt;
+          &lt;td&gt;计算机专业&lt;/td&gt;
+          &lt;td&gt;刘宸&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;刘逸&lt;/td&gt;
+          &lt;td&gt;信息专业&lt;/td&gt;
+          &lt;td&gt;王敏&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;SAP关系&lt;/p&gt;
+&lt;p&gt;  把关系 \(\text{SAP}\) 的属性名取为域名，即 \(\text{SUPERVISOR}\) , \(\text{SPECIALITY}\) , \(\text{POSTGRADUATE}\) 则这个关系可以表示为&lt;/p&gt;
+&lt;span id=&#34;20241024173117CST&#34;&gt;&lt;/span&gt;\[
+\text{SAP}(\text{SUPERVISOR},\text{SPECIALITY},\text{POSTGRADUATE})
+\tag{6}
+    \]
+&lt;p&gt;  假设研究生不会重名（这在实际生活中是不合适的，这里只是为了举例方便），则 \(\text{POSTGRADUATE}\) 属性的每一个值都唯一地标识了一个元组，因此可以作为SAP关系的主码。&lt;br&gt;
+  关系可以有三种类型：基本关系（通常又称为基本表或基表）、查询表和视图表。其中，&lt;strong&gt;基本表&lt;/strong&gt;是实际存在的表，它是实际存储数据的逻辑表示：&lt;strong&gt;查询表&lt;/strong&gt;是查询结果对应的表；&lt;strong&gt;视图表&lt;/strong&gt;是由基本表或其他视图表导出的表，是虚表，不对应实际存储的数据。&lt;br&gt;
+  按照&lt;a class=&#34;link&#34; href=&#34;#20241024155054CST&#34;&gt;Cartesian积&lt;/a&gt;，关系可以是一个无限集合。由于组成笛卡儿积的域不满足交换律，所以按照数学定义， \((d_1,d_2,\cdots,d_n)\ne(d_2,d_1,\cdots,d_n)\) 。当关系作为关系数据模型的数据结构时，需要给予如下的限定和扩充。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;无限关系在数据库系统中是无意义的。因此，限定关系数据模型中的关系必须是有限集合。&lt;/li&gt;
+&lt;li&gt;通过为关系的每个列附加一个属性名的方法取消关系属性的有序性，即 \((d_1,d_2,\cdots,d_i,d_j,\cdots,d_n)=(d_1,d_2,\cdots,d_j,d_i,\cdots,d_n)\quad(i,j=1,2,\cdots,n)\)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  因此，基本关系具有以下6条性质。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;列是&lt;strong&gt;同质的（homogeneous）&lt;/strong&gt;,即每一列中的分量是同一类型的数据，来自同一个域。&lt;/li&gt;
+&lt;li&gt;不同的列可出自同一个域，称其中的每一列为一个属性，不同的属性要给予不同的属性名。例如，在上面的例子中，也可以只给出两个域：
+&lt;span id=&#34;20241024175628CST&#34;&gt;&lt;/span&gt;\[
+\text{人(PERSON)=｛张清玫，刘逸，李勇，刘晨，王敏｝}\\[5pt]
+\text{专业(SPECIALITY)=｛计算机专业，信息专业｝}
+\tag{7}
+    \]
+   \(\text{SAP}\) 关系的导师属性和研究生属性都从 \(\text{PERSON}\) 域中取值。为了避免混淆，必须给这两个属性取不同的属性名，而不能直接使用域名。例如，定义导师属性名为 \(\text{SUPERVISOR-PERSON}\) （或 \(\text{SUPERVISOR}\) ）研究生属性名为 \(\text{POSTGRADUATE-PERSON}\) （或 \(\text{POSTGRADUATE}\) ）&lt;/li&gt;
+&lt;li&gt;列的顺序无所谓，即列的次序可以任意交换。由于列顺序是无关紧要的，因此在许多实际关系数据库产品中增加新属性时，永远是插至最后一列。&lt;/li&gt;
+&lt;li&gt;任意两个元组的候选码不能取相同的值。&lt;/li&gt;
+&lt;li&gt;行的顺序无所谓，即行的次序可以任意交换。&lt;/li&gt;
+&lt;li&gt;分量必须取原子值，即每一个分量都必须是不可分的数据项。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  关系模型要求关系必须是&lt;strong&gt;规范化（normalization）&lt;/strong&gt;‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为&lt;strong&gt;范式（NormalForm,NF）&lt;/strong&gt;。范式的概念将在第6章关系数据理论中做进一步讲解。
+例如，表2.3虽然很好地表达了导师与研究生之间的一对多关系，但由于属性 \(\text{POSTGRADUATE}\) 中分量取了两个值，不符合规范化的要求，因此这样的关系在数据库中是不允许的。通俗地讲，关系表中不允许还有表，简言之不允许“表中有表”。直观地描述，表2.3中还有一个小表。&lt;/p&gt;
+&lt;span id=&#34;20241024180959CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th rowspan=&#34;2&#34;&gt;\(\text{SUPERVISOR}\)&lt;/th&gt;
+    &lt;th rowspan=&#34;2&#34;&gt;\(\text{SPECIALITY}\)&lt;/th&gt;
+    &lt;th colspan=&#34;2&#34;&gt;\(\text{POSTGRADUATE}\)&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;\(\text{PG1}\)&lt;/th&gt;
+    &lt;th&gt;\(\text{PG2}\)&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;张清攻&lt;/td&gt;
+    &lt;td&gt;计算机专业&lt;/td&gt;
+    &lt;td&gt;李勇&lt;/td&gt;
+    &lt;td&gt;刘晨&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;刘逸&lt;/td&gt;
+    &lt;td&gt;信息专业&lt;/td&gt;
+    &lt;td&gt;王敏&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表3&amp;emsp;非规范关系&lt;/p&gt;
+&lt;h3 id=&#34;关系模式&#34;&gt;关系模式
+&lt;/h3&gt;&lt;p&gt;  在数据库中要区分型和值。关系数据库中，关系模式是型，关系是值。关系模式是对关系的描述，那么一个关系需要描述哪些方面呢？&lt;br&gt;
+  关系是元组的集合，因此关系模式必须指出这个元组集合的结构，即它由哪些属性构成，这些属性来自哪些域，以及属性与域之间的映像关系。&lt;br&gt;
+  现实世界随着时间在不断地变化，因而在不同的时刻关系模式的关系也会有所变化。但是，现实世界的许多己有事实和规则限定了关系模式所有可能的关系必须满足一定的完整性约束条件。这些约束或者通过对属性取值范围的限定，例如职工年龄小于60岁（60岁以后退休），或者通过属性值间的相互关联反映出来。例如，如果2个元组的主码相等，那么元组的其他值也一定相等，因为主码唯一标识一个元组，主码相等就表示这是同一个元组。关系模式应当刻划出这些完整性约束条件。&lt;/p&gt;
+&lt;p&gt;  关系的描述称为关系模式（relation schema）。它可以形式化地表示为&lt;/p&gt;
+&lt;span id=&#34;20241024181603CST&#34;&gt;&lt;/span&gt;
+    \[
+R(U,D,\text{DOM},F)
+\]
+&lt;p&gt;  其中 \(R\) 为关系名， \(U\) 为组成该关系的属性名集合， \(D\) 为 \(U\) 中属性所来自的域， \(\text{DOM}\) 为属性向域的映像集合， \(F\) 为属性间数据的依赖关系集合。&lt;br&gt;
+  属性间的数据依赖将在后篇讨论，本章中关系模式仅涉及关系名、各属性名、域名、属性向域的映像四部分，即 \(R(U,D,\text{DOM})\) 。&lt;/p&gt;
+&lt;p&gt;  例如，在上面例子中，由于导师和研究生出自同一个域&amp;mdash;&amp;mdash;人，所以要取不同的属性名，并在模式中定义属性向域的映像，即说明它们分别出自哪个域，如：&lt;/p&gt;
+&lt;span id=&#34;20241024181935CST&#34;&gt;&lt;/span&gt;
+    \[
+\text{DOM(SUPERVISOR)=DOM(POSTGRADUATE)=PERSON}
+\]
+&lt;p&gt;  关系模式通常可以简记为&lt;/p&gt;
+&lt;span id=&#34;20241024182009CST&#34;&gt;&lt;/span&gt;
+    \[
+R(U)
+\]
+&lt;p&gt;  或&lt;/p&gt;
+&lt;span id=&#34;20241024182031CST&#34;&gt;&lt;/span&gt;
+    \[
+R(A_1,A_2,\cdots,A_n)
+\]
+&lt;p&gt;  其中 \(R\) 为关系名， \(A_1,A_2,\cdots,A_n\) 为属性名。而域名及属性向域的映像常常直接说明为属性的类型、长度。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -631,7 +852,6 @@ D_1\times D_2 \times \cdots \times D_n=\set{(d_1,d_2,\cdots,d_n)|d_i\in D_i,i=1,
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;STUDENT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -639,8 +859,7 @@ D_1\times D_2 \times \cdots \times D_n=\set{(d_1,d_2,\cdots,d_n)|d_i\in D_i,i=1,
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ssex&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;SMALLINT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Major&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Major&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AWARD&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Details&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;VARCHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
