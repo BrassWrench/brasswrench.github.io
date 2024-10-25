@@ -131,7 +131,7 @@
 <meta property='og:description' content="支持关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-25T16:51:25&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-25T17:55:25&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="支持关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -628,6 +628,18 @@
         <li><a href="#用户定义的完整性">用户定义的完整性</a></li>
       </ol>
     </li>
+    <li><a href="#关系代数">关系代数</a>
+      <ol>
+        <li><a href="#传统的集合运算">传统的集合运算</a>
+          <ol>
+            <li><a href="#并union">并（union）</a></li>
+            <li><a href="#差except">差（except）</a></li>
+            <li><a href="#交intersection">交（intersection）</a></li>
+            <li><a href="#cartesian积cartesian-product-1">Cartesian积(cartesian product)</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -939,7 +951,7 @@
 </svg>
 
             <time class="article-words">
-                9366 字
+                10235 字
             </time>
         </div>
 
@@ -954,7 +966,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 19 分钟
+                    阅读时长: 21 分钟
                 </time>
             </div>
         
@@ -1427,6 +1439,85 @@ R(A_1,A_2,\cdots,A_n)
 </h3><p>  任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反映某一具体应用所涉及的数据必须满足的语义要求。例如某个属性必须取唯一值、某个非主属性不能取空值等。例如，在<a class="link" href="#20241024190508CST">例1</a>的学生关系中，若按照应用的要求学生不能没有姓名，则可以定义学生姓名不能取空值；某个属性（如学生的成绩），的取值范围可以定义在0〜100之间等。<br>
   关系模型应提供定义和检验这类完整性的机制，以便用统一的系统的方法处理它们，而不需由应用程序承担这一功能。<br>
   在早期的关系数据库管理系统中没有提供定义和检验这些完整性的机制，因此需要应用开发人员在应用系统的程序中进行检查。例如在<a class="link" href="#20241025091438CST">例2</a>的选修关系中，每插入一条记录,必须在应用程序中写一段程序来检查其中的学号是否等于学生关系中的某个学号，并检查其中的课程号是否等于课程关系中的某个课程号。如果等于，则插入这一条选修记录，否则就拒绝插入，并给出错误信息。</p>
+<h2 id="关系代数">关系代数
+</h2><p>  <strong>关系代数</strong>是一种抽象的查询语言，它用对关系的运算来表达查询。任何一种运算都是将一定的运算符作用于一定的运算对象上，得到预期的运算结果。所以运算对象、运算符、运算结果是运算的三大要素。关系代数的运算对象是关系，运算结果亦为关系。关系代数用到的运算符包括两类：集合运算符和专门的关系运算符，如表2.4所示。关系代数的运算按运算符的不同可分为传统的集合运算和专门的关系运算两类。其中，传统的集合运算将关系看成元组的集合，其运算是从关系的“水平”方向，即行的角度来进行：而专门的关系运算不仅涉及行，而且涉及列。比较运算符和逻辑运算符是用来辅助专门的关系运算符进行操作的。</p>
+<span id="20241025170535CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+<tr>
+    <th colspan="2">运算符</th>
+    <th>含义</th>
+</tr>
+<tr>
+<td rowspan="4">集合运算符</td>
+<td>\(\cup\)</td>
+<td>并</td>
+</tr>
+<tr>
+<td>\(-\)</td>
+<td>差</td>
+</tr>
+<tr>
+<td>\(\cap\)</td>
+<td>交</td>
+</tr>
+<tr>
+<td>\(\times\)</td>
+<td>Cartesian积</td>
+</tr>
+<tr>
+<td rowspan="4">专门的关系运算符</td>
+<td>\(\sigma\)</td>
+<td>选择</td>
+</tr>
+<tr>
+<td>\(\pi\)</td>
+<td>投影</td>
+</tr>
+<tr>
+<td>\(\Join\)</td>
+<td>连接</td>
+</tr>
+<tr>
+<td>\(\div\)</td>
+<td>除</td>
+</tr>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表4&emsp;关系代数运算符</p>
+<h3 id="传统的集合运算">传统的集合运算
+</h3><p>  传统的集合运算是二目运算，包括并、差、交、Cartesian积4种运算。<br>
+  设关系 \(R\) 和关系 \(S\) 具有相同的目 \(n\) （即两个关系都有 \(n\) 个属性），且相应的属性取自同一个域， \(t\) 是元组变量， \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。</p>
+<p>  可以定义并、差、交、笛卡儿积运算如下。</p>
+<h4 id="并union">并（union）
+</h4><p>  关系 \(R\) 与关系 \(S\) 的并记作</p>
+<span id="20241025172503CST"></span>
+    \[
+R\cup S=\set{t|t \in R \lor t \in S}
+\]
+<p>  其中 \(\lor\) 是或运算符。其结果仍为 \(n\) 目关系，由属于 \(R\) 或属于 \(S\) 的元组组成。</p>
+<h4 id="差except">差（except）
+</h4><p>  关系 \(R\) 与关系 \(S\) 的差记作</p>
+<span id="20241025174034CST"></span>
+    \[
+R-S=\set{t|t \in R \land t \notin S}
+\]
+<p>  其中 \(\land\) 是与运算符。其结果关系仍为 \(n\) 目关系，由属于 \(R\) 而不属于 \(S\) 的所有元组组成。</p>
+<h4 id="交intersection">交（intersection）
+</h4><p>  关系 \(R\) 与关系 \(S\) 的交记作</p>
+<span id="20241025174455CST"></span>
+    \[
+R\cap S = \set{t|t\in R \land t \in S}
+\]
+<p>  其结果关系仍为 \(n\) 目关系，由既属于 \(R\) 及又属于 \(S\) 的元组组成。关系的交可以用差来表示，即</p>
+<span id="20241025174656CST"></span>
+    \[
+R \cap S = R-(R-S)
+\]
+<h4 id="cartesian积cartesian-product-1">Cartesian积(cartesian product)
+</h4><p>  这里的笛卡儿积严格地讲应该是<strong>广义的笛卡儿积（extended cartesian product）</strong>，因为这里笛卡儿积的元素是元组。<br>
+  两个分别为 \(n\) 目和 \(m\) 目的关系 \(R\) 和 \(S\) 的笛卡儿积是一个 \((n+m)\) 列的元组的集合。元组的前 \(n\) 列是关系 \(R\) 的一个元组，后所列是关系 \(S\) 的一个元组。若 \(R\) 有 \(k_1\) 个元组，S有 \(k_2\) 个元组，则关系 \(R\) 和关系 \(S\) 的笛卡儿积有 \(k_1\times k_2\) 个元组。记作</p>
+<span id="20241025175123CST"></span>
+    \[
+R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
+\]
 
     </div>
 </section>
@@ -1460,7 +1551,7 @@ R(A_1,A_2,\cdots,A_n)
 
 
         <span>
-            最后更新于 Oct 25, 2024 16:51 CST
+            最后更新于 Oct 25, 2024 17:55 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1619,7 +1710,7 @@ R(A_1,A_2,\cdots,A_n)
             
             
         
-        <span>本图书馆累计发布了11篇文章 共106945字</span>
+        <span>本图书馆累计发布了11篇文章 共108005字</span>
     </section>
 
     <section class="site-visit-count">

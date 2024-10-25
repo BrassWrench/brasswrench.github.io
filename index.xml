@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 25 Oct 2024 16:51:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 25 Oct 2024 17:55:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -471,6 +471,85 @@ R(A_1,A_2,\cdots,A_n)
 &lt;/h3&gt;&lt;p&gt;  任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反映某一具体应用所涉及的数据必须满足的语义要求。例如某个属性必须取唯一值、某个非主属性不能取空值等。例如，在&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;的学生关系中，若按照应用的要求学生不能没有姓名，则可以定义学生姓名不能取空值；某个属性（如学生的成绩），的取值范围可以定义在0〜100之间等。&lt;br&gt;
   关系模型应提供定义和检验这类完整性的机制，以便用统一的系统的方法处理它们，而不需由应用程序承担这一功能。&lt;br&gt;
   在早期的关系数据库管理系统中没有提供定义和检验这些完整性的机制，因此需要应用开发人员在应用系统的程序中进行检查。例如在&lt;a class=&#34;link&#34; href=&#34;#20241025091438CST&#34;&gt;例2&lt;/a&gt;的选修关系中，每插入一条记录,必须在应用程序中写一段程序来检查其中的学号是否等于学生关系中的某个学号，并检查其中的课程号是否等于课程关系中的某个课程号。如果等于，则插入这一条选修记录，否则就拒绝插入，并给出错误信息。&lt;/p&gt;
+&lt;h2 id=&#34;关系代数&#34;&gt;关系代数
+&lt;/h2&gt;&lt;p&gt;  &lt;strong&gt;关系代数&lt;/strong&gt;是一种抽象的查询语言，它用对关系的运算来表达查询。任何一种运算都是将一定的运算符作用于一定的运算对象上，得到预期的运算结果。所以运算对象、运算符、运算结果是运算的三大要素。关系代数的运算对象是关系，运算结果亦为关系。关系代数用到的运算符包括两类：集合运算符和专门的关系运算符，如表2.4所示。关系代数的运算按运算符的不同可分为传统的集合运算和专门的关系运算两类。其中，传统的集合运算将关系看成元组的集合，其运算是从关系的“水平”方向，即行的角度来进行：而专门的关系运算不仅涉及行，而且涉及列。比较运算符和逻辑运算符是用来辅助专门的关系运算符进行操作的。&lt;/p&gt;
+&lt;span id=&#34;20241025170535CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+&lt;tr&gt;
+    &lt;th colspan=&#34;2&#34;&gt;运算符&lt;/th&gt;
+    &lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td rowspan=&#34;4&#34;&gt;集合运算符&lt;/td&gt;
+&lt;td&gt;\(\cup\)&lt;/td&gt;
+&lt;td&gt;并&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\(-\)&lt;/td&gt;
+&lt;td&gt;差&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\(\cap\)&lt;/td&gt;
+&lt;td&gt;交&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\(\times\)&lt;/td&gt;
+&lt;td&gt;Cartesian积&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td rowspan=&#34;4&#34;&gt;专门的关系运算符&lt;/td&gt;
+&lt;td&gt;\(\sigma\)&lt;/td&gt;
+&lt;td&gt;选择&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\(\pi\)&lt;/td&gt;
+&lt;td&gt;投影&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\(\Join\)&lt;/td&gt;
+&lt;td&gt;连接&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\(\div\)&lt;/td&gt;
+&lt;td&gt;除&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表4&amp;emsp;关系代数运算符&lt;/p&gt;
+&lt;h3 id=&#34;传统的集合运算&#34;&gt;传统的集合运算
+&lt;/h3&gt;&lt;p&gt;  传统的集合运算是二目运算，包括并、差、交、Cartesian积4种运算。&lt;br&gt;
+  设关系 \(R\) 和关系 \(S\) 具有相同的目 \(n\) （即两个关系都有 \(n\) 个属性），且相应的属性取自同一个域， \(t\) 是元组变量， \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。&lt;/p&gt;
+&lt;p&gt;  可以定义并、差、交、笛卡儿积运算如下。&lt;/p&gt;
+&lt;h4 id=&#34;并union&#34;&gt;并（union）
+&lt;/h4&gt;&lt;p&gt;  关系 \(R\) 与关系 \(S\) 的并记作&lt;/p&gt;
+&lt;span id=&#34;20241025172503CST&#34;&gt;&lt;/span&gt;
+    \[
+R\cup S=\set{t|t \in R \lor t \in S}
+\]
+&lt;p&gt;  其中 \(\lor\) 是或运算符。其结果仍为 \(n\) 目关系，由属于 \(R\) 或属于 \(S\) 的元组组成。&lt;/p&gt;
+&lt;h4 id=&#34;差except&#34;&gt;差（except）
+&lt;/h4&gt;&lt;p&gt;  关系 \(R\) 与关系 \(S\) 的差记作&lt;/p&gt;
+&lt;span id=&#34;20241025174034CST&#34;&gt;&lt;/span&gt;
+    \[
+R-S=\set{t|t \in R \land t \notin S}
+\]
+&lt;p&gt;  其中 \(\land\) 是与运算符。其结果关系仍为 \(n\) 目关系，由属于 \(R\) 而不属于 \(S\) 的所有元组组成。&lt;/p&gt;
+&lt;h4 id=&#34;交intersection&#34;&gt;交（intersection）
+&lt;/h4&gt;&lt;p&gt;  关系 \(R\) 与关系 \(S\) 的交记作&lt;/p&gt;
+&lt;span id=&#34;20241025174455CST&#34;&gt;&lt;/span&gt;
+    \[
+R\cap S = \set{t|t\in R \land t \in S}
+\]
+&lt;p&gt;  其结果关系仍为 \(n\) 目关系，由既属于 \(R\) 及又属于 \(S\) 的元组组成。关系的交可以用差来表示，即&lt;/p&gt;
+&lt;span id=&#34;20241025174656CST&#34;&gt;&lt;/span&gt;
+    \[
+R \cap S = R-(R-S)
+\]
+&lt;h4 id=&#34;cartesian积cartesian-product-1&#34;&gt;Cartesian积(cartesian product)
+&lt;/h4&gt;&lt;p&gt;  这里的笛卡儿积严格地讲应该是&lt;strong&gt;广义的笛卡儿积（extended cartesian product）&lt;/strong&gt;，因为这里笛卡儿积的元素是元组。&lt;br&gt;
+  两个分别为 \(n\) 目和 \(m\) 目的关系 \(R\) 和 \(S\) 的笛卡儿积是一个 \((n+m)\) 列的元组的集合。元组的前 \(n\) 列是关系 \(R\) 的一个元组，后所列是关系 \(S\) 的一个元组。若 \(R\) 有 \(k_1\) 个元组，S有 \(k_2\) 个元组，则关系 \(R\) 和关系 \(S\) 的笛卡儿积有 \(k_1\times k_2\) 个元组。记作&lt;/p&gt;
+&lt;span id=&#34;20241025175123CST&#34;&gt;&lt;/span&gt;
+    \[
+R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
+\]
 </description>
         </item>
         <item>
@@ -2767,6 +2846,10 @@ DBTG提供了&amp;quot;属籍类别”的概念来描述这类约束条件。&lt
 &lt;p&gt;  从定义看出，给出集合的一个拓扑就是规定它的哪些子集是开集。这种规定不是任意的，必须满足三条拓扑公理。但一般来说一个集合上可以规定许多不相同的拓扑，因此说到一个拓扑空间时，要同时指明集合及所规定的拓扑，以后在不会引起误解的情况下，也常常只用集合来称呼一个拓扑空间，如拓扑空间 \(X\) ，拓扑空间 \(Y\) 等。&lt;br&gt;
   设 \(X\) 是一非空集合，显然 \(2^X\) 满足三个拓扑公理（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;幂集&lt;/a&gt;），构成 \(X\) 上的拓扑，称为 \(X\) 上的&lt;strong&gt;离散拓扑&lt;/strong&gt;；\(\set{X,\varnothing}\) 也是 \(X\) 上的拓扑，称为 \(X\) 上的&lt;strong&gt;平凡拓扑&lt;/strong&gt;。当 \(X\) 中包含多余一个点时，这两个拓扑不相同，并且 \(X\) 还有许多别的拓扑。例如设 \(X=\set{a,b,c}\) ，则 \(\set{X,\varnothing,\set{a}}\) 、 \(\set{X,\varnothing,\set{a,b}}\) 、 \(\set{X,\varnothing,\set{a},\set{a,b}}\) 都是 \(X\) 上的拓扑；但 \(\set{X,\varnothing,\set{a},\set{b}}\) 不是拓扑，因为条件2. 不满足。&lt;br&gt;
   设 \(\tau_1,\tau_2\) 是集合 \(X\) 上的两个拓扑，如果 \(\tau_1 \subset \tau_2\) ，则说 \(\tau_2\) 比 \(\tau_1\) &lt;strong&gt;大&lt;/strong&gt;（或者说 \(\tau_2\) 比 \(\tau_1\) &lt;strong&gt;精细&lt;/strong&gt;）。离散拓扑比任何别的拓扑都大，而平凡拓扑比任何拓扑都小。&lt;/p&gt;
+&lt;p&gt;  下面给出几个拓扑的例子。&lt;br&gt;
+  &lt;span id=&#34;20241025165258CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例1&lt;/strong&gt;：设 \(X\) 是无穷集合， \(\tau_f=\set{A^c|A是X的有限子集}\bigcup\set{\varnothing}\) ，则不难验证 \(\tau_f\) 是 \(X\) 上的一个拓扑，成为 \(X\) 上的&lt;strong&gt;余有限拓扑&lt;/strong&gt;。&lt;br&gt;
+  &lt;span id=&#34;20241025165301CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例2&lt;/strong&gt;：设 \(X\) 是不可数无穷集合， \(\tau_c=\set{A^c|A是X的可数子集}\bigcup\set{\varnothing}\) ，则 \(\tau_c\) 也是 \(X\) 的拓扑，成为&lt;strong&gt;余可数拓扑&lt;/strong&gt;。&lt;br&gt;
+  &lt;span id=&#34;20241025165303CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例3&lt;/strong&gt;：&lt;/p&gt;
 </description>
         </item>
         <item>
