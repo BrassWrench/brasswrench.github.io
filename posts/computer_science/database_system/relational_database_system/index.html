@@ -131,7 +131,7 @@
 <meta property='og:description' content="支持关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-26T15:48:21&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-26T16:23:16&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="支持关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -641,6 +641,8 @@
         <li><a href="#专门的关系运算">专门的关系运算</a>
           <ol>
             <li><a href="#选择">选择</a></li>
+            <li><a href="#投影projection">投影（projection）</a></li>
+            <li><a href="#连接join">连接（join）</a></li>
           </ol>
         </li>
       </ol>
@@ -956,7 +958,7 @@
 </svg>
 
             <time class="article-words">
-                11512 字
+                12068 字
             </time>
         </div>
 
@@ -971,7 +973,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 23 分钟
+                    阅读时长: 25 分钟
                 </time>
             </div>
         
@@ -2433,6 +2435,69 @@ X_1\theta Y_1
   <text transform="translate(228.1717 194.1214)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.01em;">S</tspan><tspan x="9.8101" y="0">t</tspan><tspan x="16.2358" y="0" style="letter-spacing: -.003em;">u</tspan><tspan x="27.7559" y="0">dent</tspan></text>
   <text transform="translate(416.922 397.7815)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">(</tspan><tspan x="6.2998" y="0" style="letter-spacing: -.018em;">b</tspan><tspan x="17.2261" y="0">)</tspan></text>
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图7&emsp;选择运算举例</p></div>
+<h4 id="投影projection">投影（projection）
+</h4><p>  关系 \(R\) 上的投影是从 \(R\) 中选择出若干属性列组成新的关系。记作</p>
+<span id="20241026154923CST"></span>\[
+\Pi_A(R)=\set{t[A]|t \in R}
+\tag{24}
+    \]
+<p>  其中 \(A\) 为 \(R\) 的属性列。<br>
+  投影操作就是从列的角度进行运算。</p>
+<p>  <span id="20241026155314CST"></span><strong>例6</strong>：查询学生的姓名和所在系，即求Student关系上学生姓名和所在系两个属性上的投影。</p>
+<span id="20241026155522CST"></span>\[
+\Pi_{\text{Sname,Sdept}}(\text{Student})
+\tag{26}
+    \]
+<p>  结果如<a class="link" href="#20241026160858CST">图8</a>(a)所示。<br>
+  投影之后不仅取消了原关系中的某些列，而且还可能取消某些元组，因为取消了某些属性列后，就可能出现重复行，应取消这些完全相同的行。</p>
+<p>  <span id="20241026155727CST"></span><strong>例7</strong>：查询学生关系Student中都有哪些系，即查询关系Student上所在系属性上的投影。</p>
+<span id="20241026155522CST"></span>\[
+\Pi_{\text{Sdept}}(\text{Student})
+\tag{26}
+    \]
+<p>  结果如<a class="link" href="#20241026160858CST">图8</a>(b)所示。Student关系原来有4个元组，而投影结果取消了重复的CS元组，因此只有三个元组。</p>
+<span id="20241026160858CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 276">
+  <g>
+    <rect x="197.2071" y="4.9683" width="250.8571" height="240" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="197.2071" y1="52.9683" x2="448.0643" y2="52.9683" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="197.2071" y1="100.9683" x2="448.0643" y2="100.9683" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="197.2071" y1="148.9683" x2="448.0643" y2="148.9683" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="197.2071" y1="196.9683" x2="448.0643" y2="196.9683" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="322.6357" y1="244.9683" x2="322.6357" y2="4.9683" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(226.5439 34.2975)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">Sname</tspan></text>
+  <text transform="translate(360.4576 34.5677)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">Sd</tspan><tspan x="21.0957" y="0" style="letter-spacing: -.004em;">e</tspan><tspan x="30.6714" y="0" style="letter-spacing: -.003em;">p</tspan><tspan x="41.8496" y="0">t</tspan></text>
+  <text transform="translate(237.7844 80.4315)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">李勇</tspan></text>
+  <text transform="translate(237.7847 129.1821)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">刘晨</tspan></text>
+  <text transform="translate(237.7846 179.756)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">王敏</tspan></text>
+  <text transform="translate(237.7848 228.7875)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">张立</tspan></text>
+  <text transform="translate(373.4261 82.5911)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">CS</tspan></text>
+  <text transform="translate(373.426 133.6608)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">CS</tspan></text>
+  <text transform="translate(369.5471 179.7564)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">MA</tspan></text>
+  <text transform="translate(376.0364 228.7878)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">IS</tspan></text>
+  <g>
+    <rect x="544.4294" y="4.9565" width="122.0635" height="192.0234" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="544.4294" y1="52.98" x2="666.4929" y2="52.98" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="544.4294" y1="100.98" x2="666.4929" y2="100.98" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="544.4294" y1="148.98" x2="666.4929" y2="148.98" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(583.0141 33.3058)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">Sd</tspan><tspan x="21.0957" y="0" style="letter-spacing: -.004em;">e</tspan><tspan x="30.6714" y="0" style="letter-spacing: -.003em;">p</tspan><tspan x="41.8496" y="0">t</tspan></text>
+  <text transform="translate(595.9829 83.5909)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">CS</tspan></text>
+  <text transform="translate(598.5927 132.661)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">IS</tspan></text>
+  <text transform="translate(592.1036 179.7566)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">MA</tspan></text>
+  <text transform="translate(300.4314 266.5726)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.023em;">（a</tspan><tspan x="27" y="0" style="letter-spacing: -.477em;">）</tspan></text>
+  <text transform="translate(584.2916 266.5732)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.023em;">（b</tspan><tspan x="28.4219" y="0" style="letter-spacing: -.477em;">）</tspan></text>
+</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;投影运算举例</p></div>
+<h4 id="连接join">连接（join）
+</h4><p>  连接也称为 \(\theta\) 连接。它是从两个关系的笛卡儿积中选取属性间满足一定条件的元组。记作</p>
+<span id="20241026161052CST"></span>\[
+R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]\theta t_s[B])}
+\tag{27}
+    \]
+<p>  其中， \(A\) 和 \(B\) 分别为 \(R\) 和 \(S\) 上列数相等且可比的属性组， \(\theta\) 是比较运算符。连接运算从 \(R\) 和 \(S\) 的Cartesian乘积 \(R\times S\) 中选取R关系在 \(A\) 属性组上的值与 \(S\) 关系在 \(B\) 属性组上的值满足比较关系 \(\theta\) 的元组。<br>
+  连接运算中有两种最为重要也最为常用的连接，一种是<strong>等值连接（equijoin）</strong>，另一种是<strong>自然连接（natural join）</strong>。</p>
 
     </div>
 </section>
@@ -2466,7 +2531,7 @@ X_1\theta Y_1
 
 
         <span>
-            最后更新于 Oct 26, 2024 15:48 CST
+            最后更新于 Oct 26, 2024 16:23 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2625,7 +2690,7 @@ X_1\theta Y_1
             
             
         
-        <span>本图书馆累计发布了11篇文章 共109282字</span>
+        <span>本图书馆累计发布了11篇文章 共109838字</span>
     </section>
 
     <section class="site-visit-count">

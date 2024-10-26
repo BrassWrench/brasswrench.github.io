@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 26 Oct 2024 15:48:21 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 26 Oct 2024 16:23:16 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -1460,6 +1460,69 @@ X_1\theta Y_1
   &lt;text transform=&#34;translate(228.1717 194.1214)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.01em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;9.8101&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;tspan x=&#34;16.2358&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;u&lt;/tspan&gt;&lt;tspan x=&#34;27.7559&#34; y=&#34;0&#34;&gt;dent&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(416.922 397.7815)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.2998&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;b&lt;/tspan&gt;&lt;tspan x=&#34;17.2261&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图7&amp;emsp;选择运算举例&lt;/p&gt;&lt;/div&gt;
+&lt;h4 id=&#34;投影projection&#34;&gt;投影（projection）
+&lt;/h4&gt;&lt;p&gt;  关系 \(R\) 上的投影是从 \(R\) 中选择出若干属性列组成新的关系。记作&lt;/p&gt;
+&lt;span id=&#34;20241026154923CST&#34;&gt;&lt;/span&gt;\[
+\Pi_A(R)=\set{t[A]|t \in R}
+\tag{24}
+    \]
+&lt;p&gt;  其中 \(A\) 为 \(R\) 的属性列。&lt;br&gt;
+  投影操作就是从列的角度进行运算。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241026155314CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例6&lt;/strong&gt;：查询学生的姓名和所在系，即求Student关系上学生姓名和所在系两个属性上的投影。&lt;/p&gt;
+&lt;span id=&#34;20241026155522CST&#34;&gt;&lt;/span&gt;\[
+\Pi_{\text{Sname,Sdept}}(\text{Student})
+\tag{26}
+    \]
+&lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026160858CST&#34;&gt;图8&lt;/a&gt;(a)所示。&lt;br&gt;
+  投影之后不仅取消了原关系中的某些列，而且还可能取消某些元组，因为取消了某些属性列后，就可能出现重复行，应取消这些完全相同的行。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241026155727CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例7&lt;/strong&gt;：查询学生关系Student中都有哪些系，即查询关系Student上所在系属性上的投影。&lt;/p&gt;
+&lt;span id=&#34;20241026155522CST&#34;&gt;&lt;/span&gt;\[
+\Pi_{\text{Sdept}}(\text{Student})
+\tag{26}
+    \]
+&lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026160858CST&#34;&gt;图8&lt;/a&gt;(b)所示。Student关系原来有4个元组，而投影结果取消了重复的CS元组，因此只有三个元组。&lt;/p&gt;
+&lt;span id=&#34;20241026160858CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34; 图层 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 276&#34;&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;197.2071&#34; y=&#34;4.9683&#34; width=&#34;250.8571&#34; height=&#34;240&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;197.2071&#34; y1=&#34;52.9683&#34; x2=&#34;448.0643&#34; y2=&#34;52.9683&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;197.2071&#34; y1=&#34;100.9683&#34; x2=&#34;448.0643&#34; y2=&#34;100.9683&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;197.2071&#34; y1=&#34;148.9683&#34; x2=&#34;448.0643&#34; y2=&#34;148.9683&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;197.2071&#34; y1=&#34;196.9683&#34; x2=&#34;448.0643&#34; y2=&#34;196.9683&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;322.6357&#34; y1=&#34;244.9683&#34; x2=&#34;322.6357&#34; y2=&#34;4.9683&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(226.5439 34.2975)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sname&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(360.4576 34.5677)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sd&lt;/tspan&gt;&lt;tspan x=&#34;21.0957&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;30.6714&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;p&lt;/tspan&gt;&lt;tspan x=&#34;41.8496&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(237.7844 80.4315)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;李勇&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(237.7847 129.1821)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;刘晨&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(237.7846 179.756)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;王敏&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(237.7848 228.7875)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;张立&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(373.4261 82.5911)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;CS&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(373.426 133.6608)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;CS&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(369.5471 179.7564)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;MA&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(376.0364 228.7878)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;IS&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;544.4294&#34; y=&#34;4.9565&#34; width=&#34;122.0635&#34; height=&#34;192.0234&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;544.4294&#34; y1=&#34;52.98&#34; x2=&#34;666.4929&#34; y2=&#34;52.98&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;544.4294&#34; y1=&#34;100.98&#34; x2=&#34;666.4929&#34; y2=&#34;100.98&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;544.4294&#34; y1=&#34;148.98&#34; x2=&#34;666.4929&#34; y2=&#34;148.98&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(583.0141 33.3058)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sd&lt;/tspan&gt;&lt;tspan x=&#34;21.0957&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;30.6714&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;p&lt;/tspan&gt;&lt;tspan x=&#34;41.8496&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(595.9829 83.5909)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;CS&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(598.5927 132.661)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;IS&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(592.1036 179.7566)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;MA&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(300.4314 266.5726)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（a&lt;/tspan&gt;&lt;tspan x=&#34;27&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(584.2916 266.5732)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（b&lt;/tspan&gt;&lt;tspan x=&#34;28.4219&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;投影运算举例&lt;/p&gt;&lt;/div&gt;
+&lt;h4 id=&#34;连接join&#34;&gt;连接（join）
+&lt;/h4&gt;&lt;p&gt;  连接也称为 \(\theta\) 连接。它是从两个关系的笛卡儿积中选取属性间满足一定条件的元组。记作&lt;/p&gt;
+&lt;span id=&#34;20241026161052CST&#34;&gt;&lt;/span&gt;\[
+R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]\theta t_s[B])}
+\tag{27}
+    \]
+&lt;p&gt;  其中， \(A\) 和 \(B\) 分别为 \(R\) 和 \(S\) 上列数相等且可比的属性组， \(\theta\) 是比较运算符。连接运算从 \(R\) 和 \(S\) 的Cartesian乘积 \(R\times S\) 中选取R关系在 \(A\) 属性组上的值与 \(S\) 关系在 \(B\) 属性组上的值满足比较关系 \(\theta\) 的元组。&lt;br&gt;
+  连接运算中有两种最为重要也最为常用的连接，一种是&lt;strong&gt;等值连接（equijoin）&lt;/strong&gt;，另一种是&lt;strong&gt;自然连接（natural join）&lt;/strong&gt;。&lt;/p&gt;
 </description>
         </item>
         <item>
