@@ -131,7 +131,7 @@
 <meta property='og:description' content="支持关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-26T16:23:16&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-26T16:55:21&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="支持关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -958,7 +958,7 @@
 </svg>
 
             <time class="article-words">
-                12068 字
+                12298 字
             </time>
         </div>
 
@@ -2497,7 +2497,18 @@ R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \
 \tag{27}
     \]
 <p>  其中， \(A\) 和 \(B\) 分别为 \(R\) 和 \(S\) 上列数相等且可比的属性组， \(\theta\) 是比较运算符。连接运算从 \(R\) 和 \(S\) 的Cartesian乘积 \(R\times S\) 中选取R关系在 \(A\) 属性组上的值与 \(S\) 关系在 \(B\) 属性组上的值满足比较关系 \(\theta\) 的元组。<br>
-  连接运算中有两种最为重要也最为常用的连接，一种是<strong>等值连接（equijoin）</strong>，另一种是<strong>自然连接（natural join）</strong>。</p>
+  连接运算中有两种最为重要也最为常用的连接，一种是<strong>等值连接（equijoin）</strong>，另一种是<strong>自然连接（natural join）</strong>。<br>
+   \(\theta\) 为“ \(=\) ”的连接运算成为等值连接。它是从关系 \(R\) 与 \(S\) 的广义Cartesian乘积中选取 \(A\) 、 \(B\) 属性值相等的那些元组，即等值连接为</p>
+<span id="20241026164814CST"></span>
+    \[
+R \underset{A=B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]=t_s[B])}
+\]
+<p>  自然连接是一种特殊的等值连接。它要求两个关系中进行比较的分量必须是同名的属性组，并且在结果中把重复的属性列去掉。即若 \(R\) 和 \(S\) 中具有相同的属性组 \(B\) ， \(U\) 为 \(R\) 和 \(S\) 的全体属性集合，则自然连接可记作</p>
+<span id="20241026164956CST"></span>
+    \[
+R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_s[B])}
+\]
+<p>  一般的连接操作是从行的角度进行运算，但自然连接还需要取消重复列，所以是同时 从行和列的角度进行运算。</p>
 
     </div>
 </section>
@@ -2531,7 +2542,7 @@ R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \
 
 
         <span>
-            最后更新于 Oct 26, 2024 16:23 CST
+            最后更新于 Oct 26, 2024 16:55 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2690,7 +2701,7 @@ R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \
             
             
         
-        <span>本图书馆累计发布了11篇文章 共109838字</span>
+        <span>本图书馆累计发布了11篇文章 共110068字</span>
     </section>
 
     <section class="site-visit-count">

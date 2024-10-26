@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 26 Oct 2024 16:23:16 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 26 Oct 2024 16:55:21 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -1522,7 +1522,18 @@ R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \
 \tag{27}
     \]
 &lt;p&gt;  其中， \(A\) 和 \(B\) 分别为 \(R\) 和 \(S\) 上列数相等且可比的属性组， \(\theta\) 是比较运算符。连接运算从 \(R\) 和 \(S\) 的Cartesian乘积 \(R\times S\) 中选取R关系在 \(A\) 属性组上的值与 \(S\) 关系在 \(B\) 属性组上的值满足比较关系 \(\theta\) 的元组。&lt;br&gt;
-  连接运算中有两种最为重要也最为常用的连接，一种是&lt;strong&gt;等值连接（equijoin）&lt;/strong&gt;，另一种是&lt;strong&gt;自然连接（natural join）&lt;/strong&gt;。&lt;/p&gt;
+  连接运算中有两种最为重要也最为常用的连接，一种是&lt;strong&gt;等值连接（equijoin）&lt;/strong&gt;，另一种是&lt;strong&gt;自然连接（natural join）&lt;/strong&gt;。&lt;br&gt;
+   \(\theta\) 为“ \(=\) ”的连接运算成为等值连接。它是从关系 \(R\) 与 \(S\) 的广义Cartesian乘积中选取 \(A\) 、 \(B\) 属性值相等的那些元组，即等值连接为&lt;/p&gt;
+&lt;span id=&#34;20241026164814CST&#34;&gt;&lt;/span&gt;
+    \[
+R \underset{A=B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]=t_s[B])}
+\]
+&lt;p&gt;  自然连接是一种特殊的等值连接。它要求两个关系中进行比较的分量必须是同名的属性组，并且在结果中把重复的属性列去掉。即若 \(R\) 和 \(S\) 中具有相同的属性组 \(B\) ， \(U\) 为 \(R\) 和 \(S\) 的全体属性集合，则自然连接可记作&lt;/p&gt;
+&lt;span id=&#34;20241026164956CST&#34;&gt;&lt;/span&gt;
+    \[
+R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_s[B])}
+\]
+&lt;p&gt;  一般的连接操作是从行的角度进行运算，但自然连接还需要取消重复列，所以是同时 从行和列的角度进行运算。&lt;/p&gt;
 </description>
         </item>
         <item>
