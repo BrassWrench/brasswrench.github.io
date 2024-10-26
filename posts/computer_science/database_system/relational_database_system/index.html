@@ -131,7 +131,7 @@
 <meta property='og:description' content="支持关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-26T13:52:56&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-26T15:37:41&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="支持关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -956,7 +956,7 @@
 </svg>
 
             <time class="article-words">
-                10922 字
+                11393 字
             </time>
         </div>
 
@@ -971,7 +971,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 22 分钟
+                    阅读时长: 23 分钟
                 </time>
             </div>
         
@@ -2129,7 +2129,7 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
 <h4 id="选择">选择
 </h4><p>  选择又称为<strong>限制（restriction）</strong>。它是在关系 \(R\) 中选择满足给定条件的诸元组，记作</p>
 <span id="20241026115757CST"></span>\[
-\sigma_F(R)=\set{t|t \in R \land F(t)='真'}
+\sigma_F(R)=\set{t|t \in R \land F(t)=\text{\textquotedblleft真\textquotedblright}}
 \tag{20}
     \]
 <p>  其中 \(F\) 表示一个选择条件，它是一个逻辑表达式，取逻辑“真”或“假”。<br>
@@ -2138,7 +2138,212 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
 X_1\theta Y_1
 \tag{21}
     \]
-<p>  其中 \(\theta\) 表示比较运算符，它可以是 \(>,\ge,<,\le,=\) 或 \(<>\)</p>
+<p>  其中 \(\theta\) 表示比较运算符，它可以是 \(>,\ge,<,\le,=\) 或 \(<>\) 。 \(X_1,Y_1\) 是属性名，或为常量，或为简单常数；属性名也可以用它的序号来代替，在基本的选择条件上可以进一步进行逻辑运算，即进行求非（ \(\lnot\) ）、与（ \(\land\) ）、或（ \(\lor\) ）运算。条件表达式中的运算符如表2.5所示。</p>
+<span id="20241026141516CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+    <tr>
+        <th colspan="2">运算符</th>
+        <th>含义</th>
+    </tr>
+    <tr>
+        <td rowspan="6">比较运算符</td>
+        <td>\(>\)</td>
+        <td>大于</td>
+    </tr>
+    <tr>
+        <td>\(\ge\)</td>
+        <td>大于等于</td>
+    </tr>
+    <tr>
+        <td>\(<\)</td>
+        <td>小于</td>
+    </tr>
+    <tr>
+        <td>\(\le\)</td>
+        <td>小于等于</td>
+    </tr>
+    <tr>
+        <td>\(=\)</td>
+        <td>等于</td>
+    </tr>
+    <tr>
+        <td>\(<>\)</td>
+        <td>不等于</td>
+    </tr>
+    <tr>
+        <td rowspan="3">逻辑运算符</td>
+        <td>\(\lnot\)</td>
+        <td>非</td>
+    </tr>
+    <tr>
+        <td>\(\land\)</td>
+        <td>与</td>
+    </tr>
+    <tr>
+        <td>\(\lor\)</td>
+        <td>或</td>
+    </tr>
+</table></div>
+</div>
+<p>  选择运算实际上是从关系火中选取使逻辑表达式 \(F\) 为真的元组。这是从行的角度进行的运算。</p>
+<p>  设有一个学生&mdash;课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如<a class="link" href="#20241026152329CST">图6</a>所示。下面的多个例子将对这三个关系进行运算。</p>
+<span id="20241026152329CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 643.3">
+  <!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .st1 {
+        font-family: NotoSerifSC-ExtraLight, 'Noto Serif SC';
+        font-size: 18px;
+        font-weight: 200;
+      }
+    </style>
+  </defs>
+  <g>
+    <g>
+      <rect class="st0" x="231.9" y="33.5" width="400" height="210.5"/>
+      <line class="st0" x1="231.9" y1="103.3" x2="631.9" y2="103.3"/>
+      <line class="st0" x1="231.9" y1="138.5" x2="631.9" y2="138.5"/>
+      <line class="st0" x1="231.9" y1="173.7" x2="631.9" y2="173.7"/>
+      <line class="st0" x1="231.9" y1="208.9" x2="631.9" y2="208.9"/>
+      <line class="st0" x1="551.9" y1="244.1" x2="551.9" y2="33.5"/>
+      <line class="st0" x1="480.9" y1="244.1" x2="480.9" y2="33.5"/>
+      <line class="st0" x1="413.9" y1="244.1" x2="413.9" y2="33.5"/>
+      <line class="st0" x1="326.9" y1="244.1" x2="326.9" y2="33.5"/>
+    </g>
+    <text class="st1" transform="translate(236.1 127.2)"><tspan x="0" y="0">201215121</tspan></text>
+    <text class="st1" transform="translate(261.4 62.2)"><tspan x="0" y="0">学号</tspan></text>
+    <text class="st1" transform="translate(263.2 84.8)"><tspan x="0" y="0">Sno</tspan></text>
+    <text class="st1" transform="translate(353.2 62.2)"><tspan x="0" y="0">姓名</tspan></text>
+    <text class="st1" transform="translate(342 84.8)"><tspan x="0" y="0">Sname</tspan></text>
+    <text class="st1" transform="translate(353.2 127.2)"><tspan x="0" y="0">李勇</tspan></text>
+    <text class="st1" transform="translate(428.1 63.5)"><tspan x="0" y="0">性别</tspan></text>
+    <text class="st1" transform="translate(427.2 84.5)"><tspan x="0" y="0">Ssex</tspan></text>
+    <text class="st1" transform="translate(497.4 64.4)"><tspan x="0" y="0">年龄</tspan></text>
+    <text class="st1" transform="translate(494.4 85.4)"><tspan x="0" y="0">Sage</tspan></text>
+    <text class="st1" transform="translate(563.8 65)"><tspan x="0" y="0">所在系</tspan></text>
+    <text class="st1" transform="translate(565.8 86)"><tspan x="0" y="0">Sdept</tspan></text>
+    <text class="st1" transform="translate(437.1 127.2)"><tspan x="0" y="0">男</tspan></text>
+    <text class="st1" transform="translate(505.8 127.2)"><tspan x="0" y="0">20</tspan></text>
+    <text class="st1" transform="translate(579.6 127.2)"><tspan x="0" y="0">CS</tspan></text>
+    <text class="st1" transform="translate(236.1 163.9)"><tspan x="0" y="0">201215122</tspan></text>
+    <text class="st1" transform="translate(353.2 163.9)"><tspan x="0" y="0">刘晨</tspan></text>
+    <text class="st1" transform="translate(437.1 163.9)"><tspan x="0" y="0">女</tspan></text>
+    <text class="st1" transform="translate(505.8 163.9)"><tspan x="0" y="0">19</tspan></text>
+    <text class="st1" transform="translate(579.6 163.9)"><tspan x="0" y="0">CS</tspan></text>
+    <text class="st1" transform="translate(236.1 199.6)"><tspan x="0" y="0">201215123</tspan></text>
+    <text class="st1" transform="translate(353.2 200.6)"><tspan x="0" y="0">王敏</tspan></text>
+    <text class="st1" transform="translate(436 199.5)"><tspan x="0" y="0">女</tspan></text>
+    <text class="st1" transform="translate(504.6 199.5)"><tspan x="0" y="0">18</tspan></text>
+    <text class="st1" transform="translate(575.7 199.5)"><tspan x="0" y="0">MA</tspan></text>
+    <text class="st1" transform="translate(236.1 235)"><tspan x="0" y="0">201215125</tspan></text>
+    <text class="st1" transform="translate(353.2 235)"><tspan x="0" y="0">张立</tspan></text>
+    <text class="st1" transform="translate(437.1 235)"><tspan x="0" y="0">男</tspan></text>
+    <text class="st1" transform="translate(505.8 235)"><tspan x="0" y="0">19</tspan></text>
+    <text class="st1" transform="translate(582.2 235)"><tspan x="0" y="0">IS</tspan></text>
+  </g>
+  <text class="st1" transform="translate(231.9 28.1)"><tspan x="0" y="0">Student</tspan></text>
+  <text class="st1" transform="translate(74.3 300.6)"><tspan x="0" y="0">Course</tspan></text>
+  <g>
+    <text class="st1" transform="translate(457.6 267.7)"><tspan x="0" y="0">(a)</tspan></text>
+    <g>
+      <g>
+        <polyline class="st0" points="443.3 457 443.3 610.5 75.3 610.5 75.3 304.6 443.3 304.6 443.3 405.9 443.3 457"/>
+        <line class="st0" x1="75.3" y1="374.3" x2="443.3" y2="374.3"/>
+        <line class="st0" x1="75.3" y1="409.5" x2="443.2" y2="409.5"/>
+        <line class="st0" x1="75.3" y1="444.7" x2="443.2" y2="444.7"/>
+        <line class="st0" x1="75.3" y1="479.9" x2="443.3" y2="479.9"/>
+        <line class="st0" x1="354.3" y1="610.5" x2="354.3" y2="304.6"/>
+        <line class="st0" x1="270.3" y1="610.5" x2="270.3" y2="304.6"/>
+        <line class="st0" x1="147.3" y1="610.5" x2="147.3" y2="304.6"/>
+        <line class="st0" x1="75.3" y1="511.7" x2="443.4" y2="511.7"/>
+        <line class="st0" x1="75.3" y1="545.2" x2="443.3" y2="545.2"/>
+        <line class="st0" x1="75.3" y1="577.7" x2="443.4" y2="577.7"/>
+      </g>
+      <text class="st1" transform="translate(107 398.3)"><tspan x="0" y="0">1</tspan></text>
+      <text class="st1" transform="translate(84.8 333.3)"><tspan x="0" y="0">课程号</tspan></text>
+      <text class="st1" transform="translate(93.7 355.8)"><tspan x="0" y="0">Cno</tspan></text>
+      <text class="st1" transform="translate(180.6 333.3)"><tspan x="0" y="0">课程名</tspan></text>
+      <text class="st1" transform="translate(176.4 355.8)"><tspan x="0" y="0">Cname</tspan></text>
+      <text class="st1" transform="translate(181.9 398.3)"><tspan x="0" y="0">数据库</tspan></text>
+      <text class="st1" transform="translate(284.5 334.6)"><tspan x="0" y="0">先行课</tspan></text>
+      <text class="st1" transform="translate(288.6 355.6)"><tspan x="0" y="0">Cpno</tspan></text>
+      <text class="st1" transform="translate(381.2 335.4)"><tspan x="0" y="0">学分</tspan></text>
+      <text class="st1" transform="translate(371.3 356.4)"><tspan x="0" y="0">Credit</tspan></text>
+      <text class="st1" transform="translate(306.5 398.3)"><tspan x="0" y="0">5</tspan></text>
+      <text class="st1" transform="translate(391.2 398.5)"><tspan x="0" y="0">4</tspan></text>
+      <text class="st1" transform="translate(190.9 435)"><tspan x="0" y="0">数学</tspan></text>
+      <text class="st1" transform="translate(391.2 437.2)"><tspan x="0" y="0">2</tspan></text>
+      <text class="st1" transform="translate(172.9 469.7)"><tspan x="0" y="0">信息系统</tspan></text>
+      <text class="st1" transform="translate(391.2 471.8)"><tspan x="0" y="0">4</tspan></text>
+      <text class="st1" transform="translate(172.9 503.1)"><tspan x="0" y="0">操作系统</tspan></text>
+      <text class="st1" transform="translate(391.2 503.1)"><tspan x="0" y="0">3</tspan></text>
+      <text class="st1" transform="translate(107 434.2)"><tspan x="0" y="0">2</tspan></text>
+      <text class="st1" transform="translate(107 469.2)"><tspan x="0" y="0">3</tspan></text>
+      <text class="st1" transform="translate(107 502.1)"><tspan x="0" y="0">4</tspan></text>
+      <text class="st1" transform="translate(107 535)"><tspan x="0" y="0">5</tspan></text>
+      <text class="st1" transform="translate(107 567.9)"><tspan x="0" y="0">6</tspan></text>
+      <text class="st1" transform="translate(107 601.9)"><tspan x="0" y="0">7</tspan></text>
+      <text class="st1" transform="translate(172.9 535.3)"><tspan x="0" y="0">数据结构</tspan></text>
+      <text class="st1" transform="translate(172.9 569.1)"><tspan x="0" y="0">数据处理</tspan></text>
+      <text class="st1" transform="translate(156.5 601.9)"><tspan x="0" y="0">PASCAL语言</tspan></text>
+      <text class="st1" transform="translate(306.5 469.2)"><tspan x="0" y="0">1</tspan></text>
+      <text class="st1" transform="translate(306.5 502.1)"><tspan x="0" y="0">6</tspan></text>
+      <text class="st1" transform="translate(306.5 535.4)"><tspan x="0" y="0">7</tspan></text>
+      <text class="st1" transform="translate(306.5 600.2)"><tspan x="0" y="0">6</tspan></text>
+      <text class="st1" transform="translate(391.2 535.4)"><tspan x="0" y="0">4</tspan></text>
+      <text class="st1" transform="translate(391.2 570.5)"><tspan x="0" y="0">2</tspan></text>
+      <text class="st1" transform="translate(391.2 600.5)"><tspan x="0" y="0">4</tspan></text>
+    </g>
+    <text class="st1" transform="translate(247.6 638.1)"><tspan x="0" y="0">(b)</tspan></text>
+    <g>
+      <g>
+        <polyline class="st0" points="789.4 424.2 789.4 544.5 505.1 544.5 505.1 304.6 789.4 304.6 789.4 384.1 789.4 424.2"/>
+        <line class="st0" x1="505.1" y1="374.3" x2="789.4" y2="374.3"/>
+        <line class="st0" x1="505.1" y1="409.5" x2="789.4" y2="409.5"/>
+        <line class="st0" x1="505.1" y1="444.7" x2="789.4" y2="444.7"/>
+        <line class="st0" x1="505.1" y1="479.9" x2="789.4" y2="479.9"/>
+        <line class="st0" x1="700.1" y1="545.3" x2="700.1" y2="304.6"/>
+        <line class="st0" x1="614.1" y1="544.5" x2="614.1" y2="304.6"/>
+        <line class="st0" x1="505.1" y1="511.7" x2="789.4" y2="511.7"/>
+      </g>
+      <text class="st1" transform="translate(541.9 333.3)"><tspan x="0" y="0">学号</tspan></text>
+      <text class="st1" transform="translate(543.8 356.7)"><tspan x="0" y="0">Sno</tspan></text>
+      <text class="st1" transform="translate(628.1 333.3)"><tspan x="0" y="0">课程号</tspan></text>
+      <text class="st1" transform="translate(635.8 355.8)"><tspan x="0" y="0">Cno</tspan></text>
+      <text class="st1" transform="translate(725.4 334.6)"><tspan x="0" y="0">成绩</tspan></text>
+      <text class="st1" transform="translate(718.5 355.6)"><tspan x="0" y="0">Grade</tspan></text>
+      <text class="st1" transform="translate(736.4 398.3)"><tspan x="0" y="0">92</tspan></text>
+      <text class="st1" transform="translate(736.4 469.2)"><tspan x="0" y="0">88</tspan></text>
+      <text class="st1" transform="translate(736.4 502.1)"><tspan x="0" y="0">90</tspan></text>
+      <text class="st1" transform="translate(736.4 535.4)"><tspan x="0" y="0">80</tspan></text>
+      <text class="st1" transform="translate(735.6 435)"><tspan x="0" y="0">85</tspan></text>
+      <text class="st1" transform="translate(515.5 399.4)"><tspan x="0" y="0">201215121</tspan></text>
+      <text class="st1" transform="translate(515.5 436.1)"><tspan x="0" y="0">201215121</tspan></text>
+      <text class="st1" transform="translate(515.5 470.3)"><tspan x="0" y="0">201215121</tspan></text>
+      <text class="st1" transform="translate(515.5 503.3)"><tspan x="0" y="0">201215122</tspan></text>
+      <text class="st1" transform="translate(515.5 535.4)"><tspan x="0" y="0">201215122</tspan></text>
+      <text class="st1" transform="translate(651.1 399.4)"><tspan x="0" y="0">1</tspan></text>
+      <text class="st1" transform="translate(651.1 436.1)"><tspan x="0" y="0">2</tspan></text>
+      <text class="st1" transform="translate(651.1 470.3)"><tspan x="0" y="0">3</tspan></text>
+      <text class="st1" transform="translate(651.1 503.3)"><tspan x="0" y="0">2</tspan></text>
+      <text class="st1" transform="translate(651.1 535.4)"><tspan x="0" y="0">3</tspan></text>
+    </g>
+    <text class="st1" transform="translate(505.1 299.2)"><tspan x="0" y="0">SC</tspan></text>
+    <text class="st1" transform="translate(636.5 566.6)"><tspan x="0" y="0">(c)</tspan></text>
+  </g>
+</svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图6&emsp;学生-课程数据库</p></div>
+<p>  <span id="20241026152443CST"></span><strong>例4</strong>：查询信息系（IS系）全体学生。</p>
+<span id="20241026152508CST"></span>\[
+\sigma_{\text{Sdept=\textquotedblleft IS\textquotedblright}}(\text{Student})
+\tag{22}
+    \]
 
     </div>
 </section>
@@ -2172,7 +2377,7 @@ X_1\theta Y_1
 
 
         <span>
-            最后更新于 Oct 26, 2024 13:52 CST
+            最后更新于 Oct 26, 2024 15:37 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2331,7 +2536,7 @@ X_1\theta Y_1
             
             
         
-        <span>本图书馆累计发布了11篇文章 共108692字</span>
+        <span>本图书馆累计发布了11篇文章 共109163字</span>
     </section>
 
     <section class="site-visit-count">
