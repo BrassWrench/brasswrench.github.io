@@ -131,7 +131,7 @@
 <meta property='og:description' content="支持关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-27T15:02:16&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-27T16:48:35&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="支持关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -648,6 +648,15 @@
         </li>
       </ol>
     </li>
+    <li><a href="#关系演算">关系演算</a>
+      <ol>
+        <li><a href="#元组关系演算语言alpha">元组关系演算语言ALPHA</a>
+          <ol>
+            <li><a href="#检索操作">检索操作</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -959,7 +968,7 @@
 </svg>
 
             <time class="article-words">
-                13714 字
+                14931 字
             </time>
         </div>
 
@@ -974,7 +983,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 28 分钟
+                    阅读时长: 30 分钟
                 </time>
             </div>
         
@@ -2132,7 +2141,7 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
 <h4 id="选择">选择
 </h4><p>  选择又称为<strong>限制（restriction）</strong>。它是在关系 \(R\) 中选择满足给定条件的诸元组，记作</p>
 <span id="20241026115757CST"></span>\[
-\sigma_F(R)=\set{t|t \in R \land F(t)=\tt{'}\text{真}\tt{'}}
+\sigma_F(R)=\set{t|t \in R \land F(t)=\text{'真'}}
 \tag{20}
     \]
 <p>  其中 \(F\) 表示一个选择条件，它是一个逻辑表达式，取逻辑“真”或“假”。<br>
@@ -2324,7 +2333,7 @@ X_1\theta Y_1
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图6&emsp;学生-课程数据库</p></div>
 <p>  <span id="20241026152443CST"></span><strong>例4</strong>：查询信息系（IS系）全体学生。</p>
 <span id="20241026152508CST"></span>\[
-\sigma_{\text{Sdept}=\tt{'}\text{IS}\tt{'}}(\text{Student})
+\sigma_{\text{Sdept}=\text{'IS'}}(\text{Student})
 \tag{22}
     \]
 <p>  结果如<a class="link" href="#20241026154508CST">图7</a>(a)所示。</p>
@@ -3396,17 +3405,17 @@ R \div S = \set{a_1}
   求解过程与<a class="link" href="#20241027112320CST">例9</a>类似，先对 \(\text{SC}\) 关系在 \((\text{Sno},\text{Cno})\) 属性上投影，然后逐一求出每 一学生（ \(\text{Sno}\) ）的象集，并依次检查这些象集是否包含 \(\text{K}\) 。</p>
 <p>  <span id="20241027142339CST"></span><strong>例11</strong>：查询选修了 \(2\) 号课程的学生的学号。</p>
 <span id="20241027142539CST"></span>\[
-\Pi_{\text{Sno}}(\sigma_{\text{Cno}=\tt{'}\text{2}\tt{'}}(\text{SC}))=\set{201215121,201215122}
+\Pi_{\text{Sno}}(\sigma_{\text{Cno}=\text{'2'}}(\text{SC}))=\set{201215121,201215122}
 \tag{33}
     \]
 <p>  <span id="20241027143428CST"></span><strong>例12</strong>：查询至少选修了一门其直接先行课为5号课程的学生姓名。</p>
 <span id="20241027144208CST"></span>\[
-\Pi_{\text{Sname}}(\sigma_{\text{Cpno}=\tt{'}\text{5}\tt{'}}(\text{Course})\Join\text{SC}\Join\Pi_{\text{Sno},\text{Sname}}(\text{Student}))
+\Pi_{\text{Sname}}(\sigma_{\text{Cpno}=\text{'5'}}(\text{Course})\Join\text{SC}\Join\Pi_{\text{Sno},\text{Sname}}(\text{Student}))
 \tag{34}
     \]
 <p>  或</p>
 <span id="20241027145338CST"></span>\[
-\Pi_{\text{Sname}}(\Pi_{\text{Sno}}(\sigma_{\text{Cpno}=\tt{'}\text{5}\tt{'}}(\text{Course})\Join\text{SC})\Join\Pi_{\text{Sno},\text{Sname}}(\text{Student}))
+\Pi_{\text{Sname}}(\Pi_{\text{Sno}}(\sigma_{\text{Cpno}=\text{'5'}}(\text{Course})\Join\text{SC})\Join\Pi_{\text{Sno},\text{Sname}}(\text{Student}))
 \tag{35}
     \]
 <p>  <span id="20241027143434CST"></span><strong>例13</strong>：查询选修了全部课程的学生号码和姓名。</p>
@@ -3416,7 +3425,131 @@ R \div S = \set{a_1}
     \]
 <p>  本节介绍了8种关系代数运算，其中并、差、Cartesian乘积、选择和投影这5种运算为基本的运算。其他三种运算，即交、连接和除，均可以用这5种基本运算来表达。引进它们并不增加语言的能力，但可以简化表达。<br>
   关系代数中，这些运算经有限次复合后形成的表达式称为关系代数表达式。</p>
-
+<h2 id="关系演算">关系演算
+</h2><p>  关系演算是以数理逻辑中的谓词演算为基础的。按谓词变元的不同，关系演算可分为元 组关系演算和域关系演算。本节先介绍元组关系演算，然后简单介绍域关系演算。</p>
+<h3 id="元组关系演算语言alpha">元组关系演算语言ALPHA
+</h3><p>  元组关系演算以元组变量作为谓词变元的基本对象。一种典型的元组关系演算语言是E.F.Codd提出的ALPHA语言。这一语言虽然没有实际实现，但关系数据库管理系统INGRES最初所用的QUEL语言是参照ALPHA语言研制的，与ALPHA十分类似。ALPHA 语言主要有<code>GET</code>、<code>PUT</code>、<code>HOLD</code>、<code>UPDATE</code>、<code>DELETE</code>、<code>DROP</code> 6 条语句，语句的基本格式为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">操作语句 工作空间名 (表达式)：操作条件
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  其中表达式用于指定语句的操作对象，它可以是关系名或（和）属性名，一条语句可以同时操作多个关系或多个属性。操作条件是一个逻辑表达式，用于将操作结果限定在满足条件的元组中，操作条件可以为空。除此之外，还可以在基本格式的基础上加上排序要求以及指定返回元组的条数等。</p>
+<h4 id="检索操作">检索操作
+</h4><p>  检索操作用<code>GET</code>语句实现。</p>
+<p><strong>1. 简单检索（即不带条件的检索）</strong></p>
+<p>  <span id="20241027152547CST"></span><strong>例14</strong>：查询所有被选修的课程号码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (SC.Cno)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <code>W</code>为工作空间名。这里条件为空，表示没有限定条件。</p>
+<p>  <span id="20241027152736CST"></span><strong>例15</strong>：查询所有学生的数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (Student)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2. 限定的检索（即带条件的检索）</strong></p>
+<p>  <span id="20241027152903CST"></span><strong>例16</strong>：查询信息系（IS）中年龄小于20岁的学生的学号和年龄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (Student.Sno,Student.Sage): 
+</span></span><span class="line"><span class="cl">    Student.Sdept=&#39;IS&#39;∧Student.Sage&lt;20
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3. 带排序的检索</strong></p>
+<p>  <span id="20241027153431CST"></span><strong>例17</strong>：查询计算机科学系（CS）学生的学号、年龄，结果按年龄降序排序。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (Student.Sno,Student.Sage): 
+</span></span><span class="line"><span class="cl">    Student.Sdept=&#39;CS&#39; DOWN Student.Sage
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <code>DOWN</code>表示降序排序。</p>
+<p><strong>4. 指定返回元组的条数的检索</strong></p>
+<p>  <span id="20241027154037CST"></span><strong>例18</strong>：取出一个信息系学生的学号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (1) (Student.Sno): Student.Sdept=&#39;IS&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  在<code>W</code>后括号中的数量就是指定的返回元组的个数。</p>
+<p>  <span id="20241027154310CST"></span><strong>例19</strong>：查询信息系年龄最大的三个学生的学号及其年龄，结果按年龄降序排序。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (3) (Student.Sno,Student.Sage): 
+</span></span><span class="line"><span class="cl">    Student.Sdept=&#39;IS&#39; DOWN Student.Sage
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>5. 用元组变量的检索</strong></p>
+<p>  前面已讲到，元组关系演算是以元组变量作为谓词变元的基本对象。元组变量是在某一关系范围内变化的，所以也称为<strong>范围变量（range variable）</strong>，一个关系可以设多个元组变量。</p>
+<p>  元组变量主要有两方面的用途：</p>
+<ol>
+<li>简化关系名。如果关系的名字很长，使用起来就会感到不方便，这时可以设一个较短名字的元组变量来代替关系名。如<a class="link" href="#20241027154449CST">例20</a>。</li>
+<li>操作条件中使用量词时必须用元组变量。如例2.21至例2.24。</li>
+</ol>
+<p>  <span id="20241027154449CST"></span><strong>例20</strong>：查询信息系学生的名字。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE Student X
+</span></span><span class="line"><span class="cl">GET W (X.Sname): X.Sdept=&#39;IS&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  ALPHA语言用<code>RANGE</code>来说明元组变量。本例中<code>X</code>是关系<code>Student</code>上的元组变量，用途是简化关系名，即用<code>X</code>代表<code>Student</code>。</p>
+<p><strong>6. 用存在量词（existential qualifier）检索</strong></p>
+<p>  <span id="20241027163733CST"></span><strong>例21</strong>：查询选修2号课程的学生的名字。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE SC X
+</span></span><span class="line"><span class="cl">GET W (Student.Sname): ∃X(X.Sno=Student.Sno∧X.Cno=&#39;2&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241027164425CST"></span><strong>例22</strong>：查询选修了这样课程的学生学号，其直接先行课是6号课程。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE Course CX
+</span></span><span class="line"><span class="cl">GET W (SC.Sno): ∃CX(CX.Cno=SC.Cno∧CX.Pcno=&#39;6&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
 </section>
 
@@ -3426,6 +3559,14 @@ R \div S = \set{a_1}
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/">数据库系统</a>
+        
+            <a href="/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/">关系数据库</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
@@ -3449,7 +3590,7 @@ R \div S = \set{a_1}
 
 
         <span>
-            最后更新于 Oct 27, 2024 15:02 CST
+            最后更新于 Oct 27, 2024 16:48 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3608,7 +3749,7 @@ R \div S = \set{a_1}
             
             
         
-        <span>本图书馆累计发布了11篇文章 共111514字</span>
+        <span>本图书馆累计发布了11篇文章 共112731字</span>
     </section>
 
     <section class="site-visit-count">
