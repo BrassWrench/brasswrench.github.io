@@ -131,7 +131,7 @@
 <meta property='og:description' content="支持关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-27T10:56:04&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-27T13:36:29&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="支持关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -605,8 +605,8 @@
       <ol>
         <li><a href="#关系">关系</a>
           <ol>
-            <li><a href="#域domain">域（domain）</a></li>
-            <li><a href="#cartesian乘积cartesian-product">Cartesian乘积（cartesian product）</a></li>
+            <li><a href="#域">域</a></li>
+            <li><a href="#cartesian乘积">Cartesian乘积</a></li>
             <li><a href="#关系-1">关系</a></li>
           </ol>
         </li>
@@ -632,17 +632,18 @@
       <ol>
         <li><a href="#传统的集合运算">传统的集合运算</a>
           <ol>
-            <li><a href="#并union">并（union）</a></li>
-            <li><a href="#差except">差（except）</a></li>
-            <li><a href="#交intersection">交（intersection）</a></li>
-            <li><a href="#cartesian乘积cartesian-product-1">Cartesian乘积(cartesian product)</a></li>
+            <li><a href="#并">并</a></li>
+            <li><a href="#差">差</a></li>
+            <li><a href="#交">交</a></li>
+            <li><a href="#cartesian乘积-1">Cartesian乘积</a></li>
           </ol>
         </li>
         <li><a href="#专门的关系运算">专门的关系运算</a>
           <ol>
             <li><a href="#选择">选择</a></li>
-            <li><a href="#投影projection">投影（projection）</a></li>
-            <li><a href="#连接join">连接（join）</a></li>
+            <li><a href="#投影">投影</a></li>
+            <li><a href="#连接">连接</a></li>
+            <li><a href="#除运算">除运算</a></li>
           </ol>
         </li>
       </ol>
@@ -958,7 +959,7 @@
 </svg>
 
             <time class="article-words">
-                12961 字
+                13103 字
             </time>
         </div>
 
@@ -973,7 +974,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 26 分钟
+                    阅读时长: 27 分钟
                 </time>
             </div>
         
@@ -1020,9 +1021,9 @@
 </h3><p>  关系模型的数据结构非常简单，只包含单一的数据结构&mdash;&mdash;关系。在用户看来，关系模型中数据的逻辑结构是一张扁平的二维表。<br>
   关系模型的数据结构虽然简单却能够表达丰富的语义，描述出现实世界的实体以及实体间的各种联系。也就是说，在关系模型中，现实世界的实体以及实体间的各种联系均用单一的结构类型，即关系来表示。<br>
   前面已经非形式化地介绍了关系模型及有关的基本概念。关系模型是建立在集合代数的基础上的，这里从集合论角度给出关系数据结构的形式化定义。</p>
-<h4 id="域domain">域（domain）
+<h4 id="域">域
 </h4><p>  <span id="20241024154841CST"></span><strong>定义1（域）</strong>：域是一组具有相同数据类型的值的集合。例如，自然数、整数、实数、长度小于25字节的字符串集合、 {0,1} 、 {男,女} 、大于等于0且小于等于100的正整数等，都可以是域。</p>
-<h4 id="cartesian乘积cartesian-product">Cartesian乘积（cartesian product）
+<h4 id="cartesian乘积">Cartesian乘积
 </h4><p>  <span id="20241024155054CST"></span><strong>定义2（Cartesian乘积）</strong>：给定一组域 \(D_1,D_2,\cdots,D_n\) ，允许其中某些域是相同的， \(D_1,D_2,\cdots,D_n\)的Cartesian乘积为</p>
 <span id="20241024155332CST"></span>\[
 D_1\times D_2 \times \cdots \times D_n=\set{(d_1,d_2,\cdots,d_n)|d_i\in D_i,i=1,2,\cdots,n}
@@ -1493,21 +1494,21 @@ R(A_1,A_2,\cdots,A_n)
 </h3><p>  传统的集合运算是二目运算，包括并、差、交、Cartesian乘积4种运算。<br>
   设关系 \(R\) 和关系 \(S\) 具有相同的目 \(n\) （即两个关系都有 \(n\) 个属性），且相应的属性取自同一个域， \(t\) 是元组变量， \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。</p>
 <p>  可以定义并、差、交、Cartesian乘积运算如下。</p>
-<h4 id="并union">并（union）
+<h4 id="并">并
 </h4><p>  关系 \(R\) 与关系 \(S\) 的并记作</p>
 <span id="20241025172503CST"></span>\[
 R\cup S=\set{t|t \in R \lor t \in S}
 \tag{14}
     \]
 <p>  其中 \(\lor\) 是或运算符。其结果仍为 \(n\) 目关系，由属于 \(R\) 或属于 \(S\) 的元组组成。</p>
-<h4 id="差except">差（except）
+<h4 id="差">差
 </h4><p>  关系 \(R\) 与关系 \(S\) 的差记作</p>
 <span id="20241025174034CST"></span>\[
 R-S=\set{t|t \in R \land t \notin S}
 \tag{15}
     \]
 <p>  其中 \(\land\) 是与运算符。其结果关系仍为 \(n\) 目关系，由属于 \(R\) 而不属于 \(S\) 的所有元组组成。</p>
-<h4 id="交intersection">交（intersection）
+<h4 id="交">交
 </h4><p>  关系 \(R\) 与关系 \(S\) 的交记作</p>
 <span id="20241025174455CST"></span>\[
 R\cap S = \set{t|t\in R \land t \in S}
@@ -1518,7 +1519,7 @@ R\cap S = \set{t|t\in R \land t \in S}
 R \cap S = R-(R-S)
 \tag{17}
     \]
-<h4 id="cartesian乘积cartesian-product-1">Cartesian乘积(cartesian product)
+<h4 id="cartesian乘积-1">Cartesian乘积
 </h4><p>  这里的Cartesian乘积严格地讲应该是<strong>广义的Cartesian乘积（extended cartesian product）</strong>，因为这里Cartesian乘积的元素是元组。<br>
   两个分别为 \(n\) 目和 \(m\) 目的关系 \(R\) 和 \(S\) 的Cartesian乘积是一个 \((n+m)\) 列的元组的集合。元组的前 \(n\) 列是关系 \(R\) 的一个元组，后所列是关系 \(S\) 的一个元组。若 \(R\) 有 \(k_1\) 个元组，S有 \(k_2\) 个元组，则关系 \(R\) 和关系 \(S\) 的Cartesian乘积有 \(k_1\times k_2\) 个元组。记作</p>
 <span id="20241025175123CST"></span>\[
@@ -2048,7 +2049,7 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 <li>设关系模式为 \(R(A_1,A_2,\cdots,A_n)\)，它的一个关系设为 \(R\) 。 \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。 \(t[A_i]\) 则表示元组 \(t\) 中相应于属性 \(i\) 的一个分量。</li>
 <li>若 \(A=\set{A_{i1},A_{i2},\cdots,A_{ik}}\) ，其 \(A_{i1},A_{i2},\cdots,A_{ik}\) 是 \(A_1,A_2,\cdots,A_n\) 中的一部分,则 \(A\) 称为属性列或属性组。 \(t[A]=(t[A_{i1}],t[A_{i2}],\cdots,t[A_{ik}])\) 表示元组 \(t\) 在属性列 \(A\) 上诸分量的集合， \(\bar{A}\) 则表示 \(\set{A_1,A_2,\cdots,A_n}\) 中去掉 \(\set{A_{i1},A_{i2},\cdots,A_{ik}}\) 后剩余的属性组。</li>
 <li>\(R\) 为 \(n\) 目关系， \(S\) 为 \(m\) 目关系。 \(t_r\in R,t_s \in S\) ， \(\overgroup{t_rt_s}\) 称为元组的<strong>连接（concatenation）</strong>‌或元组的<strong>串接</strong>。它是一个 \(n+m\) 列的元组，前 \(n\) 个分量为 \(R\) 中的一个 \(n\) 元组，后 \(m\) 个分量为 \(S\) 中的一个 \(m\) 元组。</li>
-<li>给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的<strong>象集（images set）</strong>‌定义为
+<li>给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的<span id="20241027111504CST"></span><strong>象集（images set）</strong>‌定义为
 <span id="20241026105811CST"></span>\[
 Z_x=\set{t[Z]|t \in R, t[X]=x}
 \tag{19}
@@ -2435,7 +2436,7 @@ X_1\theta Y_1
   <text transform="translate(228.1717 194.1214)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.01em;">S</tspan><tspan x="9.8101" y="0">t</tspan><tspan x="16.2358" y="0" style="letter-spacing: -.003em;">u</tspan><tspan x="27.7559" y="0">dent</tspan></text>
   <text transform="translate(416.922 397.7815)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">(</tspan><tspan x="6.2998" y="0" style="letter-spacing: -.018em;">b</tspan><tspan x="17.2261" y="0">)</tspan></text>
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图7&emsp;选择运算举例</p></div>
-<h4 id="投影projection">投影（projection）
+<h4 id="投影">投影
 </h4><p>  关系 \(R\) 上的投影是从 \(R\) 中选择出若干属性列组成新的关系。记作</p>
 <span id="20241026154923CST"></span>\[
 \Pi_A(R)=\set{t[A]|t \in R}
@@ -2444,9 +2445,9 @@ X_1\theta Y_1
 <p>  其中 \(A\) 为 \(R\) 的属性列。<br>
   投影操作就是从列的角度进行运算。</p>
 <p>  <span id="20241026155314CST"></span><strong>例6</strong>：查询学生的姓名和所在系，即求Student关系上学生姓名和所在系两个属性上的投影。</p>
-<span id="20241026155522CST"></span>\[
+<span id="20241027110238CST"></span>\[
 \Pi_{\text{Sname,Sdept}}(\text{Student})
-\tag{26}
+\tag{25}
     \]
 <p>  结果如<a class="link" href="#20241026160858CST">图8</a>(a)所示。<br>
   投影之后不仅取消了原关系中的某些列，而且还可能取消某些元组，因为取消了某些属性列后，就可能出现重复行，应取消这些完全相同的行。</p>
@@ -2490,7 +2491,7 @@ X_1\theta Y_1
   <text transform="translate(300.4314 266.5726)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.023em;">（a</tspan><tspan x="27" y="0" style="letter-spacing: -.477em;">）</tspan></text>
   <text transform="translate(584.2916 266.5732)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.023em;">（b</tspan><tspan x="28.4219" y="0" style="letter-spacing: -.477em;">）</tspan></text>
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;投影运算举例</p></div>
-<h4 id="连接join">连接（join）
+<h4 id="连接">连接
 </h4><p>  连接也称为 \(\theta\) 连接。它是从两个关系的Cartesian乘积中选取属性间满足一定条件的元组。记作</p>
 <span id="20241026161052CST"></span>\[
 R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]\theta t_s[B])}
@@ -3168,6 +3169,18 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
   </g>
   <text transform="translate(646.2065 278.564)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.025em;">(</tspan><tspan x="5.8501" y="0">c)右外连接</tspan></text>
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图10&emsp;外连接运算举例</p></div>
+<h4 id="除运算">除运算
+</h4><p>  设关系 \(R\) 除以关系 \(S\) 的结果为关系 \(T\) ，则 \(T\) 包含所有在 \(R\) 但不在 \(S\) 中的属性及其值，且 \(T\) 的元组与 \(S\) 的元组的所有组合都在 \(R\) 中。<br>
+  下面用<a class="link" href="#20241027111504CST">象集</a>来定义除法：<br>
+  给定关系 \(R(X,Y)\) 和 \(S(Y,Z)\) ，其中 \(X,Y,Z\) 为属性组。 \(R\) 中的 \(Y\) 与 \(S\) 中的 \(Y\) 可以有不同的属性名，但必须出自相同的域集。<br>
+   \(R\) 与 \(S\) 的除运算得到一个新的关系 \(P(X)\) ， \(P\) 是 \(R\) 中满足下列条件的元组在 \(X\) 属性列上的投影：元组在 \(X\) 上分量值 \(x\) 的象集 \(Y_x\) 包含 \(S\) 在 \(Y\) 上投影的集合。记作</p>
+<span id="20241027111110CST"></span>\[
+R\div S=\set{t_r[X]|(t_r\in R)\land(\Pi_Y (S)\sube Y_x)}
+\tag{30}
+    \]
+<p>  其中 \(Y_x\) 为 \(x\) 在 \(R\) 中的象集， \(x=t_r[X]\) 。<br>
+  除操作是同时从行和列角度进行运算。</p>
+<p>  <span id="20241027112320CST"></span><strong>例9</strong>：</p>
 
     </div>
 </section>
@@ -3201,7 +3214,7 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
 
 
         <span>
-            最后更新于 Oct 27, 2024 10:56 CST
+            最后更新于 Oct 27, 2024 13:36 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3360,7 +3373,7 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
             
             
         
-        <span>本图书馆累计发布了11篇文章 共110761字</span>
+        <span>本图书馆累计发布了11篇文章 共110903字</span>
     </section>
 
     <section class="site-visit-count">

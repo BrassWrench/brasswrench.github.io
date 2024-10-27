@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 27 Oct 2024 10:56:04 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 27 Oct 2024 13:36:29 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -45,9 +45,9 @@
 &lt;/h3&gt;&lt;p&gt;  关系模型的数据结构非常简单，只包含单一的数据结构&amp;mdash;&amp;mdash;关系。在用户看来，关系模型中数据的逻辑结构是一张扁平的二维表。&lt;br&gt;
   关系模型的数据结构虽然简单却能够表达丰富的语义，描述出现实世界的实体以及实体间的各种联系。也就是说，在关系模型中，现实世界的实体以及实体间的各种联系均用单一的结构类型，即关系来表示。&lt;br&gt;
   前面已经非形式化地介绍了关系模型及有关的基本概念。关系模型是建立在集合代数的基础上的，这里从集合论角度给出关系数据结构的形式化定义。&lt;/p&gt;
-&lt;h4 id=&#34;域domain&#34;&gt;域（domain）
+&lt;h4 id=&#34;域&#34;&gt;域
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024154841CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1（域）&lt;/strong&gt;：域是一组具有相同数据类型的值的集合。例如，自然数、整数、实数、长度小于25字节的字符串集合、 {0,1} 、 {男,女} 、大于等于0且小于等于100的正整数等，都可以是域。&lt;/p&gt;
-&lt;h4 id=&#34;cartesian乘积cartesian-product&#34;&gt;Cartesian乘积（cartesian product）
+&lt;h4 id=&#34;cartesian乘积&#34;&gt;Cartesian乘积
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024155054CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（Cartesian乘积）&lt;/strong&gt;：给定一组域 \(D_1,D_2,\cdots,D_n\) ，允许其中某些域是相同的， \(D_1,D_2,\cdots,D_n\)的Cartesian乘积为&lt;/p&gt;
 &lt;span id=&#34;20241024155332CST&#34;&gt;&lt;/span&gt;\[
 D_1\times D_2 \times \cdots \times D_n=\set{(d_1,d_2,\cdots,d_n)|d_i\in D_i,i=1,2,\cdots,n}
@@ -518,21 +518,21 @@ R(A_1,A_2,\cdots,A_n)
 &lt;/h3&gt;&lt;p&gt;  传统的集合运算是二目运算，包括并、差、交、Cartesian乘积4种运算。&lt;br&gt;
   设关系 \(R\) 和关系 \(S\) 具有相同的目 \(n\) （即两个关系都有 \(n\) 个属性），且相应的属性取自同一个域， \(t\) 是元组变量， \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。&lt;/p&gt;
 &lt;p&gt;  可以定义并、差、交、Cartesian乘积运算如下。&lt;/p&gt;
-&lt;h4 id=&#34;并union&#34;&gt;并（union）
+&lt;h4 id=&#34;并&#34;&gt;并
 &lt;/h4&gt;&lt;p&gt;  关系 \(R\) 与关系 \(S\) 的并记作&lt;/p&gt;
 &lt;span id=&#34;20241025172503CST&#34;&gt;&lt;/span&gt;\[
 R\cup S=\set{t|t \in R \lor t \in S}
 \tag{14}
     \]
 &lt;p&gt;  其中 \(\lor\) 是或运算符。其结果仍为 \(n\) 目关系，由属于 \(R\) 或属于 \(S\) 的元组组成。&lt;/p&gt;
-&lt;h4 id=&#34;差except&#34;&gt;差（except）
+&lt;h4 id=&#34;差&#34;&gt;差
 &lt;/h4&gt;&lt;p&gt;  关系 \(R\) 与关系 \(S\) 的差记作&lt;/p&gt;
 &lt;span id=&#34;20241025174034CST&#34;&gt;&lt;/span&gt;\[
 R-S=\set{t|t \in R \land t \notin S}
 \tag{15}
     \]
 &lt;p&gt;  其中 \(\land\) 是与运算符。其结果关系仍为 \(n\) 目关系，由属于 \(R\) 而不属于 \(S\) 的所有元组组成。&lt;/p&gt;
-&lt;h4 id=&#34;交intersection&#34;&gt;交（intersection）
+&lt;h4 id=&#34;交&#34;&gt;交
 &lt;/h4&gt;&lt;p&gt;  关系 \(R\) 与关系 \(S\) 的交记作&lt;/p&gt;
 &lt;span id=&#34;20241025174455CST&#34;&gt;&lt;/span&gt;\[
 R\cap S = \set{t|t\in R \land t \in S}
@@ -543,7 +543,7 @@ R\cap S = \set{t|t\in R \land t \in S}
 R \cap S = R-(R-S)
 \tag{17}
     \]
-&lt;h4 id=&#34;cartesian乘积cartesian-product-1&#34;&gt;Cartesian乘积(cartesian product)
+&lt;h4 id=&#34;cartesian乘积-1&#34;&gt;Cartesian乘积
 &lt;/h4&gt;&lt;p&gt;  这里的Cartesian乘积严格地讲应该是&lt;strong&gt;广义的Cartesian乘积（extended cartesian product）&lt;/strong&gt;，因为这里Cartesian乘积的元素是元组。&lt;br&gt;
   两个分别为 \(n\) 目和 \(m\) 目的关系 \(R\) 和 \(S\) 的Cartesian乘积是一个 \((n+m)\) 列的元组的集合。元组的前 \(n\) 列是关系 \(R\) 的一个元组，后所列是关系 \(S\) 的一个元组。若 \(R\) 有 \(k_1\) 个元组，S有 \(k_2\) 个元组，则关系 \(R\) 和关系 \(S\) 的Cartesian乘积有 \(k_1\times k_2\) 个元组。记作&lt;/p&gt;
 &lt;span id=&#34;20241025175123CST&#34;&gt;&lt;/span&gt;\[
@@ -1073,7 +1073,7 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 &lt;li&gt;设关系模式为 \(R(A_1,A_2,\cdots,A_n)\)，它的一个关系设为 \(R\) 。 \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。 \(t[A_i]\) 则表示元组 \(t\) 中相应于属性 \(i\) 的一个分量。&lt;/li&gt;
 &lt;li&gt;若 \(A=\set{A_{i1},A_{i2},\cdots,A_{ik}}\) ，其 \(A_{i1},A_{i2},\cdots,A_{ik}\) 是 \(A_1,A_2,\cdots,A_n\) 中的一部分,则 \(A\) 称为属性列或属性组。 \(t[A]=(t[A_{i1}],t[A_{i2}],\cdots,t[A_{ik}])\) 表示元组 \(t\) 在属性列 \(A\) 上诸分量的集合， \(\bar{A}\) 则表示 \(\set{A_1,A_2,\cdots,A_n}\) 中去掉 \(\set{A_{i1},A_{i2},\cdots,A_{ik}}\) 后剩余的属性组。&lt;/li&gt;
 &lt;li&gt;\(R\) 为 \(n\) 目关系， \(S\) 为 \(m\) 目关系。 \(t_r\in R,t_s \in S\) ， \(\overgroup{t_rt_s}\) 称为元组的&lt;strong&gt;连接（concatenation）&lt;/strong&gt;‌或元组的&lt;strong&gt;串接&lt;/strong&gt;。它是一个 \(n+m\) 列的元组，前 \(n\) 个分量为 \(R\) 中的一个 \(n\) 元组，后 \(m\) 个分量为 \(S\) 中的一个 \(m\) 元组。&lt;/li&gt;
-&lt;li&gt;给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的&lt;strong&gt;象集（images set）&lt;/strong&gt;‌定义为
+&lt;li&gt;给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的&lt;span id=&#34;20241027111504CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;象集（images set）&lt;/strong&gt;‌定义为
 &lt;span id=&#34;20241026105811CST&#34;&gt;&lt;/span&gt;\[
 Z_x=\set{t[Z]|t \in R, t[X]=x}
 \tag{19}
@@ -1460,7 +1460,7 @@ X_1\theta Y_1
   &lt;text transform=&#34;translate(228.1717 194.1214)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.01em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;9.8101&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;tspan x=&#34;16.2358&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;u&lt;/tspan&gt;&lt;tspan x=&#34;27.7559&#34; y=&#34;0&#34;&gt;dent&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(416.922 397.7815)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.2998&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;b&lt;/tspan&gt;&lt;tspan x=&#34;17.2261&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图7&amp;emsp;选择运算举例&lt;/p&gt;&lt;/div&gt;
-&lt;h4 id=&#34;投影projection&#34;&gt;投影（projection）
+&lt;h4 id=&#34;投影&#34;&gt;投影
 &lt;/h4&gt;&lt;p&gt;  关系 \(R\) 上的投影是从 \(R\) 中选择出若干属性列组成新的关系。记作&lt;/p&gt;
 &lt;span id=&#34;20241026154923CST&#34;&gt;&lt;/span&gt;\[
 \Pi_A(R)=\set{t[A]|t \in R}
@@ -1469,9 +1469,9 @@ X_1\theta Y_1
 &lt;p&gt;  其中 \(A\) 为 \(R\) 的属性列。&lt;br&gt;
   投影操作就是从列的角度进行运算。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241026155314CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例6&lt;/strong&gt;：查询学生的姓名和所在系，即求Student关系上学生姓名和所在系两个属性上的投影。&lt;/p&gt;
-&lt;span id=&#34;20241026155522CST&#34;&gt;&lt;/span&gt;\[
+&lt;span id=&#34;20241027110238CST&#34;&gt;&lt;/span&gt;\[
 \Pi_{\text{Sname,Sdept}}(\text{Student})
-\tag{26}
+\tag{25}
     \]
 &lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026160858CST&#34;&gt;图8&lt;/a&gt;(a)所示。&lt;br&gt;
   投影之后不仅取消了原关系中的某些列，而且还可能取消某些元组，因为取消了某些属性列后，就可能出现重复行，应取消这些完全相同的行。&lt;/p&gt;
@@ -1515,7 +1515,7 @@ X_1\theta Y_1
   &lt;text transform=&#34;translate(300.4314 266.5726)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（a&lt;/tspan&gt;&lt;tspan x=&#34;27&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(584.2916 266.5732)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（b&lt;/tspan&gt;&lt;tspan x=&#34;28.4219&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;投影运算举例&lt;/p&gt;&lt;/div&gt;
-&lt;h4 id=&#34;连接join&#34;&gt;连接（join）
+&lt;h4 id=&#34;连接&#34;&gt;连接
 &lt;/h4&gt;&lt;p&gt;  连接也称为 \(\theta\) 连接。它是从两个关系的Cartesian乘积中选取属性间满足一定条件的元组。记作&lt;/p&gt;
 &lt;span id=&#34;20241026161052CST&#34;&gt;&lt;/span&gt;\[
 R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]\theta t_s[B])}
@@ -2193,6 +2193,18 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
   &lt;/g&gt;
   &lt;text transform=&#34;translate(646.2065 278.564)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.025em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;5.8501&#34; y=&#34;0&#34;&gt;c)右外连接&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图10&amp;emsp;外连接运算举例&lt;/p&gt;&lt;/div&gt;
+&lt;h4 id=&#34;除运算&#34;&gt;除运算
+&lt;/h4&gt;&lt;p&gt;  设关系 \(R\) 除以关系 \(S\) 的结果为关系 \(T\) ，则 \(T\) 包含所有在 \(R\) 但不在 \(S\) 中的属性及其值，且 \(T\) 的元组与 \(S\) 的元组的所有组合都在 \(R\) 中。&lt;br&gt;
+  下面用&lt;a class=&#34;link&#34; href=&#34;#20241027111504CST&#34;&gt;象集&lt;/a&gt;来定义除法：&lt;br&gt;
+  给定关系 \(R(X,Y)\) 和 \(S(Y,Z)\) ，其中 \(X,Y,Z\) 为属性组。 \(R\) 中的 \(Y\) 与 \(S\) 中的 \(Y\) 可以有不同的属性名，但必须出自相同的域集。&lt;br&gt;
+   \(R\) 与 \(S\) 的除运算得到一个新的关系 \(P(X)\) ， \(P\) 是 \(R\) 中满足下列条件的元组在 \(X\) 属性列上的投影：元组在 \(X\) 上分量值 \(x\) 的象集 \(Y_x\) 包含 \(S\) 在 \(Y\) 上投影的集合。记作&lt;/p&gt;
+&lt;span id=&#34;20241027111110CST&#34;&gt;&lt;/span&gt;\[
+R\div S=\set{t_r[X]|(t_r\in R)\land(\Pi_Y (S)\sube Y_x)}
+\tag{30}
+    \]
+&lt;p&gt;  其中 \(Y_x\) 为 \(x\) 在 \(R\) 中的象集， \(x=t_r[X]\) 。&lt;br&gt;
+  除操作是同时从行和列角度进行运算。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241027112320CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例9&lt;/strong&gt;：&lt;/p&gt;
 </description>
         </item>
         <item>
