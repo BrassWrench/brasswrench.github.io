@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 27 Oct 2024 10:21:40 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 28 Oct 2024 19:21:03 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -1054,7 +1054,46 @@ g_{ij}(s)\equiv 0,\quad 1 \le i,j \le 3
 &lt;p&gt;  故 \(\tau(s)\) 是曲线 \(\bm{r}=\bm{r}(s)\) 的挠率。证毕。&lt;/p&gt;
 &lt;p&gt;  上面的定理说明，函数 \(\kappa(s)&gt;0\) 于 \(\tau(s)\) 在空间 \(E^3\) 中不计位置差异唯一地确定了一条曲线，因此它们可以看作是该曲线的方程，成为曲线的&lt;strong&gt;内在方程&lt;/strong&gt;，或&lt;strong&gt;自然方程&lt;/strong&gt;。从曲线的自然方程得到参数方程的过程就是求解方程组&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;的过程。一般说来，该过程是比较难的。如果知道方程组&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;的一个特解，则&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;告诉我们，其余的解都是上述特解在 \(E^3\) 的刚体运动下的像。&lt;/p&gt;
 &lt;h2 id=&#34;曲线参数方程在一点的标准展开&#34;&gt;曲线参数方程在一点的标准展开
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;p&gt;  我们知道，解析函数 \(y=f(x)\) 在任意一点 \(x_0\) 的邻域内可以展开成收敛成幂级数。如果函数 \(y=f(x)\) 是光滑的，即它有任意阶的导数，则函数 \(f(x)\) 可以表示成任意 \(n\) 次的一个多项式与一个余项之和，该多项式的系数由 \(f(x)\) 的直到 \(n\) 阶的各阶导数在 \(x_0\) 处的值决定，并且余项在 \(x \to x_0\) 时是比 \((x-x_0)^n\) 更高阶的无穷小量．这样的展开式称为函数 \(y=f(x)\) 的Taylor展开式，它是原来函数的近似。当然，多项式函数比原来的函数简单，它的性状更容易了解和描写。正则曲线的参数方程是由三个可微函数组成的，将Taylor展开式用到这三个函数上，便能够得到一条多项式曲线来近似原来的曲线。特别是，在曲线的曲率和挠率都不为零的时候，在一点的附近可以求得一条三次曲线，它与原来的曲线在该点有相同的曲率、挠率和Frenet标架，于是原曲线在该点附近的性状可以用这条近似曲线来模拟。&lt;/p&gt;
+&lt;p&gt;  设 \(\bm{r}=\bm{r}(s)\) 是一条以弧长 \(s\) 为参数的正则曲线，它在 \(s=0\) 处的Taylor展开式为（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;Taylor展开&lt;/a&gt;）&lt;/p&gt;
+&lt;span id=&#34;20241028183355CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}(s)=\bm{r}(0)+\frac{s}{1!}\bm{r}&#39;(0)+\frac{s^2}{2!}\bm{r}&#39;&#39;(0)+\frac{s^3}{3!}\bm{r}&#39;&#39;&#39;(0)+\bm{\omicron}(s^3)
+\tag{113}
+    \]
+&lt;p&gt;  其中 \(\bm{\omicron}(s^3)\) 是余项，满足条件&lt;/p&gt;
+&lt;span id=&#34;20241028183535CST&#34;&gt;&lt;/span&gt;\[
+\lim\limits_{s \to 0}\frac{|\bm{\omicron}(s^3)|}{s^3}=0
+\tag{114}
+    \]
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;第一式取 \(s=0\) 可得&lt;/p&gt;
+&lt;span id=&#34;20241028183757CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;(0)=\bm{\alpha}(0)
+\tag{115}
+    \]
+&lt;p&gt;  将上式代入&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;第二式并取 \(s=0\) 可得&lt;/p&gt;
+&lt;span id=&#34;20241028184300CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;&#39;(0)=\kappa(0)\bm{\beta}(0)
+\tag{116}
+    \]
+&lt;p&gt;  将&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;第一、二式代入第三式&lt;/p&gt;
+&lt;span id=&#34;20241028184539CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\bm{\beta}&#39;(s)=&amp;\left(\frac{\bm{\alpha}&#39;(s)}{\kappa(s)}\right)&#39;=\frac{\bm{\alpha}&#39;&#39;(s)\kappa(s)-\bm{\alpha}&#39;(s)\kappa&#39;(s)}{\kappa(s)^2}=\frac{\bm{r}&#39;&#39;&#39;(s)\kappa(s)+\kappa(s)\kappa&#39;(s)\bm{\beta}(s)}{\kappa(s)^2}\\[15pt]
+&amp;=\frac{\bm{r}&#39;&#39;&#39;(s)-\kappa&#39;(s)\bm{\beta}(s)}{\kappa(s)}=-\kappa(s)\bm{\alpha}(s)+\tau(s)\gamma(s)
+\end{aligned}
+\tag{117}
+    \]
+&lt;p&gt;  取 \(s=0\) 可得&lt;/p&gt;
+&lt;span id=&#34;20241028190104CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;&#39;&#39;(0)=-\kappa^2(0)\bm{\alpha}(0)+\kappa&#39;(0)\bm{\beta}(0)+\kappa(0)\tau(0)\bm{\gamma}(0)
+\tag{118}
+    \]
+&lt;p&gt;  将&lt;a class=&#34;link&#34; href=&#34;#20241028183757CST&#34;&gt;式(115)&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241028184300CST&#34;&gt;式(116)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241028190104CST&#34;&gt;式(118)&lt;/a&gt;代入&lt;a class=&#34;link&#34; href=&#34;#20241028183355CST&#34;&gt;式(113)&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241028190514CST&#34;&gt;&lt;/span&gt;
+    \[
+\bm{r}(s)=\bm{r}(0)+\left(s-\frac{\kappa_0^2}{6}s^3\right)\bm{\alpha}(0)+\left(\frac{\kappa_0}{2}s^2+\frac{\kappa&#39;_0}{6}s^3\right)\bm{\beta}(0)+\frac{\kappa_0\tau_0}{6}s^3\bm{\gamma}(0)+\bm{\omicron}(s^3)
+\]
+</description>
         </item>
         <item>
         <title>微分几何（一）：Euclidean空间</title>

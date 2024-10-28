@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 28 Oct 2024 15:03:00 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 28 Oct 2024 19:21:03 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -2563,10 +2563,11 @@ R \div S = \set{a_1}
 &lt;p&gt;  \(\text{GET W (AVG(Student.Sage): Student.Sdept=&#39;IS&#39;)}\)&lt;/p&gt;
 &lt;h4 id=&#34;更新操作&#34;&gt;更新操作
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;1. 修改操作&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  修改操作用\(\text{UPDATE}\)语句实现。其步骤是：&lt;br&gt;
-  ①首先用\(\text{HOLD}\)语句将要修改的元组从数据库中读到工作空间中：&lt;br&gt;
-  ②然后用宿主语言修改工作空间中元组的属性值；&lt;br&gt;
-  ③最后用\(\text{UPDATE}\)语句将修改后的元组送回数据库中。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先用\(\text{HOLD}\)语句将要修改的元组从数据库中读到工作空间中：&lt;/li&gt;
+&lt;li&gt;然后用宿主语言修改工作空间中元组的属性值；&lt;/li&gt;
+&lt;li&gt;最后用\(\text{UPDATE}\)语句将修改后的元组送回数据库中。&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028143603CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例30&lt;/strong&gt;：把201215127学生从计算机科学系转到信息系。&lt;/p&gt;
 &lt;p&gt;  \(\text{HOLD W (Student.Sno,Student Sdept): Student.Sno=&#39;201215127&#39;}\)&lt;br&gt;
   \(\hspace{157pt}\text{(从Student关系中读出201215127学生的数据)}\)&lt;br&gt;
@@ -2575,9 +2576,11 @@ R \div S = \set{a_1}
 &lt;p&gt;  在该例中用\(\text{HOLD}\)语句来读201215127的数据，而不是用\(\text{GET}\)语句。如果修改操作涉及两个关系的话，就要执行两次\(\text{HOLD-MOVE-UPDATE}\)操作序列。&lt;br&gt;
   在ALPHA语言中，修改关系主码的操作是不允许的，例如不能用UPDATE语句将学 号201215121改为201215122。如果需要修改主码值，只能先用删除操作删除该元组，然后再把具有新主码值的元组插入到关系中。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. 插入操作&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  插入操作用PUT语句实现。其步骤是：&lt;br&gt;
-  ①首先用宿主语言在工作空间中建立新元组；&lt;br&gt;
-  ②然后用PUT语句把该元组存入指定的关系中。&lt;/p&gt;
+&lt;p&gt;  插入操作用\(\text{PUT}\)语句实现。其步骤是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先用宿主语言在工作空间中建立新元组；&lt;/li&gt;
+&lt;li&gt;然后用\(\text{PUT}\)语句把该元组存入指定的关系中。&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028144605CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例31&lt;/strong&gt;：学校新开设了一门2学分的课程&amp;quot;计算机组织与结构”，其课程号为8,直 接先行课为6号课程。插入该课程元组。&lt;/p&gt;
 &lt;p&gt;  \(\text{MOVE &#39;8&#39; TO W.Cno}\)&lt;br&gt;
   \(\text{MOVE &#39;计算机组织与结构&#39; TO W.Cname}\)&lt;br&gt;
@@ -2585,10 +2588,12 @@ R \div S = \set{a_1}
   \(\text{MOVE &#39;2&#39; TO W.Ccredit}\)&lt;br&gt;
   \(\text{PUT W (Course)}\hspace{2em}\text{(把W中的元组插入指定关系Course中)}\)&lt;/p&gt;
 &lt;p&gt;  PUT语句只对一个关系操作，也就是说表达式必须为单个关系名。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;3. 删除&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  删除操作用DELETE语句实现。其步骤为：&lt;br&gt;
-  ①用HOLD语句把要删除的元组从数据库中读到工作空间中；&lt;br&gt;
-  ②用DELETE语句删除该元组。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 删除操作&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  删除操作用\(\text{DELETE}\)语句实现。其步骤为：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;用\(\text{HOLD}\)语句把要删除的元组从数据库中读到工作空间中；&lt;/li&gt;
+&lt;li&gt;用\(\text{DELETE}\)语句删除该元组。&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028145220CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例32&lt;/strong&gt;：201215230学生因故退学，删除该学生元组。&lt;/p&gt;
 &lt;p&gt;  \(\text{HOLD W (Student): Student.Sno=&#39;201215230&#39;}\)&lt;br&gt;
   \(\text{DELETE W}\)&lt;/p&gt;
@@ -2608,7 +2613,40 @@ R \div S = \set{a_1}
 &lt;p&gt;  \(\text{HOLD W (SC)}\)&lt;br&gt;
   \(\text{DELETE W}\)&lt;/p&gt;
 &lt;h4 id=&#34;元组关系演算&#34;&gt;元组关系演算
-&lt;/h4&gt;</description>
+&lt;/h4&gt;&lt;p&gt;  为了讨论方便，先允许关系（的基数）是无限的，然后再对这种情况下定义的演算做适当的修改，保证关系演算中各个公式表示的是有限关系。&lt;br&gt;
+  在元组关系演算系统中，称 \(\set{t|\phi(t)}\) 为&lt;strong&gt;元组演算表达式&lt;/strong&gt;。其中， \(t\) 是元组变量， \(\phi(t)\) 为元组关系演算公式，简称公式，它由原子公式和运算符组成。&lt;br&gt;
+  原子公式有以下三类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;\(R(t)\) 。 \(R\) 是关系名， \(t\) 是元组变量。 \(R(t)\) 表示 \(t\) 是 \(R\) 中的元组。于是，关系 \(R\) 可表示为 \(\set{t|R(t)}\) 。&lt;/li&gt;
+&lt;li&gt;\(t[i]\theta u[j]\) 。 \(t\) 和 \(u\) 是元组变量， \(\theta\) 是算数比较运算符。 \(t[i]\theta u[j]\) 表示断言“元组 \(t\) 的第 \(i\) 个分量与元组 \(u\) 的第 \(j\) 个分量满足比较关系 \(\theta\) ”。例如， \(t[2] &lt; u[3] \) 表示元组 \(t\) 的第 \(2\) 个分量小于元组 \(u\) 的第 \(3\) 个分量。&lt;/li&gt;
+&lt;li&gt;\(t[i]\theta c\) 或 \(c\theta t[i]\) 。这里 \(c\) 是常量，该公式表示“ \(t\) 的第 \(i\) 个分量与常量 \(c\) 满足比较关系 \(\theta\) ”。例如， \(t[4]=3\) 表示元组 \(t\) 的第 \(4\) 个分量等于 \(3\) 。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  在关系演算中定义了&amp;quot;自由元组变量”和&amp;quot;约束元组变量”的概念。这些概念和谓词演算中的概念完全一样。若公式中的一个元组变量前有“全称量词”或“存在量词&amp;quot;，则称该变量为&lt;strong&gt;约束元组变量&lt;/strong&gt;，否则称&lt;strong&gt;自由元组变量&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  公式可以递归定义如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;每个原子公式是公式。&lt;/li&gt;
+&lt;li&gt;如果 \(\phi_1\) 和 \(\phi_2\) 是公式，则 \(\phi_1\land\phi_2\) 、 \(\phi_1\lor\phi_2\) 、 \(\lnot\phi_1\) 是公式。
+&lt;ol&gt;
+&lt;li&gt;如果 \(\phi_1\) 和 \(\phi_2\) 同时为真，则 \(\phi_1\land\phi_2\) 才为真，否则为假。&lt;/li&gt;
+&lt;li&gt;如果 \(\phi_1\) 和 \(\phi_2\) 中一个或同时为真，则 \(\phi_1\lor\phi_2\) 为真，仅当 \(\phi_1\) 和 \(\phi_2\) 同时为假时， \(\phi_1\lor\phi_2\) 才为假。&lt;/li&gt;
+&lt;li&gt;若 \(\phi_1\) 为真，则 \(\lnot\phi_1\) 为假。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;若 \(\phi\) 是公式，则 \(\exist t(\phi)\) 是公式，其中符号 \(\exist\) 是全称量词符号， \(\exist t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\exist t(\phi)\) 为真，否则 \(\exist t(\phi)\) 为假。&lt;/li&gt;
+&lt;li&gt;若 \(\phi\) 是公式，则 \(\forall t(\phi)\) 是公式，其中符号 \(\forall\) 是全称量词符号， \(\forall t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\forall t(\phi)\) 为真，否则 \(\forall t(\phi)\) 为假。&lt;/li&gt;
+&lt;li&gt;在元组演算公式中，各种运算符的优先次序为：
+&lt;ol&gt;
+&lt;li&gt;算术比较运算符最高。&lt;/li&gt;
+&lt;li&gt;量词次之，且 \(\exist\) 的优先级高于 \(\forall\) 的优先级。&lt;/li&gt;
+&lt;li&gt;逻辑运算符最低，且 \(\lnot\) 的优先级高于 \(\land\) 的优先级， \(\land\) 的优先级高于 \(\lor\) 的优先级。&lt;/li&gt;
+&lt;li&gt;加括号是，括号中的运算符优先，同一括号内的运算符之优先级遵循1. 、2. 、3. 各项。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;有限次地使用上述5条规则得到的公式是元组关系演算公式，其他公式不是元组关系演算公式。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  一个元组演算表达式 \(\set{t|\phi(t)}\) 表示了使 \(\phi(t)\) 真的元组集合。&lt;/p&gt;
+&lt;p&gt;  关系代数的运算均可以用关系演算表达式来表示（反之亦然）。下面用关系演算表达式来表示5种基本运算。&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>草稿</title>
@@ -5957,7 +5995,46 @@ g_{ij}(s)\equiv 0,\quad 1 \le i,j \le 3
 &lt;p&gt;  故 \(\tau(s)\) 是曲线 \(\bm{r}=\bm{r}(s)\) 的挠率。证毕。&lt;/p&gt;
 &lt;p&gt;  上面的定理说明，函数 \(\kappa(s)&gt;0\) 于 \(\tau(s)\) 在空间 \(E^3\) 中不计位置差异唯一地确定了一条曲线，因此它们可以看作是该曲线的方程，成为曲线的&lt;strong&gt;内在方程&lt;/strong&gt;，或&lt;strong&gt;自然方程&lt;/strong&gt;。从曲线的自然方程得到参数方程的过程就是求解方程组&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;的过程。一般说来，该过程是比较难的。如果知道方程组&lt;a class=&#34;link&#34; href=&#34;#20241020233735CST&#34;&gt;式(99)&lt;/a&gt;的一个特解，则&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;告诉我们，其余的解都是上述特解在 \(E^3\) 的刚体运动下的像。&lt;/p&gt;
 &lt;h2 id=&#34;曲线参数方程在一点的标准展开&#34;&gt;曲线参数方程在一点的标准展开
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;p&gt;  我们知道，解析函数 \(y=f(x)\) 在任意一点 \(x_0\) 的邻域内可以展开成收敛成幂级数。如果函数 \(y=f(x)\) 是光滑的，即它有任意阶的导数，则函数 \(f(x)\) 可以表示成任意 \(n\) 次的一个多项式与一个余项之和，该多项式的系数由 \(f(x)\) 的直到 \(n\) 阶的各阶导数在 \(x_0\) 处的值决定，并且余项在 \(x \to x_0\) 时是比 \((x-x_0)^n\) 更高阶的无穷小量．这样的展开式称为函数 \(y=f(x)\) 的Taylor展开式，它是原来函数的近似。当然，多项式函数比原来的函数简单，它的性状更容易了解和描写。正则曲线的参数方程是由三个可微函数组成的，将Taylor展开式用到这三个函数上，便能够得到一条多项式曲线来近似原来的曲线。特别是，在曲线的曲率和挠率都不为零的时候，在一点的附近可以求得一条三次曲线，它与原来的曲线在该点有相同的曲率、挠率和Frenet标架，于是原曲线在该点附近的性状可以用这条近似曲线来模拟。&lt;/p&gt;
+&lt;p&gt;  设 \(\bm{r}=\bm{r}(s)\) 是一条以弧长 \(s\) 为参数的正则曲线，它在 \(s=0\) 处的Taylor展开式为（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;Taylor展开&lt;/a&gt;）&lt;/p&gt;
+&lt;span id=&#34;20241028183355CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}(s)=\bm{r}(0)+\frac{s}{1!}\bm{r}&#39;(0)+\frac{s^2}{2!}\bm{r}&#39;&#39;(0)+\frac{s^3}{3!}\bm{r}&#39;&#39;&#39;(0)+\bm{\omicron}(s^3)
+\tag{113}
+    \]
+&lt;p&gt;  其中 \(\bm{\omicron}(s^3)\) 是余项，满足条件&lt;/p&gt;
+&lt;span id=&#34;20241028183535CST&#34;&gt;&lt;/span&gt;\[
+\lim\limits_{s \to 0}\frac{|\bm{\omicron}(s^3)|}{s^3}=0
+\tag{114}
+    \]
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;第一式取 \(s=0\) 可得&lt;/p&gt;
+&lt;span id=&#34;20241028183757CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;(0)=\bm{\alpha}(0)
+\tag{115}
+    \]
+&lt;p&gt;  将上式代入&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;第二式并取 \(s=0\) 可得&lt;/p&gt;
+&lt;span id=&#34;20241028184300CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;&#39;(0)=\kappa(0)\bm{\beta}(0)
+\tag{116}
+    \]
+&lt;p&gt;  将&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;第一、二式代入第三式&lt;/p&gt;
+&lt;span id=&#34;20241028184539CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\bm{\beta}&#39;(s)=&amp;\left(\frac{\bm{\alpha}&#39;(s)}{\kappa(s)}\right)&#39;=\frac{\bm{\alpha}&#39;&#39;(s)\kappa(s)-\bm{\alpha}&#39;(s)\kappa&#39;(s)}{\kappa(s)^2}=\frac{\bm{r}&#39;&#39;&#39;(s)\kappa(s)+\kappa(s)\kappa&#39;(s)\bm{\beta}(s)}{\kappa(s)^2}\\[15pt]
+&amp;=\frac{\bm{r}&#39;&#39;&#39;(s)-\kappa&#39;(s)\bm{\beta}(s)}{\kappa(s)}=-\kappa(s)\bm{\alpha}(s)+\tau(s)\gamma(s)
+\end{aligned}
+\tag{117}
+    \]
+&lt;p&gt;  取 \(s=0\) 可得&lt;/p&gt;
+&lt;span id=&#34;20241028190104CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;&#39;&#39;(0)=-\kappa^2(0)\bm{\alpha}(0)+\kappa&#39;(0)\bm{\beta}(0)+\kappa(0)\tau(0)\bm{\gamma}(0)
+\tag{118}
+    \]
+&lt;p&gt;  将&lt;a class=&#34;link&#34; href=&#34;#20241028183757CST&#34;&gt;式(115)&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241028184300CST&#34;&gt;式(116)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241028190104CST&#34;&gt;式(118)&lt;/a&gt;代入&lt;a class=&#34;link&#34; href=&#34;#20241028183355CST&#34;&gt;式(113)&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241028190514CST&#34;&gt;&lt;/span&gt;
+    \[
+\bm{r}(s)=\bm{r}(0)+\left(s-\frac{\kappa_0^2}{6}s^3\right)\bm{\alpha}(0)+\left(\frac{\kappa_0}{2}s^2+\frac{\kappa&#39;_0}{6}s^3\right)\bm{\beta}(0)+\frac{\kappa_0\tau_0}{6}s^3\bm{\gamma}(0)+\bm{\omicron}(s^3)
+\]
+</description>
         </item>
         <item>
         <title>微分几何（一）：Euclidean空间</title>
