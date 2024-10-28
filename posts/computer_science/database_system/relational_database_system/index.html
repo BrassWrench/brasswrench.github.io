@@ -131,7 +131,7 @@
 <meta property='og:description' content="支持关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-28T11:49:15&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-10-28T15:03:00&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="支持关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -653,6 +653,8 @@
         <li><a href="#元组关系演算语言alpha">元组关系演算语言ALPHA</a>
           <ol>
             <li><a href="#检索操作">检索操作</a></li>
+            <li><a href="#更新操作">更新操作</a></li>
+            <li><a href="#元组关系演算">元组关系演算</a></li>
           </ol>
         </li>
       </ol>
@@ -968,7 +970,7 @@
 </svg>
 
             <time class="article-words">
-                15595 字
+                16968 字
             </time>
         </div>
 
@@ -983,7 +985,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 32 分钟
+                    阅读时长: 34 分钟
                 </time>
             </div>
         
@@ -3509,7 +3511,91 @@ R \div S = \set{a_1}
   \(\text{GET W (Student.Sno): }\forall\text{CX(}\exist\text{SCX(SCX.Sno='201215122'}\land\text{SCX.Cno=CX.Cno)}\)<br>
   \(\hspace{120pt}\Rarr\exist\text{SCY(SCY.Sno=Student.Sno }\land\text{SCY.Cno=CX.Cno))}\)</p>
 <p>  蕴涵（ \(\Rarr\) ）见<a class="link" onclick="alert('抱歉，“数理逻辑”还未上线~')">命题逻辑</a>。</p>
-
+<p><strong>11. 聚集函数</strong></p>
+<p>  用户在使用查询语言时经常要作一些简单的计算，例如要求符合某一查询要求的元组数，求某个关系中所有元组在某属性上的值的总和或平均值等。为了方便用户，关系数据语言中建立了有关这类运算的标准函数库供用户选用。这类函数通常称为<strong>聚集函数</strong>或<strong>内置函数（built-in function）</strong>，关系演算中提供了\(\text{COUNT}\)、\(\text{TOTAL}\)、\(\text{MAX}\)、\(\text{MIN}\)、\(\text{AVG}\)等聚集函数，其含义如<a class="link" href="#20241028142824CST">表6</a>所示。</p>
+<span id="20241028142824CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>函数名</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>\(\text{COUNT}\)</td>
+          <td>对数据项计数</td>
+      </tr>
+      <tr>
+          <td>\(\text{TOTAL}\)</td>
+          <td>计算总和</td>
+      </tr>
+      <tr>
+          <td>\(\text{MAX}\)</td>
+          <td>查找最大值</td>
+      </tr>
+      <tr>
+          <td>\(\text{MIN}\)</td>
+          <td>查找最小值</td>
+      </tr>
+      <tr>
+          <td>\(\text{AVG}\)</td>
+          <td>计算平均值</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表6&emsp;关系演算中的聚集函数</p>
+<p>  <span id="20241028143113CST"></span><strong>例28</strong>：查询学生所在系的数目。</p>
+<p>  \(\text{GET W (COUNT(Student.Sdept))}\)</p>
+<p>  <span id="20241028143200CST"></span><strong>例29</strong>：查询信息系学生的平均年龄。</p>
+<p>  \(\text{GET W (AVG(Student.Sage): Student.Sdept='IS')}\)</p>
+<h4 id="更新操作">更新操作
+</h4><p><strong>1. 修改操作</strong></p>
+<p>  修改操作用\(\text{UPDATE}\)语句实现。其步骤是：<br>
+  ①首先用\(\text{HOLD}\)语句将要修改的元组从数据库中读到工作空间中：<br>
+  ②然后用宿主语言修改工作空间中元组的属性值；<br>
+  ③最后用\(\text{UPDATE}\)语句将修改后的元组送回数据库中。</p>
+<p>  <span id="20241028143603CST"></span><strong>例30</strong>：把201215127学生从计算机科学系转到信息系。</p>
+<p>  \(\text{HOLD W (Student.Sno,Student Sdept): Student.Sno='201215127'}\)<br>
+  \(\hspace{157pt}\text{(从Student关系中读出201215127学生的数据)}\)<br>
+  \(\text{MOVE 'IS' TO W.Sdept}\hspace{50pt}\text{(用宿主语言进行修改)}\)<br>
+  \(\text{UPDATE W}\hspace{100pt}\text{(把修改后的元组送回Student关系)}\)</p>
+<p>  在该例中用\(\text{HOLD}\)语句来读201215127的数据，而不是用\(\text{GET}\)语句。如果修改操作涉及两个关系的话，就要执行两次\(\text{HOLD-MOVE-UPDATE}\)操作序列。<br>
+  在ALPHA语言中，修改关系主码的操作是不允许的，例如不能用UPDATE语句将学 号201215121改为201215122。如果需要修改主码值，只能先用删除操作删除该元组，然后再把具有新主码值的元组插入到关系中。</p>
+<p><strong>2. 插入操作</strong></p>
+<p>  插入操作用PUT语句实现。其步骤是：<br>
+  ①首先用宿主语言在工作空间中建立新元组；<br>
+  ②然后用PUT语句把该元组存入指定的关系中。</p>
+<p>  <span id="20241028144605CST"></span><strong>例31</strong>：学校新开设了一门2学分的课程&quot;计算机组织与结构”，其课程号为8,直 接先行课为6号课程。插入该课程元组。</p>
+<p>  \(\text{MOVE '8' TO W.Cno}\)<br>
+  \(\text{MOVE '计算机组织与结构' TO W.Cname}\)<br>
+  \(\text{MOVE '6' TO W.Cpno}\)<br>
+  \(\text{MOVE '2' TO W.Ccredit}\)<br>
+  \(\text{PUT W (Course)}\hspace{2em}\text{(把W中的元组插入指定关系Course中)}\)</p>
+<p>  PUT语句只对一个关系操作，也就是说表达式必须为单个关系名。</p>
+<p><strong>3. 删除</strong></p>
+<p>  删除操作用DELETE语句实现。其步骤为：<br>
+  ①用HOLD语句把要删除的元组从数据库中读到工作空间中；<br>
+  ②用DELETE语句删除该元组。</p>
+<p>  <span id="20241028145220CST"></span><strong>例32</strong>：201215230学生因故退学，删除该学生元组。</p>
+<p>  \(\text{HOLD W (Student): Student.Sno='201215230'}\)<br>
+  \(\text{DELETE W}\)</p>
+<p>  <span id="20241028145441CST"></span><strong>例33</strong>：将学号201215121改为 201215122。</p>
+<p>  \(\text{HOLD W (Student): Student.Sno='201215121'}\)<br>
+  \(\text{DELETE W}\)<br>
+  \(\text{MOVE '201215122' TO W.Sno}\)<br>
+  \(\text{MOVE '李勇' TO W.Sname}\)<br>
+  \(\text{MOVE '男' TO W.Ssex}\)<br>
+  \(\text{MOVE '20' TO W.Sage}\)<br>
+  \(\text{MOVE 'CS' TO W.Sdept}\)<br>
+  \(\text{PUT W (Student)}\)</p>
+<p>  <span id="20241028145848CST"></span><strong>例34</strong>：删除全部学生。</p>
+<p>  \(\text{HOLD W (Student)}\)<br>
+  \(\text{DELETE W}\)</p>
+<p>  由于SC关系与Student关系之间具有参照关系，为保证参照完整性，删除Student中元组时相应地要删除SC中的元组（手工删除或由数据库管理系统自动执行）：</p>
+<p>  \(\text{HOLD W (SC)}\)<br>
+  \(\text{DELETE W}\)</p>
+<h4 id="元组关系演算">元组关系演算
+</h4>
     </div>
 </section>
 
@@ -3550,7 +3636,7 @@ R \div S = \set{a_1}
 
 
         <span>
-            最后更新于 Oct 28, 2024 11:49 CST
+            最后更新于 Oct 28, 2024 15:03 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3709,7 +3795,7 @@ R \div S = \set{a_1}
             
             
         
-        <span>本图书馆累计发布了11篇文章 共113395字</span>
+        <span>本图书馆累计发布了11篇文章 共114768字</span>
     </section>
 
     <section class="site-visit-count">

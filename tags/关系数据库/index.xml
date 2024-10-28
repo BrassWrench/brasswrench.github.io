@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 28 Oct 2024 11:49:15 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 28 Oct 2024 15:03:00 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -2524,7 +2524,91 @@ R \div S = \set{a_1}
   \(\text{GET W (Student.Sno): }\forall\text{CX(}\exist\text{SCX(SCX.Sno=&#39;201215122&#39;}\land\text{SCX.Cno=CX.Cno)}\)&lt;br&gt;
   \(\hspace{120pt}\Rarr\exist\text{SCY(SCY.Sno=Student.Sno }\land\text{SCY.Cno=CX.Cno))}\)&lt;/p&gt;
 &lt;p&gt;  蕴涵（ \(\Rarr\) ）见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数理逻辑”还未上线~&#39;)&#34;&gt;命题逻辑&lt;/a&gt;。&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;strong&gt;11. 聚集函数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  用户在使用查询语言时经常要作一些简单的计算，例如要求符合某一查询要求的元组数，求某个关系中所有元组在某属性上的值的总和或平均值等。为了方便用户，关系数据语言中建立了有关这类运算的标准函数库供用户选用。这类函数通常称为&lt;strong&gt;聚集函数&lt;/strong&gt;或&lt;strong&gt;内置函数（built-in function）&lt;/strong&gt;，关系演算中提供了\(\text{COUNT}\)、\(\text{TOTAL}\)、\(\text{MAX}\)、\(\text{MIN}\)、\(\text{AVG}\)等聚集函数，其含义如&lt;a class=&#34;link&#34; href=&#34;#20241028142824CST&#34;&gt;表6&lt;/a&gt;所示。&lt;/p&gt;
+&lt;span id=&#34;20241028142824CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;函数名&lt;/th&gt;
+          &lt;th&gt;功能&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;\(\text{COUNT}\)&lt;/td&gt;
+          &lt;td&gt;对数据项计数&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;\(\text{TOTAL}\)&lt;/td&gt;
+          &lt;td&gt;计算总和&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;\(\text{MAX}\)&lt;/td&gt;
+          &lt;td&gt;查找最大值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;\(\text{MIN}\)&lt;/td&gt;
+          &lt;td&gt;查找最小值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;\(\text{AVG}\)&lt;/td&gt;
+          &lt;td&gt;计算平均值&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;关系演算中的聚集函数&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241028143113CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例28&lt;/strong&gt;：查询学生所在系的数目。&lt;/p&gt;
+&lt;p&gt;  \(\text{GET W (COUNT(Student.Sdept))}\)&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241028143200CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例29&lt;/strong&gt;：查询信息系学生的平均年龄。&lt;/p&gt;
+&lt;p&gt;  \(\text{GET W (AVG(Student.Sage): Student.Sdept=&#39;IS&#39;)}\)&lt;/p&gt;
+&lt;h4 id=&#34;更新操作&#34;&gt;更新操作
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;1. 修改操作&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  修改操作用\(\text{UPDATE}\)语句实现。其步骤是：&lt;br&gt;
+  ①首先用\(\text{HOLD}\)语句将要修改的元组从数据库中读到工作空间中：&lt;br&gt;
+  ②然后用宿主语言修改工作空间中元组的属性值；&lt;br&gt;
+  ③最后用\(\text{UPDATE}\)语句将修改后的元组送回数据库中。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241028143603CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例30&lt;/strong&gt;：把201215127学生从计算机科学系转到信息系。&lt;/p&gt;
+&lt;p&gt;  \(\text{HOLD W (Student.Sno,Student Sdept): Student.Sno=&#39;201215127&#39;}\)&lt;br&gt;
+  \(\hspace{157pt}\text{(从Student关系中读出201215127学生的数据)}\)&lt;br&gt;
+  \(\text{MOVE &#39;IS&#39; TO W.Sdept}\hspace{50pt}\text{(用宿主语言进行修改)}\)&lt;br&gt;
+  \(\text{UPDATE W}\hspace{100pt}\text{(把修改后的元组送回Student关系)}\)&lt;/p&gt;
+&lt;p&gt;  在该例中用\(\text{HOLD}\)语句来读201215127的数据，而不是用\(\text{GET}\)语句。如果修改操作涉及两个关系的话，就要执行两次\(\text{HOLD-MOVE-UPDATE}\)操作序列。&lt;br&gt;
+  在ALPHA语言中，修改关系主码的操作是不允许的，例如不能用UPDATE语句将学 号201215121改为201215122。如果需要修改主码值，只能先用删除操作删除该元组，然后再把具有新主码值的元组插入到关系中。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 插入操作&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  插入操作用PUT语句实现。其步骤是：&lt;br&gt;
+  ①首先用宿主语言在工作空间中建立新元组；&lt;br&gt;
+  ②然后用PUT语句把该元组存入指定的关系中。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241028144605CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例31&lt;/strong&gt;：学校新开设了一门2学分的课程&amp;quot;计算机组织与结构”，其课程号为8,直 接先行课为6号课程。插入该课程元组。&lt;/p&gt;
+&lt;p&gt;  \(\text{MOVE &#39;8&#39; TO W.Cno}\)&lt;br&gt;
+  \(\text{MOVE &#39;计算机组织与结构&#39; TO W.Cname}\)&lt;br&gt;
+  \(\text{MOVE &#39;6&#39; TO W.Cpno}\)&lt;br&gt;
+  \(\text{MOVE &#39;2&#39; TO W.Ccredit}\)&lt;br&gt;
+  \(\text{PUT W (Course)}\hspace{2em}\text{(把W中的元组插入指定关系Course中)}\)&lt;/p&gt;
+&lt;p&gt;  PUT语句只对一个关系操作，也就是说表达式必须为单个关系名。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 删除&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  删除操作用DELETE语句实现。其步骤为：&lt;br&gt;
+  ①用HOLD语句把要删除的元组从数据库中读到工作空间中；&lt;br&gt;
+  ②用DELETE语句删除该元组。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241028145220CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例32&lt;/strong&gt;：201215230学生因故退学，删除该学生元组。&lt;/p&gt;
+&lt;p&gt;  \(\text{HOLD W (Student): Student.Sno=&#39;201215230&#39;}\)&lt;br&gt;
+  \(\text{DELETE W}\)&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241028145441CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例33&lt;/strong&gt;：将学号201215121改为 201215122。&lt;/p&gt;
+&lt;p&gt;  \(\text{HOLD W (Student): Student.Sno=&#39;201215121&#39;}\)&lt;br&gt;
+  \(\text{DELETE W}\)&lt;br&gt;
+  \(\text{MOVE &#39;201215122&#39; TO W.Sno}\)&lt;br&gt;
+  \(\text{MOVE &#39;李勇&#39; TO W.Sname}\)&lt;br&gt;
+  \(\text{MOVE &#39;男&#39; TO W.Ssex}\)&lt;br&gt;
+  \(\text{MOVE &#39;20&#39; TO W.Sage}\)&lt;br&gt;
+  \(\text{MOVE &#39;CS&#39; TO W.Sdept}\)&lt;br&gt;
+  \(\text{PUT W (Student)}\)&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241028145848CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例34&lt;/strong&gt;：删除全部学生。&lt;/p&gt;
+&lt;p&gt;  \(\text{HOLD W (Student)}\)&lt;br&gt;
+  \(\text{DELETE W}\)&lt;/p&gt;
+&lt;p&gt;  由于SC关系与Student关系之间具有参照关系，为保证参照完整性，删除Student中元组时相应地要删除SC中的元组（手工删除或由数据库管理系统自动执行）：&lt;/p&gt;
+&lt;p&gt;  \(\text{HOLD W (SC)}\)&lt;br&gt;
+  \(\text{DELETE W}\)&lt;/p&gt;
+&lt;h4 id=&#34;元组关系演算&#34;&gt;元组关系演算
+&lt;/h4&gt;</description>
         </item>
         
     </channel>
