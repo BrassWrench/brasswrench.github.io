@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>自然语言处理 on 黄铜扳手的图书馆</title>
+        <link>https://www.brasswrench.com/posts/computer_science/artificial_intelligence/natural_language_processing/</link>
+        <description>Recent content in 自然语言处理 on 黄铜扳手的图书馆</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>黄铜扳手</copyright>
+        <lastBuildDate>Tue, 29 Oct 2024 08:47:24 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/artificial_intelligence/natural_language_processing/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>自然语言处理（一）：自然语言处理概论</title>
+        <link>https://www.brasswrench.com/posts/computer_science/artificial_intelligence/natural_language_processing/introduction_to_natural_language_processing/</link>
+        <pubDate>Tue, 15 Oct 2024 19:05:40 +0800</pubDate>
+        
+        <guid>https://www.brasswrench.com/posts/computer_science/artificial_intelligence/natural_language_processing/introduction_to_natural_language_processing/</guid>
+        <description>&lt;img src="https://www.brasswrench.com/true" alt="Featured image of post 自然语言处理（一）：自然语言处理概论" /&gt;
+
+
+
+
+
+
+
+&lt;iframe
+  class=&#34;netease-cloud-music-frame&#34;
+  title=&#34;song&amp;#39;s 1372188635&#34;
+  frameborder=&#34;no&#34;
+  border=&#34;0&#34;
+  marginwidth=&#34;0&#34;
+  marginheight=&#34;0&#34;
+  width=&#34;100%&#34;
+  height=&#34;86&#34;
+  loading=&#34;lazy&#34;
+  src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=1372188635&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
+&lt;/iframe&gt;
+
+&lt;h1 id=&#34;自然语言处理概论&#34;&gt;自然语言处理概论
+&lt;/h1&gt;&lt;p&gt;  本篇首先介绍了自然语言以及自然语言处理的基本概念，并总结了自然语言处理所面临的8个难点，即语言的抽象性、组合性、歧义性、进化性、非规范性、主观性、知识性及难移植性。正是由于这些难点的存在，导致自然语言处理任务纷繁复杂，并产生了多种划分方式，如按照任务层级,可以分为资源建设、基础任务、应用任务及应用系统四个层级；按照任务类型，可以分为回归、分类、匹配、解析及生成五大问题；按照研究对象的不同，可以分为形式、语义、推理及语用分析四个等级。从历史上看，自然语言处理经过了将近60年的发展，期间经历了理性主义和经验主义两大发展阶段。其中，经验主义又被分成了基于统计模型、深度学习模型及最新的预训练模型三个阶段，尤其是&amp;quot;预训练+精调&amp;quot;的方式，已成为自然语言处理的最新范式。&lt;/p&gt;
+&lt;h2 id=&#34;自然语言处理的概念&#34;&gt;自然语言处理的概念
+&lt;/h2&gt;&lt;p&gt;  &lt;strong&gt;自然语言&lt;/strong&gt;通常指的是人类语言（本书特指文本符号，而非语音信号），是人类思维的载体和交流的基本工具，也是人类区别于动物的根本标志，更是人类智能发展的外在体现形式之一。&lt;strong&gt;自然语言处理（Natural Language Processing，简称NLP）&lt;/strong&gt;‌主要研究用计算机理解和生成自然语言的各种理论和方法，属于人工智能领域的一个重要甚至核心分支，是计算机科学与语言学的交叉学科，又常被称为&lt;strong&gt;计算语言学(Computational Linguistics，简称CL）&lt;/strong&gt;。随着互联网的快速发展，网络文本呈爆炸性增长，为自然语言处理提出了巨大的应用需求。同时，自然语言处理研究也为人们更深刻地理解语言的机理和社会的机制提供了一条重要的途径，因此具有重要的科学意义。&lt;br&gt;
+  目前，人们普遍认为人工智能的发展经历了从运算智能到感知智能，再到认知智能三个发展阶段。运算智能关注的是机器的基础运算和存储能力，在这方面，机器已经完胜人类。感知智能则强调机器的模式识别能力，如语音的识别以及图像的识别，目前机器在感知智能上的水平基本达到甚至超过了人类的水平。然而,在涉及自然语言处理以及常识建模和推理等研究的认知智能上，机器与人类还有很大的差距。&lt;/p&gt;
+&lt;h2 id=&#34;自然语言处理的难点&#34;&gt;自然语言处理的难点
+&lt;/h2&gt;&lt;p&gt;  为什么计算机在处理自然语言时会如此困难呢？这主要是因为自然语言具有高度的抽象性、近乎无穷变化的语义组合性、无处不在的歧义性和进化性，以及理解语言通常需要背景知识和推理能力等，下面分别进行具体的介绍。&lt;/p&gt;
+&lt;h3 id=&#34;抽象性&#34;&gt;抽象性
+&lt;/h3&gt;&lt;p&gt;  语言是由抽象符号构成的，每个符号背后都对应着现实世界或人们头脑中的复杂概念，如&amp;quot;车”表示各种交通工具&amp;mdash;&amp;mdash;汽车、火车、自行车等，它们都具有共同的属性，有轮子、能载人或物等。&lt;/p&gt;
+&lt;h3 id=&#34;组合性&#34;&gt;组合性
+&lt;/h3&gt;&lt;p&gt;  每种语言的基本符号单元都是有限的，如英文仅有26个字母，中国国家标准GB2312《信息交换用汉字编码字符集•基本集》共收录6,763个汉字，即便是常用的单词，英文和中文也不过各几十万个。然而，这些有限的符号却可以组合成无限的语义，即使是相同的词汇，由于顺序不同，组合的语义也是不相同的，因此无法使用穷举的方法实现对自然语言的理解。&lt;/p&gt;
+&lt;h3 id=&#34;歧义性&#34;&gt;歧义性
+&lt;/h3&gt;&lt;p&gt;  歧义性主要是由于语言的形式和语义之间存在多对多的对应关系导致的，如:“苹果”一词，既可以指水果，也可以指一家公司或手机、电脑等电子设备，这就是典型的一词多义现象。另外，对于两个句子，如“曹雪芹写了红楼梦”和&amp;quot;红楼梦的作者是曹雪芹&amp;quot;，虽然它们的形式不同，但是语义是相同的。&lt;/p&gt;
+&lt;h3 id=&#34;进化性&#34;&gt;进化性
+&lt;/h3&gt;&lt;p&gt;  任何一种“活着&amp;quot;的语言都是在不断发展变化的，即语言具有明显的进化性，也称创造性。这主要体现在两方面：一方面是新词汇层出不穷，如&amp;quot;超女”“非典”&amp;ldquo;新冠&amp;quot;等；另一方面则体现在旧词汇被赋予新的含义，如&amp;quot;腐败&amp;rdquo;“杯具”等。除了词汇，语言的语法等也在不断变化，新的用法层出不穷。&lt;/p&gt;
+&lt;h3 id=&#34;非规范性&#34;&gt;非规范性
+&lt;/h3&gt;&lt;p&gt;  在互联网上，尤其是在用户产生的内容中，经常有一些有意或无意造成的非规范文本，为自然语言处理带来了不小的挑战，如音近词（&amp;ldquo;为什么” \(\to\) “为森么&amp;rdquo;，&amp;ldquo;怎么了” \(\to\) &amp;ldquo;肿么了&amp;rdquo;）、单词的简写或变形（please \(\to\) pls、cool \(\to\) coooooooool）、新造词（“喜大普奔”“不明觉厉”）和错别字等。&lt;/p&gt;
+&lt;h3 id=&#34;主观性&#34;&gt;主观性
+&lt;/h3&gt;&lt;p&gt;  和感知智能问题不同，属于认知智能的自然语言处理问题往往具有一定的主观性，这不但提高了数据标注的难度，还为准确评价系统的表现带来了一定的困难。如在分词这一最基本的中文自然语言处理任务中，关于什么是&amp;quot;词”的定义都尚不明确，比如&amp;quot;打篮球&amp;quot;是一个词还是两个词呢？所以，在标注自然语言处理任务的数据时，往往需要对标注人员进行一定的培训，使得很难通过众包的方式招募大量的标注人员，导致自然语言处理任务的标注数据规模往往比图像识别、语音识别的标注数据规模要小得多。此外，由于不同的分词系统往往标准都不尽相同，所以通过准确率等客观指标对比不同的分词系统本身就是不客观的。难以评价的问题在人机对话等任务中体现得更为明显，由于对话回复的主观性，很难有一个所谓的标准回复，所以如何自动评价人机对话系统仍然是一个开放的问题。&lt;/p&gt;
+&lt;h3 id=&#34;知识性&#34;&gt;知识性
+&lt;/h3&gt;&lt;p&gt;  理解语言通常需要背景知识以及基于这些知识的推理能力。例如，针对句子&amp;quot;张三打了李四,然后他倒了&amp;rdquo;，问其中的&amp;quot;他&amp;quot;指代的是&amp;quot;张三&amp;quot;还是&amp;quot;李四”？只有具备了“被打的人更容易倒”这一知识，才能推出&amp;quot;他”很可能指代的是“李四”。而如果将&amp;quot;倒”替换为&amp;quot;笑”，则&amp;quot;他”很可能指代的是“张三”，因为“被打的人不太容易笑&amp;quot;。但是，如何表示、获取并利用这些知识呢？目前的自然语言处理技术并没有提供很好的答案。&lt;/p&gt;
+&lt;h3 id=&#34;难移植性&#34;&gt;难移植性
+&lt;/h3&gt;&lt;p&gt;  由于自然语言处理涉及的任务和领域众多，并且它们之间的差异较大，造成了难移植性的问题。如下一节将要介绍的，自然语言处理任务根据层级可以分为分词、词性标注、句法分析和语义分析等基础任务，以及信息抽取、问答系统和对话系统等应用任务，由于这些任务的目标和数据各不相同，很难使用统一的技术或模型加以解决，因此不得不针对不同的任务设计不同的算法或训练不同的模型。另外，由于不同领域的用词以及表达方式不尽相同，因此在一个领域上学习的模型也很难应用于其他领域，这也给提高自然语言处理系统的可移植性带来了极大的困难。&lt;/p&gt;
+&lt;p&gt;  综上所述，由于自然语言处理面临的众多问题，使其成为目前制约人工智能取得更大突破和更广泛应用的瓶颈之一。因此自然语言处理又被誉为&amp;quot;人工智能皇冠上的明珠”，并吸引了越来越多的人工智能研究者加入。&lt;/p&gt;
+&lt;h2 id=&#34;自然语言处理任务体系&#34;&gt;自然语言处理任务体系
+&lt;/h2&gt;&lt;h3 id=&#34;任务层级&#34;&gt;任务层级
+&lt;/h3&gt;&lt;p&gt;  如前所述，自然语言处理的一大特点是涉及的任务众多。按照从低层到高层的方式，可以划分为资源建设、基础任务、应用任务和应用系统四大类。其中，&lt;strong&gt;资源建设&lt;/strong&gt;主要包括两大类任务，即语言学知识库建设和语料库资源建设。所谓&lt;strong&gt;语言学知识库&lt;/strong&gt;，一般包括词典、规则库等。&lt;strong&gt;词典（Dictionary）&lt;/strong&gt;‌也称&lt;strong&gt;辞典（Thesaurus）&lt;/strong&gt;，除了可以为词语提供音韵、句法或者语义解释以及示例等信息，还可以提供词语之间的关系信息，如上下位、同义反义关系等。&lt;strong&gt;语料库资源&lt;/strong&gt;指的是面向某一自然语言处理任务所标注的数据。无论是语言学资源，还是语料库资源的建设，都是上层各种自然语言处理技术的基础，需要花费大量的人力和物力构建。&lt;strong&gt;基础任务&lt;/strong&gt;包括分词、词性标注、句法分析和语义分析等，这些任务往往不直接面向终端用户，除了语言学上的研究价值，它们主要为上层应用任务提供所需的特征。&lt;strong&gt;应用任务&lt;/strong&gt;包括信息抽取、情感分析、问答系统、机器翻译和对话系统等，它们往往可以作为产品直接被终端用户使用。本书第2章将对这些任务进行更详细的介绍。&lt;br&gt;
+  &lt;strong&gt;应用系统&lt;/strong&gt;特指自然语言处理技术在某一领域的综合应用，又被称为NLP+，即自然语言处理技术加上特定的应用领域。如在智能教育领域，可以使用文本分类、回归等技术，实现主观试题的智能评阅，帮助教师减轻工作量，提高工作效率；在智慧医疗领域，自然语言处理技术可以帮助医生跟踪最新的医疗文献，帮助患者进行简单的自我诊断等；在智能司法领域，可以使用阅读理解、文本匹配等技术，实现自动量刑、类案检索和法条推荐等。总之，凡是涉及文本理解和生成的领域，自然语言处理技术都可以发挥巨大的作用。&lt;/p&gt;
+&lt;span id=&#34;20241015201555CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 437.1&#34;&gt;
+  &lt;defs&gt;
+    &lt;style&gt;
+      .cls-1 {
+        opacity: .2;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        isolation: isolate;
+      }
+
+      .cls-1, .cls-4, .cls-7 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2, .cls-3, .cls-5, .cls-6, .cls-8 {
+        font-size: 18px;
+      }
+
+      .cls-2, .cls-3, .cls-8 {
+        font-family: NotoSerifSC-Regular, &#39;Noto Serif SC&#39;;
+      }
+
+      .cls-4 {
+        opacity: .5;
+      }
+
+      .cls-4, .cls-7 {
+        fill: none;
+      }
+
+      .cls-5 {
+        letter-spacing: -.5em;
+      }
+
+      .cls-5, .cls-6 {
+        font-family: NotoSerifSC-Bold, &#39;Noto Serif SC&#39;;
+        font-weight: 700;
+      }
+
+      .cls-8 {
+        letter-spacing: -.5em;
+      }
+    &lt;/style&gt;
+  &lt;/defs&gt;
+  &lt;!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  --&gt;
+  &lt;g&gt;
+    &lt;g id=&#34;_图层_1&#34;&gt;
+      &lt;polygon class=&#34;cls-1&#34; points=&#34;383.6 6.6 213.8 428.7 553.5 428.7 383.6 6.6&#34;/&gt;
+      &lt;rect class=&#34;cls-7&#34; x=&#34;356.2&#34; y=&#34;42.4&#34; width=&#34;293.7&#34; height=&#34;68.6&#34; rx=&#34;12&#34; ry=&#34;12&#34;/&gt;
+      &lt;text class=&#34;cls-6&#34; transform=&#34;translate(369.1 70.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用系&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-5&#34; transform=&#34;translate(423.1 70.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;统&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(369.9 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;教&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-2&#34; transform=&#34;translate(387.9 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;育&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-8&#34; transform=&#34;translate(405.6 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;、&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(414.9 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;医&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-2&#34; transform=&#34;translate(432.9 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;疗&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-8&#34; transform=&#34;translate(450.6 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;、&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(459.9 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;司&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-2&#34; transform=&#34;translate(477.9 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;法&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-8&#34; transform=&#34;translate(495.6 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;、&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(504.9 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;金&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-2&#34; transform=&#34;translate(522.9 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;融&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-8&#34; transform=&#34;translate(540.6 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;、&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(549.9 99.5)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;机器人等&lt;/tspan&gt;&lt;/text&gt;
+      &lt;rect class=&#34;cls-7&#34; x=&#34;356.2&#34; y=&#34;122.5&#34; width=&#34;293.7&#34; height=&#34;92.8&#34; rx=&#34;12&#34; ry=&#34;12&#34;/&gt;
+      &lt;text class=&#34;cls-6&#34; transform=&#34;translate(369.1 151)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用任务&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(369.9 179.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;信息抽&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-2&#34; transform=&#34;translate(423.9 179.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;取&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-8&#34; transform=&#34;translate(441.6 179.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;、&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(450.9 179.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;情感分&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-2&#34; transform=&#34;translate(504.9 179.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;析&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-8&#34; transform=&#34;translate(522.6 179.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;、&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(531.9 179.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;问答系&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-2&#34; transform=&#34;translate(585.9 179.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;统&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-8&#34; transform=&#34;translate(603.6 179.6)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;、&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(369.9 201.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;机器翻译和对话系统等&lt;/tspan&gt;&lt;/text&gt;
+      &lt;rect class=&#34;cls-7&#34; x=&#34;356.2&#34; y=&#34;231.7&#34; width=&#34;293.7&#34; height=&#34;87.8&#34; rx=&#34;12&#34; ry=&#34;12&#34;/&gt;
+      &lt;text class=&#34;cls-6&#34; transform=&#34;translate(369.1 260.2)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;基础任务&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(369.9 288.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;分&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-2&#34; transform=&#34;translate(387.9 288.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;词&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-8&#34; transform=&#34;translate(405.6 288.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;、&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(414.9 288.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;词性标&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-2&#34; transform=&#34;translate(468.9 288.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;注&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-8&#34; transform=&#34;translate(486.6 288.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;、&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(495.9 288.8)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;句法分析和语义&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(369.9 310.4)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;分析等&lt;/tspan&gt;&lt;/text&gt;
+      &lt;rect class=&#34;cls-4&#34; x=&#34;356.2&#34; y=&#34;335.8&#34; width=&#34;293.7&#34; height=&#34;68.6&#34; rx=&#34;12&#34; ry=&#34;12&#34;/&gt;
+      &lt;text class=&#34;cls-6&#34; transform=&#34;translate(369.1 364.3)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;资源建设&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text class=&#34;cls-3&#34; transform=&#34;translate(369.9 392.9)&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;语言学知识库建设和语料资源建设&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;自然语言处理任务层级&lt;/p&gt;&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
