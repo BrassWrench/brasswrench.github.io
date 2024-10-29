@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-29T15:41:22&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-29T17:32:53&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -646,6 +646,8 @@
         <li><a href="#曲线的taylor展开">曲线的Taylor展开</a></li>
         <li><a href="#近似曲线">近似曲线</a></li>
         <li><a href="#切触">切触</a></li>
+        <li><a href="#曲率圆">曲率圆</a></li>
+        <li><a href="#与球面的切触">与球面的切触</a></li>
       </ol>
     </li>
   </ol>
@@ -959,7 +961,7 @@
 </svg>
 
             <time class="article-words">
-                11860 字
+                12159 字
             </time>
         </div>
 
@@ -974,7 +976,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 24 分钟
+                    阅读时长: 25 分钟
                 </time>
             </div>
         
@@ -1515,21 +1517,27 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 \tag{40}
     \]
 <p>  这就是说，曲线的曲率 \(\kappa(s)\) 是曲线的切线像的弧长元素与曲线的弧长元素之比。</p>
+<span id="20241029163556CST"></span>
 <h3 id="frenet标架">Frenet标架
-</h3><p>  因为 \(|\bm{\alpha}(s)|=1\) ，根据<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST">Euclidean空间-定理3</a>的1. ， \(\bm{\alpha}(s)\cdot\bm{\alpha}'(s)=0\) ，即 \(\bm{\alpha}(s)\perp\bm{\alpha}'(s)\) ，所以 \(\bm{\alpha}'(s)\) 是曲线 \(C\) 的一个法向量。如果</p>
+</h3><p>  因为 \(|\bm{\alpha}(s)|=1\) ，根据<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST">Euclidean空间-定理3</a>的1. 有</p>
+<span id="20241029165258CST"></span>\[
+\bm{\alpha}(s)\cdot\bm{\alpha}'(s)=0
+\tag{41}
+    \]
+<p>  即 \(\bm{\alpha}(s)\perp\bm{\alpha}'(s)\) ，所以 \(\bm{\alpha}'(s)\) 是曲线 \(C\) 的一个法向量。如果</p>
 <span id="20241018111258CST"></span>\[
 \kappa(s) \ne 0
-\tag{41}
+\tag{42}
     \]
 <p>  则向量 \(\bm{\alpha}'(s)\) 有完全确定的方向，将这个方向的单位向量记作 \(\bm{\beta}(s)\) ，称为其为曲线 \(C\) 的<strong>主法向量</strong>。于是由<a class="link" href="#20241018100528CST">式(37)</a>，曲率向量 \(\bm{\alpha}'(s)\) 可以表示为</p>
 <span id="20241018111648CST"></span>\[
 \bm{\alpha}'(s)=\kappa(s)\bm{\beta}(s)
-\tag{42}
+\tag{43}
     \]
 <p>  曲线的单位切向量 \(\bm{\alpha}(s)\) 和主法向量 \(\bm{\beta}(s)\) 唯一地确定了曲线的第二个法向量</p>
 <span id="20241018111830CST"></span>\[
 \bm{\gamma}(s)=\bm{\alpha}(s)\times\bm{\beta}(s)
-\tag{43}
+\tag{44}
     \]
 <p>  称其为曲线的次法向量。这样，在正则曲线上曲率 \(\kappa(s)\) 不为零的点有一个完全确定的右手单位正交标架 \(\set{\bm{r}(s);\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)}\) ，它与表示曲线的Cartesian直角坐标系的选取无关（因为 \(s\) 和 \(\mathrm{d}s\) 都和Cartesian直角坐标系无关），也不受曲线作保持定向的容许参数变换的影响，称为曲线在该点的<strong>Frenet标架</strong>。<br>
   如上所述，曲线在 \(\kappa(s)=0\) 的点，Frenet标架是没有定义的。如果在一个区间 \((s_0-\varepsilon, s_0+\varepsilon)\) 内有 \(\kappa(s)\equiv 0\) ，则该曲线段是一条直线。对于直线而言，通常取它的两个彼此正交的法向量 \(\bm{\beta},\bm{\gamma}\) ，而且使 \(\bm{\alpha},\bm{\beta},\bm{\gamma}\) 构成右手系，然后让它们沿直线作平行移动，这样得到的标架场 \(\set{\bm{r}(s);\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)}\) 可以被看作是直线的Frenet标架场。如果 \(s_0\) 是曲率 \(\kappa(s)\) 的孤立零点，则情形就变得十分复杂了。在 \(s_0\) 的两侧，曲线的曲率 \(\kappa(s)\) 不为零，所以有确定的Frenet标架场。如果在 \(s \to s_0 \pm 0\) 时它们的极限是同一个，则可以把该极限定义为Frenet标架场在 \(s_0\) 处的值，这就是说Frenet标架场可以延拓到 \(\kappa(s)\) 的孤立零点 \(s_0\) 。如果在 \(s \to s_0 \pm 0\) 时，Frenet标架场的极限不是同一个，则Frenet标架场不能够延拓到 \(\kappa(s)\) 的孤立零点 \(s_0\) 。<br>
@@ -1545,75 +1553,75 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 </h3><p>  下面叙述曲线的曲率和Frenet标架的计算方法。如果曲线 \(\bm{r}=\bm{r}(s)\) 以 \(s\) 为弧长参数，则曲线的曲率和Frenet标架可以根据定义直接计算。实际上</p>
 <p><span id="20241018121927CST"></span>\[
 \bm{\alpha}(s)=\bm{r}'(s)
-\tag{44}
+\tag{45}
     \]
 <span id="20241018122023CST"></span>\[
 \kappa(s)=|\bm{\alpha}'(s)|=|\bm{r}''(s)|
-\tag{45}
+\tag{46}
     \]</p>
-<p>  如果 \(\kappa(s)\ne 0\) ，则由<a class="link" href="#20241018111648CST">式(42)</a>可得</p>
+<p>  如果 \(\kappa(s)\ne 0\) ，则由<a class="link" href="#20241018111648CST">式(43)</a>可得</p>
 <span id="20241018122758CST"></span>\[
 \bm{\beta}(s)=\frac{\bm{r}''(s)}{|\bm{r}''(s)|}
-\tag{46}
+\tag{47}
     \]
 <p>  因此</p>
 <span id="20241018122837CST"></span>\[
 \bm{\gamma}(s)=\bm{\alpha}(s)\times\bm{\beta}(s)=\frac{\bm{r}'(s)\times\bm{r}''(s)}{|\bm{r}''(s)|}
-\tag{47}
+\tag{48}
     \]
 <p>  如果曲线的方程是 \(\bm{r}=\bm{r}(t)\) ， \(t\) 不是弧长参数，则由<a class="link" href="#20241016212442CST">式(32)</a></p>
 <span id="20241018122951CST"></span>\[
 \frac{\mathrm{d}s}{\mathrm{d}t}=|\bm{r}'(t)|
-\tag{48}
+\tag{49}
     \]
 <p>  故</p>
 <span id="20241018123009CST"></span>\[
 \bm{\alpha}(t)=\bm{\alpha}(s(t))=\frac{\mathrm{d}\bm{r}'(s(t))}{\mathrm{d}s}=\frac{\mathrm{d}\bm{r}'(s(t))}{\mathrm{d}t}\frac{\mathrm{d}t}{\mathrm{d}s}=\frac{\left(\cfrac{\mathrm{d}\bm{r}'(s(t))}{\mathrm{d}t}\right)}{\left(\cfrac{\mathrm{d}s}{\mathrm{d}t}\right)}=\frac{\bm{r}'(t)}{|\bm{r}'(t)|}
-\tag{49}
+\tag{50}
     \]
 <p>  即</p>
 <span id="20241018123549CST"></span>\[
 \bm{r}'(t)=|\bm{r}'(t)|\cdot\bm{\alpha}(t)
-\tag{50}
+\tag{51}
     \]
-<p>  将上式对 \(t\) 求导，由<a class="link" href="#20241018111648CST">式(42)</a>和<a class="link" href="#20241016212442CST">式(32)</a></p>
+<p>  将上式对 \(t\) 求导，由<a class="link" href="#20241018111648CST">式(43)</a>和<a class="link" href="#20241016212442CST">式(32)</a></p>
 <span id="20241018123728CST"></span>\[
 \begin{aligned}
 \bm{r}''(t)=&\frac{\mathrm{d}|\bm{r}'(t)|}{\mathrm{d}t}\bm{\alpha}(t)+|\bm{r}'(t)|\cdot\frac{\mathrm{d}\bm{\alpha}(t)}{\mathrm{d}s}\cdot\frac{\mathrm{d}s}{\mathrm{d}t}\\[10pt]
 =&\frac{\mathrm{d}|\bm{r}'(t)|}{\mathrm{d}t}\bm{\alpha}(t)+|\bm{r}'(t)|^2\cdot\kappa(t)\bm{\beta}(t)
 \end{aligned}
-\tag{51}
+\tag{52}
     \]
-<p>  所以由<a class="link" href="#20241018111830CST">式(43)</a></p>
+<p>  所以由<a class="link" href="#20241018111830CST">式(44)</a></p>
 <span id="20241018124239CST"></span>\[
 \begin{aligned}
 \bm{r}'(t)\times\bm{r}''(t)=&|\bm{r}'(t)|^3\cdot\kappa(t)(\bm{\alpha}(t)\times\bm{\beta}(t))\\[5pt]
 =&|\bm{r}'(t)|^3\cdot\kappa(t)\bm{\gamma}(t)
 \end{aligned}
-\tag{52}
+\tag{53}
     \]
 <p>  两边取模再利用 \(\bm{\gamma}(t)\) 单位向量的性质可得</p>
 <span id="20241018125515CST"></span>\[
 \kappa(t)=\cfrac{|\bm{r}'(t)\times\bm{r}''(t)|}{|\bm{r}'(t)|^3}
-\tag{53}
+\tag{54}
     \]
-<p>  再代入回<a class="link" href="#20241018124239CST">式(52)</a>可得</p>
+<p>  再代入回<a class="link" href="#20241018124239CST">式(53)</a>可得</p>
 <span id="20241018125609CST"></span>\[
 \bm{\gamma}(t)=\frac{\bm{r}'(t)\times\bm{r}''(t)}{|\bm{r}'(t)\times\bm{r}''(t)|}
-\tag{54}
+\tag{55}
     \]
 <p>  由正交标架的性质<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241009123616CST">Euclidean空间-式(24)</a>可得</p>
 <span id="20241018125742CST"></span>\[
 \bm{\beta}(t)=\bm{\gamma}(t)\times\bm{\alpha}(t)
-\tag{55}
+\tag{56}
     \]
-<p>  代入<a class="link" href="#20241018125609CST">式(54)</a>和<a class="link" href="#20241018123009CST">式(49)</a>再利用<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241019105434CST">Lagrange矢量公式</a>可得</p>
+<p>  代入<a class="link" href="#20241018125609CST">式(55)</a>和<a class="link" href="#20241018123009CST">式(50)</a>再利用<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241019105434CST">Lagrange矢量公式</a>可得</p>
 <span id="20241018125936CST"></span>\[
 \begin{aligned}
 \bm{\beta}(t)=&\frac{(\bm{r}'(t)\times\bm{r}''(t))\times\bm{r}'(t)}{|\bm{r}'(t)|\cdot|\bm{r}'(t)\times\bm{r}''(t)|}\\[10pt]
 =&\frac{|\bm{r}'(t)|}{|\bm{r}'(t)\times\bm{r}''(t)|}\bm{r}''(t)-\frac{\bm{r}'(t)\cdot\bm{r}''(t)}{|\bm{r}'(t)|\cdot|\bm{r}'(t)\times\bm{r}''(t)|}\bm{r}'(t)
 \end{aligned}
-\tag{56}
+\tag{57}
     \]
 <p>  由此得到曲率和Frenet标架的一般计算公式为</p>
 <span id="20241018124947CST"></span>\[
@@ -1623,76 +1631,76 @@ s(t)=\int_a^t|\bm{r}'(t')|\mathrm{d}t'
 \bm{\beta}(t)=\cfrac{|\bm{r}'(t)|}{|\bm{r}'(t)\times\bm{r}''(t)|}\bm{r}''(t)-\cfrac{\bm{r}'(t)\cdot\bm{r}''(t)}{|\bm{r}'(t)|\cdot|\bm{r}'(t)\times\bm{r}''(t)|}\bm{r}'(t)\\[10pt]
 \bm{\gamma}(t)=\cfrac{\bm{r}'(t)\times\bm{r}''(t)}{|\bm{r}'(t)\times\bm{r}''(t)|}
 \end{cases}
-\tag{57}
+\tag{58}
     \]
 <h2 id="曲线的挠率和frenet公式">曲线的挠率和Frenet公式
 </h2><h3 id="密切平面的转动">密切平面的转动
 </h3><p>  曲线在一点的切线和主法线所张的平面是曲线的密切平面，它的法向量是曲线的次法向量 \(\bm{\gamma}\) 。如果曲线本身落在一个平面内，则该平面就是曲线的密切平面，于是它的法向量 \(\bm{\gamma}\) 是常向量。如果曲线不是平面曲线，则 \(\bm{\gamma}\) 必定不是常向量（证明见<a class="link" href="#20241018195123CST">定理4</a>）。根据<a class="link" href="#20241017222926CST">定理2</a>，单位切向量 \(\bm{\alpha}\) 关于弧长参数 \(s\) 的导数的长度 \(|\bm{\alpha}'(s)|\) 反映了曲线的切线方向转动的快慢；同理次法向量 \(\bm{\gamma}\) 关于弧长参数 \(s\) 的导数的长度 \(|\bm{\gamma}'(s)|\) 反映了曲线的密切平面方向转动的快慢，因而它刻画了曲线偏离平面曲线的程度，反映了曲线扭曲的程度，即曲线的“挠率”。</p>
-<p>  由 \(\bm{\gamma}\) 的定义<a class="link" href="#20241018111830CST">式(43)</a></p>
+<p>  由 \(\bm{\gamma}\) 的定义<a class="link" href="#20241018111830CST">式(44)</a></p>
 <span id="20241018143259CST"></span>\[
 \bm{\gamma}=\bm{\alpha}\times\bm{\beta}
-\tag{58}
+\tag{59}
     \]
-<p>  并且由<a class="link" href="#20241018111648CST">式(42)</a></p>
+<p>  并且由<a class="link" href="#20241018111648CST">式(43)</a></p>
 <span id="20241018143357CST"></span>\[
 \bm{\alpha}'(s)\parallel\bm{\beta}(s)
-\tag{59}
+\tag{60}
     \]
 <p>  可得</p>
 <span id="20241018143527CST"></span>\[
 \bm{\gamma}'(s)=\bm{\alpha}'(s)\times\bm{\beta}(s)+\bm{\alpha}(s)\times\bm{\beta}'(s)=\bm{\alpha}(s)\times\bm{\beta}'(s)
-\tag{60}
+\tag{61}
     \]
 <p>  这说明 \(\bm{\gamma}'(s)\perp\bm{\alpha}(s)\) 。同时，因为 \(\bm{\gamma}(s)\) 是单位向量场，由<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST">Euclidean空间-定理3</a>的1. 可知 \(\bm{\gamma}'(s)\perp\bm{\gamma}(s)\) 。因此 \(\bm{\gamma}'(s)\) 与 \(\bm{\beta}(s)\) 必共线，不妨设</p>
 <span id="20241018150903CST"></span>\[
 \bm{\gamma}'(s)=-\tau\bm{\beta}(s)
-\tag{61}
+\tag{62}
     \]
 <p>  两边点乘 \(\bm{\beta}(s)\) 并利用 \(\bm{\beta}(s)\) 的单位向量性质</p>
 <span id="20241018153349CST"></span>\[
 \tau(s)=-\bm{\gamma}'(s)\cdot\bm{\beta}(s)
-\tag{62}
+\tag{63}
     \]
-<p>  对<a class="link" href="#20241018150903CST">式(61)</a>两端取模可得</p>
+<p>  对<a class="link" href="#20241018150903CST">式(62)</a>两端取模可得</p>
 <span id="20241018153414CST"></span>\[
 |\tau(s)|=|\bm{\gamma}'(s)|
-\tag{63}
+\tag{64}
     \]
 <h3 id="挠率">挠率
 </h3><p>  <span id="20241018194810CST"></span><strong>定义2（挠率）</strong>：设 \(\bm{\beta}(s)\) 和 \(\bm{\gamma}(s)\) 分别是曲线 \(C\) 的主法向量和次法向量，其中 \(s\) 是曲线的弧长参数，则 \(\tau(s)=\bm{\gamma}'(s)\cdot\bm{\beta}(s)\) 称为曲线 \(C\) 的<strong>挠率</strong>。</p>
 <p>  <span id="20241018195123CST"></span><strong>定理4</strong>：设曲线 \(C\) 不是直线，则它是平面曲线当且仅当它的挠率为零。</p>
-<p>  <strong>证明（<a class="link" href="#20241018195123CST">定理4</a></strong>）：先讨论必要性。如果曲线 \(C\) 是平面曲线，则其切向量 \(\bm{\alpha}(s)\) 必在该平面内，由<a class="link" href="#20241017235314CST">图3</a>可看出 \(\bm{\alpha}'(s)\) 也在该平面内，故由 \(\bm{\beta}\) 的定义<a class="link" href="#20241018111648CST">式(42)</a>可知 \(\bm{\beta}\) 也在该平面内，那么由 \(\bm{\gamma}\) 的定义<a class="link" href="#20241018111830CST">式(43)</a>可知 \(\bm{\gamma}\) 垂直于该平面且为单位向量，故 \(\bm{\gamma}\) 不变， \(\bm{\gamma}'(s)=0\) ，故曲线挠率为 \(0\) 。<br>
+<p>  <strong>证明（<a class="link" href="#20241018195123CST">定理4</a></strong>）：先讨论必要性。如果曲线 \(C\) 是平面曲线，则其切向量 \(\bm{\alpha}(s)\) 必在该平面内，由<a class="link" href="#20241017235314CST">图3</a>可看出 \(\bm{\alpha}'(s)\) 也在该平面内，故由 \(\bm{\beta}\) 的定义<a class="link" href="#20241018111648CST">式(43)</a>可知 \(\bm{\beta}\) 也在该平面内，那么由 \(\bm{\gamma}\) 的定义<a class="link" href="#20241018111830CST">式(44)</a>可知 \(\bm{\gamma}\) 垂直于该平面且为单位向量，故 \(\bm{\gamma}\) 不变， \(\bm{\gamma}'(s)=0\) ，故曲线挠率为 \(0\) 。<br>
   再讨论充分性。设曲线 \(C\) 的参数方程式 \(\bm{r}=\bm{r}(s)\) ， \(s\) 是弧长参数，并且 \(\kappa(s)\ne 0,\tau(s)\equiv 0\) 。此时曲线有确定的Frenet标架 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) ，并且</p>
 <span id="20241018200432CST"></span>\[
 \bm{\gamma}'(s)=-\tau(s)\cdot\bm{\beta}(s)\equiv 0
-\tag{64}
+\tag{65}
     \]
-<p>  因此 \(\bm{\gamma}(s)=\bm{\gamma}_0=\text{常向量}\) 。又由<a class="link" href="#20241018122837CST">式(47)</a>得</p>
+<p>  因此 \(\bm{\gamma}(s)=\bm{\gamma}_0=\text{常向量}\) 。又由<a class="link" href="#20241018122837CST">式(48)</a>得</p>
 <span id="20241018200628CST"></span>\[
 0=\bm{r}'(s)\cdot\bm{\gamma}(s)=\bm{r}'(s)\cdot\bm{\gamma}_0=\frac{\mathrm{d}}{\mathrm{d}s}(\bm{r}(s)\cdot\bm{\gamma}_0)
-\tag{65}
+\tag{66}
     \]
 <p>  所以</p>
 <span id="20241018203540CST"></span>\[
 \bm{r}(s)\cdot\bm{\gamma}_0=常数=\bm{r}(s_0)\cdot\bm{\gamma}_0
-\tag{66}
+\tag{67}
     \]
 <p>  也就是</p>
 <span id="20241018203738CST"></span>\[
 (\bm{r}(s)-\bm{r}(s_0))\cdot\bm{\gamma}_0=0
-\tag{67}
+\tag{68}
     \]
 <p>  这说明曲线 \(\bm{r}=\bm{r}(s)\) 落在经过点 \(\bm{r}(s_0)\) 、以常向量 \(\bm{\gamma}_0\) 为法向量的平面内。证毕。</p>
 <h3 id="frenet公式">Frenet公式
-</h3><p>  根据曲率、挠率和Frenet标架的定义，我们已经有下面的公式（见<a class="link" href="#20241017212549CST">式(34)</a>、<a class="link" href="#20241018111648CST">式(42)</a>、<a class="link" href="#20241018150903CST">式(61)</a>）</p>
+</h3><p>  根据曲率、挠率和Frenet标架的定义，我们已经有下面的公式（见<a class="link" href="#20241017212549CST">式(34)</a>、<a class="link" href="#20241018111648CST">式(43)</a>、<a class="link" href="#20241018150903CST">式(62)</a>）</p>
 <span id="20241018204649CST"></span>\[
 \bm{r}'(s)=\bm{\alpha}(s),\quad \bm{\alpha}'(s)=\kappa(s)\bm{\beta}(s),\quad \bm{\gamma}'(s)=-\tau(s)\bm{\beta}(s)
-\tag{68}
+\tag{69}
     \]
 <p>  Frenet标架 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 是随着点在曲线 \(\bm{r}(s)\) 上的运动而运动的，而 \(\bm{r}'(s),\bm{\alpha}'(s),\bm{\gamma}'(s)\) 分别给出Frenet标架的原点 \(\bm{r}(s)\) 和标架向量 \(\bm{\alpha}(s),\bm{\gamma}(s)\) 的运动公式，要获得整个Frenet标架的运动公式，只要求出 \(\bm{\beta}'(s)\) 就行了。由于 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 是空间 \(E^3\) 的一个标架，所以 \(\bm{\beta}'(s)\) 总是可以表示成 \( \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)\) 的线性组合，不妨设</p>
 <span id="20241018214431CST"></span>\[
 \bm{\beta}'(s)=a(s)\bm{\alpha}(s)+b(s)\bm{\beta}(s)+c(s)\bm{\gamma}(s)
-\tag{69}
+\tag{70}
     \]
 <p>  将上式分别于 \( \bm{\alpha}(s), \bm{\beta}(s), \bm{\gamma}(s)\) 作点乘，并且利用 \( \bm{\alpha}(s), \bm{\beta}(s), \bm{\gamma}(s)\) 的单位正交性，我们有</p>
 <span id="20241018214644CST"></span>\[
@@ -1701,14 +1709,14 @@ a(s)=\bm{\beta}'(s)\cdot\bm{\alpha}(s)=-\bm{\beta}(s)\cdot\bm{\alpha}'(s)=-\kapp
 b(s)=\bm{\beta}'(s)\cdot\bm{\beta}(s)=0\\[5pt]
 c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}'(s)=\tau(s)
 \end{cases}
-\tag{70}
-    \]
-<p>  上式利用了 \(\bm{\alpha}(s)\cdot\bm{\beta}(s)=0\) 两端求导得到的 \(\bm{\alpha}'(s)\cdot\bm{\beta}(s)+\bm{\alpha}(s)\cdot\bm{\beta}'(s)=0\) ， \(\bm{\beta}(s)\cdot\bm{\gamma}(s)=0\) 两端求导得到的 \(\bm{\beta}'(s)\cdot\bm{\gamma}(s)+\bm{\beta}(s)\cdot\bm{\gamma}'(s)=0\) ，以及由<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST">Euclidean空间-定理3</a>的1. 得到的结论 \(\bm{\beta}'(s)\cdot\bm{\beta}(s)=0\) 。代入<a class="link" href="#20241018214431CST">式(69)</a>可得</p>
-<span id="20241018220249CST"></span>\[
-\bm{\beta}'(s)=-\kappa(s)\bm{\alpha}(s)+\tau(s)\bm{\gamma}(s)
 \tag{71}
     \]
-<p>  把<a class="link" href="#20241018204649CST">式(68)</a>和<a class="link" href="#20241018220249CST">式(71)</a>合并起来可得到Frenet标架 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 沿曲线 \(C\) 运动的公式</p>
+<p>  上式利用了 \(\bm{\alpha}(s)\cdot\bm{\beta}(s)=0\) 两端求导得到的 \(\bm{\alpha}'(s)\cdot\bm{\beta}(s)+\bm{\alpha}(s)\cdot\bm{\beta}'(s)=0\) ， \(\bm{\beta}(s)\cdot\bm{\gamma}(s)=0\) 两端求导得到的 \(\bm{\beta}'(s)\cdot\bm{\gamma}(s)+\bm{\beta}(s)\cdot\bm{\gamma}'(s)=0\) ，以及由<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST">Euclidean空间-定理3</a>的1. 得到的结论 \(\bm{\beta}'(s)\cdot\bm{\beta}(s)=0\) 。代入<a class="link" href="#20241018214431CST">式(70)</a>可得</p>
+<span id="20241018220249CST"></span>\[
+\bm{\beta}'(s)=-\kappa(s)\bm{\alpha}(s)+\tau(s)\bm{\gamma}(s)
+\tag{72}
+    \]
+<p>  把<a class="link" href="#20241018204649CST">式(69)</a>和<a class="link" href="#20241018220249CST">式(72)</a>合并起来可得到Frenet标架 \(\set{\bm{r}(s); \bm{\alpha(s)}, \bm{\beta}(s), \bm{\gamma}(s)}\) 沿曲线 \(C\) 运动的公式</p>
 <p>  <span id="20241019110326CST"></span><strong>公式1（Frenet公式）</strong>：</p>
 <span id="20241018220731CST"></span>\[
 \begin{cases}
@@ -1717,7 +1725,7 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}'(s)=\tau(s)
 \bm{\beta}'(s)=-\kappa(s)\bm{\alpha}(s)+\tau(s)\bm{\gamma}(s)\\[5pt]
 \bm{\gamma}'(s)=-\tau(s)\bm{\beta}(s)
 \end{cases}
-\tag{72}
+\tag{73}
     \]
 <p>  上述公式称为<strong>Frenet公式</strong>，是曲线论中最重要、最基本的公式，由法国数学家Serret和Frenet分别在1851和1852年发表（他们给出的是切线、主法线、次法线的方向余弦的导数公式）。Frenet公式中后三个方程可以写成矩阵的形式</p>
 <span id="20241018223651CST"></span>\[
@@ -1738,7 +1746,7 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}'(s)=\tau(s)
 \bm{\beta}(s)\\[5pt]
 \bm{\gamma}(s)
 \end{pmatrix}
-\tag{73}
+\tag{74}
     \]
 <p>  在上面的公式中系数矩阵是反对称矩阵，这不是Frenet标架的导数所特有的。一般地，沿曲线定义的任意一个单位正交标架场的导数公式的系数矩阵都是反对称的。</p>
 <h3 id="球面曲线">球面曲线
@@ -1746,57 +1754,57 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}'(s)=\tau(s)
 <p>  <span id="20241018224037CST"></span><strong>定理5</strong>：设曲线 \(\bm{r}=\bm{r}(s)\) 的曲率 \(\kappa(s)\) 和挠率 \(\tau(s)\) 都不为零， \(s\) 是弧长参数。如果该曲线落在一个球面上，则它的曲率和挠率必满足关系式</p>
 <span id="20241018224331CST"></span>\[
 \left(\frac{1}{\kappa(s)}\right)^2+\left(\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\right)^2=常数
-\tag{74}
+\tag{75}
     \]
 <p>  <strong>证明（<a class="link" href="#20241018224037CST">定理5</a>）</strong>：假定曲线 \(\bm{r}=\bm{r}(s)\) 落在一个球面上，该球面的球心是 \(\bm{r}_0\) ，半径是 \(a\) ，则有关系式</p>
 <span id="20241018224733CST"></span>\[
 (\bm{r}(s)-\bm{r}_0)^2=a^2
-\tag{75}
+\tag{76}
     \]
 <p>  将上式两边对 \(s\) 求导并利用<a class="link" href="#20241017212549CST">式(34)</a></p>
 <span id="20241018224907CST"></span>\[
 \bm{\alpha}(s)\cdot(\bm{r}(s)-\bm{r}_0)=0
-\tag{76}
+\tag{77}
     \]
 <p>  故 \((\bm{r}(s)-\bm{r}_0)\) 垂直于切线，因此是曲线的法向量。不妨设</p>
 <span id="20241018225119CST"></span>\[
 \bm{r}(s)-\bm{r}_0=\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)
-\tag{77}
+\tag{78}
     \]
 <p>  将上式对于 \(s\) 求导并且利用<a class="link" href="#20241019110326CST">Frenet公式</a>得到</p>
 <span id="20241018225238CST"></span>\[
 \bm{\alpha}(s)=-\lambda(s)\kappa(s)\bm{\alpha}(s)+(\lambda'(s)-\mu(s)\tau(s))\bm{\beta}(s)+(\lambda(s)\tau(s)+\mu'(s))\bm{\gamma}(s)
-\tag{78}
+\tag{79}
     \]
 <p>  比较等式两边的系数得到</p>
 <span id="20241018231209CST"></span>\[
 \lambda(s)\kappa(s)=-1,\quad \lambda'(s)=\mu(s)\tau(s),\quad \mu'(s)=\lambda(s)\tau(s)
-\tag{79}
+\tag{80}
     \]
 <p>  于是</p>
 <span id="20241018231851CST"></span>\[
 \lambda=-\frac{1}{\kappa(s)},\quad \mu(s)=\frac{\lambda'(s)}{\tau(s)}=-\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)
-\tag{80}
-    \]
-<p>  将<a class="link" href="#20241018231851CST">式(80)</a>代入到<a class="link" href="#20241018225119CST">式(77)</a>可得</p>
-<span id="20241018233600CST"></span>\[
-\bm{r}(s)-\bm{r}_0=-\frac{1}{\kappa(s)}\bm{\beta}(s)-\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\bm{\gamma}(s)
 \tag{81}
     \]
-<p>  因此根据<a class="link" href="#20241018224733CST">式(75)</a>和 \(\bm{\beta}(s)\) 和 \(\bm{\gamma}(s)\) 的正交性得到</p>
-<span id="20241018233932CST"></span>\[
-\left(\frac{1}{\kappa(s)}\right)^2+\left(\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\right)^2=常数
+<p>  将<a class="link" href="#20241018231851CST">式(81)</a>代入到<a class="link" href="#20241018225119CST">式(78)</a>可得</p>
+<span id="20241018233600CST"></span>\[
+\bm{r}(s)-\bm{r}_0=-\frac{1}{\kappa(s)}\bm{\beta}(s)-\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\bm{\gamma}(s)
 \tag{82}
     \]
+<p>  因此根据<a class="link" href="#20241018224733CST">式(76)</a>和 \(\bm{\beta}(s)\) 和 \(\bm{\gamma}(s)\) 的正交性得到</p>
+<span id="20241018233932CST"></span>\[
+\left(\frac{1}{\kappa(s)}\right)^2+\left(\frac{1}{\tau(s)}\frac{\mathrm{d}}{\mathrm{d}s}\left(\frac{1}{\kappa(s)}\right)\right)^2=常数
+\tag{83}
+    \]
 <h3 id="挠率的计算">挠率的计算
-</h3><p>  设曲线的参数方程是 \(\bm{r}=\bm{r}(t)\) ，将<a class="link" href="#20241018125609CST">式(54)</a>两边对 \(t\) 求导并利用<a class="link" href="#20241019110326CST">Frenet公式</a>得到</p>
+</h3><p>  设曲线的参数方程是 \(\bm{r}=\bm{r}(t)\) ，将<a class="link" href="#20241018125609CST">式(55)</a>两边对 \(t\) 求导并利用<a class="link" href="#20241019110326CST">Frenet公式</a>得到</p>
 <span id="20241019001830CST"></span>\[
 \begin{aligned}
 -\tau(t)\bm{\beta}(t)\cdot\frac{\mathrm{d}s}{\mathrm{d}t}=\frac{\bm{r}'(t)\times\bm{r}'''(t)}{|\bm{r}'(t)\times\bm{r}''(t)|}+\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{1}{|\bm{r}'(t)\times\bm{r}''(t)|}\right)\cdot\left(\bm{r}'(t)\times\bm{r}''(t)\right)
 \end{aligned}
-\tag{83}
+\tag{84}
     \]
-<p>  将上式两边用<a class="link" href="#20241018125936CST">式(56)</a>作点乘并利用叉乘的性质 \(\bm{a}\cdot(\bm{a}\times\bm{b})=0\) 和<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241020000349CST">混合积恒等式</a>可得</p>
+<p>  将上式两边用<a class="link" href="#20241018125936CST">式(57)</a>作点乘并利用叉乘的性质 \(\bm{a}\cdot(\bm{a}\times\bm{b})=0\) 和<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241020000349CST">混合积恒等式</a>可得</p>
 <span id="20241019220643CST"></span>\[
 \begin{aligned}
 -\tau(t)|\bm{\beta}(t)|^2\cdot\frac{\mathrm{d}s}{\mathrm{d}t}
@@ -1807,30 +1815,30 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}'(s)=\tau(s)
 &-\frac{\bm{r}'(t)\cdot\bm{r}''(t)}{|\bm{r}'(t)|\cdot|\bm{r}'(t)\times\bm{r}''(t)|}\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{1}{|\bm{r}'(t)\times\bm{r}''(t)|}\right)(\bm{r}'(t)\cdot(\bm{r}'(t)\times\bm{r}''(t)))\\[15pt]
 =&|\bm{r}'(t)|\frac{(\bm{r}''(t)\cdot(\bm{r}'(t)\times\bm{r}'''(t)))}{|\bm{r}'(t)\times\bm{r}''(t)|^2}=-|\bm{r}'(t)|\frac{(\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t))}{|\bm{r}'(t)\times\bm{r}''(t)|^2}
 \end{aligned}
-\tag{84}
+\tag{85}
     \]
 <p>  代入<a class="link" href="#20241016212442CST">式(32)</a>并由 \(\bm{\beta}(t)\) 的单位向量性质得</p>
 <span id="20241020005546CST"></span>\[
 \tau(t)=\frac{(\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t))}{|\bm{r}'(t)\times\bm{r}''(t)|^2}
-\tag{85}
+\tag{86}
     \]
 <p>  如果 \(t\) 是弧长参数 \(s\) ，则由<a class="link" href="#20241016213554CST">定理1</a>和<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241020000302CST">Lagrange恒等式</a>，上式成为</p>
 <span id="20241020142730CST"></span>\[
 \tau(s)=\frac{(\bm{r}'(s),\bm{s}''(s),\bm{s}'''(s))}{|\bm{r}''(s)|^2}
-\tag{86}
+\tag{87}
     \]
 <p>  <span id="20241020143444CST"></span><strong>定理6</strong>：曲线 \(\bm{r}=\bm{r}(t)\) 是一条平面曲线的充分必要条件是</p>
 <span id="20241020143501CST"></span>\[
 (\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t)) \equiv 0
-\tag{87}
-    \]
-<p>  <strong>证明（<a class="link" href="#20241020143444CST">定理6</a>）</strong>：先证必要性。如果 \(\bm{r}=\bm{r}(t)\) 是一条直线，由<a class="link" href="#20241018101114CST">定理3</a>可得 \(\kappa(s)\equiv 0\) ，再由<a class="link" href="#20241018125515CST">式(53)</a>可得 \(\bm{r}'(t)\times\bm{r}''(t)=\bm{0}\) ，因此由<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241020000349CST">混合积恒等式</a>得</p>
-<span id="20241020151230CST"></span>\[
-(\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t))=(\bm{r}'(t)\times\bm{r}''(t))\cdot\bm{r}'''(t) \equiv 0
 \tag{88}
     \]
-<p>  如果不是一条直线，则由<a class="link" href="#20241018195123CST">定理4</a>可知 \(\tau(t)\equiv 0\) ，再由<a class="link" href="#20241020005546CST">式(85)</a>可得 \((\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t)) \equiv 0\) 。<br>
-  再证充分性。如果 \((\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t)) \equiv 0\) ，代入<a class="link" href="#20241020005546CST">式(85)</a>可得 \(\tau(t)\equiv 0\) ，故由<a class="link" href="#20241018195123CST">定理4</a>可得该直线是平面曲线。</p>
+<p>  <strong>证明（<a class="link" href="#20241020143444CST">定理6</a>）</strong>：先证必要性。如果 \(\bm{r}=\bm{r}(t)\) 是一条直线，由<a class="link" href="#20241018101114CST">定理3</a>可得 \(\kappa(s)\equiv 0\) ，再由<a class="link" href="#20241018125515CST">式(54)</a>可得 \(\bm{r}'(t)\times\bm{r}''(t)=\bm{0}\) ，因此由<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241020000349CST">混合积恒等式</a>得</p>
+<span id="20241020151230CST"></span>\[
+(\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t))=(\bm{r}'(t)\times\bm{r}''(t))\cdot\bm{r}'''(t) \equiv 0
+\tag{89}
+    \]
+<p>  如果不是一条直线，则由<a class="link" href="#20241018195123CST">定理4</a>可知 \(\tau(t)\equiv 0\) ，再由<a class="link" href="#20241020005546CST">式(86)</a>可得 \((\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t)) \equiv 0\) 。<br>
+  再证充分性。如果 \((\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t)) \equiv 0\) ，代入<a class="link" href="#20241020005546CST">式(86)</a>可得 \(\tau(t)\equiv 0\) ，故由<a class="link" href="#20241018195123CST">定理4</a>可得该直线是平面曲线。</p>
 <h2 id="曲线论基本定理">曲线论基本定理
 </h2><h3 id="曲率和挠率不为零且处处相等的两条曲线必有刚体运动使其相互变换">曲率和挠率不为零且处处相等的两条曲线必有刚体运动使其相互变换
 </h3><p>  根据前面各节的讨论，我们已经知道正则参数曲线的弧长参数、曲率和挠率都是与曲线的保持定向的容许参数变换无关的。实际上，弧长参数的不变性在<a class="link" href="#20241020153409CST">弧长参数</a>中已经作过讨论，而曲率和挠率是通过曲线的参数方程关于弧长参数的各阶导数作适当的代数运算（点乘和叉乘等）得到的，它们同样不依赖曲线上参数的选择。很明显，这三个量与欧氏空间 \(E^3\) 中的Cartesian直角坐标系的选取也是无关的。实际上，这三个量的计算公式是用曲线的向量形式的参数方程给出的，该事实本身就蕴涵着它们不依赖空间的Cartesian直角坐标系的选取。此外，在<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241010140246CST">Euclidean空间-定理1</a>处已经解释过，欧氏空间 \(E^3\) 上的刚体运动在某种意义上相当于空间的Cartesian直角坐标系的变换，因此当曲线在空间中经受一个刚体运动时，曲线的弧长、曲率和挠率是不变的。反过来说如果在空间 \(E^3\) 中有两条曲线，它们的曲率和挠率表示成弧长参数的函数分别是相同的，则这两条曲线的形状是相同的。这个论断可以叙述成下面的基本定理。</p>
@@ -1838,12 +1846,12 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}'(s)=\tau(s)
 <p>  <strong>证明（<a class="link" href="#20241020153808CST">定理7</a>）</strong>：由于这两条曲线的曲率处处不为零，因此沿着这两条曲线有完全确定的Frenet标架。假定它们在 \(s=0\) 处的Frenet标架分别是 \(\set{\bm{r}_1(0);\bm{\alpha}_1(0),\bm{\beta}_1(0),\bm{\gamma}_1(0)}\) 和 \(\set{\bm{r}_2(0);\bm{\alpha}_2(0),\bm{\beta}_2(0),\bm{\gamma}_2(0)}\) 。因为它们都是右手单位正交标架，由<a class="link" href="/posts/mathematics/differential_geometry/euclidean_space/#20241010140246CST">Euclidean空间-定理1</a>，在 \(E^3\) 中有一个刚体运动 \(\sigma\) 把后一个标架变成前一个标架。不妨把第二条曲线经过刚体运动 \(\sigma\) 得到的像仍然记为 \(\bm{r}=\bm{r}_2(s)\) ，那么曲线 \(\bm{r}=\bm{r}_1(s)\) 和 \(\bm{r}=\bm{r}_2(s)\) 在对应点仍旧有相同的曲率和挠率（曲率和挠率是曲线的内禀属性，和Cartesian坐标系无关），并且在 \(s=0\) 处有相同的Frenet标架。我们要证明</p>
 <span id="20241020200101CST"></span>\[
 \bm{r}_1(s)=\bm{r}_2(s),\quad \forall s
-\tag{89}
+\tag{90}
     \]
 <p>  为此，首先定义函数</p>
 <span id="20241020200554CST"></span>\[
 f(s)=(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))^2+(\bm{\beta}_1(s)-\bm{\beta}_2(s))^2+(\bm{\gamma}_1(s)-\bm{\gamma}_2(s))^2
-\tag{90}
+\tag{91}
     \]
 <p>  根据假设得知 \(f(0)=0\) 。对 \(f(s)\) 直接求导，利用<a class="link" href="#20241019110326CST">Frenet公式</a>并且注意到 \(\kappa_1(s)=\kappa_2(s),\tau_1(s)=\tau_2(s)\) ，则得</p>
 <span id="20241020203444CST"></span>\[
@@ -1858,42 +1866,42 @@ f(s)=(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))^2+(\bm{\beta}_1(s)-\bm{\beta}_2(s))^2+(
 &-\tau_1(s)(\bm{\gamma}_1(s)-\bm{\gamma}_2(s))\cdot(\bm{\beta}_1(s)-\bm{\beta}_2(s))\\[5pt]
 \equiv & \space 0
 \end{aligned}
-\tag{91}
+\tag{92}
     \]
 <p>  故 \(f(s)=f(0)=0\) ，即</p>
 <span id="20241020210226CST"></span>\[
 \bm{\alpha}_1(s)=\bm{\alpha}_2(s),\quad \bm{\beta}_1(s)=\bm{\beta}_2(s),\quad \bm{\gamma}_1(s)=\bm{\gamma}_2(s)
-\tag{92}
+\tag{93}
     \]
 <p>  再定义函数</p>
 <span id="20241020210417CST"></span>\[
 g(s)=(\bm{r}_1(s)-\bm{r}_2(s))^2,\quad g(0)=0
-\tag{93}
+\tag{94}
     \]
 <p>  则</p>
 <span id="20241020210444CST"></span>\[
 \frac{1}{2}\frac{\mathrm{d}g(s)}{\mathrm{d}s}=(\bm{r}_1(s)-\bm{r}_2(s))\cdot(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))\equiv 0
-\tag{94}
+\tag{95}
     \]
 <p>  所以 \(g(s)=g(0)=0\) ，即 \(\bm{r}_1(s)=\bm{r}_2(s),\forall s\) 。证毕。</p>
 <p>  <span id="20241020215207CST"></span><strong>定理8</strong>：设 \(\bm{r}=\bm{r}_1(t)\) 和 \(\bm{r}=\bm{r}_2(u)\) 是 \(E^3\) 中两条正则参数曲线，它们的曲率处处不为零。如果存在三次以上的连续可微函数 \(u=\lambda(t),\lambda'(t)\ne0\) ，使得这两条曲线的弧长参数、曲率函数和挠率函数之间有关系式</p>
 <span id="20241020220039CST"></span>\[
 s_1(t)=s_2(\lambda(t)),\quad \kappa_1(t)=\kappa_2(\lambda(t)),\quad \tau_1(t)=\tau_2(\lambda(t))
-\tag{95}
+\tag{96}
     \]
 <p>  则有 \(E^3\) 中的一个刚体运动 \(\sigma\) ，它把曲线 \(\bm{r}=\bm{r}_1(t)\) 变为曲线 \(\bm{r}=\bm{r}_2(u)\) ，即曲线 \(\bm{r}=\bm{r}_2(\lambda(t))\) 是曲线 \(\bm{r}=\bm{r}_1(t)\) 在刚体运动 \(\sigma\) 下的像。</p>
-<p>  <strong>证明（<a class="link" href="#20241020215207CST">定理8</a>）</strong>：由<a class="link" href="#20241020220039CST">式(95)</a>可得 \(\bm{r}=\bm{r}_1(t)\) 和 \(\bm{r}=\bm{r}_2(\lambda(t))\) 拥有相同的弧长参数，假设</p>
+<p>  <strong>证明（<a class="link" href="#20241020215207CST">定理8</a>）</strong>：由<a class="link" href="#20241020220039CST">式(96)</a>可得 \(\bm{r}=\bm{r}_1(t)\) 和 \(\bm{r}=\bm{r}_2(\lambda(t))\) 拥有相同的弧长参数，假设</p>
 <span id="20241020224636CST"></span>\[
 s(t)=s_1(t)=s_2(\lambda(t))
-\tag{96}
+\tag{97}
     \]
 <p>  则</p>
 <span id="20241020224657CST"></span>\[
 \kappa_1(s)=\kappa_1(s(t))=\kappa_1(s_1(t))=\kappa_1(t),\\[5pt]
 \kappa_2(s)=\kappa_2(s(t))=\kappa_1(s_2(\lambda(t)))=\kappa_2(\lambda(t))
-\tag{97}
+\tag{98}
     \]
-<p>  故由<a class="link" href="#20241020220039CST">式(95)</a>可得 \(\kappa_1(s)=\kappa_2(s)\) 。同理可得 \(\tau_1(s)=\tau_2(s)\) 。此时由<a class="link" href="#20241020153808CST">定理7</a>可以直接得到<a class="link" href="#20241020215207CST">定理8</a>的结论。</p>
+<p>  故由<a class="link" href="#20241020220039CST">式(96)</a>可得 \(\kappa_1(s)=\kappa_2(s)\) 。同理可得 \(\tau_1(s)=\tau_2(s)\) 。此时由<a class="link" href="#20241020153808CST">定理7</a>可以直接得到<a class="link" href="#20241020215207CST">定理8</a>的结论。</p>
 <h3 id="给定连续可微的曲率和挠率曲率大于零则必有曲线对应">给定连续可微的曲率和挠率（曲率大于零）则必有曲线对应
 </h3><p>  在<a class="link" href="#20241020230735CST">曲线的曲率和Frenet标架</a>中已经知道，在曲率 \(\kappa(s)\) 处处不为零的正则曲线上有内在的、确定的Frenet标架场，所以 \(E^3\) 中的曲线便变成在 \(E^3\) 的正交标架空间中的一条曲线．而<a class="link" href="#20241019110326CST">Frenet公式</a>正好是这个标架场的运动方程其系数恰好是曲线的曲率和挠率，它们完全确定了曲线在空间中的形状。我们的问题是：给定了曲率和挠率作为弧长参数 \(s\) 的函数 \(\kappa(s),\tau(s)\) 之后，在空间 \(E^3\) 中是否存在正则参数曲线以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率？根据上面的分析，我们在 \(E^3\) 上由全体正交标架构成的6维空间中考虑，千是Frenet公式成为现成的已知常微分方程组，它的解是依赖参数 \(s\) 的一族正交标架，其标架原点在 \(E^3\) 中描出的轨迹应该是我们所要的曲线，而这族正交标架本身应该是曲线的Frenet标架场。</p>
 <p>  <span id="20241020231130CST"></span><strong>定理9</strong>：设 \(\kappa(s),\tau(s)\) 是在区间 \([a,b]\) 上两个任意给定的连续可微函数，并且 \(\kappa(s)>0\) ，则在空间 \(E^3\) 中存在正则参数曲线 \(\bm{r}=\bm{r}(s),a\le s \le b\) ，以 \(s\) 为弧长参数，以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率，且这样的曲线在空间 \(E^3\) 中是完全确定的，其差异至多为曲线在空间中的位置不同。</p>
@@ -1911,7 +1919,7 @@ a_{31}(s) & a_{32}(s) & a_{33}(s)
 -\kappa(s) & 0 & \tau(s)\\[5pt]
 0 & -\tau(s) & 0
 \end{pmatrix}
-\tag{98}
+\tag{99}
     \]
 <p>  并且用 \(\bm{r},\bm{e}_1,\bm{e}_2,\bm{e}_3\) 记成向量形式的未知函数，每一个向量函数代表 \(3\) 个未知函数，共 \(12\) 个未知函数。考虑一阶常微分方程组</p>
 <span id="20241020233735CST"></span>\[
@@ -1919,12 +1927,12 @@ a_{31}(s) & a_{32}(s) & a_{33}(s)
 \cfrac{\mathrm{d}\bm{r}}{\mathrm{d}s}=\bm{e}_1\\[10pt]
 \cfrac{\mathrm{d}\bm{e}_i}{\mathrm{d}s}=\displaystyle\sum_{j=1}^{3}a_{ij}(s)\bm{e}_j,\quad 1 \le i \le 3
 \end{cases}
-\tag{99}
+\tag{100}
     \]
 <p>  这是由 \(4\) 个向量形式的线性齐次微分方程组组成的方程组（实际上有十二个方程）。由于方程组的系数是连续可微函数，根据<a class="link" onclick="alert('抱歉，“常微分方程”还未上线~')">解的存在和唯一性-Picard定理</a>，对于任意给定的一组初值 \(\bm{r}^{(0)},\bm{e}_1^{(0)},\bm{e}_2^{(0)},\bm{e}_3^{(0)}\) ，方程组有唯一的一组解 \(\bm{r}, \bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s),a\le s \le b\) ，满足初始条件</p>
 <span id="20241021003506CST"></span>\[
 \bm{r}(s_0)=\bm{r}^{(0)},\quad \bm{e}_i(s_0)=\bm{e}_i^{(0)},\quad 1 \le i \le 3
-\tag{100}
+\tag{101}
     \]
 <p>  其中 \(s_0\) 是区间 \([a,b]\) 中任意固定的一点。一般来说，这样的解并不会满足我们的要求。如果 \(\bm{r}=\bm{r}(s)\) 是我们想要的曲线，而 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是曲线的Frenet标架，则我们必须要求初始值 \(\set{\bm{r}^{(0)};\bm{e}_1^{(0)},\bm{e}_2^{(0)},\bm{e}_3^{(0)}}\) 是右手单位正交标架，即它们要满足条件</p>
 <span id="20241021103730CST"></span>\[
@@ -1932,92 +1940,92 @@ a_{31}(s) & a_{32}(s) & a_{33}(s)
 \bm{e}_i^{(0)}\cdot\bm{e}_j^{(0)}=\delta_{ij},\quad 1\le i,j \le 3\\[10pt]
 (\bm{e}_1^{(0)},\bm{e}_2^{(0)},\bm{e}_3^{(0)})=1
 \end{cases}
-\tag{101}
-    \]
-<p>  我们要证明，当初值满足条件<a class="link" href="#20241021103730CST">式(101)</a>，方程组<a class="link" href="#20241020233735CST">式(99)</a>满足初始条件<a class="link" href="#20241021003506CST">式(100)</a>给出的 \(\bm{r}=\bm{r}(s)\) 是一条正则曲线，以 \(s\) 为弧长参数，并以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率。为此，首先证明这组解 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是右手单位正交标架族。命</p>
-<span id="20241021104630CST"></span>\[
-\bm{g}_{ij}(s)=\bm{e}_i(s)\cdot\bm{e}_j(s),\quad 1\le i,j \le 3
 \tag{102}
     \]
-<p>  初值所满足的条件<a class="link" href="#20241021103730CST">式(101)</a>说明</p>
-<span id="20241021105002CST"></span>\[
-g_{ij}(s_0)=0,\quad 1 \le i,j \le 3
+<p>  我们要证明，当初值满足条件<a class="link" href="#20241021103730CST">式(102)</a>，方程组<a class="link" href="#20241020233735CST">式(100)</a>满足初始条件<a class="link" href="#20241021003506CST">式(101)</a>给出的 \(\bm{r}=\bm{r}(s)\) 是一条正则曲线，以 \(s\) 为弧长参数，并以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率。为此，首先证明这组解 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是右手单位正交标架族。命</p>
+<span id="20241021104630CST"></span>\[
+\bm{g}_{ij}(s)=\bm{e}_i(s)\cdot\bm{e}_j(s),\quad 1\le i,j \le 3
 \tag{103}
     \]
-<p>  将<a class="link" href="#20241021104630CST">式(102)</a>求导，并且利用 \(\bm{e}_i(s)\) 满足方程组<a class="link" href="#20241020233735CST">式(99)</a>得到</p>
+<p>  初值所满足的条件<a class="link" href="#20241021103730CST">式(102)</a>说明</p>
+<span id="20241021105002CST"></span>\[
+g_{ij}(s_0)=0,\quad 1 \le i,j \le 3
+\tag{104}
+    \]
+<p>  将<a class="link" href="#20241021104630CST">式(103)</a>求导，并且利用 \(\bm{e}_i(s)\) 满足方程组<a class="link" href="#20241020233735CST">式(100)</a>得到</p>
 <span id="20241021105622CST"></span>\[
 \begin{aligned}
 \frac{\mathrm{d}g_{ij}(s)}{\mathrm{d}s}=&\frac{\mathrm{d}\bm{e}_i(s)}{\mathrm{d}s}\cdot\bm{e}_j+\bm{e}_i\cdot\frac{\mathrm{d}\bm{e}_j(s)}{\mathrm{d}s}\\[15pt]
 =&\sum_{k=1}^{3}(a_{ik}\bm{e}_k(s)\cdot\bm{e}_j(s)+a_{jk}\bm{e}_i(s)\cdot\bm{e}_k(s))\\[15pt]
 =&\sum_{k=1}^{3}(a_{ik}g_{kj}(s)+a_{jk}g_{ik}(s))
 \end{aligned}
-\tag{104}
+\tag{105}
     \]
-<p>  这是线性齐次常微分方程组且系数连续可微，所以再次由<a class="link" onclick="alert('抱歉，“常微分方程”还未上线~')">解的存在和唯一性-Picard定理</a>可得它在初值条件<a class="link" href="#20241021105002CST">式(103)</a>下的解是唯一的，又注意</p>
+<p>  这是线性齐次常微分方程组且系数连续可微，所以再次由<a class="link" onclick="alert('抱歉，“常微分方程”还未上线~')">解的存在和唯一性-Picard定理</a>可得它在初值条件<a class="link" href="#20241021105002CST">式(104)</a>下的解是唯一的，又注意</p>
 <span id="20241021120247CST"></span>\[
 g_{ij}(s)\equiv 0,\quad 1 \le i,j \le 3
-\tag{105}
+\tag{106}
     \]
 <p>  是方程满足初值条件的一个平凡解。由解的唯一性，方程的唯一解只能是这个平凡解。也就是满足</p>
 <span id="20241021120438CST"></span>\[
 \bm{e}_i(s)\cdot\bm{e}_j(s)=\delta_{ij},\quad 1 \le i,j \le 3
-\tag{106}
+\tag{107}
     \]
 <p>  故 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是单位正交标架。这样，向量 \(\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)\) 的混合积 \((\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s))\) 的值是 \(1\) 或 \(-1\) 。注意向量 \(\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)\) 是连续的，因此 \((\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s))\) 也是连续的，因此</p>
 <span id="20241021121635CST"></span>\[
 (\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s))=1
-\tag{107}
-    \]
-<p>  所以 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是右手单位正交标架族。<br>
-  由方程<a class="link" href="#20241020233735CST">式(99)</a>的第一式可知</p>
-<span id="20241021181211CST"></span>\[
-\left|\frac{\mathrm{d}\bm{r}(s)}{\mathrm{d}s}\right|=|\bm{e}_1(s)|=1
 \tag{108}
     \]
-<p>  故由<a class="link" href="#20241016213554CST">定理1</a>知 \(\bm{r}(s)\) 是正则参数曲线， \(s\) 是弧长参数， \(\bm{\alpha}(s)\bm{e}_1(s)\) 。再由方程<a class="link" href="#20241020233735CST">式(99)</a>的第二式得知</p>
-<span id="20241021181437CST"></span>\[
-\frac{\mathrm{d}\bm{\alpha}(s)}{\mathrm{d}s}=\frac{\mathrm{d}\bm{e}_1(s)}{\mathrm{d}s}=\kappa(s)\bm{e}_2(s)
+<p>  所以 \(\set{\bm{r}(s);\bm{e}_1(s),\bm{e}_2(s),\bm{e}_3(s)}\) 是右手单位正交标架族。<br>
+  由方程<a class="link" href="#20241020233735CST">式(100)</a>的第一式可知</p>
+<span id="20241021181211CST"></span>\[
+\left|\frac{\mathrm{d}\bm{r}(s)}{\mathrm{d}s}\right|=|\bm{e}_1(s)|=1
 \tag{109}
     \]
-<p>  对比<a class="link" href="#20241018111648CST">式(42)</a>可知 \(\kappa(s)\) 就是曲线 \(\bm{r}=\bm{r}(s)\) 的曲率， \(\bm{e}_2(s)\) 是它的主法向量，于是</p>
-<span id="20241021200113CST"></span>\[
-\bm{\gamma}(s)=\bm{\alpha}(s)\times\bm{\beta}(s)=\bm{e}_1(s)\times\bm{e}_2(s)=\bm{e}_3(s)
+<p>  故由<a class="link" href="#20241016213554CST">定理1</a>知 \(\bm{r}(s)\) 是正则参数曲线， \(s\) 是弧长参数， \(\bm{\alpha}(s)\bm{e}_1(s)\) 。再由方程<a class="link" href="#20241020233735CST">式(100)</a>的第二式得知</p>
+<span id="20241021181437CST"></span>\[
+\frac{\mathrm{d}\bm{\alpha}(s)}{\mathrm{d}s}=\frac{\mathrm{d}\bm{e}_1(s)}{\mathrm{d}s}=\kappa(s)\bm{e}_2(s)
 \tag{110}
     \]
-<p>  由<a class="link" href="#20241020233735CST">式(99)</a>的最后一式得到</p>
+<p>  对比<a class="link" href="#20241018111648CST">式(43)</a>可知 \(\kappa(s)\) 就是曲线 \(\bm{r}=\bm{r}(s)\) 的曲率， \(\bm{e}_2(s)\) 是它的主法向量，于是</p>
+<span id="20241021200113CST"></span>\[
+\bm{\gamma}(s)=\bm{\alpha}(s)\times\bm{\beta}(s)=\bm{e}_1(s)\times\bm{e}_2(s)=\bm{e}_3(s)
+\tag{111}
+    \]
+<p>  由<a class="link" href="#20241020233735CST">式(100)</a>的最后一式得到</p>
 <span id="20241021200355CST"></span>\[
 \frac{\mathrm{d}\bm{e}_3(s)}{\mathrm{d}s}=-\tau(s)\bm{e}_2(s)
-\tag{111}
+\tag{112}
     \]
 <p>  两边点乘 \(\bm{e}_2(s)\) 并利用 \(|\bm{e}_2(s)|^2=1\) 可得</p>
 <span id="20241021200559CST"></span>\[
 \tau(s)=-\frac{\mathrm{d}\bm{e}_3(s)}{\mathrm{d}s}\cdot\bm{e}_2(s)=-\frac{\mathrm{d}\bm{\gamma}(s)}{\mathrm{d}s}\cdot\bm{\beta}(s)
-\tag{112}
+\tag{113}
     \]
 <p>  故 \(\tau(s)\) 是曲线 \(\bm{r}=\bm{r}(s)\) 的挠率。证毕。</p>
-<p>  上面的定理说明，函数 \(\kappa(s)>0\) 于 \(\tau(s)\) 在空间 \(E^3\) 中不计位置差异唯一地确定了一条曲线，因此它们可以看作是该曲线的方程，成为曲线的<strong>内在方程</strong>，或<strong>自然方程</strong>。从曲线的自然方程得到参数方程的过程就是求解方程组<a class="link" href="#20241020233735CST">式(99)</a>的过程。一般说来，该过程是比较难的。如果知道方程组<a class="link" href="#20241020233735CST">式(99)</a>的一个特解，则<a class="link" href="#20241020153808CST">定理7</a>告诉我们，其余的解都是上述特解在 \(E^3\) 的刚体运动下的像。</p>
+<p>  上面的定理说明，函数 \(\kappa(s)>0\) 于 \(\tau(s)\) 在空间 \(E^3\) 中不计位置差异唯一地确定了一条曲线，因此它们可以看作是该曲线的方程，成为曲线的<strong>内在方程</strong>，或<strong>自然方程</strong>。从曲线的自然方程得到参数方程的过程就是求解方程组<a class="link" href="#20241020233735CST">式(100)</a>的过程。一般说来，该过程是比较难的。如果知道方程组<a class="link" href="#20241020233735CST">式(100)</a>的一个特解，则<a class="link" href="#20241020153808CST">定理7</a>告诉我们，其余的解都是上述特解在 \(E^3\) 的刚体运动下的像。</p>
 <h2 id="曲线参数方程在一点的标准展开">曲线参数方程在一点的标准展开
 </h2><p>  我们知道，解析函数 \(y=f(x)\) 在任意一点 \(x_0\) 的邻域内可以展开成收敛成幂级数。如果函数 \(y=f(x)\) 是光滑的，即它有任意阶的导数，则函数 \(f(x)\) 可以表示成任意 \(n\) 次的一个多项式与一个余项之和，该多项式的系数由 \(f(x)\) 的直到 \(n\) 阶的各阶导数在 \(x_0\) 处的值决定，并且余项在 \(x \to x_0\) 时是比 \((x-x_0)^n\) 更高阶的无穷小量．这样的展开式称为函数 \(y=f(x)\) 的Taylor展开式，它是原来函数的近似。当然，多项式函数比原来的函数简单，它的性状更容易了解和描写。正则曲线的参数方程是由三个可微函数组成的，将Taylor展开式用到这三个函数上，便能够得到一条多项式曲线来近似原来的曲线。特别是，在曲线的曲率和挠率都不为零的时候，在一点的附近可以求得一条三次曲线，它与原来的曲线在该点有相同的曲率、挠率和Frenet标架，于是原曲线在该点附近的性状可以用这条近似曲线来模拟。</p>
 <h3 id="曲线的taylor展开">曲线的Taylor展开
 </h3><p>  设 \(\bm{r}=\bm{r}(s)\) 是一条以弧长 \(s\) 为参数的正则曲线，它在 \(s=0\) 处的Taylor展开式为（见<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">Taylor展开</a>）</p>
 <span id="20241028183355CST"></span>\[
 \bm{r}(s)=\bm{r}(0)+\frac{s}{1!}\bm{r}'(0)+\frac{s^2}{2!}\bm{r}''(0)+\frac{s^3}{3!}\bm{r}'''(0)+\bm{\omicron}(s^3)
-\tag{113}
+\tag{114}
     \]
 <p>  其中 \(\bm{\omicron}(s^3)\) 是余项，满足条件</p>
 <span id="20241028183535CST"></span>\[
 \lim\limits_{s \to 0}\frac{|\bm{\omicron}(s^3)|}{s^3}=0
-\tag{114}
+\tag{115}
     \]
 <p>  由<a class="link" href="#20241019110326CST">Frenet公式</a>第一式取 \(s=0\) 可得</p>
 <span id="20241028183757CST"></span>\[
 \bm{r}'(0)=\bm{\alpha}(0)
-\tag{115}
+\tag{116}
     \]
 <p>  将上式代入<a class="link" href="#20241019110326CST">Frenet公式</a>第二式并取 \(s=0\) 可得</p>
 <span id="20241028184300CST"></span>\[
 \bm{r}''(0)=\kappa(0)\bm{\beta}(0)
-\tag{116}
+\tag{117}
     \]
 <p>  将<a class="link" href="#20241019110326CST">Frenet公式</a>第一、二式代入第三式</p>
 <span id="20241028184539CST"></span>\[
@@ -2025,17 +2033,17 @@ g_{ij}(s)\equiv 0,\quad 1 \le i,j \le 3
 \bm{\beta}'(s)=&\left(\frac{\bm{\alpha}'(s)}{\kappa(s)}\right)'=\frac{\bm{\alpha}''(s)\kappa(s)-\bm{\alpha}'(s)\kappa'(s)}{\kappa(s)^2}=\frac{\bm{r}'''(s)\kappa(s)+\kappa(s)\kappa'(s)\bm{\beta}(s)}{\kappa(s)^2}\\[15pt]
 &=\frac{\bm{r}'''(s)-\kappa'(s)\bm{\beta}(s)}{\kappa(s)}=-\kappa(s)\bm{\alpha}(s)+\tau(s)\gamma(s)
 \end{aligned}
-\tag{117}
+\tag{118}
     \]
 <p>  取 \(s=0\) 可得</p>
 <span id="20241028190104CST"></span>\[
 \bm{r}'''(0)=-\kappa^2(0)\bm{\alpha}(0)+\kappa'(0)\bm{\beta}(0)+\kappa(0)\tau(0)\bm{\gamma}(0)
-\tag{118}
+\tag{119}
     \]
-<p>  将<a class="link" href="#20241028183757CST">式(115)</a>、<a class="link" href="#20241028184300CST">式(116)</a>和<a class="link" href="#20241028190104CST">式(118)</a>代入<a class="link" href="#20241028183355CST">式(113)</a>可得</p>
+<p>  将<a class="link" href="#20241028183757CST">式(116)</a>、<a class="link" href="#20241028184300CST">式(117)</a>和<a class="link" href="#20241028190104CST">式(119)</a>代入<a class="link" href="#20241028183355CST">式(114)</a>可得</p>
 <span id="20241028190514CST"></span>\[
 \bm{r}(s)=\bm{r}(0)+\left(s-\frac{\kappa_0^2}{6}s^3\right)\bm{\alpha}(0)+\left(\frac{\kappa_0}{2}s^2+\frac{\kappa'_0}{6}s^3\right)\bm{\beta}(0)+\frac{\kappa_0\tau_0}{6}s^3\bm{\gamma}(0)+\bm{\omicron}(s^3)
-\tag{119}
+\tag{120}
     \]
 <p>  其中 \(\kappa_0=\kappa(0),\kappa'_0=\kappa'(0),\tau_0=\tau(0)\) 。如果把曲线在 \(s=0\) 处的Frenet标架 \(\set{\bm{r}(0);\bm{\alpha}(0),\bm{\beta}(0),\bm{\gamma}(0)}\) 取作空间 \(E^3\) 的Cartesian直角坐标系的标架，则曲线在 \(s=0\) 处附近的参数方程成为</p>
 <span id="20241028194737CST"></span>\[
@@ -2044,14 +2052,14 @@ x=s-\cfrac{\kappa_0^2}{6}s^3+\omicron(s^3)\\[10pt]
 y=\cfrac{\kappa_0}{2}s^2+\cfrac{\kappa'_0}{6}s^3+\omicron(s^3)\\[10pt]
 z=\cfrac{\kappa_0\tau_0}{6}s^3+\omicron(s^3)
 \end{cases}
-\tag{120}
+\tag{121}
     \]
 <p>  上式成为曲线 \(\bm{r}=\bm{r}(s)\) 在 \(s=0\) 处的标准展开式。</p>
 <h3 id="近似曲线">近似曲线
 </h3><p>  当 \(\kappa_0\tau_0\ne 0\) 时，曲线的标准展开式中的坐标函数 \(x(s),y(s),z(s)\) 作为 \(s\) 的无穷小量的主要部分分别是 \(s,\cfrac{\kappa_0}{2}s^2\) 和 \(\cfrac{\kappa_0\tau_0}{6}s^3\) ，于是我们可以考虑一条新的曲线</p>
 <span id="20241029085825CST"></span>\[
 \tilde{\bm{r}}(s)=\left(s,\frac{\kappa_0}{2}s^2,\frac{\kappa_0\tau_0}{6}s^3\right)
-\tag{121}
+\tag{122}
     \]
 <p>  这是一条三次曲线，而且参数 \(s\) 一般不是曲线 \(\tilde{\bm{r}}(s)\) 的弧长参数，但是在 \(s=0\) 处有</p>
 <span id="20241029090021CST"></span>\[
@@ -2061,23 +2069,23 @@ z=\cfrac{\kappa_0\tau_0}{6}s^3+\omicron(s^3)
 \tilde{\bm{r}}''(0)=&(0,\kappa_0,0)\\[5pt]
 \tilde{\bm{r}}'''(0)=&(0,0,\kappa_0\tau_0)
 \end{aligned}
-\tag{122}
+\tag{123}
     \]
-<p>  代入<a class="link" href="#20241018125515CST">式(53)</a>和<a class="link" href="#20241020005546CST">式(85)</a>，曲线 \(\bm{r}=\tilde{\bm{r}}(s)\) 在 \(s=0\) 处的曲率是 \(\kappa_0\) ，挠率是 \(\tau_0\) ，并且Frenet标架是 \(\set{\bm{r}(0);\bm{\alpha}(0),\bm{\beta}(0),\bm{\gamma}(0)}\) ，即它与原来的曲线 \(\bm{r}=\bm{r}(s)\) 在 \(s=0\) 处有相同的曲率、挠率和Frenet标架。<br>
+<p>  代入<a class="link" href="#20241018125515CST">式(54)</a>和<a class="link" href="#20241020005546CST">式(86)</a>，曲线 \(\bm{r}=\tilde{\bm{r}}(s)\) 在 \(s=0\) 处的曲率是 \(\kappa_0\) ，挠率是 \(\tau_0\) ，并且Frenet标架是 \(\set{\bm{r}(0);\bm{\alpha}(0),\bm{\beta}(0),\bm{\gamma}(0)}\) ，即它与原来的曲线 \(\bm{r}=\bm{r}(s)\) 在 \(s=0\) 处有相同的曲率、挠率和Frenet标架。<br>
   曲线 \(\bm{r}=\tilde{\bm{r}}(s)\) 称为原曲线 \(\bm{r}=\bm{r}(s)\) 在 \(s=0\) 处的<strong>近似曲线</strong>，它的性状反映了原曲线的性状。例如，它在密切平面的投影是</p>
 <span id="20241029090856CST"></span>\[
 x=s,\quad y=\frac{\kappa_0}{2}s^2,\quad z=0
-\tag{123}
+\tag{124}
     \]
 <p>  它在从切平面上的投影是</p>
 <span id="20241029091802CST"></span>\[
 x=s,\quad y=0,\quad z=\frac{\kappa_0\tau_0}{6}s^3
-\tag{124}
+\tag{125}
     \]
 <p>  它在法平面上的投影是</p>
 <span id="20241029091839CST"></span>\[
 x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
-\tag{125}
+\tag{126}
     \]
 <p>  它们的图像如<a class="link" href="#20241029100148CST">图4</a>所示。</p>
 <span id="20241029100148CST"></span><div class="svg-figure">
@@ -2236,12 +2244,12 @@ x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
     <path id="MJX-28-TEX-N-30-4" data-name="MJX-28-TEX-N-30" d="M695.5225,396.6743c.6835-.9886,1.6171-1.4829,2.801-1.4829.5858,0,1.1716.1587,1.7575.476s1.0618.8787,1.4279,1.6842c.4516,1.013.6774,2.4043.6774,4.174,0,1.8917-.2624,3.338-.7872,4.3387-.2441.5126-.5797.9214-1.0069,1.2266-.4272.3051-.7994.4943-1.1167.5675s-.6285.1159-.9337.1281c-.3173,0-.6346-.0366-.952-.1098s-.6896-.2685-1.1167-.5858c-.4272-.3173-.7628-.7262-1.0069-1.2266-.5248-1.0008-.7872-2.447-.7872-4.3387,0-2.1236.3478-3.7407,1.0435-4.8513ZM699.6415,396.4546c-.3661-.3905-.7994-.5858-1.2998-.5858-.5126,0-.952.1953-1.3181.5858-.3051.3173-.5065.7567-.6041,1.3181-.0976.5614-.1465,1.7331-.1465,3.5149,0,1.9283.0488,3.1976.1465,3.8078.0976.6102.3173,1.0923.659,1.4462.3417.3661.7628.5492,1.2632.5492.4882,0,.9031-.1831,1.2449-.5492.3539-.3661.5736-.8787.659-1.5378s.1343-1.8978.1465-3.7163c0-1.7697-.0488-2.9352-.1465-3.4966-.0976-.5614-.299-1.0069-.6041-1.3364Z"/>
   </g>
 </svg><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;近似曲线在各坐标面的投影</p></div>
-<p>  从图上可以见到，曲线在 \(s=0\) 处是穿过曲线在该点的密切平面的。当 \(\tau_0>0\) 时，曲线是从下而上地穿过密切平面的；而当 \(\tau_0<0\) 时，曲线是从上而下地穿过密切平面的。这就是挠率的正、负号的儿何意义。</p>
+<p>  从图上可以见到，曲线在 \(s=0\) 处是穿过曲线在该点的密切平面的。当 \(\tau_0>0\) 时，曲线是从下而上地穿过密切平面的；而当 \(\tau_0<0\) 时，曲线是从上而下地穿过密切平面的。这就是挠率的正、负号的几何意义。</p>
 <h3 id="切触">切触
 </h3><p>  两条相交的曲线在交点附近的接近程度是用所谓的切触阶来刻画的。设曲线 \(C_1\) 和 \(C_2\) 相交于点 \(p_0\) ，在 \(C_1\) 和 \(C_2\) 上各取一点 \(p_1\) 和 \(p_2\) ，使得曲线 \(C_1\) 在点 \(p_0\) 和 \(p_1\) 之间的弧长是 \(\Delta s\) ， \(C_2\) 在点 \(p_0\) 和 \(p_2\) 之间的弧长也是 \(\Delta s\) ，若有正整数 \(n\) 使得</p>
 <span id="20241029103024CST"></span>\[
 \lim\limits_{\Delta s \to 0}\frac{|p_1p_2|}{(\Delta s)^n}=0,\quad \lim\limits_{\Delta s \to 0}\frac{|p_1p_2|}{(\Delta s)^{n+1}}\ne 0
-\tag{126}
+\tag{127}
     \]
 <p>  则称曲线 \(C_1\) 和 \(C_2\) 在交点 \(p_0\) 处有<strong>n阶切触</strong>。</p>
 <p>  <span id="20241029110307CST"></span><strong>定理10</strong>：设曲线 \(\bm{r}_1(s)\) 和 \(\bm{r}_2(s)\) 都以 \(s\) 为它们的弧长参数，且 \(\bm{r}_1(0)=\bm{r}_2(0)\) ，则它们在 \(s=0\) 处有 \(n\) 阶切触的充分必要条件是</p>
@@ -2250,30 +2258,30 @@ x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
 \bm{r}_1^{(i)}(0)=\bm{r}_2^{(i)}(0), \space \forall 1 \le i \le n\\[5pt]
 \bm{r}_1^{(n+1)}(0)\ne \bm{r}_2^{(n+1)}(0)
 \end{cases}
-\tag{127}
+\tag{128}
     \]
 <p>  <strong>证明（<a class="link" href="#20241029110307CST">定理10</a>）</strong>：实际上，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">Taylor展开</a></p>
 <p><span id="20241029110811CST"></span>\[
 \bm{r}_1(s)=\bm{r}_1(0)+\frac{s}{1!}\bm{r}_1'(0)+\frac{s^2}{2!}\bm{r}_1''(0)+\cdots+\frac{s^{n+1}}{(n+1)!}\bm{r}_1^{(n+1)}(0)+\bm{\omicron}(s^{n+1})
-\tag{128}
+\tag{129}
     \]
 <span id="20241029111149CST"></span>\[
 \bm{r}_2(s)=\bm{r}_2(0)+\frac{s}{1!}\bm{r}_2'(0)+\frac{s^2}{2!}\bm{r}_2''(0)+\cdots+\frac{s^{(n+1)}}{(n+1)!}\bm{r}_2^{(n+1)}(0)+\bm{\omicron}(s^{n+1})
-\tag{129}
+\tag{130}
     \]</p>
-<p>  将上面两个式子相减并利用条件<a class="link" href="#20241029110419CST">式(127)</a>：</p>
+<p>  将上面两个式子相减并利用条件<a class="link" href="#20241029110419CST">式(128)</a>：</p>
 <span id="20241029111253CST"></span>\[
 \bm{r}_1(s)-\bm{r}_2(s)=\frac{s^{n+1}}{(n+1)!}\left(\bm{r}_1^{(n+1)}(0)-\bm{r}_2^{(n+1)}(0)\right)+\bm{\omicron}(s^{n+1})
-\tag{130}
+\tag{131}
     \]
 <p>  因此</p>
 <p><span id="20241029112353CST"></span>\[
 \lim\limits_{s \to 0}\frac{|\bm{r}_1(s)-\bm{r}_2(s)|}{s^n}=0
-\tag{131}
+\tag{132}
     \]
 <span id="20241029112532CST"></span>\[
 \lim\limits_{s \to 0}\frac{|\bm{r}_1(s)-\bm{r}_2(s)|}{s^{n+1}}=\frac{\left|\bm{r}_1^{(n+1)}(0)-\bm{r}_2^{(n+1)}(0)\right|}{(n+1)!}\ne 0
-\tag{132}
+\tag{133}
     \]</p>
 <p>  反之亦然，证毕。</p>
 <p>  由此可见，一条正则曲线与由它的Taylor展开式的前 \(n+1\) 项之和给出的曲线在该点处至少有 \(n\) 阶切触。正则曲线与它的切线至少有 \(1\) 阶切触。与它在一点处的近似曲线在该点至少有 \(2\) 阶切触。</p>
@@ -2281,26 +2289,64 @@ x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
 <p>  <strong>证明（<a class="link" href="#20241029122736CST">推论1</a>）</strong>：实际上，由<a class="link" href="#20241029110307CST">定理10</a>，两条相交的正则曲线在交点 \(s=0\) 处有 \(2\) 阶以上的切触的充分必要条件是</p>
 <span id="20241029121233CST"></span>\[
 \bm{r}_1(0)=\bm{r}_2(0),\quad \bm{r}'_1(0)=\bm{r}'_2(0), \quad \bm{r}''_1(0)=\bm{r}''_2(0)
-\tag{133}
+\tag{134}
     \]
 <p>  前两式说明这两条曲线相切。将第三式代入<a class="link" href="#20241019110326CST">Frenet公式</a>的前两式可得</p>
 <span id="20241029121738CST"></span>\[
 \kappa_1(0)\bm{\beta}_1(0)=\kappa_2(0)\bm{\beta}_2(0)
-\tag{134}
+\tag{135}
     \]
 <p>  注意 \(|\bm{\beta}_1(0)|=|\bm{\beta}_2(0)|=1\) ，则有</p>
 <span id="20241029121810CST"></span>\[
 \kappa_1(0)=\kappa_2(0),\quad \bm{\beta}_1(0)=\bm{\beta}_2(0)
-\tag{135}
-    \]
-<p>  第一式说明这两条曲线有相同的曲率，第二式说明这两条曲线有相同的有向密切平面。证毕。</p>
-<p>  对于曲线 \(\bm{r}=\bm{r}(s)\) 上 \(\kappa(s)>0\) 的点 \(s=s_0\) ，还可以在该点的密切平面上构造一条特殊的平面曲线，即在 \(\bm{r}(s_0)\) 处的密切平面上作以 \(\bm{r}(s_0)+\cfrac{\bm{\beta}(s_0)}{\kappa(s_0)}\) 为中心、以 \(\cfrac{1}{\kappa(s_0)}\) 为半径的圆周。这个圆的参数曲线方程可以写成</p>
-<span id="20241029150220CST"></span>\[
-\left(\bm{r}(s)-\left(\bm{r}(s_0)+\frac{\bm{\beta}(s_0)}{\kappa(s_0)}\right)\right)^2=\left(\frac{1}{\kappa(s_0)}\right)^2,\quad \bm{r}(s)\cdot\bm{\gamma}(s_0)=0
 \tag{136}
     \]
-<p>  这个圆周与原曲线在 \(s=s_0\) 处相切，有相同的有向密切平面，并且曲率是 \(\kappa(s_0)\) ，因此它与原曲线在点 \(s=s_0\) 处有 \(2\) 阶以上的切触．通常称这个圆周为曲线 \(\bm{r}=\bm{r}(s)\) 在点 \(s=s_0\) 处的<strong>曲率圆</strong>，其圆心 \(\bm{r}(s_0)+\cfrac{\bm{\beta}(s_0)}{\kappa(s_0)}\) 称为曲线在 \(s=s_0\) 处的<strong>曲率中心</strong>。</p>
-
+<p>  第一式说明这两条曲线有相同的曲率，第二式说明这两条曲线有相同的有向密切平面。证毕。</p>
+<h3 id="曲率圆">曲率圆
+</h3><p>  对于曲线 \(\bm{r}=\bm{r}(s)\) 上 \(\kappa(s)>0\) 的点 \(s=s_0\) ，还可以在该点的密切平面上构造一条特殊的平面曲线，即在 \(\bm{r}(s_0)\) 处的密切平面上作以 \(\bm{r}(s_0)+\cfrac{\bm{\beta}(s_0)}{\kappa(s_0)}\) 为中心、以 \(\cfrac{1}{\kappa(s_0)}\) 为半径的圆周。这个圆的弧长参数曲线方程可以写成如下两式</p>
+<span id="20241029150220CST"></span>\[
+\left(\tilde{\bm{r}}(s')-\left(\bm{r}(s_0)+\frac{\bm{\beta}(s_0)}{\kappa(s_0)}\right)\right)^2=\left(\frac{1}{\kappa(s_0)}\right)^2
+\tag{137}
+    \]
+<p>  <a class="link" href="#20241029150220CST">式(137)</a>代入 \(\tilde{\bm{r}}(s')=\bm{r}(s_0)\) ，等式成立，因此可说明该圆和 \(\bm{r}=\bm{r}(s)\) 有交点。不妨设 \(s'=0\) 时 \(\tilde{\bm{r}}(s')=\bm{r}(s_0)\) 。<a class="link" href="#20241029150220CST">式(137)</a>对 \(s'\) 求导得</p>
+<span id="20241029170607CST"></span>\[
+\tilde{\bm{r}}'(s)\cdot\left(\tilde{\bm{r}}(s)-\left(\bm{r}(s_0)+\frac{\bm{\beta}(s_0)}{\kappa(s_0)}\right)\right)=0
+\tag{138}
+    \]
+<p>  代入 \(s'=0\) 可得</p>
+<span id="20241029161752CST"></span>\[
+\tilde{\bm{r}}'(0)\cdot\left(\tilde{\bm{r}}(0)-\left(\bm{r}(s_0)+\frac{\bm{\beta}(s_0)}{\kappa(s_0)}\right)\right)=0
+\tag{139}
+    \]
+<p>  注意 \(\tilde{\bm{r}}(0)=\bm{r}(s_0)\) ，得</p>
+<span id="20241029162119CST"></span>\[
+\tilde{\bm{r}}'(0)\cdot\bm{\beta}(s_0)=0
+\tag{140}
+    \]
+<p>  注意 \(\tilde{\bm{r}}'(0)\) 和 \(\bm{\alpha}(s_0)\) 都在密切平面内并且由<a class="link" href="#20241029163556CST">Frenet标架</a>可知 \(\bm{\alpha}(s_0)\cdot\bm{\beta}(s_0)=0\) ，所以 \(\tilde{\bm{r}}'(0)\parallel\bm{\alpha}(s_0)\) ，即 \(\tilde{\bm{r}}'(0)\parallel\bm{r}'(s_0)\) （见<a class="link" href="#20241017212549CST">式(34)</a>），故该圆和 \(\bm{r}=\bm{r}(s_0)\) 相切。<br>
+  再对<a class="link" href="#20241029170607CST">式(138)</a>求导并取 \(s=0\) 可得</p>
+<span id="20241029164719CST"></span>\[
+\tilde{\bm{r}}''(0)\cdot\left(\tilde{\bm{r}}(0)-\left(\bm{r}(s_0)+\frac{\bm{\beta}(s_0)}{\kappa(s_0)}\right)\right)+\tilde{\bm{r}}'(0)\cdot\tilde{\bm{r}}'(0)=0
+\tag{141}
+    \]
+<p>  代入 \(\tilde{\bm{r}}(0)=\bm{r}(s_0)\) 并利用 \(|\bm{r}'(0)|=1\) （见<a class="link" href="#20241016213554CST">定理1</a>）可得</p>
+<span id="20241029170258CST"></span>\[
+\tilde{\bm{r}}''(0)\cdot\bm{\beta}(s_0)=\kappa(s_0)
+\tag{142}
+    \]
+<p>  由<a class="link" href="#20241017212549CST">式(34)</a>和<a class="link" href="#20241029165258CST">式(41)</a>可知</p>
+<span id="20241029171831CST"></span>\[
+\tilde{\bm{r}}'(0)\cdot\tilde{\bm{r}}''(0)=0
+\tag{143}
+    \]
+<p>  由<a class="link" href="#20241029162119CST">式(140)</a>和上式可知 \(\tilde{\bm{r}}''(0)\parallel\bm{\beta}(s_0)\) 。我们可以通过调整曲线的方向来使得 \(\tilde{\bm{r}}''(0)\) 与 \(\bm{\beta}(s_0)\) 同向，这样将 \(|\bm{\beta}(s_0)|=1\) 和 \(\tilde{\kappa}(0)=|\tilde{\bm{r}}''(0)|\) （见 <a class="link" href="#20241018100450CST">定义1</a>）代入<a class="link" href="#20241029170258CST">式(142)</a>可得</p>
+<span id="20241029172619CST"></span>\[
+\tilde{\kappa}(0)=\kappa(s_0)
+\tag{144}
+    \]
+<p>  因此这个圆周与原曲线在 \(s=s_0\) 处相切，有相同的有向密切平面，并且曲率是 \(\kappa(s_0)\) ，因此它与原曲线在点 \(s=s_0\) 处有 \(2\) 阶以上的切触．通常称这个圆周为曲线 \(\bm{r}=\bm{r}(s)\) 在点 \(s=s_0\) 处的<strong>曲率圆</strong>，其圆心 \(\bm{r}(s_0)+\cfrac{\bm{\beta}(s_0)}{\kappa(s_0)}\) 称为曲线在 \(s=s_0\) 处的<strong>曲率中心</strong>。其半径 \(\frac{1}{\kappa(s_0)}\) 称为曲线再 \(s=s_0\) 处的<strong>曲率半径</strong>。曲率圆形象地反映了曲线再一点处的弯曲程度。</p>
+<h3 id="与球面的切触">与球面的切触
+</h3>
     </div>
 </section>
 
@@ -2341,7 +2387,7 @@ x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
 
 
         <span>
-            最后更新于 Oct 29, 2024 15:41 CST
+            最后更新于 Oct 29, 2024 17:32 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2500,7 +2546,7 @@ x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
             
             
         
-        <span>本图书馆累计发布了11篇文章 共117400字</span>
+        <span>本图书馆累计发布了11篇文章 共117699字</span>
     </section>
 
     <section class="site-visit-count">
