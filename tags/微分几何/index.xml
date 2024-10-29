@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 29 Oct 2024 11:02:47 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 29 Oct 2024 11:28:00 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -1268,6 +1268,37 @@ x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
 \tag{126}
     \]
 &lt;p&gt;  则称曲线 \(C_1\) 和 \(C_2\) 在交点 \(p_0\) 处有&lt;strong&gt;n阶切触&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241029110307CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理10&lt;/strong&gt;：设曲线 \(\bm{r}_1(s)\) 和 \(\bm{r}_2(s)\) 都以 \(s\) 为它们的弧长参数，且 \(\bm{r}_1(0)=\bm{r}_2(0)\) ，则它们在 \(s=0\) 处有 \(n\) 阶切触的充分必要条件是&lt;/p&gt;
+&lt;span id=&#34;20241029110419CST&#34;&gt;&lt;/span&gt;\[
+\begin{cases}
+\bm{r}_1^{(i)}(0)=\bm{r}_2^{(i)}(0), \space \forall 1 \le i \le n\\[5pt]
+\bm{r}_1^{(n+1)}(0)\ne \bm{r}_2^{(n+1)}(0)
+\end{cases}
+\tag{127}
+    \]
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241029110307CST&#34;&gt;定理10&lt;/a&gt;）&lt;/strong&gt;：实际上，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;Taylor展开&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241029110811CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_1(s)=\bm{r}_1(0)+\frac{s}{1!}\bm{r}_1&#39;(0)+\frac{s^2}{2!}\bm{r}_1&#39;&#39;(0)+\cdots+\frac{s^{n+1}}{(n+1)!}\bm{r}_1^{(n+1)}(0)+\bm{\omicron}(s^{n+1})
+\tag{128}
+    \]
+&lt;span id=&#34;20241029111149CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_2(s)=\bm{r}_2(0)+\frac{s}{1!}\bm{r}_2&#39;(0)+\frac{s^2}{2!}\bm{r}_2&#39;&#39;(0)+\cdots+\frac{s^{(n+1)}}{(n+1)!}\bm{r}_2^{(n+1)}(0)+\bm{\omicron}(s^{n+1})
+\tag{129}
+    \]&lt;/p&gt;
+&lt;p&gt;  将上面两个式子相减并利用条件&lt;a class=&#34;link&#34; href=&#34;#20241029110419CST&#34;&gt;式(127)&lt;/a&gt;：&lt;/p&gt;
+&lt;span id=&#34;20241029111253CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_1(s)-\bm{r}_2(s)=\frac{s^{n+1}}{(n+1)!}\left(\bm{r}_1^{(n+1)}(0)-\bm{r}_2^{(n+1)}(0)\right)+\bm{\omicron}(s^{n+1})
+\tag{130}
+    \]
+&lt;p&gt;  因此&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241029112353CST&#34;&gt;&lt;/span&gt;\[
+\lim\limits_{s \to 0}\frac{|\bm{r}_1(s)-\bm{r}_2(s)|}{s^n}=0
+\tag{131}
+    \]
+&lt;span id=&#34;20241029112532CST&#34;&gt;&lt;/span&gt;\[
+\lim\limits_{s \to 0}\frac{|\bm{r}_1(s)-\bm{r}_2(s)|}{s^{n+1}}=\frac{\left|\bm{r}_1^{(n+1)}(0)-\bm{r}_2^{(n+1)}(0)\right|}{(n+1)!}\ne 0
+\tag{132}
+    \]&lt;/p&gt;
 </description>
         </item>
         <item>
