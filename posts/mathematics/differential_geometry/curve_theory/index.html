@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-30T14:19:38&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-30T14:56:33&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -962,7 +962,7 @@
 </svg>
 
             <time class="article-words">
-                14117 字
+                14457 字
             </time>
         </div>
 
@@ -2482,28 +2482,62 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa'_0}{\kappa_0^2\tau_0}=\frac
 \bm{\alpha}_2(s)\cdot\bm{\beta}_2(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}=0=\pm\lambda'(s)\bm{\beta}_1(s)\cdot\bm{\beta}_1(s)
 \tag{166}
     \]
-<p>  故 \(\lambda'(s)=0\) ， \(\lambda(s)=\lambda=常数\) ，故</p>
+<p>  故 \(\lambda'(s)=0\) ，即</p>
+<span id="20241030144508CST"></span>\[
+\lambda(s)=\lambda=常数
+\tag{167}
+    \]
+<p>  因此</p>
 <span id="20241030122137CST"></span>\[
 |\bm{r}_2(s)-\bm{r}_1(s)|=|\lambda(s)\bm{\beta}_1(s)|=|\lambda|
-\tag{167}
+\tag{168}
     \]
 <p>  对 \(\bm{\alpha}_1(s)\cdot\bm{\alpha}_2(s)\) 求导并利用<a class="link" href="#20241019110326CST">Frenet公式</a>得到</p>
 <span id="20241030130353CST"></span>\[
 \frac{\mathrm{d}}{\mathrm{d}s}(\bm{\alpha}_1(s)\cdot\bm{\alpha}_2(s))=\kappa_1(s)\bm{\beta}_1(s)\cdot\bm{\alpha}_2(s)+\kappa_2(s)\bm{\alpha}_1(s)\cdot\bm{\beta}_2(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}
-\tag{168}
+\tag{169}
     \]
 <p>  注意 \(\bm{\beta}_1(s)=\pm\bm{\beta}_2(s)\) 且 \(\bm{\alpha}_1(s)\cdot\bm{\beta}_1(s)=0,\bm{\alpha}_2(s)\cdot\bm{\beta}_2(s)=0\) ，因此</p>
 <span id="20241030130846CST"></span>\[
 \frac{\mathrm{d}}{\mathrm{d}s}(\bm{\alpha}_1(s)\cdot\bm{\alpha}_2(s))=0
-\tag{169}
+\tag{170}
     \]
 <p>  故曲线 \(C_1\) 和 \(C_2\) 在对应点的切线成定角。证毕。</p>
 <p>  <span id="20241030130942CST"></span><strong>定理13</strong>：设正则参数曲线 \(C\) 的曲率 \(\kappa\) 和挠率 \(\tau\) 都不是零，则存在另一条正则参数曲线 \(C_1\) ，使得曲线 \(C_1\) 和 \(C\) 称为Bertrand曲线偶的充分必要条件是，存在常数 \(\lambda\ne 0\) 和 \(\mu\) 使得</p>
 <span id="20241030135221CST"></span>\[
 \lambda\kappa+\mu\tau=1
-\tag{170}
+\tag{171}
     \]
-<p>  <strong>证明（<a class="link" href="#20241030130942CST">定理13</a>）</strong>：先证必要性。设曲线 \(C\) 有侣线 \(C_1\)</p>
+<p>  <strong>证明（<a class="link" href="#20241030130942CST">定理13</a>）</strong>：先证必要性。设曲线 \(C\) 有侣线 \(C_1\) ，它们的参数方程分别是 \(\bm{r}(s)\) 和 \(\bm{r}_1(s)\) ，并且曲线 \(C\) 和 \(C_1\) 的对应是有相同参数的点之间的对应，而且 \(s\) 是曲线 \(C\) 的弧长参数。设 \(\tilde{s}\) 是曲线 \(C_1\) 的弧长参数。用 \(\set{\bm{r}(s);\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)}\) 表示曲线 \(C\) 的Frenet标架，则由<a class="link" href="#20241030121349CST">式(165)</a>和<a class="link" href="#20241030144508CST">式(167)</a>有</p>
+<span id="20241030144621CST"></span>\[
+\bm{\alpha}_1(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}=(1-\lambda\kappa(s))\bm{\alpha}(s)+\lambda\tau(s)\bm{\gamma}(s)
+\tag{172}
+    \]
+<p>  其中 \(\lambda\ne 0\) 是常数，因此</p>
+<span id="20241030144727CST"></span>\[
+\left|\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}\right|^2=(1-\lambda\kappa(s))^2+(\lambda\tau(s))^2
+\tag{173}
+    \]
+<p>  另一方面，由<a class="link" href="#20241030113140CST">定理12</a>可知 \(\bm{\alpha}(s)\cdot\bm{\alpha}_1(s)=常数\) ，并且由<a class="link" href="#20241030144621CST">式(172)</a>两边点乘 \(\bm{\alpha}(s)\) 并由<a class="link" href="#20241029163556CST">Frenet标架</a>的正交性得到</p>
+<span id="20241030145043CST"></span>\[
+\bm{\alpha}(s)\cdot\bm{\alpha}_1(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}=1-\lambda\kappa(s)
+\tag{174}
+    \]
+<p>  所以</p>
+<span id="20241030145309CST"></span>\[
+\frac{1-\lambda\kappa(s)}{\sqrt{(1-\lambda\kappa(s))^2+(\lambda\tau(s))^2}}=常数
+\tag{175}
+    \]
+<p>  化简可得</p>
+<span id="20241030145434CST"></span>\[
+\frac{1-\lambda\kappa(s)}{\tau(s)}=\mu=常数
+\tag{176}
+    \]
+<p>  即</p>
+<span id="20241030145453CST"></span>\[
+\lambda\kappa(s)+\mu\tau(s)=1
+\tag{177}
+    \]
 
     </div>
 </section>
@@ -2545,7 +2579,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa'_0}{\kappa_0^2\tau_0}=\frac
 
 
         <span>
-            最后更新于 Oct 30, 2024 14:19 CST
+            最后更新于 Oct 30, 2024 14:56 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2704,7 +2738,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa'_0}{\kappa_0^2\tau_0}=\frac
             
             
         
-        <span>本图书馆累计发布了11篇文章 共119657字</span>
+        <span>本图书馆累计发布了11篇文章 共119997字</span>
     </section>
 
     <section class="site-visit-count">
