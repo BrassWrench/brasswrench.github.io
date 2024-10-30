@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 29 Oct 2024 17:33:21 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 30 Oct 2024 08:49:52 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/differential_geometry/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -1361,14 +1361,77 @@ x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
 \tilde{\bm{r}}&#39;(0)\cdot\tilde{\bm{r}}&#39;&#39;(0)=0
 \tag{143}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241029162119CST&#34;&gt;式(140)&lt;/a&gt;和上式可知 \(\tilde{\bm{r}}&#39;&#39;(0)\parallel\bm{\beta}(s_0)\) 。我们可以通过调整曲线的方向来使得 \(\tilde{\bm{r}}&#39;&#39;(0)\) 与 \(\bm{\beta}(s_0)\) 同向，这样将 \(|\bm{\beta}(s_0)|=1\) 和 \(\tilde{\kappa}(0)=|\tilde{\bm{r}}&#39;&#39;(0)|\) （见 &lt;a class=&#34;link&#34; href=&#34;#20241018100450CST&#34;&gt;定义1&lt;/a&gt;）代入&lt;a class=&#34;link&#34; href=&#34;#20241029170258CST&#34;&gt;式(142)&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241029162119CST&#34;&gt;式(140)&lt;/a&gt;和上式可知 \(\tilde{\bm{r}}&#39;&#39;(0)\parallel\bm{\beta}(s_0)\) （ \(\tilde{\bm{r}}&#39;&#39;(0)\) 和 \(\bm{\beta}(s_0)\) 都在密切平面内）。我们可以通过调整曲线的方向来使得 \(\tilde{\bm{r}}&#39;&#39;(0)\) 与 \(\bm{\beta}(s_0)\) 同向，这样将 \(|\bm{\beta}(s_0)|=1\) 和 \(\tilde{\kappa}(0)=|\tilde{\bm{r}}&#39;&#39;(0)|\) （见 &lt;a class=&#34;link&#34; href=&#34;#20241018100450CST&#34;&gt;定义1&lt;/a&gt;）代入&lt;a class=&#34;link&#34; href=&#34;#20241029170258CST&#34;&gt;式(142)&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241029172619CST&#34;&gt;&lt;/span&gt;\[
 \tilde{\kappa}(0)=\kappa(s_0)
 \tag{144}
     \]
 &lt;p&gt;  因此这个圆周与原曲线在 \(s=s_0\) 处相切，有相同的有向密切平面，并且曲率是 \(\kappa(s_0)\) ，因此它与原曲线在点 \(s=s_0\) 处有 \(2\) 阶以上的切触．通常称这个圆周为曲线 \(\bm{r}=\bm{r}(s)\) 在点 \(s=s_0\) 处的&lt;strong&gt;曲率圆&lt;/strong&gt;，其圆心 \(\bm{r}(s_0)+\cfrac{\bm{\beta}(s_0)}{\kappa(s_0)}\) 称为曲线在 \(s=s_0\) 处的&lt;strong&gt;曲率中心&lt;/strong&gt;。其半径 \(\cfrac{1}{\kappa(s_0)}\) 称为曲线再 \(s=s_0\) 处的&lt;strong&gt;曲率半径&lt;/strong&gt;。曲率圆形象地反映了曲线再一点处的弯曲程度。&lt;/p&gt;
 &lt;h3 id=&#34;与球面的切触&#34;&gt;与球面的切触
-&lt;/h3&gt;</description>
+&lt;/h3&gt;&lt;p&gt;  若一条曲线 \(C\) 和一个曲面 \(\Sigma\) 相交，同样能够用切触阶来刻画曲线和曲面的接近程度。设交点是 \(p_0\) 。在曲线 \(C\) 上取一点 \(p_1\) ，把曲线 \(C\) 上从点 \(p_0\) 到点 \(p_1\) 的弧长记为 \(\Delta s\) ，把点 \(p_1\) 到曲面 \(\Sigma\) 的距离最近的点记为 \(p_2\) ，则当&lt;a class=&#34;link&#34; href=&#34;#20241029103024CST&#34;&gt;式(127)&lt;/a&gt;成立时，称曲线 \(C\) 和曲面 \(\Sigma\) 的切触阶是 \(n\) 。如果 \(\Sigma\) 是以点 \(A\) 为中心、以 \(r\) 为半径、且与曲线 \(C\) 交于点 \(p_0\) 的球面，于是点 \(p_2\) 恰好是线段 \(p_1A\) 与球面 \(\Sigma\) 的交点，所以 \(|p_1p_2|=|p_1A|-r\) 。因此&lt;/p&gt;
+&lt;span id=&#34;20241030075727CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\lim\limits_{\Delta s \to 0}\frac{|p_1p_2|}{|p_1A|^2-r^2}=&amp;\lim\limits_{\Delta s \to 0}\frac{|p_1A|-r}{|p_1A|^2-r^2}\\[15pt]
+=&amp;\lim\limits_{\Delta s \to 0}\frac{|p_1A|-r}{(|p_1A|-r)(|p_1A|+r)}\\[15pt]
+=&amp;\lim\limits_{\Delta s \to 0}\frac{1}{|p_1A|+r}\\[15pt]
+=&amp;\frac{1}{|p_0A|+r}=\frac{1}{2r}
+\end{aligned}
+\tag{145}
+    \]
+&lt;p&gt;  因此 \(|p_1p_2|\) 和 \(|p_1A|^2-r^2\) 作为 \(\Delta s\) 的无穷小量是同阶的，因此在用&lt;a class=&#34;link&#34; href=&#34;#20241029103024CST&#34;&gt;式(127)&lt;/a&gt;求曲线和球面的切触阶时可以用 \(|p_1A|^2-r^2\) 代替 \(|p_1p_2|\) 。下面，我们来求与曲线 \(C\) 在一点处有最高阶切触的球面。&lt;br&gt;
+  设曲线 \(C\) 的参数方程是 \(\bm{r}=\bm{r}(s)\) ， \(s\) 是弧长参数，它的曲率和挠率都不为零。设球面 \(\Sigma\) 与曲线 \(C\) 在对应于参数 \(s=0\) 的点 \(p_0\) 处相交，用 \(\set{p_0;\bm{\alpha}_0,\bm{\beta}_0,\bm{\gamma}_0}\) 记曲线 \(C\) 在点 \(p_0\) 的Frenet标架，则球面 \(\Sigma\) 的球心 \(A\) 可以设为&lt;/p&gt;
+&lt;span id=&#34;20241030080657CST&#34;&gt;&lt;/span&gt;\[
+\overrightarrow{p_0A}=a\bm{\alpha}_0+b\bm{\beta}_0+c\bm{\gamma}_0, \quad a^2+b^2+c^2=r^2
+\tag{146}
+    \]
+&lt;p&gt;  其中 \(r\) 是球面 \(\Sigma\) 的半径。把曲线 \(C\) 上的一点 \(\bm{r}(s)\) 记为 \(p\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241028194737CST&#34;&gt;式(121)&lt;/a&gt;得到&lt;/p&gt;
+&lt;span id=&#34;20241030081858CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+|pA|^2-r^2=&amp;\left(s-\frac{\kappa_0^2}{6}s^3+\omicron(s^3)-a\right)^2+\left(\frac{\kappa_0}{2}s^2+\frac{\kappa&#39;_0}{6}s^3+\omicron(s^3)-b\right)^2\\[15pt]
+&amp;+\left(\frac{\kappa_0\tau_0}{6}s^3+\omicron(s^3)-c\right)^2-(a^2+b^2+c^2)\\[15pt]
+=&amp;-2a\left(s-\frac{\kappa_0^2}{6}s^3+\omicron(s^3)\right)+\left(s-\frac{\kappa_0^2}{6}s^3+\omicron(s^3)\right)^2\\[15pt]
+&amp;-2b\left(\frac{\kappa_0}{2}s^2+\frac{\kappa&#39;_0}{6}s^3+\omicron(s^3)\right)+\left(\frac{\kappa_0}{2}s^2+\frac{\kappa&#39;_0}{6}s^3+\omicron(s^3)\right)^2\\[15pt]
+&amp;-2c\left(\frac{\kappa_0\tau_0}{6}s^3+\omicron(s^3)\right)+\left(\frac{\kappa_0\tau_0}{6}s^3+\omicron(s^3)\right)^2
+\end{aligned}
+\tag{147}
+    \]
+&lt;p&gt;  可得&lt;/p&gt;
+&lt;span id=&#34;20241030083026CST&#34;&gt;&lt;/span&gt;\[
+\lim\limits_{s \to 0}\frac{|p_1p_2|}{s}=\lim\limits_{s \to 0}\frac{|pA|^2-r^2}{s}=2a
+\tag{148}
+    \]
+&lt;p&gt;  因此曲线 \(C\) 和球面 \(\Sigma\) 有 \(1\) 阶以上切触的条件是 \(a=0\) 。在此条件下，上式可化简为&lt;/p&gt;
+&lt;span id=&#34;20241030083445CST&#34;&gt;&lt;/span&gt;\[
+|pA|^2-r^2=s^2-b\left(\kappa_0s^2+\frac{\kappa&#39;_0}{3}s^3\right)-c\frac{\kappa_0\tau_0}{3}s^3+\omicron(s^3)
+\tag{149}
+    \]
+&lt;p&gt;  有&lt;/p&gt;
+&lt;span id=&#34;20241030083629CST&#34;&gt;&lt;/span&gt;\[
+\lim\limits_{s \to 0}\frac{|pA|^2-r^2}{s^2}=1-b\kappa_0
+\tag{150}
+    \]
+&lt;p&gt;  因此曲线 \(C\) 和球面 \(\Sigma\) 有 \(2\) 阶以上切触的条件是&lt;/p&gt;
+&lt;span id=&#34;20241030084224CST&#34;&gt;&lt;/span&gt;\[
+a=0,\quad b=\frac{1}{\kappa_0}
+\tag{151}
+    \]
+&lt;p&gt;  在此条件下，&lt;a class=&#34;link&#34; href=&#34;#20241030083445CST&#34;&gt;式(149)&lt;/a&gt;成为&lt;/p&gt;
+&lt;span id=&#34;20241030084328CST&#34;&gt;&lt;/span&gt;\[
+|pA|^2-r^2=\frac{\kappa&#39;_0}{3\kappa_0}s^3-c\frac{\kappa_0\tau_0}{3}s^3+\omicron(s^3)
+\tag{152}
+    \]
+&lt;p&gt;  有&lt;/p&gt;
+&lt;span id=&#34;20241030084447CST&#34;&gt;&lt;/span&gt;\[
+\lim\limits_{s \to 0}\frac{|pA|^2-r^2}{s^3}=\frac{\kappa&#39;_0}{3\kappa_0}-c\frac{\kappa_0\tau_0}{3}
+\tag{153}
+    \]
+&lt;p&gt;  因此，曲线 \(C\) 和球面 \(\Sigma\) 有三阶以上切触的条件是&lt;/p&gt;
+&lt;span id=&#34;20241030084700CST&#34;&gt;&lt;/span&gt;\[
+a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\frac{1}{\tau(s)}\left.\left(\frac{1}{\kappa(s)}\right)&#39;\right|_{s=0}
+\tag{154}
+    \]
+&lt;p&gt;  并且一般说来，曲线 \(C\) 和球面 \(\Sigma\) 的最高切触阶只能是3。上面的结果可以叙述成如下定理&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>微分几何（一）：Euclidean空间</title>
