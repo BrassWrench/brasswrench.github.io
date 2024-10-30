@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 30 Oct 2024 10:06:05 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 30 Oct 2024 14:19:38 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -6390,9 +6390,82 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\
     \]
 &lt;p&gt;  是通过曲线 \(C\) 的曲率中心、垂直于密切平面的直线，称为曲线 \(C\) 在 \(s\) 处的&lt;strong&gt;曲率轴&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：取 \(\lambda=0\) 可得 \(\bm{r}(0)=\bm{r}(s)+\cfrac{1}{\kappa(s)}\bm{\beta}(s)\) ，该点即为曲率圆圆心（见&lt;a class=&#34;link&#34; href=&#34;#20241030092842CST&#34;&gt;曲率圆&lt;/a&gt;）。求导得 \(\bm{r}&#39;(\lambda)=\bm{\gamma}(s)\) 可得该直线垂直于密切平面。&lt;/p&gt;
-&lt;p&gt;  最后我们要指出，构造曲线的Frenet标架的过程正是曲线的参数方程逐次求导的过程。实际上，Frenet标架 \(\set{\bm{\alpha}(t),\bm{\beta}(t),\bm{\gamma}(t)}\) 是 \(\set{\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t)}\) 经过Schmidt正交化得到的。 \(\bm{r}&#39;(t)\) 决定了曲线的切线而曲线的曲率是曲线切线的方向关于弧长的变化率。 \(\bm{r}&#39;(t),\bm{r}&#39;&#39;(t)\) 决定了曲线的密切平面。如果曲线的密切平面的方向不变，则它必定是平面曲线。如果该曲线不是平面曲线，则它的密切平面的方向关于弧长的变化率是曲线的挠率，它反映了曲线的扭曲程度。很明显，曲线方程的更高次导数仍然能够表示成Frenet标架向量的线性组合，其系数是曲率 \(\kappa\) 和挠率 \(\tau\) 及其各阶导数。&lt;/p&gt;
+&lt;p&gt;  最后我们要指出，构造曲线的Frenet标架的过程正是曲线的参数方程逐次求导的过程。实际上，Frenet标架 \(\set{\bm{\alpha}(t),\bm{\beta}(t),\bm{\gamma}(t)}\) 是 \(\set{\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t)}\) 经过&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等代数”还未上线~&#39;)&#34;&gt;Schmit正交化&lt;/a&gt;得到的。 \(\bm{r}&#39;(t)\) 决定了曲线的切线而曲线的曲率是曲线切线的方向关于弧长的变化率。 \(\bm{r}&#39;(t),\bm{r}&#39;&#39;(t)\) 决定了曲线的密切平面。如果曲线的密切平面的方向不变，则它必定是平面曲线。如果该曲线不是平面曲线，则它的密切平面的方向关于弧长的变化率是曲线的挠率，它反映了曲线的扭曲程度。很明显，曲线方程的更高次导数仍然能够表示成Frenet标架向量的线性组合，其系数是曲率 \(\kappa\) 和挠率 \(\tau\) 及其各阶导数。&lt;/p&gt;
 &lt;h2 id=&#34;存在对应关系的曲线偶&#34;&gt;存在对应关系的曲线偶
 &lt;/h2&gt;&lt;p&gt;  本节我们要研究存在一定的对应关系的曲线偶．假定在正则参数曲线 \(C_1:\bm{r}=\bm{r}_1(t)\) 和正则参数曲线 \(C_2:\bm{r}=\bm{r}_2(u)\) 之间存在一个对应，这个对应可以用参数 \(t\) 和 \(u\) 之间的一个对应来表示，设为 \(u=u(t)\) 如果 \(u&#39;(t)\ne 0\) ，则 \(u=u(t)\) 可以认为是曲线 \(C_2\) 的正则参数变换，于是曲线 \(C_1\) 和 \(C_2\) 之间的对应成为曲线 \(C_1\) 和 \(C_2\) 之间有相同参数的点之间的对应。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241030100920CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3&lt;/strong&gt;：如果在互不重合的曲线 \(C_1\) 和 \(C_2\) 之间存在一个对应，使得它们在每一对对应点有公共的主法线，则称这两条曲线为&lt;strong&gt;Bertrand曲线偶&lt;/strong&gt;，其中没一条曲线称为另外一条曲线的&lt;strong&gt;侣线&lt;/strong&gt;，或&lt;strong&gt;共轭曲线&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  每一条平面曲线都有侣线，构成Bertrand曲线偶。事实上，设 \(\bm{r}=\bm{r}(s)\) 是在平面上的一条曲线，以 \(s\) 为它的弧长参数。于是， \(\bm{r}&#39;(s)\) 是曲线的单位切向量场，由&lt;a class=&#34;link&#34; href=&#34;#20241018122023CST&#34;&gt;式(46)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241018122758CST&#34;&gt;式(47)&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241030102059CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;&#39;(s)=\kappa(s)\bm{n}(s)
+\tag{158}
+    \]
+&lt;p&gt;  这里 \(\bm{n}(s)\) 是沿曲线定义的法向量场。命&lt;/p&gt;
+&lt;span id=&#34;20241030102132CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_1(s)=\bm{r}(s)+\lambda\bm{n}(s)
+\tag{159}
+    \]
+&lt;p&gt;  其中 \(\lambda\) 是任意给定的一个非零实数，则&lt;/p&gt;
+&lt;span id=&#34;20241030102209CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;_1(s)=\bm{r}&#39;(s)+\lambda\bm{n}&#39;(s)
+\tag{160}
+    \]
+&lt;p&gt;  根据&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/differential_geometry/euclidean_space/#20241012234715CST&#34;&gt;Euclidean空间-定理3&lt;/a&gt;的1. 和 \(|\bm{r}&#39;(s)|=1\) 有&lt;/p&gt;
+&lt;span id=&#34;20241030112116CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}&#39;(s)\cdot\bm{n}(s)=\frac{1}{\kappa(s)}\bm{r}&#39;(s)\cdot\bm{r}&#39;&#39;(s)=0
+\tag{161}
+    \]
+&lt;p&gt;  同样由 \(|\bm{n}(s)|=1\) 有&lt;/p&gt;
+&lt;span id=&#34;20241030112301CST&#34;&gt;&lt;/span&gt;\[
+\bm{n}(s)\cdot\bm{n}&#39;(s)=0
+\tag{162}
+    \]
+&lt;p&gt;  因此&lt;/p&gt;
+&lt;span id=&#34;20241030111709CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_1&#39;(s)\cdot\bm{n}(s)=\bm{r}&#39;(s)\cdot\bm{n}(s)+\lambda\bm{n}&#39;(s)\cdot\bm{n}(s)=0
+\tag{163}
+    \]
+&lt;p&gt;  注意 \(\bm{r}_1(s)\) 也是平面曲线，所以 \(\bm{n}(s)\) 也是曲线 \(\bm{r}_1(s)\) 的法向量场。由此可见，曲线 \(\bm{r}(s)\) 和 \(\bm{r}_1(s)\) 在对应点有相同的法线（也是主法线）。因此，寻求Bertrand曲线偶应该在空间挠曲线（即挠率不为零的曲线）中去找。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241030113140CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理12&lt;/strong&gt;：设曲线 \(C_1\) 和 \(C_2\) 是Bertrand曲线偶，则 \(C_1\) 和 \(C_2\) 的对应点之间的距离是常数，并且 \(C_1\) 和 \(C_2\) 在对应点的切线成定角。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241030113140CST&#34;&gt;定理12&lt;/a&gt;）&lt;/strong&gt;：设曲线 \(C_1\) 和 \(C_2\) 的参数方程分别是 \(\bm{r}_1(s)\) 和 \(\bm{r}_2(s)\) ，并且曲线 \(C_1\) 和 \(C_2\) 之间的对应是有相同参数的点之间的对应，而且 \(s\) 是曲线 \(C_1\) 的弧长参数．用 \(\set{\bm{r}_1(s);\bm{\alpha}_1(s),\bm{\beta}_1(s),\bm{\gamma}_1(s)}\) 表示曲线 \(C_1\) 的Frenet标架，用 \(\set{\bm{r}_2(s);\bm{\alpha}_2(s),\bm{\beta}_2(s),\bm{\gamma}_2(s)}\) 表示曲线 \(C_2\) 的Frenet标架，但是参数 \(s\) 未必是曲线 \(r_2(s)\) 的弧长参数，假定曲线 \(r_2(s)\) 的弧长参数是 \(\tilde{s}\) 。因为曲线 \(C_1\) 和 \(C_2\) 在对应点有相同的主法线，故（注意是相同的主法线，而不是主法向量）&lt;/p&gt;
+&lt;span id=&#34;20241030113955CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_2(s)=\bm{r}_1(s)+\lambda(s)\bm{\beta}_1(s)
+\tag{164}
+    \]
+&lt;p&gt;  并且 \(\bm{\beta}_1(s)=\pm\bm{\beta}_2(s)\) 。利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;对上式求导数得到&lt;/p&gt;
+&lt;span id=&#34;20241030121349CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\bm{\alpha}_2(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}=&amp;\bm{\alpha}_1(s)+\lambda&#39;(s)\bm{\beta}_1(s)+\lambda(s)(-\kappa_1(s)\bm{\alpha}_1(s)+\tau_1(s)\bm{\gamma}_1(s))\\[5pt]
+=&amp;(1-\lambda(s)\kappa_1(s))\bm{\alpha}_1(s)+\lambda&#39;(s)\bm{\beta}_1(s)+\lambda(s)\tau_1(s)\bm{\gamma}_1(s)
+\end{aligned}
+\tag{165}
+    \]
+&lt;p&gt;  因为 \(\bm{\beta}_1(s)=\pm\bm{\beta}_2(s)\) ，所以两边点乘 \(\bm{\beta}_2(s)\) 得到&lt;/p&gt;
+&lt;span id=&#34;20241030121938CST&#34;&gt;&lt;/span&gt;\[
+\bm{\alpha}_2(s)\cdot\bm{\beta}_2(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}=0=\pm\lambda&#39;(s)\bm{\beta}_1(s)\cdot\bm{\beta}_1(s)
+\tag{166}
+    \]
+&lt;p&gt;  故 \(\lambda&#39;(s)=0\) ， \(\lambda(s)=\lambda=常数\) ，故&lt;/p&gt;
+&lt;span id=&#34;20241030122137CST&#34;&gt;&lt;/span&gt;\[
+|\bm{r}_2(s)-\bm{r}_1(s)|=|\lambda(s)\bm{\beta}_1(s)|=|\lambda|
+\tag{167}
+    \]
+&lt;p&gt;  对 \(\bm{\alpha}_1(s)\cdot\bm{\alpha}_2(s)\) 求导并利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;得到&lt;/p&gt;
+&lt;span id=&#34;20241030130353CST&#34;&gt;&lt;/span&gt;\[
+\frac{\mathrm{d}}{\mathrm{d}s}(\bm{\alpha}_1(s)\cdot\bm{\alpha}_2(s))=\kappa_1(s)\bm{\beta}_1(s)\cdot\bm{\alpha}_2(s)+\kappa_2(s)\bm{\alpha}_1(s)\cdot\bm{\beta}_2(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}
+\tag{168}
+    \]
+&lt;p&gt;  注意 \(\bm{\beta}_1(s)=\pm\bm{\beta}_2(s)\) 且 \(\bm{\alpha}_1(s)\cdot\bm{\beta}_1(s)=0,\bm{\alpha}_2(s)\cdot\bm{\beta}_2(s)=0\) ，因此&lt;/p&gt;
+&lt;span id=&#34;20241030130846CST&#34;&gt;&lt;/span&gt;\[
+\frac{\mathrm{d}}{\mathrm{d}s}(\bm{\alpha}_1(s)\cdot\bm{\alpha}_2(s))=0
+\tag{169}
+    \]
+&lt;p&gt;  故曲线 \(C_1\) 和 \(C_2\) 在对应点的切线成定角。证毕。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241030130942CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理13&lt;/strong&gt;：设正则参数曲线 \(C\) 的曲率 \(\kappa\) 和挠率 \(\tau\) 都不是零，则存在另一条正则参数曲线 \(C_1\) ，使得曲线 \(C_1\) 和 \(C\) 称为Bertrand曲线偶的充分必要条件是，存在常数 \(\lambda\ne 0\) 和 \(\mu\) 使得&lt;/p&gt;
+&lt;span id=&#34;20241030135221CST&#34;&gt;&lt;/span&gt;\[
+\lambda\kappa+\mu\tau=1
+\tag{170}
+    \]
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241030130942CST&#34;&gt;定理13&lt;/a&gt;）&lt;/strong&gt;：先证必要性。设曲线 \(C\) 有侣线 \(C_1\)&lt;/p&gt;
 </description>
         </item>
         <item>
