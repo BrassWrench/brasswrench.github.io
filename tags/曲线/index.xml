@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 30 Oct 2024 08:49:52 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 30 Oct 2024 09:54:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%9B%B2%E7%BA%BF/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -1324,6 +1324,7 @@ x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
 \tag{136}
     \]
 &lt;p&gt;  第一式说明这两条曲线有相同的曲率，第二式说明这两条曲线有相同的有向密切平面。证毕。&lt;/p&gt;
+&lt;span id=&#34;20241030092842CST&#34;&gt;&lt;/span&gt;
 &lt;h3 id=&#34;曲率圆&#34;&gt;曲率圆
 &lt;/h3&gt;&lt;p&gt;  对于曲线 \(\bm{r}=\bm{r}(s)\) 上 \(\kappa(s)&gt;0\) 的点 \(s=s_0\) ，还可以在该点的密切平面上构造一条特殊的平面曲线，即在 \(\bm{r}(s_0)\) 处的密切平面上作以 \(\bm{r}(s_0)+\cfrac{\bm{\beta}(s_0)}{\kappa(s_0)}\) 为中心、以 \(\cfrac{1}{\kappa(s_0)}\) 为半径的圆周。这个圆的弧长参数曲线方程可以写成如下两式&lt;/p&gt;
 &lt;span id=&#34;20241029150220CST&#34;&gt;&lt;/span&gt;\[
@@ -1430,7 +1431,25 @@ a=0,\quad b=\frac{1}{\kappa_0}
 a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\frac{1}{\tau(s)}\left.\left(\frac{1}{\kappa(s)}\right)&#39;\right|_{s=0}
 \tag{154}
     \]
-&lt;p&gt;  并且一般说来，曲线 \(C\) 和球面 \(\Sigma\) 的最高切触阶只能是3。上面的结果可以叙述成如下定理&lt;/p&gt;
+&lt;p&gt;  并且一般说来，曲线 \(C\) 和球面 \(\Sigma\) 的最高切触阶只能是 \(3\) 。上面的结果可以叙述成如下定理。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241030085640CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理11&lt;/strong&gt;： \(C:\bm{r}=\bm{r}(s)\) 是曲率和挠率都不为零的正则参数曲线， \(s\) 是弧长参数，则在 \(s\) 处与曲线 \(C\) 有 \(3\) 阶以上切触的球面 \(\Sigma\) 的球心是&lt;/p&gt;
+&lt;span id=&#34;20241030085834CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}(s)+\frac{1}{\kappa(s)}\bm{\beta}(s)+\frac{1}{\tau(s)}\left(\frac{1}{\kappa(s)}\right)&#39;\bm{\gamma}(s)
+\tag{155}
+    \]
+&lt;p&gt;  半径是&lt;/p&gt;
+&lt;span id=&#34;20241030090032CST&#34;&gt;&lt;/span&gt;\[
+\sqrt{\left(\frac{1}{\kappa(s)}\right)^2+\left(\frac{1}{\tau(s)}\left(\frac{1}{\kappa(s)}\right)&#39;\right)^2}
+\tag{156}
+    \]
+&lt;p&gt;  该球面称为曲线 \(C\) 在 \(s\) 处的&lt;strong&gt;密切球面&lt;/strong&gt;，其球心所在的直线&lt;/p&gt;
+&lt;span id=&#34;20241030090351CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}=\bm{r}(\lambda)=\bm{r}(s)+\frac{1}{\kappa(s)}\bm{\beta}(s)+\lambda\bm{\gamma}(s)
+\tag{157}
+    \]
+&lt;p&gt;  是通过曲线 \(C\) 的曲率中心、垂直于密切平面的直线，称为曲线 \(C\) 在 \(s\) 处的&lt;strong&gt;曲率轴&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：取 \(\lambda=0\) 可得 \(\bm{r}(\lambda)=\bm{r}(s)+\cfrac{1}{\kappa(s)}\bm{\beta}(s)\) ，该点即为曲率圆圆心（见&lt;a class=&#34;link&#34; href=&#34;#20241030092842CST&#34;&gt;曲率圆&lt;/a&gt;）。求导得 \(\bm{r}&#39;(\lambda)=\bm{\gamma}(s)\) 可得该直线垂直于密切平面。&lt;/p&gt;
+&lt;p&gt;  最后我们要指出，构造曲线的Frenet标架的过程正是曲线的参数方程逐次求导的过程。实际上，Frenet标架 \(\set{\bm{\alpha}(t),\bm{\beta}(t),\bm{\gamma}(t)}\) 是 \(\set{\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t)}\) 经过Schmidt正交化得到的。 \(\bm{r}&#39;(t)\) 决定了曲线的切线而曲线的曲率是曲线切线的方向关于弧长的变化率。 \(\bm{r}&#39;(t),\bm{r}&#39;&#39;(t)\) 决定了曲线的密切平面。如果曲线的密切平面的方向不变，则它必定是平面曲线。如果该曲线不是平面曲线，则它的密切平面的方向关于弧长的变化率是曲线的挠率，它反映了曲线的扭曲程度。很明显，曲线方程的更高次导数仍然能够表示成Frenet标架向量的线性组合，其系数是曲率 \(\kappa\) 和挠率 \(\tau\) 及其各阶导数。&lt;/p&gt;
 </description>
         </item>
         
