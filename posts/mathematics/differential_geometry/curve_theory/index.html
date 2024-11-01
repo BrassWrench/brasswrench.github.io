@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-10-30T14:56:33&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-11-01T18:54:30&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -650,7 +650,17 @@
         <li><a href="#与球面的切触">与球面的切触</a></li>
       </ol>
     </li>
-    <li><a href="#存在对应关系的曲线偶">存在对应关系的曲线偶</a></li>
+    <li><a href="#存在对应关系的曲线偶">存在对应关系的曲线偶</a>
+      <ol>
+        <li><a href="#bertrand曲线偶">Bertrand曲线偶</a>
+          <ol>
+            <li><a href="#定义-1">定义</a></li>
+            <li><a href="#对应点的常数距离和定切线夹角性质">对应点的常数距离和定切线夹角性质</a></li>
+            <li><a href="#存在的充分必要条件">存在的充分必要条件</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -962,7 +972,7 @@
 </svg>
 
             <time class="article-words">
-                14457 字
+                14759 字
             </time>
         </div>
 
@@ -977,7 +987,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 29 分钟
+                    阅读时长: 30 分钟
                 </time>
             </div>
         
@@ -2431,7 +2441,9 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa'_0}{\kappa_0^2\tau_0}=\frac
 <p>  最后我们要指出，构造曲线的Frenet标架的过程正是曲线的参数方程逐次求导的过程。实际上，Frenet标架 \(\set{\bm{\alpha}(t),\bm{\beta}(t),\bm{\gamma}(t)}\) 是 \(\set{\bm{r}'(t),\bm{r}''(t),\bm{r}'''(t)}\) 经过<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')">Schmit正交化</a>得到的。 \(\bm{r}'(t)\) 决定了曲线的切线而曲线的曲率是曲线切线的方向关于弧长的变化率。 \(\bm{r}'(t),\bm{r}''(t)\) 决定了曲线的密切平面。如果曲线的密切平面的方向不变，则它必定是平面曲线。如果该曲线不是平面曲线，则它的密切平面的方向关于弧长的变化率是曲线的挠率，它反映了曲线的扭曲程度。很明显，曲线方程的更高次导数仍然能够表示成Frenet标架向量的线性组合，其系数是曲率 \(\kappa\) 和挠率 \(\tau\) 及其各阶导数。</p>
 <h2 id="存在对应关系的曲线偶">存在对应关系的曲线偶
 </h2><p>  本节我们要研究存在一定的对应关系的曲线偶．假定在正则参数曲线 \(C_1:\bm{r}=\bm{r}_1(t)\) 和正则参数曲线 \(C_2:\bm{r}=\bm{r}_2(u)\) 之间存在一个对应，这个对应可以用参数 \(t\) 和 \(u\) 之间的一个对应来表示，设为 \(u=u(t)\) 如果 \(u'(t)\ne 0\) ，则 \(u=u(t)\) 可以认为是曲线 \(C_2\) 的正则参数变换，于是曲线 \(C_1\) 和 \(C_2\) 之间的对应成为曲线 \(C_1\) 和 \(C_2\) 之间有相同参数的点之间的对应。</p>
-<p>  <span id="20241030100920CST"></span><strong>定义3</strong>：如果在互不重合的曲线 \(C_1\) 和 \(C_2\) 之间存在一个对应，使得它们在每一对对应点有公共的主法线，则称这两条曲线为<strong>Bertrand曲线偶</strong>，其中没一条曲线称为另外一条曲线的<strong>侣线</strong>，或<strong>共轭曲线</strong>。</p>
+<h3 id="bertrand曲线偶">Bertrand曲线偶
+</h3><h4 id="定义-1">定义
+</h4><p>  <span id="20241030100920CST"></span><strong>定义3</strong>：如果在互不重合的曲线 \(C_1\) 和 \(C_2\) 之间存在一个对应，使得它们在每一对对应点有公共的主法线，则称这两条曲线为<strong>Bertrand曲线偶</strong>，其中没一条曲线称为另外一条曲线的<strong>侣线</strong>，或<strong>共轭曲线</strong>。</p>
 <p>  每一条平面曲线都有侣线，构成Bertrand曲线偶。事实上，设 \(\bm{r}=\bm{r}(s)\) 是在平面上的一条曲线，以 \(s\) 为它的弧长参数。于是， \(\bm{r}'(s)\) 是曲线的单位切向量场，由<a class="link" href="#20241018122023CST">式(46)</a>和<a class="link" href="#20241018122758CST">式(47)</a>可得</p>
 <span id="20241030102059CST"></span>\[
 \bm{r}''(s)=\kappa(s)\bm{n}(s)
@@ -2463,7 +2475,8 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa'_0}{\kappa_0^2\tau_0}=\frac
 \tag{163}
     \]
 <p>  注意 \(\bm{r}_1(s)\) 也是平面曲线，所以 \(\bm{n}(s)\) 也是曲线 \(\bm{r}_1(s)\) 的法向量场。由此可见，曲线 \(\bm{r}(s)\) 和 \(\bm{r}_1(s)\) 在对应点有相同的法线（也是主法线）。因此，寻求Bertrand曲线偶应该在空间挠曲线（即挠率不为零的曲线）中去找。</p>
-<p>  <span id="20241030113140CST"></span><strong>定理12</strong>：设曲线 \(C_1\) 和 \(C_2\) 是Bertrand曲线偶，则 \(C_1\) 和 \(C_2\) 的对应点之间的距离是常数，并且 \(C_1\) 和 \(C_2\) 在对应点的切线成定角。</p>
+<h4 id="对应点的常数距离和定切线夹角性质">对应点的常数距离和定切线夹角性质
+</h4><p>  <span id="20241030113140CST"></span><strong>定理12</strong>：设曲线 \(C_1\) 和 \(C_2\) 是Bertrand曲线偶，则 \(C_1\) 和 \(C_2\) 的对应点之间的距离是常数，并且 \(C_1\) 和 \(C_2\) 在对应点的切线成定角。</p>
 <p>  <strong>证明（<a class="link" href="#20241030113140CST">定理12</a>）</strong>：设曲线 \(C_1\) 和 \(C_2\) 的参数方程分别是 \(\bm{r}_1(s)\) 和 \(\bm{r}_2(s)\) ，并且曲线 \(C_1\) 和 \(C_2\) 之间的对应是有相同参数的点之间的对应，而且 \(s\) 是曲线 \(C_1\) 的弧长参数．用 \(\set{\bm{r}_1(s);\bm{\alpha}_1(s),\bm{\beta}_1(s),\bm{\gamma}_1(s)}\) 表示曲线 \(C_1\) 的Frenet标架，用 \(\set{\bm{r}_2(s);\bm{\alpha}_2(s),\bm{\beta}_2(s),\bm{\gamma}_2(s)}\) 表示曲线 \(C_2\) 的Frenet标架，但是参数 \(s\) 未必是曲线 \(r_2(s)\) 的弧长参数，假定曲线 \(r_2(s)\) 的弧长参数是 \(\tilde{s}\) 。因为曲线 \(C_1\) 和 \(C_2\) 在对应点有相同的主法线，故（注意是相同的主法线，而不是主法向量）</p>
 <span id="20241030113955CST"></span>\[
 \bm{r}_2(s)=\bm{r}_1(s)+\lambda(s)\bm{\beta}_1(s)
@@ -2503,7 +2516,8 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa'_0}{\kappa_0^2\tau_0}=\frac
 \tag{170}
     \]
 <p>  故曲线 \(C_1\) 和 \(C_2\) 在对应点的切线成定角。证毕。</p>
-<p>  <span id="20241030130942CST"></span><strong>定理13</strong>：设正则参数曲线 \(C\) 的曲率 \(\kappa\) 和挠率 \(\tau\) 都不是零，则存在另一条正则参数曲线 \(C_1\) ，使得曲线 \(C_1\) 和 \(C\) 称为Bertrand曲线偶的充分必要条件是，存在常数 \(\lambda\ne 0\) 和 \(\mu\) 使得</p>
+<h4 id="存在的充分必要条件">存在的充分必要条件
+</h4><p>  <span id="20241030130942CST"></span><strong>定理13</strong>：设正则参数曲线 \(C\) 的曲率 \(\kappa\) 和挠率 \(\tau\) 都不是零，则存在另一条正则参数曲线 \(C_1\) ，使得曲线 \(C_1\) 和 \(C\) 称为Bertrand曲线偶的充分必要条件是，存在常数 \(\lambda\ne 0\) 和 \(\mu\) 使得</p>
 <span id="20241030135221CST"></span>\[
 \lambda\kappa+\mu\tau=1
 \tag{171}
@@ -2538,6 +2552,37 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa'_0}{\kappa_0^2\tau_0}=\frac
 \lambda\kappa(s)+\mu\tau(s)=1
 \tag{177}
     \]
+<p>  反过来，设正则参数曲线 \(C\) 的参数方程是 \(\bm{r}(s)\) ， \(s\) 是弧长参数，并且它的曲率 \(\kappa\) 和挠率 \(\tau\) 满足关系是 \(\lambda\kappa(s)+\mu\tau(s)=1\) ，其中 \(\lambda\ne 0\) ， \(\mu\) 是常数。构作曲线 \(C_1\) ，使它的参数方程是</p>
+<span id="20241101163347CST"></span>\[
+\bm{r}_1(s)=\bm{r}(s)+\lambda\bm{\beta}(s)
+\tag{178}
+    \]
+<p>  则由<a class="link" href="#20241019110326CST">Frenet公式</a>可得</p>
+<span id="20241101164354CST"></span>\[
+\begin{aligned}
+\bm{r}_1'(s)=&\bm{\alpha}(s)+\lambda(-\kappa\bm{\alpha}(s)+\tau(s)\bm{\gamma}(s))\\[5pt]
+=&(1-\lambda\kappa(s))\bm{\alpha}(s)+\lambda\tau(s)\bm{\gamma}(s)\\[5pt]
+=&\mu\tau(s)\bm{\alpha}(s)+\lambda\tau(s)\bm{\gamma}(s)
+\end{aligned}
+\tag{179}
+    \]
+<p>  由<a class="link" href="#20241018123009CST">式(50)</a>和 \(\bm{\alpha}(s),\bm{\gamma}(s)\) 的单位向量性质可得曲线 \(\bm{r}_1(s)\) 的单位切向量是</p>
+<span id="20241101165003CST"></span>\[
+\begin{aligned}
+\bm{\alpha}_1(s)=&\frac{\bm{r}_1'(s)}{|\bm{r}_1'(s)|}=\frac{\bm{r}_1'(s)}{\sqrt{\bm{r}_1'(s)\cdot\bm{r}_1'(s)}}\\[15pt]
+=&\frac{\mu}{\sqrt{\lambda^2+\mu^2}}\bm{\alpha}(s)+\frac{\lambda}{\sqrt{\lambda^2+\mu^2}}\bm{\gamma}(s)
+\end{aligned}
+\tag{180}
+    \]
+<p>  若用 \(\tilde{s}\) 记曲线 \(C_1\) 的弧长参数，则上式两边对 \(s\) 求导，并两边分别使用<a class="link" href="#20241019110326CST">Frenet公式</a>可得</p>
+<span id="20241101165619CST"></span>\[
+\begin{aligned}
+\frac{\mathrm{d}\bm{\alpha}_1(s)}{\mathrm{d}\tilde{s}}\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}=&\kappa_1(s)\bm{\beta}_1(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}\\[15pt]
+=&\left(\frac{\mu}{\sqrt{\lambda^2+\mu^2}}\kappa(s)+\frac{\lambda}{\sqrt{\lambda^2+\mu^2}}\tau(s)\right)\bm{\beta}(s)
+\end{aligned}
+\tag{181}
+    \]
+<p>  注意这个等式两边都是向量，因此 \(\bm{\beta}_1(s)\) 和 \(\bm{\beta}(s)\) 共线，但是 \(\bm{\beta}_1(s)\) 和 \(\bm{\beta}(s)\) 的模长都是 \(1\) ，因此 \(\bm{\beta}_1(s)=\pm\bm{\beta}(s)\) 。注意由<a class="link" href="#20241101163347CST">式(178)</a>， \(\bm{\beta}(s)\) 即为 \(\bm{r}(s)\) 指向 \(\bm{r}_1(s)\) 的方向，因此 \(C_1\) 和 \(C\) 在 \(s\) 对应点有相同的主法线，构成Bertrand曲线偶。</p>
 
     </div>
 </section>
@@ -2579,7 +2624,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa'_0}{\kappa_0^2\tau_0}=\frac
 
 
         <span>
-            最后更新于 Oct 30, 2024 14:56 CST
+            最后更新于 Nov 01, 2024 18:54 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2738,7 +2783,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa'_0}{\kappa_0^2\tau_0}=\frac
             
             
         
-        <span>本图书馆累计发布了11篇文章 共119997字</span>
+        <span>本图书馆累计发布了11篇文章 共120299字</span>
     </section>
 
     <section class="site-visit-count">
