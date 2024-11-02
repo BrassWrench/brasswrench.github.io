@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 02 Nov 2024 12:13:23 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 02 Nov 2024 13:40:21 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -1620,6 +1620,65 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\
     &lt;path id=&#34;MJX-12-TEX-N-32&#34; d=&#34;M398.6918,34.7717c-.233,0-.4185-.0777-.5566-.233-.1381-.1553-.2071-.3452-.2071-.5695,0-.6127.2287-1.1433.686-1.592.4573-.4487,1.0268-.6731,1.7085-.6731.7852,0,1.441.2416,1.9674.7248s.7939,1.1088.8025,1.8768c0,.371-.0863.7248-.2589,1.0614s-.3797.6299-.6213.8802-.5868.5695-1.0355.9578c-.3106.2675-.7421.6644-1.2943,1.1908l-.7637.7248.9837.0129c1.3548,0,2.0753-.0216,2.1616-.0647.0604-.0173.164-.4012.3106-1.152v-.0388h.5177v.0388c-.0086.0259-.0647.4185-.1683,1.1779-.1035.7594-.1683,1.1563-.1942,1.1908v.0388h-4.802v-.4012c0-.0604.0259-.1251.0777-.1942s.1812-.22.3883-.453c.2502-.2761.466-.5177.6472-.7248.0777-.0863.2244-.2459.4401-.4789s.3624-.3926.4401-.4789.2028-.2287.3754-.4271c.1726-.1985.2934-.3452.3624-.4401.069-.0949.1683-.2244.2977-.3883s.22-.302.2718-.4142.1165-.2373.1942-.3754.1337-.2761.1683-.4142.0647-.2675.0906-.3883.0388-.2632.0388-.4271c0-.5436-.1467-1.0139-.4401-1.4108s-.7119-.5954-1.2555-.5954c-.2848,0-.535.0733-.7507.22s-.3667.2891-.453.4271-.1294.22-.1294.2459c0,.0086.0216.0129.0647.0129.1553,0,.315.0604.4789.1812s.2459.3193.2459.5954c0,.2157-.069.3969-.2071.5436s-.3322.2244-.5825.233Z&#34;/&gt;
   &lt;/g&gt;
 &lt;/svg&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;渐伸线和渐缩线&lt;/p&gt;&lt;/div&gt;
+&lt;h4 id=&#34;求渐伸线&#34;&gt;求渐伸线
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241102125309CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理14&lt;/strong&gt;：设正则参数曲线 \(C\) 的参数方程是 \(\bm{r}(s)\) ， \(s\) 是弧长参数，则 \(C\) 的渐伸线的参数方程是&lt;/p&gt;
+&lt;span id=&#34;20241102125338CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}=\bm{r}(s)+(c-s)\bm{\alpha}(s)
+\tag{182}
+    \]
+&lt;p&gt;  其中 \(c\) 是任意的常数。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241102125309CST&#34;&gt;定理14&lt;/a&gt;）&lt;/strong&gt;：设&lt;/p&gt;
+&lt;span id=&#34;20241102125629CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_1(s)=\bm{r}(s)+\lambda(s)\bm{\alpha}(s)
+\tag{183}
+    \]
+&lt;p&gt;  是曲线 \(C\) 的渐伸线。由渐伸线的定义&lt;a class=&#34;link&#34; href=&#34;#20241101185856CST&#34;&gt;定义4&lt;/a&gt;可知， \(\bm{\alpha}(s)\) 是曲线 \(\bm{r}_1(s)\) 的法向量。对上式求导并利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241102125746CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_1&#39;(s)=(1+\lambda&#39;(s))\bm{\alpha}(s)+\lambda(s)\kappa(s)\bm{\beta}(s)
+\tag{184}
+    \]
+&lt;p&gt;  将上式两边与 \(\bm{\alpha}(s)\) 作点乘。注意 \(\bm{\alpha}(s)\) 是 \(\bm{r}_1(s)\) 的法向量，所以与切向量 \(\bm{r}_1&#39;(s)\) 垂直。因此再利用 \(\bm{\alpha}(s)\) 和 \(\bm{\beta}(s)\) 的正交性&lt;/p&gt;
+&lt;span id=&#34;20241102130037CST&#34;&gt;&lt;/span&gt;\[
+1+\lambda&#39;(s)=\bm{r}_1&#39;(s)\cdot\bm{\alpha}(s)=0
+\tag{185}
+    \]
+&lt;p&gt;  因此&lt;/p&gt;
+&lt;span id=&#34;20241102130151CST&#34;&gt;&lt;/span&gt;\[
+\lambda(s)=c-s
+\tag{186}
+    \]
+&lt;p&gt;将上式代入&lt;a class=&#34;link&#34; href=&#34;#20241102125629CST&#34;&gt;式(183)&lt;/a&gt;可得结果。证毕。&lt;/p&gt;
+&lt;p&gt;  曲线的渐伸线可以看作该曲线的切线族的正交轨线，而&lt;a class=&#34;link&#34; href=&#34;#20241102125338CST&#34;&gt;式(182)&lt;/a&gt;可以解释为：将一条软线沿曲线放置，把一端固定，另一端慢慢离开原曲线并且把软线抻直，使软线抻直的部分始终保持为原曲线的切线则这另一端描出的曲线就是原曲线的渐伸线。&lt;/p&gt;
+&lt;h4 id=&#34;求渐缩线&#34;&gt;求渐缩线
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241102130449CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理15&lt;/strong&gt;：设正则参数曲线 \(C\) 的参数方程是 \(\bm{r}(s)\) ， \(s\) 是弧长参数，则 \(C\) 的渐缩线的参数方程是&lt;/p&gt;
+&lt;span id=&#34;20241102130959CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}=\bm{r}(s)+\frac{1}{\kappa(s)}\bm{\beta}(s)-\frac{1}{\kappa(s)}\left(\tan \int \tau(s)\mathrm{d}s \right)\bm{\gamma}(s)
+\tag{187}
+    \]
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241102130449CST&#34;&gt;定理15&lt;/a&gt;）&lt;/strong&gt;：设&lt;/p&gt;
+&lt;span id=&#34;20241102131440CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_1(s)=\bm{r}(s)+\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)
+\tag{188}
+    \]
+&lt;p&gt;  是曲线的渐缩线。那么 \(\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)\) 应该与曲线 \(\bm{r}_1(s)\) 的切向量 \(\bm{r}_1&#39;(s)\) 平行。对上式求导再由&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;得到&lt;/p&gt;
+&lt;span id=&#34;20241102132133CST&#34;&gt;&lt;/span&gt;\[
+\bm{r}_1&#39;(s)=(1-\lambda(s)\kappa(s))\bm{\alpha}(s)+(\lambda&#39;(s)-\mu(s)\tau(s))\bm{\beta}(s)+(\mu&#39;(s)+\lambda(s)\tau(s))\bm{\gamma}(s)
+\tag{189}
+    \]
+&lt;p&gt;  上式平行于 \(\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)\) 。又因为 \(\bm{\alpha}(s),\bm{\beta}(s),\bm{\gamma}(s)\) 是三个正交归一化矢量，所以其系数应该成比例，即&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241102133417CST&#34;&gt;&lt;/span&gt;\[
+\lambda(s)\kappa(s)=1
+\tag{190}
+    \]
+&lt;span id=&#34;20241102133629CST&#34;&gt;&lt;/span&gt;\[
+\frac{\lambda&#39;(s)-\mu(s)\tau(s)}{\lambda(s)}=\frac{\mu&#39;(s)+\lambda(s)\tau(s)}{\mu(s)}
+\tag{191}
+    \]&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241102133629CST&#34;&gt;式(191)&lt;/a&gt;得到&lt;/p&gt;
+&lt;span id=&#34;20241102133922CST&#34;&gt;&lt;/span&gt;\[
+\lambda&#39;(s)\mu(s)-\mu&#39;(s)\lambda(s)=(\lambda^2(s)+\mu^2(s))\tau(s)
+\tag{192}
+    \]
 </description>
         </item>
         <item>
