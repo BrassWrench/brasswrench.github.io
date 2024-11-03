@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-11-03T18:41:14&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-11-03T20:48:04&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -673,6 +673,8 @@
         <li><a href="#参数方程与平面frenet标架">参数方程与平面Frenet标架</a></li>
         <li><a href="#相对曲率">相对曲率</a></li>
         <li><a href="#方向角">方向角</a></li>
+        <li><a href="#光滑闭曲线">光滑闭曲线</a></li>
+        <li><a href="#旋转指标">旋转指标</a></li>
       </ol>
     </li>
   </ol>
@@ -1000,7 +1002,7 @@
 </svg>
 
             <time class="article-words">
-                16526 字
+                16818 字
             </time>
         </div>
 
@@ -1015,7 +1017,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 33 分钟
+                    阅读时长: 34 分钟
                 </time>
             </div>
         
@@ -2874,7 +2876,41 @@ a = s_0 < s_1 < \cdots < s_n = b
 \tilde{\theta}(s)-\theta(s)=2k\pi
 \tag{216}
     \]
-  由于左边的 \(s\) 是连续函数，因此 \(k\) 只能是常数</p>
+  由于左边的 \(s\) 是连续函数，因此 \(k\) 只能是常数，故一条平面曲线的方向角的总变差与连续分支的取法无关，即</p>
+<span id="20241103203355CST"></span>\[
+\tilde{\theta(b)}-\tilde{\theta(a)}=\theta(b)-\theta(a)
+\tag{217}
+    \]
+<p>  由<a class="link" href="#20241102203405CST">式(207)</a>可知</p>
+<span id="20241103203555CST"></span>\[
+\theta(b)-\theta(a)=\int_a^b\kappa_r(s)\mathrm{d}s
+\tag{218}
+    \]
+<h3 id="光滑闭曲线">光滑闭曲线
+</h3><p>  如果 \(\bm{r}=\bm{r}(s),a\le s \le b\) 是 \(E^3\) 上的一条光滑曲线，并且</p>
+<span id="20241103203651CST"></span>\[
+\bm{r}(b)=\bm{r}(a),\quad \bm{r}'(b)=\bm{r}'(a),\quad \bm{r}''(b)=\bm{r}''(a),\quad \cdots
+\tag{219}
+    \]
+<p>  则称它为<strong>光滑闭曲线</strong>。如果 \(\bm{r}=\bm{r}(s),a\le s \le b\) 是若干段光滑曲线首尾相接而成的，并且 \(\bm{r}(b)=\bm{r}(a)\) ，则称它是<strong>分段光滑的闭曲线</strong>。<br>
+  如果 \(\bm{r}=\bm{r}(s),a\le s \le b\) 是 \(E^3\) 上的一条闭曲线，并且对任意的 \(a \le s_1 < s_2 < b\) ，都有</p>
+<span id="20241103204005CST"></span>
+    \[
+\bm{r}(s_1)=\bm{r}(s_2)
+\]
+<p>  则称该曲线是<strong>简单的</strong>。简单闭曲线就是没有自交点的闭曲线。</p>
+<h3 id="旋转指标">旋转指标
+</h3><p>  对于连续可微的闭曲线</p>
+<span id="20241103204102CST"></span>
+    \[
+C:\bm{r}=\bm{r}(s),\quad a \le s \le b
+\]
+<p>  它的单位切向量 \(\bm{\alpha}(s)\) 绕曲线转一圈回到起点时与原来的单位切向量重合，因此方向角的总变差 \(\theta(b)-\theta(a)\) 一定是 \(2\pi\) 的整数倍，它与方向角连续分支 \(\bm{\alpha}(s)\) 无关。命</p>
+<span id="20241103204505CST"></span>
+    \[
+i(C)=\frac{1}{2\pi}(\theta(b)-\theta(a))
+\]
+<p>  称为连续可谓闭曲线 \(C\) 的<strong>旋转指标</strong>。</p>
 
     </div>
 </section>
@@ -2916,7 +2952,7 @@ a = s_0 < s_1 < \cdots < s_n = b
 
 
         <span>
-            最后更新于 Nov 03, 2024 18:41 CST
+            最后更新于 Nov 03, 2024 20:48 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3075,7 +3111,7 @@ a = s_0 < s_1 < \cdots < s_n = b
             
             
         
-        <span>本图书馆累计发布了11篇文章 共122072字</span>
+        <span>本图书馆累计发布了11篇文章 共122364字</span>
     </section>
 
     <section class="site-visit-count">
