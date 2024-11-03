@@ -7,13 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 03 Nov 2024 18:41:14 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>微分几何（一）：Euclidean空间</title>
+        <lastBuildDate>Sun, 03 Nov 2024 22:18:29 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>微分几何（一）：Euclid空间</title>
         <link>https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
         
         <guid>https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/</guid>
-        <description>&lt;img src="https://www.brasswrench.com/true" alt="Featured image of post 微分几何（一）：Euclidean空间" /&gt;
+        <description>&lt;img src="https://www.brasswrench.com/true" alt="Featured image of post 微分几何（一）：Euclid空间" /&gt;
 
 
 
@@ -34,7 +34,7 @@
   src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=1930226368&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
 &lt;/iframe&gt;
 
-&lt;h1 id=&#34;euclidean空间&#34;&gt;Euclidean空间
+&lt;h1 id=&#34;euclid空间&#34;&gt;Euclid空间
 &lt;/h1&gt;&lt;p&gt;  我们知道，一元函数 \(y=f(x)\) 的图像是一条曲线，二元函数 \(z=f(x,y)\) 的图像是一张曲面。但是，把曲线和曲面表示成参数方程则更加便利于研究，这种表示方法首先是由Euler引进的。例如，在空间中取定Cartesian直角坐标系之后一条曲线可以表示为三个一元函数&lt;/p&gt;
 &lt;span id=&#34;20241008215458CST&#34;&gt;&lt;/span&gt;\[
 x=x(t),\quad y=y(t),\quad z=z(t)
@@ -45,10 +45,10 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 \bm{r}=\bm{r}(t)=(x(t),y(t),z(t))
 \tag{2}
     \]
-&lt;p&gt;  在本篇，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclidean空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclidean空间中标架的概念，为在三维Euclidean空间中研究曲线和曲面做好准备。&lt;/p&gt;
-&lt;h2 id=&#34;三维euclidean空间中的标架&#34;&gt;三维Euclidean空间中的标架
-&lt;/h2&gt;&lt;h3 id=&#34;euclidean空间-1&#34;&gt;Euclidean空间
-&lt;/h3&gt;&lt;p&gt;  通常把我们所处的空间称为&lt;strong&gt;三维Euclidean空间&lt;/strong&gt;。确切的说，所谓的三维Euclidean空间 \(E^3\) 是一个非空的集合，其中的元素称为&lt;strong&gt;点&lt;/strong&gt;，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 \(E^3\) 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的&lt;strong&gt;平行公理&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  在本篇，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclid空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclid空间中标架的概念，为在三维Euclid空间中研究曲线和曲面做好准备。&lt;/p&gt;
+&lt;h2 id=&#34;三维euclid空间中的标架&#34;&gt;三维Euclid空间中的标架
+&lt;/h2&gt;&lt;h3 id=&#34;euclid空间-1&#34;&gt;Euclid空间
+&lt;/h3&gt;&lt;p&gt;  通常把我们所处的空间称为&lt;strong&gt;三维Euclid空间&lt;/strong&gt;。确切的说，所谓的三维Euclid空间 \(E^3\) 是一个非空的集合，其中的元素称为&lt;strong&gt;点&lt;/strong&gt;，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 \(E^3\) 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的&lt;strong&gt;平行公理&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;向量&#34;&gt;向量
 &lt;/h3&gt;&lt;h4 id=&#34;定义&#34;&gt;定义
 &lt;/h4&gt;&lt;p&gt;  任意两个点 \(A,B \in E^3\) 都可以连接成一条直线段 \(AB\) 。指定 \(A\) 为起点、 \(B\) 为终点的线段 \(AB\) 称为&lt;strong&gt;有向线段&lt;/strong&gt;，记作 \(\overrightarrow{AB}\) 。设 \(\overrightarrow{AB}\) 和 \(\overrightarrow{CD}\) 是两条有向线段，如果 \(ABDC\) 成为一个平行四边形，则称这两条有向线段是&lt;span id=&#34;20241009104842CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;相等&lt;/strong&gt;的，记为&lt;/p&gt;
@@ -56,7 +56,7 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 \overrightarrow{AB}=\overrightarrow{CD}
 \tag{3}
     \]
-&lt;p&gt;  所有相等的有向线段的集合称为一个&lt;strong&gt;向量&lt;/strong&gt;。因此，在三维Euclidean空间 \(E^3\) 中，一个向量可以表示为 \(E^3\) 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。&lt;/p&gt;
+&lt;p&gt;  所有相等的有向线段的集合称为一个&lt;strong&gt;向量&lt;/strong&gt;。因此，在三维Euclid空间 \(E^3\) 中，一个向量可以表示为 \(E^3\) 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。&lt;/p&gt;
 &lt;h4 id=&#34;加法&#34;&gt;加法
 &lt;/h4&gt;&lt;p&gt;  按照&lt;strong&gt;三角形法则&lt;/strong&gt;，可以定义向量的加法如下：设 \(\bm{a},\bm{b}\) 是两个向量，并且假定它们用有向线段 \(\overrightarrow{AB}\) 和 \(\overrightarrow{BC}\) 来表示，则连接 \(A\) 和 \(C\) 的有向线段 \(\overrightarrow{AC}\) 就代表向量 \(\bm{a}+\bm{b}\) 。我们把起点和终点相同的有向线段的集合称为&lt;strong&gt;零向量&lt;/strong&gt;，记为 \(\bm{0}\) ，于是任意一个向量与零向量之和为该向量自身，即&lt;/p&gt;
 &lt;span id=&#34;20241008222604CST&#34;&gt;&lt;/span&gt;\[
@@ -78,7 +78,7 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 \tag{7}
     \]&lt;/p&gt;
 &lt;h4 id=&#34;数乘&#34;&gt;数乘
-&lt;/h4&gt;&lt;p&gt;  在三维Euclidean空间 \(E^3\) 中还规定线段 \(AB\) 的&lt;strong&gt;长度&lt;/strong&gt;是点 \(A\) 到点 \(B\) 的距离，记为 \(|AB|\) ，并对于任意三点 \(A,B,C\) ，下面的三角形不等式成立&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  在三维Euclid空间 \(E^3\) 中还规定线段 \(AB\) 的&lt;strong&gt;长度&lt;/strong&gt;是点 \(A\) 到点 \(B\) 的距离，记为 \(|AB|\) ，并对于任意三点 \(A,B,C\) ，下面的三角形不等式成立&lt;/p&gt;
 &lt;span id=&#34;20241008223354CST&#34;&gt;&lt;/span&gt;\[
 |AB|+|BC|\ge|AC|
 \tag{8}
@@ -209,7 +209,7 @@ x_2 &amp; y_2 &amp; z_2
 |AB|=\sqrt{\overrightarrow{AB}\cdot\overrightarrow{AB}}=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}
 \tag{27}
     \]
-&lt;p&gt;  因此，通常我们把三维Euclidean空间 \(E^3\) 写成 \(\R^3\) ，并且把 \(\R^3\) 中的向量 \((x,y,z)\) 的长度直接定义为 \(\sqrt{x^2+y^2+z^2}\) 。事实上，这样的 \(\R^3\) 是三维欧氏空间 \(E^3\) 在取定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后的具体表现形式。为简单起见，我们经常把三维Euclidean空间理解为上面所说的 \(\R^3\) 。&lt;/p&gt;
+&lt;p&gt;  因此，通常我们把三维Euclid空间 \(E^3\) 写成 \(\R^3\) ，并且把 \(\R^3\) 中的向量 \((x,y,z)\) 的长度直接定义为 \(\sqrt{x^2+y^2+z^2}\) 。事实上，这样的 \(\R^3\) 是三维欧氏空间 \(E^3\) 在取定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后的具体表现形式。为简单起见，我们经常把三维Euclid空间理解为上面所说的 \(\R^3\) 。&lt;/p&gt;
 &lt;h4 id=&#34;标架变换&#34;&gt;标架变换
 &lt;/h4&gt;&lt;p&gt;  现在我们来考察由 \(E^3\) 中全体正交标架所构成的集合。设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是在 \(E^3\) 中的一个固定的正交标架，则 \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 可以如下来确定&lt;/p&gt;
 &lt;span id=&#34;20241009210942CST&#34;&gt;&lt;/span&gt;\[
@@ -435,7 +435,7 @@ z
     \]
 &lt;h3 id=&#34;刚体运动&#34;&gt;刚体运动
 &lt;/h3&gt;&lt;h4 id=&#34;定义-2&#34;&gt;定义
-&lt;/h4&gt;&lt;p&gt;  正交标架的重要性还在予它能够用来表示Euclidean空间\(E^3\)中刚体的运动。所谓刚体运动原是物理学中的一个概念．如果一个物体在空间中的运动不改变它的形状及其大小，只改变它在空问中的位置，那么该物体的这种运动称为&lt;strong&gt;刚体运动&lt;/strong&gt;。要确定一个刚体在 \(E^3\) 中的位置，只要确定在该刚体上不共线的三个点的位置就行了，而刚体上其他的点可以通过它到已知的三个点的距离、以及所成的三个向量构成右手系还是左手系来确定。但是，在 \(E^3\) 中正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是由点 \(P\) 和两个彼此正交的单位向量 \(\bm{e}_1,\bm{e}_2\) 决定的，它们恰好相当于空间中不共线的三个点。这样，在刚体上安装一个正交标架，则这个标架在空间中的位置代表了这个刚体的位置。如果把空间和刚体捆绑在一起，把刚体在空间中的运动看作空间自身在空间中的刚体运动，则这是空间 \(E^3\) 到它自身的一个变换，这个变换保持该空间中任意两点之间的距离不变。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  正交标架的重要性还在予它能够用来表示Euclid空间\(E^3\)中刚体的运动。所谓刚体运动原是物理学中的一个概念．如果一个物体在空间中的运动不改变它的形状及其大小，只改变它在空问中的位置，那么该物体的这种运动称为&lt;strong&gt;刚体运动&lt;/strong&gt;。要确定一个刚体在 \(E^3\) 中的位置，只要确定在该刚体上不共线的三个点的位置就行了，而刚体上其他的点可以通过它到已知的三个点的距离、以及所成的三个向量构成右手系还是左手系来确定。但是，在 \(E^3\) 中正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是由点 \(P\) 和两个彼此正交的单位向量 \(\bm{e}_1,\bm{e}_2\) 决定的，它们恰好相当于空间中不共线的三个点。这样，在刚体上安装一个正交标架，则这个标架在空间中的位置代表了这个刚体的位置。如果把空间和刚体捆绑在一起，把刚体在空间中的运动看作空间自身在空间中的刚体运动，则这是空间 \(E^3\) 到它自身的一个变换，这个变换保持该空间中任意两点之间的距离不变。&lt;/p&gt;
 &lt;h4 id=&#34;刚体运动与标架&#34;&gt;刚体运动与标架
 &lt;/h4&gt;&lt;p&gt;  设在刚体上安装的正交标架是 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 。假定它在初始位置时该标架与空间中取定的正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 重合，经过刚体运动 \(\sigma\) 达到了现在的位置，那么空间中的任意一点 \(Q\) 在刚体运动 \(\sigma\) 下变成了像点&lt;/p&gt;
 &lt;span id=&#34;20241010122819CST&#34;&gt;&lt;/span&gt;\[
@@ -648,7 +648,7 @@ g_{ij}=\bm{e}_i\cdot\bm{e}_j\quad 1 \le i,j \le 3
 &lt;h2 id=&#34;向量函数&#34;&gt;向量函数
 &lt;/h2&gt;&lt;h3 id=&#34;向量空间&#34;&gt;向量空间
 &lt;/h3&gt;&lt;h4 id=&#34;定义-3&#34;&gt;定义
-&lt;/h4&gt;&lt;p&gt;  由三维Euclidean空间 \(E^3\) 中的全体向量组成的空间称为三维Euclidean向量空间。在给定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后，该空间等同于由有序的三个实数的组构成的空间 \(\R^3\) 。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  由三维Euclid空间 \(E^3\) 中的全体向量组成的空间称为三维Euclid向量空间。在给定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后，该空间等同于由有序的三个实数的组构成的空间 \(\R^3\) 。&lt;/p&gt;
 &lt;h4 id=&#34;模长&#34;&gt;模长
 &lt;/h4&gt;&lt;p&gt;设有 \(\R^3\) 中的向量 \(\bm{a}=(a_1,a_2,a_3)\) 的模长定义为&lt;/p&gt;
 &lt;span id=&#34;20241019231541CST&#34;&gt;&lt;/span&gt;\[
