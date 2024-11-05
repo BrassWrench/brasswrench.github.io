@@ -131,7 +131,7 @@
 <meta property='og:description' content="微分几何中的参数曲线与曲率分析">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/curve_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-11-05T14:12:50&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微分几何' /><meta property='article:tag' content='曲线' /><meta property='article:published_time' content='2024-10-14T20:01:28&#43;08:00'/><meta property='article:modified_time' content='2024-11-05T14:17:42&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="微分几何（二）：曲线论">
 <meta name="twitter:description" content="微分几何中的参数曲线与曲率分析"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -930,8 +930,6 @@
                 
             
             
-                <a id="draft-tag" href="/draft/">草稿</a>
-            
         </header>
     
 
@@ -1002,7 +1000,7 @@
 </svg>
 
             <time class="article-words">
-                19052 字
+                19072 字
             </time>
         </div>
 
@@ -3105,16 +3103,21 @@ f_1(t_0)=-f_2(t_0)
 <p>  我们假设这一族曲线段在在<a class="link" href="#20241104225400CST">图8</a>坐标系中的参数都是 \(t \in [0,1]\) ， \(t\) 不一定是弧长参数，但是可以表征点在单个曲线上的位置。参数 \(t\) 先经过 \(\alpha_u(t)\) 变换成 \((s_1,s_2) \in T\)  ，再经过 \(\bm{\psi}(s_1,s_2)\) 变换成 \(S^1\) 上的单位向量。对于任意 \(u \in [0,1]\) ，定义 \(D(u)\) 为 \(\bm{\psi} \circ \alpha_u:[0,1] \to S^1\) 的角度改变量。由映射 \((u,t) \to \alpha_u(t), \space [0,1]\times[0,1] \to T\) 和 \(\bm{\psi}\) 的连续性可得函数 \(\bm{\psi} \circ \alpha_u(t)\) 关于 \((u,t)\) 连续（见<a class="link" onclick="alert('抱歉，“拓扑空间”还未写完~')">拓扑空间-命题9</a>）。因此，任取 \(u_0 \in [0,1]\) ，对于任意 \(\varepsilon > 0\) ，存在 \(\delta > 0\) 使得 \(|\bm{\psi} \circ \alpha_u(t) - \bm{\psi} \circ \alpha_{u_0}(t)| < \varepsilon,\forall s \in [0,1], u \in B(u_0,\delta)\cap [0,1]\) 。只需要取 \(\varepsilon_0 = 1\) ，则存在 \(\delta_0\) ，任取 \(u \in B(u_0,\delta)\cap [0,1]\) ，有 \(|\bm{\psi} \circ \alpha_u(t) - \bm{\psi} \circ \alpha_{u_0}(t)| < \varepsilon_0=1\) ，因此 \(\bm{\psi} \circ \alpha_u(t) \ne -\bm{\psi} \circ \alpha_{u_0}(t), \forall s \in [0,1]\) 。否则 \(|\bm{\psi} \circ \alpha_u(t) - \bm{\psi} \circ \alpha_{u_0}(t)| = 2|\bm{\psi} \circ \alpha_u(t)| = 2 > 1 = \varepsilon_0\) （注意 \(\bm{\psi} \circ \alpha_u(t)\) 是映射到 \(S^1\) 上的单位向量，因此模长为 \(1\) ）。因此根据<a class="link" href="#20241104191920CST">引理2</a>， \(\bm{\psi} \circ \alpha_u(t)\) 和 \(\bm{\psi} \circ \alpha_{u_0}(t)\) 的角度改变量相等。因此 \(D(u)\) 是一个局部连续的常函数（在 \(B(u_0,\delta)\cap [0,1]\) 内）。但是注意由<a class="link" href="#20241104191916CST">引理1</a>， \(D(u)\) 必须是整数，因此其不能跳跃，只能是在 \([0,1]\) 上的常函数。<br>
   我们可以观察一下 \(D(0)=\bm{\psi} \circ \alpha_0:[0,1] \to S^1\) 。对直线段 \(\alpha_0\) 有 \(s_1=s_2=s,s\in[0,l]\) ，由<a class="link" href="#20241104203350CST">式(228)</a>可知此时 \(\bm{\psi} \circ \alpha_0 = \bm{r}'(s)\) ，而由 \(D(u)\) 的定义， \(D(0)\) 就是 \(\bm{r}'(s),s \in [0,l]\) 的角度改变量，也就是<a class="link" href="#20241103204505CST">式(222)</a>中的旋转指标。由于我们已经证明了 \(D(u)\) 是个常函数，因此有 \(D(0)=D(1)\) ，那我们不妨通过求 \(D(1)\) 来求旋转指标 \(D(0)\) 。对 \(D(1)\) ，从 \((0,0)\) 到 \((0,l)\) 这段路， \(\alpha_1(t)=(0,s_2),s_2 \in [0,l],(0,s_2)\in T\) ，因此 \(\bm{\psi}\circ\alpha_1(t)=\bm{\psi}(0,s_2)=\cfrac{\bm{r}(s_2)-\bm{r}(0)}{|\bm{r}(s_2)-\bm{r}(0)|},s_2 \in [0,1]\) 。注意对于<a class="link" href="#20241105125605CST">图7</a>坐标系， \(\bm{r}(s_2)\) 是不可能翻到直线 \(L\) 的另一侧去的，因此 \(\bm{r}(s_2),s_2\in [0,l]\) 的角度变化量必然被限制在 \([0,\pi]\) 内， \(\bm{\psi}(0,s_2)=\cfrac{\bm{r}(s_2)-\bm{r}(0)}{|\bm{r}(s_2)-\bm{r}(0)|},s_2 \in [0,l]\) 的角度变化量也被限制在 \([0,\pi]\) 内。而由<a class="link" href="#20241104203350CST">式(228)</a>可知 \(\bm{\psi}(0,0)=\bm{r}'(0),\bm{\psi}(0,l)=-\bm{r}'(0)\) ，刚好转了 \(\pi\) 角度，因此 \(\bm{\psi}\circ\alpha_1(t)=\bm{\psi}(0,s_2)\) 在 \(s_2 \in [0,l]\) 上的角度变化量就是 \(\pi\) 。再考虑 \((0,l)\) 到 \((l,l)\) 这段路径。此时 \(\alpha_1(t)=(s_1,l),s_1 \in [0,1],(s_1,l)\in T\) ， \(\bm{\psi}\circ\alpha_1(t)=\bm{\psi}(s_1,l)=\cfrac{\bm{r}(s_1)-\bm{r}(l)}{|\bm{r}(s_1)-\bm{r}(l)|},s_1 \in [0,1]\) ，同理由<a class="link" href="#20241104203350CST">式(228)</a>可知 \(\bm{\psi}(0,l)=-\bm{r}'(0),\bm{\psi}(l,l)=\bm{r}'(l)=\bm{r}'(0)\) ， \(\bm{\psi}\circ\alpha_1(t)=\bm{\psi}(s_1,l),s_1 \in [0,1]\) 的角度改变量也是 \(\pi\) 。综上所述，由<a class="link" href="#20241104191916CST">角度改变量</a>的可叠加性， \(\bm{\psi} \circ \alpha_1(t), t \in [0,1]\) 的角度改变量为 \(\pi+\pi=2\pi\) ，即 \(D(1)=2\pi\) 。由于 \(D(0)=D(1)\) ， \(D(0)=2\pi\) ，即旋转指标为 \(2\pi\) 。注意我们对曲线 \(C\) 的弧长参数 \(s\) 假设的是以逆时针方向为正方向为正方向，倘若以顺时针方向为正方向，由 \(\bm{r}'(0)\) 转到 \(-\bm{r}'(0)\) 就必须是转 \(-\pi\) 角才能实现的了， \(-\bm{r}'(0)\) 转到 \(\bm{r}'(0)\) 同理。因此，根据弧长参数的方向是顺时针还是逆时针， \(D(0)\) 可取 \(\pm 2\pi\) 。即 \(i(C)=\pm 2\pi\) 。证毕。</p>
 <p>  Hopf Umlaufsatz定理是曲线大范围微分几何性质，其直观意义是明显的。若 \(C\) 是分段光滑的简单闭曲线，则曲线的方向角的总变差是</p>
-<span id="20241105140254CST"></span>
-    \[
+<span id="20241105140254CST"></span>\[
 \theta(b)-\theta(a)=\int_a^b\kappa_r(s)\mathrm{d}s+\sum_i\theta_i
-\]
+\tag{233}
+    \]
 <p>  这里 \(\theta_i\) 是曲线在各个角点处的外角， \(-\pi < \theta_i < \pi\) ，即</p>
-<span id="20241105140515CST"></span>
-    \[
+<span id="20241105140515CST"></span>\[
 \theta_i = \angle(\bm{\alpha}(s_i^-),\bm{\alpha}(s_i^+))
-\]
+\tag{234}
+    \]
 <p>  其中 \(s_i\) 是曲线的角点所对应的参数，曲线在每一段区间 \((s_i,s_{i+1})\) 上是连续可微的。在上述意义下，Hopf Umlaufsatz定理对于分段连续可微的简单闭曲线仍然是成立的。实际上，在每个角点引入一小段圆弧，让整体连续可微即可直接套用Hopf Umlaufsatz定理。</p>
+<blockquote>
+    <p><div style="text-align: center;">
+你当像鸟飞往你的山。
+</div>
+</p><span class="cite"><span>― </span><cite>《圣经·诗篇》</cite></span></blockquote>
 
     </div>
 </section>
@@ -3156,7 +3159,7 @@ f_1(t_0)=-f_2(t_0)
 
 
         <span>
-            最后更新于 Nov 05, 2024 14:12 CST
+            最后更新于 Nov 05, 2024 14:17 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3315,7 +3318,7 @@ f_1(t_0)=-f_2(t_0)
             
             
         
-        <span>本图书馆累计发布了11篇文章 共124679字</span>
+        <span>本图书馆累计发布了11篇文章 共124699字</span>
     </section>
 
     <section class="site-visit-count">
