@@ -990,7 +990,7 @@
 </svg>
 
             <time class="article-words">
-                23749 字
+                24537 字
             </time>
         </div>
 
@@ -1005,7 +1005,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 48 分钟
+                    阅读时长: 49 分钟
                 </time>
             </div>
         
@@ -1210,7 +1210,77 @@
 <h3 id="数据管理技术的产生和发展">数据管理技术的产生和发展
 </h3><p>  数据库技术是应数据管理任务的需要而产生的。数据管理是指对数据进行分类、组织、编码、存储、检索和维护，它是数据处理的中心问题。而数据的处理是指对各种数据进行收集、存储、加工和传播的一系列活动的总和。<br>
   在应用需求的推动下，在计算机硬件、软件发展的基础上，数据管理技术经历了人工管理、文件系统、数据库系统三个阶段。这三个阶段的特点及其比较如下表所示。</p>
-
+<span id="20241017110434CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+    <tr>
+        <th colspan="2"></th>
+        <th>人工管理阶段</th>
+        <th>文件系统阶段</th>
+        <th>数据库系统阶段</th>
+    </tr>
+    <tr>
+        <td rowspan="4">背景</td>
+        <td>应用背景</td>
+        <td>科学计算</td>
+        <td>科学计算、数据管理</td>
+        <td>大规模数据管理</td>
+    </tr>
+    <tr>
+        <td>硬件背景</td>
+        <td>无直接存储设备</td>
+        <td>磁盘、磁鼓</td>
+        <td>大容量磁盘、磁盘阵列</td>
+    </tr>
+    <tr>
+        <td>软件背景</td>
+        <td>没有操作系统</td>
+        <td>有文件系统</td>
+        <td>有数据库管理系统</td>
+    </tr>
+    <tr>
+        <td>处理方式</td>
+        <td>批处理</td>
+        <td>联机实时处理、批处理</td>
+        <td>联机实时处理、分布处理、批处理</td>
+    </tr>
+    <tr>
+        <td rowspan="7">特点</td>
+        <td>数据的管理者</td>
+        <td>用户（程序员）</td>
+        <td>文件系统</td>
+        <td>数据库管理系统</td>
+    </tr>
+    <tr>
+        <td>数据面向的对象</td>
+        <td>某一应用程序</td>
+        <td>某一应用</td>
+        <td>现实世界（一个部门、企业、跨国组织等）</td>
+    </tr>
+    <tr>
+        <td>数据的共享程度</td>
+        <td>无共享，冗余度极大</td>
+        <td>共享性差，冗余度大</td>
+        <td>共享性高，冗余度小</td>
+    </tr>
+    <tr>
+        <td>数据的独立性</td>
+        <td>不独立，完全依赖于程序</td>
+        <td>独立性差</td>
+        <td>具有高度的物理独立性和一定的逻辑独立性</td>
+    </tr>
+    <tr>
+        <td>数据的结构化</td>
+        <td>无结构</td>
+        <td>记录内有结构，整体无结构</td>
+        <td>整体结构化，用数据模型描述</td>
+    </tr>
+    <tr>
+        <td>数据控制能力</td>
+        <td>应用程序自己控制</td>
+        <td>应用程序自己控制</td>
+        <td>由数据库管理系统提供数据安全性、完整性，并发控制和恢复能力</td>
+    </tr>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;数据管理三个阶段的比较</p>
 <h4 id="人工管理阶段">人工管理阶段
 </h4><p>  20世纪50年代中期以前，计算机主要用于科学计算。当时的硬件状况是，外存只有纸带、卡片、磁带，没有磁盘等直接存取的存储设备；软件状况是，没有操作系统，没有管理数据的专门软件；数据处理方式是批处理。人工管理数据具有如下特点：</p>
 <p><strong>1. 数据不保存</strong></p>
@@ -1384,12 +1454,127 @@
   用数据库系统来管理数据比文件系统具有明显的优点，从文件系统到数据库系统标志着数据管理技术的飞跃。</p>
 <h3 id="数据库系统的特点">数据库系统的特点
 </h3><p>  下面首先通过一个简单的例子&mdash;&ndash;学生学籍管理系统来比较文件系统和数据库系统的差异，从而阐述数据库系统的特点。</p>
-<p>  ：设一个学生的信息包括学号、姓名、性别、年龄、专业和奖励。部分学生的情况如<span style="color:red;">[未知表格引用]</span>所示。假设该学籍管理系统具有录入学生信息、根据学号可以找到一个学生信息等功能。</p>
-
+<p>  <span id="20241017145814CST"></span><strong>例1</strong>：设一个学生的信息包括学号、姓名、性别、年龄、专业和奖励。部分学生的情况如<a class="link" href="#20241017145939CST">表2</a>所示。假设该学籍管理系统具有录入学生信息、根据学号可以找到一个学生信息等功能。</p>
+<span id="20241017145939CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">学号</th>
+          <th style="text-align: center">姓名</th>
+          <th style="text-align: center">性别</th>
+          <th style="text-align: center">年龄</th>
+          <th style="text-align: center">专业</th>
+          <th style="text-align: center">奖励</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">20100001</td>
+          <td style="text-align: center">史玉明</td>
+          <td style="text-align: center">女</td>
+          <td style="text-align: center">20</td>
+          <td style="text-align: center">计算机</td>
+          <td style="text-align: center">2011校奖学金，2012国家奖学金</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">20100100</td>
+          <td style="text-align: center">李明虎</td>
+          <td style="text-align: center">男</td>
+          <td style="text-align: center">21</td>
+          <td style="text-align: center">机械</td>
+          <td style="text-align: center">2012校优秀学生</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">20100234</td>
+          <td style="text-align: center">张翔</td>
+          <td style="text-align: center">男</td>
+          <td style="text-align: center">21</td>
+          <td style="text-align: center">化工</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+          <td style="text-align: center">···</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表2&emsp;学生一览表</p>
 <p><strong>1. 采用文件系统实现学籍管理</strong></p>
-<p>  首先是如何存储学生数据。计算机操作系统实现了文件系统，可以把每个学生都具备的信息采用<strong>定长记录方式</strong>存放在一个“学生基本信息”文件中。有关奖励的数据有的学生较多，有的学生没有，因此采用<strong>变长记录方式</strong>把它存放在另外一个“奖励”文件中。“学生基本信息”文件的记录包括学号、姓名、性别、年龄、专业、位置和长度等字段，如<span style="color:red;">[未知表格引用]</span>所示。其中位置和长度描述的是另一个奖励文件（<span style="color:red;">[未知表格引用]</span>所示）中记录的开始位置和长度。文件系统管理的文件是流式文件，或者说只是一些字节流。因此，<span style="color:red;">[未知表格引用]</span>和<span style="color:red;">[未知表格引用]</span>是为了方便程序员理解的结构。程序员必须把它们在应用程序中加以说明和描述。</p>
-
-
+<p>  首先是如何存储学生数据。计算机操作系统实现了文件系统，可以把每个学生都具备的信息采用<strong>定长记录方式</strong>存放在一个“学生基本信息”文件中。有关奖励的数据有的学生较多，有的学生没有，因此采用<strong>变长记录方式</strong>把它存放在另外一个“奖励”文件中。“学生基本信息”文件的记录包括学号、姓名、性别、年龄、专业、位置和长度等字段，如<a class="link" href="#20241017150719CST">表3</a>所示。其中位置和长度描述的是另一个奖励文件（<a class="link" href="#20241017152311CST">表4</a>所示）中记录的开始位置和长度。文件系统管理的文件是流式文件，或者说只是一些字节流。因此，<a class="link" href="#20241017150719CST">表3</a>和<a class="link" href="#20241017152311CST">表4</a>是为了方便程序员理解的结构。程序员必须把它们在应用程序中加以说明和描述。</p>
+<span id="20241017150719CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+          <th>专业</th>
+          <th>位置</th>
+          <th>长度</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>20100001</td>
+          <td>史玉明</td>
+          <td>女</td>
+          <td>20</td>
+          <td>计算机</td>
+          <td>0</td>
+          <td>30</td>
+      </tr>
+      <tr>
+          <td>20100100</td>
+          <td>李明虎</td>
+          <td>男</td>
+          <td>21</td>
+          <td>机械</td>
+          <td>30</td>
+          <td>15</td>
+      </tr>
+      <tr>
+          <td>20100234</td>
+          <td>张翔</td>
+          <td>男</td>
+          <td>21</td>
+          <td>化工</td>
+          <td>45</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+          <td>···</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表3&emsp;“学生基本信息”文件的结构和内容</p>
+<span id="20241017152311CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>奖励</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2011 校奖学金，2012 国家奖学金</td>
+      </tr>
+      <tr>
+          <td>2012 校优秀学生</td>
+      </tr>
+      <tr>
+          <td>···</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表4&emsp;“奖励”文件的结构内容</p>
 <p>  确定了学生数据的存储方式后，需要编写程序来实现数据的录入功能和查询功能。录入功能的基本过程包括从键盘读入学生信息，把基本信息写到&quot;学生基本信息”文件中，把奖励情况写到“奖励”文件中。特别要注意的是，为了能正确地表达“学生基本信息”文件中一条记录和“奖励”文件中记录的对应关系，在程序中要把奖励情况在文件中的开始位置和长度再写回&quot;学生基本信息”文件中。<br>
   查询功能采用顺序查找方法。首先从“学生基本信息”文件中读入第1条记录，然后比较学号字段的值是否和要查找的学号相同。如果相同，读出该学生的信息，并根据位置字段和长度字段的值到“奖励”文件中读出该学生的奖励信息，查找过程结束；如果不相同，则从“学生基本信息”文件中读入下一条记录，直到找到该学号的记录，或者读到文件末尾也没有该学号的学生为止。</p>
 <p><strong>2. 采用数据库系统实现学籍管理</strong></p>
@@ -2493,30 +2678,150 @@ DBTG提供了&quot;属籍类别”的概念来描述这类约束条件。</li>
   1970年，美国IBM公司SanJose研究室的研究员E.F.Codd首次提出了数据库系统的关系模型，开创了数据库关系方法和关系数据理论的研究，为数据库技术奠定了理论基础。由于E.F.Codd的杰出工作，他于1981年获得ACM图灵奖。<br>
   20世纪80年代以来，计算机厂商新推出的数据库管理系统几乎都支持关系模型，非关系系统的产品也大都加上了关系接口。数据库领域当前的研究工作也都是以关系方法为基础。因此本书的重点也将放在关系数据库上，后面各章将详细介绍关系数据库。</p>
 <p><strong>1. 关系模型的数据结构</strong></p>
-<p>  关系模型与以往的模型不同，它是建立在严格的数学概念的基础上的。严格的定义将在第二章“关系数据库”中给出。这里只简单勾画一下关系模型。从用户观点看，关系模型由一组关系组成。每个关系的数据结构是一张规范化的二维表。下面以学生登记表（如<span style="color:red;">[未知表格引用]</span>所示）为例，介绍关系模型中的一些术语。</p>
-
+<p>  关系模型与以往的模型不同，它是建立在严格的数学概念的基础上的。严格的定义将在第二章“关系数据库”中给出。这里只简单勾画一下关系模型。从用户观点看，关系模型由一组关系组成。每个关系的数据结构是一张规范化的二维表。下面以学生登记表（如<a class="link" href="#20241023191948CST">表5</a>所示）为例，介绍关系模型中的一些术语。</p>
+<span id="20241023191948CST"></span><div class="normal-table"><p>学生登记表</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>系名</th>
+          <th>年级</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2013004</td>
+          <td>王小明</td>
+          <td>19</td>
+          <td>女</td>
+          <td>社会学</td>
+          <td>2013</td>
+      </tr>
+      <tr>
+          <td>2013006</td>
+          <td>黄大鹏</td>
+          <td>20</td>
+          <td>男</td>
+          <td>商品学</td>
+          <td>2013</td>
+      </tr>
+      <tr>
+          <td>2013008</td>
+          <td>张文斌</td>
+          <td>18</td>
+          <td>女</td>
+          <td>法律</td>
+          <td>2013</td>
+      </tr>
+      <tr>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+      </tr>
+  </tbody>
+</table></div></div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表5&emsp;关系模型的数据结构</p>
 <ul>
 <li><strong>关系（relation）</strong>： 一个关系对应通常说的一张表，例如图1.14中的这张学生登记表。</li>
 <li><strong>元组（tuple）</strong>：表中的一行即为一个元组。</li>
-<li><strong>属性（attribute）</strong>：表中的一列即为一个属性，给每一个属性起一个名称即属性名。 如<span style="color:red;">[未知表格引用]</span>所示的表有6列，对应6个属性（学号，姓名，年龄，性别，系名和年级）。</li>
+<li><strong>属性（attribute）</strong>：表中的一列即为一个属性，给每一个属性起一个名称即属性名。 如<a class="link" href="#20241023191948CST">表5</a>所示的表有6列，对应6个属性（学号，姓名，年龄，性别，系名和年级）。</li>
 <li><strong>码（key）</strong>：也称为码键。表中的某个属性组，它可以唯一确定一个元组，如图1.14 中的学号可以唯一确定一个学生，也就成为本关系的码。</li>
 <li><strong>域（domain）</strong>：域是一组具有相同数据类型的值的集合。属性的取值范围来自某个域。 如人的年龄一般在1〜120岁之间，大学生年龄属性的域是（15〜45岁），性别的域是（男，女），系名的域是一个学校所有系名的集合。</li>
 <li><strong>分量</strong>：元组中的一个属性值。</li>
 <li><strong>关系模式</strong>：对关系的描述，一般表示为<br>
-<span id="20241024103147CST"></span>
-    \[
+<span id="20241024103147CST"></span>\[
 关系名（属性1、属性2、···、属性n）  
-\]
+\tag{1}
+    \]
   例如，上面的关系可描述为<br>
-<span id="20241024103204CST"></span>
-    \[
+<span id="20241024103204CST"></span>\[
   学生（堂号，姓名，年龄，性别，系名，年级）  
-\]
+\tag{2}
+    \]
   关系模型要求关系必须是规范化的，即要求关系必须满足一定的规范条件，这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项，也就是说，不允许表中还有表。例如，图1.15中工资和扣除是可分的数据项，工资又分为基本工资、岗位津贴和业绩津贴，扣除又分为三险和个人所得税。因此，图1.15的表就不符合关系模型要求。</li>
 </ul>
-
+<span id="20241024103348CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+    <tr>
+        <th rowspan="2">职工号</th>
+        <th rowspan="2">姓名</th>
+        <th rowspan="2">职称</th>
+        <th colspan="3">工资</th>
+        <th colspan="2">扣除</th>
+        <th rowspan="2">实发</th>
+    </tr>
+    <tr>
+        <th>基本工资</th>
+        <th>岗位津贴</th>
+        <th>业绩津贴</th>
+        <th>三险</th>
+        <th>个人所得税</th>
+    </tr>
+    <tr>
+        <td>86051</td>
+        <td>陈平</td>
+        <td>讲师</td>
+        <td>1305</td>
+        <td>1200</td>
+        <td>2850</td>
+        <td>160</td>
+        <td>112</td>
+        <td>4083</td>
+    </tr>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表6&emsp;一个工资表（表中有表）示例</p>
 <p>  可以把关系和现实生活中的表格所使用的术语做一个粗略的对比，如表L5所示。</p>
-
+<span id="20241024104838CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>关系术语</th>
+          <th>一般表格的术语</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>关系名</td>
+          <td>表名</td>
+      </tr>
+      <tr>
+          <td>关系模式</td>
+          <td>表头（表格的描述）</td>
+      </tr>
+      <tr>
+          <td>关系</td>
+          <td>（一张）二维表</td>
+      </tr>
+      <tr>
+          <td>元组</td>
+          <td>记录或行</td>
+      </tr>
+      <tr>
+          <td>属性</td>
+          <td>列</td>
+      </tr>
+      <tr>
+          <td>属性名</td>
+          <td>列名</td>
+      </tr>
+      <tr>
+          <td>属性值</td>
+          <td>列值</td>
+      </tr>
+      <tr>
+          <td>分量</td>
+          <td>一条记录中的一个列值</td>
+      </tr>
+      <tr>
+          <td>非规范关系</td>
+          <td>表中有表（大表中嵌有小表）</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表7&emsp;术语对比</p>
 <p><strong>2. 关系模型的数据操纵与完整性约束</strong></p>
 <p>  关系模型的数据操纵主要包括查询、插入、删除和更新数据。这些操作必须满足关系的完整性约束条件。关系的完整性约束条件包括三大类：实体完整性、参照完整性和用户定义的完整性。其具体含义将在后续内容中介绍。<br>
   关系模型中的数据操作是集合操作，操作对象和操作结果都是关系，即若干元组的集 合，而不像格式化模型中那样是单记录的操作方式。另一方面，关系模型把存取路径向用 户隐蔽起来，用户只要指出“干什么”或&quot;找什么”，不必详细说明&quot;怎么干”或&quot;怎么找”, 从而大大地提高了数据的独立性，提高了用户生产率。</p>
@@ -3003,7 +3308,7 @@ DBTG提供了&quot;属籍类别”的概念来描述这类约束条件。</li>
             
             
         
-        <span>本图书馆累计发布了11篇文章 共123183字</span>
+        <span>本图书馆累计发布了11篇文章 共124616字</span>
     </section>
 
     <section class="site-visit-count">
