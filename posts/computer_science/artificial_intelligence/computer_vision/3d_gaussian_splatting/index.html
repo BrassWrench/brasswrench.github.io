@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/computer_science/artificial_intelligence/computer_vision/3d_gaussian_splatting/'>
 
-<link rel="stylesheet" href="/scss/style.min.2192e59025ff3da545256ed9bdadaf43c3eb68ff5098162ceea7a592d6503744.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.c990e5fe8e0b2e3936868763c2e45f31b0021b19fd8ce424281cece6de00c270.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/artificial_intelligence/computer_vision/3d_gaussian_splatting/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='三维重建' /><meta property='article:tag' content='可微渲染' /><meta property='article:tag' content='实时渲染' /><meta property='article:tag' content='3D高斯泼溅' /><meta property='article:tag' content='机器学习' /><meta property='article:tag' content='多维高斯分布' /><meta property='article:tag' content='球谐函数' /><meta property='article:tag' content='辐射场' /><meta property='article:tag' content='光栅化' /><meta property='article:tag' content='四元数' /><meta property='article:tag' content='透视变换' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-11-05T16:21:40&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='三维重建' /><meta property='article:tag' content='可微渲染' /><meta property='article:tag' content='实时渲染' /><meta property='article:tag' content='3D高斯泼溅' /><meta property='article:tag' content='机器学习' /><meta property='article:tag' content='多维高斯分布' /><meta property='article:tag' content='球谐函数' /><meta property='article:tag' content='辐射场' /><meta property='article:tag' content='光栅化' /><meta property='article:tag' content='四元数' /><meta property='article:tag' content='透视变换' /><meta property='article:published_time' content='2024-09-23T19:43:18&#43;08:00'/><meta property='article:modified_time' content='2024-11-05T19:13:34&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="三维重建（一）：3D高斯泼溅算法">
 <meta name="twitter:description" content="一种通过将物体建模为高斯点云并快速进行可微分光栅化渲染来实现高效3D重建与渲染的算法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1041,12 +1041,12 @@
 </iframe>
 
 <h1 id="3d高斯泼溅算法">3D高斯泼溅算法
-</h1><p>  在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，<strong>3D高斯泼溅算法（3D Gaussian Splatting，简称3DGS）</strong>‌作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。<br>
-  3D高斯泼溅算法的创新在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯球，利用三维高斯函数的数学性质，将离散的数据点或体素转换为可视化的效果。这一过程中，三维高斯球的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。<br>
-  对比NeRF和传统的Mesh：一个是纯连续的、隐式表达在可微空间内；一个是纯离散的（虽然可以插值）、显式表达在三维空间内，3D高斯是在离散和连续间的一个平衡：在高斯球内部是连续的、可微的；在整个空间中，每个高斯球又是离散的。<br>
-  本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。</p>
+</h1><p>　　在三维重建领域，随着计算机图形学和相关技术的飞速发展，各种创新算法不断涌现，为精准、高效地构建三维场景提供了强大支持。其中，<strong>3D高斯泼溅算法（3D Gaussian Splatting，简称3DGS）</strong>‌作为一种新兴的、具有革命性的三维重建技术，正逐渐受到广泛关注。<br>
+　　3D高斯泼溅算法的创新在于其独特的表示和渲染方法。它通过将场景中的每个点视为一个高斯球，利用三维高斯函数的数学性质，将离散的数据点或体素转换为可视化的效果。这一过程中，三维高斯球的叠加不仅实现了数据的平滑过渡，还保留了场景中的细粒度细节。同时，结合快速的可见性感知渲染算法，3D高斯泼溅算法能够在保证高质量渲染效果的同时，实现实时的新视图合成。<br>
+　　对比NeRF和传统的Mesh：一个是纯连续的、隐式表达在可微空间内；一个是纯离散的（虽然可以插值）、显式表达在三维空间内，3D高斯是在离散和连续间的一个平衡：在高斯球内部是连续的、可微的；在整个空间中，每个高斯球又是离散的。<br>
+　　本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。</p>
 <h2 id="算法框架">算法框架
-</h2><p>  3DGS的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。</p>
+</h2><p>　　3DGS的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。</p>
 <span id="20241001163933CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 863.7 212.2">
@@ -1209,30 +1209,30 @@
     </g>
   </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;3D Gaussian Splatting整体框架</p>
-<p>  由上图可以看出，当拿到一组场景照片以后，我们需要先使用某种<strong>SfM（Structure from Motion）算法</strong>估计出这一组照片的<strong>结构</strong>（位置）和<strong>姿态</strong>（摄像机方向）和一组<strong>稀疏点云（SfM Points）</strong>。然后交给3DGS进行<strong>初始化（Initialization）</strong>‌得到一组初始的<strong>3D高斯球（3D Gaussians）</strong>。然后，我们借助相机外参（结构和姿态）将这一组3D高斯球<strong>投影</strong>到相机平面上（<strong>Projection</strong>），接着再使用<strong>可微分块光栅化（Differentiable Tile Rasterizer）</strong>‌渲染得到图像（<strong>Image</strong>）。得到渲染图像后将其与相机原始的图像（Ground Truth）进行loss比对，然后沿着虚线箭头进行梯度回传。虚线箭头从上回传的时候，更新3D高斯球中的参数，从下回传时会经过<strong>自适应密度控制（Adaptive Density Control）</strong>‌的处理，而后更新3D高斯球中的点云。<br>
-  接下来，我们详细讲解算法中的每一个步骤，并给出具体的实现方式。</p>
+<p>　　由上图可以看出，当拿到一组场景照片以后，我们需要先使用某种<strong>SfM（Structure from Motion）算法</strong>估计出这一组照片的<strong>结构</strong>（位置）和<strong>姿态</strong>（摄像机方向）和一组<strong>稀疏点云（SfM Points）</strong>。然后交给3DGS进行<strong>初始化（Initialization）</strong>‌得到一组初始的<strong>3D高斯球（3D Gaussians）</strong>。然后，我们借助相机外参（结构和姿态）将这一组3D高斯球<strong>投影</strong>到相机平面上（<strong>Projection</strong>），接着再使用<strong>可微分块光栅化（Differentiable Tile Rasterizer）</strong>‌渲染得到图像（<strong>Image</strong>）。得到渲染图像后将其与相机原始的图像（Ground Truth）进行loss比对，然后沿着虚线箭头进行梯度回传。虚线箭头从上回传的时候，更新3D高斯球中的参数，从下回传时会经过<strong>自适应密度控制（Adaptive Density Control）</strong>‌的处理，而后更新3D高斯球中的点云。<br>
+　　接下来，我们详细讲解算法中的每一个步骤，并给出具体的实现方式。</p>
 <h2 id="算法内容">算法内容
 </h2><h3 id="运动结构恢复">运动结构恢复
-</h3><p>  由于该步骤并不是3D Gaussian Splatting的主要内容（详细请见<a class="link" onclick="alert('抱歉，“计算机视觉”还未上线~')">运动结构恢复</a>），而且已经有较成熟的算法和软件可以实现这部分内容（例如COLMAP），因此在此不做过多介绍。</p>
+</h3><p>　　由于该步骤并不是3D Gaussian Splatting的主要内容（详细请见<a class="link" onclick="alert('抱歉，“计算机视觉”还未上线~')">运动结构恢复</a>），而且已经有较成熟的算法和软件可以实现这部分内容（例如COLMAP），因此在此不做过多介绍。</p>
 <h3 id="3d高斯椭球集的创建及描述">3D高斯椭球集的创建及描述
-</h3><p>  拿到相机的位置、姿态和稀疏点云后，就可以开始创建初始的3D高斯椭球集。描述一个3D高斯椭球需要四种信息：位置、形状、颜色和不透明度。</p>
+</h3><p>　　拿到相机的位置、姿态和稀疏点云后，就可以开始创建初始的3D高斯椭球集。描述一个3D高斯椭球需要四种信息：位置、形状、颜色和不透明度。</p>
 <h4 id="3d高斯椭球">3D高斯椭球
-</h4><p>  在概率论中我们已经学到了<a class="link" onclick="alert('抱歉，“概率论“还未上线~')">多维高斯分布</a>的表达式如下：</p>
+</h4><p>　　在概率论中我们已经学到了<a class="link" onclick="alert('抱歉，“概率论“还未上线~')">多维高斯分布</a>的表达式如下：</p>
 <span id="20241003225449CST"></span>\[
 f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}\right|}}\exp\left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
 \tag{1}
     \]
-<p>  其中 \(\bm{\mu}\) 是均值， \(\bm{\Sigma}\) 是协方差矩阵，它是对称且正定的。在三维空间中，我们将这么一个三维高斯分布叫做一个<strong>3D高斯椭球</strong>。</p>
+<p>　　其中 \(\bm{\mu}\) 是均值， \(\bm{\Sigma}\) 是协方差矩阵，它是对称且正定的。在三维空间中，我们将这么一个三维高斯分布叫做一个<strong>3D高斯椭球</strong>。</p>
 <h4 id="位置">位置
-</h4><p>  3D高斯椭球的均值 \(\bm{\mu}\) 就是这个3D高斯椭球的位置，也就是其中心点。初始化3D高斯椭球的时候，这个中心点就是由SfM算法得到的稀疏点云。</p>
+</h4><p>　　3D高斯椭球的均值 \(\bm{\mu}\) 就是这个3D高斯椭球的位置，也就是其中心点。初始化3D高斯椭球的时候，这个中心点就是由SfM算法得到的稀疏点云。</p>
 <h4 id="形状">形状
-</h4><p>  3D高斯椭球的协方差 \(\bm{\Sigma}\) 就是代表它的形状。由<a class="link" onclick="alert('抱歉，“矩阵理论”还未上线~')">实对称矩阵的正交相似对角化</a>和 \(\bm{\Sigma}\) 的对称性和正定性， \(\bm{\Sigma}\) 可以被分解成 \(\bm{\Sigma}=\bm{R}\bm{\Lambda}\bm{R}^T\) ，其中 \(\bm{R}\) 是一个正交矩阵， \(\bm{\Lambda}\) 是由 \(\bm{\Sigma}\) 的特征值构成的对角矩阵。注意正定矩阵的特征值都是正的，因此 \(\bm{\Lambda}\) 还可以被分解成 \(\bm{\Lambda}=\bm{S}\bm{S}^T\) ，其中 \(\bm{S}\) 也是一个正的对角矩阵，且其对角线上的值其实就是对应的 \(\bm{\Sigma}\) 特征值的平方根。因此有</p>
+</h4><p>　　3D高斯椭球的协方差 \(\bm{\Sigma}\) 就是代表它的形状。由<a class="link" onclick="alert('抱歉，“矩阵理论”还未上线~')">实对称矩阵的正交相似对角化</a>和 \(\bm{\Sigma}\) 的对称性和正定性， \(\bm{\Sigma}\) 可以被分解成 \(\bm{\Sigma}=\bm{R}\bm{\Lambda}\bm{R}^T\) ，其中 \(\bm{R}\) 是一个正交矩阵， \(\bm{\Lambda}\) 是由 \(\bm{\Sigma}\) 的特征值构成的对角矩阵。注意正定矩阵的特征值都是正的，因此 \(\bm{\Lambda}\) 还可以被分解成 \(\bm{\Lambda}=\bm{S}\bm{S}^T\) ，其中 \(\bm{S}\) 也是一个正的对角矩阵，且其对角线上的值其实就是对应的 \(\bm{\Sigma}\) 特征值的平方根。因此有</p>
 <span id="20241004120125CST"></span>\[
 \bm{\Sigma}=\bm{R}\bm{S}\bm{S}^T\bm{R}^T
 \tag{2}
     \]
-<p>  我们注意看这个式子的几何意义。由于 \(\bm{S}\) 是一个对角矩阵，因此其可以被看成一个<strong>放缩变换</strong>，而 \(\bm{R}\) 是一个正交矩阵，因此可以看成一个<strong>旋转变换</strong>（见<a class="link" onclick="alert('抱歉，“解析几何”还未上线~')">旋转变换</a>）。将其代回<a class="link" href="#20241003225449CST">式(1)</a>，易得实际上这个操作就是把正交基先拉伸后旋转，再将去均值的随机向量 \(\bm{x}-\bm{\mu}\) 投影到新的正交基上的操作。<br>
-  对于三维对角矩阵 \(\bm{S}\) ，只需要一个三维向量 \(\bm{s}\) 描述即可，该向量的每个分量对应对角矩阵 \(\bm{S}\) 的每个对角分量。即</p>
+<p>　　我们注意看这个式子的几何意义。由于 \(\bm{S}\) 是一个对角矩阵，因此其可以被看成一个<strong>放缩变换</strong>，而 \(\bm{R}\) 是一个正交矩阵，因此可以看成一个<strong>旋转变换</strong>（见<a class="link" onclick="alert('抱歉，“解析几何”还未上线~')">旋转变换</a>）。将其代回<a class="link" href="#20241003225449CST">式(1)</a>，易得实际上这个操作就是把正交基先拉伸后旋转，再将去均值的随机向量 \(\bm{x}-\bm{\mu}\) 投影到新的正交基上的操作。<br>
+　　对于三维对角矩阵 \(\bm{S}\) ，只需要一个三维向量 \(\bm{s}\) 描述即可，该向量的每个分量对应对角矩阵 \(\bm{S}\) 的每个对角分量。即</p>
 <span id="20241004154012CST"></span>\[
 \bm{S}\left(\bm{s}\right)=
 \begin{pmatrix}
@@ -1242,7 +1242,7 @@ s_1 & 0   & 0   \\[5pt]
 \end{pmatrix}
 \tag{3}
     \]
-<p>  对于正交矩阵 \(\bm{R}\) ，可以用一个四元数 \(\bm{q}\) 来表示（见<a class="link" onclick="alert('抱歉，“解析几何”还未上线~')">四元数与旋转</a>）。在机器学习中，直接对 \(\bm{\Sigma}\) 进行学习很难保证其正定性。因此，3DGS采用的方法是对 \(\bm{s}\) 和 \(\bm{q}\) 进行学习，再用公式间接计算 \(\bm{\Sigma}\) 。这里，我们先给出四元数到旋转矩阵的计算关系（具体推导见<a class="link" onclick="alert('抱歉，“解析几何”还未上线~')">四元数与旋转</a>）：</p>
+<p>　　对于正交矩阵 \(\bm{R}\) ，可以用一个四元数 \(\bm{q}\) 来表示（见<a class="link" onclick="alert('抱歉，“解析几何”还未上线~')">四元数与旋转</a>）。在机器学习中，直接对 \(\bm{\Sigma}\) 进行学习很难保证其正定性。因此，3DGS采用的方法是对 \(\bm{s}\) 和 \(\bm{q}\) 进行学习，再用公式间接计算 \(\bm{\Sigma}\) 。这里，我们先给出四元数到旋转矩阵的计算关系（具体推导见<a class="link" onclick="alert('抱歉，“解析几何”还未上线~')">四元数与旋转</a>）：</p>
 <span id="20241004135007CST"></span>\[
 \bm{R}\left(\bm{q}\right)=
 \begin{pmatrix}
@@ -1252,10 +1252,10 @@ s_1 & 0   & 0   \\[5pt]
 \end{pmatrix}
 \tag{4}
     \]
-<p>  在初始化的时候，3DGS会利用<a class="link" onclick="alert('抱歉，“机器学习”还未上线~')">KNN算法</a>计算点云中每个点到与其最近的3个点的平均距离，然后取对数，将其同时作为 \(\bm{s}\) 中的三个分量的值。对于 \(\bm{q}\) ，3DGS将其初始化为 \(\bm{q}=\left(1,0,0,0\right)\) ，也就是不进行旋转。</p>
+<p>　　在初始化的时候，3DGS会利用<a class="link" onclick="alert('抱歉，“机器学习”还未上线~')">KNN算法</a>计算点云中每个点到与其最近的3个点的平均距离，然后取对数，将其同时作为 \(\bm{s}\) 中的三个分量的值。对于 \(\bm{q}\) ，3DGS将其初始化为 \(\bm{q}=\left(1,0,0,0\right)\) ，也就是不进行旋转。</p>
 <h4 id="颜色">颜色
-</h4><p>  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：<strong>实球谐函数（Real Spherical Harmonics）</strong>（见<a class="link" onclick="alert('抱歉，“特殊函数：Legendre函数”还未写完~')">球谐函数</a>）。<br>
-  计算机图形学中常用的实球谐函数的定义如下：</p>
+</h4><p>　　对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：<strong>实球谐函数（Real Spherical Harmonics）</strong>（见<a class="link" onclick="alert('抱歉，“特殊函数：Legendre函数”还未写完~')">球谐函数</a>）。<br>
+　　计算机图形学中常用的实球谐函数的定义如下：</p>
 <span id="20241004221955CST"></span>\[
 \mathcal{Y}_l^m\left(\theta,\varphi\right)=
 \begin{cases}
@@ -1265,28 +1265,28 @@ s_1 & 0   & 0   \\[5pt]
 \end{cases}
 \tag{5}
     \]
-<p>  其中</p>
+<p>　　其中</p>
 <span id="20241005013910CST"></span>\[
 K_l^m=\sqrt{\frac{2l+1}{4\pi}\frac{\left(l-|m|\right)!}{\left(l+|m|\right)!}}
 \tag{6}
     \]
-<p>  是归一化系数。 \(P^m_l\left(\cos\theta\right)\) 是<strong>连带Legendre多项式</strong>（见<a class="link" onclick="alert('抱歉，“特殊函数：Legendre函数”还没写完~')">连带Legendre多项式</a>），定义如下：</p>
+<p>　　是归一化系数。 \(P^m_l\left(\cos\theta\right)\) 是<strong>连带Legendre多项式</strong>（见<a class="link" onclick="alert('抱歉，“特殊函数：Legendre函数”还没写完~')">连带Legendre多项式</a>），定义如下：</p>
 <span id="20241004223430CST"></span>\[
 P^m_l\left(x\right)=\left(-1\right)^m\frac{\left(1-x^2\right)^{\frac{m}{2}}}{2^ll!}\frac{\mathrm{d}^{l+m}}{\mathrm{d}x^{l+m}}(x^2-1)^l
 \tag{7}
     \]
-<p>  类似于Tayler展开和Fourier展开，任何一个在球面上连续的实函数 \(f(\theta,\varphi)\)  可以用 \(Y_{lm}(\theta,\varphi)\) 展开为一平均收敛的级数</p>
+<p>　　类似于Tayler展开和Fourier展开，任何一个在球面上连续的实函数 \(f(\theta,\varphi)\)  可以用 \(Y_{lm}(\theta,\varphi)\) 展开为一平均收敛的级数</p>
 <span id="20241004231613CST"></span>\[
 f(\theta,\varphi)=\sum_{l=0}^{\infin}\sum_{-l}^{l}C_l^m\mathcal{Y}_l^m(\theta,\varphi)
 \tag{8}
     \]
-<p>  其中</p>
+<p>　　其中</p>
 <span id="20241004232136CST"></span>\[
 C_l^m=\int_0^\pi\int_0^{2\pi}\mathcal{Y}_l^m(\theta,\varphi)f(\theta,\varphi)\sin\theta d\theta d\varphi
 \tag{9}
     \]
-<p>  3DGS算法使用 \(3\) 阶球函数近似，使用RGB颜色来进行渲染。也就是，一共有三个通道，每个通道由区间 \([0,1]\) 的一个数来映射到每个通道表示颜色的 \(0\text{\textasciitilde}255\) 的一个数字。将每个RGB通道展开成一个 \(3\) 阶球函数需要 \((3+1)^2=16\) 个系数。由此可得，要想表示一个3D高斯椭球的颜色信息，需要 \(3\times (3+1)^2=48\) 个参数。<br>
-  具体的，当我们拿到这 \(48\) 个参数和一个方向向量 \(\bm{n}=(x,y,z)\) 以后，利用<a class="link" href="#20241004231613CST">式(8)</a>，我们可以通过如下推导得到该方向的球谐函数值</p>
+<p>　　3DGS算法使用 \(3\) 阶球函数近似，使用RGB颜色来进行渲染。也就是，一共有三个通道，每个通道由区间 \([0,1]\) 的一个数来映射到每个通道表示颜色的 \(0\text{\textasciitilde}255\) 的一个数字。将每个RGB通道展开成一个 \(3\) 阶球函数需要 \((3+1)^2=16\) 个系数。由此可得，要想表示一个3D高斯椭球的颜色信息，需要 \(3\times (3+1)^2=48\) 个参数。<br>
+　　具体的，当我们拿到这 \(48\) 个参数和一个方向向量 \(\bm{n}=(x,y,z)\) 以后，利用<a class="link" href="#20241004231613CST">式(8)</a>，我们可以通过如下推导得到该方向的球谐函数值</p>
 <span id="20241005000157CST"></span>\[
 \begin{aligned}
 f_i(\bm{n})_{SH}=&\sum_{l=0}^{3}\sum_{-l}^{l}C_l^m(i)\mathcal{Y}_l^m(\bm{n})\\[5pt]
@@ -1297,7 +1297,7 @@ f_i(\bm{n})_{SH}=&\sum_{l=0}^{3}\sum_{-l}^{l}C_l^m(i)\mathcal{Y}_l^m(\bm{n})\\[5
 \end{aligned}
 \tag{10}
     \]
-<p>   \(i\) 取 \(1,2,3\) 表示 \(3\) 个RGB通道， \(C_{00}(i)\text{\textasciitilde}C_{33}(i)\) 均已知，下面给出 \(\mathcal{Y}_{00}(\bm{n})\text{\textasciitilde}\mathcal{Y}_{33}(\bm{n})\) 的表达式（可直接根据<a class="link" href="#20241004221955CST">式(5)</a>得到）</p>
+<p>　　 \(i\) 取 \(1,2,3\) 表示 \(3\) 个RGB通道， \(C_{00}(i)\text{\textasciitilde}C_{33}(i)\) 均已知，下面给出 \(\mathcal{Y}_{00}(\bm{n})\text{\textasciitilde}\mathcal{Y}_{33}(\bm{n})\) 的表达式（可直接根据<a class="link" href="#20241004221955CST">式(5)</a>得到）</p>
 <span id="20241017102134CST"></span><div class="normal-table"><div class="table-wrapper"><table>
   <thead>
       <tr>
@@ -1390,30 +1390,30 @@ f_i(\bm{n})_{SH}=&\sum_{l=0}^{3}\sum_{-l}^{l}C_l^m(i)\mathcal{Y}_l^m(\bm{n})\\[5
   </tbody>
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;球谐函数表达式及值</p>
-<p>  这是在实球谐函数一侧进行合成的方法。但是我们还需要将其换算到RGB通道参数。为了方便合成与分解（减少精度损失）和让展开更对称，3DGS采用如下变换联系实球谐函数和RGB通道参数：</p>
+<p>　　这是在实球谐函数一侧进行合成的方法。但是我们还需要将其换算到RGB通道参数。为了方便合成与分解（减少精度损失）和让展开更对称，3DGS采用如下变换联系实球谐函数和RGB通道参数：</p>
 <span id="20241005133050CST"></span>\[
 f_i(\bm{n})_{SH}=f_i(\bm{n})_{RGB}-0.5
 \tag{11}
     \]
-<p>  在初始化的时候，3DGS将 \(C_0^0(i)\) 初始化成稀疏点云中的RGB通道值（需要通过上式变换到球谐函数侧），其他参数均初始化为0。</p>
+<p>　　在初始化的时候，3DGS将 \(C_0^0(i)\) 初始化成稀疏点云中的RGB通道值（需要通过上式变换到球谐函数侧），其他参数均初始化为0。</p>
 <span id="20241007152703CST"></span>
 <h4 id="不透明度">不透明度
-</h4><p>  除了位置、形状和颜色，每个3D高斯椭球还有一个不透明度参数 \(\omicron\) 。此时对于某个点 \((x,y,z)\) ，其不透明度为：</p>
+</h4><p>　　除了位置、形状和颜色，每个3D高斯椭球还有一个不透明度参数 \(\omicron\) 。此时对于某个点 \((x,y,z)\) ，其不透明度为：</p>
 <span id="20241007145425CST"></span>\[
 \alpha(x,y,z)=\omicron\cdot\exp\left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^{T}\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)
 \tag{12}
     \]
-<p>  这个不透明度会在下文渲染部分仔细讲解。初始化的时候，每个3D高斯椭球的透明度均被初始化成 \(0.1\) 。</p>
+<p>　　这个不透明度会在下文渲染部分仔细讲解。初始化的时候，每个3D高斯椭球的透明度均被初始化成 \(0.1\) 。</p>
 <h3 id="渲染">渲染
-</h3><p>  得到一组3D高斯椭球集之后，我们需要把他渲染出来。渲染操作的输入是3D高斯椭球集的各个参数和相机参数，输出是相机看到的图片。首先，我们需要将3D高斯椭球集投影到相机对应的2D平面内，然后再采用可微分块光栅化的办法进行渲染。</p>
+</h3><p>　　得到一组3D高斯椭球集之后，我们需要把他渲染出来。渲染操作的输入是3D高斯椭球集的各个参数和相机参数，输出是相机看到的图片。首先，我们需要将3D高斯椭球集投影到相机对应的2D平面内，然后再采用可微分块光栅化的办法进行渲染。</p>
 <h4 id="投影">投影
-</h4><p>  如何将3D高斯椭球投影到2D平面进行渲染是3DGS中非常重要的关键点。首先我们来证明一个重要的结论：<br>
-  <span id="20241006001351CST"></span><strong>结论1</strong>：多维高斯分布的概率分布函数 \(\displaystyle f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)\) ，对仿射变换 \(\bm{u}=\phi(\bm{x})=\bm{M}\bm{x}+\bm{c}\) ，有</p>
+</h4><p>　　如何将3D高斯椭球投影到2D平面进行渲染是3DGS中非常重要的关键点。首先我们来证明一个重要的结论：<br>
+　　<span id="20241006001351CST"></span><strong>结论1</strong>：多维高斯分布的概率分布函数 \(\displaystyle f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)\) ，对仿射变换 \(\bm{u}=\phi(\bm{x})=\bm{M}\bm{x}+\bm{c}\) ，有</p>
 <span id="20241006001745CST"></span>\[
 f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{u}|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)
 \tag{13}
     \]
-<p>  <strong>证明（<a class="link" href="#20241006001351CST">结论1</a>）</strong>：由上式和<a class="link" href="#20241003225449CST">式(1)</a>可得</p>
+<p>　　<strong>证明（<a class="link" href="#20241006001351CST">结论1</a>）</strong>：由上式和<a class="link" href="#20241003225449CST">式(1)</a>可得</p>
 <span id="20241006002545CST"></span>\[
 \begin{aligned}
 &\frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{u}|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)\\
@@ -1423,7 +1423,7 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\le
 \end{aligned}
 \tag{14}
     \]
-<p>  由<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')"> \(|AB|=|A||B|\) </a>和<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')"> \(|A^T|=|A|\) </a>，对系数部分有</p>
+<p>　　由<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')"> \(|AB|=|A||B|\) </a>和<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')"> \(|A^T|=|A|\) </a>，对系数部分有</p>
 <span id="20241006011029CST"></span>\[
 \begin{aligned}
 &\frac{1}{\left|\bm{M}^{-1}\right|}\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{M}\bm{\Sigma}\bm{M}^T\right|}}\\
@@ -1435,7 +1435,7 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\le
 \end{aligned}
 \tag{15}
     \]
-<p>  由<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')"> \((AB)^{-1}=B^{-1}A^{-1}\) </a>和<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')"> \((AB)^T=B^TA^T\) </a>，对指数部分有</p>
+<p>　　由<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')"> \((AB)^{-1}=B^{-1}A^{-1}\) </a>和<a class="link" onclick="alert('抱歉，“高等代数”还未上线~')"> \((AB)^T=B^TA^T\) </a>，对指数部分有</p>
 <span id="20241006011115CST"></span>\[
 \begin{aligned}
 &\exp\left(-\frac{1}{2}\left(\left(\bm{M}\bm{x}+\bm{c}\right)-\left(\bm{M}\bm{\mu}+\bm{c}\right)\right)^{T}(\bm{M}\bm{\Sigma}\bm{M}^T)^{-1}\left(\left(\bm{M}\bm{x}+\bm{c}\right)-\left(\bm{M}\bm{\mu}+\bm{c}\right)\right)\right)\\
@@ -1445,30 +1445,30 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\le
 \end{aligned}
 \tag{16}
     \]
-<p>  综上可得</p>
+<p>　　综上可得</p>
 <span id="20241006013540CST"></span>\[
 \frac{1}{\left|\bm{M}^{-1}\right|}f\left(\bm{u}|\phi(\bm{\mu}),\bm{M}\bm{\Sigma}\bm{M}^T\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}\right|}}\exp\left(-\frac{1}{2}\left(\bm{x}-\bm{\mu}\right)^T\bm{\Sigma}^{-1}\left(\bm{x}-\bm{\mu}\right)\right)=f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)
 \tag{17}
     \]
-<p>  证毕。</p>
-<p>  我们先将3D高斯椭球从世界坐标系下变换到相机坐标系下（只是平移和旋转）。这个变换可以写为</p>
+<p>　　证毕。</p>
+<p>　　我们先将3D高斯椭球从世界坐标系下变换到相机坐标系下（只是平移和旋转）。这个变换可以写为</p>
 <span id="20241006235447CST"></span>\[
 \bm{x}^{\prime\prime}=\phi^{\prime\prime}(\bm{x})=\bm{W}\bm{x}+\bm{b}
 \tag{18}
     \]
-<p>  其中 \(\bm{W}\) 和 \(\bm{b}\) 可以由相机坐标系的旋转矩阵 \(\bm{R}\) 和位置坐标 \(\bm{t}\) 得来。</p>
+<p>　　其中 \(\bm{W}\) 和 \(\bm{b}\) 可以由相机坐标系的旋转矩阵 \(\bm{R}\) 和位置坐标 \(\bm{t}\) 得来。</p>
 <span id="20241007001846CST"></span>\[
 \bm{W}=\bm{R}^T\\[5pt]
 \bm{b}=-\bm{R}^T\bm{t}
 \tag{19}
     \]
-<p>  使用<a class="link" href="#20241006001351CST">结论1</a>，我们可以得到经过该变换后的期望值 \(\bm{\mu}^{\prime\prime}\) 协方差矩阵 \(\bm{\Sigma}^{\prime\prime}\)</p>
+<p>　　使用<a class="link" href="#20241006001351CST">结论1</a>，我们可以得到经过该变换后的期望值 \(\bm{\mu}^{\prime\prime}\) 协方差矩阵 \(\bm{\Sigma}^{\prime\prime}\)</p>
 <span id="20241007005219CST"></span>\[
 \bm{\mu}^{\prime\prime}=\phi(\bm{\mu})\\[5pt]
 \bm{\Sigma}^{\prime\prime}=\bm{W}\bm{\Sigma}\bm{W}^T
 \tag{20}
     \]
-<p>  然后，在相机坐标系下，我们需要使用一个<strong>透视变换</strong>将其变换到图像坐标系（见<a class="link" onclick="alert('抱歉，“计算机图形学”还未上线~')">透视变换</a>）。注意3DGS使用了和UnrealEngine相同的左手坐标系。</p>
+<p>　　然后，在相机坐标系下，我们需要使用一个<strong>透视变换</strong>将其变换到图像坐标系（见<a class="link" onclick="alert('抱歉，“计算机图形学”还未上线~')">透视变换</a>）。注意3DGS使用了和UnrealEngine相同的左手坐标系。</p>
 <span id="20241007011830CST"></span>\[
 \bm{M}=
 \begin{pmatrix}
@@ -1479,7 +1479,7 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\le
 \end{pmatrix}
 \tag{21}
     \]
-<p>  该矩阵是在<a class="link" onclick="alert('抱歉，“计算机图形学”还未上线~')">齐次坐标</a>下的变换矩阵，所以是4维的。其中， \(z_{near}\) 是近平面， \(z_{far}\) 是远平面， \(y_{top},y_{bottom},x_{left},x_{right}\) 分别是相机取景框的上下左右边框。可以将其用 \(x,y\) 轴的<a class="link" onclick="alert('抱歉，“计算机图形学”还未上线~')">视场角</a>表示</p>
+<p>　　该矩阵是在<a class="link" onclick="alert('抱歉，“计算机图形学”还未上线~')">齐次坐标</a>下的变换矩阵，所以是4维的。其中， \(z_{near}\) 是近平面， \(z_{far}\) 是远平面， \(y_{top},y_{bottom},x_{left},x_{right}\) 分别是相机取景框的上下左右边框。可以将其用 \(x,y\) 轴的<a class="link" onclick="alert('抱歉，“计算机图形学”还未上线~')">视场角</a>表示</p>
 <span id="20241007110054CST"></span>\[
 \begin{aligned}
 &x_{right}=z_{near}\tan\left(\frac{fov_x}{2}\right)\\[5pt]
@@ -1489,7 +1489,7 @@ f\left(\bm{x}|\bm{\mu},\bm{\Sigma}\right)=\frac{1}{\left|\bm{M}^{-1}\right|}f\le
 \end{aligned}
 \tag{22}
     \]
-<p>  透视变换的三维形式不是仿射变换，但我们可以尝试写出它。对于 \(\bm{P}^{\prime\prime}=(x^{\prime\prime},y^{\prime\prime},z^{\prime\prime},1)^T\) ，由 \(\bm{P}^{\prime}=\bm{M}\bm{P}^{\prime\prime}\) 得</p>
+<p>　　透视变换的三维形式不是仿射变换，但我们可以尝试写出它。对于 \(\bm{P}^{\prime\prime}=(x^{\prime\prime},y^{\prime\prime},z^{\prime\prime},1)^T\) ，由 \(\bm{P}^{\prime}=\bm{M}\bm{P}^{\prime\prime}\) 得</p>
 <span id="20241007105619CST"></span>\[
 \bm{P}^{\prime}=
 \begin{pmatrix}
@@ -1500,7 +1500,7 @@ z^{\prime\prime}
 \end{pmatrix}
 \tag{23}
     \]
-<p>  将其齐次化后可得</p>
+<p>　　将其齐次化后可得</p>
 <span id="20241007111414CST"></span>\[
 \begin{aligned}
 x^{\prime}=&\displaystyle\frac{2z_{near}}{x_{right}-x_{left}}\frac{x^{\prime\prime}}{z^{\prime\prime}}+\displaystyle\frac{x_{right}+x_{left}}{x_{right}-x_{left}}\\[20pt]
@@ -1509,7 +1509,7 @@ z^{\prime}=&\displaystyle\frac{z_{far}}{z_{far}-z_{near}}-\displaystyle\frac{z_{
 \end{aligned}
 \tag{24}
     \]
-<p>  这不是一个仿射变换。但是，考虑到3D高斯椭球都很小，我们可以将右端的式子在 \(\bm{\mu}^{\prime\prime}=\phi(\bm{\mu})\) 处展开。由<a class="link" onclick="alert('抱歉，“数学分析”多元函数部分还未上线~')">多元函数展开</a></p>
+<p>　　这不是一个仿射变换。但是，考虑到3D高斯椭球都很小，我们可以将右端的式子在 \(\bm{\mu}^{\prime\prime}=\phi(\bm{\mu})\) 处展开。由<a class="link" onclick="alert('抱歉，“数学分析”多元函数部分还未上线~')">多元函数展开</a></p>
 <span id="20241007112255CST"></span>\[
 \begin{pmatrix}
 x^{\prime}\\
@@ -1524,7 +1524,7 @@ z^{\prime\prime}
 \end{pmatrix}
 \tag{25}
     \]
-<p>  其中 \(\bm{J}(\bm{\mu}^{\prime\prime})\) 是上述变换的<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">Jacobi矩阵</a>。具体来说对<a class="link" href="#20241007111414CST">式(24)</a></p>
+<p>　　其中 \(\bm{J}(\bm{\mu}^{\prime\prime})\) 是上述变换的<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">Jacobi矩阵</a>。具体来说对<a class="link" href="#20241007111414CST">式(24)</a></p>
 <span id="20241007112854CST"></span>\[
 \begin{aligned}
 \bm{J}(\bm{\mu}^{\prime\prime})=&
@@ -1557,39 +1557,39 @@ z^{\prime\prime}
 \end{aligned}
 \tag{26}
     \]
-<p>  这样就可以把透视变换近似为一个仿射变换。因此可以使用<a class="link" href="#20241006001351CST">结论1</a></p>
+<p>　　这样就可以把透视变换近似为一个仿射变换。因此可以使用<a class="link" href="#20241006001351CST">结论1</a></p>
 <span id="20241007113916CST"></span>\[
 \bm{\Sigma}^{\prime}=\bm{J}\bm{\Sigma}^{\prime\prime}\bm{J}^T
 \tag{27}
     \]
-<p>  综合<a class="link" href="#20241007005219CST">式(20)</a>和<a class="link" href="#20241007113916CST">式(27)</a>可得在相机视角下</p>
+<p>　　综合<a class="link" href="#20241007005219CST">式(20)</a>和<a class="link" href="#20241007113916CST">式(27)</a>可得在相机视角下</p>
 <span id="20241007114146CST"></span>\[
 \bm{\Sigma}^{\prime}==\bm{J}\bm{W}\bm{\Sigma}\bm{W}^T\bm{J}^T
 \tag{28}
     \]
-<p>   \(\bm{\mu}\) 按照点坐标规则变换就行。这样我们就将3D高斯椭球变换到了图像坐标系内。但是，在3DGS算法中， \(\bm{\Sigma}^{\prime}\) 实际上是 \(2\times 2\) 的2D形式，也就是忽略 \(z\) 坐标而直接投影到了 \(xy\) 平面。这也很简单，把<a class="link" href="#20241007114146CST">式(28)</a>中的 \(\bm{J}\) 的第三行去掉，变成 \(2 \times 3\) 的矩阵，此时容易验证<a class="link" href="#20241006001351CST">结论1</a>仍然适用。此时得到的 \(\bm{\Sigma}^{\prime}\) 就是投影到 \(xy\) 平面上的2D矩阵了。</p>
+<p>　　 \(\bm{\mu}\) 按照点坐标规则变换就行。这样我们就将3D高斯椭球变换到了图像坐标系内。但是，在3DGS算法中， \(\bm{\Sigma}^{\prime}\) 实际上是 \(2\times 2\) 的2D形式，也就是忽略 \(z\) 坐标而直接投影到了 \(xy\) 平面。这也很简单，把<a class="link" href="#20241007114146CST">式(28)</a>中的 \(\bm{J}\) 的第三行去掉，变成 \(2 \times 3\) 的矩阵，此时容易验证<a class="link" href="#20241006001351CST">结论1</a>仍然适用。此时得到的 \(\bm{\Sigma}^{\prime}\) 就是投影到 \(xy\) 平面上的2D矩阵了。</p>
 <h4 id="着色">着色
-</h4><p>  3DGS采用的是<strong>Alpha-Blending</strong>和<strong>体渲染光线行进</strong>着色算法。假设我们让视图平面某个点 \((x,y)\) 对N个高斯进行采样，那么该点的颜色为</p>
+</h4><p>　　3DGS采用的是<strong>Alpha-Blending</strong>和<strong>体渲染光线行进</strong>着色算法。假设我们让视图平面某个点 \((x,y)\) 对N个高斯进行采样，那么该点的颜色为</p>
 <span id="20241007150621CST"></span>\[
 C(x,y)=\sum_{i=1}^{N}c_i(x,y)\alpha_i(x,y)\prod_{j=1}^{i-1}(1-\alpha_j(x,y))
 \tag{29}
     \]
-<p>  这N个高斯按照世界坐标系下与 \((x,y)\) 的距离（<strong>深度</strong>）由近到远的顺序排序。 \(c_i(x^{\prime},y^{\prime})\) 是第 \(i\) 个高斯在 \((x^{\prime},y^{\prime})\) 处的颜色（在世界坐标系下用<a class="link" href="#20241005000157CST">式(10)</a>和<a class="link" href="#20241005133050CST">式(11)</a>求出）。 \(\alpha_i(x^{\prime},y^{\prime})\) 是第 \(i\) 个高斯在 \((x^{\prime},y^{\prime})\) 处的不透明度，在二维平面中<a class="link" href="#20241007145425CST">式(12)</a>也适用，因此有</p>
+<p>　　这N个高斯按照世界坐标系下与 \((x,y)\) 的距离（<strong>深度</strong>）由近到远的顺序排序。 \(c_i(x^{\prime},y^{\prime})\) 是第 \(i\) 个高斯在 \((x^{\prime},y^{\prime})\) 处的颜色（在世界坐标系下用<a class="link" href="#20241005000157CST">式(10)</a>和<a class="link" href="#20241005133050CST">式(11)</a>求出）。 \(\alpha_i(x^{\prime},y^{\prime})\) 是第 \(i\) 个高斯在 \((x^{\prime},y^{\prime})\) 处的不透明度，在二维平面中<a class="link" href="#20241007145425CST">式(12)</a>也适用，因此有</p>
 <span id="20241007152146CST"></span>\[
 \alpha_i(x^{\prime},y^{\prime})=\omicron_i\cdot\exp\left(-\frac{1}{2}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)^{T}\left(\bm{\Sigma}^{\prime}\right)^{-1}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)\right)
 \tag{30}
     \]
-<p>   \(\omicron_i\) 就是由<a class="link" href="#20241007152703CST">不透明度</a>定义的第 \(i\) 个3D高斯椭球的不透明度。注意，<a class="link" href="#20241007150621CST">式(29)</a>中的 \(C(x,y)\) 是三个RGB通道各自的颜色值，取值范围为 \([0,1]\) 。也就是三个RGB通道各自独立混合后，再一起作为 \((x,y)\) 点处的颜色。</p>
+<p>　　 \(\omicron_i\) 就是由<a class="link" href="#20241007152703CST">不透明度</a>定义的第 \(i\) 个3D高斯椭球的不透明度。注意，<a class="link" href="#20241007150621CST">式(29)</a>中的 \(C(x,y)\) 是三个RGB通道各自的颜色值，取值范围为 \([0,1]\) 。也就是三个RGB通道各自独立混合后，再一起作为 \((x,y)\) 点处的颜色。</p>
 <h4 id="分块">分块
-</h4><p>  如果对于每个像素，相对所有高斯（2D）都进行一次光线行进，那这将耗费巨大的计算资源而且还不一定能起到很好的效果。因此，3DGS提出了一种<strong>分块渲染</strong>的方法。其思想是将屏幕分成每个大小为 \(16\times 16\) 像素的块，在渲染每个块中的像素的时候只考虑和这个块有交叠的高斯。对于不同的块，可以采用<strong>并行计算</strong>的方法加快渲染速度。<br>
-  那么该如何判断某个高斯与某个块是否有交叠呢？首先得确定它的边界。3DGS采用 \(99\\%\) 作为置信区间，也就是以概率为 \(99\\%\) 作为边界。即</p>
+</h4><p>　　如果对于每个像素，相对所有高斯（2D）都进行一次光线行进，那这将耗费巨大的计算资源而且还不一定能起到很好的效果。因此，3DGS提出了一种<strong>分块渲染</strong>的方法。其思想是将屏幕分成每个大小为 \(16\times 16\) 像素的块，在渲染每个块中的像素的时候只考虑和这个块有交叠的高斯。对于不同的块，可以采用<strong>并行计算</strong>的方法加快渲染速度。<br>
+　　那么该如何判断某个高斯与某个块是否有交叠呢？首先得确定它的边界。3DGS采用 \(99\\%\) 作为置信区间，也就是以概率为 \(99\\%\) 作为边界。即</p>
 <span id="20241007230616CST"></span>\[
 f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}^\prime\right|}}\exp\left(-\frac{1}{2}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)^{T}\left(\bm{\Sigma}^{\prime}\right)^{-1}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)\right)=0.99
 \tag{31}
     \]
-<p>  由于 \(\bm{\Sigma}^\prime\) 是正定矩阵，因此这是一个椭圆。椭圆方程可以被求出来，再结合某个块的四条边的参数，就可以判断出是否交叠。（当然，在实际代码中并没有采用上述椭圆方程的求法，也没有采用传统的椭圆和矩形的碰撞检测算法，因为这样会增加不必要的计算量，因此在3DGS的代码实现中将2D高斯的碰撞箱简化为了一个矩形，再用这个矩形做碰撞判断，具体见<a class="link" onclick="alert('抱歉，代码解析还没写到~')">代码</a>）。<br>
-  我们先对所有高斯做一个预处理。对于我们需要处理的高斯，首先，这个高斯必须位于相机的视锥内部（或与其相交），这样可以预先排除掉很大一部分高斯。然后，这个高斯不能距离摄像机过近或过远（一般来说，会将 \(z^\prime\) 控制在某一个区间内）。最后再执行判断这个高斯与某个块是否有交叠的操作。<br>
-  接下来的问题是如何得到与某个块有交叠的所有高斯，并按照深度进行排序方便进行着色。</p>
+<p>　　由于 \(\bm{\Sigma}^\prime\) 是正定矩阵，因此这是一个椭圆。椭圆方程可以被求出来，再结合某个块的四条边的参数，就可以判断出是否交叠。（当然，在实际代码中并没有采用上述椭圆方程的求法，也没有采用传统的椭圆和矩形的碰撞检测算法，因为这样会增加不必要的计算量，因此在3DGS的代码实现中将2D高斯的碰撞箱简化为了一个矩形，再用这个矩形做碰撞判断，具体见<a class="link" onclick="alert('抱歉，代码解析还没写到~')">代码</a>）。<br>
+　　我们先对所有高斯做一个预处理。对于我们需要处理的高斯，首先，这个高斯必须位于相机的视锥内部（或与其相交），这样可以预先排除掉很大一部分高斯。然后，这个高斯不能距离摄像机过近或过远（一般来说，会将 \(z^\prime\) 控制在某一个区间内）。最后再执行判断这个高斯与某个块是否有交叠的操作。<br>
+　　接下来的问题是如何得到与某个块有交叠的所有高斯，并按照深度进行排序方便进行着色。</p>
 
     </div>
 </section>
@@ -1649,7 +1649,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 
 
         <span>
-            最后更新于 Nov 05, 2024 16:21 CST
+            最后更新于 Nov 05, 2024 19:13 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1808,7 +1808,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
             
             
         
-        <span>本图书馆累计发布了11篇文章 共124628字</span>
+        <span>本图书馆累计发布了11篇文章 共125291字</span>
     </section>
 
     <section class="site-visit-count">

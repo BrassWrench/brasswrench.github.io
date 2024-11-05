@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 05 Nov 2024 16:37:53 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 05 Nov 2024 19:13:34 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%90%91%E9%87%8F%E5%87%BD%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（一）：Euclid空间</title>
         <link>https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/</link>
         <pubDate>Tue, 08 Oct 2024 15:55:08 +0800</pubDate>
@@ -35,40 +35,40 @@
 &lt;/iframe&gt;
 
 &lt;h1 id=&#34;euclid空间&#34;&gt;Euclid空间
-&lt;/h1&gt;&lt;p&gt;  我们知道，一元函数 \(y=f(x)\) 的图像是一条曲线，二元函数 \(z=f(x,y)\) 的图像是一张曲面。但是，把曲线和曲面表示成参数方程则更加便利于研究，这种表示方法首先是由Euler引进的。例如，在空间中取定Cartesian直角坐标系之后一条曲线可以表示为三个一元函数&lt;/p&gt;
+&lt;/h1&gt;&lt;p&gt;　　我们知道，一元函数 \(y=f(x)\) 的图像是一条曲线，二元函数 \(z=f(x,y)\) 的图像是一张曲面。但是，把曲线和曲面表示成参数方程则更加便利于研究，这种表示方法首先是由Euler引进的。例如，在空间中取定Cartesian直角坐标系之后一条曲线可以表示为三个一元函数&lt;/p&gt;
 &lt;span id=&#34;20241008215458CST&#34;&gt;&lt;/span&gt;\[
 x=x(t),\quad y=y(t),\quad z=z(t)
 \tag{1}
     \]
-&lt;p&gt;  在向量的概念出现之后，空间中的一条曲线可以自然地表示为一个一元向量函数&lt;/p&gt;
+&lt;p&gt;　　在向量的概念出现之后，空间中的一条曲线可以自然地表示为一个一元向量函数&lt;/p&gt;
 &lt;span id=&#34;20241008215554CST&#34;&gt;&lt;/span&gt;\[
 \bm{r}=\bm{r}(t)=(x(t),y(t),z(t))
 \tag{2}
     \]
-&lt;p&gt;  在本篇，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclid空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclid空间中标架的概念，为在三维Euclid空间中研究曲线和曲面做好准备。&lt;/p&gt;
+&lt;p&gt;　　在本篇，我们首先要复习解析几何中已经学习过的向量代数知识，以及介绍向量函数相加、向量函数与函数相乘、向量函数的点乘和叉乘的求导法则，在三维Euclid空间中标架是建立坐标系的基础，而且我们将来要把曲线和曲面与仅附在曲线和曲面上的标架族联系起来，用标架族的变化状态来刻画曲线和曲面的弯曲情况。因此本文我们还要介绍三维Euclid空间中标架的概念，为在三维Euclid空间中研究曲线和曲面做好准备。&lt;/p&gt;
 &lt;h2 id=&#34;三维euclid空间中的标架&#34;&gt;三维Euclid空间中的标架
 &lt;/h2&gt;&lt;h3 id=&#34;euclid空间-1&#34;&gt;Euclid空间
-&lt;/h3&gt;&lt;p&gt;  通常把我们所处的空间称为&lt;strong&gt;三维Euclid空间&lt;/strong&gt;。确切的说，所谓的三维Euclid空间 \(E^3\) 是一个非空的集合，其中的元素称为&lt;strong&gt;点&lt;/strong&gt;，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 \(E^3\) 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的&lt;strong&gt;平行公理&lt;/strong&gt;。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;　　通常把我们所处的空间称为&lt;strong&gt;三维Euclid空间&lt;/strong&gt;。确切的说，所谓的三维Euclid空间 \(E^3\) 是一个非空的集合，其中的元素称为&lt;strong&gt;点&lt;/strong&gt;，任意两个不同的点唯一地决定了连接他们的直线，不在一条直线上的任意三个不同的点唯一地决定了通过这三点的平面，而且在 \(E^3\) 中存在不共面的四个点。另外，过直线外任意一点能够作、并且只能作一条直线与已知直线平行。最后这个断言就是欧氏几何的&lt;strong&gt;平行公理&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&#34;向量&#34;&gt;向量
 &lt;/h3&gt;&lt;h4 id=&#34;定义&#34;&gt;定义
-&lt;/h4&gt;&lt;p&gt;  任意两个点 \(A,B \in E^3\) 都可以连接成一条直线段 \(AB\) 。指定 \(A\) 为起点、 \(B\) 为终点的线段 \(AB\) 称为&lt;strong&gt;有向线段&lt;/strong&gt;，记作 \(\overrightarrow{AB}\) 。设 \(\overrightarrow{AB}\) 和 \(\overrightarrow{CD}\) 是两条有向线段，如果 \(ABDC\) 成为一个平行四边形，则称这两条有向线段是&lt;span id=&#34;20241009104842CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;相等&lt;/strong&gt;的，记为&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　任意两个点 \(A,B \in E^3\) 都可以连接成一条直线段 \(AB\) 。指定 \(A\) 为起点、 \(B\) 为终点的线段 \(AB\) 称为&lt;strong&gt;有向线段&lt;/strong&gt;，记作 \(\overrightarrow{AB}\) 。设 \(\overrightarrow{AB}\) 和 \(\overrightarrow{CD}\) 是两条有向线段，如果 \(ABDC\) 成为一个平行四边形，则称这两条有向线段是&lt;span id=&#34;20241009104842CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;相等&lt;/strong&gt;的，记为&lt;/p&gt;
 &lt;span id=&#34;20241008221323CST&#34;&gt;&lt;/span&gt;\[
 \overrightarrow{AB}=\overrightarrow{CD}
 \tag{3}
     \]
-&lt;p&gt;  所有相等的有向线段的集合称为一个&lt;strong&gt;向量&lt;/strong&gt;。因此，在三维Euclid空间 \(E^3\) 中，一个向量可以表示为 \(E^3\) 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。&lt;/p&gt;
+&lt;p&gt;　　所有相等的有向线段的集合称为一个&lt;strong&gt;向量&lt;/strong&gt;。因此，在三维Euclid空间 \(E^3\) 中，一个向量可以表示为 \(E^3\) 中的一条有向线段，而相等的有向线段所代表的是同一个向量。以后，我们经常用黑斜体单个字母，或者用带箭头的单个字母表示向量。&lt;/p&gt;
 &lt;h4 id=&#34;加法&#34;&gt;加法
-&lt;/h4&gt;&lt;p&gt;  按照&lt;strong&gt;三角形法则&lt;/strong&gt;，可以定义向量的加法如下：设 \(\bm{a},\bm{b}\) 是两个向量，并且假定它们用有向线段 \(\overrightarrow{AB}\) 和 \(\overrightarrow{BC}\) 来表示，则连接 \(A\) 和 \(C\) 的有向线段 \(\overrightarrow{AC}\) 就代表向量 \(\bm{a}+\bm{b}\) 。我们把起点和终点相同的有向线段的集合称为&lt;strong&gt;零向量&lt;/strong&gt;，记为 \(\bm{0}\) ，于是任意一个向量与零向量之和为该向量自身，即&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　按照&lt;strong&gt;三角形法则&lt;/strong&gt;，可以定义向量的加法如下：设 \(\bm{a},\bm{b}\) 是两个向量，并且假定它们用有向线段 \(\overrightarrow{AB}\) 和 \(\overrightarrow{BC}\) 来表示，则连接 \(A\) 和 \(C\) 的有向线段 \(\overrightarrow{AC}\) 就代表向量 \(\bm{a}+\bm{b}\) 。我们把起点和终点相同的有向线段的集合称为&lt;strong&gt;零向量&lt;/strong&gt;，记为 \(\bm{0}\) ，于是任意一个向量与零向量之和为该向量自身，即&lt;/p&gt;
 &lt;span id=&#34;20241008222604CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}+\bm{0}=\bm{a}
 \tag{4}
     \]
-&lt;p&gt;  另外，若向量 \(a\) 用有向线段 \(\overrightarrow{AB}\) 来表示，并且把有向线段 \(\overrightarrow{BA}\) 所代表的向量记为 \(-\bm{a}\) ，于是&lt;/p&gt;
+&lt;p&gt;　　另外，若向量 \(a\) 用有向线段 \(\overrightarrow{AB}\) 来表示，并且把有向线段 \(\overrightarrow{BA}\) 所代表的向量记为 \(-\bm{a}\) ，于是&lt;/p&gt;
 &lt;span id=&#34;20241008222801CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}+(-\bm{a})=\bm{0}
 \tag{5}
     \]
-&lt;p&gt;  我们把向量 \(-\bm{a}\) 称为 \(\bm{a}\) 的&lt;strong&gt;反向量&lt;/strong&gt;。容易验证，向量的加法遵循下面的运算法则
+&lt;p&gt;　　我们把向量 \(-\bm{a}\) 称为 \(\bm{a}\) 的&lt;strong&gt;反向量&lt;/strong&gt;。容易验证，向量的加法遵循下面的运算法则
 &lt;span id=&#34;20241008223158CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}+\bm{b}=\bm{b}+\bm{a}
 \tag{6}
@@ -78,12 +78,12 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 \tag{7}
     \]&lt;/p&gt;
 &lt;h4 id=&#34;数乘&#34;&gt;数乘
-&lt;/h4&gt;&lt;p&gt;  在三维Euclid空间 \(E^3\) 中还规定线段 \(AB\) 的&lt;strong&gt;长度&lt;/strong&gt;是点 \(A\) 到点 \(B\) 的距离，记为 \(|AB|\) ，并对于任意三点 \(A,B,C\) ，下面的三角形不等式成立&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　在三维Euclid空间 \(E^3\) 中还规定线段 \(AB\) 的&lt;strong&gt;长度&lt;/strong&gt;是点 \(A\) 到点 \(B\) 的距离，记为 \(|AB|\) ，并对于任意三点 \(A,B,C\) ，下面的三角形不等式成立&lt;/p&gt;
 &lt;span id=&#34;20241008223354CST&#34;&gt;&lt;/span&gt;\[
 |AB|+|BC|\ge|AC|
 \tag{8}
     \]
-&lt;p&gt;  向量 \(\bm{a}\) 的&lt;strong&gt;长度&lt;/strong&gt; \(|\bm{a}|\) 定义为代表它的有向线段 \(\bm{a}=\overrightarrow{AB}\) 的长度。这样，向量 \(\bm{a}\) 与实数 \(c\) 的乘积 \(c\cdot\bm{a}\) 可以定义为与 \(\bm{a}\) &lt;strong&gt;平行&lt;/strong&gt;的向量。当 \(c&gt;0\) 时 \(c\cdot\bm{a}\) 与 \(\bm{a}\) 同向，当 \(c&lt;0\) 时 \(c\cdot\bm{a}\) 与 \(\bm{a}\) 反向，并且 \(c\cdot\bm{a}\) 的长度 \(|c\cdot\bm{a}|\) 是 \(\bm{a}\) 的长度 \(|\bm{a}|\) 的 \(|c|\) 倍；当 \(c=0\) 时， \(c\cdot\bm{a}=0\) 。容易验证，向量与实数的乘法遵循下面的运算规则&lt;/p&gt;
+&lt;p&gt;　　向量 \(\bm{a}\) 的&lt;strong&gt;长度&lt;/strong&gt; \(|\bm{a}|\) 定义为代表它的有向线段 \(\bm{a}=\overrightarrow{AB}\) 的长度。这样，向量 \(\bm{a}\) 与实数 \(c\) 的乘积 \(c\cdot\bm{a}\) 可以定义为与 \(\bm{a}\) &lt;strong&gt;平行&lt;/strong&gt;的向量。当 \(c&gt;0\) 时 \(c\cdot\bm{a}\) 与 \(\bm{a}\) 同向，当 \(c&lt;0\) 时 \(c\cdot\bm{a}\) 与 \(\bm{a}\) 反向，并且 \(c\cdot\bm{a}\) 的长度 \(|c\cdot\bm{a}|\) 是 \(\bm{a}\) 的长度 \(|\bm{a}|\) 的 \(|c|\) 倍；当 \(c=0\) 时， \(c\cdot\bm{a}=0\) 。容易验证，向量与实数的乘法遵循下面的运算规则&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241008225439CST&#34;&gt;&lt;/span&gt;\[
 \lambda(\bm{a}+\bm{b})=\lambda\bm{a}+\lambda\bm{b}
 \tag{9}
@@ -96,14 +96,14 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 (\lambda\mu)\bm{a}=\lambda(\mu\bm{a})
 \tag{11}
     \]&lt;/p&gt;
-&lt;p&gt;  其中 \(\lambda,\mu\) 是任意实数。&lt;/p&gt;
+&lt;p&gt;　　其中 \(\lambda,\mu\) 是任意实数。&lt;/p&gt;
 &lt;h4 id=&#34;点乘&#34;&gt;点乘
-&lt;/h4&gt;&lt;p&gt;  向量 \(\bm{a}\) 和 \(\bm{b}\) 的&lt;strong&gt;点乘&lt;/strong&gt; \(\bm{a}\cdot\bm{b}\) 定义为实数&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　向量 \(\bm{a}\) 和 \(\bm{b}\) 的&lt;strong&gt;点乘&lt;/strong&gt; \(\bm{a}\cdot\bm{b}\) 定义为实数&lt;/p&gt;
 &lt;span id=&#34;20241008230417CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}\cdot\bm{b}=|\bm{a}|\cdot|\bm{b}|\cdot\cos\angle(\bm{a},\bm{b})
 \tag{12}
     \]
-&lt;p&gt;  很明显，向量的点乘遵循下面的运算法则&lt;/p&gt;
+&lt;p&gt;　　很明显，向量的点乘遵循下面的运算法则&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241008230515CST&#34;&gt;&lt;/span&gt;\[
 \bm{c}\cdot(\bm{a}+\bm{b})=\bm{c}\cdot\bm{a}+\bm{c}\cdot\bm{b}
 \tag{13}
@@ -116,18 +116,18 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 \bm{a}\cdot\bm{b}=\bm{b}\cdot\bm{a}
 \tag{15}
     \]&lt;/p&gt;
-&lt;p&gt;  由此可见&lt;/p&gt;
+&lt;p&gt;　　由此可见&lt;/p&gt;
 &lt;span id=&#34;20241008230724CST&#34;&gt;&lt;/span&gt;\[
 |\bm{a}|^2=\bm{a}\cdot\bm{a}\ge0
 \tag{16}
     \]
 &lt;h4 id=&#34;叉乘&#34;&gt;叉乘
-&lt;/h4&gt;&lt;p&gt;  当向量 \(\bm{a}\) 和向量 \(\bm{b}\) 平行时，规定它们的&lt;strong&gt;叉乘&lt;/strong&gt;为零向量。当 \(\bm{a}\) 和 \(\bm{b}\) 不平行时，规定向量 \(\bm{a}\) 和 \(\bm{b}\) 的&lt;strong&gt;叉乘&lt;/strong&gt; \(\bm{a}\times\bm{b}\) 是与已知向量 \( \bm{a}\) 和 \( \bm{b}\) 都垂直的一个向量，其长度等于向量 \(\bm{a}\) 和 \(\bm{b}\) 所张成的平行四边形的面积，即&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　当向量 \(\bm{a}\) 和向量 \(\bm{b}\) 平行时，规定它们的&lt;strong&gt;叉乘&lt;/strong&gt;为零向量。当 \(\bm{a}\) 和 \(\bm{b}\) 不平行时，规定向量 \(\bm{a}\) 和 \(\bm{b}\) 的&lt;strong&gt;叉乘&lt;/strong&gt; \(\bm{a}\times\bm{b}\) 是与已知向量 \( \bm{a}\) 和 \( \bm{b}\) 都垂直的一个向量，其长度等于向量 \(\bm{a}\) 和 \(\bm{b}\) 所张成的平行四边形的面积，即&lt;/p&gt;
 &lt;span id=&#34;20241008231025CST&#34;&gt;&lt;/span&gt;\[
 |\bm{a}\times \bm{b}|=|\bm{a}|\cdot|\bm{b}|\sin\angle(\bm{a},\bm{b})
 \tag{17}
     \]
-&lt;p&gt;  并且它和 \(\bm{a},\bm{b}\) 构成右手系。容易验证，向量的叉乘遵循下面的运算法则&lt;/p&gt;
+&lt;p&gt;　　并且它和 \(\bm{a},\bm{b}\) 构成右手系。容易验证，向量的叉乘遵循下面的运算法则&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241008231144CST&#34;&gt;&lt;/span&gt;\[
 \bm{c}\times(\bm{a}+\bm{b})=\bm{c}\times\bm{a}+\bm{c}\times\bm{b}
 \tag{18}
@@ -140,32 +140,32 @@ x=x(t),\quad y=y(t),\quad z=z(t)
 \bm{a}\times\bm{b}=-\bm{b}\times\bm{a}
 \tag{20}
     \]&lt;/p&gt;
-&lt;p&gt;  根据定义，向量 \(\bm{a}\) 和 \(\bm{b}\) 平行的充分必要条件是&lt;/p&gt;
+&lt;p&gt;　　根据定义，向量 \(\bm{a}\) 和 \(\bm{b}\) 平行的充分必要条件是&lt;/p&gt;
 &lt;span id=&#34;20241008231650CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}\times\bm{b}=\bm{0}
 \tag{21}
     \]
 &lt;h3 id=&#34;标架&#34;&gt;标架
 &lt;/h3&gt;&lt;h4 id=&#34;定义-1&#34;&gt;定义
-&lt;/h4&gt;&lt;p&gt;  在 \(E^3\) 中取定不共面的4个点，把其中一点记作 \(O\) ，把另外三点分别记为 \(A,B,C\) ，于是得到由一点 \(O\) 和 \(3\) 个不共面的向量 \(\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}\) 构成的图形 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 。这样的一个图形称为 \(E^3\) 中的一个&lt;strong&gt;标架&lt;/strong&gt;，其中点 \(O\) 称为该标架的&lt;strong&gt;原点&lt;/strong&gt;。在 \(E^3\) 中取定一个标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，则空间 \(E^3\) 中的任意一点 \(P\) 可以唯一地表示为 \(3\) 个有序的实数 \((x,y,z)\) 。事实上，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OBC\) 平行，它和直线 \(OA\) 有唯一的交点，记为 \(P_1\) ，那么向量 \(\overrightarrow{OP_1}\) 与 \(\overrightarrow{OA}\) 共线，于是有实数 \(x\) ，使得 \(\overrightarrow{OP_1}=x\space\overrightarrow{OA}\) 。同理，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAC\) 平行，它和直线 \(OB\) 有唯一的交点，记为 \(P_2\) ，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAB\) 平行，它和直线 \(OC\) 有唯一的交点，记为 \(P_3\) ，并且有实数 \(y,z\) ，使得 \(\overrightarrow{OP_2}=y\space\overrightarrow{OB}\) ， \(\overrightarrow{OP_3}=z\space\overrightarrow{OC}\) ，那么&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　在 \(E^3\) 中取定不共面的4个点，把其中一点记作 \(O\) ，把另外三点分别记为 \(A,B,C\) ，于是得到由一点 \(O\) 和 \(3\) 个不共面的向量 \(\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}\) 构成的图形 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 。这样的一个图形称为 \(E^3\) 中的一个&lt;strong&gt;标架&lt;/strong&gt;，其中点 \(O\) 称为该标架的&lt;strong&gt;原点&lt;/strong&gt;。在 \(E^3\) 中取定一个标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，则空间 \(E^3\) 中的任意一点 \(P\) 可以唯一地表示为 \(3\) 个有序的实数 \((x,y,z)\) 。事实上，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OBC\) 平行，它和直线 \(OA\) 有唯一的交点，记为 \(P_1\) ，那么向量 \(\overrightarrow{OP_1}\) 与 \(\overrightarrow{OA}\) 共线，于是有实数 \(x\) ，使得 \(\overrightarrow{OP_1}=x\space\overrightarrow{OA}\) 。同理，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAC\) 平行，它和直线 \(OB\) 有唯一的交点，记为 \(P_2\) ，从点 \(P\) 出发可以作唯一的一个平面与平面 \(OAB\) 平行，它和直线 \(OC\) 有唯一的交点，记为 \(P_3\) ，并且有实数 \(y,z\) ，使得 \(\overrightarrow{OP_2}=y\space\overrightarrow{OB}\) ， \(\overrightarrow{OP_3}=z\space\overrightarrow{OC}\) ，那么&lt;/p&gt;
 &lt;span id=&#34;20241009093408CST&#34;&gt;&lt;/span&gt;\[
 \overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}=x\space\overrightarrow{OA}+y\space\overrightarrow{OB}+z\space\overrightarrow{OC}
 \tag{22}
     \]
-&lt;p&gt;  因此，在 \(E^3\) 中取定标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，点 \(P\) 和有序的 \(3\) 个实数构成的组 \((x,y,z)\) 是一一对应的，该数组称为点 \(P\) 关于已知标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 的&lt;strong&gt;坐标&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下为什么 \(\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。构造点 \(P^\prime\) 使得 \(\overrightarrow{OP^\prime}=\overrightarrow{P_3P}\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241009104842CST&#34;&gt;相等&lt;/a&gt;的定义知 \(OP^\prime PP_3\) 构成一个平行四边形，故也有 \(\overrightarrow{OP_3}=\overrightarrow{P^\prime P}\) 。由 \(P_3\) 的定义知 \(\overrightarrow{P_3P}\) 平行于平面 \(OAB\) ，因此 \(OP^\prime\) 平行于平面 \(OAB\) ，故 \(P^\prime\) 在平面 \(OAB\) 上。在平面 \(OAB\) 上过 \(P^\prime\) 可作唯一直线平行于直线 \(OA\) ，设这条直线和直线 \(OB\) 交于点 \(P_2^\prime\) ，现在来证 \(P_2^\prime\) 就是点 \(P_2\) 。由 \(P_2^\prime\) 、 \(P^\prime\) 和 \(P_3\) 的定义知 \(\overrightarrow{P_2^\prime P^\prime}\parallel\overrightarrow{OA}\) 且 \(\overrightarrow{P^\prime P}\parallel\overrightarrow{OP_3}\parallel\overrightarrow{OC}\) ，因此平面 \(PP^\prime P_2^\prime\) 与平面 \(OAC\) 平行。注意从 \(P\) 出发只有唯一的一个平面能与平面 \(OAC\) 平行，因此平面 \(PP^\prime P_2^\prime\) 就是这个平面，其与直线 \(OB\) 的唯一交点 \(P_2^\prime\) 就是 \(P_2\) 。同理可以证明类似定义的 \(P_1^\prime\) 就是 \(P_1\) 。故 \(\overrightarrow{P_2 P^\prime}\parallel\overrightarrow{OA}\parallel\overrightarrow{OP_1}\) ， \(\overrightarrow{P_1 P^\prime}\parallel\overrightarrow{OB}\parallel\overrightarrow{OP_2}\) ，因此 \(OP_1P^\prime P_2\) 构成平行四边形，因此 \(\overrightarrow{OP^\prime}=\overrightarrow{OP_1}+\overrightarrow{OP_2}\) 。综上所述， \(\overrightarrow{OP}=\overrightarrow{OP^\prime}+\overrightarrow{P^\prime P}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。&lt;/p&gt;
+&lt;p&gt;　　因此，在 \(E^3\) 中取定标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 之后，点 \(P\) 和有序的 \(3\) 个实数构成的组 \((x,y,z)\) 是一一对应的，该数组称为点 \(P\) 关于已知标架 \(\set{O;\overrightarrow{OA},\overrightarrow{OB},\overrightarrow{OC}}\) 的&lt;strong&gt;坐标&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;　　&lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下为什么 \(\overrightarrow{OP}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。构造点 \(P^\prime\) 使得 \(\overrightarrow{OP^\prime}=\overrightarrow{P_3P}\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241009104842CST&#34;&gt;相等&lt;/a&gt;的定义知 \(OP^\prime PP_3\) 构成一个平行四边形，故也有 \(\overrightarrow{OP_3}=\overrightarrow{P^\prime P}\) 。由 \(P_3\) 的定义知 \(\overrightarrow{P_3P}\) 平行于平面 \(OAB\) ，因此 \(OP^\prime\) 平行于平面 \(OAB\) ，故 \(P^\prime\) 在平面 \(OAB\) 上。在平面 \(OAB\) 上过 \(P^\prime\) 可作唯一直线平行于直线 \(OA\) ，设这条直线和直线 \(OB\) 交于点 \(P_2^\prime\) ，现在来证 \(P_2^\prime\) 就是点 \(P_2\) 。由 \(P_2^\prime\) 、 \(P^\prime\) 和 \(P_3\) 的定义知 \(\overrightarrow{P_2^\prime P^\prime}\parallel\overrightarrow{OA}\) 且 \(\overrightarrow{P^\prime P}\parallel\overrightarrow{OP_3}\parallel\overrightarrow{OC}\) ，因此平面 \(PP^\prime P_2^\prime\) 与平面 \(OAC\) 平行。注意从 \(P\) 出发只有唯一的一个平面能与平面 \(OAC\) 平行，因此平面 \(PP^\prime P_2^\prime\) 就是这个平面，其与直线 \(OB\) 的唯一交点 \(P_2^\prime\) 就是 \(P_2\) 。同理可以证明类似定义的 \(P_1^\prime\) 就是 \(P_1\) 。故 \(\overrightarrow{P_2 P^\prime}\parallel\overrightarrow{OA}\parallel\overrightarrow{OP_1}\) ， \(\overrightarrow{P_1 P^\prime}\parallel\overrightarrow{OB}\parallel\overrightarrow{OP_2}\) ，因此 \(OP_1P^\prime P_2\) 构成平行四边形，因此 \(\overrightarrow{OP^\prime}=\overrightarrow{OP_1}+\overrightarrow{OP_2}\) 。综上所述， \(\overrightarrow{OP}=\overrightarrow{OP^\prime}+\overrightarrow{P^\prime P}=\overrightarrow{OP_1}+\overrightarrow{OP_2}+\overrightarrow{OP_3}\) 。&lt;/p&gt;
 &lt;h4 id=&#34;正交标架&#34;&gt;正交标架
-&lt;/h4&gt;&lt;p&gt;  设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是 \(E^3\) 的一个标架，并且 \(\bm{i},\bm{j},\bm{k}\) 是彼此垂直的、构成右手系的 \(3\) 个单位向量，于是&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是 \(E^3\) 的一个标架，并且 \(\bm{i},\bm{j},\bm{k}\) 是彼此垂直的、构成右手系的 \(3\) 个单位向量，于是&lt;/p&gt;
 &lt;span id=&#34;20241009122753CST&#34;&gt;&lt;/span&gt;\[
 \bm{i}\cdot\bm{i}=\bm{j}\cdot\bm{j}=\bm{k}\cdot\bm{k}=1,\quad\bm{i}\cdot\bm{j}=\bm{i}\cdot\bm{k}=\bm{j}\cdot\bm{k}=0
 \tag{23}
     \]
-&lt;p&gt;  并且&lt;/p&gt;
+&lt;p&gt;　　并且&lt;/p&gt;
 &lt;span id=&#34;20241009123616CST&#34;&gt;&lt;/span&gt;\[
 \bm{i}\times\bm{j}=\bm{k},\quad\bm{j}\times\bm{k}=\bm{i},\quad\bm{k}\times\bm{i}=\bm{j}
 \tag{24}
     \]
-&lt;p&gt;  这样的标架称为&lt;strong&gt;右手单位正交标架&lt;/strong&gt;，简称为&lt;strong&gt;正交标架&lt;/strong&gt;。由正交标架给出的坐标系称为Cartesian直角坐标系。在Cartesian直角坐标系下，设向量 \(\bm{a}\) 和 \(\bm{b}\) 的分量分别是 \((x_1,y_1,z_1)\) 和 \((x_2,y_2,z_2)\) ，则&lt;/p&gt;
+&lt;p&gt;　　这样的标架称为&lt;strong&gt;右手单位正交标架&lt;/strong&gt;，简称为&lt;strong&gt;正交标架&lt;/strong&gt;。由正交标架给出的坐标系称为Cartesian直角坐标系。在Cartesian直角坐标系下，设向量 \(\bm{a}\) 和 \(\bm{b}\) 的分量分别是 \((x_1,y_1,z_1)\) 和 \((x_2,y_2,z_2)\) ，则&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241009123917CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \bm{a}\cdot\bm{b}=&amp;(x_1\bm{i}+y_1\bm{j}+z_1\bm{k})\cdot(x_2\bm{i}+y_2\bm{j}+z_2\bm{k})\hspace{4em}\\[5pt]
@@ -204,14 +204,14 @@ x_2 &amp; y_2 &amp; z_2
 \end{aligned}
 \tag{26}
     \]&lt;/p&gt;
-&lt;p&gt;  设点 \(A,B\) 的坐标分别是 \((x_1,y_1,z_1)\) 和 \((x_2,y_2,z_2)\) ，则线段 \(AB\) 的长度是&lt;/p&gt;
+&lt;p&gt;　　设点 \(A,B\) 的坐标分别是 \((x_1,y_1,z_1)\) 和 \((x_2,y_2,z_2)\) ，则线段 \(AB\) 的长度是&lt;/p&gt;
 &lt;span id=&#34;20241009210101CST&#34;&gt;&lt;/span&gt;\[
 |AB|=\sqrt{\overrightarrow{AB}\cdot\overrightarrow{AB}}=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}
 \tag{27}
     \]
-&lt;p&gt;  因此，通常我们把三维Euclid空间 \(E^3\) 写成 \(\R^3\) ，并且把 \(\R^3\) 中的向量 \((x,y,z)\) 的长度直接定义为 \(\sqrt{x^2+y^2+z^2}\) 。事实上，这样的 \(\R^3\) 是三维欧氏空间 \(E^3\) 在取定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后的具体表现形式。为简单起见，我们经常把三维Euclid空间理解为上面所说的 \(\R^3\) 。&lt;/p&gt;
+&lt;p&gt;　　因此，通常我们把三维Euclid空间 \(E^3\) 写成 \(\R^3\) ，并且把 \(\R^3\) 中的向量 \((x,y,z)\) 的长度直接定义为 \(\sqrt{x^2+y^2+z^2}\) 。事实上，这样的 \(\R^3\) 是三维欧氏空间 \(E^3\) 在取定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后的具体表现形式。为简单起见，我们经常把三维Euclid空间理解为上面所说的 \(\R^3\) 。&lt;/p&gt;
 &lt;h4 id=&#34;标架变换&#34;&gt;标架变换
-&lt;/h4&gt;&lt;p&gt;  现在我们来考察由 \(E^3\) 中全体正交标架所构成的集合。设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是在 \(E^3\) 中的一个固定的正交标架，则 \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 可以如下来确定&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　现在我们来考察由 \(E^3\) 中全体正交标架所构成的集合。设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 是在 \(E^3\) 中的一个固定的正交标架，则 \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 可以如下来确定&lt;/p&gt;
 &lt;span id=&#34;20241009210942CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
 \overrightarrow{OP}=a_1\bm{i}+a_2\bm{j}+a_3\bm{k}\\[5pt]
@@ -221,7 +221,7 @@ x_2 &amp; y_2 &amp; z_2
 \end{cases}
 \tag{28}
     \]
-&lt;p&gt;  因为 \(\bm{e}_i\) 是彼此正交的单位向量，所以&lt;/p&gt;
+&lt;p&gt;　　因为 \(\bm{e}_i\) 是彼此正交的单位向量，所以&lt;/p&gt;
 &lt;span id=&#34;20241009211406CST&#34;&gt;&lt;/span&gt;\[
 \bm{e}_i\cdot\bm{e}_j=\sum_{k=1}^{3}a_{ik}a_{jk}=\delta{ij}=
 \begin{cases}
@@ -230,12 +230,12 @@ x_2 &amp; y_2 &amp; z_2
 \end{cases}
 \tag{29}
     \]
-&lt;p&gt;  由于 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 构成右手系，所以&lt;/p&gt;
+&lt;p&gt;　　由于 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 构成右手系，所以&lt;/p&gt;
 &lt;span id=&#34;20241009213413CST&#34;&gt;&lt;/span&gt;\[
 \bm{e}_1\times\bm{e}_2=\bm{e}_3
 \tag{30}
     \]
-&lt;p&gt;  因而 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 的混合积&lt;/p&gt;
+&lt;p&gt;　　因而 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 的混合积&lt;/p&gt;
 &lt;span id=&#34;20241009213456CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 (\bm{e}_1,\bm{e}_2,\bm{e}_3)=&amp;(\bm{e}_1\times\bm{e}_2)\cdot\bm{e}_3=\bm{e}_3\cdot\bm{e}_3\\[10pt]
@@ -249,7 +249,7 @@ a_{31} &amp; a_{32} &amp; a_{33}
 \end{aligned}
 \tag{31}
     \]
-&lt;p&gt;  令&lt;/p&gt;
+&lt;p&gt;　　令&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241009214507CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}=(a_1,a_2,a_3)
 \tag{32}
@@ -263,7 +263,7 @@ a_{31} &amp; a_{32} &amp; a_{33}
 \end{pmatrix}
 \tag{33}
     \]&lt;/p&gt;
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式(29)&lt;/a&gt;可得 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241009213456CST&#34;&gt;式(31)&lt;/a&gt;可得 \(|\bm{A}|=1\) ，因此 \(\bm{A}\) 是行列式为 \(1\) 的正交矩阵，即 \(A \in \rm{SO(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;SO(3)群&lt;/a&gt;）。在取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下， \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e_3}}\) 与矩阵 \((\bm{a},\bm{A})\) 是一一对应的，因此 \(E^3\) 中的全体正交标架的集合可以与集合 \(E^3\times \rm{SO(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;Cartesian乘积&lt;/a&gt;）等同起来。注意到正交矩阵的条件&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式(29)&lt;/a&gt;是矩阵元素 \(a_{ij}\) 所满足的 \(6\) 个关系式。&lt;/p&gt;
+&lt;p&gt;　　由&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式(29)&lt;/a&gt;可得 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241009213456CST&#34;&gt;式(31)&lt;/a&gt;可得 \(|\bm{A}|=1\) ，因此 \(\bm{A}\) 是行列式为 \(1\) 的正交矩阵，即 \(A \in \rm{SO(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;SO(3)群&lt;/a&gt;）。在取定一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下， \(E^3\) 中的任意一个正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e_3}}\) 与矩阵 \((\bm{a},\bm{A})\) 是一一对应的，因此 \(E^3\) 中的全体正交标架的集合可以与集合 \(E^3\times \rm{SO(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;Cartesian乘积&lt;/a&gt;）等同起来。注意到正交矩阵的条件&lt;a class=&#34;link&#34; href=&#34;#20241009211406CST&#34;&gt;式(29)&lt;/a&gt;是矩阵元素 \(a_{ij}\) 所满足的 \(6\) 个关系式。&lt;/p&gt;
 &lt;span id=&#34;20241010000020CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
 (a_{11})^2+(a_{12})^2+(a_{13})^2=1\\[5pt]
@@ -275,9 +275,9 @@ a_{21}a_{31}+a_{22}a_{32}+a_{23}a_{33}=0
 \end{cases}
 \tag{34}
     \]
-&lt;p&gt;  因此，其行列式为 \(1\) 的正交矩阵的集合 \(\rm{SO(3)}\) 有 \(3\) 个自由度，因而 \(E^3\times \rm{SO(3)}\) 是一个 \(6\) 维空间。&lt;/p&gt;
+&lt;p&gt;　　因此，其行列式为 \(1\) 的正交矩阵的集合 \(\rm{SO(3)}\) 有 \(3\) 个自由度，因而 \(E^3\times \rm{SO(3)}\) 是一个 \(6\) 维空间。&lt;/p&gt;
 &lt;h4 id=&#34;坐标变换&#34;&gt;坐标变换
-&lt;/h4&gt;&lt;p&gt;  在 \(E^3\) 中两个不同的正交标架给出了两个不同的Cartesian直角坐标系，设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是 \(E^3\) 中的两个正交标架。它们的关系由&lt;a class=&#34;link&#34; href=&#34;#20241009210942CST&#34;&gt;式(28)&lt;/a&gt;给出。假定点 \(q\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标是 \((x,y,z)\) ，关于 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的坐标是 \((\tilde{x},\tilde{y},\tilde{z})\)&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　在 \(E^3\) 中两个不同的正交标架给出了两个不同的Cartesian直角坐标系，设 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是 \(E^3\) 中的两个正交标架。它们的关系由&lt;a class=&#34;link&#34; href=&#34;#20241009210942CST&#34;&gt;式(28)&lt;/a&gt;给出。假定点 \(q\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标是 \((x,y,z)\) ，关于 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的坐标是 \((\tilde{x},\tilde{y},\tilde{z})\)&lt;/p&gt;
 &lt;span id=&#34;20241010100103CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 403.7&#34;&gt;
@@ -355,7 +355,7 @@ a_{21}a_{31}+a_{22}a_{32}+a_{23}a_{33}=0
   &lt;path id=&#34;MJX-62-TEX-BI-1D48B&#34; d=&#34;M394.9973,316.7546c0-.3906.1526-.7263.4578-1.0071s.6348-.4211.9888-.4211c.3052,0,.5493.0854.7324.2563s.2808.415.293.7324c0,.3784-.1526.708-.4578.9888s-.6409.4272-1.0071.4394c-.2808,0-.5188-.0916-.7141-.2747s-.293-.4211-.293-.7141ZM394.5579,321.442v-.238c0-.1587-.0183-.2747-.0549-.3479s-.0732-.1221-.1099-.1465-.0977-.0305-.1831-.0183h-.0366c-.4272.0244-.8301.2014-1.2085.531s-.6958.7507-.9521,1.2634c-.0854.1953-.1465.3052-.1831.3296s-.1526.0427-.3479.0549h-.238c-.1709,0-.2869-.0122-.3479-.0366s-.0916-.1099-.0916-.2563c.0488-.4028.4211-.9704,1.1169-1.7029s1.4648-1.0986,2.3071-1.0986c.9521,0,1.6174.177,1.9958.531s.5737.769.5859,1.2451v.2747l-.8972,3.6071c-.0977.3784-.2075.8118-.3296,1.3-.1221.4883-.2075.8423-.2563,1.062s-.1099.4822-.1831.7873c-.0732.3052-.1404.5127-.2014.6225s-.1221.2563-.1831.4394-.1343.3113-.2197.3845-.1648.1709-.238.293c-.0732.1221-.1892.2258-.3479.3113-.9033.7324-1.9775,1.0986-3.2226,1.0986-.5371,0-.9765-.1282-1.3183-.3845-.3418-.2563-.5127-.5981-.5127-1.0254,0-.3906.1404-.7385.4211-1.0437.2808-.3052.6287-.4578,1.0437-.4578.293,0,.5371.0916.7324.2747s.293.3967.293.6409c0,.3418-.1099.6531-.3296.9338-.061.0732-.0793.1099-.0549.1099.2075,0,.4761-.1343.8057-.4028.3296-.2686.5981-.6592.8057-1.1719.0366-.0854.3479-1.3061.9338-3.6621.5859-2.3559.9033-3.6315.9521-3.8268.0366-.1831.0549-.354.0549-.5127v.238Z&#34;/&gt;
   &lt;path id=&#34;MJX-64-TEX-BI-1D48C&#34; d=&#34;M261.383,168.5265c-.3418,0-.592-.1038-.7507-.3113-.1587-.2075-.238-.3906-.238-.5493,0-.1465.4333-1.9591,1.2999-5.4378l1.3183-5.2364h-.1648c-.0488,0-.1099-.0061-.1831-.0183s-.1465-.0183-.2197-.0183h-.3845c-.061,0-.0915-.0061-.0915-.0183-.1465-.0366-.2197-.1404-.2197-.3113,0-.061.0244-.177.0732-.3479s.0854-.2807.1099-.3296c.0488-.061.1404-.0976.2746-.1099s.5981-.0427,1.3915-.0915c.891-.0488,1.422-.0732,1.5929-.0732.2075,0,.3357.0915.3845.2746,0,.061-.2929,1.2633-.8788,3.6069-.5981,2.3436-.8971,3.5337-.8971,3.5703,0,.0244.0183.0305.0549.0183.3052-.1953.6713-.4882,1.0985-.8788s.8056-.7324,1.1352-1.0253.7202-.5554,1.1718-.7873.8971-.3479,1.3366-.3479c.4272,0,.7507.1526.9704.4577s.3296.6896.3296,1.1535c0,.6835-.1587,1.184-.476,1.5013s-.6713.476-1.0619.476c-.2929,0-.531-.0793-.7141-.238s-.2807-.3967-.2929-.7141c0-.3784.116-.6896.3479-.9338s.4699-.3967.7141-.4577l.3479-.0915c0-.0732-.0366-.1282-.1099-.1648-.0366-.0244-.116-.0366-.238-.0366-.2197,0-.4272.0305-.6225.0915s-.4394.1892-.7324.3845-.5127.3601-.6591.4943-.4516.3906-.9155.769-.7995.6713-1.007.8788c.0732.0122.1587.0183.2563.0183.3662.061.653.116.8605.1648s.4638.1404.769.2746.5493.3174.7324.5493c.2441.2563.3662.5981.3662,1.0253,0,.1709-.0244.3906-.0732.6591s-.0793.4943-.0915.6774c0,.354.1099.531.3296.531h.0366c.2441,0,.4638-.1221.6591-.3662.1953-.2441.3418-.476.4394-.6957s.1709-.4577.2197-.7141c.0488-.1953.0976-.3052.1465-.3296s.2014-.0427.4577-.0549h.2014c.2441,0,.3662.0854.3662.2563,0,.3662-.2502.9277-.7507,1.6844-.5004.7568-1.0924,1.1413-1.776,1.1535h-.1465c-.708,0-1.2877-.1709-1.7394-.5127-.4516-.3418-.6835-.7873-.6957-1.3366,0-.1099.0122-.2441.0366-.4028s.0427-.299.0549-.4211c0-.3052-.1404-.5615-.4211-.769s-.5615-.3357-.8422-.3845l-.4211-.0732h-.0183c-.4272,1.9408-.7385,3.0515-.9338,3.3323-.2807.3906-.653.5859-1.1169.5859Z&#34;/&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;坐标变换&lt;/p&gt;
-&lt;p&gt;  则一方面有&lt;/p&gt;
+&lt;p&gt;　　则一方面有&lt;/p&gt;
 &lt;span id=&#34;20241010100344CST&#34;&gt;&lt;/span&gt;\[
 \overrightarrow{OQ}=x\bm{i}+y\bm{j}+z\bm{k}=
 \begin{pmatrix}
@@ -369,7 +369,7 @@ x &amp; y &amp; z
 \end{pmatrix}
 \tag{35}
     \]
-&lt;p&gt;  另一方面有&lt;/p&gt;
+&lt;p&gt;　　另一方面有&lt;/p&gt;
 &lt;span id=&#34;20241010100600CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \overrightarrow{OQ}=&amp;\overrightarrow{OP}+\overrightarrow{PQ}\\[5pt]
@@ -401,12 +401,12 @@ a_1 &amp; a_2 &amp; a_3
 \end{aligned}
 \tag{36}
     \]
-&lt;p&gt;  因此，点 \(q\) 在两个不同的Cartesian直角坐标系 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 下分别有坐标 \((x,y,z)\) 和 \((\tilde{x},\tilde{y},\tilde{z})\) ，它们满足如下的关系式&lt;/p&gt;
+&lt;p&gt;　　因此，点 \(q\) 在两个不同的Cartesian直角坐标系 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 和 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 下分别有坐标 \((x,y,z)\) 和 \((\tilde{x},\tilde{y},\tilde{z})\) ，它们满足如下的关系式&lt;/p&gt;
 &lt;span id=&#34;20241010101530CST&#34;&gt;&lt;/span&gt;\[
 (x,y,z)=\bm{a}+\begin{pmatrix}\tilde{x}&amp;\tilde{y}&amp;\tilde{z}\end{pmatrix}\cdot\bm{A}
 \tag{37}
     \]
-&lt;p&gt;  即&lt;/p&gt;
+&lt;p&gt;　　即&lt;/p&gt;
 &lt;span id=&#34;20241010101847CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
 x=a_1+a_{11}\tilde{x}+a_{21}\tilde{y}+a_{31}\tilde{z}\\[5pt]
@@ -415,7 +415,7 @@ z=a_3+a_{13}\tilde{x}+a_{23}\tilde{y}+a_{33}\tilde{z}
 \end{cases}
 \tag{38}
     \]
-&lt;p&gt;  也可以写成&lt;/p&gt;
+&lt;p&gt;　　也可以写成&lt;/p&gt;
 &lt;span id=&#34;20241010102137CST&#34;&gt;&lt;/span&gt;\[
 \begin{pmatrix}
 x\\[5pt]
@@ -435,14 +435,14 @@ z
     \]
 &lt;h3 id=&#34;刚体运动&#34;&gt;刚体运动
 &lt;/h3&gt;&lt;h4 id=&#34;定义-2&#34;&gt;定义
-&lt;/h4&gt;&lt;p&gt;  正交标架的重要性还在予它能够用来表示Euclid空间\(E^3\)中刚体的运动。所谓刚体运动原是物理学中的一个概念．如果一个物体在空间中的运动不改变它的形状及其大小，只改变它在空问中的位置，那么该物体的这种运动称为&lt;strong&gt;刚体运动&lt;/strong&gt;。要确定一个刚体在 \(E^3\) 中的位置，只要确定在该刚体上不共线的三个点的位置就行了，而刚体上其他的点可以通过它到已知的三个点的距离、以及所成的三个向量构成右手系还是左手系来确定。但是，在 \(E^3\) 中正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是由点 \(P\) 和两个彼此正交的单位向量 \(\bm{e}_1,\bm{e}_2\) 决定的，它们恰好相当于空间中不共线的三个点。这样，在刚体上安装一个正交标架，则这个标架在空间中的位置代表了这个刚体的位置。如果把空间和刚体捆绑在一起，把刚体在空间中的运动看作空间自身在空间中的刚体运动，则这是空间 \(E^3\) 到它自身的一个变换，这个变换保持该空间中任意两点之间的距离不变。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　正交标架的重要性还在予它能够用来表示Euclid空间\(E^3\)中刚体的运动。所谓刚体运动原是物理学中的一个概念．如果一个物体在空间中的运动不改变它的形状及其大小，只改变它在空问中的位置，那么该物体的这种运动称为&lt;strong&gt;刚体运动&lt;/strong&gt;。要确定一个刚体在 \(E^3\) 中的位置，只要确定在该刚体上不共线的三个点的位置就行了，而刚体上其他的点可以通过它到已知的三个点的距离、以及所成的三个向量构成右手系还是左手系来确定。但是，在 \(E^3\) 中正交标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 是由点 \(P\) 和两个彼此正交的单位向量 \(\bm{e}_1,\bm{e}_2\) 决定的，它们恰好相当于空间中不共线的三个点。这样，在刚体上安装一个正交标架，则这个标架在空间中的位置代表了这个刚体的位置。如果把空间和刚体捆绑在一起，把刚体在空间中的运动看作空间自身在空间中的刚体运动，则这是空间 \(E^3\) 到它自身的一个变换，这个变换保持该空间中任意两点之间的距离不变。&lt;/p&gt;
 &lt;h4 id=&#34;刚体运动与标架&#34;&gt;刚体运动与标架
-&lt;/h4&gt;&lt;p&gt;  设在刚体上安装的正交标架是 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 。假定它在初始位置时该标架与空间中取定的正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 重合，经过刚体运动 \(\sigma\) 达到了现在的位置，那么空间中的任意一点 \(Q\) 在刚体运动 \(\sigma\) 下变成了像点&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　设在刚体上安装的正交标架是 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 。假定它在初始位置时该标架与空间中取定的正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 重合，经过刚体运动 \(\sigma\) 达到了现在的位置，那么空间中的任意一点 \(Q\) 在刚体运动 \(\sigma\) 下变成了像点&lt;/p&gt;
 &lt;span id=&#34;20241010122819CST&#34;&gt;&lt;/span&gt;\[
 \tilde{Q}=\sigma(Q)
 \tag{40}
     \]
-&lt;p&gt;  它关于标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的相对位置与 \(Q\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的相对位置是一样的。若设&lt;/p&gt;
+&lt;p&gt;　　它关于标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的相对位置与 \(Q\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的相对位置是一样的。若设&lt;/p&gt;
 &lt;span id=&#34;20241010123031CST&#34;&gt;&lt;/span&gt;\[
 \overrightarrow{OQ}=
 \begin{pmatrix}
@@ -456,7 +456,7 @@ x &amp; y &amp; z
 \end{pmatrix}
 \tag{41}
     \]
-&lt;p&gt;  则也有&lt;/p&gt;
+&lt;p&gt;　　则也有&lt;/p&gt;
 &lt;span id=&#34;20241010123241CST&#34;&gt;&lt;/span&gt;\[
 \overrightarrow{P\tilde{Q}}=
 \begin{pmatrix}
@@ -470,7 +470,7 @@ x &amp; y &amp; z
 \end{pmatrix}
 \tag{42}
     \]
-&lt;p&gt;  所以&lt;/p&gt;
+&lt;p&gt;　　所以&lt;/p&gt;
 &lt;span id=&#34;20241010123323CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \overrightarrow{O\tilde{Q}}=&amp;\overrightarrow{OP}+\overrightarrow{P\tilde{Q}}\\
@@ -483,12 +483,12 @@ x &amp; y &amp; z
 \end{aligned}
 \tag{43}
     \]
-&lt;p&gt;  这就是说，像点 \(\tilde{q}=\sigma(q)\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标是&lt;/p&gt;
+&lt;p&gt;　　这就是说，像点 \(\tilde{q}=\sigma(q)\) 关于 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标是&lt;/p&gt;
 &lt;span id=&#34;20241010124511CST&#34;&gt;&lt;/span&gt;\[
 \begin{pmatrix}\tilde{x}&amp;\tilde{y}&amp;\tilde{z}\end{pmatrix}=\bm{a}+\begin{pmatrix}x&amp;y&amp;z\end{pmatrix}\cdot\bm{A}
 \tag{44}
     \]
-&lt;p&gt;  即&lt;/p&gt;
+&lt;p&gt;　　即&lt;/p&gt;
 &lt;span id=&#34;20241010124705CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
 \tilde{x}=a_1+a_{11}x+a_{21}y+a_{31}z\\[5pt]
@@ -497,7 +497,7 @@ x &amp; y &amp; z
 \end{cases}
 \tag{45}
     \]
-&lt;p&gt;  也可以写成&lt;/p&gt;
+&lt;p&gt;　　也可以写成&lt;/p&gt;
 &lt;span id=&#34;20241010125059CST&#34;&gt;&lt;/span&gt;\[
 \begin{pmatrix}
 \tilde{x}\\[5pt]
@@ -515,7 +515,7 @@ z
 \end{pmatrix}
 \tag{46}
     \]
-&lt;p&gt;  因此如果把正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 变到 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的刚体运动同时把点 \(q=(x,y,z)\) 变到点 \(\tilde{q}=(\tilde{x},\tilde{y},\tilde{z})\) （它们分别是点 \(q\) 和 \(\tilde{q}\) 关于正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标），则 \((\tilde{x},\tilde{y},\tilde{z})\) 与 \((x,y,z)\) 之间的关系恰好是由&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的．注意到&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241010101530CST&#34;&gt;式(37)&lt;/a&gt;有很大的相似性，但是它们的意义却是完全不同的，前者是点不变而标架变换，后者是点随标架一起同步变换。这种在公式上的相似性说明刚体运动在某种意义上可以看作一种坐标变换（参看&lt;a class=&#34;link&#34; href=&#34;#20241010131827CST&#34;&gt;图2&lt;/a&gt;）。具体地说，&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;可以解读为把点 \(\tilde{q}\) 在标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 下的坐标 \((x,y,z)\) 变换为在标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下的坐标 \((\tilde{x},\tilde{y},\tilde{z})\) 的公式。&lt;/p&gt;
+&lt;p&gt;　　因此如果把正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 变到 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的刚体运动同时把点 \(q=(x,y,z)\) 变到点 \(\tilde{q}=(\tilde{x},\tilde{y},\tilde{z})\) （它们分别是点 \(q\) 和 \(\tilde{q}\) 关于正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 的坐标），则 \((\tilde{x},\tilde{y},\tilde{z})\) 与 \((x,y,z)\) 之间的关系恰好是由&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的．注意到&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241010101530CST&#34;&gt;式(37)&lt;/a&gt;有很大的相似性，但是它们的意义却是完全不同的，前者是点不变而标架变换，后者是点随标架一起同步变换。这种在公式上的相似性说明刚体运动在某种意义上可以看作一种坐标变换（参看&lt;a class=&#34;link&#34; href=&#34;#20241010131827CST&#34;&gt;图2&lt;/a&gt;）。具体地说，&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;可以解读为把点 \(\tilde{q}\) 在标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 下的坐标 \((x,y,z)\) 变换为在标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 下的坐标 \((\tilde{x},\tilde{y},\tilde{z})\) 的公式。&lt;/p&gt;
 &lt;span id=&#34;20241010131827CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 403.7&#34;&gt;
@@ -615,12 +615,12 @@ z
   &lt;path id=&#34;MJX-64-TEX-BI-1D48C&#34; d=&#34;M273.7556,168.5265c-.3418,0-.592-.1038-.7507-.3113-.1587-.2075-.238-.3906-.238-.5493,0-.1465.4333-1.9591,1.2999-5.4378l1.3183-5.2364h-.1648c-.0488,0-.1099-.0061-.1831-.0183s-.1465-.0183-.2197-.0183h-.3845c-.061,0-.0915-.0061-.0915-.0183-.1465-.0366-.2197-.1404-.2197-.3113,0-.061.0244-.177.0732-.3479s.0854-.2807.1099-.3296c.0488-.061.1404-.0976.2746-.1099s.5981-.0427,1.3915-.0915c.891-.0488,1.422-.0732,1.5929-.0732.2075,0,.3357.0915.3845.2746,0,.061-.2929,1.2633-.8788,3.6069-.5981,2.3436-.8971,3.5337-.8971,3.5703,0,.0244.0183.0305.0549.0183.3052-.1953.6713-.4882,1.0985-.8788s.8056-.7324,1.1352-1.0253.7202-.5554,1.1718-.7873.8971-.3479,1.3366-.3479c.4272,0,.7507.1526.9704.4577s.3296.6896.3296,1.1535c0,.6835-.1587,1.184-.476,1.5013s-.6713.476-1.0619.476c-.2929,0-.531-.0793-.7141-.238s-.2807-.3967-.2929-.7141c0-.3784.116-.6896.3479-.9338s.4699-.3967.7141-.4577l.3479-.0915c0-.0732-.0366-.1282-.1099-.1648-.0366-.0244-.116-.0366-.238-.0366-.2197,0-.4272.0305-.6225.0915s-.4394.1892-.7324.3845-.5127.3601-.6591.4943-.4516.3906-.9155.769-.7995.6713-1.007.8788c.0732.0122.1587.0183.2563.0183.3662.061.653.116.8605.1648s.4638.1404.769.2746.5493.3174.7324.5493c.2441.2563.3662.5981.3662,1.0253,0,.1709-.0244.3906-.0732.6591s-.0793.4943-.0915.6774c0,.354.1099.531.3296.531h.0366c.2441,0,.4638-.1221.6591-.3662.1953-.2441.3418-.476.4394-.6957s.1709-.4577.2197-.7141c.0488-.1953.0976-.3052.1465-.3296s.2014-.0427.4577-.0549h.2014c.2441,0,.3662.0854.3662.2563,0,.3662-.2502.9277-.7507,1.6844-.5004.7568-1.0924,1.1413-1.776,1.1535h-.1465c-.708,0-1.2877-.1709-1.7394-.5127-.4516-.3418-.6835-.7873-.6957-1.3366,0-.1099.0122-.2441.0366-.4028s.0427-.299.0549-.4211c0-.3052-.1404-.5615-.4211-.769s-.5615-.3357-.8422-.3845l-.4211-.0732h-.0183c-.4272,1.9408-.7385,3.0515-.9338,3.3323-.2807.3906-.653.5859-1.1169.5859Z&#34;/&gt;
   &lt;path id=&#34;MJX-65-TEX-BI-1D48A&#34; d=&#34;M219.7466,374.7707c0-.3783.1464-.7139.4393-1.0068s.6224-.4393.9885-.4393c.3295,0,.5797.0915.7506.2746s.2624.4149.2746.6956c0,.3783-.1464.7139-.4393,1.0068s-.6407.4393-1.0435.4393c-.2807,0-.5126-.0915-.6956-.2746s-.2746-.4149-.2746-.6956ZM216.4332,380.6104c0-.1098.061-.3051.1831-.5858.122-.2807.299-.598.5309-.9519.2319-.3539.5492-.659.9519-.9153s.8421-.3905,1.318-.4027c.2197,0,.4393.0244.659.0732s.4577.1281.7139.238.4577.2868.6041.5309.2258.5248.238.8421c0,.1831-.1281.6102-.3844,1.2814-.2563.6712-.5431,1.4035-.8604,2.1967-.3173.7933-.5187,1.2997-.6041,1.5194-.061.2441-.0915.4271-.0915.5492,0,.1831.0793.2746.238.2746.2441,0,.5004-.1342.7689-.4027.3783-.3417.6529-.8055.8238-1.3913.061-.1953.1098-.3112.1464-.3478s.1587-.0549.3661-.0549h.3112c.2441,0,.3661.0854.3661.2563,0,.0976-.061.2868-.1831.5675-.122.2807-.2929.598-.5126.9519-.2197.3539-.5431.6651-.9702.9336-.4271.2685-.8848.4027-1.373.4027-.5248,0-1.0129-.1403-1.4645-.421-.4516-.2807-.6834-.7017-.6956-1.2631,0-.2441.3051-1.1289.9153-2.6544.6102-1.5255.9214-2.3127.9336-2.3615.061-.2197.0915-.4027.0915-.5492,0-.1709-.0732-.2563-.2197-.2563-.2563,0-.5187.1342-.7872.4027-.3783.3417-.6529.8055-.8238,1.3913-.061.1953-.1098.3112-.1464.3478s-.1587.0549-.3661.0549h-.3112c-.2441,0-.3661-.0854-.3661-.2563Z&#34;/&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;刚体运动&lt;/p&gt;
-&lt;p&gt;  我们可以把上述讨论总结成下面的定理。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241010140246CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理1&lt;/strong&gt;： \(E^3\) 中的刚体运动把一个正交标架变成另一个正交标架；反过来，对于 \(E^3\) 中的任意两个正交标架，必有 \(E^3\) 的一个刚体运动把其中一个正交标架变成另一个正交标架。&lt;/p&gt;
+&lt;p&gt;　　我们可以把上述讨论总结成下面的定理。&lt;/p&gt;
+&lt;p&gt;　　&lt;span id=&#34;20241010140246CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理1&lt;/strong&gt;： \(E^3\) 中的刚体运动把一个正交标架变成另一个正交标架；反过来，对于 \(E^3\) 中的任意两个正交标架，必有 \(E^3\) 的一个刚体运动把其中一个正交标架变成另一个正交标架。&lt;/p&gt;
 &lt;span id=&#34;20241016163512CST&#34;&gt;&lt;/span&gt;
 &lt;h4 id=&#34;等距变换&#34;&gt;等距变换
-&lt;/h4&gt;&lt;p&gt;  距离不变的变换称为&lt;strong&gt;等距变换&lt;/strong&gt;。刚体运动是一种等距变换。容易证明，等距变换把共线的三个点变为共线的三个点，并且保持它们的分比不变，进而可以证明等距变换是如&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的线性变换，但是此时只能证明其中的矩阵 \(\bm{A}\) 是正交矩阵，而不要求它的行列式的值是正的。因此等距变换把单位正交标架变成一个另单位正交标架，但是可能把右手系变成左手系。换句话说刚体运动是保持右手系不变的等距变换，而等距变换或者是一个刚体运动，或者是一个刚体运动与关于某个平面的反射的合成。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的变换是等距变换（ \(\bm{A}\) 是正交矩阵，满足 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ）。设有 \(P_1=(x_1,y_1,z_1),P_2=(x_2,y_2,z_2)\) 被&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;变换为 \(\tilde{P}_1(\tilde{x}_1,\tilde{y}_1,\tilde{z}_1),\tilde{P}_2=(\tilde{x}_2,\tilde{y}_2,\tilde{z}_2)\) 。其距离被变换为&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　距离不变的变换称为&lt;strong&gt;等距变换&lt;/strong&gt;。刚体运动是一种等距变换。容易证明，等距变换把共线的三个点变为共线的三个点，并且保持它们的分比不变，进而可以证明等距变换是如&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的线性变换，但是此时只能证明其中的矩阵 \(\bm{A}\) 是正交矩阵，而不要求它的行列式的值是正的。因此等距变换把单位正交标架变成一个另单位正交标架，但是可能把右手系变成左手系。换句话说刚体运动是保持右手系不变的等距变换，而等距变换或者是一个刚体运动，或者是一个刚体运动与关于某个平面的反射的合成。&lt;/p&gt;
+&lt;p&gt;　　&lt;strong&gt;注&lt;/strong&gt;：在此简单证明一下&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;给出的变换是等距变换（ \(\bm{A}\) 是正交矩阵，满足 \(\bm{A}\bm{A}^T=\bm{A}^T\bm{A}=1\) ）。设有 \(P_1=(x_1,y_1,z_1),P_2=(x_2,y_2,z_2)\) 被&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;变换为 \(\tilde{P}_1(\tilde{x}_1,\tilde{y}_1,\tilde{z}_1),\tilde{P}_2=(\tilde{x}_2,\tilde{y}_2,\tilde{z}_2)\) 。其距离被变换为&lt;/p&gt;
 &lt;span id=&#34;20241010141443CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \left|\tilde{P}_1\tilde{P}_2\right|=&amp;\sqrt{(\tilde{x}_1-\tilde{x}_2)^2+(\tilde{y}_1-\tilde{y}_2)^2+(\tilde{z}_1-\tilde{z}_2)^2}\\[5pt]
@@ -631,24 +631,24 @@ z
 \end{aligned}
 \tag{47}
     \]
-&lt;p&gt;  故距离不变。对于共线的三个点 \(P_1,P_2,P_3\) ，必存在不为零的 \(\lambda,\mu\) 使得&lt;/p&gt;
+&lt;p&gt;　　故距离不变。对于共线的三个点 \(P_1,P_2,P_3\) ，必存在不为零的 \(\lambda,\mu\) 使得&lt;/p&gt;
 &lt;span id=&#34;20241010142938CST&#34;&gt;&lt;/span&gt;\[
 (x_1,y_1,z_1)=\lambda\cdot(x_2,y_2,z_2)+\mu\cdot(x_3,y_3,z_3)
 \tag{48}
     \]
-&lt;p&gt;  而&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;是个线性变换，因此变换后上式也能满足（容易代入验证），因此三点共线的性质不变。&lt;/p&gt;
-&lt;p&gt;  在空间 \(E^3\) 中取定Cartesian直角坐标系之后，几何图形就能够用坐标来表达，几何图形固有的性质自然也可以用坐标来表达，但是所表达的性质应该与Cartesian直角坐标系的取法无关。反过来，如果儿何图形的一个用Cartesian直角坐标表示的量与Cartesian直角坐标系的取法无关，则这个量应该是几何图形所固有的量；另外，这个量在几何图形的刚体运动下是保持不变的。我们所研究的就是几何图形的这种不变量。&lt;/p&gt;
+&lt;p&gt;　　而&lt;a class=&#34;link&#34; href=&#34;#20241010124511CST&#34;&gt;式(44)&lt;/a&gt;是个线性变换，因此变换后上式也能满足（容易代入验证），因此三点共线的性质不变。&lt;/p&gt;
+&lt;p&gt;　　在空间 \(E^3\) 中取定Cartesian直角坐标系之后，几何图形就能够用坐标来表达，几何图形固有的性质自然也可以用坐标来表达，但是所表达的性质应该与Cartesian直角坐标系的取法无关。反过来，如果儿何图形的一个用Cartesian直角坐标表示的量与Cartesian直角坐标系的取法无关，则这个量应该是几何图形所固有的量；另外，这个量在几何图形的刚体运动下是保持不变的。我们所研究的就是几何图形的这种不变量。&lt;/p&gt;
 &lt;h3 id=&#34;仿射标架&#34;&gt;仿射标架
-&lt;/h3&gt;&lt;p&gt;  除了正交标架外，我们还经常使用&lt;strong&gt;仿射标架&lt;/strong&gt;。所谓仿射标架，是指空间中的一个点 \(P\) 和在该点的三个不共面的向量 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 组成的图形 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) ，但是对该图形不要求这三个向量有单位正交的性质。令&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;　　除了正交标架外，我们还经常使用&lt;strong&gt;仿射标架&lt;/strong&gt;。所谓仿射标架，是指空间中的一个点 \(P\) 和在该点的三个不共面的向量 \(\bm{e}_1,\bm{e}_2,\bm{e}_3\) 组成的图形 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) ，但是对该图形不要求这三个向量有单位正交的性质。令&lt;/p&gt;
 &lt;span id=&#34;20241010143839CST&#34;&gt;&lt;/span&gt;\[
 g_{ij}=\bm{e}_i\cdot\bm{e}_j\quad 1 \le i,j \le 3
 \tag{49}
     \]
-&lt;p&gt;  我们把 \((g_{ij})\) 称为仿射标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的度量系数。空间 \(E^3\) 的刚体运动把仿射标架变成仿射标架，并且保持它的度量系数不变，保持标架的定向不变。反过来，对于对于 \(E^3\) 中任意两个有相同度量系数的、成右手系的仿射标架，必有 \(E^3\) 中的一个刚体运动把其中一个仿射标架变成另一个仿射标架。很明显， \(E^3\) 中的全体仿射标架的集合可以等同于 \(E^3\times\rm{GL(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;GL(3)群&lt;/a&gt;），其中 \(\rm{GL(3)}\) 表示可逆的 \(3\times 3\) 矩阵的集合。因此，\(E^3\) 的全体仿射标架构成一个 \(12\) 维的空间。&lt;/p&gt;
+&lt;p&gt;　　我们把 \((g_{ij})\) 称为仿射标架 \(\set{P;\bm{e}_1,\bm{e}_2,\bm{e}_3}\) 的度量系数。空间 \(E^3\) 的刚体运动把仿射标架变成仿射标架，并且保持它的度量系数不变，保持标架的定向不变。反过来，对于对于 \(E^3\) 中任意两个有相同度量系数的、成右手系的仿射标架，必有 \(E^3\) 中的一个刚体运动把其中一个仿射标架变成另一个仿射标架。很明显， \(E^3\) 中的全体仿射标架的集合可以等同于 \(E^3\times\rm{GL(3)}\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“群论”还未上线~&#39;)&#34;&gt;GL(3)群&lt;/a&gt;），其中 \(\rm{GL(3)}\) 表示可逆的 \(3\times 3\) 矩阵的集合。因此，\(E^3\) 的全体仿射标架构成一个 \(12\) 维的空间。&lt;/p&gt;
 &lt;h2 id=&#34;向量函数&#34;&gt;向量函数
 &lt;/h2&gt;&lt;h3 id=&#34;向量空间&#34;&gt;向量空间
 &lt;/h3&gt;&lt;h4 id=&#34;定义-3&#34;&gt;定义
-&lt;/h4&gt;&lt;p&gt;  由三维Euclid空间 \(E^3\) 中的全体向量组成的空间称为三维Euclid向量空间。在给定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后，该空间等同于由有序的三个实数的组构成的空间 \(\R^3\) 。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　由三维Euclid空间 \(E^3\) 中的全体向量组成的空间称为三维Euclid向量空间。在给定了一个正交标架 \(\set{O;\bm{i},\bm{j},\bm{k}}\) 之后，该空间等同于由有序的三个实数的组构成的空间 \(\R^3\) 。&lt;/p&gt;
 &lt;h4 id=&#34;模长&#34;&gt;模长
 &lt;/h4&gt;&lt;p&gt;设有 \(\R^3\) 中的向量 \(\bm{a}=(a_1,a_2,a_3)\) 的模长定义为&lt;/p&gt;
 &lt;span id=&#34;20241019231541CST&#34;&gt;&lt;/span&gt;\[
@@ -663,13 +663,13 @@ g_{ij}=\bm{e}_i\cdot\bm{e}_j\quad 1 \le i,j \le 3
 \bm{c}=(c_1,c_2,c_3)
 \tag{51}
     \]
-&lt;p&gt;  则 \(\bm{a}\) 和 \(\bm{b}\) 的点乘（以后也称为&lt;strong&gt;内积&lt;/strong&gt;，或&lt;strong&gt;数量积&lt;/strong&gt;）是&lt;/p&gt;
+&lt;p&gt;　　则 \(\bm{a}\) 和 \(\bm{b}\) 的点乘（以后也称为&lt;strong&gt;内积&lt;/strong&gt;，或&lt;strong&gt;数量积&lt;/strong&gt;）是&lt;/p&gt;
 &lt;span id=&#34;20241012143454CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}\cdot\bm{b}=|\bm{a}|\cdot|\bm{b}|\cdot\cos\angle(\bm{a},\bm{b})=a_1b_1+a_2b_2+a_3b_3
 \tag{52}
     \]
 &lt;h4 id=&#34;向量积&#34;&gt;向量积
-&lt;/h4&gt;&lt;p&gt;   \(\bm{a}\) 和 \(\bm{b}\) 的叉乘（也称为&lt;strong&gt;向量积&lt;/strong&gt;）是&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　 \(\bm{a}\) 和 \(\bm{b}\) 的叉乘（也称为&lt;strong&gt;向量积&lt;/strong&gt;）是&lt;/p&gt;
 &lt;span id=&#34;20241012143803CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \bm{a}\times\bm{b}=&amp;\left(
@@ -698,13 +698,13 @@ b_1 &amp; b_2 &amp; b_3
 \end{aligned}
 \tag{53}
     \]
-&lt;p&gt;  因此 \(\bm{a}\times\bm{b}\perp\bm{a}, \bm{a}\times\bm{b}\perp\bm{b}\) 。向量 \(\bm{a},\bm{b}\) 和 \(\bm{a}\times\bm{b}\) 构成右手系，并且&lt;/p&gt;
+&lt;p&gt;　　因此 \(\bm{a}\times\bm{b}\perp\bm{a}, \bm{a}\times\bm{b}\perp\bm{b}\) 。向量 \(\bm{a},\bm{b}\) 和 \(\bm{a}\times\bm{b}\) 构成右手系，并且&lt;/p&gt;
 &lt;span id=&#34;20241012144354CST&#34;&gt;&lt;/span&gt;\[
 |\bm{a}\times\bm{b}|=|\bm{a}|\cdot|\bm{b}|\cdot\sin\angle(\bm{a},\bm{b})
 \tag{54}
     \]
 &lt;h4 id=&#34;混合积&#34;&gt;混合积
-&lt;/h4&gt;&lt;p&gt;   \(\bm{a},\bm{b}\) 和 \(\bm{c}\) 的混合积是&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　 \(\bm{a},\bm{b}\) 和 \(\bm{c}\) 的混合积是&lt;/p&gt;
 &lt;span id=&#34;20241012144456CST&#34;&gt;&lt;/span&gt;\[
 (\bm{a},\bm{b},\bm{c})=(\bm{a}\times\bm{b})\cdot\bm{c}=
 \begin{vmatrix}
@@ -714,10 +714,10 @@ c_1 &amp; c_2 &amp; c_3
 \end{vmatrix}
 \tag{55}
     \]
-&lt;p&gt;  它的几何意义是由向量 \(\bm{a},\bm{b}\) 和 \(\bm{c}\) 所张成的平行六面体的有向体积。&lt;/p&gt;
+&lt;p&gt;　　它的几何意义是由向量 \(\bm{a},\bm{b}\) 和 \(\bm{c}\) 所张成的平行六面体的有向体积。&lt;/p&gt;
 &lt;h4 id=&#34;矢量代数&#34;&gt;矢量代数
-&lt;/h4&gt;&lt;p&gt;  这里写几个常用的矢量代数公式。用带入坐标的方法容易验证这些恒等式成立。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241020000349CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式1（混合积恒等式）&lt;/strong&gt;：&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　这里写几个常用的矢量代数公式。用带入坐标的方法容易验证这些恒等式成立。&lt;/p&gt;
+&lt;p&gt;　　&lt;span id=&#34;20241020000349CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式1（混合积恒等式）&lt;/strong&gt;：&lt;/p&gt;
 &lt;span id=&#34;20241020000352CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 (\bm{a},\bm{b},\bm{c})=&amp;(\bm{a}\times\bm{b})\cdot\bm{c}=(\bm{b}\times\bm{c})\cdot\bm{a}=(\bm{c}\times\bm{a})\cdot\bm{b}\\[5pt]
@@ -725,40 +725,40 @@ c_1 &amp; c_2 &amp; c_3
 \end{aligned}
 \tag{56}
     \]
-&lt;p&gt;  &lt;span id=&#34;20241019105434CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式2（Lagrange矢量公式）&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;　　&lt;span id=&#34;20241019105434CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式2（Lagrange矢量公式）&lt;/strong&gt;：&lt;/p&gt;
 &lt;span id=&#34;20241019105509CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}\times(\bm{b}\times\bm{c})=(\bm{a}\cdot\bm{c})\bm{b}-(\bm{a}\cdot\bm{b})\bm{c}
 \tag{57}
     \]
-&lt;p&gt;  &lt;span id=&#34;20241019235854CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式3（Jacobi恒等式）&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;　　&lt;span id=&#34;20241019235854CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式3（Jacobi恒等式）&lt;/strong&gt;：&lt;/p&gt;
 &lt;span id=&#34;20241020000447CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}\times(\bm{b}\times\bm{c})+\bm{b}\times(\bm{c}\times\bm{a})+\bm{c}\times(\bm{a}\times\bm{b})=\bm{0}
 \tag{58}
     \]
-&lt;p&gt;  &lt;span id=&#34;20241020000101CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式4（Binet-Cauchy恒等式）&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;　　&lt;span id=&#34;20241020000101CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式4（Binet-Cauchy恒等式）&lt;/strong&gt;：&lt;/p&gt;
 &lt;span id=&#34;20241020000450CST&#34;&gt;&lt;/span&gt;\[
 (\bm{a}\times\bm{b})\cdot(\bm{c}\times\bm{d})=(\bm{a}\cdot\bm{c})(\bm{b}\cdot\bm{d})-(\bm{b}\cdot\bm{c})(\bm{a}\cdot\bm{d})
 \tag{59}
     \]
-&lt;p&gt;  &lt;span id=&#34;20241020000302CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式5（Lagrange恒等式）&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;　　&lt;span id=&#34;20241020000302CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式5（Lagrange恒等式）&lt;/strong&gt;：&lt;/p&gt;
 &lt;span id=&#34;20241020000453CST&#34;&gt;&lt;/span&gt;\[
 |\bm{a}\times\bm{b}|^2=|\bm{a}|^2|\bm{b}|^2-(\bm{a}\cdot\bm{b})^2
 \tag{60}
     \]
-&lt;p&gt;  &lt;span id=&#34;20241020000456CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式6（矢量四重积）&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;　　&lt;span id=&#34;20241020000456CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;公式6（矢量四重积）&lt;/strong&gt;：&lt;/p&gt;
 &lt;span id=&#34;20241020001013CST&#34;&gt;&lt;/span&gt;\[
 (\bm{a}\times\bm{b})\times(\bm{c}\times\bm{d})=(\bm{a},\bm{b},\bm{d})\bm{c}-(\bm{a},\bm{b},\bm{c})\bm{d}=(\bm{a},\bm{c},\bm{d})\bm{b}-(\bm{b},\bm{c},\bm{d})\bm{a}
 \tag{61}
     \]
 &lt;h3 id=&#34;向量函数-1&#34;&gt;向量函数
 &lt;/h3&gt;&lt;h4 id=&#34;定义-4&#34;&gt;定义
-&lt;/h4&gt;&lt;p&gt;  所谓向量函数是指从它的定义域到 \(\R^3\) 中的映射，也就是三个有序的实函数。设有定义在区间[a,b]上的向量函数&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　所谓向量函数是指从它的定义域到 \(\R^3\) 中的映射，也就是三个有序的实函数。设有定义在区间[a,b]上的向量函数&lt;/p&gt;
 &lt;span id=&#34;20241012144828CST&#34;&gt;&lt;/span&gt;\[
 \bm{r}(t)=(x(t),y(t),z(t))\quad a \le t \le b
 \tag{62}
     \]
 &lt;h4 id=&#34;微积分&#34;&gt;微积分
-&lt;/h4&gt;&lt;p&gt;  如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续函数，则称向量函数 \(\bm{r}(t)\) 是连续的；如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续可微函数，则称向量函数 \(\bm{r}(t)\) 是连续可微的。向量函数 \(\bm{r}(t)\) 的导数和积分的定义与数值函数的导数和积分的定义是相同的，即&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续函数，则称向量函数 \(\bm{r}(t)\) 是连续的；如果 \(x(t),y(t),z(t)\) 都是 \(t\) 的连续可微函数，则称向量函数 \(\bm{r}(t)\) 是连续可微的。向量函数 \(\bm{r}(t)\) 的导数和积分的定义与数值函数的导数和积分的定义是相同的，即&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241012145201CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \left.\frac{\mathrm{d}\bm{r}}{\mathrm{d}t}\right|_{t=t_0}=&amp;\lim\limits_{\Delta t \to 0}\frac{\bm{r}(t_0+\Delta t)-\bm{r}(t_0)}{\Delta t}\\[10pt]
@@ -773,9 +773,9 @@ c_1 &amp; c_2 &amp; c_3
 \end{aligned}
 \tag{64}
     \]&lt;/p&gt;
-&lt;p&gt;  其中 \(a=t_0 &lt; t_1 &lt; \cdots &lt; t_n = b\) 是区间 \([a,b]\) 的任意一个分割， \(\Delta t_i=t_i-t_{i-1},\space t_i^\prime \in [t_{i-1},t_i]\) ，并且 \(\lambda=\max\set{\Delta t_i;i=1,\cdots,n}\) 。这就是说，向量函数的求导和积分归结为它的分量函数的求导和积分，因此向量函数的可微性和可积性归结为它的分量函数的可微性和可积性。&lt;/p&gt;
+&lt;p&gt;　　其中 \(a=t_0 &lt; t_1 &lt; \cdots &lt; t_n = b\) 是区间 \([a,b]\) 的任意一个分割， \(\Delta t_i=t_i-t_{i-1},\space t_i^\prime \in [t_{i-1},t_i]\) ，并且 \(\lambda=\max\set{\Delta t_i;i=1,\cdots,n}\) 。这就是说，向量函数的求导和积分归结为它的分量函数的求导和积分，因此向量函数的可微性和可积性归结为它的分量函数的可微性和可积性。&lt;/p&gt;
 &lt;h4 id=&#34;求导公式&#34;&gt;求导公式
-&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241012181641CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理2&lt;/strong&gt;：假定 \(\bm{a}(t),\bm{b}(t),\bm{c}(t)\) 是三个可微的向量函数，则它们的内积、向量积和混合积的导数有下面的公式&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　&lt;span id=&#34;20241012181641CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理2&lt;/strong&gt;：假定 \(\bm{a}(t),\bm{b}(t),\bm{c}(t)\) 是三个可微的向量函数，则它们的内积、向量积和混合积的导数有下面的公式&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241012195223CST&#34;&gt;&lt;/span&gt;\[
 (\bm{a}(t)\cdot\bm{b}(t))^\prime=\bm{a}^\prime(t)\cdot\bm{b}(t)+\bm{a}(t)\cdot\bm{b}^\prime(t)
 \tag{65}
@@ -788,7 +788,7 @@ c_1 &amp; c_2 &amp; c_3
 (\bm{a}(t),\bm{b}(t),\bm{c}(t))^\prime=(\bm{a}^\prime(t),\bm{b}(t),\bm{c}(t))+(\bm{a}(t),\bm{b}^\prime(t),\bm{c}(t))+(\bm{a}(t),\bm{b}(t),\bm{c}^\prime(t))
 \tag{67}
     \]&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241012181641CST&#34;&gt;定理2&lt;/a&gt;）&lt;/strong&gt;：对&lt;a class=&#34;link&#34; href=&#34;#20241012195223CST&#34;&gt;式(65)&lt;/a&gt;，由&lt;a class=&#34;link&#34; href=&#34;#20241012143454CST&#34;&gt;式(52)&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;　　&lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241012181641CST&#34;&gt;定理2&lt;/a&gt;）&lt;/strong&gt;：对&lt;a class=&#34;link&#34; href=&#34;#20241012195223CST&#34;&gt;式(65)&lt;/a&gt;，由&lt;a class=&#34;link&#34; href=&#34;#20241012143454CST&#34;&gt;式(52)&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241012222826CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 (\bm{a}(t)\cdot\bm{b}(t))&#39;=&amp;(a_1(t)b_1(t))&#39;+(a_2(t)b_2(t))&#39;+(a_3(t)b_3(t))&#39;\\[5pt]
@@ -797,7 +797,7 @@ c_1 &amp; c_2 &amp; c_3
 \end{aligned}
 \tag{68}
     \]
-&lt;p&gt;  对&lt;a class=&#34;link&#34; href=&#34;#20241012221040CST&#34;&gt;式(66)&lt;/a&gt;，由&lt;a class=&#34;link&#34; href=&#34;#20241012143803CST&#34;&gt;式(53)&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;　　对&lt;a class=&#34;link&#34; href=&#34;#20241012221040CST&#34;&gt;式(66)&lt;/a&gt;，由&lt;a class=&#34;link&#34; href=&#34;#20241012143803CST&#34;&gt;式(53)&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241012223743CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 (\bm{a}\times\bm{b})&#39;=&amp;\left(
@@ -863,7 +863,7 @@ b_1&#39;(t) &amp; b_2&#39;(t)
 \end{aligned}
 \tag{69}
     \]
-&lt;p&gt;  对&lt;a class=&#34;link&#34; href=&#34;#20241012231920CST&#34;&gt;式(67)&lt;/a&gt;，由&lt;a class=&#34;link&#34; href=&#34;#20241012195223CST&#34;&gt;式(65)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241012221040CST&#34;&gt;式(66)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;　　对&lt;a class=&#34;link&#34; href=&#34;#20241012231920CST&#34;&gt;式(67)&lt;/a&gt;，由&lt;a class=&#34;link&#34; href=&#34;#20241012195223CST&#34;&gt;式(65)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241012221040CST&#34;&gt;式(66)&lt;/a&gt;&lt;/p&gt;
 &lt;span id=&#34;20241012231955CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 (\bm{a}(t),\bm{b}(t),\bm{c}(t))^\prime=&amp;(\bm{a}(t)\times\bm{b}(t)\cdot\bm{c}(t))&#39;\\[5pt]
@@ -873,12 +873,12 @@ b_1&#39;(t) &amp; b_2&#39;(t)
 \end{aligned}
 \tag{70}
     \]
-&lt;p&gt;  &lt;span id=&#34;20241019230720CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;结论1&lt;/strong&gt;： \(\bm{a}(t)\) 是一个可微的向量函数，则&lt;/p&gt;
+&lt;p&gt;　　&lt;span id=&#34;20241019230720CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;结论1&lt;/strong&gt;： \(\bm{a}(t)\) 是一个可微的向量函数，则&lt;/p&gt;
 &lt;span id=&#34;20241019230835CST&#34;&gt;&lt;/span&gt;\[
 \frac{\mathrm{d}}{\mathrm{d}t}|\bm{a}(t)|=\frac{\bm{a}(t)}{|\bm{a}(t)|}\cdot\frac{\mathrm{d}\bm{a}(t)}{\mathrm{d}t}
 \tag{71}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241019230720CST&#34;&gt;结论1&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20241012195223CST&#34;&gt;式(65)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241019231541CST&#34;&gt;式(50)&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;　　&lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241019230720CST&#34;&gt;结论1&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20241012195223CST&#34;&gt;式(65)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241019231541CST&#34;&gt;式(50)&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241019231722CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \frac{\mathrm{d}}{\mathrm{d}t}|\bm{a}(t)|=&amp;\frac{\mathrm{d}}{\mathrm{d}t}\sqrt{\bm{a}(t)\cdot\bm{a}(t)}\\[15pt]
@@ -889,26 +889,26 @@ b_1&#39;(t) &amp; b_2&#39;(t)
 \tag{72}
     \]
 &lt;h4 id=&#34;不变条件&#34;&gt;不变条件
-&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241012234715CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理3&lt;/strong&gt;：设 \(\bm{a}(t)\) 是一个处处非零的连续可微的向量函数，则&lt;br&gt;
-  1. 向量函数 \(\bm{a}(t)\) 的长度是常数当且仅当 \(\bm{a}&#39;(t)\cdot\bm{a}(t)\equiv 0\) 。&lt;br&gt;
-  2. 向量函数 \(\bm{a}(t)\) 的方向不变当且仅当 \(\bm{a}&#39;(t)\times\bm{a}(t)\equiv 0\) 。&lt;br&gt;
-  3.  如果向量函数 \(\bm{a}(t)\) 与某一个固定的方向垂直，那么&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;　　&lt;span id=&#34;20241012234715CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理3&lt;/strong&gt;：设 \(\bm{a}(t)\) 是一个处处非零的连续可微的向量函数，则&lt;br&gt;
+　　　　(1)向量函数 \(\bm{a}(t)\) 的长度是常数当且仅当 \(\bm{a}&#39;(t)\cdot\bm{a}(t)\equiv 0\) 。&lt;br&gt;
+　　　　(2)向量函数 \(\bm{a}(t)\) 的方向不变当且仅当 \(\bm{a}&#39;(t)\times\bm{a}(t)\equiv 0\) 。&lt;br&gt;
+　　　　(3) 如果向量函数 \(\bm{a}(t)\) 与某一个固定的方向垂直，那么&lt;/p&gt;
 &lt;span id=&#34;20241012235212CST&#34;&gt;&lt;/span&gt;\[
 ((\bm{a}(t),(\bm{a}&#39;(t),(\bm{a}&#39;&#39;(t))\equiv 0
 \tag{73}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241012234715CST&#34;&gt;定理3&lt;/a&gt;）&lt;/strong&gt;：对1. ，因为&lt;/p&gt;
+&lt;p&gt;　　&lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241012234715CST&#34;&gt;定理3&lt;/a&gt;）&lt;/strong&gt;：对　　(1)，因为&lt;/p&gt;
 &lt;span id=&#34;20241012235435CST&#34;&gt;&lt;/span&gt;\[
 \frac{\mathrm{d}}{\mathrm{d}t}|\bm{a}(t)|^2=\frac{\mathrm{d}(\bm{a}(t)\cdot\bm{a}(t))}{\mathrm{d}t}=2\bm{a}&#39;(t)\cdot\bm{a}(t)
 \tag{74}
     \]
-&lt;p&gt;  所以 \(|\bm{a}(t)|^2\) 是常数，当且仅当 \(\bm{a}&#39;(t)\cdot\bm{a}(t)\equiv 0\) 。&lt;/p&gt;
-&lt;p&gt;  对2. ，如果向量函数 \(\bm{a}(t)\) 的方向不变，则有一个固定的单位向量 \(\bm{b}\) ，使得向量函数 \(\bm{a}(t)\) 能够写成&lt;/p&gt;
+&lt;p&gt;　　所以 \(|\bm{a}(t)|^2\) 是常数，当且仅当 \(\bm{a}&#39;(t)\cdot\bm{a}(t)\equiv 0\) 。&lt;/p&gt;
+&lt;p&gt;　　对　　(2)，如果向量函数 \(\bm{a}(t)\) 的方向不变，则有一个固定的单位向量 \(\bm{b}\) ，使得向量函数 \(\bm{a}(t)\) 能够写成&lt;/p&gt;
 &lt;span id=&#34;20241012235743CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}(t)=f(t)\cdot\bm{b}
 \tag{75}
     \]
-&lt;p&gt;  两边乘以 \(\bm{b}\) 并利用单位向量的特性得 \(f(t)=\bm{a}(t)\cdot\bm{b}\) 。其中 \(f(t)\) 是一个处处非零的连续可微函数，因此&lt;/p&gt;
+&lt;p&gt;　　两边乘以 \(\bm{b}\) 并利用单位向量的特性得 \(f(t)=\bm{a}(t)\cdot\bm{b}\) 。其中 \(f(t)\) 是一个处处非零的连续可微函数，因此&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241012235927CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}&#39;(t)=f&#39;(t)\cdot\bm{b}
 \tag{76}
@@ -917,68 +917,68 @@ b_1&#39;(t) &amp; b_2&#39;(t)
 \bm{a}&#39;(t)\times\bm{a}(t)=0
 \tag{77}
     \]&lt;/p&gt;
-&lt;p&gt;  反过来，设 \(\bm{a}&#39;(t)\times\bm{a}(t)=0\) ，令 \(\displaystyle\bm{b}(t)=\frac{\bm{a}(t)}{|\bm{a}(t)|}\) ，有 \(|\bm{b}(t)|=1\) 。我们要证明 \(\bm{b}(t)\) 是常向量函数。因为 \(\bm{b}(t)\) 的长度是 \(1\) ，故由1. 可知 \(\bm{b}&#39;(t)\cdot\bm{b}(t)\equiv 0\) ，即&lt;/p&gt;
+&lt;p&gt;　　反过来，设 \(\bm{a}&#39;(t)\times\bm{a}(t)=0\) ，令 \(\displaystyle\bm{b}(t)=\frac{\bm{a}(t)}{|\bm{a}(t)|}\) ，有 \(|\bm{b}(t)|=1\) 。我们要证明 \(\bm{b}(t)\) 是常向量函数。因为 \(\bm{b}(t)\) 的长度是 \(1\) ，故由　　(1)可知 \(\bm{b}&#39;(t)\cdot\bm{b}(t)\equiv 0\) ，即&lt;/p&gt;
 &lt;span id=&#34;20241013002058CST&#34;&gt;&lt;/span&gt;\[
 \bm{b}&#39;(t)\cdot\bm{a}(t)\equiv 0
 \tag{78}
     \]
-&lt;p&gt;  由 \(\bm{b}(t)\) 的定义得知&lt;/p&gt;
+&lt;p&gt;　　由 \(\bm{b}(t)\) 的定义得知&lt;/p&gt;
 &lt;span id=&#34;20241013000920CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}(t)=f(t)\bm{b}(t)
 \tag{79}
     \]
-&lt;p&gt;  其中 \(f(t)=|\bm{a}(t)|\) 处处不为零，故&lt;/p&gt;
+&lt;p&gt;　　其中 \(f(t)=|\bm{a}(t)|\) 处处不为零，故&lt;/p&gt;
 &lt;span id=&#34;20241013001311CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}&#39;(t)=f&#39;(t)\bm{b}(t)+f(t)\bm{b}&#39;(t)
 \tag{80}
     \]
-&lt;p&gt;  注意由假设条件 \(\bm{a}(t)\times\bm{a}&#39;(t)\equiv 0\) ，因此有&lt;/p&gt;
+&lt;p&gt;　　注意由假设条件 \(\bm{a}(t)\times\bm{a}&#39;(t)\equiv 0\) ，因此有&lt;/p&gt;
 &lt;span id=&#34;20241013001333CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}(t)\times\bm{a}&#39;(t)=f&#39;(t)\bm{a}(t)\times\bm{b}(t)+f(t)\bm{a}(t)\times\bm{b}&#39;(t)=f(t)\bm{a}(t)\times\bm{b}&#39;(t)\equiv\bm{0}
 \tag{81}
     \]
-&lt;p&gt;  故 \(\bm{a}(t)\times\bm{b}&#39;(t)\equiv 0\) ，即 \(\bm{b}&#39;(t)\) 和 \(\bm{a}(t)\) 共线，故存在 \(\lambda(t)\) 使得&lt;/p&gt;
+&lt;p&gt;　　故 \(\bm{a}(t)\times\bm{b}&#39;(t)\equiv 0\) ，即 \(\bm{b}&#39;(t)\) 和 \(\bm{a}(t)\) 共线，故存在 \(\lambda(t)\) 使得&lt;/p&gt;
 &lt;span id=&#34;20241013001927CST&#34;&gt;&lt;/span&gt;\[
 \bm{b}&#39;(t)=\lambda(t)\bm{a}(t)
 \tag{82}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241013002058CST&#34;&gt;式(78)&lt;/a&gt;得&lt;/p&gt;
+&lt;p&gt;　　由&lt;a class=&#34;link&#34; href=&#34;#20241013002058CST&#34;&gt;式(78)&lt;/a&gt;得&lt;/p&gt;
 &lt;span id=&#34;20241013002200CST&#34;&gt;&lt;/span&gt;\[
 \bm{b}&#39;(t)\cdot\bm{a}(t)=\lambda(t)\bm{a}(t)\cdot\bm{a}(t)=\lambda(t)f^2(t) \equiv 0
 \tag{83}
     \]
-&lt;p&gt;   注意 \(f(t)\) 处处不为零，因此 \(\lambda(t)\equiv 0\) ，即&lt;/p&gt;
+&lt;p&gt;　　 注意 \(f(t)\) 处处不为零，因此 \(\lambda(t)\equiv 0\) ，即&lt;/p&gt;
 &lt;span id=&#34;20241013002347CST&#34;&gt;&lt;/span&gt;\[
 \bm{b}&#39;(t)\equiv \bm{0}
 \tag{84}
     \]
-&lt;p&gt;  故 \(\bm{}(t)\) 是常向量，所以向量函数 \(\bm{a}(t)\) 的方向不变。&lt;/p&gt;
-&lt;p&gt;  对3.  ，设有单位常向量 \(\bm{b}\) ，使得 \(\bm{a}(t)\cdot\bm{b}\equiv 0\) 。对此式求导数得到&lt;/p&gt;
+&lt;p&gt;　　故 \(\bm{}(t)\) 是常向量，所以向量函数 \(\bm{a}(t)\) 的方向不变。&lt;/p&gt;
+&lt;p&gt;　　对　　(3) ，设有单位常向量 \(\bm{b}\) ，使得 \(\bm{a}(t)\cdot\bm{b}\equiv 0\) 。对此式求导数得到&lt;/p&gt;
 &lt;span id=&#34;20241013002559CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}&#39;(t)\cdot\bm{b}\equiv 0,\quad \bm{a}&#39;&#39;(t)\cdot\bm{b}\equiv 0
 \tag{85}
     \]
-&lt;p&gt;  因此对于任意 \(t\) ，向量 \(\bm{a}(t),\bm{a}&#39;(t),\bm{a}&#39;&#39;(t)\) 共面，于是&lt;/p&gt;
+&lt;p&gt;　　因此对于任意 \(t\) ，向量 \(\bm{a}(t),\bm{a}&#39;(t),\bm{a}&#39;&#39;(t)\) 共面，于是&lt;/p&gt;
 &lt;span id=&#34;20241013002822CST&#34;&gt;&lt;/span&gt;\[
 ((\bm{a}(t),(\bm{a}&#39;(t),(\bm{a}&#39;&#39;(t))\equiv 0
 \tag{86}
     \]
-&lt;p&gt;  反过来，假定上面的式子成立，则&lt;/p&gt;
+&lt;p&gt;　　反过来，假定上面的式子成立，则&lt;/p&gt;
 &lt;span id=&#34;20241013002834CST&#34;&gt;&lt;/span&gt;\[
 (\bm{a}(t)\times\bm{a}&#39;(t))\cdot\bm{a}&#39;&#39;(t)\equiv 0
 \tag{87}
     \]
-&lt;p&gt;  对于 \(\bm{a}(t)\times\bm{a}&#39;(t)=\bm{0}\) 的情况，由2. 的结论可以得到 \(\bm{a}(t)\) 的方向不变，因此3.  直接成立。对于 \(\bm{a}(t)\times\bm{a}&#39;(t)\ne\bm{0}\) ，令&lt;/p&gt;
+&lt;p&gt;　　对于 \(\bm{a}(t)\times\bm{a}&#39;(t)=\bm{0}\) 的情况，由　　(2)的结论可以得到 \(\bm{a}(t)\) 的方向不变，因此　　(3) 直接成立。对于 \(\bm{a}(t)\times\bm{a}&#39;(t)\ne\bm{0}\) ，令&lt;/p&gt;
 &lt;span id=&#34;20241013003551CST&#34;&gt;&lt;/span&gt;\[
 \bm{b}(t)=\bm{a}&#39;(t)\times\bm{a}(t)
 \tag{88}
     \]
-&lt;p&gt;   \(\bm{b}(t)\) 与 \(\bm{a}(t)\) 垂直。有&lt;/p&gt;
+&lt;p&gt;　　 \(\bm{b}(t)\) 与 \(\bm{a}(t)\) 垂直。有&lt;/p&gt;
 &lt;span id=&#34;20241013005757CST&#34;&gt;&lt;/span&gt;\[
 \bm{b}&#39;(t)=\bm{a}&#39;&#39;(t)\times\bm{a}(t)+\bm{a}&#39;(t)\times\bm{a}&#39;(t)=\bm{a}&#39;&#39;(t)\times\bm{a}(t)
 \tag{89}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“公式”还未上线~&#39;)&#34;&gt;三向量叉乘公式&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241013002834CST&#34;&gt;式(87)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241013003551CST&#34;&gt;式(88)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;　　由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“公式”还未上线~&#39;)&#34;&gt;三向量叉乘公式&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241013002834CST&#34;&gt;式(87)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241013003551CST&#34;&gt;式(88)&lt;/a&gt;&lt;/p&gt;
 &lt;span id=&#34;20241013005840CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \bm{b}(t)\times\bm{b}&#39;(t)=&amp;\bm{b}(t)\times(\bm{a}&#39;&#39;(t)\times\bm{a}(t))\\[5pt]
@@ -989,12 +989,12 @@ b_1&#39;(t) &amp; b_2&#39;(t)
 \end{aligned}
 \tag{90}
     \]
-&lt;p&gt;  根据2. 的结论，向量函数 \(\bm{b}(t)\) 有确定的方向，令 \(\displaystyle\bm{b}_0=\frac{\bm{b}(t)}{|\bm{b}(t)|}\) ，则 \(\bm{b}_0\) 是单位常向量，并且&lt;/p&gt;
+&lt;p&gt;　　根据　　(2)的结论，向量函数 \(\bm{b}(t)\) 有确定的方向，令 \(\displaystyle\bm{b}_0=\frac{\bm{b}(t)}{|\bm{b}(t)|}\) ，则 \(\bm{b}_0\) 是单位常向量，并且&lt;/p&gt;
 &lt;span id=&#34;20241013011539CST&#34;&gt;&lt;/span&gt;\[
 \bm{a}(t)\cdot\bm{b}_0=\frac{\bm{a}(t)\cdot\bm{b}(t)}{|\bm{b}(t)|}\equiv 0
 \tag{91}
     \]
-&lt;p&gt;  证毕。&lt;/p&gt;
+&lt;p&gt;　　证毕。&lt;/p&gt;
 &lt;blockquote&gt;
     &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
 失去人性，失去很多；失去兽性，失去一切。
