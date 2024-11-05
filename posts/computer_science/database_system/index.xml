@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 05 Nov 2024 19:13:34 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 05 Nov 2024 19:15:15 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -2576,7 +2576,7 @@ R \div S = \set{a_1}
 &lt;p&gt;　　PUT语句只对一个关系操作，也就是说表达式必须为单个关系名。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3. 删除操作&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;　　删除操作用\(\text{DELETE}\)语句实现。其步骤为：&lt;br&gt;
-　　(1)用\(\text{HOLD}\)语句把要删除的元组从数据库中读到工作空间中；&lt;br&gt;
+　　(1)用\(\text{HOLD}\)语句把要删除的元组从数据库中读到工作空间中； &lt;br&gt;
 　　(2)用\(\text{DELETE}\)语句删除该元组。&lt;/p&gt;
 &lt;p&gt;　　&lt;span id=&#34;20241028145220CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例32&lt;/strong&gt;：201215230学生因故退学，删除该学生元组。&lt;/p&gt;
 &lt;p&gt;　　\(\text{HOLD W (Student): Student.Sno=&#39;201215230&#39;}\)&lt;br&gt;
@@ -2600,23 +2600,23 @@ R \div S = \set{a_1}
 &lt;/h3&gt;&lt;p&gt;　　为了讨论方便，先允许关系（的基数）是无限的，然后再对这种情况下定义的演算做适当的修改，保证关系演算中各个公式表示的是有限关系。&lt;br&gt;
 　　在元组关系演算系统中，称 \(\set{t|\phi(t)}\) 为&lt;strong&gt;元组演算表达式&lt;/strong&gt;。其中， \(t\) 是元组变量， \(\phi(t)\) 为元组关系演算公式，简称公式，它由原子公式和运算符组成。&lt;br&gt;
 　　原子公式有以下三类：&lt;br&gt;
-　　(1) \(R(t)\) 。 \(R\) 是关系名， \(t\) 是元组变量。 \(R(t)\) 表示 \(t\) 是 \(R\) 中的元组。于是，关系 \(R\) 可表示为 \(\set{t|R(t)}\) 。
-　　(2) \(t[i]\theta u[j]\) 。 \(t\) 和 \(u\) 是元组变量， \(\theta\) 是算数比较运算符。 \(t[i]\theta u[j]\) 表示断言“元组 \(t\) 的第 \(i\) 个分量与元组 \(u\) 的第 \(j\) 个分量满足比较关系 \(\theta\) ”。例如， \(t[2] &lt; u[3] \) 表示元组 \(t\) 的第 \(2\) 个分量小于元组 \(u\) 的第 \(3\) 个分量。
+　　(1) \(R(t)\) 。 \(R\) 是关系名， \(t\) 是元组变量。 \(R(t)\) 表示 \(t\) 是 \(R\) 中的元组。于是，关系 \(R\) 可表示为 \(\set{t|R(t)}\) 。&lt;br&gt;
+　　(2) \(t[i]\theta u[j]\) 。 \(t\) 和 \(u\) 是元组变量， \(\theta\) 是算数比较运算符。 \(t[i]\theta u[j]\) 表示断言“元组 \(t\) 的第 \(i\) 个分量与元组 \(u\) 的第 \(j\) 个分量满足比较关系 \(\theta\) ”。例如， \(t[2] &lt; u[3] \) 表示元组 \(t\) 的第 \(2\) 个分量小于元组 \(u\) 的第 \(3\) 个分量。&lt;br&gt;
 　　(3) \(t[i]\theta c\) 或 \(c\theta t[i]\) 。这里 \(c\) 是常量，该公式表示“ \(t\) 的第 \(i\) 个分量与常量 \(c\) 满足比较关系 \(\theta\) ”。例如， \(t[4]=3\) 表示元组 \(t\) 的第 \(4\) 个分量等于 \(3\) 。&lt;/p&gt;
 &lt;p&gt;　　在关系演算中定义了&amp;quot;自由元组变量”和&amp;quot;约束元组变量”的概念。这些概念和谓词演算中的概念完全一样。若公式中的一个元组变量前有“全称量词”或“存在量词&amp;quot;，则称该变量为&lt;strong&gt;约束元组变量&lt;/strong&gt;，否则称&lt;strong&gt;自由元组变量&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;　　公式可以递归定义如下：&lt;br&gt;
 　　(1)每个原子公式是公式。&lt;br&gt;
-　　(2)如果 \(\phi_1\) 和 \(\phi_2\) 是公式，则 \(\phi_1\land\phi_2\) 、 \(\phi_1\lor\phi_2\) 、 \(\lnot\phi_1\) 是公式。
-　　(1)如果 \(\phi_1\) 和 \(\phi_2\) 同时为真，则 \(\phi_1\land\phi_2\) 才为真，否则为假。
-　　(2)如果 \(\phi_1\) 和 \(\phi_2\) 中一个或同时为真，则 \(\phi_1\lor\phi_2\) 为真，仅当 \(\phi_1\) 和 \(\phi_2\) 同时为假时， \(\phi_1\lor\phi_2\) 才为假。
-　　(3)若 \(\phi_1\) 为真，则 \(\lnot\phi_1\) 为假。
-　　(3)若 \(\phi\) 是公式，则 \(\exist t(\phi)\) 是公式，其中符号 \(\exist\) 是全称量词符号， \(\exist t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\exist t(\phi)\) 为真，否则 \(\exist t(\phi)\) 为假。
-　　(4)若 \(\phi\) 是公式，则 \(\forall t(\phi)\) 是公式，其中符号 \(\forall\) 是全称量词符号， \(\forall t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\forall t(\phi)\) 为真，否则 \(\forall t(\phi)\) 为假。
+　　(2)如果 \(\phi_1\) 和 \(\phi_2\) 是公式，则 \(\phi_1\land\phi_2\) 、 \(\phi_1\lor\phi_2\) 、 \(\lnot\phi_1\) 是公式。&lt;br&gt;
+　　①如果 \(\phi_1\) 和 \(\phi_2\) 同时为真，则 \(\phi_1\land\phi_2\) 才为真，否则为假。&lt;br&gt;
+　　②如果 \(\phi_1\) 和 \(\phi_2\) 中一个或同时为真，则 \(\phi_1\lor\phi_2\) 为真，仅当 \(\phi_1\) 和 \(\phi_2\) 同时为假时， \(\phi_1\lor\phi_2\) 才为假。&lt;br&gt;
+　　③若 \(\phi_1\) 为真，则 \(\lnot\phi_1\) 为假。&lt;br&gt;
+　　(3)若 \(\phi\) 是公式，则 \(\exist t(\phi)\) 是公式，其中符号 \(\exist\) 是全称量词符号， \(\exist t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\exist t(\phi)\) 为真，否则 \(\exist t(\phi)\) 为假。&lt;br&gt;
+　　(4)若 \(\phi\) 是公式，则 \(\forall t(\phi)\) 是公式，其中符号 \(\forall\) 是全称量词符号， \(\forall t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\forall t(\phi)\) 为真，否则 \(\forall t(\phi)\) 为假。&lt;br&gt;
 　　(5)在元组演算公式中，各种运算符的优先次序为：
-　　(1)算术比较运算符最高。
-　　(2)量词次之，且 \(\exist\) 的优先级高于 \(\forall\) 的优先级。
-　　(3)逻辑运算符最低，且 \(\lnot\) 的优先级高于 \(\land\) 的优先级， \(\land\) 的优先级高于 \(\lor\) 的优先级。
-　　(4)加括号时，括号中的运算符优先，同一括号内的运算符之优先级遵循①、②、③各项。
+　　①算术比较运算符最高。&lt;br&gt;
+　　②量词次之，且 \(\exist\) 的优先级高于 \(\forall\) 的优先级。&lt;br&gt;
+　　③逻辑运算符最低，且 \(\lnot\) 的优先级高于 \(\land\) 的优先级， \(\land\) 的优先级高于 \(\lor\) 的优先级。&lt;br&gt;
+　　④加括号时，括号中的运算符优先，同一括号内的运算符之优先级遵循①、②、③各项。&lt;br&gt;
 　　(6)有限次地使用上述5条规则得到的公式是元组关系演算公式，其他公式不是元组关系演算公式。&lt;/p&gt;
 &lt;p&gt;　　一个元组演算表达式 \(\set{t|\phi(t)}\) 表示了使 \(\phi(t)\) 真的元组集合。&lt;/p&gt;
 &lt;p&gt;　　关系代数的运算均可以用关系演算表达式来表示（反之亦然）。下面用关系演算表达式来表示5种基本运算。&lt;/p&gt;
