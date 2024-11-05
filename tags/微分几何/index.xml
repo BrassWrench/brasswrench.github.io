@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 05 Nov 2024 16:37:53 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 05 Nov 2024 16:41:56 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微分几何（二）：曲线论</title>
         <link>https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/curve_theory/</link>
         <pubDate>Mon, 14 Oct 2024 20:01:28 +0800</pubDate>
@@ -1893,7 +1893,7 @@ i(C)=\frac{1}{2\pi}(\theta(b)-\theta(a))
     \]
 &lt;p&gt;  称为连续可谓闭曲线 \(C\) 的&lt;strong&gt;旋转指标&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241104100217CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理16（Hopf Umlaufsatz定理）&lt;/strong&gt;：若 \(C\) 是平面 \(E^2\) 上一条连续可微的简单闭曲线，则它的旋转指标 \(i(C)=\pm 1\) 。&lt;/p&gt;
-&lt;p&gt;  要证明&lt;a class=&#34;link&#34; href=&#34;#20241104100217CST&#34;&gt;Hopf Umlaufsatz定理&lt;/a&gt;，首先证明如下两个引理。&lt;/p&gt;
+&lt;p&gt;  要证明Hopf Umlaufsatz定理，首先证明如下两个引理。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241104191916CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;引理1&lt;/strong&gt;：对于区间 \(I=[a,b]\) ，函数 \(f\in C(I,S^1)\) 满足 \(f(a)=f(b)\) ，则存在 \(\theta\in C(I,\R)\) 使得 \(f(t)=(\cos\theta(t),\sin\theta(t)),\forall t \in I\) 。其中 \(S^1\) 表示以原点为中心的单位圆。并称 \(\cfrac{1}{2\pi}(\theta(b)-\theta(a))\) 为 \(f\) 的&lt;strong&gt;角度改变量&lt;/strong&gt;（注意 \(f(a)=f(b)\) ，因此 \(\theta(b)-\theta(a)\) 必为 \(2\pi\) 的整数倍）。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241104191916CST&#34;&gt;引理1&lt;/a&gt;）&lt;/strong&gt;：任取一点 \(t_0 \in I\) ，由 \(f\) 的连续性，存在 \(\varepsilon_0&gt;0\) 和连续函数 \(\theta_{t_0}\) 使得 \(f(t)=(\cos\theta_{t_0}(t),\sin\theta_{t_0}(t))\) ，对于任意 \(t \in (t_0-\varepsilon_0,t_0+\varepsilon_0)\cap I\) 成立。注意对于所有 \(t_0 \in I\) 都有这样的 \((t_0-\varepsilon_0,t_0+\varepsilon_0)\cap I\) 成立，但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;有限覆盖定理&lt;/a&gt;，存在其中的有限个区间 \(\set{t_i-\varepsilon_i,t_i+\varepsilon_i}_{i=1}^{N}\) 覆盖 \(I\) 。不妨设 \(t_1 &lt; t_2 &lt; \cdots &lt; t_N \) ，记 \(I_i=(t_i-\varepsilon_i,t_i+\varepsilon_i)\) ，则相邻开区间交集非空，并且由 \(f(t),\cos\theta,\sin\theta\) 的连续性可知交集处的 \(f(t)\) 不会出现多值，即 \(f(t)_{t_i}=f(t)_{t_{i+1}},\theta(t)_{t_i}=\theta(t)_{t_{i+1}},t\in I_i \cap I_{i+1} \cap I\) 。定义 \(\theta(t)=\theta_{t_i}(t)\) 当 \( t \in I_i \cap I\) ，则 \(\theta(t)\) 连续，即满足条件的角函数。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241104191920CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;引理2&lt;/strong&gt;：对于区间 \(I=[a,b]\) ，函数 \(f_1,f_2 \in C(I,S^1)\) 满足 \(f_1(a)=f_1(b),f_2(a)=f_2(b)\) 。若 \(f_1\) 与 \(f_2\) 的角度改变量不相等，则存在 \(t_0 \in I\) 使得 \(f_1(t_0)=-f_2(t_0)\) 。相反，若不存在 \(t \in I\) 使得 \(f_1(t)=-f_2(t)\) ，则 \(f_1\) 与 \(f_2\) 角度改变量相等。&lt;/p&gt;
