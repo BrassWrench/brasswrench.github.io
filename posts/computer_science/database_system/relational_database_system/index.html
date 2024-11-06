@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 
-<link rel="stylesheet" href="/scss/style.min.74198a77eb5d3498b194054b56f0e04379f77da7bc85793830ae6362c42fd3c8.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.c990e5fe8e0b2e3936868763c2e45f31b0021b19fd8ce424281cece6de00c270.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="基于关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-06T00:32:34&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-06T14:54:49&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="基于关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -660,6 +660,7 @@
         <li><a href="#域关系演算语言qbe">域关系演算语言QBE</a>
           <ol>
             <li><a href="#检索操作-1">检索操作</a></li>
+            <li><a href="#更新操作-1">更新操作</a></li>
           </ol>
         </li>
       </ol>
@@ -903,8 +904,6 @@
                 
             
             
-                <a id="draft-tag" href="/draft/">草稿</a>
-            
         </header>
     
 
@@ -975,7 +974,7 @@
 </svg>
 
             <time class="article-words">
-                19427 字
+                21190 字
             </time>
         </div>
 
@@ -990,7 +989,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 39 分钟
+                    阅读时长: 43 分钟
                 </time>
             </div>
         
@@ -3864,123 +3863,670 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   操作步骤为：<br>
   ①用户提出要求。<br>
   ②平面显示空白空格。</p>
-<table style="width: 100%; table-layout: fixed;">
-    <tr>
-        <th style="width: 16.67%;">&zwnj;</th>
-        <th style="width: 16.67%;"></th>
-        <th style="width: 16.67%;"></th>
-        <th style="width: 16.67%;"></th>
-        <th style="width: 16.67%;"></th>
-        <th style="width: 16.67%;"></th>
-    </tr>
-    <tr>
-        <td>&zwnj;</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">&zwnj;</th>
+            <th style="width: 16.67%;"></th>
+            <th style="width: 16.67%;"></th>
+            <th style="width: 16.67%;"></th>
+            <th style="width: 16.67%;"></th>
+            <th style="width: 16.67%;"></th>
+        </tr>
+        <tr>
+            <td>&zwnj;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
 <p>  ③用户在最左边一栏输入关系名Student。</p>
-<table style="width: 100%; table-layout: fixed;">
-    <tr>
-        <th style="width: 16.67%;">Student</th>
-        <th style="width: 16.67%;"></th>
-        <th style="width: 16.67%;"></th>
-        <th style="width: 16.67%;"></th>
-        <th style="width: 16.67%;"></th>
-        <th style="width: 16.67%;"></th>
-    </tr>
-    <tr>
-        <td>&zwnj;</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;"></th>
+            <th style="width: 16.67%;"></th>
+            <th style="width: 16.67%;"></th>
+            <th style="width: 16.67%;"></th>
+            <th style="width: 16.67%;"></th>
+        </tr>
+        <tr>
+            <td>&zwnj;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
 <p>  ④系统显示该关系的属性名。</p>
-<table style="width: 100%; table-layout: fixed;">
-    <tr>
-        <th style="width: 16.67%;">Student</th>
-        <th style="width: 16.67%;">Sno</th>
-        <th style="width: 16.67%;">Sname</th>
-        <th style="width: 16.67%;">Ssex</th>
-        <th style="width: 16.67%;">Sage</th>
-        <th style="width: 16.67%;">Sdept</th>
-    </tr>
-    <tr>
-        <td>&zwnj;</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
-<p>  ⑤用户在上面构造查询要求。</p>
-<table style="width: 100%; table-layout: fixed;">
-    <tr>
-        <th style="width: 16.67%;">Student</th>
-        <th style="width: 16.67%;">Sno</th>
-        <th style="width: 16.67%;">Sname</th>
-        <th style="width: 16.67%;">Ssex</th>
-        <th style="width: 16.67%;">Sage</th>
-        <th style="width: 16.67%;">Sdept</th>
-    </tr>
-    <tr>
-        <td>&zwnj;</td>
-        <td></td>
-        <td>P.<u>T</u></td>
-        <td></td>
-        <td></td>
-        <td>IS</td>
-    </tr>
-</table>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>&zwnj;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p>  ⑤用户在上面构造查询要求</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>&zwnj;</td>
+            <td></td>
+            <td>P.<u>T</u></td>
+            <td></td>
+            <td></td>
+            <td>IS</td>
+        </tr>
+    </table>
+</div>
 <p>  这里 \(T\) 是示例元素，即域变量。QBE要求示例元素下面一定要加下划线。IS是查询条件，不用加下划线。P.是操作符，表示打印（Print），实际上是显示。<br>
   查询条件中可以使用比较运算符 \(>\)，\(\ge\)，\(<\)，\(\le\)，\(=\) 和 \(\ne\) ，其中 \(=\) 可以省略。<br>
   示例元素是这个域中可能的一个值，它不必是查询结果中的元素。比如要求信息系的学生，只要给出任意的一个学生名即可，而不必真是信息系的某个学生名。<br>
   对于<a class="link" href="#20241105222703CST">例39</a>，可如下构造查询要求：</p>
-<table style="width: 100%; table-layout: fixed;">
-    <tr>
-        <th style="width: 16.67%;">Student</th>
-        <th style="width: 16.67%;">Sno</th>
-        <th style="width: 16.67%;">Sname</th>
-        <th style="width: 16.67%;">Ssex</th>
-        <th style="width: 16.67%;">Sage</th>
-        <th style="width: 16.67%;">Sdept</th>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td>P.<u>李勇</u></td>
-        <td></td>
-        <td></td>
-        <td>IS</td>
-    </tr>
-</table>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>P.<u>李勇</u></td>
+            <td></td>
+            <td></td>
+            <td>IS</td>
+        </tr>
+    </table>
+</div>
 <p>  这里的查询条件是 \(\text{Sdept}=\text{'IS'}\) ，其中“\(=\)”被省略。<br>
   ⑥屏幕显示查询结果。</p>
-<table style="width: 100%; table-layout: fixed;">
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>张立</td>
+            <td></td>
+            <td></td>
+            <td>IS</td>
+        </tr>
+    </table>
+</div>
+<p>  即根据用户的查询要求求出了信息系的学生姓名。</p>
+<p>  <span id="20241106104701CST"></span><strong>例40</strong>：查询全体学生的全部数据。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>P.<u>201215121</u></td>
+            <td>P.<u>李勇</u></td>
+            <td>P.<u>男</u></td>
+            <td>P.<u>20</u></td>
+            <td>P.<u>CS</u></td>
+        </tr>
+    </table>
+</div>
+<p>  显示全部数据也可以简单地把P.操作符作用在关系名上。因此本查询也可以简单地表示如下：</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>P.</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>IS</td>
+        </tr>
+    </table>
+</div>
+<p><strong>2. 条件查询</strong></p>
+<p>  <span id="20241106133514CST"></span><strong>例41</strong>：求年龄大于19岁的学生的学号。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>P.<u>201215121</u></td>
+            <td></td>
+            <td></td>
+            <td>>19</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p>  <span id="20241106133714CST"></span><strong>例42</strong>：求计算机科学系年龄大于19岁的学生的学号。<br>
+  本查询的条件是 \(\text{Sdept}=\text{'CS'}\) ，和 \(\text{Sage>19}\) 两个条件的“与”。在QBE中，表示两个条件的“与”有两种方法：<br>
+  ①把两个条件写在同一行上</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>P.<u>201215121</u></td>
+            <td></td>
+            <td></td>
+            <td>>19</td>
+            <td>CS</td>
+        </tr>
+    </table>
+</div>
+<p>  ②把两个条件写在不同行上，但是用相同的示例元素值。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>P.<u>201215121</u></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>CS</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>P.<u>201215121</u></td>
+            <td></td>
+            <td></td>
+            <td>>19</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p>  <span id="20241106134114CST"></span><strong>例43</strong>：查询计算机科学系或者年龄大于19岁的学生的学号。<br>
+  本查询的条件是 \(\text{Sdept}=\text{'CS'}\) ，和 \(\text{Sage>19}\) 两个条件的“或”。在QBE中把两个条件写在不同行上，并且使用不同的示例元素值，即表示条件的“或”。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed; margin: auto;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>P.<u>201215121</u></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>CS</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>P.<u>201215122</u></td>
+            <td></td>
+            <td></td>
+            <td>>19</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p>  对于多行条件的查询，<a class="link" href="#20241106133714CST">例42</a>②和<a class="link" href="#20241106134114CST">例43</a>，先输入哪一行是任意的，不影响查询结果，这就允许用户以不同的思考方式进行查询，十分灵活、自由。<br>
+  <span id="20241106134434CST"></span><strong>例44</strong>：查询既选修了1号课程又选修了2号课程的学生的学号。<br>
+  本查询条件是在一个属性中的“与”关系，它只能用“与”条件的第②种方法表示，即写两行，但示例元素相同。</p>
+<div class="normal-table">
+    <table style="width: 66.68%; table-layout: fixed; margin: auto;">
+        <tr>
+            <th style="width: 16.67%;">SC</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Cno</th>
+            <th style="width: 16.67%;">Grade</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>P.<u>201215121</u></td>
+            <td>1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>P.<u>201215121</u></td>
+            <td>2</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p>  <span id="20241106135021CST"></span><strong>例45</strong>：查询选修1号课程的学生姓名。<br>
+  本查询涉及两个关系：SC和Student。在QBE中实现这种查询的方法是通过相同的连接属性值把多个关系连接起来。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><u>201215121</u></td>
+            <td>P.<u>李勇</u></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div class="normal-table">
+<table style="width: 66.68%; table-layout: fixed; margin: auto;">
     <tr>
-        <th style="width: 16.67%;">Student</th>
+        <th style="width: 16.67%;">SC</th>
         <th style="width: 16.67%;">Sno</th>
-        <th style="width: 16.67%;">Sname</th>
-        <th style="width: 16.67%;">Ssex</th>
-        <th style="width: 16.67%;">Sage</th>
-        <th style="width: 16.67%;">Sdept</th>
+        <th style="width: 16.67%;">Cno</th>
+        <th style="width: 16.67%;">Grade</th>
     </tr>
     <tr>
         <td></td>
+        <td><u>201215121</u></td>
+        <td>1</td>
         <td></td>
-        <td>张立</td>
-        <td></td>
-        <td></td>
-        <td>IS</td>
     </tr>
 </table>
+</div>
+<p>  这里示例元素 \(\text{Sno}\) 是连接属性，其值在两个表中要相同。</p>
+<p>  <span id="20241106141503CST"></span><strong>例46</strong>：查询未选修1号课程的学生姓名。</p>
+<p>  这里的查询条件中用到逻辑非。在QBE中表示逻辑非的方法是将逻辑非写在关系名下面。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><u>201215121</u></td>
+            <td>P.<u>李勇</u></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><u>201215122</u></td>
+            <td>P.<u>王勇</u></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div class="normal-table">
+<table style="width: 66.68%; table-layout: fixed; margin: auto;">
+    <tr>
+        <th style="width: 16.67%;">SC</th>
+        <th style="width: 16.67%;">Sno</th>
+        <th style="width: 16.67%;">Cno</th>
+        <th style="width: 16.67%;">Grade</th>
+    </tr>
+    <tr>
+        <td>\(\lnot\)</td>
+        <td><u>201215121</u></td>
+        <td>1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>\(\lnot\)</td>
+        <td><u>201215122</u></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</div>
+<p>  注意除了该学生选的课程里没有1号课程，还有一种可能就是该学生什么课程都没有选修，因此还需要加上下面那一行查询条件。</p>
+<p>  <span id="20241106142418CST"></span><strong>例47</strong>：查询有两个人以上选修的课程号。<br>
+  本查询是在一个表内连接。这个查询就是要显示这样的课程<u>1</u>，它不仅被<u>201215121</u>选修，而且也被另一个不是<u>201215121</u>学生（\(\lnot\)<u>201215121</u>）选修了。</p>
+<div class="normal-table">
+<table style="width: 66.68%; table-layout: fixed; margin: auto;">
+    <tr>
+        <th style="width: 16.67%;">SC</th>
+        <th style="width: 20%;">Sno</th>
+        <th style="width: 16.67%;">Cno</th>
+        <th style="width: 16.67%;">Grade</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td><u>201215121</u></td>
+        <td>P.<u>1</u></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>\(\lnot\)<u>201215121</u></td>
+        <td><u>1</u></td>
+        <td></td>
+    </tr>
+</table>
+</div>
+<p><strong>3. 聚集函数</strong></p>
+<p>  为了方便用户，QBE提供了一些聚集函数，主要包括CNT、SUM、AVG、MAX、MIN 等，其含义如<a class="link" href="#20241106142952CST">表7</a>所示。</p>
+<span id="20241106142952CST"></span><div class="normal-table"><p>：查询信息系嘘声的平均年龄</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>函数名</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CNT</td>
+          <td>对元组计数</td>
+      </tr>
+      <tr>
+          <td>SUM</td>
+          <td>求总和</td>
+      </tr>
+      <tr>
+          <td>AVG</td>
+          <td>求平均值</td>
+      </tr>
+      <tr>
+          <td>MAX</td>
+          <td>求最大值</td>
+      </tr>
+      <tr>
+          <td>MIN</td>
+          <td>求最小值</td>
+      </tr>
+  </tbody>
+</table></div></div>
+<p>  <span id="20241106143224CST"></span><strong>例48</strong>：查询信息系学生的平均年龄。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>&zwnj;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>P.AVG.ALL.</td>
+            <td>IS</td>
+        </tr>
+    </table>
+</div>
+<p><strong>4. 对查询结果进行排序</strong></p>
+<p>  对查询结果按某个属性值的升序排序，只需在相应列中填入“AO.”，按降序排序则填“DO.”。如果按多列排序，用AO(i).或DO(i).表示，其中i为排序的优先级，i值越小，优先级越高。</p>
+<p>  <span id="20241106143817CST"></span><strong>例49</strong>：查全体男生的姓名，要求查询结果按所在系升序排序，对相同系的学生按年龄降序排序。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>&zwnj;</td>
+            <td></td>
+            <td>P.<u>李勇</u></td>
+            <td>男</td>
+            <td>DO(2).</td>
+            <td>AO(1).</td>
+        </tr>
+    </table>
+</div>
+<h4 id="更新操作-1">更新操作
+</h4><p><strong>1. 修改操作</strong></p>
+<p>  修改操作符为“U.”。在QBE中关系的主码不允许修改，如需修改某个元组的主码，只能先删除该元组，然后再插入新的主码的元组。</p>
+<p>  <span id="20241106144204CST"></span><strong>例50</strong>：把201215121学生的年龄改为18岁。<br>
+  这是一个简单修改操作，不包含算术表达式，因此可以有两种表示方法：<br>
+  ①将操作符“U.”放在值上。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>&zwnj;</td>
+            <td>201215121</td>
+            <td></td>
+            <td></td>
+            <td>U.18</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p>  ②将操作符“U.”放在关系上。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>&zwnj;U.</td>
+            <td>201215121</td>
+            <td></td>
+            <td></td>
+            <td>18</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p>  这里，码201215121标明要修改的元组。&ldquo;U.&ldquo;标明所在的行是修改后的新值。由于主码是不能修改的，所以即使在第二种写法中，系统也不会混淆要修改的属性。</p>
+<p>  <span id="20241106144435CST"></span><strong>例51</strong>：把201215121学生的年龄增加1岁。<br>
+  这个修改操作涉及表达式，所以只能将操作符&quot;U.&ldquo;放在关系上。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>&zwnj;</td>
+            <td>201215121</td>
+            <td></td>
+            <td></td>
+            <td><u>17</u></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>U.&zwnj;</td>
+            <td>201215121</td>
+            <td></td>
+            <td></td>
+            <td><u>17</u>+1</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p>  <span id="20241106144602CST"></span><strong>例52</strong>将计算机科学系所有学生的年龄都增加一岁。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>&zwnj;</td>
+            <td><u>201215128</u></td>
+            <td></td>
+            <td></td>
+            <td><u>18</u></td>
+            <td>CS</td>
+        </tr>
+        <tr>
+            <td>U.&zwnj;</td>
+            <td><u>201215128</u></td>
+            <td></td>
+            <td></td>
+            <td><u>18</u>+1</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p><strong>2. 插入操作</strong></p>
+<p>  插入操作符为&quot;I&rdquo;。新插入的元组必须具有码值，其他属性值可以为空。</p>
+<p>  <span id="20241106144833CST"></span><strong>例53</strong>：把信息系女生201215801，姓名张三，年龄17岁存入数据库中。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>I.</td>
+            <td>201215801</td>
+            <td>张三</td>
+            <td>女</td>
+            <td>17</td>
+            <td>IS</td>
+        </tr>
+    </table>
+</div>
+<p><strong>3. 删除操作</strong></p>
+<p>  删除操作符为“D.”。</p>
+<p><span id="20241106145140CST"></span><strong>例54</strong>：删除学生201215189。</p>
+<div class="normal-table">
+    <table style="width: 100%; table-layout: fixed;">
+        <tr>
+            <th style="width: 16.67%;">Student</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Sname</th>
+            <th style="width: 16.67%;">Ssex</th>
+            <th style="width: 16.67%;">Sage</th>
+            <th style="width: 16.67%;">Sdept</th>
+        </tr>
+        <tr>
+            <td>D.</td>
+            <td>201215189</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<p>  由于SC关系与Student关系之间具有参照关系，为保证参照完整性，删除201215189学生后，通常还应删除201215189学生选修的全部课程。</p>
+<div class="normal-table">
+    <table style="width: 66.68%; table-layout: fixed; margin: auto;">
+        <tr>
+            <th style="width: 16.67%;">SC</th>
+            <th style="width: 16.67%;">Sno</th>
+            <th style="width: 16.67%;">Cno</th>
+            <th style="width: 16.67%;">Grade</th>
+        </tr>
+        <tr>
+            <td>D.</td>
+            <td>201215189</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
 <blockquote>
     <p><div style="text-align: center;">
 无言是最大的轻蔑。
@@ -4027,7 +4573,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 
 
         <span>
-            最后更新于 Nov 06, 2024 00:32 CST
+            最后更新于 Nov 06, 2024 14:54 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4186,7 +4732,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
             
             
         
-        <span>本图书馆累计发布了11篇文章 共126705字</span>
+        <span>本图书馆累计发布了11篇文章 共128468字</span>
     </section>
 
     <section class="site-visit-count">
