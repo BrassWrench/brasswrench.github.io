@@ -131,7 +131,7 @@
 <meta property='og:description' content="操作系统中关于进程的定义、控制、同步与线程的实现方法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/operating_system/process_description_and_control/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-06T20:10:23&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-06T23:31:42&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="操作系统（二）：进程的描述与控制">
 <meta name="twitter:description" content="操作系统中关于进程的定义、控制、同步与线程的实现方法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -616,7 +616,38 @@
             <li><a href="#程序并发执行时的特征">程序并发执行时的特征</a></li>
           </ol>
         </li>
-        <li><a href="#进程的描述">进程的描述</a></li>
+      </ol>
+    </li>
+    <li><a href="#进程的描述">进程的描述</a>
+      <ol>
+        <li><a href="#进程的定义和特征">进程的定义和特征</a>
+          <ol>
+            <li><a href="#进程的定义">进程的定义</a></li>
+            <li><a href="#进程的特征">进程的特征</a></li>
+          </ol>
+        </li>
+        <li><a href="#进程的基本状态及转换">进程的基本状态及转换</a>
+          <ol>
+            <li><a href="#进程的三种基本状态">进程的三种基本状态</a></li>
+            <li><a href="#三种基本状态的转换">三种基本状态的转换</a></li>
+            <li><a href="#创建状态和终止状态">创建状态和终止状态</a></li>
+          </ol>
+        </li>
+        <li><a href="#挂起操作和进程状态的转换">挂起操作和进程状态的转换</a>
+          <ol>
+            <li><a href="#挂起操作的引入">挂起操作的引入</a></li>
+            <li><a href="#引入挂起原语操作后三个进程状态的转换">引入挂起原语操作后三个进程状态的转换</a></li>
+            <li><a href="#引入挂起操作后五个进程状态的转换">引入挂起操作后五个进程状态的转换</a></li>
+          </ol>
+        </li>
+        <li><a href="#进程管理中的数据结构">进程管理中的数据结构</a>
+          <ol>
+            <li><a href="#操作系统中用于管理控制的数据结构">操作系统中用于管理控制的数据结构</a></li>
+            <li><a href="#进程控制块pcb的作用">进程控制块PCB的作用</a></li>
+            <li><a href="#进程控制块中的信息">进程控制块中的信息</a></li>
+            <li><a href="#进程控制块的组织方式">进程控制块的组织方式</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -930,7 +961,7 @@
 </svg>
 
             <time class="article-words">
-                3229 字
+                10719 字
             </time>
         </div>
 
@@ -945,7 +976,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 7 分钟
+                    阅读时长: 22 分钟
                 </time>
             </div>
         
@@ -986,13 +1017,13 @@
 <h2 id="前趋图和程序执行">前趋图和程序执行
 </h2><p>  在早期未配置OS的系统和单道批处理系统中，程序的执行方式是顺序执行，即在内存中仅装入一道用户程序：由它独占系统中的所有资源，只有在一个用户程序执行完成后，才允许装入另一个程序并执行。可见，这种方式浪费资源、系统运行效率低等缺点。而在多道程序系统中，由于内存中可以同时装入多个程序，使它们共享系统资源，并发执行，显然可以克服上述缺点。程序的这两种执行方式间有着显著的不同，尤其是考虑到程序并发执行时的特征，才导致了在操作系统中引入进程的概念。因此，这里有必要先对程序的顺序和并发执行方式做简单的描述。</p>
 <h3 id="前趋图">前趋图
-</h3><p>  为了能更好地描述程序的顺序和并发执行情况，我们先介绍用于描述程序执行先后顺序的前趋图。所谓<strong>前趋图（Precedence Graph）</strong>，是指一个有向无循环图，可记为<strong>DAG（Directed Acyclic Graph）</strong>,它用于描述进程之间执行的先后顺序。图中的每个结点可用来表示一个进程或程序段，乃至一条语句，结点间的有向边则表示两个结点之间存在的<strong>偏序（Partial Order）</strong>‌或<strong>前趋关系（Precedence Relation）</strong>。<br>
+</h3><p>  为了能更好地描述程序的顺序和并发执行情况，我们先介绍用于描述程序执行先后顺序的前趋图。所谓<strong>前趋图（Precedence Graph）</strong>，是指一个有向无循环图，可记为<strong>DAG（Directed Acyclic Graph）</strong>，它用于描述进程之间执行的先后顺序。图中的每个结点可用来表示一个进程或程序段，乃至一条语句，结点间的有向边则表示两个结点之间存在的<strong>偏序（Partial Order）</strong>‌或<strong>前趋关系（Precedence Relation）</strong>。<br>
   进程（或程序）之间的前趋关系可用“\(\to\)”来表示，如果进程和号存在着前趋关系，可表示为 \((P_i,P_j)\in\to\) ，也可写成 \(P_i\to P_j\) 表示在 \(P_j\) 开始执行之前 \(P_i\) 必须完成。此时称 \(P_i\) 是 \(P_j\) 的<strong>直接前趋</strong>，而称 \(P_j\) 是 \(P_i\) 的直接后继。在前趋图中，把没有前趋的结点称为<strong>初始结点（Initial Node）</strong>，把没有后继的结点称为<strong>终止结点（Final Node）</strong>。此外，每个结点还具有一个<strong>重量（Weight）</strong>，用于表示该结点所含有的程序量或程序的执行时间。在<a class="link" href="#20241106181930CST">图1</a>(a)所示的前趋图中，存在着如下前趋关系：<br>
   \(P_1\to P_2,P_1\to P_3,P_1\to P_4,P_2\to P_5,P_3\to P_5,P_4\to P_6,P_4\to P_7,P_5\to P_8,P_6\to P_8,P_7\to P_9,P_8\to P_9\)<br>
   或表示为：<br>
   \(P=\set{P_1,P_2,P_3,P_4,P_5,P_6,P_7,P_8,P_9}\)<br>
    \(=\set{(P_1,P_2),(P_1,P_3),(P_1,P_4),(P_2,P_5),(P_3,P_5),(P_4,P_6),(P_4,P_7),(P_5,P_8),(P_6,P_8),(P_7,P_9),(P_8,P_9)}\)<br>
-  应当注意，前趋图中是不允许有循环的，否则必然会产生不可能实现的前趋关系。如<a class="link" href="#20241106181930CST">图1</a>(b)所示的前趋关系中就存在着循环。它一方面要求在 \(S_3\) 开始执行之前， \(S_2\) 必须完成, 另一方面又要求在 \(S_2\) 开始执行之前， \(S_1\) 必须完成。显然，这种关系是不可能实现的。<br>
+  应当注意，前趋图中是不允许有循环的，否则必然会产生不可能实现的前趋关系。如<a class="link" href="#20241106181930CST">图1</a>(b)所示的前趋关系中就存在着循环。它一方面要求在 \(S_3\) 开始执行之前， \(S_2\) 必须完成，另一方面又要求在 \(S_2\) 开始执行之前， \(S_1\) 必须完成。显然，这种关系是不可能实现的。<br>
   \(S_2\to S_3,S_3\to S_2\)</p>
 <span id="20241106181930CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
@@ -1146,7 +1177,7 @@
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;前趋图</p>
 <h3 id="程序顺序执行">程序顺序执行
 </h3><h4 id="程序的顺序执行">程序的顺序执行
-</h4><p>  通常，一个应用程序由若干个程序段组成，每一个程序段完成特定的功能，它们在执行时，都需要按照某种先后次序顺序执行，仅当前一程序段执行完后，才运行后一程序段。例如，在进行计算时，应先运行输入程序，用于输入用户的程序和数据；然后运行计算程序，对所输入的数据进行计算；最后才是运行打印程序，打印计算结果。我们用<strong>结点（Node）</strong>‌代表各程序段的操作（在<a class="link" href="#20241106181930CST">图1</a>中用圆圈表示），其中 \(I\) 代表输入操作， \(C\) 代表计算操作， \(P\) 为打印操作，用箭头指示操作的先后次序。这样，上述的三个程序段间就存在着这样的前趋关系： \(I_i\to C_i \to P_i\) ,其执行的顺序可用前趋图<a class="link" href="#20241106190822CST">图2</a>(a)描述。</p>
+</h4><p>  通常，一个应用程序由若干个程序段组成，每一个程序段完成特定的功能，它们在执行时，都需要按照某种先后次序顺序执行，仅当前一程序段执行完后，才运行后一程序段。例如，在进行计算时，应先运行输入程序，用于输入用户的程序和数据；然后运行计算程序，对所输入的数据进行计算；最后才是运行打印程序，打印计算结果。我们用<strong>结点（Node）</strong>‌代表各程序段的操作（在<a class="link" href="#20241106181930CST">图1</a>中用圆圈表示），其中 \(I\) 代表输入操作， \(C\) 代表计算操作， \(P\) 为打印操作，用箭头指示操作的先后次序。这样，上述的三个程序段间就存在着这样的前趋关系： \(I_i\to C_i \to P_i\) ，其执行的顺序可用前趋图<a class="link" href="#20241106190822CST">图2</a>(a)描述。</p>
 <span id="20241106190822CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 104.7761">
@@ -1236,7 +1267,7 @@
   \(S_1\): a :=x+y;<br>
   \(S_2\): b :=a+5;<br>
   \(S_3\): c :=b+1;<br>
-  其中，语句 \(S_2\) 必须在语句 \(S_1\) 后即（a被赋值）才能执行,语句 \(S_3\) 也只能在b被赋值后才能执行, 因此，三条语句存在着这样的前趋关系： \(S_1\to S_2 \to S_3\) ,应按前趋图<a class="link" href="#20241106190822CST">图2</a>(b)所示的顺序执行。</p>
+  其中，语句 \(S_2\) 必须在语句 \(S_1\) 后即（a被赋值）才能执行，语句 \(S_3\) 也只能在b被赋值后才能执行，因此，三条语句存在着这样的前趋关系： \(S_1\to S_2 \to S_3\) ，应按前趋图<a class="link" href="#20241106190822CST">图2</a>(b)所示的顺序执行。</p>
 <h4 id="程序顺序执行时的特征">程序顺序执行时的特征
 </h4><p>  由上所述可以得知，在程序顺序执行时，具有这样三个特征：①顺序性：指处理机严格地按照程序所规定的顺序执行，即每一操作必须在下一个操作开始之前结束；② 封闭性：指程序在封闭的环境下运行，即程序运行时独占全机资源，资源的状态（除初始状态外）只有本程序才能改变它，程序一旦开始执行，其执行结果不受外界因素影响；③可再现性：指只要程序执行时的环境和初始条件相同，当程序重复执行时，不论它是从头到尾不停顿地执行，还是“停停走走”地执行，都可获得相同的结果。程序顺序执行时的这种特性，为程序员检测和校正程序的错误带来了很大的方便。</p>
 <h3 id="程序并发执行">程序并发执行
@@ -1472,10 +1503,625 @@
 </h4><p>  在引入了程序间的并发执行功能后，虽然提高了系统的吞吐量和资源利用率，但由于它们共享系统资源，以及它们为完成同一项任务而相互合作，致使在这些并发执行的程序之间必将形成相互制约的关系，由此会给程序并发执行带来新的特征。<br>
   (1)间断性。程序在并发执行时，由于它们共享系统资源，以及为完成同一项任务而相互合作，致使在这些并发执行的程序之间形成了相互制约的关系。例如，<a class="link" href="#20241106194040CST">图3</a>中的 \(I\) 、 \(C\) 和 \(P\) 是三个相互合作的程序，当计算程序完成 \(C_{i-1}\) 的计算后，如果输入程序 \(I_i\) 尚未完成数据的输入，则计算程序 \(C_i\) 就无法进行数据处理，必须暂停运行。只有当使程序暂停的因素消失后（如 \(I_i\) 己完成数据输入），计算程序 \(C_i\) 便可恢复执行。由此可见，相互制约将导致并发程序具有&quot;执行一暂停——执行”这种间断性的活动规律。<br>
   (2)失去封闭性。当系统中存在着多个可以并发执行的程序时，系统中的各种资源将为它们所共享，而这些资源的状态也由这些程序来改变，致使其中任一程序在运行时，其环境都必然会受到其它程序的影响。例如，当处理机已被分配给某个进程运行时，其它程序必须等待。显然，程序的运行已失去了封闭性。<br>
-  (3)不可再现性。程序在并发执行时，由于失去了封闭性，也将导致其又失去可再现性。例如，有两个循环程序 \(A\) 和 \(B\) ，它们共享一个变量 \(N\) 。程序 \(A\) 每执行一次时，都要做 \(N=N+1\) 操作；程序 \(B\) 每执行一次时，都要执行 \(\text{Print}(N)\) 操作，然后再将 \(N\) 置成“\(0\)”。程序 \(A\) 和 \(B\) 以不同的速度运行。这样，可能出现下述三种情况（假定某时刻变量 \(N\) 的值为 \(n\) ）：① \(N=N+1\) 在 \(\text{Print}(N)\) 和 \(N=0\) 之前，此时得到的N值分别为 \(n,n+1,0\) 。② \(N=N+1\) 在 \(\text{Print}(N)\) 和 \(N=0\) 之后，此时得到的 \(N\) 值分别为 \(n,0,1\) 。③ \(N=N+1\) 在 \(\text{Print}(N)\) 和 \(N=0\) 之间，此时得到的 \(N\) 值分别为 \(n,n+1,0\) 。<br>
+  (3)不可再现性。程序在并发执行时，由于失去了封闭性，也将导致其又失去可再现性。例如，有两个循环程序 \(A\) 和 \(B\) ，它们共享一个变量 \(N\) 。程序 \(A\) 每执行一次时，都要做 \(N=N+1\) 操作；程序 \(B\) 每执行一次时，都要执行 \(\text{Print}(N)\) 操作，然后再将 \(N\) 置成“\(0\)”。程序 \(A\) 和 \(B\) 以不同的速度运行。这样，可能出现下述三种情况（假定某时刻变量 \(N\) 的值为 \(n\) ）：<br>
+  ① \(N=N+1\) 在 \(\text{Print}(N)\) 和 \(N=0\) 之前，此时得到的N值分别为 \(n,n+1,0\) 。<br>
+  ② \(N=N+1\) 在 \(\text{Print}(N)\) 和 \(N=0\) 之后，此时得到的 \(N\) 值分别为 \(n,0,1\) 。<br>
+  ③ \(N=N+1\) 在 \(\text{Print}(N)\) 和 \(N=0\) 之间，此时得到的 \(N\) 值分别为 \(n,n+1,0\) 。<br>
   上述情况说明，程序在并发执行时，由于失去了封闭性，其计算结果必将与并发程序的执行速度有关，从而使程序的执行失去了可再现性。换而言之，程序经过多次执行后，虽然它们执行时的环境和初始条件相同，但得到的结果却各不相同。</p>
-<h3 id="进程的描述">进程的描述
-</h3>
+<h2 id="进程的描述">进程的描述
+</h2><h3 id="进程的定义和特征">进程的定义和特征
+</h3><h4 id="进程的定义">进程的定义
+</h4><p>  在多道程序环境下，程序的执行属于并发执行，此时它们将失去其封闭性，并具有间断性，以及其运行结果不可再现性的特征。由此，决定了通常的程序是不能参与并发执行的，否则，程序的运行也就失去了意义。为了能使程序并发执行，并且可以对并发执行的程序加以描述和控制，人们引入了“进程”的概念。<br>
+  为了使参与并发执行的每个程序（含数据）都能独立地运行，在操作系统中必须为之配置一个专门的数据结构，称为<strong>进程控制块（Process Control Block,PCB）</strong>。系统利用PCB来描述进程的基本情况和活动过程，进而控制和管理进程。这样，由程序段、相关的数据段和PCB三部分便构成了<strong>进程实体</strong>（又称<strong>进程映像</strong>）。一般情况下，我们把进程实体就简称为<strong>进程</strong>，例如，所谓创建进程，实质上是创建进程实体中的PCB；而撤消进程，实质上是撤消进程的PCB，本教材中也是如此。</p>
+<p>  对于进程的定义，从不同的角度可以有不同的定义，其中较典型的定义有：<br>
+  (1)进程是程序的一次执行。<br>
+  (2)进程是一个程序及其数据在处理机上顺序执行时所发生的活动。<br>
+  (3)进程是具有独立功能的程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。</p>
+<p>  在引入了进程实体的概念后，我们可以把传统OS中的进程定义为：“进程是进程实体的运行过程，是系统进行资源分配和调度的一个独立单位。”</p>
+<h4 id="进程的特征">进程的特征
+</h4><p>  进程和程序是两个截然不同的概念，除了进程具有程序所没有的PCB结构外，还具有下面一些特征：<br>
+  (1)动态性。进程的实质是进程实体的执行过程，因此，动态性就是进程的最基本的特征。动态性还表现在：“它由创建而产生，由调度而执行，由撤消而消亡。”可见，进程实体有一定的生命期，而程序则只是一组有序指令的集合，并存放于某种介质上，其本身并不具有活动的含义，因而是静态的。<br>
+  (2)并发性。是指多个进程实体同存于内存中，且能在一段时间内同时运行。引入进程的目的也正是为了使其进程实体能和其它进程实体并发执行。因此，并发性是进程的另一重要特征，同时也成为OS的重要特征。而程序(没有建立PCB)是不能参与并发执行的。<br>
+  (3)独立性。在传统的OS中，独立性是指进程实体是一个能独立运行、独立获得资源和独立接受调度的基本单位。凡未建立PCB的程序都不能作为一个独立的单位参与运行。<br>
+  (4)异步性，是指进程是按异步方式运行的，即按各自独立的、不可预知的速度向前推进。正是源于此因，才导致了传统意义上的程序若参与并发执行，会产生其结果的不可再现性。为使进程在并发运行时虽具有异步性，但仍能保证进程并发执行的结果是可再现的，在OS中引进了进程的概念，并且配置相应的进程同步机制。</p>
+<h3 id="进程的基本状态及转换">进程的基本状态及转换
+</h3><h4 id="进程的三种基本状态">进程的三种基本状态
+</h4><p>  由于多个进程在并发执行时共享系统资源，致使它们在运行过程中呈现间断性的运行规律，所以进程在其生命周期内可能具有多种状态。一般而言，每一个进程至少应处于以下三种基本状态之一：<br>
+  (1)就绪（Ready）状态。这是指进程已处于准备好运行的状态，即进程已分配到除CPU以外的所有必要资源后，只要再获得CPU，便可立即执行。如果系统中有许多处于就绪状态的进程，通常将它们按一定的策略（如优先级策略）排成一个队列，称该队列为<strong>就绪队列</strong>。<br>
+  (2)执行（Running）状态。这是指进程已获得CPU，其程序正在执行的状态。对任何一个时刻而言，在单处理机系统中，只有一个进程处于执行状态，而在多处理机系统中，则有多个进程处于执行状态。<br>
+  (3)阻塞（Block）状态。这是指正在执行的进程由于发生某事件（如I/O请求、申请缓冲区失败等）暂时无法继续执行时的状态，亦即进程的执行受到阻塞。此时引起进程调度，OS把处理机分配给另一个就绪进程，而让受阻进程处于暂停状态，一般将这种暂停状态称为<strong>阻塞状态</strong>，有时也称为等待状态或封锁状态。通常系统将处于阻塞状态的进程也排成一个队列，称该队列为<strong>阻塞队列</strong>。实际上，在较大的系统中，为了减少队列操作的开销，提高系统效率，根据阻塞原因的不同，会设置多个阻塞队列。</p>
+<h4 id="三种基本状态的转换">三种基本状态的转换
+</h4><p>  进程在运行过程中会经常发生状态的转换。例如，处于就绪状态的进程，在调度程序为之分配了处理机之后便可执行，相应地，其状态就由就绪态转变为执行态；正在执行的进程（当前进程）如果因分配给它的时间片己完而被剥夺处理机暂停执行时，其状态便由执行转为就绪：如果因发生某事件，致使当前进程的执行受阻（例如进程访问某临界资源，而该资源正被其它进程访问时），使之无法继续执行，则该进程状态将由执行转变为阻塞。<a class="link" href="#20241106211555CST">图5</a>示出了进程的三种基本状态，以及各状态之间的转换关系。</p>
+<span id="20241106211555CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 222.6533">
+  <g>
+    <text transform="translate(269.9534 201.4224)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">阻塞</tspan></text>
+    <circle cx="287.9533" cy="193.7009" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(457.1911 201.4224)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">执行</tspan></text>
+    <circle cx="475.1911" cy="193.7009" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(363.5722 39.2697)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">就绪</tspan></text>
+    <circle cx="381.5722" cy="31.5483" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(311.2474 139.2873) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">I/O完成</tspan></text>
+  <g>
+    <line x1="302.4278" y1="168.6305" x2="364.1129" y2="61.7886" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="365.9156 66.0725 363.4953 62.8585 359.5016 62.3694 367.0978 56.6187 365.9156 66.0725"/>
+  </g>
+  <g>
+    <line x1="387.4133" y1="60.5006" x2="448.8239" y2="171.5309" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="444.224 170.8655 448.226 170.4499 450.705 167.2809 451.7132 176.7548 444.224 170.8655"/>
+  </g>
+  <g>
+    <line x1="469.4965" y1="164.7485" x2="408.086" y2="53.7183" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="412.6858 54.3837 408.6839 54.7993 406.2048 57.9683 405.1967 48.4944 412.6858 54.3837"/>
+  </g>
+  <g>
+    <line x1="445.8218" y1="193.73" x2="322.0685" y2="193.6732" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="324.8788 189.9714 323.3039 193.6738 324.8754 197.3776 316.0988 193.6705 324.8788 189.9714"/>
+  </g>
+  <g>
+    <line x1="504.0324" y1="193.7314" x2="598.7293" y2="193.7314" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="595.9207 197.4345 597.494 193.7314 595.9207 190.0283 604.699 193.7314 595.9207 197.4345"/>
+  </g>
+  <text transform="translate(428.1081 75.1604) rotate(61.3622)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">时间片完</tspan></text>
+  <text transform="translate(385.0817 97.9177) rotate(61.3622)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程调度</tspan></text>
+  <text transform="translate(349.5685 213.7894)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">I/O请求</tspan></text>
+  <text transform="translate(531.2314 213.7898)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">终止</tspan></text>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;进程的三种基本状态及其转换</p>
+<h4 id="创建状态和终止状态">创建状态和终止状态
+</h4><p>  为了满足进程控制块对数据及操作的完整性要求以及增强管理的灵活性，通常在系统中又为进程引入了两种常见的状态：创建状态和终止状态。</p>
+<p><strong>1. 创建状态</strong></p>
+<p>  如前所述，进程是由创建而产生。创建一个进程是个很复杂的过程，一般要通过多个步骤才能完成：如首先由进程申请一个空白PCB，并向PCB中填写用于控制和管理进程的信息； 然后为该进程分配运行时所必须的资源；最后，把该进程转入就绪状态并插入就绪队列之中。<br>
+  但如果进程所需的资源尚不能得到满足，比如系统尚无足够的内存使进程无法装入其中，此时创建工作尚未完成，进程不能被调度运行，于是把此时进程所处的状态称为<strong>创建状态</strong>。引入创建状态是为了保证进程的调度必须在创建工作完成后进行，以确保对进程控制块操作的完整性。同时，创建状态的引入也增加了管理的灵活性，OS可以根据系统性能或主存容量的限制推迟新进程的提交（创建状态）。对于处于创建状态的进程，当其获得了所需的资源以及对其PCB的初始化工作完成后，便可由创建状态转入就绪状态。</p>
+<p><strong>2. 终止状态</strong></p>
+<p>  进程的终止也要通过两个步骤：首先，是等待操作系统进行善后处理，最后将其PCB清零，并将PCB空间返还系统。当一个进程到达了自然结束点，或是出现了无法克服的错误，或是被操作系统所终结，或是被其他有终止权的进程所终结，它将进入终止状态。进入终止态的进程以后不能再执行，但在操作系统中依然保留一个记录，其中保存状态码和一些计时统计数据，供其他进程收集。一旦其他进程完成了对其信息的提取之后，操作系统将删除该进程，即将其PCB清零，并将该空白PCB返还系统。<a class="link" href="#20241106212101CST">图6</a>示出了增加了创建状态和终止状态后进程的五种状态及转换关系图。</p>
+<span id="20241106212101CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 222.6533">
+  <g>
+    <g style="isolation: isolate;">
+      <text transform="translate(273.7752 201.4224)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
+    </g>
+    <circle cx="291.7751" cy="193.7009" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <g style="isolation: isolate;">
+      <text transform="translate(461.0129 201.4224)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">执行</tspan></text>
+    </g>
+    <circle cx="479.0129" cy="193.7009" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <g style="isolation: isolate;">
+      <text transform="translate(367.394 39.2697)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">就绪</tspan></text>
+    </g>
+    <circle cx="385.394" cy="31.5483" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(315.0692 139.2872) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">I/O完成</tspan></text>
+  </g>
+  <g>
+    <line x1="306.2496" y1="168.6305" x2="367.9348" y2="61.7886" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="369.7374 66.0725 367.3171 62.8585 363.3234 62.3694 370.9196 56.6187 369.7374 66.0725"/>
+  </g>
+  <g>
+    <line x1="391.2351" y1="60.5006" x2="452.6458" y2="171.5309" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="448.0458 170.8655 452.0479 170.4499 454.5268 167.2809 455.535 176.7548 448.0458 170.8655"/>
+  </g>
+  <g>
+    <line x1="473.3183" y1="164.7485" x2="411.9078" y2="53.7183" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="416.5076 54.3837 412.5057 54.7993 410.0266 57.9683 409.0185 48.4944 416.5076 54.3837"/>
+  </g>
+  <g>
+    <line x1="449.6436" y1="193.73" x2="325.8903" y2="193.6732" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="328.7007 189.9714 327.1257 193.6738 328.6972 197.3776 319.9206 193.6705 328.7007 189.9714"/>
+  </g>
+  <g>
+    <line x1="507.8542" y1="193.7314" x2="602.5511" y2="193.7314" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="599.7426 197.4345 601.3159 193.7314 599.7426 190.0283 608.5208 193.7314 599.7426 197.4345"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(431.9301 75.1603) rotate(61.3622)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">时间片完</tspan></text>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(388.9038 97.9176) rotate(61.3622)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">进程调度</tspan></text>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(353.3903 213.7894)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">I/O请求</tspan></text>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(535.0532 213.7898)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">终止</tspan></text>
+  </g>
+  <g>
+    <g style="isolation: isolate;">
+      <text transform="translate(208.2591 39.2697)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">创建</tspan></text>
+    </g>
+    <circle cx="226.2591" cy="31.5483" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <g style="isolation: isolate;">
+      <text transform="translate(619.4409 201.4222)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">终止</tspan></text>
+    </g>
+    <circle cx="637.4409" cy="193.7009" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="255.9163" y1="32.4298" x2="350.6132" y2="32.4298" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="347.8047 36.1329 349.378 32.4298 347.8047 28.7267 356.5829 32.4298 347.8047 36.1329"/>
+  </g>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图6&emsp;进程的五种基本状态及转换</p>
+<h3 id="挂起操作和进程状态的转换">挂起操作和进程状态的转换
+</h3><p>  在许多系统中，进程除了就绪、执行和阻塞三种最基本的状态外，为了系统和用户观察和分析进程的需要，还引入了一个对进程的重要操作&mdash;&mdash;挂起操作。当该操作作用于某个进程时，该进程将被挂起，意味着此时该进程处于静止状态。如果进程正在执行，它将暂停执行。若原本处于就绪状态，则该进程此时暂不接受调度。与挂起操作对应的操作是激活操作。</p>
+<h4 id="挂起操作的引入">挂起操作的引入
+</h4><p>  引入挂起操作的原因，是基于系统和用户的如下需要：<br>
+  (1)终端用户的需要。当终端用户在自己的程序运行期间发现有可疑问题，希望暂停自己的程序的运行，使之停止下来，以便用户研究其执行情况或对程序进行修改。<br>
+  (2)父进程请求。有时父进程希望挂起自己的某个子进程，以便考查和修改该子进程，或者协调各子进程间的活动。<br>
+  (3)负荷调节的需要。当实时系统中的工作负荷较重，已可能影响到对实时任务的控制时，可由系统把一些不重要的进程挂起，以保证系统能正常运行。<br>
+  (4)操作系统的需要。操作系统有时希望挂起某些进程，以便检查运行中的资源使用情况或进行记账。</p>
+<h4 id="引入挂起原语操作后三个进程状态的转换">引入挂起原语操作后三个进程状态的转换
+</h4><p>  在引入挂起原语Suspend和激活原语Active后，在它们的作用下，进程将可能发生以下几种状态的转换：<br>
+  (1)活动就绪🠖静止就绪。当进程处于未被挂起的就绪状态时，称此为活动就绪状态，表示为Readya，此时进程可以接受调度。当用挂起原语Suspend将该进程挂起后，该进程便转变为静止就绪状态，表示为Readys，处于Readys状态的进程不再被调度执行。<br>
+  (2)活动阻塞🠖静止阻塞。当进程处于未被挂起的阻塞状态时，称它是处于活动阻塞状态，表示为Blockeda。当用Suspend原语将它挂起后，进程便转变为静止阻塞状态，表示为Blockeds，处于该状态的进程在其所期待的事件出现后，它将从静止阻塞变为静止就绪Readys状态。<br>
+  (3)静止就绪🠖活动就绪。处于Readys状态的进程若用激活原语Active激活后，该进程将转变为Readya状态。<br>
+  (4)静止阻塞🠖活动阻塞。处于Blockeds状态的进程若用激活原语Active激活后，进程将转变为Blockeda状态。<a class="link" href="#20241106215410CST">图7</a>示出了具有挂起状态的进程状态图。</p>
+<span id="20241106215410CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8303">
+  <g style="isolation: isolate;">
+    <text transform="translate(355.8539 192.3882)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan><tspan x="0" y="21.6006">就绪</tspan></text>
+  </g>
+  <circle cx="373.8539" cy="195.5739" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(543.0918 191.9919)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">静止</tspan><tspan x="0" y="21.6006">就绪</tspan></text>
+  <circle cx="561.0917" cy="195.5739" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(449.4729 41.1427)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">执行</tspan></text>
+    </g>
+  </g>
+  <circle cx="467.4728" cy="33.4213" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(387.2594 130.7354) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">时间片完</tspan></text>
+  <text transform="translate(521.2124 85.3704) rotate(60.2468)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+  <text transform="translate(449.4296 226.7969)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+  <g>
+    <line x1="395.8813" y1="176.7328" x2="459.8119" y2="66.6038" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="461.6045 70.892 459.1917 67.6722 455.1992 67.1737 462.809 61.441 461.6045 70.892"/>
+  </g>
+  <g>
+    <line x1="381.3639" y1="161.4587" x2="445.2945" y2="51.3297" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="385.9766 160.8888 381.9841 160.3903 379.5714 157.1705 378.3669 166.6215 385.9766 160.8888"/>
+  </g>
+  <g>
+    <line x1="554.0447" y1="161.4587" x2="490.1141" y2="51.3297" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="555.8372 157.1705 553.4244 160.3903 549.432 160.8888 557.0417 166.6215 555.8372 157.1705"/>
+  </g>
+  <text transform="translate(442.5202 142.2803) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">调度</tspan></text>
+  <g>
+    <line x1="400.7762" y1="205.2409" x2="528.1135" y2="206.0905" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="525.2802 209.7748 526.8781 206.0823 525.3297 202.3687 534.0831 206.1303 525.2802 209.7748"/>
+  </g>
+  <g>
+    <line x1="406.8322" y1="185.0573" x2="534.1696" y2="185.9069" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="409.6161 188.7791 408.0676 185.0656 409.6655 181.373 400.8626 185.0175 409.6161 188.7791"/>
+  </g>
+  <text transform="translate(449.5164 177.4123)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+  <g>
+    <text transform="translate(294.23 301.5124)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan><tspan x="0" y="21.6006">阻塞</tspan></text>
+    <circle cx="312.23" cy="304.6981" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="315.1582" y1="275.7632" x2="348.6232" y2="218.1152" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="350.4158 222.4034 348.003 219.1836 344.0105 218.6851 351.6203 212.9524 350.4158 222.4034"/>
+  </g>
+  <text transform="translate(315.1583 258.2159) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+  <g>
+    <text transform="translate(485.7015 301.5124)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan><tspan x="0" y="21.6006">阻塞</tspan></text>
+    <circle cx="503.7015" cy="304.6981" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="525.6346" y1="286.5368" x2="559.0997" y2="228.8889" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="560.8922 233.177 558.4794 229.9572 554.487 229.4587 562.0967 223.726 560.8922 233.177"/>
+  </g>
+  <text transform="translate(555.0307 282.1505) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+  <text transform="translate(389.9086 335.6701)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+  <text transform="translate(380.9992 251.1534) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">调度</tspan></text>
+  <g>
+    <line x1="339.2552" y1="314.1142" x2="470.6275" y2="314.9907" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="467.7943 318.675 469.3922 314.9824 467.8437 311.2689 476.5971 315.0305 467.7943 318.675"/>
+  </g>
+  <g>
+    <line x1="345.3112" y1="293.9306" x2="476.0686" y2="294.8029" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="348.0951 297.6523 346.5466 293.9388 348.1445 290.2462 339.3416 293.8907 348.0951 297.6523"/>
+  </g>
+  <text transform="translate(389.9954 286.2856)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+  <g>
+    <path d="M449.9515,10.1899c-6.4847-.6872-98.3427-8.8757-154.2857,60.9524-45.3271,56.5773-47.9796,140.5342-4.8678,206.4816" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="286.1798 277.3386 290.132 276.5847 292.333 273.2167 294.142 282.5708 286.1798 277.3386"/>
+  </g>
+  <text transform="translate(265.8783 104.752) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">请求I/O</tspan></text>
+  <g>
+    <line x1="496.4252" y1="33.4213" x2="605.5694" y2="33.4213" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="602.7608 37.1245 604.334 33.4213 602.7608 29.7182 611.5391 33.4213 602.7608 37.1245"/>
+  </g>
+  <text transform="translate(528.0703 25.3025)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">终止</tspan></text>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图7&emsp;具有挂起状态的进程状态图</p>
+<h4 id="引入挂起操作后五个进程状态的转换">引入挂起操作后五个进程状态的转换
+</h4><p>  如图2-8示出了增加了创建状态和终止状态后具有挂起状态的进程状态及转换图。<br>
+  如图2-8所示，引进创建和终止状态后，在进程状态转换时，与<a class="link" href="#20241106215410CST">图7</a>所示的进程五状态转换相比较，要增加考虑下面的几种情况：<br>
+  (1)NULL🠖创建：一个新进程产生时，该进程处于创建状态。<br>
+  (2)创建🠖活动就绪：在当前系统的性能和内存的容量均允许的情况下，完成对进程创建的必要操作后，相应的系统进程将进程的状态转换为活动就绪状态。<br>
+  (3)创建🠖静止就绪：考虑到系统当前资源状况和性能的要求，不分配给新建进程所需资源，主要是主存，相应的系统将进程状态转为静止就绪状态，被安置在外存，不参与，调度，此时进程创建工作尚未完成。<br>
+  (4)执行🠖终止：当一个进程已完成任务时，或是出现了无法克服的错误，或是被OS，或是被其他进程所终结，此时将进程的状态转换为终止状态。</p>
+<span id="20241106221112CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8">
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(355.9 192.4)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
+      <text transform="translate(355.9 214)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">就绪</tspan></text>
+    </g>
+  </g>
+  <circle cx="373.9" cy="195.6" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g style="isolation: isolate;">
+    <text transform="translate(543.1 192)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">静止</tspan></text>
+    <text transform="translate(543.1 213.6)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">就绪</tspan></text>
+  </g>
+  <circle cx="561.1" cy="195.6" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <g style="isolation: isolate;">
+      <g style="isolation: isolate;">
+        <g style="isolation: isolate;">
+          <text transform="translate(449.5 40.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">执行</tspan></text>
+        </g>
+      </g>
+    </g>
+    <circle cx="467.5" cy="33.1" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(387.2999 130.7003) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">时间片完</tspan></text>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(521.1996 85.3999) rotate(60.2)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(449.4 226.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+  </g>
+  <g>
+    <line x1="395.9" y1="176.7" x2="459.8" y2="66.6" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="461.6 70.9 459.2 67.7 455.2 67.2 462.8 61.4 461.6 70.9"/>
+  </g>
+  <g>
+    <line x1="381.4" y1="161.5" x2="445.3" y2="51.3" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="386 160.9 382 160.4 379.6 157.2 378.4 166.6 386 160.9"/>
+  </g>
+  <g>
+    <line x1="554" y1="161.5" x2="490.1" y2="51.3" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="555.8 157.2 553.4 160.4 549.4 160.9 557 166.6 555.8 157.2"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(442.4999 142.2999) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">调度</tspan></text>
+  </g>
+  <g>
+    <line x1="400.8" y1="205.2" x2="528.1" y2="206.1" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="525.3 209.8 526.9 206.1 525.3 202.4 534.1 206.1 525.3 209.8"/>
+  </g>
+  <g>
+    <line x1="406.8" y1="185.1" x2="534.2" y2="185.9" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="409.6 188.8 408.1 185.1 409.7 181.4 400.9 185 409.6 188.8"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(449.5 177.4)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+  </g>
+  <g>
+    <g style="isolation: isolate;">
+      <text transform="translate(294.2 301.5)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
+      <text transform="translate(294.2 323.1)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
+    </g>
+    <circle cx="312.2" cy="304.7" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="315.2" y1="275.8" x2="348.6" y2="218.1" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="350.4 222.4 348 219.2 344 218.7 351.6 213 350.4 222.4"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(315.2001 258.2003) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+  </g>
+  <g>
+    <g style="isolation: isolate;">
+      <text transform="translate(485.7 301.5)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
+      <text transform="translate(485.7 323.1)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
+    </g>
+    <circle cx="503.7" cy="304.7" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="525.6" y1="286.5" x2="559.1" y2="228.9" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="560.9 233.2 558.5 230 554.5 229.5 562.1 223.7 560.9 233.2"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(554.9999 282.2003) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(389.9 335.7)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+  </g>
+  <g>
+    <line x1="339.3" y1="314.1" x2="470.6" y2="315" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="467.8 318.7 469.4 315 467.8 311.3 476.6 315 467.8 318.7"/>
+  </g>
+  <g>
+    <line x1="345.3" y1="293.9" x2="476.1" y2="294.8" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="348.1 297.7 346.5 293.9 348.1 290.2 339.3 293.9 348.1 297.7"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(390 286.3)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+  </g>
+  <g>
+    <path d="M450,10.2c-6.5-.7-98.3-8.9-154.3,61-45.3,56.6-48,140.5-4.9,206.5" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="286.2 277.3 290.1 276.6 292.3 273.2 294.1 282.6 286.2 277.3"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(249.0001 158.8998) rotate(-75.8) skewX(-1)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18.7029px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">请求I/O</tspan></text>
+  </g>
+  <g>
+    <line x1="496.4" y1="33.4" x2="605.6" y2="33.4" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="602.8 37.1 604.3 33.4 602.8 29.7 611.5 33.4 602.8 37.1"/>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(528.1 25.3)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+  </g>
+  <g>
+    <g style="isolation: isolate;">
+      <g style="isolation: isolate;">
+        <g style="isolation: isolate;">
+          <text transform="translate(622.5 40.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">终止</tspan></text>
+        </g>
+      </g>
+    </g>
+    <circle cx="640.5" cy="33.1" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <g style="isolation: isolate;">
+      <g style="isolation: isolate;">
+        <g style="isolation: isolate;">
+          <text transform="translate(231 40.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">创建</tspan></text>
+        </g>
+      </g>
+    </g>
+    <circle cx="249" cy="33.1" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="277.2" y1="39.3" x2="282.6" y2="42" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="286.2" y1="43.8" x2="530.6" y2="166.6" style="fill: none; stroke: #000; stroke-dasharray: 12.2 4.1; stroke-miterlimit: 10;"/>
+    <line x1="532.4" y1="167.5" x2="537.8" y2="170.2" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="533.6 172.3 536.7 169.7 536.9 165.7 543.1 172.9 533.6 172.3"/>
+  </g>
+  <g>
+    <line x1="267.9" y1="55" x2="349.5" y2="170.6" style="fill: none; stroke: #000; stroke-dasharray: 12 4; stroke-miterlimit: 10;"/>
+    <polygon points="344.9 170.5 348.8 169.6 350.9 166.2 353 175.5 344.9 170.5"/>
+  </g>
+  <text transform="translate(339.2997 62.1) rotate(27.2873)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">许可</tspan></text>
+  <text transform="translate(305.97 96.543) rotate(54.0219)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">许可</tspan></text>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;具有创建、终止和挂起状态的进程状态图</p>
+<h3 id="进程管理中的数据结构">进程管理中的数据结构
+</h3><p>  如<a class="link" href="/posts/computer_science/operating_system/introduction_to_operating_system/#20241106221347CST">第一章1.1节</a>所述，一方面，为了便于对计算机中的各类资源(包括硬件和信息)的使用和管理，OS将它们抽象为相应的各种数据结构，以及提供一组对资源进行操作的命令，用户可利用这些数据结构及操作命令来执行相关的操作，而无需关心其实现的具体细节。另一方面，操作系统作为计算机资源的管理者，尤其是为了协调诸多用户对系统中共享资源的使用，它还必须记录和查询各种资源的使用及各类进程运行情况的信息。OS对于这些信息的组织和维护也是通过建立和维护各种数据结构的方式来实现的。</p>
+<h4 id="操作系统中用于管理控制的数据结构">操作系统中用于管理控制的数据结构
+</h4><p>  在计算机系统中，对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为<strong>资源信息表</strong>或<strong>进程信息表</strong>，其中包含了资源或进程的标识、描述、状态等信息以及一批指针。通过这些指针，可以将同类资源或进程的信息表，或者同一进程所占用的资源信息表分类链接成不同的队列，便于操作系统进行查找。如<a class="link" href="#20241106223515CST">图9</a>所示，OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。本节着重介绍PCB，其它的表将在后面的章节中陆续介绍。</p>
+<span id="20241106223515CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 343.619">
+  <text transform="translate(128.1422 55.4633)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">内存</tspan></text>
+  <g>
+    <rect x="96.1419" y="35.3997" width="100" height="100" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="96.1419" y1="110.3997" x2="196.1419" y2="110.3997" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="96.1419" y1="85.3997" x2="196.1419" y2="85.3997" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="96.1419" y1="60.3997" x2="196.1419" y2="60.3997" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(128.1418 80.2347)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">设备</tspan></text>
+  <text transform="translate(128.1421 104.8695)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">文件</tspan></text>
+  <text transform="translate(128.1418 129.7584)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程</tspan></text>
+  <rect x="337.424" y="7.7913" width="100" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(360.4238 27.4993)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">内存表</tspan></text>
+  <g>
+    <polyline points="195.9515 48.6696 255.761 48.6696 255.761 20.3838 331.1246 20.3838" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="328.316 24.087 329.8893 20.3838 328.316 16.6807 337.0943 20.3838 328.316 24.087"/>
+  </g>
+  <rect x="338.1737" y="60.8948" width="100" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(361.1734 80.6028)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">设备表</tspan></text>
+  <g>
+    <line x1="196.1419" y1="73.3948" x2="332.2039" y2="73.3948" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="329.3954 77.098 330.9686 73.3948 329.3954 69.6917 338.1737 73.3948 329.3954 77.098"/>
+  </g>
+  <g>
+    <polyline points="196.5864 96.9058 256.3959 96.9058 256.3959 123.5505 331.7595 123.5505" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="328.9509 127.2537 330.5242 123.5505 328.9509 119.8474 337.7292 123.5505 328.9509 127.2537"/>
+  </g>
+  <rect x="337.424" y="111.0505" width="100" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(360.4238 130.7585)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">文件表</tspan></text>
+  <g>
+    <rect x="336.9673" y="183.1299" width="100" height="75" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="336.9673" y1="233.1299" x2="436.9673" y2="233.1299" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="336.9673" y1="208.1299" x2="436.9673" y2="208.1299" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(364.7104 202.5178)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程1</tspan></text>
+  <text transform="translate(364.0712 228.4021)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程2</tspan></text>
+  <text transform="translate(364.0893 252.8815)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程3</tspan></text>
+  <rect x="336.9673" y="313.0188" width="100" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(363.1082 331.5212)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程n</tspan></text>
+  <g>
+    <circle cx="387.2021" cy="277.9044" r="1.4142"/>
+    <circle cx="387.2021" cy="285.5743" r="1.4142"/>
+    <circle cx="387.2021" cy="293.2442" r="1.4142"/>
+  </g>
+  <rect x="569.5576" y="105.5238" width="100" height="61.1587" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(597.3008 143.717)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程1</tspan></text>
+  <rect x="569.5576" y="240.9921" width="100" height="61.1587" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(595.5249 279.1853)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程n</tspan></text>
+  <text transform="translate(569.5576 98.6028)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程实体及作用资源列表</tspan></text>
+  <text transform="translate(567.2479 233.1296)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程实体及作用资源列表</tspan></text>
+  <g>
+    <circle cx="619.5576" cy="184.9907" r="1.4142"/>
+    <circle cx="619.5576" cy="192.6606" r="1.4142"/>
+    <circle cx="619.5576" cy="200.3305" r="1.4142"/>
+  </g>
+  <g>
+    <polyline points="436.9673 195.6779 497.6846 195.6779 497.6846 136.8772 564.1641 136.8772" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="561.3555 140.5803 562.9287 136.8772 561.3555 133.1741 570.1338 136.8772 561.3555 140.5803"/>
+  </g>
+  <g>
+    <polyline points="436.9673 325.5188 503.5506 325.5188 503.5506 272.3454 564.1641 272.3454" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="561.3555 276.0486 562.9287 272.3454 561.3555 268.6423 570.1338 272.3454 561.3555 276.0486"/>
+  </g>
+  <g>
+    <polyline points="195.9515 122.9186 226.7005 122.9186 226.7005 195.6779 330.9976 195.6779" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="328.189 199.381 329.7623 195.6779 328.189 191.9748 336.9673 195.6779 328.189 199.381"/>
+  </g>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图9&emsp;操作系统控制表一般结构</p>
+<h4 id="进程控制块pcb的作用">进程控制块PCB的作用
+</h4><p>  为了便于系统描述和管理进程的运行，在OS的核心为每个进程专门定义了一个数据结构&mdash;&mdash;<strong>进程控制块PCB（Process Control Block）</strong>。PCB作为进程实体的一部分，记录了操作系统所需的，用于描述进程的当前情况以及管理进程运行的全部信息，是操作系统中最重要的记录型数据结构。<br>
+  PCB的作用是使一个在多道程序环境下不能独立运行的程序（含数据）成为一个能独立运行的基本单位，一个能与其他进程并发执行的进程。下面对PCB的具体作用作进一步的阐述：<br>
+  (1)作为独立运行基本单位的标志。当一个程序（含数据）配置了PCB后，就表示它已是一个能在多道程序环境下独立运行的、合法的基本单位，也就具有取得OS服务的权利，如打开文件系统中的文件，请求获得系统中的I/O设备，以及与其它相关进程进行通信等。因此，当系统创建一个新进程时，就为它建立了一个PCB。进程结束时又回收其PCB,进程于是也随之消亡。系统是通过PCB感知进程的存在的。事实上，PCB已成为进程存在于系统中的唯一标志。<br>
+  (2)能实现间断性运行方式。在多道程序环境下，程序是采用停停走走间断性的运行方式运行的。当进程因阻塞而暂停运行时，它必须保留自己运行时的CPU现场信息，再次被调度运行时，还需要恢复其CPU现场信息。在有了PCB后，系统就可将CPU现场信息保存在被中断进程的PCB中，供该进程再次被调度执行时恢复CPU现场时使用。由此，
+可再次明确，在多道程序环境下，作为传统意义上的静态程序，因其并不具有保护或保存自己运行现场的手段，无法保证其运行结果的可再现性，从而失去运行的意义。<br>
+  (3)提供进程管理所需要的信息。当调度程序调度到某进程运行时，只能根据该进程PCB中记录的程序和数据在内存或外存中的始址指针，找到相应的程序和数据；在进程运行过程中，当需要访问文件系统中的文件或I/O设备时，也都需要借助于PCB中的信息。另外，还可根据PCB中的资源清单了解到该进程所需的全部资源等。可见，在进程的整个生命期中，操作系统总是根据PCB实施对进程的控制和管理。<br>
+  (4)提供进程调度所需要的信息。只有处于就绪状态的进程才能被调度执行，而在PCB中就提供了进程处于何种状态的信息。如果进程处于就绪状态，系统便将它插入到进程就绪队列中，等待着调度程序的调度；另外在进行调度时往往还需要了解进程的其他信息，如在优先级调度算法中，就需要知道进程的优先级。在有些较为公平的调度算法中，还需要知道进程的等待时间和已执行的时间等。<br>
+  (5)实现与其它进程的同步与通信。进程同步机制是用于实现诸进程的协调运行的，在采用信号量机制时，它要求在每个进程中都设置有相应的用于同步的信号量。在PCB中还具有用于实现进程通信的区域或通信队列指针等。</p>
+<h4 id="进程控制块中的信息">进程控制块中的信息
+</h4><p>在进程控制块中，主要包括下述四个方面的信息。</p>
+<p><strong>1. 进程标识符</strong></p>
+<p>  进程标识符用于唯一地标识一个进程。一个进程通常有两种标识符：<br>
+  (1)外部标识符。为了方便用户（进程）对进程的访问，须为每一个进程设置一个外部标识符。它是由创建者提供的，通常由字母、数字组成。为了描述进程的家族关系，还应设置父进程标识及子进程标识。此外，还可设置用户标识，以指示拥有该进程的用户。<br>
+  (2)内部标识符。为了方便系统对进程的使用，在OS中又为进程设置了内部标识符，即赋予每一个进程一个唯一的数字标识符，它通常是一个进程的序号。</p>
+<p><strong>2. 处理机状态</strong></p>
+<p>  处理机状态信息也称为处理机的上下文，主要是由处理机的各种寄存器中的内容组成的。这些寄存器包括：<br>
+  ①通用寄存器，又称为用户可视寄存器，它们是用户程序可以访问的，用于暂存信息，在大多数处理机中，有8〜32个通用寄存器，在RISC结构的计算机中可超过100个；②指令计数器，其中存放了要访问的下一条指令的地址；③程序状态字PSW，其中含有状态信息，如条件码、执行方式、中断屏蔽标志等；④用户栈指针，指每个用户进程都有一个或若干个与之相关的系统栈，用于存放过程和系统调用参数及调用地址。栈指针指向该栈的栈顶。处理机处于执行状态时，正在处理的许多信息都是放在寄存器中。当进程被切换时，处理机状态信息都必须保存在相应的PCB中，以便在该进程重新执行时能再从断点继续执行。</p>
+<p><strong>3. 进程调度信息</strong></p>
+<p>  在OS进行调度时，必须了解进程的状态及有关进程调度的信息，这些信息包括：①进程状态，指明进程的当前状态，它是作为进程调度和对换时的依据；②进程优先级，是用于描述进程使用处理机的优先级别的一个整数，优先级高的进程应优先获得处理机；③进程调度所需的其它信息，它们与所采用的进程调度算法有关，比如，进程已等待CPU的时间总和、进程已执行的时间总和等；④事件，是指进程由执行状态转变为阻塞状态所等待发生的事件，即阻塞原因。</p>
+<p><strong>4. 进程控制信息</strong></p>
+<p>  是指用于进程控制所必须的信息，它包括：①程序和数据的地址，进程实体中的程序和数据的内存或外存地（首）址，以便再调度到该进程执行时，能从PCB中找到其程序和数据；②进程同步和通信机制，这是实现进程同步和进程通信时必需的机制，如消息队列指针、信号量等，它们可能全部或部分地放在PCB中：③资源清单，在该清单中列出了进程在运行期间所需的全部资源（除CPU以外），另外还有一张已分配到该进程的资源的清单；④链接指针，它给出了本进程（PCB）所在队列中的下一个进程的PCB的首地址。</p>
+<h4 id="进程控制块的组织方式">进程控制块的组织方式
+</h4><p>  在一个系统中，通常可拥有数十个、数百个乃至数千个PCB。为了能对它们加以有效的管理，应该用适当的方式将这些PCB组织起来。目前常用的组织方式有以下三种。<br>
+  (1)线性方式，即将系统中所有的PCB都组织在一张线性表中，将该表的首址存放在内存的一个专用区域中。该方式实现简单、开销小，但每次查找时都需要扫描整张表，因此适合进程数目不多的系统。<a class="link" href="#20241106225847CST">图10</a>示出了线性表的PCB组织方式。</p>
+<span id="20241106225847CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 182.8571">
+  <g>
+    <rect x="381.85" y="4.0794" width="100" height="175" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="381.85" y1="154.0794" x2="481.85" y2="154.0794" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="381.85" y1="79.0794" x2="481.85" y2="79.0794" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="381.85" y1="54.0794" x2="481.85" y2="54.0794" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="381.85" y1="29.0794" x2="481.85" y2="29.0794" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <g>
+      <circle cx="431.85" cy="106.746" r="1.7143"/>
+      <circle cx="431.85" cy="112.1032" r="1.7143"/>
+      <circle cx="431.85" cy="117.4603" r="1.7143"/>
+    </g>
+  </g>
+  <text transform="translate(409.3229 24.4518)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB1</tspan></text>
+  <text transform="translate(409.3232 47.7153)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB2</tspan></text>
+  <text transform="translate(409.3231 73.5462)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB3</tspan></text>
+  <text transform="translate(408.2704 173.0261)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCBn</tspan></text>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图10&emsp;PCB线性表示意图</p>
+<p>  (2)链接方式，即把具有相同状态进程的PCB分别通过PCB中的链接字链接成一个队列。这样，可以形成就绪队列、若干个阻塞队列和空白队列等。对就绪队列而言，往往按进程的优先级将PCB从高到低进行排列，将优先级高的进程PCB排在队列的前面。同样，也可把处于阻塞状态进程的PCB根据其阻塞原因的不同，排成多个阻塞队列，如等待I/O操作完成的队列和等待分配内存的队列等。<a class="link" href="#20241106232851CST">图11</a>示出了一种链接队列的组织方式。</p>
+<span id="20241106232851CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 257.9048">
+  <g>
+    <text transform="translate(232.773 95.1697)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">就绪队列指针</tspan></text>
+    <rect x="186.773" y="75.2174" width="200" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(232.773 159.2349)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">阻塞队列指针</tspan></text>
+    <rect x="186.773" y="139.2826" width="200" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(232.773 236.0176)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">空闲队列指针</tspan></text>
+    <rect x="186.773" y="216.0653" width="200" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(250.7731 23.8587)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">执行指针</tspan></text>
+    <rect x="186.773" y="3.9064" width="200" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <polyline points="502.7921 253.9064 502.7921 3.9064 627.7921 3.9064 627.7921 253.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="502.7921" y1="228.9064" x2="627.7921" y2="228.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="502.7921" y1="203.9064" x2="627.7921" y2="203.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="502.7921" y1="178.9064" x2="627.7921" y2="178.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="502.7921" y1="153.9064" x2="627.7921" y2="153.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="502.7921" y1="128.9064" x2="627.7921" y2="128.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="502.7921" y1="103.9064" x2="627.7921" y2="103.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="502.7921" y1="78.9064" x2="627.7921" y2="78.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="502.7921" y1="53.9064" x2="627.7921" y2="53.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="502.7921" y1="28.9064" x2="627.7921" y2="28.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="606.9588" y1="3.9064" x2="606.9588" y2="253.9064" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(531.7921 23.5613)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB1</tspan></text>
+  <text transform="translate(531.7921 48.5029)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB2</tspan></text>
+  <text transform="translate(531.7921 23.5613)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB1</tspan></text>
+  <text transform="translate(531.7921 23.5613)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB1</tspan></text>
+  <text transform="translate(531.7921 23.5613)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB1</tspan></text>
+  <text transform="translate(531.7921 72.3962)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB3</tspan></text>
+  <text transform="translate(531.7921 97.2238)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB4</tspan></text>
+  <text transform="translate(531.7921 123.7164)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB5</tspan></text>
+  <text transform="translate(531.7921 148.3156)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB6</tspan></text>
+  <text transform="translate(531.7921 173.2817)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB7</tspan></text>
+  <text transform="translate(531.7921 198.5887)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB8</tspan></text>
+  <text transform="translate(531.7921 223.2202)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB9</tspan></text>
+  <circle cx="371.9588" cy="16.4064" r="5.4524"/>
+  <circle cx="371.9588" cy="88.3299" r="5.4524"/>
+  <circle cx="371.9588" cy="152.3951" r="5.4524"/>
+  <circle cx="371.9588" cy="228.5653" r="5.4524"/>
+  <g>
+    <line x1="371.9588" y1="17.0189" x2="498.0411" y2="112.9468" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="493.5637 114.1933 497.058 112.1988 498.0482 108.2991 502.7921 116.5615 493.5637 114.1933"/>
+  </g>
+  <g>
+    <line x1="371.9588" y1="88.3299" x2="497.5554" y2="19.5876" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="496.8697 24.1845 496.4718 20.1808 493.3138 17.6877 502.7921 16.7215 496.8697 24.1845"/>
+  </g>
+  <g>
+    <line x1="371.9588" y1="152.3951" x2="498.2408" y2="45.211" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="498.4958 49.8517 497.299 46.0104 493.7032 44.2052 502.7921 41.3479 498.4958 49.8517"/>
+  </g>
+  <g>
+    <line x1="371.9588" y1="228.5653" x2="497.8282" y2="144.4769" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="497.5499 149.1162 496.801 145.1631 493.4357 142.9578 502.7921 141.1607 497.5499 149.1162"/>
+  </g>
+  <text transform="translate(612.2101 22.3464)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">4</tspan></text>
+  <text transform="translate(612.2101 47.9949)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">3</tspan></text>
+  <text transform="translate(612.2101 98.6533)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">8</tspan></text>
+  <text transform="translate(612.2101 147.859)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">7</tspan></text>
+  <text transform="translate(612.2101 173.9447)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">9</tspan></text>
+  <text transform="translate(612.2101 199.3512)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">0</tspan></text>
+  <text transform="translate(612.2101 223.9038)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">1</tspan></text>
+  <text transform="translate(612.2101 72.3962)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">0</tspan></text>
+  <g>
+    <polyline points="628.4826 16.7215 676.927 16.7215 676.927 85.3651 634.4523 85.3651" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="637.2609 81.662 635.6877 85.3651 637.2609 89.0682 628.4826 85.3651 637.2609 81.662"/>
+  </g>
+  <g>
+    <polyline points="627.7921 41.663 660.0381 41.663 660.0381 65.5563 634.4523 65.5563" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="637.2609 61.8532 635.6877 65.5563 637.2609 69.2595 628.4826 65.5563 637.2609 61.8532"/>
+  </g>
+  <g>
+    <polyline points="627.7921 95.8413 676.927 95.8413 676.927 191.4338 633.7618 191.4338" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="636.5704 187.7307 634.9972 191.4338 636.5704 195.1369 627.7921 191.4338 636.5704 187.7307"/>
+  </g>
+  <g>
+    <polyline points="627.7921 140.7041 660.0381 140.7041 660.0381 161.1107 633.7618 161.1107" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="636.5704 157.4076 634.9972 161.1107 636.5704 164.8139 627.7921 161.1107 636.5704 157.4076"/>
+  </g>
+  <g>
+    <polyline points="627.7921 170.9841 660.0381 170.9841 660.0381 209.9184 633.7618 209.9184" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="636.5704 206.2153 634.9972 209.9184 636.5704 213.6216 627.7921 209.9184 636.5704 206.2153"/>
+  </g>
+  <g>
+    <polyline points="627.7921 221.0159 660.0381 221.0159 660.0381 246.2842" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="656.335 243.4756 660.0381 245.0489 663.7413 243.4756 660.0381 252.254 656.335 243.4756"/>
+  </g>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图11&emsp;PCB连接队列示意图</p>
+<p>  (3)索引方式，即系统根据所有进程状态的不同，建立几张索引表，例如，就绪索引表、阻塞索引表等，并把各索引表在内存的首地址记录在内存的一些专用单元中。在每个索引表的表目中，记录具有相应状态的某个PCB在PCB表中的地址。图2-12示出了索引方式的PCB组织。</p>
+
     </div>
 </section>
 
@@ -1508,7 +2154,7 @@
 
 
         <span>
-            最后更新于 Nov 06, 2024 20:10 CST
+            最后更新于 Nov 06, 2024 23:31 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1670,7 +2316,7 @@
             
             
         
-        <span>本图书馆累计发布了12篇文章 共131704字</span>
+        <span>本图书馆累计发布了12篇文章 共139193字</span>
     </section>
 
     <section class="site-visit-count">

@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库系统概述与基本结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/introduction_to_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-11-06T15:54:03&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:published_time' content='2024-10-15T16:49:13&#43;08:00'/><meta property='article:modified_time' content='2024-11-06T23:31:42&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（一）：数据库系统概论">
 <meta name="twitter:description" content="数据库系统概述与基本结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1058,7 +1058,7 @@
 <h4 id="数据库databasedb">数据库（DataBase,DB）
 </h4><p>  数据库，顾名思义，是存放数据的仓库。只不过这个仓库是在计算机存储设备上，而且数据是按一定的格式存放的。<br>
   人们收集并抽取出一个应用所需要的大量数据之后，应将其保存起来，以供进一步加工处理，抽取有用信息。在科学技术飞速发展的今天，人们的视野越来越广，数据量急剧增加。过去人们把数据存放在文件柜里，现在人们借助计算机和数据库技术科学地保存和管理大量复杂的数据，以便能方便而充分地利用这些宝贵的信息资源。<br>
-  严格地讲，<strong>数据库</strong>是长期储存在计算机内、有组织的、可共享的大量数据的集合。数据库中的数据按一定的数据模型组织、描述和储存，具有较小的冗余度（redundancy）、较高的数据独立性（data independency）和易扩展性（scalability）,并可为各种用户共享。<br>
+  严格地讲，<strong>数据库</strong>是长期储存在计算机内、有组织的、可共享的大量数据的集合。数据库中的数据按一定的数据模型组织、描述和储存，具有较小的冗余度（redundancy）、较高的数据独立性（data independency）和易扩展性（scalability），并可为各种用户共享。<br>
   概括地讲，数据库数据具有永久存储、有组织和可共享三个基本特点。</p>
 <h4 id="数据库管理系统database-management-systemdbms">数据库管理系统(DataBase Management System,DBMS)
 </h4><p>  了解了数据和数据库的概念，下一个问题就是如何科学地组织和存储数据，如何高效地获取和维护数据。完成这个任务的是一个系统软件&mdash;&mdash;数据库管理系统。<strong>数据库管理系统</strong>是位于用户与操作系统之间的一层数据管理软件。数据库管理系统和操作系统一样是计算机的基础软件，也是一个大型复杂的软件系统。它的主要功能包括以下几个方面：</p>
@@ -1359,7 +1359,7 @@
 <p><strong>2. 由文件系统管理数据</strong></p>
 <p>  由专门的软件即文件系统进行数据管理，文件系统把数据组织成相互独立的数据文件，利用“按文件名访问，按记录进行存取”的管理技术，提供了对文件进行打开与关闭、对记录读取和写入等存取方式。文件系统实现了记录内的结构性。但是，文件系统仍存在以下缺点：</p>
 <p>  (1)数据共享性差，冗余度大。在文件系统中，一个(或一组)文件基本上对应于一个应用程序，即文件仍然是面向应用的。当不同的应用程序具有部分相同的数据时，也必须建立各自的文件，而不能共享相同的数据，因此数据的冗余度大，浪费存储空间。同时由于相同数据的重复存储、各自管理，容易造成数据的不一致性，给数据的修改和维护带来了困难。<br>
-  (2)数据独立性差。文件系统中的文件是为某一特定应用服务的，文件的逻辑结构是针对具体的应用来设计和优化的，因此要想对文件中的数据再增加一些新的应用会很困难。而且，当数据的逻辑结构改变时，应用程序中文件结构的定义必须修改，应用程序中对数据的使用也要改变,因此数据依赖于应用程序，缺乏独立性。可见，文件系统仍然是一个不具有弹性的无整体结构的数据集合，即文件之间是孤立的，不能反映现实世界事物之间的内在联系。</p>
+  (2)数据独立性差。文件系统中的文件是为某一特定应用服务的，文件的逻辑结构是针对具体的应用来设计和优化的，因此要想对文件中的数据再增加一些新的应用会很困难。而且，当数据的逻辑结构改变时，应用程序中文件结构的定义必须修改，应用程序中对数据的使用也要改变，因此数据依赖于应用程序，缺乏独立性。可见，文件系统仍然是一个不具有弹性的无整体结构的数据集合，即文件之间是孤立的，不能反映现实世界事物之间的内在联系。</p>
 <p>  文件系统阶段应用程序与数据之间的关系如下图所示。</p>
 <span id="20241017130053CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
@@ -3102,7 +3102,7 @@
 
 
         <span>
-            最后更新于 Nov 06, 2024 15:54 CST
+            最后更新于 Nov 06, 2024 23:31 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3276,7 +3276,7 @@
             
             
         
-        <span>本图书馆累计发布了12篇文章 共131704字</span>
+        <span>本图书馆累计发布了12篇文章 共139193字</span>
     </section>
 
     <section class="site-visit-count">
