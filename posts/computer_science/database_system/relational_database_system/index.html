@@ -131,7 +131,7 @@
 <meta property='og:description' content="基于关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-06T23:31:42&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-07T12:00:52&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="基于关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -974,7 +974,7 @@
 </svg>
 
             <time class="article-words">
-                21197 字
+                21203 字
             </time>
         </div>
 
@@ -1435,22 +1435,16 @@ R(A_1,A_2,\cdots,A_n)
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;关系的参照图</p>
 <p>  需要指出的是，外码并不一定要与相应的主码同名，如例2.3中学生关系的主码为学号，外码为班长。不过，在实际应用中为了便于识别，当外码与相应的主码属于不同关系时，往往给它们取相同的名字。</p>
 <p>  参照完整性规则就是定义外码与主码之间的引用规则。</p>
-<p>  <strong>参照完整性规则</strong>：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须：</p>
-<ul>
-<li>或者取空值（ \(F\) 的每个属性值均为空值）。</li>
-<li>或者等于 \(S\) 中某个元组的主码值。</li>
-</ul>
-<p>  例如，对于<a class="link" href="#20241024190508CST">例1</a>，学生关系中每个元组的“专业号”属性只能取下面两类值：</p>
-<ul>
-<li>空值，表示尚未给该学生分配专业。</li>
-<li>非空值，这时该值必须是专业关系中某个元组的“专业号”值，表示该学生不可能分配到一个不存在的专业中。即被参照关系“专业”中一定存在一个元组，它的主码值等于该参照关系&quot;学生&quot;中的外码值。</li>
-</ul>
+<p>  <strong>参照完整性规则</strong>：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须：<br>
+  ◾或者取空值（ \(F\) 的每个属性值均为空值）。
+  ◾或者等于 \(S\) 中某个元组的主码值。</p>
+<p>  例如，对于<a class="link" href="#20241024190508CST">例1</a>，学生关系中每个元组的“专业号”属性只能取下面两类值：
+  ◾空值，表示尚未给该学生分配专业。
+  ◾非空值，这时该值必须是专业关系中某个元组的“专业号”值，表示该学生不可能分配到一个不存在的专业中。即被参照关系“专业”中一定存在一个元组，它的主码值等于该参照关系&quot;学生&quot;中的外码值。</p>
 <p>  对于<a class="link" href="#20241025091438CST">例2</a>，按照参照完整性规则，“学号”和“课程号”属性也可以取两类值：空值或目标关系中已经存在的值。但由于“学号&quot;和&quot;课程号”是选修关系中的主属性，按照<a class="link" href="#20241025155618CST">实体完整性规则</a>，它们均不能取空值，所以选修关系中的&quot;学号”和“课程号”属性实际上只能取相应被参照关系中已经存在的主码值。<br>
-  参照完整性规则中， \(R\) 与 \(S\) 可以是同一个关系。例如对于<a class="link" href="#20241025092202CST">例3</a>按照参照完整性规则，“班长”属性值可以取两类值：</p>
-<ul>
-<li>空值，表示该学生所在班级尚未选出班长；</li>
-<li>非空值，这时该值必须是本关系中某个元组的学号值。</li>
-</ul>
+  参照完整性规则中， \(R\) 与 \(S\) 可以是同一个关系。例如对于<a class="link" href="#20241025092202CST">例3</a>按照参照完整性规则，“班长”属性值可以取两类值：<br>
+  ◾空值，表示该学生所在班级尚未选出班长；
+  ◾非空值，这时该值必须是本关系中某个元组的学号值。</p>
 <h3 id="用户定义的完整性">用户定义的完整性
 </h3><p>  任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反映某一具体应用所涉及的数据必须满足的语义要求。例如某个属性必须取唯一值、某个非主属性不能取空值等。例如，在<a class="link" href="#20241024190508CST">例1</a>的学生关系中，若按照应用的要求学生不能没有姓名，则可以定义学生姓名不能取空值；某个属性（如学生的成绩），的取值范围可以定义在0〜100之间等。<br>
   关系模型应提供定义和检验这类完整性的机制，以便用统一的系统的方法处理它们，而不需由应用程序承担这一功能。<br>
@@ -4572,7 +4566,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 
 
         <span>
-            最后更新于 Nov 06, 2024 23:31 CST
+            最后更新于 Nov 07, 2024 12:00 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4734,7 +4728,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
             
             
         
-        <span>本图书馆累计发布了12篇文章 共140840字</span>
+        <span>本图书馆累计发布了12篇文章 共140846字</span>
     </section>
 
     <section class="site-visit-count">

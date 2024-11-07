@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 06 Nov 2024 23:31:42 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 07 Nov 2024 12:00:52 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -444,22 +444,16 @@ R(A_1,A_2,\cdots,A_n)
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;关系的参照图&lt;/p&gt;
 &lt;p&gt;  需要指出的是，外码并不一定要与相应的主码同名，如例2.3中学生关系的主码为学号，外码为班长。不过，在实际应用中为了便于识别，当外码与相应的主码属于不同关系时，往往给它们取相同的名字。&lt;/p&gt;
 &lt;p&gt;  参照完整性规则就是定义外码与主码之间的引用规则。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;参照完整性规则&lt;/strong&gt;：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;或者取空值（ \(F\) 的每个属性值均为空值）。&lt;/li&gt;
-&lt;li&gt;或者等于 \(S\) 中某个元组的主码值。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;  例如，对于&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;，学生关系中每个元组的“专业号”属性只能取下面两类值：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;空值，表示尚未给该学生分配专业。&lt;/li&gt;
-&lt;li&gt;非空值，这时该值必须是专业关系中某个元组的“专业号”值，表示该学生不可能分配到一个不存在的专业中。即被参照关系“专业”中一定存在一个元组，它的主码值等于该参照关系&amp;quot;学生&amp;quot;中的外码值。&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;  &lt;strong&gt;参照完整性规则&lt;/strong&gt;：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须：&lt;br&gt;
+  ◾或者取空值（ \(F\) 的每个属性值均为空值）。
+  ◾或者等于 \(S\) 中某个元组的主码值。&lt;/p&gt;
+&lt;p&gt;  例如，对于&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;，学生关系中每个元组的“专业号”属性只能取下面两类值：
+  ◾空值，表示尚未给该学生分配专业。
+  ◾非空值，这时该值必须是专业关系中某个元组的“专业号”值，表示该学生不可能分配到一个不存在的专业中。即被参照关系“专业”中一定存在一个元组，它的主码值等于该参照关系&amp;quot;学生&amp;quot;中的外码值。&lt;/p&gt;
 &lt;p&gt;  对于&lt;a class=&#34;link&#34; href=&#34;#20241025091438CST&#34;&gt;例2&lt;/a&gt;，按照参照完整性规则，“学号”和“课程号”属性也可以取两类值：空值或目标关系中已经存在的值。但由于“学号&amp;quot;和&amp;quot;课程号”是选修关系中的主属性，按照&lt;a class=&#34;link&#34; href=&#34;#20241025155618CST&#34;&gt;实体完整性规则&lt;/a&gt;，它们均不能取空值，所以选修关系中的&amp;quot;学号”和“课程号”属性实际上只能取相应被参照关系中已经存在的主码值。&lt;br&gt;
-  参照完整性规则中， \(R\) 与 \(S\) 可以是同一个关系。例如对于&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;按照参照完整性规则，“班长”属性值可以取两类值：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;空值，表示该学生所在班级尚未选出班长；&lt;/li&gt;
-&lt;li&gt;非空值，这时该值必须是本关系中某个元组的学号值。&lt;/li&gt;
-&lt;/ul&gt;
+  参照完整性规则中， \(R\) 与 \(S\) 可以是同一个关系。例如对于&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;按照参照完整性规则，“班长”属性值可以取两类值：&lt;br&gt;
+  ◾空值，表示该学生所在班级尚未选出班长；
+  ◾非空值，这时该值必须是本关系中某个元组的学号值。&lt;/p&gt;
 &lt;h3 id=&#34;用户定义的完整性&#34;&gt;用户定义的完整性
 &lt;/h3&gt;&lt;p&gt;  任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反映某一具体应用所涉及的数据必须满足的语义要求。例如某个属性必须取唯一值、某个非主属性不能取空值等。例如，在&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;的学生关系中，若按照应用的要求学生不能没有姓名，则可以定义学生姓名不能取空值；某个属性（如学生的成绩），的取值范围可以定义在0〜100之间等。&lt;br&gt;
   关系模型应提供定义和检验这类完整性的机制，以便用统一的系统的方法处理它们，而不需由应用程序承担这一功能。&lt;br&gt;
