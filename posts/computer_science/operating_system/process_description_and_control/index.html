@@ -131,7 +131,7 @@
 <meta property='og:description' content="操作系统中关于进程的定义、控制、同步与线程的实现方法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/operating_system/process_description_and_control/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-07T11:10:13&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-07T11:59:13&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="操作系统（二）：进程的描述与控制">
 <meta name="twitter:description" content="操作系统中关于进程的定义、控制、同步与线程的实现方法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -976,7 +976,7 @@
 </svg>
 
             <time class="article-words">
-                12368 字
+                12366 字
             </time>
         </div>
 
@@ -1684,22 +1684,52 @@
   (4)静止阻塞🠖活动阻塞。处于Blockeds状态的进程若用激活原语Active激活后，进程将转变为Blockeda状态。<a class="link" href="#20241106215410CST">图7</a>示出了具有挂起状态的进程状态图。</p>
 <span id="20241106215410CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8303">
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8303">
   <g style="isolation: isolate;">
-    <text transform="translate(355.8539 192.3882)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan><tspan x="0" y="21.6006">就绪</tspan></text>
+    <g style="isolation: isolate;">
+      <g style="isolation: isolate;">
+        <text transform="translate(355.8539 192.3882)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(355.8539 213.9888)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">就绪</tspan></text>
+      </g>
+    </g>
   </g>
   <circle cx="373.8539" cy="195.5739" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
-  <text transform="translate(543.0918 191.9919)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">静止</tspan><tspan x="0" y="21.6006">就绪</tspan></text>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(543.0918 191.9919)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">静止</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(543.0918 213.5925)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">就绪</tspan></text>
+    </g>
+  </g>
   <circle cx="561.0917" cy="195.5739" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <g style="isolation: isolate;">
     <g style="isolation: isolate;">
-      <text transform="translate(449.4729 41.1427)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">执行</tspan></text>
+      <g style="isolation: isolate;">
+        <g style="isolation: isolate;">
+          <text transform="translate(449.4729 41.1427)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">执行</tspan></text>
+        </g>
+      </g>
     </g>
   </g>
   <circle cx="467.4728" cy="33.4213" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
-  <text transform="translate(387.2594 130.7354) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">时间片完</tspan></text>
-  <text transform="translate(521.2124 85.3704) rotate(60.2468)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
-  <text transform="translate(449.4296 226.7969)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(387.2594 130.7354) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">时间片完</tspan></text>
+    </g>
+  </g>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(521.2122 85.3704) rotate(60.2468)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+    </g>
+  </g>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(449.4296 226.7969)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+    </g>
+  </g>
   <g>
     <line x1="395.8813" y1="176.7328" x2="459.8119" y2="66.6038" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="461.6045 70.892 459.1917 67.6722 455.1992 67.1737 462.809 61.441 461.6045 70.892"/>
@@ -1712,7 +1742,11 @@
     <line x1="554.0447" y1="161.4587" x2="490.1141" y2="51.3297" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="555.8372 157.1705 553.4244 160.3903 549.432 160.8888 557.0417 166.6215 555.8372 157.1705"/>
   </g>
-  <text transform="translate(442.5202 142.2803) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">调度</tspan></text>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(442.5202 142.2804) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">调度</tspan></text>
+    </g>
+  </g>
   <g>
     <line x1="400.7762" y1="205.2409" x2="528.1135" y2="206.0905" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="525.2802 209.7748 526.8781 206.0823 525.3297 202.3687 534.0831 206.1303 525.2802 209.7748"/>
@@ -1721,27 +1755,56 @@
     <line x1="406.8322" y1="185.0573" x2="534.1696" y2="185.9069" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="409.6161 188.7791 408.0676 185.0656 409.6655 181.373 400.8626 185.0175 409.6161 188.7791"/>
   </g>
-  <text transform="translate(449.5164 177.4123)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(449.5164 177.4123)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+    </g>
+  </g>
   <g>
-    <text transform="translate(294.23 301.5124)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan><tspan x="0" y="21.6006">阻塞</tspan></text>
+    <g style="isolation: isolate;">
+      <g style="isolation: isolate;">
+        <text transform="translate(294.23 301.5124)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(294.23 323.113)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
+      </g>
+    </g>
     <circle cx="312.23" cy="304.6981" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   </g>
   <g>
     <line x1="315.1582" y1="275.7632" x2="348.6232" y2="218.1152" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="350.4158 222.4034 348.003 219.1836 344.0105 218.6851 351.6203 212.9524 350.4158 222.4034"/>
   </g>
-  <text transform="translate(315.1583 258.2159) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(315.1583 258.2159) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+    </g>
+  </g>
   <g>
-    <text transform="translate(485.7015 301.5124)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan><tspan x="0" y="21.6006">阻塞</tspan></text>
-    <circle cx="503.7015" cy="304.6981" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <g style="isolation: isolate;">
+      <g style="isolation: isolate;">
+        <text transform="translate(485.7015 301.5124)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">静止</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(485.7015 323.113)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
+      </g>
+    </g>
+    <circle cx="503.7017" cy="304.6983" r="28.9524" transform="translate(55.3549 686.1974) rotate(-71.565)" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 1px;"/>
   </g>
   <g>
     <line x1="525.6346" y1="286.5368" x2="559.0997" y2="228.8889" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="560.8922 233.177 558.4794 229.9572 554.487 229.4587 562.0967 223.726 560.8922 233.177"/>
   </g>
-  <text transform="translate(555.0307 282.1505) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
-  <text transform="translate(389.9086 335.6701)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
-  <text transform="translate(380.9992 251.1534) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">调度</tspan></text>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(555.0307 282.1505) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+    </g>
+  </g>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(389.9086 335.6701)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+    </g>
+  </g>
   <g>
     <line x1="339.2552" y1="314.1142" x2="470.6275" y2="314.9907" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="467.7943 318.675 469.3922 314.9824 467.8437 311.2689 476.5971 315.0305 467.7943 318.675"/>
@@ -1750,17 +1813,29 @@
     <line x1="345.3112" y1="293.9306" x2="476.0686" y2="294.8029" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="348.0951 297.6523 346.5466 293.9388 348.1445 290.2462 339.3416 293.8907 348.0951 297.6523"/>
   </g>
-  <text transform="translate(389.9954 286.2856)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(389.9954 286.2856)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+    </g>
+  </g>
   <g>
     <path d="M449.9515,10.1899c-6.4847-.6872-98.3427-8.8757-154.2857,60.9524-45.3271,56.5773-47.9796,140.5342-4.8678,206.4816" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="286.1798 277.3386 290.132 276.5847 292.333 273.2167 294.142 282.5708 286.1798 277.3386"/>
   </g>
-  <text transform="translate(265.8783 104.752) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">请求I/O</tspan></text>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(265.8783 104.752) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">请求I/O</tspan></text>
+    </g>
+  </g>
   <g>
     <line x1="496.4252" y1="33.4213" x2="605.5694" y2="33.4213" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="602.7608 37.1245 604.334 33.4213 602.7608 29.7182 611.5391 33.4213 602.7608 37.1245"/>
   </g>
-  <text transform="translate(528.0703 25.3025)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">终止</tspan></text>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(528.0703 25.3025)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">终止</tspan></text>
+    </g>
+  </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图7&emsp;具有挂起状态的进程状态图</p>
 <h4 id="引入挂起操作后五个进程状态的转换">引入挂起操作后五个进程状态的转换
 </h4><p>  如图2-8示出了增加了创建状态和终止状态后具有挂起状态的进程状态及转换图。<br>
@@ -1771,37 +1846,53 @@
   (4)执行🠖终止：当一个进程已完成任务时，或是出现了无法克服的错误，或是被OS，或是被其他进程所终结，此时将进程的状态转换为终止状态。</p>
 <span id="20241106221112CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8">
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8">
   <g style="isolation: isolate;">
     <g style="isolation: isolate;">
-      <text transform="translate(355.9 192.4)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
-      <text transform="translate(355.9 214)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">就绪</tspan></text>
+      <g style="isolation: isolate;">
+        <text transform="translate(355.9 192.4)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(355.9 214)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">就绪</tspan></text>
+      </g>
     </g>
   </g>
   <circle cx="373.9" cy="195.6" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <g style="isolation: isolate;">
-    <text transform="translate(543.1 192)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">静止</tspan></text>
-    <text transform="translate(543.1 213.6)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">就绪</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(543.1 192)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">静止</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(543.1 213.6)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">就绪</tspan></text>
+    </g>
   </g>
   <circle cx="561.1" cy="195.6" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <g>
     <g style="isolation: isolate;">
       <g style="isolation: isolate;">
         <g style="isolation: isolate;">
-          <text transform="translate(449.5 40.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">执行</tspan></text>
+          <g style="isolation: isolate;">
+            <text transform="translate(449.5 40.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">执行</tspan></text>
+          </g>
         </g>
       </g>
     </g>
     <circle cx="467.5" cy="33.1" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(387.2999 130.7003) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">时间片完</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(387.2999 130.7003) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">时间片完</tspan></text>
+    </g>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(521.1996 85.3999) rotate(60.2)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(521.1996 85.3999) rotate(60.2)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+    </g>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(449.4 226.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(449.4 226.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+    </g>
   </g>
   <g>
     <line x1="395.9" y1="176.7" x2="459.8" y2="66.6" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -1816,7 +1907,9 @@
     <polygon points="555.8 157.2 553.4 160.4 549.4 160.9 557 166.6 555.8 157.2"/>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(442.4999 142.2999) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">调度</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(442.4999 142.2999) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">调度</tspan></text>
+    </g>
   </g>
   <g>
     <line x1="400.8" y1="205.2" x2="528.1" y2="206.1" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -1827,12 +1920,18 @@
     <polygon points="409.6 188.8 408.1 185.1 409.7 181.4 400.9 185 409.6 188.8"/>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(449.5 177.4)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(449.5 177.4)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+    </g>
   </g>
   <g>
     <g style="isolation: isolate;">
-      <text transform="translate(294.2 301.5)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
-      <text transform="translate(294.2 323.1)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
+      <g style="isolation: isolate;">
+        <text transform="translate(294.2 301.5)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(294.2 323.1)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
+      </g>
     </g>
     <circle cx="312.2" cy="304.7" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   </g>
@@ -1841,12 +1940,18 @@
     <polygon points="350.4 222.4 348 219.2 344 218.7 351.6 213 350.4 222.4"/>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(315.2001 258.2003) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(315.2001 258.2003) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+    </g>
   </g>
   <g>
     <g style="isolation: isolate;">
-      <text transform="translate(485.7 301.5)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">活动</tspan></text>
-      <text transform="translate(485.7 323.1)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
+      <g style="isolation: isolate;">
+        <text transform="translate(485.7 301.5)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">静止</tspan></text>
+      </g>
+      <g style="isolation: isolate;">
+        <text transform="translate(485.7 323.1)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
+      </g>
     </g>
     <circle cx="503.7" cy="304.7" r="29" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   </g>
@@ -1855,10 +1960,14 @@
     <polygon points="560.9 233.2 558.5 230 554.5 229.5 562.1 223.7 560.9 233.2"/>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(554.9999 282.2003) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(554.9999 282.2003) rotate(-60)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+    </g>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(389.9 335.7)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(389.9 335.7)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">挂起</tspan></text>
+    </g>
   </g>
   <g>
     <line x1="339.3" y1="314.1" x2="470.6" y2="315" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -1869,27 +1978,35 @@
     <polygon points="348.1 297.7 346.5 293.9 348.1 290.2 339.3 293.9 348.1 297.7"/>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(390 286.3)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(390 286.3)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">激活</tspan></text>
+    </g>
   </g>
   <g>
     <path d="M450,10.2c-6.5-.7-98.3-8.9-154.3,61-45.3,56.6-48,140.5-4.9,206.5" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="286.2 277.3 290.1 276.6 292.3 273.2 294.1 282.6 286.2 277.3"/>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(249.0001 158.8998) rotate(-75.8) skewX(-1)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18.7029px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">请求I/O</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(249.0001 158.8998) rotate(-75.8) skewX(-1)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18.7057px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">请求I/O</tspan></text>
+    </g>
   </g>
   <g>
     <line x1="496.4" y1="33.4" x2="605.6" y2="33.4" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="602.8 37.1 604.3 33.4 602.8 29.7 611.5 33.4 602.8 37.1"/>
   </g>
   <g style="isolation: isolate;">
-    <text transform="translate(528.1 25.3)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+    <g style="isolation: isolate;">
+      <text transform="translate(528.1 25.3)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">释放</tspan></text>
+    </g>
   </g>
   <g>
     <g style="isolation: isolate;">
       <g style="isolation: isolate;">
         <g style="isolation: isolate;">
-          <text transform="translate(622.5 40.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">终止</tspan></text>
+          <g style="isolation: isolate;">
+            <text transform="translate(622.5 40.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">终止</tspan></text>
+          </g>
         </g>
       </g>
     </g>
@@ -1899,7 +2016,9 @@
     <g style="isolation: isolate;">
       <g style="isolation: isolate;">
         <g style="isolation: isolate;">
-          <text transform="translate(231 40.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">创建</tspan></text>
+          <g style="isolation: isolate;">
+            <text transform="translate(231 40.8)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">创建</tspan></text>
+          </g>
         </g>
       </g>
     </g>
@@ -1915,8 +2034,12 @@
     <line x1="267.9" y1="55" x2="349.5" y2="170.6" style="fill: none; stroke: #000; stroke-dasharray: 12 4; stroke-miterlimit: 10;"/>
     <polygon points="344.9 170.5 348.8 169.6 350.9 166.2 353 175.5 344.9 170.5"/>
   </g>
-  <text transform="translate(339.2997 62.1) rotate(27.2873)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">许可</tspan></text>
-  <text transform="translate(305.97 96.543) rotate(54.0219)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">许可</tspan></text>
+  <g style="isolation: isolate;">
+    <text transform="translate(339.2997 62.1001) rotate(27.2873)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">许可</tspan></text>
+  </g>
+  <g style="isolation: isolate;">
+    <text transform="translate(305.9701 96.5431) rotate(54.0219)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">许可</tspan></text>
+  </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;具有创建、终止和挂起状态的进程状态图</p>
 <h3 id="进程管理中的数据结构">进程管理中的数据结构
 </h3><p>  如<a class="link" href="/posts/computer_science/operating_system/introduction_to_operating_system/#20241106221347CST">第一章1.1节</a>所述，一方面，为了便于对计算机中的各类资源(包括硬件和信息)的使用和管理，OS将它们抽象为相应的各种数据结构，以及提供一组对资源进行操作的命令，用户可利用这些数据结构及操作命令来执行相关的操作，而无需关心其实现的具体细节。另一方面，操作系统作为计算机资源的管理者，尤其是为了协调诸多用户对系统中共享资源的使用，它还必须记录和查询各种资源的使用及各类进程运行情况的信息。OS对于这些信息的组织和维护也是通过建立和维护各种数据结构的方式来实现的。</p>
@@ -2002,7 +2125,7 @@
   (4)提供进程调度所需要的信息。只有处于就绪状态的进程才能被调度执行，而在PCB中就提供了进程处于何种状态的信息。如果进程处于就绪状态，系统便将它插入到进程就绪队列中，等待着调度程序的调度；另外在进行调度时往往还需要了解进程的其他信息，如在优先级调度算法中，就需要知道进程的优先级。在有些较为公平的调度算法中，还需要知道进程的等待时间和已执行的时间等。<br>
   (5)实现与其它进程的同步与通信。进程同步机制是用于实现诸进程的协调运行的，在采用信号量机制时，它要求在每个进程中都设置有相应的用于同步的信号量。在PCB中还具有用于实现进程通信的区域或通信队列指针等。</p>
 <h4 id="进程控制块中的信息">进程控制块中的信息
-</h4><p>在进程控制块中，主要包括下述四个方面的信息。</p>
+</h4><p>  在进程控制块中，主要包括下述四个方面的信息。</p>
 <p><strong>1. 进程标识符</strong></p>
 <p>  进程标识符用于唯一地标识一个进程。一个进程通常有两种标识符：<br>
   (1)外部标识符。为了方便用户（进程）对进程的访问，须为每一个进程设置一个外部标识符。它是由创建者提供的，通常由字母、数字组成。为了描述进程的家族关系，还应设置父进程标识及子进程标识。此外，还可设置用户标识，以指示拥有该进程的用户。<br>
@@ -2283,7 +2406,7 @@
 
 
         <span>
-            最后更新于 Nov 07, 2024 11:10 CST
+            最后更新于 Nov 07, 2024 11:59 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2445,7 +2568,7 @@
             
             
         
-        <span>本图书馆累计发布了12篇文章 共140842字</span>
+        <span>本图书馆累计发布了12篇文章 共140840字</span>
     </section>
 
     <section class="site-visit-count">
