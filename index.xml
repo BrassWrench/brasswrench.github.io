@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 08 Nov 2024 16:15:44 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 08 Nov 2024 16:38:27 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>集合论（一）：集合及其运算</title>
         <link>https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/</link>
         <pubDate>Thu, 07 Nov 2024 22:25:27 +0800</pubDate>
@@ -7627,7 +7627,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   &lt;span id=&#34;20241025165303CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例3&lt;/strong&gt;：设 \(\bm{R}\) 是全体实数的几何，规定 \(\tau_e=\set{U|U是若干个区间的并集}\) ，这里“若干”可以是无穷、有限，也可以是零，因此 \(\varnothing\in\tau_e\) 。则 \(\tau_e\) 是 \(R\) 上的拓扑，称为 \(R\) 上的&lt;strong&gt;Euclid拓扑&lt;/strong&gt;，记 \(\bm{E}^1=(\bm{R},\tau_e)\) 。&lt;/p&gt;
 &lt;p&gt;  现在，对 \(R\) 已规定了五个拓扑：平凡拓扑 \(\tau_t\) ，离散拓扑 \(\tau_s\) ，余有限拓扑 \(\tau_f\) ，余可数拓扑 \(\tau_c\) 和Euclid拓扑 \(\tau_e\) 。 \(\tau_f\) 小于 \(\tau_c\) 和 \(\tau_e\) ，而 \(\tau_c\) 和 \(\tau_e\) 不能比较大小。&lt;/p&gt;
 &lt;h3 id=&#34;度量拓扑&#34;&gt;度量拓扑
-&lt;/h3&gt;&lt;p&gt;  集合 \(X\) 上的一个&lt;strong&gt;度量&lt;/strong&gt; \(d\) 是一个映射 \(d:X\times X \to R\) ，它满足&lt;br&gt;
+&lt;/h3&gt;&lt;h4 id=&#34;度量与度量空间&#34;&gt;度量与度量空间
+&lt;/h4&gt;&lt;p&gt;  集合 \(X\) 上的一个&lt;strong&gt;度量&lt;/strong&gt; \(d\) 是一个映射 \(d:X\times X \to R\) ，它满足&lt;br&gt;
 &lt;span id=&#34;20241108105402CST&#34;&gt;&lt;/span&gt;
   (1)正定性。&lt;/p&gt;
 &lt;span id=&#34;20241107210556CST&#34;&gt;&lt;/span&gt;\[
@@ -7650,7 +7651,8 @@ d(x,z)\le d(x,y)+d(y,z),\space\forall x,y,z \in X
 \tag{3}
     \]
 &lt;p&gt;  当集合 \(X\) 上规定了一个度量 \(d\) 后，称为&lt;strong&gt;度量空间&lt;/strong&gt;，记作 \((X,d)\) 。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241107210328CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例4&lt;/strong&gt;：记 \(\bm{R}^n=\set{(x_1,x_2,\cdots,x_n)|x_i\in\bm{R},i=1,\cdots,n}\) ，规定 \(R\) 上的度量 \(d\) 为&lt;/p&gt;
+&lt;h4 id=&#34;euclid空间&#34;&gt;Euclid空间
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241107210328CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例4&lt;/strong&gt;：记 \(\bm{R}^n=\set{(x_1,x_2,\cdots,x_n)|x_i\in\bm{R},i=1,\cdots,n}\) ，规定 \(R\) 上的度量 \(d\) 为&lt;/p&gt;
 &lt;span id=&#34;20241107210434CST&#34;&gt;&lt;/span&gt;\[
 d((x_1,x_2,\cdots,x_n),(y_1,y_2,\cdots,y_n))=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}
 \tag{4}
@@ -7669,9 +7671,10 @@ d((x_1,x_2,\cdots,x_n),(y_1,y_2,\cdots,y_n))=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}
 \tag{5}
     \]
 &lt;p&gt;  注意 \(d(\bm{x},\bm{y}),d(\bm{y},\bm{z}),d(\bm{x},\bm{z})\) 都大于 \(0\) ，故 \(d(\bm{x},\bm{z}) \le d(\bm{x},\bm{y})+d(\bm{y},\bm{z})\) 。&lt;a class=&#34;link&#34; href=&#34;#20241108105326CST&#34;&gt;度量条件(3)&lt;/a&gt;满足。&lt;/p&gt;
-&lt;p&gt;  记 \(\bm{E}^n=(\bm{R}^n,d)\) ，称为&lt;strong&gt;n维欧氏空间&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  记 \(\bm{E}^n=(\bm{R}^n,d)\) ，称为&lt;strong&gt;n维Euclid空间&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  设 \((X,d)\) 是一个度量空间，我们来规定 \(X\) 的一个拓扑。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241107212315CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（球形邻域）&lt;/strong&gt;设 \(x_0 \in X,\varepsilon\) 是一正数，称 \(X\) 的子集&lt;/p&gt;
+&lt;h4 id=&#34;球形邻域&#34;&gt;球形邻域
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241107212315CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（球形邻域）&lt;/strong&gt;设 \(x_0 \in X,\varepsilon\) 是一正数，称 \(X\) 的子集&lt;/p&gt;
 &lt;span id=&#34;20241107211003CST&#34;&gt;&lt;/span&gt;\[
 B(x_0,\varepsilon)=\set{x \in X | d(x_0,x)&lt;\varepsilon}
 \tag{6}
@@ -7705,14 +7708,21 @@ B(x_0,\varepsilon)=\set{x \in X | d(x_0,x)&lt;\varepsilon}
 U=\bigcup_{x\in U}B(x,\varepsilon_x)
 \tag{7}
     \]
-&lt;p&gt;  &lt;span id=&#34;20241107214850CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;命题1&lt;/strong&gt;：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑（若干可以是不可数个、可数个、有限个、0个）。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241107214850CST&#34;&gt;命题1&lt;/a&gt;）&lt;/strong&gt;：对&lt;a class=&#34;link&#34; href=&#34;#20241108115249CST&#34;&gt;拓扑公理(1)&lt;/a&gt;，取 \(\displaystyle\left(\bigcup_{x \in X}B(x,\varepsilon_x)\right)\bigcap X\) 即可得到 \(X\) ，而取 \(x=\varnothing\) 即可得到 \(\varnothing\) ，所以满足。对&lt;a class=&#34;link&#34; href=&#34;#20241108115303CST&#34;&gt;拓扑公理(2)&lt;/a&gt;，由 \(U\) 的定义容易知道满足。对&lt;a class=&#34;link&#34; href=&#34;#20241108115313CST&#34;&gt;拓扑公理(3)&lt;/a&gt;，设 \(U,U&#39; \in \tau_d\) ，记 \(U=\displaystyle\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha),U&#39;=\displaystyle\bigcup_{\beta}B(x&#39;_\beta,\varepsilon&#39;_\beta)\) ，则&lt;/p&gt;
+&lt;h4 id=&#34;度量拓扑-1&#34;&gt;度量拓扑
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241107214850CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;命题1&lt;/strong&gt;：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑（若干可以是不可数个、可数个、有限个、0个）。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241107214850CST&#34;&gt;命题1&lt;/a&gt;）&lt;/strong&gt;：对&lt;a class=&#34;link&#34; href=&#34;#20241108115249CST&#34;&gt;拓扑公理(1)&lt;/a&gt;，取 \(\displaystyle\left(\bigcup_{x \in X}B(x,\varepsilon_x)\right)\bigcap X\) 即可得到 \(X\) ，而取 \(x=\varnothing\) 即可得到 \(\varnothing\) ，所以满足。对&lt;a class=&#34;link&#34; href=&#34;#20241108115303CST&#34;&gt;拓扑公理(2)&lt;/a&gt;，由 \(U\) 的定义容易知道满足。对&lt;a class=&#34;link&#34; href=&#34;#20241108115313CST&#34;&gt;拓扑公理(3)&lt;/a&gt;，设 \(U,U&#39; \in \tau_d\) ，记 \(U=\displaystyle\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha),U&#39;=\displaystyle\bigcup_{\beta}B(x&#39;_\beta,\varepsilon&#39;_\beta)\) ，由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241108142053CST&#34;&gt;集合及其运算-式(41)&lt;/a&gt;&lt;/p&gt;
 &lt;span id=&#34;20241108120406CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
-U \cup U&#39; = \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\left(\bigcup_{\beta}B(x&#39;_\beta,\varepsilon&#39;_\beta)\right)
+U \cup U&#39; =&amp; \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\left(\bigcup_{\beta}B(x&#39;_\beta,\varepsilon&#39;_\beta)\right)\\[15pt]
+=&amp;\bigcup_{\beta}\left(\left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap B(x&#39;_\beta,\varepsilon&#39;_\beta)\right)\text{（集合及其运算-式(41)）}\\[15pt]
+=&amp;\bigcup_{\beta}\left(B(x&#39;_\beta,\varepsilon&#39;_\beta)\cap\left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\right)\\[15pt]
+=&amp;\bigcup_{\beta}\left(\bigcup_{\alpha}(B(x&#39;_\beta,\varepsilon&#39;_\beta)\cap B(x_\alpha,\varepsilon_\alpha))\right)\text{（集合及其运算-式(41)）}\\[15pt]
+=&amp;\bigcup_{\alpha,\beta}(B(x&#39;_\beta,\varepsilon&#39;_\beta)\cap B(x_\alpha,\varepsilon_\alpha))\\[15pt]
 \end{aligned}
 \tag{8}
     \]
+&lt;p&gt;  根据&lt;a class=&#34;link&#34; href=&#34;#20241107211233CST&#34;&gt;引理1&lt;/a&gt;，对任何 \(\alpha,\beta\) ， \(B(x_\alpha,\varepsilon_\alpha)\cap B(x&#39;_\beta,\varepsilon&#39;_\beta) \in \tau_d\) 。再由&lt;a class=&#34;link&#34; href=&#34;#20241108115303CST&#34;&gt;拓扑公理(2)&lt;/a&gt;，得出 \(U \cap U&#39; \in \tau_d\) 。&lt;/p&gt;
+&lt;p&gt;  称 \(\tau_d\) 为 \(X\) 上由度量 \(d\) 决定的&lt;strong&gt;度量拓扑&lt;/strong&gt;。每个度量空间都自然地看成具有度量拓扑的拓扑空间，从而Euclid空间 \(\bm{E}^n\) 也是拓扑空间（其度量拓扑称为Euclid拓扑）。从这个意义上讲，拓扑空间是Euclid空间和度量空间的推广。三条拓扑公理也正是从度量空间的开集所具有的最基本的性质中抽象出来的。&lt;/p&gt;
 </description>
         </item>
         <item>

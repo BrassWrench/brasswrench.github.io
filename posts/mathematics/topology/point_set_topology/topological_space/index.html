@@ -131,7 +131,7 @@
 <meta property='og:description' content="定义在一个集合上并满足拓扑公理的子集族所构成的结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/topology/point_set_topology/topological_space/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T12:05:35&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T16:38:27&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="点集拓扑学（一）：拓扑空间">
 <meta name="twitter:description" content="定义在一个集合上并满足拓扑公理的子集族所构成的结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -604,7 +604,14 @@
     <li><a href="#拓扑空间-1">拓扑空间</a>
       <ol>
         <li><a href="#拓扑空间的定义">拓扑空间的定义</a></li>
-        <li><a href="#度量拓扑">度量拓扑</a></li>
+        <li><a href="#度量拓扑">度量拓扑</a>
+          <ol>
+            <li><a href="#度量与度量空间">度量与度量空间</a></li>
+            <li><a href="#euclid空间">Euclid空间</a></li>
+            <li><a href="#球形邻域">球形邻域</a></li>
+            <li><a href="#度量拓扑-1">度量拓扑</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -932,7 +939,7 @@
 </svg>
 
             <time class="article-words">
-                1763 字
+                2114 字
             </time>
         </div>
 
@@ -947,7 +954,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -1006,7 +1013,8 @@
   <span id="20241025165303CST"></span><strong>例3</strong>：设 \(\bm{R}\) 是全体实数的几何，规定 \(\tau_e=\set{U|U是若干个区间的并集}\) ，这里“若干”可以是无穷、有限，也可以是零，因此 \(\varnothing\in\tau_e\) 。则 \(\tau_e\) 是 \(R\) 上的拓扑，称为 \(R\) 上的<strong>Euclid拓扑</strong>，记 \(\bm{E}^1=(\bm{R},\tau_e)\) 。</p>
 <p>  现在，对 \(R\) 已规定了五个拓扑：平凡拓扑 \(\tau_t\) ，离散拓扑 \(\tau_s\) ，余有限拓扑 \(\tau_f\) ，余可数拓扑 \(\tau_c\) 和Euclid拓扑 \(\tau_e\) 。 \(\tau_f\) 小于 \(\tau_c\) 和 \(\tau_e\) ，而 \(\tau_c\) 和 \(\tau_e\) 不能比较大小。</p>
 <h3 id="度量拓扑">度量拓扑
-</h3><p>  集合 \(X\) 上的一个<strong>度量</strong> \(d\) 是一个映射 \(d:X\times X \to R\) ，它满足<br>
+</h3><h4 id="度量与度量空间">度量与度量空间
+</h4><p>  集合 \(X\) 上的一个<strong>度量</strong> \(d\) 是一个映射 \(d:X\times X \to R\) ，它满足<br>
 <span id="20241108105402CST"></span>
   (1)正定性。</p>
 <span id="20241107210556CST"></span>\[
@@ -1029,7 +1037,8 @@ d(x,z)\le d(x,y)+d(y,z),\space\forall x,y,z \in X
 \tag{3}
     \]
 <p>  当集合 \(X\) 上规定了一个度量 \(d\) 后，称为<strong>度量空间</strong>，记作 \((X,d)\) 。</p>
-<p>  <span id="20241107210328CST"></span><strong>例4</strong>：记 \(\bm{R}^n=\set{(x_1,x_2,\cdots,x_n)|x_i\in\bm{R},i=1,\cdots,n}\) ，规定 \(R\) 上的度量 \(d\) 为</p>
+<h4 id="euclid空间">Euclid空间
+</h4><p>  <span id="20241107210328CST"></span><strong>例4</strong>：记 \(\bm{R}^n=\set{(x_1,x_2,\cdots,x_n)|x_i\in\bm{R},i=1,\cdots,n}\) ，规定 \(R\) 上的度量 \(d\) 为</p>
 <span id="20241107210434CST"></span>\[
 d((x_1,x_2,\cdots,x_n),(y_1,y_2,\cdots,y_n))=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}
 \tag{4}
@@ -1048,9 +1057,10 @@ d((x_1,x_2,\cdots,x_n),(y_1,y_2,\cdots,y_n))=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}
 \tag{5}
     \]
 <p>  注意 \(d(\bm{x},\bm{y}),d(\bm{y},\bm{z}),d(\bm{x},\bm{z})\) 都大于 \(0\) ，故 \(d(\bm{x},\bm{z}) \le d(\bm{x},\bm{y})+d(\bm{y},\bm{z})\) 。<a class="link" href="#20241108105326CST">度量条件(3)</a>满足。</p>
-<p>  记 \(\bm{E}^n=(\bm{R}^n,d)\) ，称为<strong>n维欧氏空间</strong>。</p>
+<p>  记 \(\bm{E}^n=(\bm{R}^n,d)\) ，称为<strong>n维Euclid空间</strong>。</p>
 <p>  设 \((X,d)\) 是一个度量空间，我们来规定 \(X\) 的一个拓扑。</p>
-<p>  <span id="20241107212315CST"></span><strong>定义2（球形邻域）</strong>设 \(x_0 \in X,\varepsilon\) 是一正数，称 \(X\) 的子集</p>
+<h4 id="球形邻域">球形邻域
+</h4><p>  <span id="20241107212315CST"></span><strong>定义2（球形邻域）</strong>设 \(x_0 \in X,\varepsilon\) 是一正数，称 \(X\) 的子集</p>
 <span id="20241107211003CST"></span>\[
 B(x_0,\varepsilon)=\set{x \in X | d(x_0,x)<\varepsilon}
 \tag{6}
@@ -1084,14 +1094,21 @@ B(x_0,\varepsilon)=\set{x \in X | d(x_0,x)<\varepsilon}
 U=\bigcup_{x\in U}B(x,\varepsilon_x)
 \tag{7}
     \]
-<p>  <span id="20241107214850CST"></span><strong>命题1</strong>：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑（若干可以是不可数个、可数个、有限个、0个）。</p>
-<p>  <strong>证明（<a class="link" href="#20241107214850CST">命题1</a>）</strong>：对<a class="link" href="#20241108115249CST">拓扑公理(1)</a>，取 \(\displaystyle\left(\bigcup_{x \in X}B(x,\varepsilon_x)\right)\bigcap X\) 即可得到 \(X\) ，而取 \(x=\varnothing\) 即可得到 \(\varnothing\) ，所以满足。对<a class="link" href="#20241108115303CST">拓扑公理(2)</a>，由 \(U\) 的定义容易知道满足。对<a class="link" href="#20241108115313CST">拓扑公理(3)</a>，设 \(U,U' \in \tau_d\) ，记 \(U=\displaystyle\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha),U'=\displaystyle\bigcup_{\beta}B(x'_\beta,\varepsilon'_\beta)\) ，则</p>
+<h4 id="度量拓扑-1">度量拓扑
+</h4><p>  <span id="20241107214850CST"></span><strong>命题1</strong>：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑（若干可以是不可数个、可数个、有限个、0个）。</p>
+<p>  <strong>证明（<a class="link" href="#20241107214850CST">命题1</a>）</strong>：对<a class="link" href="#20241108115249CST">拓扑公理(1)</a>，取 \(\displaystyle\left(\bigcup_{x \in X}B(x,\varepsilon_x)\right)\bigcap X\) 即可得到 \(X\) ，而取 \(x=\varnothing\) 即可得到 \(\varnothing\) ，所以满足。对<a class="link" href="#20241108115303CST">拓扑公理(2)</a>，由 \(U\) 的定义容易知道满足。对<a class="link" href="#20241108115313CST">拓扑公理(3)</a>，设 \(U,U' \in \tau_d\) ，记 \(U=\displaystyle\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha),U'=\displaystyle\bigcup_{\beta}B(x'_\beta,\varepsilon'_\beta)\) ，由<a class="link" href="/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241108142053CST">集合及其运算-式(41)</a></p>
 <span id="20241108120406CST"></span>\[
 \begin{aligned}
-U \cup U' = \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\left(\bigcup_{\beta}B(x'_\beta,\varepsilon'_\beta)\right)
+U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\left(\bigcup_{\beta}B(x'_\beta,\varepsilon'_\beta)\right)\\[15pt]
+=&\bigcup_{\beta}\left(\left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap B(x'_\beta,\varepsilon'_\beta)\right)\text{（集合及其运算-式(41)）}\\[15pt]
+=&\bigcup_{\beta}\left(B(x'_\beta,\varepsilon'_\beta)\cap\left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\right)\\[15pt]
+=&\bigcup_{\beta}\left(\bigcup_{\alpha}(B(x'_\beta,\varepsilon'_\beta)\cap B(x_\alpha,\varepsilon_\alpha))\right)\text{（集合及其运算-式(41)）}\\[15pt]
+=&\bigcup_{\alpha,\beta}(B(x'_\beta,\varepsilon'_\beta)\cap B(x_\alpha,\varepsilon_\alpha))\\[15pt]
 \end{aligned}
 \tag{8}
     \]
+<p>  根据<a class="link" href="#20241107211233CST">引理1</a>，对任何 \(\alpha,\beta\) ， \(B(x_\alpha,\varepsilon_\alpha)\cap B(x'_\beta,\varepsilon'_\beta) \in \tau_d\) 。再由<a class="link" href="#20241108115303CST">拓扑公理(2)</a>，得出 \(U \cap U' \in \tau_d\) 。</p>
+<p>  称 \(\tau_d\) 为 \(X\) 上由度量 \(d\) 决定的<strong>度量拓扑</strong>。每个度量空间都自然地看成具有度量拓扑的拓扑空间，从而Euclid空间 \(\bm{E}^n\) 也是拓扑空间（其度量拓扑称为Euclid拓扑）。从这个意义上讲，拓扑空间是Euclid空间和度量空间的推广。三条拓扑公理也正是从度量空间的开集所具有的最基本的性质中抽象出来的。</p>
 
     </div>
 </section>
@@ -1133,7 +1150,7 @@ U \cup U' = \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\left
 
 
         <span>
-            最后更新于 Nov 08, 2024 12:05 CST
+            最后更新于 Nov 08, 2024 16:38 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1298,7 +1315,7 @@ U \cup U' = \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\left
             
             
         
-        <span>本图书馆累计发布了13篇文章 共149434字</span>
+        <span>本图书馆累计发布了13篇文章 共149785字</span>
     </section>
 
     <section class="site-visit-count">
