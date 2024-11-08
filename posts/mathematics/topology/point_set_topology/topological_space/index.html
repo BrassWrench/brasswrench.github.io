@@ -131,7 +131,7 @@
 <meta property='og:description' content="定义在一个集合上并满足拓扑公理的子集族所构成的结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/topology/point_set_topology/topological_space/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T16:38:27&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T16:50:55&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="点集拓扑学（一）：拓扑空间">
 <meta name="twitter:description" content="定义在一个集合上并满足拓扑公理的子集族所构成的结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -603,7 +603,11 @@
   <ol>
     <li><a href="#拓扑空间-1">拓扑空间</a>
       <ol>
-        <li><a href="#拓扑空间的定义">拓扑空间的定义</a></li>
+        <li><a href="#拓扑空间的定义">拓扑空间的定义</a>
+          <ol>
+            <li><a href="#拓扑空间与拓扑公理">拓扑空间与拓扑公理</a></li>
+          </ol>
+        </li>
         <li><a href="#度量拓扑">度量拓扑</a>
           <ol>
             <li><a href="#度量与度量空间">度量与度量空间</a></li>
@@ -939,7 +943,7 @@
 </svg>
 
             <time class="article-words">
-                2114 字
+                2122 字
             </time>
         </div>
 
@@ -993,7 +997,8 @@
 <h1 id="拓扑空间">拓扑空间
 </h1><h2 id="拓扑空间-1">拓扑空间
 </h2><h3 id="拓扑空间的定义">拓扑空间的定义
-</h3><p>  <span id="20241015215625CST"></span><strong>定义1（拓扑空间）</strong>：设 \(X\) 是一非空集合， \(X\) 的一个子集族 \(\tau\) 称为 \(X\) 的一个<strong>拓扑</strong>，如果它满足<br>
+</h3><h4 id="拓扑空间与拓扑公理">拓扑空间与拓扑公理
+</h4><p>  <span id="20241015215625CST"></span><strong>定义1（拓扑空间）</strong>：设 \(X\) 是一非空集合， \(X\) 的一个子集族 \(\tau\) 称为 \(X\) 的一个<strong>拓扑</strong>，如果它满足<br>
 <span id="20241108115249CST"></span>
   (1) \(X,\varnothing\) 都包含在 \(\tau\) 中。<br>
 <span id="20241108115303CST"></span>
@@ -1095,7 +1100,7 @@ U=\bigcup_{x\in U}B(x,\varepsilon_x)
 \tag{7}
     \]
 <h4 id="度量拓扑-1">度量拓扑
-</h4><p>  <span id="20241107214850CST"></span><strong>命题1</strong>：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑（若干可以是不可数个、可数个、有限个、0个）。</p>
+</h4><p>  <span id="20241107214850CST"></span><strong>命题1</strong>：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑（若干可以是无穷、可以是有限、也可以是零）。</p>
 <p>  <strong>证明（<a class="link" href="#20241107214850CST">命题1</a>）</strong>：对<a class="link" href="#20241108115249CST">拓扑公理(1)</a>，取 \(\displaystyle\left(\bigcup_{x \in X}B(x,\varepsilon_x)\right)\bigcap X\) 即可得到 \(X\) ，而取 \(x=\varnothing\) 即可得到 \(\varnothing\) ，所以满足。对<a class="link" href="#20241108115303CST">拓扑公理(2)</a>，由 \(U\) 的定义容易知道满足。对<a class="link" href="#20241108115313CST">拓扑公理(3)</a>，设 \(U,U' \in \tau_d\) ，记 \(U=\displaystyle\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha),U'=\displaystyle\bigcup_{\beta}B(x'_\beta,\varepsilon'_\beta)\) ，由<a class="link" href="/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241108142053CST">集合及其运算-式(41)</a></p>
 <span id="20241108120406CST"></span>\[
 \begin{aligned}
@@ -1150,7 +1155,7 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
 
 
         <span>
-            最后更新于 Nov 08, 2024 16:38 CST
+            最后更新于 Nov 08, 2024 16:50 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1315,7 +1320,7 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
             
             
         
-        <span>本图书馆累计发布了13篇文章 共149785字</span>
+        <span>本图书馆累计发布了13篇文章 共149793字</span>
     </section>
 
     <section class="site-visit-count">
