@@ -131,7 +131,7 @@
 <meta property='og:description' content="定义在一个集合上并满足拓扑公理的子集族所构成的结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/topology/point_set_topology/topological_space/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T16:50:55&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T16:55:14&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="点集拓扑学（一）：拓扑空间">
 <meta name="twitter:description" content="定义在一个集合上并满足拓扑公理的子集族所构成的结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -606,6 +606,8 @@
         <li><a href="#拓扑空间的定义">拓扑空间的定义</a>
           <ol>
             <li><a href="#拓扑空间与拓扑公理">拓扑空间与拓扑公理</a></li>
+            <li><a href="#离散拓扑和平凡拓扑">离散拓扑和平凡拓扑</a></li>
+            <li><a href="#几个拓扑例子">几个拓扑例子</a></li>
           </ol>
         </li>
         <li><a href="#度量拓扑">度量拓扑</a>
@@ -616,6 +618,7 @@
             <li><a href="#度量拓扑-1">度量拓扑</a></li>
           </ol>
         </li>
+        <li><a href="#拓扑空间中的几个基本概念">拓扑空间中的几个基本概念</a></li>
       </ol>
     </li>
   </ol>
@@ -943,7 +946,7 @@
 </svg>
 
             <time class="article-words">
-                2122 字
+                2194 字
             </time>
         </div>
 
@@ -1009,10 +1012,12 @@
   定义中的三个条件称为<strong>拓扑公理</strong>。(3)可等价地换为</p>
 <p>  (3′) \(\tau\) 中两个成员的交集仍在 \(\tau\) 中。</p>
 <p>  (3)蕴含(3′)，另一方面易用归纳法从(3′)推出(3)。</p>
-<p>  从定义看出，给出集合的一个拓扑就是规定它的哪些子集是开集。这种规定不是任意的，必须满足三条拓扑公理。但一般来说一个集合上可以规定许多不相同的拓扑，因此说到一个拓扑空间时，要同时指明集合及所规定的拓扑，以后在不会引起误解的情况下，也常常只用集合来称呼一个拓扑空间，如拓扑空间 \(X\) ，拓扑空间 \(Y\) 等。<br>
+<h4 id="离散拓扑和平凡拓扑">离散拓扑和平凡拓扑
+</h4><p>  从定义看出，给出集合的一个拓扑就是规定它的哪些子集是开集。这种规定不是任意的，必须满足三条拓扑公理。但一般来说一个集合上可以规定许多不相同的拓扑，因此说到一个拓扑空间时，要同时指明集合及所规定的拓扑，以后在不会引起误解的情况下，也常常只用集合来称呼一个拓扑空间，如拓扑空间 \(X\) ，拓扑空间 \(Y\) 等。<br>
   设 \(X\) 是一非空集合，显然 \(2^X\) 满足三个拓扑公理（见<a class="link" onclick="alert('抱歉，“集合论”还未上线~')">幂集</a>），构成 \(X\) 上的拓扑，称为 \(X\) 上的<strong>离散拓扑</strong>；\(\set{X,\varnothing}\) 也是 \(X\) 上的拓扑，称为 \(X\) 上的<strong>平凡拓扑</strong>。当 \(X\) 中包含多余一个点时，这两个拓扑不相同，并且 \(X\) 还有许多别的拓扑。例如设 \(X=\set{a,b,c}\) ，则 \(\set{X,\varnothing,\set{a}}\) 、 \(\set{X,\varnothing,\set{a,b}}\) 、 \(\set{X,\varnothing,\set{a},\set{a,b}}\) 都是 \(X\) 上的拓扑；但 \(\set{X,\varnothing,\set{a},\set{b}}\) 不是拓扑，因为条件(2)不满足。<br>
   设 \(\tau_1,\tau_2\) 是集合 \(X\) 上的两个拓扑，如果 \(\tau_1 \subset \tau_2\) ，则说 \(\tau_2\) 比 \(\tau_1\) <strong>大</strong>（或者说 \(\tau_2\) 比 \(\tau_1\) <strong>精细</strong>）。离散拓扑比任何别的拓扑都大，而平凡拓扑比任何拓扑都小。</p>
-<p>  下面给出几个拓扑的例子。<br>
+<h4 id="几个拓扑例子">几个拓扑例子
+</h4><p>  下面给出几个拓扑的例子。<br>
   <span id="20241025165258CST"></span><strong>例1</strong>：设 \(X\) 是无穷集合， \(\tau_f=\set{A^c|A是X的有限子集}\bigcup\set{\varnothing}\) ，则不难验证 \(\tau_f\) 是 \(X\) 上的一个拓扑，成为 \(X\) 上的<strong>余有限拓扑</strong>。<br>
   <span id="20241025165301CST"></span><strong>例2</strong>：设 \(X\) 是不可数无穷集合， \(\tau_c=\set{A^c|A是X的可数子集}\bigcup\set{\varnothing}\) ，则 \(\tau_c\) 也是 \(X\) 的拓扑，成为<strong>余可数拓扑</strong>。<br>
   <span id="20241025165303CST"></span><strong>例3</strong>：设 \(\bm{R}\) 是全体实数的几何，规定 \(\tau_e=\set{U|U是若干个区间的并集}\) ，这里“若干”可以是无穷、有限，也可以是零，因此 \(\varnothing\in\tau_e\) 。则 \(\tau_e\) 是 \(R\) 上的拓扑，称为 \(R\) 上的<strong>Euclid拓扑</strong>，记 \(\bm{E}^1=(\bm{R},\tau_e)\) 。</p>
@@ -1114,6 +1119,8 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
     \]
 <p>  根据<a class="link" href="#20241107211233CST">引理1</a>，对任何 \(\alpha,\beta\) ， \(B(x_\alpha,\varepsilon_\alpha)\cap B(x'_\beta,\varepsilon'_\beta) \in \tau_d\) 。再由<a class="link" href="#20241108115303CST">拓扑公理(2)</a>，得出 \(U \cap U' \in \tau_d\) 。</p>
 <p>  称 \(\tau_d\) 为 \(X\) 上由度量 \(d\) 决定的<strong>度量拓扑</strong>。每个度量空间都自然地看成具有度量拓扑的拓扑空间，从而Euclid空间 \(\bm{E}^n\) 也是拓扑空间（其度量拓扑称为Euclid拓扑）。从这个意义上讲，拓扑空间是Euclid空间和度量空间的推广。三条拓扑公理也正是从度量空间的开集所具有的最基本的性质中抽象出来的。</p>
+<h3 id="拓扑空间中的几个基本概念">拓扑空间中的几个基本概念
+</h3><p>  下面要讲的几个基本的拓扑概念在欧氏空间和度量空间中都已出现过，但现在用开集概念来规定它们。</p>
 
     </div>
 </section>
@@ -1155,7 +1162,7 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
 
 
         <span>
-            最后更新于 Nov 08, 2024 16:50 CST
+            最后更新于 Nov 08, 2024 16:55 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1320,7 +1327,7 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
             
             
         
-        <span>本图书馆累计发布了13篇文章 共149793字</span>
+        <span>本图书馆累计发布了13篇文章 共149865字</span>
     </section>
 
     <section class="site-visit-count">
