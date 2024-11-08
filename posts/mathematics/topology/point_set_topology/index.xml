@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 07 Nov 2024 22:36:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/topology/point_set_topology/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 08 Nov 2024 12:05:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/topology/point_set_topology/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>点集拓扑学（一）：拓扑空间</title>
         <link>https://www.brasswrench.com/posts/mathematics/topology/point_set_topology/topological_space/</link>
         <pubDate>Tue, 15 Oct 2024 14:00:15 +0800</pubDate>
@@ -38,8 +38,11 @@
 &lt;/h1&gt;&lt;h2 id=&#34;拓扑空间-1&#34;&gt;拓扑空间
 &lt;/h2&gt;&lt;h3 id=&#34;拓扑空间的定义&#34;&gt;拓扑空间的定义
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241015215625CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1（拓扑空间）&lt;/strong&gt;：设 \(X\) 是一非空集合， \(X\) 的一个子集族 \(\tau\) 称为 \(X\) 的一个&lt;strong&gt;拓扑&lt;/strong&gt;，如果它满足&lt;br&gt;
+&lt;span id=&#34;20241108115249CST&#34;&gt;&lt;/span&gt;
   (1) \(X,\varnothing\) 都包含在 \(\tau\) 中。&lt;br&gt;
+&lt;span id=&#34;20241108115303CST&#34;&gt;&lt;/span&gt;
   (2) \(\tau\) 中任意多个成员的并集仍在 \(\tau\) 中。&lt;br&gt;
+&lt;span id=&#34;20241108115313CST&#34;&gt;&lt;/span&gt;
   (3) \(\tau\) 中有限多个成员的交集仍在 \(\tau\) 中。&lt;/p&gt;
 &lt;p&gt;  集合 \(X\) 和它的一个拓扑 \(\tau\) 一起称为一个&lt;strong&gt;拓扑空间&lt;/strong&gt;，记作 \((X,\tau)\) 。称 \(\tau\) 中的成员为这个拓扑空间的&lt;strong&gt;开集&lt;/strong&gt;。&lt;br&gt;
   定义中的三个条件称为&lt;strong&gt;拓扑公理&lt;/strong&gt;。(3)可等价地换为&lt;/p&gt;
@@ -55,6 +58,7 @@
 &lt;p&gt;  现在，对 \(R\) 已规定了五个拓扑：平凡拓扑 \(\tau_t\) ，离散拓扑 \(\tau_s\) ，余有限拓扑 \(\tau_f\) ，余可数拓扑 \(\tau_c\) 和Euclid拓扑 \(\tau_e\) 。 \(\tau_f\) 小于 \(\tau_c\) 和 \(\tau_e\) ，而 \(\tau_c\) 和 \(\tau_e\) 不能比较大小。&lt;/p&gt;
 &lt;h3 id=&#34;度量拓扑&#34;&gt;度量拓扑
 &lt;/h3&gt;&lt;p&gt;  集合 \(X\) 上的一个&lt;strong&gt;度量&lt;/strong&gt; \(d\) 是一个映射 \(d:X\times X \to R\) ，它满足&lt;br&gt;
+&lt;span id=&#34;20241108105402CST&#34;&gt;&lt;/span&gt;
   (1)正定性。&lt;/p&gt;
 &lt;span id=&#34;20241107210556CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
@@ -63,12 +67,14 @@ d(x,y)&gt;0,当x\ne y
 \end{cases}
 \tag{1}
     \]
-&lt;p&gt;  (2)对称性。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241108105340CST&#34;&gt;&lt;/span&gt;
+  (2)对称性。&lt;/p&gt;
 &lt;span id=&#34;20241107210618CST&#34;&gt;&lt;/span&gt;\[
 d(x,y)=d(y,x),\quad\forall x,y \in x
 \tag{2}
     \]
-&lt;p&gt;  (3)三角不等式。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241108105326CST&#34;&gt;&lt;/span&gt;
+  (3)三角不等式。&lt;/p&gt;
 &lt;span id=&#34;20241107210623CST&#34;&gt;&lt;/span&gt;\[
 d(x,z)\le d(x,y)+d(y,z),\space\forall x,y,z \in X
 \tag{3}
@@ -79,12 +85,26 @@ d(x,z)\le d(x,y)+d(y,z),\space\forall x,y,z \in X
 d((x_1,x_2,\cdots,x_n),(y_1,y_2,\cdots,y_n))=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}
 \tag{4}
     \]
-&lt;p&gt;  可以验证 \(d\) 满足度量的性质(1)(2)(3)，记 \(\bm{E}^n=(\bm{R}^n,d)\) ，称为&lt;strong&gt;n维欧氏空间&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  直接代入可得 \(d\) 满足度量的性质&lt;a class=&#34;link&#34; href=&#34;#20241108105402CST&#34;&gt;度量条件(1)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241108105340CST&#34;&gt;度量条件(2)&lt;/a&gt;。对于&lt;a class=&#34;link&#34; href=&#34;#20241108105326CST&#34;&gt;度量条件(3)&lt;/a&gt;，使用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等代数”还未上线~&#39;)&#34;&gt;Cauchy-Schwartz不等式&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241108003010CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\left(d(\bm{x},\bm{y})+d(\bm{y},\bm{z})\right)^2&amp;=d(\bm{x},\bm{y})^2+d(\bm{y},\bm{z})^2+2d(\bm{x},\bm{y})d(\bm{y},\bm{z})\\[5pt]
+=&amp;\sum_{i=1}^{n}(x_i-y_i)^2+\sum_{i=1}^{n}(y_i-z_i)^2+2\sqrt{\left(\sum_{i=1}^{n}(x_i-y_i)^2\right)\left(\sum_{i=1}^{n}(y_i-z_i)^2\right)}\\[15pt]
+\ge&amp;\sum_{i=1}^{n}(x_i-y_i)^2+\sum_{i=1}^{n}(y_i-z_i)^2+2\sqrt{\left(\sum_{i=1}^{n}(x_i-y_i)(y_i-z_i)\right)^2}\text{（Cauchy-Schwartz不等式）}\\[15pt]
+=&amp;\sum_{i=1}^{n}(x_i-y_i)^2+\sum_{i=1}^{n}(y_i-z_i)^2+2\left|\sum_{i=1}^{n}(x_i-y_i)(y_i-z_i)\right|\\[15pt]
+\ge&amp;\sum_{i=1}^{n}(x_i-y_i)^2+\sum_{i=1}^{n}(y_i-z_i)^2+2\sum_{i=1}^{n}(x_i-y_i)(y_i-z_i)\\[15pt]
+=&amp;\sum_{i=1}^{n}\bigg((x_i-y_i)^2+2(x_i-y_i)(y_i-z_i)+(y_i-z_i)^2\bigg)\\[15pt]
+=&amp;\sum_{i=1}^{n}(x_i-y_i+y_i-z_i)^2=\sum_{i=1}^{n}(x_i-z_i)^2=d(\bm{x},\bm{z})^2
+\end{aligned}
+\tag{5}
+    \]
+&lt;p&gt;  注意 \(d(\bm{x},\bm{y}),d(\bm{y},\bm{z}),d(\bm{x},\bm{z})\) 都大于 \(0\) ，故 \(d(\bm{x},\bm{z}) \le d(\bm{x},\bm{y})+d(\bm{y},\bm{z})\) 。&lt;a class=&#34;link&#34; href=&#34;#20241108105326CST&#34;&gt;度量条件(3)&lt;/a&gt;满足。&lt;/p&gt;
+&lt;p&gt;  记 \(\bm{E}^n=(\bm{R}^n,d)\) ，称为&lt;strong&gt;n维欧氏空间&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  设 \((X,d)\) 是一个度量空间，我们来规定 \(X\) 的一个拓扑。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241107212315CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（球形邻域）&lt;/strong&gt;设 \(x_0 \in X,\varepsilon\) 是一正数，称 \(X\) 的子集&lt;/p&gt;
 &lt;span id=&#34;20241107211003CST&#34;&gt;&lt;/span&gt;\[
 B(x_0,\varepsilon)=\set{x \in X | d(x_0,x)&lt;\varepsilon}
-\tag{5}
+\tag{6}
     \]
 &lt;p&gt;  为以 \(x_0\) 为中心， \(\varepsilon\) 为半径的&lt;strong&gt;球形邻域&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241107211233CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;引理1&lt;/strong&gt;： \((X,d)\) 的任意两个球形邻域的交集是若干球形邻域的并集。&lt;/p&gt;
@@ -113,10 +133,16 @@ B(x_0,\varepsilon)=\set{x \in X | d(x_0,x)&lt;\varepsilon}
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241107211233CST&#34;&gt;引理1&lt;/a&gt;）&lt;/strong&gt;：设 \(U=B(x_1,\varepsilon_1)\cap B(x_2,\varepsilon_2)\) 。 \(\forall x \in U\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241107212315CST&#34;&gt;球形邻域定义&lt;/a&gt;知 \(\varepsilon_i-d(x,x_i)&gt;0(i=1,2)\) 。记 \(\varepsilon_x=\min\set{\varepsilon_1-d(x,x_1),\varepsilon_2-d(x,x_2)}\) 。我们考虑任意 \(x&#39; \in B(x,\varepsilon_x)\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241107212315CST&#34;&gt;球形邻域定义&lt;/a&gt;知 \(d(x&#39;,x)&lt;\varepsilon_x\) 。又知 \(\varepsilon_x=\min\set{\varepsilon_1-d(x,x_1),\varepsilon_2-d(x,x_2)}&lt;\varepsilon_1-d(x,x_1)\) ，有 \(d(x&#39;,x)&lt;\varepsilon_1-d(x,x_1)\) ，即 \(d(x&#39;,x)+d(x,x_1)&lt;\varepsilon_1\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241107210623CST&#34;&gt;三角不等式&lt;/a&gt;可知 \(d(x&#39;,x_1) &lt; d(x&#39;,x)+d(x,x_1) &lt; \varepsilon_1\) ，所以由&lt;a class=&#34;link&#34; href=&#34;#20241107212315CST&#34;&gt;球形邻域定义&lt;/a&gt;可知 \(x&#39; \in B(x_1,\varepsilon_1)\) ，同理可证 \(x&#39; \in B(x_2,\varepsilon_2)\) ，即 \(x&#39; \in B(x_1,\varepsilon_1)\cap B(x_2,\varepsilon_2) = U\) ，故 \(B(x,\varepsilon_x) \subseteq U\) ，对所有 \(x\) 求并集有 \(\displaystyle\bigcup_{x\in U}B(x,\varepsilon_x) \subseteq U\) 。但是由&lt;a class=&#34;link&#34; href=&#34;#20241107212315CST&#34;&gt;球形邻域定义&lt;/a&gt;又有 \(\forall x \in U,x \in B(x,\varepsilon_x) \subseteq \displaystyle\bigcup_{x\in U}B(x,\varepsilon_x)\) ，即 \(U \subseteq \displaystyle\bigcup_{x\in U}B(x,\varepsilon_x)\) ，最后我们得到&lt;/p&gt;
 &lt;span id=&#34;20241107214755CST&#34;&gt;&lt;/span&gt;\[
 U=\bigcup_{x\in U}B(x,\varepsilon_x)
-\tag{6}
+\tag{7}
     \]
-&lt;p&gt;  &lt;span id=&#34;20241107214850CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;命题1&lt;/strong&gt;：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241107214850CST&#34;&gt;命题1&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;拓扑空间&lt;/a&gt;。对(1)， \(X\) 本身&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241107214850CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;命题1&lt;/strong&gt;：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑（若干可以是不可数个、可数个、有限个、0个）。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241107214850CST&#34;&gt;命题1&lt;/a&gt;）&lt;/strong&gt;：对&lt;a class=&#34;link&#34; href=&#34;#20241108115249CST&#34;&gt;拓扑公理(1)&lt;/a&gt;，取 \(\displaystyle\left(\bigcup_{x \in X}B(x,\varepsilon_x)\right)\bigcap X\) 即可得到 \(X\) ，而取 \(x=\varnothing\) 即可得到 \(\varnothing\) ，所以满足。对&lt;a class=&#34;link&#34; href=&#34;#20241108115303CST&#34;&gt;拓扑公理(2)&lt;/a&gt;，由 \(U\) 的定义容易知道满足。对&lt;a class=&#34;link&#34; href=&#34;#20241108115313CST&#34;&gt;拓扑公理(3)&lt;/a&gt;，设 \(U,U&#39; \in \tau_d\) ，记 \(U=\displaystyle\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha),U&#39;=\displaystyle\bigcup_{\beta}B(x&#39;_\beta,\varepsilon&#39;_\beta)\) ，则&lt;/p&gt;
+&lt;span id=&#34;20241108120406CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+U \cup U&#39; = \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\left(\bigcup_{\beta}B(x&#39;_\beta,\varepsilon&#39;_\beta)\right)
+\end{aligned}
+\tag{8}
+    \]
 </description>
         </item>
         

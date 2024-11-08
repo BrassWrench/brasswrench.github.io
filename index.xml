@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 08 Nov 2024 00:16:15 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 08 Nov 2024 12:05:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>集合论（一）：集合及其运算</title>
         <link>https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/</link>
         <pubDate>Thu, 07 Nov 2024 22:25:27 +0800</pubDate>
@@ -101,7 +101,7 @@ x^2+1=0
 &lt;p&gt;  的实根之集是空集。空集的引入可以使许多问题的叙述得以简化。&lt;/p&gt;
 &lt;h2 id=&#34;子集集合的相等&#34;&gt;子集、集合的相等
 &lt;/h2&gt;&lt;p&gt;  “集合”、“元素”、元素与集合间的“属于”关系是三个没有精确定义的原始概念，对它们仅给出了直观的描述，以说明它们的各自含义。本节利用这三个概念定义集合的子集、集合间的包含关系、集合的相等、幕集、集族等概念。&lt;/p&gt;
-&lt;h3 id=&#34;集合的相等&#34;&gt;集合的相等
+&lt;h3 id=&#34;集合的包含&#34;&gt;集合的包含
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241107232422CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1&lt;/strong&gt;：设 \(A\) 和 \(B\) 是两个集合，如果集合 \(A\) 中的每个元素都是 \(B\) 的元素，则称 \(A\) 是 \(B\) 的子集合。简称&lt;strong&gt;子集&lt;/strong&gt;。这是我们说 \(A\) 包含在 \(B\) 里，或 \(B\) 包含着 \(A\) 。 \(A\) 是 \(B\) 的子集记为 \(A \sube B\) 或 \(B \supe A\) 。&lt;/p&gt;
 &lt;p&gt;  由定义可知， \(A \sube B\) 当且仅当对 \(A\) 的每个元素 \(x\) 均有 \(x \in B\) 。以后常用记号 \(\Harr\) 表示“当且仅当”；用“ \(\forall x \cdots\) ”表示“对所有的 \(x\) ···”；“ \(\exist x \cdots\) ”表示“存在一个 \(x\) ···”。于是 \(\forall x \in A\) 就读做对 \(A\) 的所有元素 \(x\) 。于是&lt;/p&gt;
 &lt;span id=&#34;20241107233130CST&#34;&gt;&lt;/span&gt;\[
@@ -127,29 +127,35 @@ N \sube Q \sube R \sube C
 A \nsubseteq B \Harr \exist x \in A 使得 x \notin B
 \tag{14}
     \]
-&lt;p&gt;  若 \(A,B,C\) 都是集合，则显然有&lt;br&gt;
-  (1) \(A \sube A\)&lt;br&gt;
-  (2) 若 \(A \sube B\) 且 \(B \sube C\) ，则 \(A \sube C\)&lt;/p&gt;
+&lt;p&gt;  若 \(A,B,C\) 都是集合，则显然有
+&lt;span id=&#34;20241108095515CST&#34;&gt;&lt;/span&gt;\[
+A \sube A
+\tag{15}
+    \]
+&lt;span id=&#34;20241108095524CST&#34;&gt;&lt;/span&gt;\[
+若 A \sube B 且 B \sube C ，则 A \sube C
+\tag{16}
+    \]&lt;/p&gt;
 &lt;h3 id=&#34;真子集&#34;&gt;真子集
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241107234005CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2&lt;/strong&gt;：设 \(A,B\) 为集合。如果 \(A \sube B\) 且 \(\exist x \in B\) 使得 \(x \notin A\) ，则称 \(A\) 是 \(B\) 的&lt;strong&gt;真子集&lt;/strong&gt;，记为 \(A \sub B\) 。&lt;br&gt;
   例如， \(\set{a,b}\) 的真子集。 \(N\) 是 \(Q\) 的真子集， \(Q\) 是 \(R\) 的 真子集， \(R\) 是 \(C\) 的真子集。&lt;br&gt;
   注意符号“ \(\in\) ”与“ \(\sube\) ”在概念上的区别。 \(\in\) 为元素与集合间的属于关系，而 \(\sube\) 为集合间的包含关系。&lt;/p&gt;
-&lt;h3 id=&#34;集合的相等-1&#34;&gt;集合的相等
+&lt;h3 id=&#34;集合的相等&#34;&gt;集合的相等
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241107234317CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3&lt;/strong&gt;：设 \(A,B\) 是集合，如果 \(A \sube B\) 且 \(B \sube A\) ，则称 \(B\) 与 \(A\) 相等,并记成 \(A=B\) 。&lt;br&gt;
   这就是说，如果 \(A\) 和 \(B\) 由完全相同的元素组成时，那么 \(A\) 与 \(B\) 就是相等的两个集合。两个相等的集合并不意味着它们是用同样的方
 法定义的。如果 \(A\) 与 \(B\) 是两个不相等的集合，那么就记为 \(A \ne B\) 。显然，&lt;/p&gt;
 &lt;span id=&#34;20241107234449CST&#34;&gt;&lt;/span&gt;\[
 A\ne B \Harr A \nsubseteq B 或 B \nsubseteq A
-\tag{15}
+\tag{17}
     \]
 &lt;span id=&#34;20241107234547CST&#34;&gt;&lt;/span&gt;\[
 A \sub B \Harr A \sube B 且 A \ne B
-\tag{16}
+\tag{18}
     \]
 &lt;p&gt;  &lt;span id=&#34;20241107234602CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例5&lt;/strong&gt;：设 \(A=\set{2,3}\) ， \(B\) 为方程&lt;/p&gt;
 &lt;span id=&#34;20241107234635CST&#34;&gt;&lt;/span&gt;\[
 x^2-5x+6=0
-\tag{17}
+\tag{19}
     \]
 &lt;p&gt;  的根形成的集合，则 \(A=B\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;指出了一个重要原则：要证明两个集合相等，唯一的方法是证明每一个集中的任一元素均是另一个集的元素。这种证明应是靠逻辑推理，而不是依靠直观。证明两个集合相等的方法是本章中必须掌握的方法，它贯穿在本书的各章中。&lt;/p&gt;
@@ -170,12 +176,12 @@ x^2-5x+6=0
   于是有
 &lt;span id=&#34;20241108001132CST&#34;&gt;&lt;/span&gt;\[
 2^S=\set{A|A \sube S}
-\tag{18}
+\tag{20}
     \]&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241108001045CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例6&lt;/strong&gt;：设 \(S={1,2,3}\) ，则&lt;/p&gt;
 &lt;span id=&#34;20241108001149CST&#34;&gt;&lt;/span&gt;\[
 2^S=\set{\varnothing,\set{1},\set{2},\set{3},\set{1,2},\set{1,3},\set{2,3},\set{1,2,3}}
-\tag{19}
+\tag{21}
     \]
 &lt;p&gt;   \(S\) 有八个子集。&lt;/p&gt;
 &lt;p&gt;  一般说来，若 \(S\) 正好有 \(n\) 个元素，则 \(S\) 有 \(2^n\) 个子集，这就是我们为什么采用记号 \(2^S\) 的原因。&lt;/p&gt;
@@ -7442,8 +7448,11 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h1&gt;&lt;h2 id=&#34;拓扑空间-1&#34;&gt;拓扑空间
 &lt;/h2&gt;&lt;h3 id=&#34;拓扑空间的定义&#34;&gt;拓扑空间的定义
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241015215625CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1（拓扑空间）&lt;/strong&gt;：设 \(X\) 是一非空集合， \(X\) 的一个子集族 \(\tau\) 称为 \(X\) 的一个&lt;strong&gt;拓扑&lt;/strong&gt;，如果它满足&lt;br&gt;
+&lt;span id=&#34;20241108115249CST&#34;&gt;&lt;/span&gt;
   (1) \(X,\varnothing\) 都包含在 \(\tau\) 中。&lt;br&gt;
+&lt;span id=&#34;20241108115303CST&#34;&gt;&lt;/span&gt;
   (2) \(\tau\) 中任意多个成员的并集仍在 \(\tau\) 中。&lt;br&gt;
+&lt;span id=&#34;20241108115313CST&#34;&gt;&lt;/span&gt;
   (3) \(\tau\) 中有限多个成员的交集仍在 \(\tau\) 中。&lt;/p&gt;
 &lt;p&gt;  集合 \(X\) 和它的一个拓扑 \(\tau\) 一起称为一个&lt;strong&gt;拓扑空间&lt;/strong&gt;，记作 \((X,\tau)\) 。称 \(\tau\) 中的成员为这个拓扑空间的&lt;strong&gt;开集&lt;/strong&gt;。&lt;br&gt;
   定义中的三个条件称为&lt;strong&gt;拓扑公理&lt;/strong&gt;。(3)可等价地换为&lt;/p&gt;
@@ -7459,6 +7468,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  现在，对 \(R\) 已规定了五个拓扑：平凡拓扑 \(\tau_t\) ，离散拓扑 \(\tau_s\) ，余有限拓扑 \(\tau_f\) ，余可数拓扑 \(\tau_c\) 和Euclid拓扑 \(\tau_e\) 。 \(\tau_f\) 小于 \(\tau_c\) 和 \(\tau_e\) ，而 \(\tau_c\) 和 \(\tau_e\) 不能比较大小。&lt;/p&gt;
 &lt;h3 id=&#34;度量拓扑&#34;&gt;度量拓扑
 &lt;/h3&gt;&lt;p&gt;  集合 \(X\) 上的一个&lt;strong&gt;度量&lt;/strong&gt; \(d\) 是一个映射 \(d:X\times X \to R\) ，它满足&lt;br&gt;
+&lt;span id=&#34;20241108105402CST&#34;&gt;&lt;/span&gt;
   (1)正定性。&lt;/p&gt;
 &lt;span id=&#34;20241107210556CST&#34;&gt;&lt;/span&gt;\[
 \begin{cases}
@@ -7467,12 +7477,14 @@ d(x,y)&gt;0,当x\ne y
 \end{cases}
 \tag{1}
     \]
-&lt;p&gt;  (2)对称性。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241108105340CST&#34;&gt;&lt;/span&gt;
+  (2)对称性。&lt;/p&gt;
 &lt;span id=&#34;20241107210618CST&#34;&gt;&lt;/span&gt;\[
 d(x,y)=d(y,x),\quad\forall x,y \in x
 \tag{2}
     \]
-&lt;p&gt;  (3)三角不等式。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241108105326CST&#34;&gt;&lt;/span&gt;
+  (3)三角不等式。&lt;/p&gt;
 &lt;span id=&#34;20241107210623CST&#34;&gt;&lt;/span&gt;\[
 d(x,z)\le d(x,y)+d(y,z),\space\forall x,y,z \in X
 \tag{3}
@@ -7483,12 +7495,26 @@ d(x,z)\le d(x,y)+d(y,z),\space\forall x,y,z \in X
 d((x_1,x_2,\cdots,x_n),(y_1,y_2,\cdots,y_n))=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}
 \tag{4}
     \]
-&lt;p&gt;  可以验证 \(d\) 满足度量的性质(1)(2)(3)，记 \(\bm{E}^n=(\bm{R}^n,d)\) ，称为&lt;strong&gt;n维欧氏空间&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  直接代入可得 \(d\) 满足度量的性质&lt;a class=&#34;link&#34; href=&#34;#20241108105402CST&#34;&gt;度量条件(1)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241108105340CST&#34;&gt;度量条件(2)&lt;/a&gt;。对于&lt;a class=&#34;link&#34; href=&#34;#20241108105326CST&#34;&gt;度量条件(3)&lt;/a&gt;，使用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等代数”还未上线~&#39;)&#34;&gt;Cauchy-Schwartz不等式&lt;/a&gt;可得&lt;/p&gt;
+&lt;span id=&#34;20241108003010CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+\left(d(\bm{x},\bm{y})+d(\bm{y},\bm{z})\right)^2&amp;=d(\bm{x},\bm{y})^2+d(\bm{y},\bm{z})^2+2d(\bm{x},\bm{y})d(\bm{y},\bm{z})\\[5pt]
+=&amp;\sum_{i=1}^{n}(x_i-y_i)^2+\sum_{i=1}^{n}(y_i-z_i)^2+2\sqrt{\left(\sum_{i=1}^{n}(x_i-y_i)^2\right)\left(\sum_{i=1}^{n}(y_i-z_i)^2\right)}\\[15pt]
+\ge&amp;\sum_{i=1}^{n}(x_i-y_i)^2+\sum_{i=1}^{n}(y_i-z_i)^2+2\sqrt{\left(\sum_{i=1}^{n}(x_i-y_i)(y_i-z_i)\right)^2}\text{（Cauchy-Schwartz不等式）}\\[15pt]
+=&amp;\sum_{i=1}^{n}(x_i-y_i)^2+\sum_{i=1}^{n}(y_i-z_i)^2+2\left|\sum_{i=1}^{n}(x_i-y_i)(y_i-z_i)\right|\\[15pt]
+\ge&amp;\sum_{i=1}^{n}(x_i-y_i)^2+\sum_{i=1}^{n}(y_i-z_i)^2+2\sum_{i=1}^{n}(x_i-y_i)(y_i-z_i)\\[15pt]
+=&amp;\sum_{i=1}^{n}\bigg((x_i-y_i)^2+2(x_i-y_i)(y_i-z_i)+(y_i-z_i)^2\bigg)\\[15pt]
+=&amp;\sum_{i=1}^{n}(x_i-y_i+y_i-z_i)^2=\sum_{i=1}^{n}(x_i-z_i)^2=d(\bm{x},\bm{z})^2
+\end{aligned}
+\tag{5}
+    \]
+&lt;p&gt;  注意 \(d(\bm{x},\bm{y}),d(\bm{y},\bm{z}),d(\bm{x},\bm{z})\) 都大于 \(0\) ，故 \(d(\bm{x},\bm{z}) \le d(\bm{x},\bm{y})+d(\bm{y},\bm{z})\) 。&lt;a class=&#34;link&#34; href=&#34;#20241108105326CST&#34;&gt;度量条件(3)&lt;/a&gt;满足。&lt;/p&gt;
+&lt;p&gt;  记 \(\bm{E}^n=(\bm{R}^n,d)\) ，称为&lt;strong&gt;n维欧氏空间&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  设 \((X,d)\) 是一个度量空间，我们来规定 \(X\) 的一个拓扑。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241107212315CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（球形邻域）&lt;/strong&gt;设 \(x_0 \in X,\varepsilon\) 是一正数，称 \(X\) 的子集&lt;/p&gt;
 &lt;span id=&#34;20241107211003CST&#34;&gt;&lt;/span&gt;\[
 B(x_0,\varepsilon)=\set{x \in X | d(x_0,x)&lt;\varepsilon}
-\tag{5}
+\tag{6}
     \]
 &lt;p&gt;  为以 \(x_0\) 为中心， \(\varepsilon\) 为半径的&lt;strong&gt;球形邻域&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241107211233CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;引理1&lt;/strong&gt;： \((X,d)\) 的任意两个球形邻域的交集是若干球形邻域的并集。&lt;/p&gt;
@@ -7517,10 +7543,16 @@ B(x_0,\varepsilon)=\set{x \in X | d(x_0,x)&lt;\varepsilon}
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241107211233CST&#34;&gt;引理1&lt;/a&gt;）&lt;/strong&gt;：设 \(U=B(x_1,\varepsilon_1)\cap B(x_2,\varepsilon_2)\) 。 \(\forall x \in U\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241107212315CST&#34;&gt;球形邻域定义&lt;/a&gt;知 \(\varepsilon_i-d(x,x_i)&gt;0(i=1,2)\) 。记 \(\varepsilon_x=\min\set{\varepsilon_1-d(x,x_1),\varepsilon_2-d(x,x_2)}\) 。我们考虑任意 \(x&#39; \in B(x,\varepsilon_x)\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241107212315CST&#34;&gt;球形邻域定义&lt;/a&gt;知 \(d(x&#39;,x)&lt;\varepsilon_x\) 。又知 \(\varepsilon_x=\min\set{\varepsilon_1-d(x,x_1),\varepsilon_2-d(x,x_2)}&lt;\varepsilon_1-d(x,x_1)\) ，有 \(d(x&#39;,x)&lt;\varepsilon_1-d(x,x_1)\) ，即 \(d(x&#39;,x)+d(x,x_1)&lt;\varepsilon_1\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241107210623CST&#34;&gt;三角不等式&lt;/a&gt;可知 \(d(x&#39;,x_1) &lt; d(x&#39;,x)+d(x,x_1) &lt; \varepsilon_1\) ，所以由&lt;a class=&#34;link&#34; href=&#34;#20241107212315CST&#34;&gt;球形邻域定义&lt;/a&gt;可知 \(x&#39; \in B(x_1,\varepsilon_1)\) ，同理可证 \(x&#39; \in B(x_2,\varepsilon_2)\) ，即 \(x&#39; \in B(x_1,\varepsilon_1)\cap B(x_2,\varepsilon_2) = U\) ，故 \(B(x,\varepsilon_x) \subseteq U\) ，对所有 \(x\) 求并集有 \(\displaystyle\bigcup_{x\in U}B(x,\varepsilon_x) \subseteq U\) 。但是由&lt;a class=&#34;link&#34; href=&#34;#20241107212315CST&#34;&gt;球形邻域定义&lt;/a&gt;又有 \(\forall x \in U,x \in B(x,\varepsilon_x) \subseteq \displaystyle\bigcup_{x\in U}B(x,\varepsilon_x)\) ，即 \(U \subseteq \displaystyle\bigcup_{x\in U}B(x,\varepsilon_x)\) ，最后我们得到&lt;/p&gt;
 &lt;span id=&#34;20241107214755CST&#34;&gt;&lt;/span&gt;\[
 U=\bigcup_{x\in U}B(x,\varepsilon_x)
-\tag{6}
+\tag{7}
     \]
-&lt;p&gt;  &lt;span id=&#34;20241107214850CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;命题1&lt;/strong&gt;：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241107214850CST&#34;&gt;命题1&lt;/a&gt;）&lt;/strong&gt;：由&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;拓扑空间&lt;/a&gt;。对(1)， \(X\) 本身&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241107214850CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;命题1&lt;/strong&gt;：规定 \(X\) 的子集族 \(\tau_d=\set{U|U是若干个球形邻域的并集}\) 。则 \(\tau_d\) 是 \(X\) 上的一个拓扑（若干可以是不可数个、可数个、有限个、0个）。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241107214850CST&#34;&gt;命题1&lt;/a&gt;）&lt;/strong&gt;：对&lt;a class=&#34;link&#34; href=&#34;#20241108115249CST&#34;&gt;拓扑公理(1)&lt;/a&gt;，取 \(\displaystyle\left(\bigcup_{x \in X}B(x,\varepsilon_x)\right)\bigcap X\) 即可得到 \(X\) ，而取 \(x=\varnothing\) 即可得到 \(\varnothing\) ，所以满足。对&lt;a class=&#34;link&#34; href=&#34;#20241108115303CST&#34;&gt;拓扑公理(2)&lt;/a&gt;，由 \(U\) 的定义容易知道满足。对&lt;a class=&#34;link&#34; href=&#34;#20241108115313CST&#34;&gt;拓扑公理(3)&lt;/a&gt;，设 \(U,U&#39; \in \tau_d\) ，记 \(U=\displaystyle\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha),U&#39;=\displaystyle\bigcup_{\beta}B(x&#39;_\beta,\varepsilon&#39;_\beta)\) ，则&lt;/p&gt;
+&lt;span id=&#34;20241108120406CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+U \cup U&#39; = \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\left(\bigcup_{\beta}B(x&#39;_\beta,\varepsilon&#39;_\beta)\right)
+\end{aligned}
+\tag{8}
+    \]
 </description>
         </item>
         <item>
