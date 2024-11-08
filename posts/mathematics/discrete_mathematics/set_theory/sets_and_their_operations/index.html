@@ -131,7 +131,7 @@
 <meta property='og:description' content="研究集合的结构、运算及性质的一个数学分支">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='集合论' /><meta property='article:tag' content='集合运算' /><meta property='article:published_time' content='2024-11-07T22:25:27&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T12:05:35&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='集合论' /><meta property='article:tag' content='集合运算' /><meta property='article:published_time' content='2024-11-07T22:25:27&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T12:49:46&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="集合论（一）：集合及其运算">
 <meta name="twitter:description" content="研究集合的结构、运算及性质的一个数学分支"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -619,6 +619,11 @@
         <li><a href="#集族">集族</a></li>
       </ol>
     </li>
+    <li><a href="#集合的基本运算">集合的基本运算</a>
+      <ol>
+        <li><a href="#并">并</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -949,7 +954,7 @@
 </svg>
 
             <time class="article-words">
-                4016 字
+                5038 字
             </time>
         </div>
 
@@ -964,7 +969,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 9 分钟
+                    阅读时长: 11 分钟
                 </time>
             </div>
         
@@ -1152,6 +1157,50 @@ x^2-5x+6=0
 <p>   \(S\) 有八个子集。</p>
 <p>  一般说来，若 \(S\) 正好有 \(n\) 个元素，则 \(S\) 有 \(2^n\) 个子集，这就是我们为什么采用记号 \(2^S\) 的原因。</p>
 <p>  注意， \(2^{\varnothing}=\set{\varnothing}\) 。在这里要区分 \(\varnothing\) 和 \(\set{\varnothing}\) ， \(\varnothing\) 为空集，而 \(\set{\varnothing}\) 是个集族，这个集族仅有一个元素，就是空集。因此， \(\varnothing\ne\set{\varnothing}\) 。但 \(\varnothing\in\set{\varnothing}\) 且 \(\varnothing\sube\set{\varnothing}\) ，又集 \(\set{\varnothing,\set{\varnothing}}\) 含有两个元素。</p>
+<h2 id="集合的基本运算">集合的基本运算
+</h2><p>  在任一数学系统中，总要引入若干种运算。引入运算的目的不仅在于由已知集合通过运算可以得新的集合，而且由于引入的运算往往服从某些熟知的规则，从而又能简化所得到的公式,而且在很多场合下，往往能简化科学结论的逻辑结构。本节介绍集合的并、交、差、对称差、补运算，并证明它们满足某些运算规律。</p>
+<h3 id="并">并
+</h3><p>  <span id="20241108120842CST"></span><strong>定义6</strong>：设 \(A,B\) 是两个集合,至少属于集合 \(A\) 与集合 \(B\) 之一的那些元素构成的集合称为 \(A\) 与 \(B\) 的<strong>并集</strong>，并记为 \(A \cup B\) 。符号 \(\cup\) 称为<strong>并运算符</strong>。于是</p>
+<span id="20241108121107CST"></span>\[
+A \cup B = \set{x|x \in A 或 x \in B}
+\tag{22}
+    \]
+<p>  <span id="20241108121205CST"></span><strong>例7</strong>：设 \(A=\set{a,b,c,d},B=\set{b,d,e,f}\)，则 \(A \cup B=\set{a,b,c,d,e,f}\) 。注意在本例中， \(b\) 和 \(d\) 既是 \(A\) 的元素又是 \(B\) 的元素，在 \(A \cup B\) 中， \(b\) 和 \(d\) 各写一次，不能重写，因为 \(A \cup B\) 是由互不相同的元素组成的。</p>
+<p>  <span id="20241108121403CST"></span><strong>例8</strong>：设 \(A=\set{1,3,5,\cdots},B=\set{2,4,6,\cdots}\) ，则 \(A \cup B = \set{1,2,3,4,5,6,\cdots}=N\) 。</p>
+<p>  由并集的定义可知，并运算有下面的一些性质。<br>
+  (1)交换律成立。即</p>
+<span id="20241108121702CST"></span>\[
+A \cup B = B \cup A
+\tag{23}
+    \]
+<p>  (2)结合律成立。即</p>
+<span id="20241108121714CST"></span>\[
+(A \cup B ) \cup C = A \cup (B \cup C)
+\tag{24}
+    \]
+<p>  (3)幂等律成立。即</p>
+<span id="20241108121723CST"></span>\[
+A \cup A = A
+\tag{25}
+    \]
+<p>  (4)</p>
+<span id="20241108121731CST"></span>\[
+\varnothing \cup A = A
+\tag{26}
+    \]
+<p>  (5)</p>
+<span id="20241108121740CST"></span>\[
+A \cup B = B \Harr A \sube B
+\tag{27}
+    \]
+<p>  <strong>证明</strong>：<br>
+  (1) \(A \cup B = \set{x|x \in A 或 x \in B}\)，而\(B \cup A = \set{x|x \in B 或 x \in A} = \set{x|x \in A 或 x \in B}\) ，故 \(A \cup B = B \cup A\) 。<br>
+  (2)设 \(x \in (A \cup B) \cup C\) ，则有 \(x \in A \cup B\) 或 \(x \in C\) 。若 \(x \in A \cup B\) ，则又有 \(x \in A\) 或 \(x \in B\) ，由定义知 \(B \sube B \cup C\) ，因此对 \(x\) 有 \(x \in A\) 或 \(x \in B \cup C\) ，即 \(x \in A \cup (B \cup C)\) 。若 \(x \in C\) ，由定义知 \(C \sube B \cup C\) ，则 \(x \in B \cup C\) ，又由定义知 \(B \cup C \sube A \cup (B \cup C)\) ，因此 \(x \in A \cup (B \cup C)\) 。于是不论怎样， \(x \in A \cup (B \cup C)\) ，因此 \((A \cup B) \cup C \sube A \cup (B \cup C)\) 。<br>
+  反之，设 \(x \in A \cup (B \cup C)\) ，则由定义知 \(x \in A\) 或 \(x \in B \cup C\) 。若 \(x \in A\) ，由定义知 \(A \sube A \cup B \sube (A \cup B) \cup C\) ，故 \(x \in (A \cup B) \cup C\) 。若 \(x \in B \cup C\) ，则 \(x \in B\) 或 \(x \in C\) ，又由定义知 \(B \sube A \cup B\) ，故 \(x \in A \cup B\) 或 \(x \in C\) ，即 \(x \in (A \cup B) \cup C\) 。于是不论怎样， \(x \in (A \cup B) \cup C\) ，因此 \(A \cup (B \cup C) \sube (A \cup B) \cup C\) 。<br>
+  综上所述，由<a class="link" href="#20241107234317CST">定义3</a>可知， \(A \cup (B \cup C) = (A \cup B) \cup C\) 。<br>
+  (3) \(A \cup A = \set{x|x \in A 或 x \in A} = \set{x| x \in A} = A\) 。<br>
+  (4)由空集的定义知不存在 \(x\) 满足 \(x \in \varnothing\) 。因此 \(\varnothing \cup A = \set{x|x \in \varnothing 或 x \in A} = \set{x \in A} = A\) 。<br>
+  (5)若 \(A \cup B = B\) ，任取 \(x \in A\) ，由于 \(A \sube A \cup B\) ，则 \(x \in A \cup B = B\) ，即 \(x \in B\) ，故 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A \cup B\) ，即 \(x \in A\) 或 \(x \in B\) 。如果 \(x \in A\) ，则由 \(A \sube B\) 可得 \(x \in B\) 。如果 \(x \in B\) ，因此 \(x \in B\) ，即 \(A \cup B \sube B\) 。对任意 \(x \in B\) ，由并集的定义知 \(B \sube A \cup B\) ，所以 \(x \in A \cup B\) ，即 \(B \sube A \cup B\) 。由<a class="link" href="#20241107234317CST">定义3</a>可知 \(A \cup B = B\) 。</p>
 
     </div>
 </section>
@@ -1193,7 +1242,7 @@ x^2-5x+6=0
 
 
         <span>
-            最后更新于 Nov 08, 2024 12:05 CST
+            最后更新于 Nov 08, 2024 12:49 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1358,7 +1407,7 @@ x^2-5x+6=0
             
             
         
-        <span>本图书馆累计发布了13篇文章 共146445字</span>
+        <span>本图书馆累计发布了13篇文章 共147467字</span>
     </section>
 
     <section class="site-visit-count">
