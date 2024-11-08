@@ -131,7 +131,7 @@
 <meta property='og:description' content="集合的结构、运算及性质">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='集合论' /><meta property='article:tag' content='集合运算' /><meta property='article:published_time' content='2024-11-07T22:25:27&#43;08:00'/><meta property='article:modified_time' content='2024-11-09T00:10:24&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='集合论' /><meta property='article:tag' content='集合运算' /><meta property='article:published_time' content='2024-11-07T22:25:27&#43;08:00'/><meta property='article:modified_time' content='2024-11-09T00:51:35&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="集合论（一）：集合及其运算">
 <meta name="twitter:description" content="集合的结构、运算及性质"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -633,6 +633,13 @@
             <li><a href="#并运算与交运算的分配律">并运算与交运算的分配律</a></li>
             <li><a href="#分配律的简单形式">分配律的简单形式</a></li>
             <li><a href="#吸收律">吸收律</a></li>
+            <li><a href="#两两不相交的集序列">两两不相交的集序列</a></li>
+          </ol>
+        </li>
+        <li><a href="#差运算">差运算</a>
+          <ol>
+            <li><a href="#差集">差集</a></li>
+            <li><a href="#交运算与差运算">交运算与差运算</a></li>
           </ol>
         </li>
       </ol>
@@ -967,7 +974,7 @@
 </svg>
 
             <time class="article-words">
-                7762 字
+                7988 字
             </time>
         </div>
 
@@ -1383,6 +1390,24 @@ A \cup (A \cap B) = A
 \tag{48}
     \]
 <p>  <strong>证明（<a class="link" href="#20241108190411CST">定理6</a>）</strong>：由<a class="link" href="#20241108135359CST">式(23)</a>可得 \(A \sube A \cup B\) ，又由<a class="link" href="#20241108132818CST">式(37)</a>可得 \(A \cap (A \cup B) = A\) 。同理，由<a class="link" href="#20241108135520CST">式(32)</a>可得 \(A \cap B \sube A\) ，又由<a class="link" href="#20241108121740CST">式(28)</a>可得 \((A \cap B) \cup A = A \cup (A \cap B) = A\) 。</p>
+<h4 id="两两不相交的集序列">两两不相交的集序列
+</h4><p>  <span id="20241109001358CST"></span><strong>定义8</strong>：设 \(A,B\) 为任意集合，如果 \(A \cap B = \varnothing\) ，则称 \(A\) 与 \(B\) <strong>不相交</strong>。若集序列 \(A_1,A_2,\cdots,A_n,\cdots\) 的任两集 \(A_i\) 和 \(A_j\) （ \(i \ne j\) ）不相交，则称 \(A_1,A_2,\cdots,A_n,\cdots\) 是<strong>两两不相交的集序列</strong>。</p>
+<h3 id="差运算">差运算
+</h3><h4 id="差集">差集
+</h4><p>  <span id="20241109001723CST"></span><strong>定义9（差集）</strong>：设 \(A\) 与 \(B\) 为任意集合，由属于 \(A\) 但不属于 \(B\) 的一切元素构成的集合称为 \(A\) 与 \(B\) 的<strong>差集</strong>，并记为 \(A\backslash B\) 。于是</p>
+<span id="20241109003046CST"></span>\[
+A \backslash B = \set{x | x \in A 且 x \notin B}
+\tag{49}
+    \]
+<p>  <span id="20241109003156CST"></span><strong>例11</strong>：设 \(A=\set{1,2,3,4,5},B=\set{3,4,5,6}\) ，则 \(A \backslash B = \set{1,2}\) 。</p>
+<h4 id="交运算与差运算">交运算与差运算
+</h4><p>  <span id="20241109003238CST"></span><strong>定理7</strong>：设 \(A,B,C\) 为任意三个集合，则</p>
+<span id="20241109003250CST"></span>\[
+A \cap (B \backslash C)=(A \cap B)
+\tag{50}
+    \]
+<p>  该式称为交运算对差运算满足分配律。</p>
+<p>  <strong>证明（<a class="link" href="#20241109003238CST">定理7</a>）</strong>：设 \(x \in A \cap (B \backslash)\)</p>
 
     </div>
 </section>
@@ -1424,7 +1449,7 @@ A \cup (A \cap B) = A
 
 
         <span>
-            最后更新于 Nov 09, 2024 00:10 CST
+            最后更新于 Nov 09, 2024 00:51 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1589,7 +1614,7 @@ A \cup (A \cap B) = A
             
             
         
-        <span>本图书馆累计发布了13篇文章 共150826字</span>
+        <span>本图书馆累计发布了13篇文章 共151052字</span>
     </section>
 
     <section class="site-visit-count">
