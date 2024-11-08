@@ -131,7 +131,7 @@
 <meta property='og:description' content="研究集合的结构、运算及性质的一个数学分支">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='集合论' /><meta property='article:tag' content='集合运算' /><meta property='article:published_time' content='2024-11-07T22:25:27&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T12:49:46&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='集合论' /><meta property='article:tag' content='集合运算' /><meta property='article:published_time' content='2024-11-07T22:25:27&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T15:34:55&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="集合论（一）：集合及其运算">
 <meta name="twitter:description" content="研究集合的结构、运算及性质的一个数学分支"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -621,7 +621,25 @@
     </li>
     <li><a href="#集合的基本运算">集合的基本运算</a>
       <ol>
-        <li><a href="#并">并</a></li>
+        <li><a href="#并运算">并运算</a>
+          <ol>
+            <li><a href="#并集的定义">并集的定义</a></li>
+            <li><a href="#并运算的性质">并运算的性质</a></li>
+            <li><a href="#无穷并集">无穷并集</a></li>
+          </ol>
+        </li>
+        <li><a href="#交运算">交运算</a>
+          <ol>
+            <li><a href="#交集的定义">交集的定义</a></li>
+            <li><a href="#交运算的性质">交运算的性质</a></li>
+            <li><a href="#无穷交集">无穷交集</a></li>
+          </ol>
+        </li>
+        <li><a href="#并运算与交运算的联系">并运算与交运算的联系</a>
+          <ol>
+            <li><a href="#并运算与交运算的分配律">并运算与交运算的分配律</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -954,7 +972,7 @@
 </svg>
 
             <time class="article-words">
-                5038 字
+                6937 字
             </time>
         </div>
 
@@ -969,7 +987,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 14 分钟
                 </time>
             </div>
         
@@ -1159,48 +1177,164 @@ x^2-5x+6=0
 <p>  注意， \(2^{\varnothing}=\set{\varnothing}\) 。在这里要区分 \(\varnothing\) 和 \(\set{\varnothing}\) ， \(\varnothing\) 为空集，而 \(\set{\varnothing}\) 是个集族，这个集族仅有一个元素，就是空集。因此， \(\varnothing\ne\set{\varnothing}\) 。但 \(\varnothing\in\set{\varnothing}\) 且 \(\varnothing\sube\set{\varnothing}\) ，又集 \(\set{\varnothing,\set{\varnothing}}\) 含有两个元素。</p>
 <h2 id="集合的基本运算">集合的基本运算
 </h2><p>  在任一数学系统中，总要引入若干种运算。引入运算的目的不仅在于由已知集合通过运算可以得新的集合，而且由于引入的运算往往服从某些熟知的规则，从而又能简化所得到的公式,而且在很多场合下，往往能简化科学结论的逻辑结构。本节介绍集合的并、交、差、对称差、补运算，并证明它们满足某些运算规律。</p>
-<h3 id="并">并
-</h3><p>  <span id="20241108120842CST"></span><strong>定义6</strong>：设 \(A,B\) 是两个集合,至少属于集合 \(A\) 与集合 \(B\) 之一的那些元素构成的集合称为 \(A\) 与 \(B\) 的<strong>并集</strong>，并记为 \(A \cup B\) 。符号 \(\cup\) 称为<strong>并运算符</strong>。于是</p>
+<h3 id="并运算">并运算
+</h3><h4 id="并集的定义">并集的定义
+</h4><p>  <span id="20241108120842CST"></span><strong>定义6（并集）</strong>：设 \(A,B\) 是两个集合,至少属于集合 \(A\) 与集合 \(B\) 之一的那些元素构成的集合称为 \(A\) 与 \(B\) 的<strong>并集</strong>，并记为 \(A \cup B\) 。符号 \(\cup\) 称为<strong>并运算符</strong>。于是</p>
 <span id="20241108121107CST"></span>\[
 A \cup B = \set{x|x \in A 或 x \in B}
 \tag{22}
     \]
 <p>  <span id="20241108121205CST"></span><strong>例7</strong>：设 \(A=\set{a,b,c,d},B=\set{b,d,e,f}\)，则 \(A \cup B=\set{a,b,c,d,e,f}\) 。注意在本例中， \(b\) 和 \(d\) 既是 \(A\) 的元素又是 \(B\) 的元素，在 \(A \cup B\) 中， \(b\) 和 \(d\) 各写一次，不能重写，因为 \(A \cup B\) 是由互不相同的元素组成的。</p>
 <p>  <span id="20241108121403CST"></span><strong>例8</strong>：设 \(A=\set{1,3,5,\cdots},B=\set{2,4,6,\cdots}\) ，则 \(A \cup B = \set{1,2,3,4,5,6,\cdots}=N\) 。</p>
-<p>  由并集的定义可知，并运算有下面的一些性质。<br>
-  (1)交换律成立。即</p>
-<span id="20241108121702CST"></span>\[
-A \cup B = B \cup A
+<h4 id="并运算的性质">并运算的性质
+</h4><p>  由并集的定义可知，并运算有下面的一些性质。</p>
+<p>  <span id="20241108132429CST"></span><strong>定理2</strong>：设 \(A,B,C\) 为任意的三个集合，则<br>
+<span id="20241108130531CST"></span>
+  (1)</p>
+<span id="20241108135359CST"></span>\[
+A \sube A \cup B,\quad B \sube A \cup B
 \tag{23}
     \]
-<p>  (2)结合律成立。即</p>
-<span id="20241108121714CST"></span>\[
-(A \cup B ) \cup C = A \cup (B \cup C)
+<p>  (2)交换律成立。即</p>
+<span id="20241108121702CST"></span>\[
+A \cup B = B \cup A
 \tag{24}
     \]
-<p>  (3)幂等律成立。即</p>
-<span id="20241108121723CST"></span>\[
-A \cup A = A
+<p><span id="20241108130541CST"></span>
+  (3)结合律成立。即</p>
+<span id="20241108121714CST"></span>\[
+(A \cup B ) \cup C = A \cup (B \cup C)
 \tag{25}
     \]
-<p>  (4)</p>
-<span id="20241108121731CST"></span>\[
-\varnothing \cup A = A
+<p><span id="20241108130552CST"></span>
+  (4)幂等律成立。即</p>
+<span id="20241108121723CST"></span>\[
+A \cup A = A
 \tag{26}
     \]
-<p>  (5)</p>
-<span id="20241108121740CST"></span>\[
-A \cup B = B \Harr A \sube B
+<p><span id="20241108130601CST"></span>
+  (5)</p>
+<span id="20241108121731CST"></span>\[
+\varnothing \cup A = A
 \tag{27}
     \]
-<p>  <strong>证明</strong>：<br>
-  (1) \(A \cup B = \set{x|x \in A 或 x \in B}\)，而\(B \cup A = \set{x|x \in B 或 x \in A} = \set{x|x \in A 或 x \in B}\) ，故 \(A \cup B = B \cup A\) 。<br>
-  (2)设 \(x \in (A \cup B) \cup C\) ，则有 \(x \in A \cup B\) 或 \(x \in C\) 。若 \(x \in A \cup B\) ，则又有 \(x \in A\) 或 \(x \in B\) ，由定义知 \(B \sube B \cup C\) ，因此对 \(x\) 有 \(x \in A\) 或 \(x \in B \cup C\) ，即 \(x \in A \cup (B \cup C)\) 。若 \(x \in C\) ，由定义知 \(C \sube B \cup C\) ，则 \(x \in B \cup C\) ，又由定义知 \(B \cup C \sube A \cup (B \cup C)\) ，因此 \(x \in A \cup (B \cup C)\) 。于是不论怎样， \(x \in A \cup (B \cup C)\) ，因此 \((A \cup B) \cup C \sube A \cup (B \cup C)\) 。<br>
+<p><span id="20241108130612CST"></span>
+  (6)</p>
+<span id="20241108121740CST"></span>\[
+A \cup B = B \Harr A \sube B
+\tag{28}
+    \]
+<p>  <strong>证明（<a class="link" href="#20241108132429CST">定理2</a>）</strong>：<br>
+  (1)可直接由并集的定义得出。<br>
+  (2)由<a class="link" href="#20241108121107CST">式(22)</a>可得 \(A \cup B = \set{x|x \in A 或 x \in B}\)，而\(B \cup A = \set{x|x \in B 或 x \in A} = \set{x|x \in A 或 x \in B}\) ，故 \(A \cup B = B \cup A\) 。<br>
+  (3)设 \(x \in (A \cup B) \cup C\) ，则有 \(x \in A \cup B\) 或 \(x \in C\) 。若 \(x \in A \cup B\) ，则又有 \(x \in A\) 或 \(x \in B\) ，由定义知 \(B \sube B \cup C\) ，因此对 \(x\) 有 \(x \in A\) 或 \(x \in B \cup C\) ，即 \(x \in A \cup (B \cup C)\) 。若 \(x \in C\) ，由定义知 \(C \sube B \cup C\) ，则 \(x \in B \cup C\) ，又由定义知 \(B \cup C \sube A \cup (B \cup C)\) ，因此 \(x \in A \cup (B \cup C)\) 。于是不论怎样， \(x \in A \cup (B \cup C)\) ，因此 \((A \cup B) \cup C \sube A \cup (B \cup C)\) 。<br>
   反之，设 \(x \in A \cup (B \cup C)\) ，则由定义知 \(x \in A\) 或 \(x \in B \cup C\) 。若 \(x \in A\) ，由定义知 \(A \sube A \cup B \sube (A \cup B) \cup C\) ，故 \(x \in (A \cup B) \cup C\) 。若 \(x \in B \cup C\) ，则 \(x \in B\) 或 \(x \in C\) ，又由定义知 \(B \sube A \cup B\) ，故 \(x \in A \cup B\) 或 \(x \in C\) ，即 \(x \in (A \cup B) \cup C\) 。于是不论怎样， \(x \in (A \cup B) \cup C\) ，因此 \(A \cup (B \cup C) \sube (A \cup B) \cup C\) 。<br>
   综上所述，由<a class="link" href="#20241107234317CST">定义3</a>可知， \(A \cup (B \cup C) = (A \cup B) \cup C\) 。<br>
-  (3) \(A \cup A = \set{x|x \in A 或 x \in A} = \set{x| x \in A} = A\) 。<br>
-  (4)由空集的定义知不存在 \(x\) 满足 \(x \in \varnothing\) 。因此 \(\varnothing \cup A = \set{x|x \in \varnothing 或 x \in A} = \set{x \in A} = A\) 。<br>
-  (5)若 \(A \cup B = B\) ，任取 \(x \in A\) ，由于 \(A \sube A \cup B\) ，则 \(x \in A \cup B = B\) ，即 \(x \in B\) ，故 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A \cup B\) ，即 \(x \in A\) 或 \(x \in B\) 。如果 \(x \in A\) ，则由 \(A \sube B\) 可得 \(x \in B\) 。如果 \(x \in B\) ，因此 \(x \in B\) ，即 \(A \cup B \sube B\) 。对任意 \(x \in B\) ，由并集的定义知 \(B \sube A \cup B\) ，所以 \(x \in A \cup B\) ，即 \(B \sube A \cup B\) 。由<a class="link" href="#20241107234317CST">定义3</a>可知 \(A \cup B = B\) 。</p>
+  (4) 由<a class="link" href="#20241108095515CST">式(15)</a>知 \(A \sube A\) ，因此由(6)可知 \(A \cup A = A\) 。<br>
+  (5)由<a class="link" href="#20241107234826CST">定理1</a>可知 \(\varnothing \sube A\) 。因此由(6)可知 \(\varnothing \cup A = A\) 。<br>
+  (6)设 \(A \cup B = B\) ，任取 \(x \in A\) ，由(1)可知 \(A \sube A \cup B\) ，则 \(x \in A \cup B = B\) ，即 \(x \in B\) ，故 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A \cup B\) ，即 \(x \in A\) 或 \(x \in B\) 。如果 \(x \in A\) ，则由 \(A \sube B\) 可得 \(x \in B\) 。所以不管怎样都有 \(x \in B\) ，所以 \(A \cup B \sube B\) 。而由(1)可得 \(B \sube A \cup B\) 。由<a class="link" href="#20241107234317CST">定义3</a>可知 \(A \cup B = B\) 。</p>
+<h4 id="无穷并集">无穷并集
+</h4><p>  由<a class="link" href="#20241108130541CST">并集性质(2)</a>， \((A \cup B) \cup C = A \cup (B \cup C)\) ，因此 \(A \cup B \cup C\) 有意义。类似地，我们可以定义多个集合 \(A_1,A_2,\cdots,A_n\) 的并集 \(A_1 \cup A_2 \cup \cdots \cup A_n\) 为至少属于 \(A_1,A_2,\cdots,A_n\) 中之一的那些元素构成的集合。 \(A_1 \cup A_2 \cup \cdots \cup A_n\) 常缩写成 \(\displaystyle\bigcup_{i=1}^{n}A_i\) 。<br>
+  若 \(A_1,A_2,\cdots,A_n,\cdots\) 是一个无穷集合的无穷序列，则它们的并集记为 \(A_1 \cup A_2 \cup \cdots \cup A_n \cup \cdots\) ，常缩写为 \(\displaystyle\bigcup_{i=1}^{\infin}A_n\) ，其定义为</p>
+<span id="20241108131244CST"></span>\[
+A_1 \cup A_2 \cup \cdots \cup A_n \cup \cdots = \bigcup_{i=1}^{\infin}A_n = \set{x | \exist\space n \in N 使得 x \in A_n}
+\tag{29}
+    \]
+<p>  其中 \(N\) 是自然数之集。<br>
+  一般地，若 \(\set{A_l}_{l \in I}\) 是任一集族，则集族中那些集之并集记为 \(\displaystyle\bigcup_{l \in I}A_l\) ，并且</p>
+<span id="20241108131831CST"></span>\[
+\bigcup_{l \in I}A_l=\set{x | \exist \space l \in I 使得 x \in A_l}
+\tag{30}
+    \]
+<h3 id="交运算">交运算
+</h3><p>  集合的并运算，就是把给定集的那些元素放到一起合并成一个集合，在这个合并中，相同的元素只要一个。集合的另一个运算是交运算，它是由给定的集合的公共元素构成的集合。形式上，我们有如下的定义。</p>
+<h4 id="交集的定义">交集的定义
+</h4><p>  <span id="20241108132101CST"></span><strong>定义7（交集）</strong>：设 \(A\) 和 \(B\) 是任意的两个集合，由既属于 \(A\) 又属于 \(B\) 的一切元素构成的集合称为 \(A\) 与 \(B\) 的<strong>交集</strong>，并记为 \(A \cap B\) 。<br>
+  于是</p>
+<span id="20241108133209CST"></span>\[
+A \cap B = \set{x|x \in A 且 x \in B}
+\tag{31}
+    \]
+<p>  <span id="20241108132258CST"></span><strong>例9</strong>：设 \(A=\set{a,b,c,d,e},B=\set{a,c,e,f}\) ，则 \(A \cap B = \set{a,c,e}\) 。</p>
+<p>  <span id="20241108132339CST"></span><strong>例10</strong>： \(A\) 为所有蓝眼睛的男人之集， \(B\) 为所有棕色头发男人之集，则 \(A \cap B\) 就是一切蓝眼睛棕色头发男人之集。</p>
+<h4 id="交运算的性质">交运算的性质
+</h4><p>  交运算有以下性质。</p>
+<p>  <span id="20241108132608CST"></span><strong>定理3</strong>：设 \(A,B,C\) 是任意三个集合，则<br>
+  (1)</p>
+<span id="20241108135520CST"></span>\[
+A \cap B \sube A,\quad A \cap B \sube B
+\tag{32}
+    \]
+<p>  (2)交换律成立。即</p>
+<span id="20241108132655CST"></span>\[
+A \cap B = B \cap A
+\tag{33}
+    \]
+<p>  (3)结合律成立。即</p>
+<span id="20241108132744CST"></span>\[
+(A \cap B) \cap C = A \cap (B \cap C)
+\tag{34}
+    \]
+<p>  (4)幂等律成立，即</p>
+<span id="20241108132755CST"></span>\[
+A \cap A = A
+\tag{35}
+    \]
+<p>  (5)</p>
+<span id="20241108132807CST"></span>\[
+\varnothing \cap A = \varnothing
+\tag{36}
+    \]
+<p>  (6)</p>
+<span id="20241108132818CST"></span>\[
+A \cap B = A \Harr A \sube B
+\tag{37}
+    \]
+<p>  <strong>证明（<a class="link" href="#20241108132608CST">定理3</a>）</strong>：<br>
+  (1)可直接由交集的定义得到。<br>
+  (2)由<a class="link" href="#20241108133209CST">式(31)</a>可得 \(A \cap B = \set{x|x \in A 且 x \in B}\)，而\(B \cap A = \set{x|x \in B 且 x \in A} = \set{x|x \in A 且 x \in B}\) ，故 \(A \cap B = B \cap A\) 。<br>
+  (3)设 \(x \in (A \cap B) \cap C\) ，则有 \(x \in A \cap B\) 且 \(x \in C\) 。而由 \(x \in A \cap B\) ，又有 \(x \in A\) 且 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A\) 且 \(x \in B \cap C\) ，即 \(x \in A \cap (B \cap C)\) 。由此可得 \((A \cap B) \cap C \sube A \cap (B \cap C)\) 。<br>
+  反之，设 \(x \in A \cap (B \cap C)\) ，则由定义知 \(x \in A\) 且 \(x \in B \cup C\) 。而由 \(x \in B \cup C\) ,又有 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A\) 且 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A \cap B\) 且 \(x \in C\) ，即 \(x \in (A \cap B) \cap C\) 。由此可得 \(A \cap (B \cap C) \sube (A \cap B) \cap C\) 。<br>
+  综上所述，由<a class="link" href="#20241107234317CST">定义3</a>可知， \(A \cup (B \cup C) = (A \cup B) \cup C\) 。<br>
+  (4)由<a class="link" href="#20241108095515CST">式(15)</a>知 \(A \sube A\) ，再由(6)得到 \(A \cap A = A\) 。<br>
+  (5)由<a class="link" href="#20241107234826CST">定理1</a>知 \(\varnothing \sube A\) 。再由(6)知 \(\varnothing \cap A = \varnothing\) 。<br>
+  (6)若 \(A \cap B = A\) ，任取 \(x \in A\) ， 由 \(A \cap B = A\) 可知 \(x \in A \cap B\) 。而由(1)可得 \(A \cap B \sube B\) ，故 \(x \in B\) ，因此 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A\)  ，因为 \(A \sube B\) 有 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) ，由交集定义可得 \(x \in A \cap B\) ，因此 \(A \sube A \cap B\) 。又由(1)得 \(A \cap B \sube A\) ，因此由<a class="link" href="#20241107234317CST">定义3</a>可知 \(A \cap B = A\) 。</p>
+<h4 id="无穷交集">无穷交集
+</h4><p>  同样可定义 \(n\) 个集合 \(A_1,A_2,\cdots,\A_n\) 的交集，也可定义集合序列 \(A_1,A_2,\cdots,A_n,\cdots\) 的那些集的交集，并分别记为或定义为</p>
+<span id="20241108141400CST"></span>\[
+A_1 \cap A_2 \cap \cdots \cap A_n = \bigcap_{i=1}^{n}A_n=\set{x|\forall i \in \set{1,2,\cdots,n},x\in A_i}
+\tag{38}
+    \]
+<span id="20241108141558CST"></span>\[
+A_1 \cap A_2 \cap \cdots \cap A_n \cap \cdots = \bigcap_{i=1}^{\infin}A_n=\set{x|\forall b \in N,x\in A_n}
+\tag{39}
+    \]
+<p>  更一般地，集族 \(\set{A_l}_{l \in I}\) 中各集的交记成 \(\displaystyle\bigcap_{l \in I}A_l\) ，其定义为</p>
+<span id="20241108141724CST"></span>\[
+\bigcap_{l \in I}A_l=\set{x|\forall \xi \in I, x \in A_\xi}
+\tag{40}
+    \]
+<h3 id="并运算与交运算的联系">并运算与交运算的联系
+</h3><h4 id="并运算与交运算的分配律">并运算与交运算的分配律
+</h4><p>  <a class="link" href="#20241108132429CST">定理2</a>和<a class="link" href="#20241108132608CST">定理3</a>各性质是并运算与交原酸各自的性质。下面的定理表明了并运算与交运算之间的联系。</p>
+<p>  <span id="20241108142028CST"></span><strong>定理4</strong>：设 \(A\) 为任一集合， \(\set{B_l}_{l \in I}\) 为任一集族，则</p>
+<span id="20241108142053CST"></span>\[
+A \cap \left(\bigcup_{l \in I}B_l\right)=\bigcup_{l \in I}\left(A \cap B_l \right)
+\tag{41}
+    \]
+<span id="20241108142054CST"></span>\[
+A \cup \left(\bigcap_{l \in I}B_l\right)=\bigcap_{l \in I}\left(A \cup B_l \right)
+\tag{42}
+    \]
+<p>  其中 \(I \ne \varnothing\) 。</p>
+<p>  <strong>证明（<a class="link" href="#20241108142028CST">定理4</a>）</strong>：先证<a class="link" href="#20241108142053CST">式(41)</a>。令 \(\displaystyle S = A \cap \left(\bigcup_{l \in I}B_l\right),T=\bigcup_{l \in I}\left(A \cap B_l \right)\) 。<br>
+  首先证明 \(S \sube T\) 。设 \(x \in S\) ，由<a class="link" href="#20241108132101CST">交集</a>的定义有 \(x \in A\) 且 \(x \in \displaystyle\bigcup_{l \in I}B_l\) ，但由<a class="link" href="#20241108131831CST">式(30)</a>知存在一个 \(\xi_0 \in I\) 使得 \(x \in B_{\xi_0}\) 。于是 \(x \in A \cap B_{\xi_0}\) 。所以 \(x \in \displaystyle\bigcup_{\xi \in I}(A \cap B_\xi)\) ，即 \(x \in T\) 。因此， \(S \sube T\) 。<br>
+  其次，我们来证明 \(T \sube S\) 。设 \(x \in T\) ，由<a class="link" href="#20241108131831CST">式(30)</a>知必有 \(\xi_0 \in I\) 使得 \(x \in A \cap B_{\xi_0}\) 。因此 \(x \in A\) 且 \(x \in B_{\xi_0}\) ，故 \(x \in A\) 且 \(x \in \left(\displaystyle\bigcup_{\xi \in I}B_\xi\right)\) ，因此\(x \in A \cap \left(\displaystyle\bigcup_{\xi \in I}B_\xi\right)\) ，即 \(T \sube S\) 。<br>
+  因此由<a class="link" href="#20241107234317CST">定义3</a>可知 \(S=T\) ，即 \(\displaystyle A \cap \left(\bigcup_{l \in I}B_l\right)=\bigcup_{l \in I}\left(A \cap B_l \right)\) 。<br>
+  再证<a class="link" href="#20241108142054CST">式(42)</a>。令 \(S=\displaystyle A \cup \left(\bigcap_{l \in I}B_l\right),T=\bigcap_{l \in I}\left(A \cup B_l \right)\) 。<br>
+  首先证明 \(S \sube T\) 。设 \(x \in S\) ，由<a class="link" href="#20241108120842CST">并集</a>的定义可得 \(x \in A\) 或 \(x \in \displaystyle\bigcap_{l \in I}B_l\) 。如果 \(x \in A\) ，则由<a class="link" href="#20241108135359CST">式(23)</a>可知对任意 \(l\) 都有 \(x \in A \cup B_l\) ，即 \(x \in \displaystyle\bigcap_{l \in I}\left(A \cup B_l \right)\) 。如果 \(x \in \displaystyle\bigcap_{l \in I}B_l\) ，则由<a class="link" href="#20241108141724CST">式(40)</a>可得 \(\forall \xi \in I,x \in B_\xi\) ，再由<a class="link" href="#20241108135359CST">式(23)</a>可知 \(\forall \xi \in I,x \in A \cup B_\xi\) ，即 \(x \in \displaystyle\bigcap_{l \in I}\left(A \cup B_l \right)\) 。总之不论如何都有 \(x \in \displaystyle\bigcap_{l \in I}\left(A \cup B_l \right)\) ，即 \(x \in T\) ，因此 \(S \sube T\) 。<br>
+  再证明 \(T \sube S\) 。设 \(x \in T\) ，由<a class="link" href="#20241108141724CST">式(40)</a>可得 \(\forall \xi \in I,x \in A \cup B_\xi\) ，则由<a class="link" href="#20241108120842CST">并集</a>的定义可得 \(\forall \xi \in I\)，\(x \in A\) 或 \(x \in B_\xi\) 。假设 \(x \in A\) ，则由<a class="link" href="#20241108135359CST">式(23)</a>可知 \(x \in \displaystyle A \cup \left(\bigcap_{l \in I}B_l\right) \) 。假设 \(x \in B_\xi\) ，则 \(\forall \in I,x \in B_\xi\) ，即 \(x \in \displaystyle\bigcap_{l \in I}B_l\) ，由<a class="link" href="#20241108135359CST">式(23)</a>可知 \(x \in A \cup \displaystyle\bigcap_{l \in I}B_l\) 。总之，不论如何都有 \(x \in A \cup \displaystyle\bigcap_{l \in I}B_l\) ，即 \(x \in S\) 。所以 \(T \sube S\) 。<br>
+  综上所述，由<a class="link" href="#20241107234317CST">定义3</a>可知 \(S=T\) ，即 \(\displaystyle A \cup \left(\bigcap_{l \in I}B_l\right)=\bigcap_{l \in I}\left(A \cup B_l \right)\) 。</p>
 
     </div>
 </section>
@@ -1242,7 +1376,7 @@ A \cup B = B \Harr A \sube B
 
 
         <span>
-            最后更新于 Nov 08, 2024 12:49 CST
+            最后更新于 Nov 08, 2024 15:34 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1407,7 +1541,7 @@ A \cup B = B \Harr A \sube B
             
             
         
-        <span>本图书馆累计发布了13篇文章 共147467字</span>
+        <span>本图书馆累计发布了13篇文章 共149366字</span>
     </section>
 
     <section class="site-visit-count">
