@@ -131,7 +131,7 @@
 <meta property='og:description' content="基于关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-07T12:00:52&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-09T23:56:19&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="基于关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -967,7 +967,7 @@
 </svg>
 
             <time class="article-words">
-                21203 字
+                21127 字
             </time>
         </div>
 
@@ -1187,11 +1187,11 @@ R(D_1,D_2,\times,D_n)
 <p>  假设研究生不会重名（这在实际生活中是不合适的，这里只是为了举例方便），则 \(\text{POSTGRADUATE}\) 属性的每一个值都唯一地标识了一个元组，因此可以作为SAP关系的主码。<br>
   关系可以有三种类型：基本关系（通常又称为基本表或基表）、查询表和视图表。其中，<strong>基本表</strong>是实际存在的表，它是实际存储数据的逻辑表示：<strong>查询表</strong>是查询结果对应的表；<strong>视图表</strong>是由基本表或其他视图表导出的表，是虚表，不对应实际存储的数据。<br>
   按照<a class="link" href="#20241024155054CST">Cartesian乘积</a>，关系可以是一个无限集合。由于组成Cartesian乘积的域不满足交换律，所以按照数学定义， \((d_1,d_2,\cdots,d_n)\ne(d_2,d_1,\cdots,d_n)\) 。当关系作为关系数据模型的数据结构时，需要给予如下的限定和扩充。</p>
-<p>  (1)无限关系在数据库系统中是无意义的。因此，限定关系数据模型中的关系必须是有限集合。<br>
-  (2)通过为关系的每个列附加一个属性名的方法取消关系属性的有序性，即 \((d_1,d_2,\cdots,d_i,d_j,\cdots,d_n)=(d_1,d_2,\cdots,d_j,d_i,\cdots,d_n)\quad(i,j=1,2,\cdots,n)\)</p>
+<p>  (1) 无限关系在数据库系统中是无意义的。因此，限定关系数据模型中的关系必须是有限集合。<br>
+  (2) 通过为关系的每个列附加一个属性名的方法取消关系属性的有序性，即 \((d_1,d_2,\cdots,d_i,d_j,\cdots,d_n)=(d_1,d_2,\cdots,d_j,d_i,\cdots,d_n)\quad(i,j=1,2,\cdots,n)\)</p>
 <p>  因此，基本关系具有以下6条性质。</p>
-<p>  (1)列是<strong>同质的（homogeneous）</strong>,即每一列中的分量是同一类型的数据，来自同一个域。<br>
-  (2)不同的列可出自同一个域，称其中的每一列为一个属性，不同的属性要给予不同的属性名。例如，在上面的例子中，也可以只给出两个域：
+<p>  (1) 列是<strong>同质的（homogeneous）</strong>,即每一列中的分量是同一类型的数据，来自同一个域。<br>
+  (2) 不同的列可出自同一个域，称其中的每一列为一个属性，不同的属性要给予不同的属性名。例如，在上面的例子中，也可以只给出两个域：
 <span id="20241024175628CST"></span>\[
 \begin{aligned}
 &\text{人(PERSON)}=\set{张清玫，刘逸，李勇，刘晨，王敏}\\[5pt]
@@ -1200,10 +1200,10 @@ R(D_1,D_2,\times,D_n)
 \tag{7}
     \]
    \(\text{SAP}\) 关系的导师属性和研究生属性都从 \(\text{PERSON}\) 域中取值。为了避免混淆，必须给这两个属性取不同的属性名，而不能直接使用域名。例如，定义导师属性名为 \(\text{SUPERVISOR-PERSON}\) （或 \(\text{SUPERVISOR}\) ）研究生属性名为 \(\text{POSTGRADUATE-PERSON}\) （或 \(\text{POSTGRADUATE}\) ）<br>
-  (3)列的顺序无所谓，即列的次序可以任意交换。由于列顺序是无关紧要的，因此在许多实际关系数据库产品中增加新属性时，永远是插至最后一列。<br>
-  (4)任意两个元组的候选码不能取相同的值。<br>
-  (5)行的顺序无所谓，即行的次序可以任意交换。<br>
-  (6)分量必须取原子值，即每一个分量都必须是不可分的数据项。</p>
+  (3) 列的顺序无所谓，即列的次序可以任意交换。由于列顺序是无关紧要的，因此在许多实际关系数据库产品中增加新属性时，永远是插至最后一列。<br>
+  (4) 任意两个元组的候选码不能取相同的值。<br>
+  (5) 行的顺序无所谓，即行的次序可以任意交换。<br>
+  (6) 分量必须取原子值，即每一个分量都必须是不可分的数据项。</p>
 <p>  关系模型要求关系必须是<strong>规范化（normalization）</strong>‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为<strong>范式（NormalForm,NF）</strong>。范式的概念将在第6章关系数据理论中做进一步讲解。
 例如，表2.3虽然很好地表达了导师与研究生之间的一对多关系，但由于属性 \(\text{POSTGRADUATE}\) 中分量取了两个值，不符合规范化的要求，因此这样的关系在数据库中是不允许的。通俗地讲，关系表中不允许还有表，简言之不允许“表中有表”。直观地描述，表2.3中还有一个小表。</p>
 <span id="20241024180959CST"></span><div class="normal-table"><div class="table-wrapper"><table>
@@ -1305,10 +1305,10 @@ R(A_1,A_2,\cdots,A_n)
   <strong>实体完整性规则</strong>：若属性（指一个或一组属性） \(A\) 是基本关系 \(R\) 的主属性,则 \(A\) 不能取空值（null value）。所谓空值就是&quot;不知道”或&quot;不存在”或“无意义”的值。<br>
   按照实体完整性规则的规定，如果主码由若干属性组成，则所有这些主属性都不能取空值。例如选修（学号，课程号,成绩）关系中，“学号、课程号”为主码，则“学号”和“课程号”两个属性都不能取空值。</p>
 <p>  对于实体完整性规则说明如下：<br>
-  (1)实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。例如学生关系对应于学生的集合。<br>
-  (2)现实世界中的实体是可区分的，即它们具有某种唯一性标识。例如每个学生都是独立的个体，是不一样的。<br>
-  (3)相应地，关系模型中以主码作为唯一性标识。<br>
-  (4)主码中的属性即主属性不能取空值。如果主属性取空值，就说明存在某个不可标识的实体，即存在不可区分的实体，这与(2)相矛盾，因此这个规则称为实体完整性。</p>
+  (1) 实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。例如学生关系对应于学生的集合。<br>
+  (2) 现实世界中的实体是可区分的，即它们具有某种唯一性标识。例如每个学生都是独立的个体，是不一样的。<br>
+  (3) 相应地，关系模型中以主码作为唯一性标识。<br>
+  (4) 主码中的属性即主属性不能取空值。如果主属性取空值，就说明存在某个不可标识的实体，即存在不可区分的实体，这与(2)相矛盾，因此这个规则称为实体完整性。</p>
 <h3 id="参照完整性">参照完整性
 </h3><p>  现实世界中的实体之间往往存在某种联系，在关系模型中实体及实体间的联系都是用关系来描述的，这样就自然存在着关系与关系间的引用。先来看三个例子。</p>
 <p>  <span id="20241024190508CST"></span><strong>例1</strong>：学生实体和专业实体可以用下面的关系来表示，其中主码用下划线标识。</p>
@@ -2040,10 +2040,10 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;传统集合运算举例</p>
 <h3 id="专门的关系运算">专门的关系运算
 </h3><p>  专门的关系运算包括选择、投影、连接、除运算等。为了叙述上的方便，先引入几个记号。</p>
-<p>  (1)设关系模式为 \(R(A_1,A_2,\cdots,A_n)\)，它的一个关系设为 \(R\) 。 \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。 \(t[A_i]\) 则表示元组 \(t\) 中相应于属性 \(i\) 的一个分量。<br>
-  (2)若 \(A=\set{A_{i1},A_{i2},\cdots,A_{ik}}\) ，其 \(A_{i1},A_{i2},\cdots,A_{ik}\) 是 \(A_1,A_2,\cdots,A_n\) 中的一部分,则 \(A\) 称为属性列或属性组。 \(t[A]=(t[A_{i1}],t[A_{i2}],\cdots,t[A_{ik}])\) 表示元组 \(t\) 在属性列 \(A\) 上诸分量的集合， \(\bar{A}\) 则表示 \(\set{A_1,A_2,\cdots,A_n}\) 中去掉 \(\set{A_{i1},A_{i2},\cdots,A_{ik}}\) 后剩余的属性组。<br>
+<p>  (1) 设关系模式为 \(R(A_1,A_2,\cdots,A_n)\)，它的一个关系设为 \(R\) 。 \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。 \(t[A_i]\) 则表示元组 \(t\) 中相应于属性 \(i\) 的一个分量。<br>
+  (2) 若 \(A=\set{A_{i1},A_{i2},\cdots,A_{ik}}\) ，其 \(A_{i1},A_{i2},\cdots,A_{ik}\) 是 \(A_1,A_2,\cdots,A_n\) 中的一部分,则 \(A\) 称为属性列或属性组。 \(t[A]=(t[A_{i1}],t[A_{i2}],\cdots,t[A_{ik}])\) 表示元组 \(t\) 在属性列 \(A\) 上诸分量的集合， \(\bar{A}\) 则表示 \(\set{A_1,A_2,\cdots,A_n}\) 中去掉 \(\set{A_{i1},A_{i2},\cdots,A_{ik}}\) 后剩余的属性组。<br>
   (3) \(R\) 为 \(n\) 目关系， \(S\) 为 \(m\) 目关系。 \(t_r\in R,t_s \in S\) ， \(\overgroup{t_rt_s}\) 称为元组的<strong>连接（concatenation）</strong>‌或元组的<strong>串接</strong>。它是一个 \(n+m\) 列的元组，前 \(n\) 个分量为 \(R\) 中的一个 \(n\) 元组，后 \(m\) 个分量为 \(S\) 中的一个 \(m\) 元组。<br>
-  (4)给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的<span id="20241027111504CST"></span><strong>象集（images set）</strong>‌定义为
+  (4) 给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的<span id="20241027111504CST"></span><strong>象集（images set）</strong>‌定义为
 <span id="20241026105811CST"></span>\[
 Z_x=\set{t[Z]|t \in R, t[X]=x}
 \tag{19}
@@ -3439,8 +3439,8 @@ R \div S = \set{a_1}
 <p><strong>5. 用元组变量的检索</strong></p>
 <p>  前面已讲到，元组关系演算是以元组变量作为谓词变元的基本对象。元组变量是在某一关系范围内变化的，所以也称为<strong>范围变量（range variable）</strong>，一个关系可以设多个元组变量。</p>
 <p>  元组变量主要有两方面的用途：<br>
-  (1)简化关系名。如果关系的名字很长，使用起来就会感到不方便，这时可以设一个较短名字的元组变量来代替关系名。如<a class="link" href="#20241027154449CST">例20</a>。<br>
-  (2)操作条件中使用量词时必须用元组变量。如<a class="link" href="#20241027163733CST">例21</a>至<a class="link" href="#20241027172019CST">例23</a>。</p>
+  (1) 简化关系名。如果关系的名字很长，使用起来就会感到不方便，这时可以设一个较短名字的元组变量来代替关系名。如<a class="link" href="#20241027154449CST">例20</a>。<br>
+  (2) 操作条件中使用量词时必须用元组变量。如<a class="link" href="#20241027163733CST">例21</a>至<a class="link" href="#20241027172019CST">例23</a>。</p>
 <p>  <span id="20241027154449CST"></span><strong>例20</strong>：查询信息系学生的名字。</p>
 <p>  \(\text{RANGE Student X}\)<br>
   \(\text{GET W (X.Sname): X.Sdept='IS'}\)</p>
@@ -3527,9 +3527,9 @@ R \div S = \set{a_1}
 <p>  \(\text{GET W (AVG(Student.Sage): Student.Sdept='IS')}\)</p>
 <h4 id="更新操作">更新操作
 </h4><p><strong>1. 修改操作</strong></p>
-<p>  (1)首先用\(\text{HOLD}\)语句将要修改的元组从数据库中读到工作空间中： <br>
-  (2)然后用宿主语言修改工作空间中元组的属性值；<br>
-  (3)最后用\(\text{UPDATE}\)语句将修改后的元组送回数据库中。</p>
+<p>  (1) 首先用\(\text{HOLD}\)语句将要修改的元组从数据库中读到工作空间中： <br>
+  (2) 然后用宿主语言修改工作空间中元组的属性值；<br>
+  (3) 最后用\(\text{UPDATE}\)语句将修改后的元组送回数据库中。</p>
 <p>  <span id="20241028143603CST"></span><strong>例30</strong>：把201215127学生从计算机科学系转到信息系。</p>
 <p>  \(\text{HOLD W (Student.Sno,Student Sdept): Student.Sno='201215127'}\)<br>
   \(\hspace{157pt}\text{(从Student关系中读出201215127学生的数据)}\)<br>
@@ -3539,8 +3539,8 @@ R \div S = \set{a_1}
   在ALPHA语言中，修改关系主码的操作是不允许的，例如不能用UPDATE语句将学 号201215121改为201215122。如果需要修改主码值，只能先用删除操作删除该元组，然后再把具有新主码值的元组插入到关系中。</p>
 <p><strong>2. 插入操作</strong></p>
 <p>  插入操作用\(\text{PUT}\)语句实现。其步骤是：<br>
-  (1)首先用宿主语言在工作空间中建立新元组；<br>
-  (2)然后用\(\text{PUT}\)语句把该元组存入指定的关系中。</p>
+  (1) 首先用宿主语言在工作空间中建立新元组；<br>
+  (2) 然后用\(\text{PUT}\)语句把该元组存入指定的关系中。</p>
 <p>  <span id="20241028144605CST"></span><strong>例31</strong>：学校新开设了一门2学分的课程&quot;计算机组织与结构”，其课程号为8,直 接先行课为6号课程。插入该课程元组。</p>
 <p>  \(\text{MOVE '8' TO W.Cno}\)<br>
   \(\text{MOVE '计算机组织与结构' TO W.Cname}\)<br>
@@ -3550,8 +3550,8 @@ R \div S = \set{a_1}
 <p>  PUT语句只对一个关系操作，也就是说表达式必须为单个关系名。</p>
 <p><strong>3. 删除操作</strong></p>
 <p>  删除操作用\(\text{DELETE}\)语句实现。其步骤为：<br>
-  (1)用\(\text{HOLD}\)语句把要删除的元组从数据库中读到工作空间中； <br>
-  (2)用\(\text{DELETE}\)语句删除该元组。</p>
+  (1) 用\(\text{HOLD}\)语句把要删除的元组从数据库中读到工作空间中； <br>
+  (2) 用\(\text{DELETE}\)语句删除该元组。</p>
 <p>  <span id="20241028145220CST"></span><strong>例32</strong>：201215230学生因故退学，删除该学生元组。</p>
 <p>  \(\text{HOLD W (Student): Student.Sno='201215230'}\)<br>
   \(\text{DELETE W}\)</p>
@@ -3579,44 +3579,44 @@ R \div S = \set{a_1}
   (3) \(t[i]\theta c\) 或 \(c\theta t[i]\) 。这里 \(c\) 是常量，该公式表示“ \(t\) 的第 \(i\) 个分量与常量 \(c\) 满足比较关系 \(\theta\) ”。例如， \(t[4]=3\) 表示元组 \(t\) 的第 \(4\) 个分量等于 \(3\) 。</p>
 <p>  在关系演算中定义了&quot;自由元组变量”和&quot;约束元组变量”的概念。这些概念和谓词演算中的概念完全一样。若公式中的一个元组变量前有“全称量词”或“存在量词&quot;，则称该变量为<strong>约束元组变量</strong>，否则称<strong>自由元组变量</strong>。</p>
 <p>  公式可以递归定义如下：<br>
-  (1)每个原子公式是公式。<br>
-  (2)如果 \(\phi_1\) 和 \(\phi_2\) 是公式，则 \(\phi_1\land\phi_2\) 、 \(\phi_1\lor\phi_2\) 、 \(\lnot\phi_1\) 是公式。<br>
+  (1) 每个原子公式是公式。<br>
+  (2) 如果 \(\phi_1\) 和 \(\phi_2\) 是公式，则 \(\phi_1\land\phi_2\) 、 \(\phi_1\lor\phi_2\) 、 \(\lnot\phi_1\) 是公式。<br>
   ①如果 \(\phi_1\) 和 \(\phi_2\) 同时为真，则 \(\phi_1\land\phi_2\) 才为真，否则为假。<br>
   ②如果 \(\phi_1\) 和 \(\phi_2\) 中一个或同时为真，则 \(\phi_1\lor\phi_2\) 为真，仅当 \(\phi_1\) 和 \(\phi_2\) 同时为假时， \(\phi_1\lor\phi_2\) 才为假。<br>
   ③若 \(\phi_1\) 为真，则 \(\lnot\phi_1\) 为假。<br>
-  (3)若 \(\phi\) 是公式，则 \(\exist t(\phi)\) 是公式，其中符号 \(\exist\) 是全称量词符号， \(\exist t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\exist t(\phi)\) 为真，否则 \(\exist t(\phi)\) 为假。<br>
-  (4)若 \(\phi\) 是公式，则 \(\forall t(\phi)\) 是公式，其中符号 \(\forall\) 是全称量词符号， \(\forall t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\forall t(\phi)\) 为真，否则 \(\forall t(\phi)\) 为假。<br>
-  (5)在元组演算公式中，各种运算符的优先次序为：<br>
+  (3) 若 \(\phi\) 是公式，则 \(\exist t(\phi)\) 是公式，其中符号 \(\exist\) 是全称量词符号， \(\exist t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\exist t(\phi)\) 为真，否则 \(\exist t(\phi)\) 为假。<br>
+  (4) 若 \(\phi\) 是公式，则 \(\forall t(\phi)\) 是公式，其中符号 \(\forall\) 是全称量词符号， \(\forall t(\phi)\) 表示，如果对所有 \(t\) 都使 \(\phi\) 为真，则 \(\forall t(\phi)\) 为真，否则 \(\forall t(\phi)\) 为假。<br>
+  (5) 在元组演算公式中，各种运算符的优先次序为：<br>
   ①算术比较运算符最高。<br>
   ②量词次之，且 \(\exist\) 的优先级高于 \(\forall\) 的优先级。<br>
   ③逻辑运算符最低，且 \(\lnot\) 的优先级高于 \(\land\) 的优先级， \(\land\) 的优先级高于 \(\lor\) 的优先级。<br>
   ④加括号时，括号中的运算符优先，同一括号内的运算符之优先级遵循①、②、③各项。<br>
-  (6)有限次地使用上述5条规则得到的公式是元组关系演算公式，其他公式不是元组关系演算公式。</p>
+  (6) 有限次地使用上述5条规则得到的公式是元组关系演算公式，其他公式不是元组关系演算公式。</p>
 <p>  一个元组演算表达式 \(\set{t|\phi(t)}\) 表示了使 \(\phi(t)\) 真的元组集合。</p>
 <p>  关系代数的运算均可以用关系演算表达式来表示（反之亦然）。下面用关系演算表达式来表示5种基本运算。</p>
-<p>  (1)并
+<p>  (1) 并
 <span id="20241105193658CST"></span>\[
 R \cup S = \set{t|R(t) \lor S(t)}
 \tag{37}
     \]</p>
-<p>  (2)差
+<p>  (2) 差
 <span id="20241105193744CST"></span>\[
 R-S=\set{t|R(t) \land \lnot S(t)}
 \tag{38}
     \]</p>
-<p>  (3)Cartesian积
+<p>  (3) Cartesian积
 <span id="20241105193858CST"></span>\[
 R\times S=\set{t^{(n+m)}|(\exist u^{(n)})(\exist v^{(m)})(R(u)\land S(v) \land (t[1]=u[1]) \land \cdots \land (t[n]=u[n])\\[5pt]
 \land (t[n+1]=v[1])\land\cdots\land(t[n+m]\land v[m]))}
 \tag{39}
     \]
   这里 \(t^{(n+m)}\) 表示 \(t\) 的目数是 \((n+m)\) 。</p>
-<p>  (4)投影</p>
+<p>  (4) 投影</p>
 <span id="20241105201756CST"></span>\[
 \Pi_{i_1i_2\cdots i_k}(R)=\set{t^{(k)}|(\exist u)(R(u)\land(t[1]=u[i_1])\land\cdots\land(t[k]=u[i_k]))}
 \tag{40}
     \]
-<p>  (5)选择
+<p>  (5) 选择
 <span id="20241105202452CST"></span>\[
 \sigma_F(R)=\set{t|R(t)\land F'}
 \tag{41}
@@ -3640,9 +3640,9 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     \]</p>
 <p>  上面的定义的关系演算允许出现无限关系。例如， \(\set{t|\lnot R(t)}\) 表示所有不属于 \(R\) 的元组（元组的目数等于 \(R\) 的目数）。要求出这些可能的元组是做不到的，所以必须排除这类无意义的表达式。把不产生无限关系的表达式称为<strong>安全表达式</strong>，所采取的措施称为<strong>安全限制</strong>。安全限制通常是定义一个有限的符号集 \(\text{dom}(\phi)\) ， \(\text{dom}(\phi)\) 一定包括出现在 \(\phi\) 以及中间结果和最后结果的关系中的所有符号（实际上是各列中值的汇集）。 \(\text{dom}(\phi)\) 不必是最小集。<br>
   当满足下列条件时，元组演算表达式 \(\set{t|\phi(t)}\) 是安全的：<br>
-  (1)如果 \(t\) 使 \(\phi(t)\) 为真，则 \(t\) 的每个分量是 \(\text{dom}(\phi)\) 中的元素。<br>
-  (2)对于 \(\phi\) 中每一个形如 \((\exist u)(W(u))\) 的子表达式，若 \(u\) 使 \(W(u)\) 为真，则 \(u\) 的每个分量是 \(\text{dom}(\phi)\) 中的元素。<br>
-  (3)对于 \(\phi\) 中每一个形如 \((\forall u)(W(u))\) 的子表达式，若 \(u\) 使 \(W(u)\) 为假，则 \(u\) 的每个分量必属于 \(\text{dom}(\phi)\) 。换言之，若 \(u\) 某一分量不属于 \(\text{dom}(\phi)\) ，则 \(W(u)\) 为真。</p>
+  (1) 如果 \(t\) 使 \(\phi(t)\) 为真，则 \(t\) 的每个分量是 \(\text{dom}(\phi)\) 中的元素。<br>
+  (2) 对于 \(\phi\) 中每一个形如 \((\exist u)(W(u))\) 的子表达式，若 \(u\) 使 \(W(u)\) 为真，则 \(u\) 的每个分量是 \(\text{dom}(\phi)\) 中的元素。<br>
+  (3) 对于 \(\phi\) 中每一个形如 \((\forall u)(W(u))\) 的子表达式，若 \(u\) 使 \(W(u)\) 为假，则 \(u\) 的每个分量必属于 \(\text{dom}(\phi)\) 。换言之，若 \(u\) 某一分量不属于 \(\text{dom}(\phi)\) ，则 \(W(u)\) 为真。</p>
 <p>  <span id="20241105204048CST"></span><strong>例38</strong>：设有关系 \(R\) 如<a class="link" href="#20241105214507CST">图13</a>(a)所示， \(S=\set{t|\lnot R(t)}\) ，若不进行安全限制，则可能是一个无限关系。所以定义</p>
 <span id="20241105220630CST"></span>\[
 \text{dom}(\phi)=\Pi_A(R)\cup\Pi_B(R)\cup\Pi_C(R)=\set{\set{a_1,a_2},\set{b_1,b_2},\set{c_1,c_2}}
@@ -4559,7 +4559,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 
 
         <span>
-            最后更新于 Nov 07, 2024 12:00 CST
+            最后更新于 Nov 09, 2024 23:56 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4724,7 +4724,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
             
             
         
-        <span>本图书馆累计发布了13篇文章 共161970字</span>
+        <span>本图书馆累计发布了13篇文章 共162957字</span>
     </section>
 
     <section class="site-visit-count">

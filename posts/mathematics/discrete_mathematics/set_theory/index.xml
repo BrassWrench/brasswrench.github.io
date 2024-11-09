@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 09 Nov 2024 20:09:22 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 09 Nov 2024 23:56:19 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>集合论（一）：集合及其运算</title>
         <link>https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/</link>
         <pubDate>Thu, 07 Nov 2024 22:25:27 +0800</pubDate>
@@ -210,17 +210,17 @@ x \notin A 且 x \notin B
 &lt;h4 id=&#34;并运算的性质&#34;&gt;并运算的性质
 &lt;/h4&gt;&lt;p&gt;  并运算有下面的一些性质。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241108132429CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理2&lt;/strong&gt;：设 \(A,B,C\) 为任意的三个集合，则&lt;/p&gt;
-&lt;p&gt;  (1)交换律成立。即&lt;/p&gt;
+&lt;p&gt;  (1) 交换律成立。即&lt;/p&gt;
 &lt;span id=&#34;20241108121702CST&#34;&gt;&lt;/span&gt;\[
 A \cup B = B \cup A
 \tag{25}
     \]
-&lt;p&gt;  (2)结合律成立。即&lt;/p&gt;
+&lt;p&gt;  (2) 结合律成立。即&lt;/p&gt;
 &lt;span id=&#34;20241108121714CST&#34;&gt;&lt;/span&gt;\[
 (A \cup B ) \cup C = A \cup (B \cup C)
 \tag{26}
     \]
-&lt;p&gt;  (3)幂等律成立。即&lt;/p&gt;
+&lt;p&gt;  (3) 幂等律成立。即&lt;/p&gt;
 &lt;span id=&#34;20241108121723CST&#34;&gt;&lt;/span&gt;\[
 A \cup A = A
 \tag{27}
@@ -251,16 +251,19 @@ A \sube A \cup B,\quad B \sube A \cup B
 \tag{32}
     \]
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241108132429CST&#34;&gt;定理2&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
-  (1)由&lt;a class=&#34;link&#34; href=&#34;#20241108121107CST&#34;&gt;式(22)&lt;/a&gt;可得 \(A \cup B = \set{x|x \in A 或 x \in B}\)，而\(B \cup A = \set{x|x \in B 或 x \in A} = \set{x|x \in A 或 x \in B}\) ，故 \(A \cup B = B \cup A\) 。&lt;br&gt;
-  (2)设 \(x \in (A \cup B) \cup C\) ，则有 \(x \in A \cup B\) 或 \(x \in C\) 。若 \(x \in A \cup B\) ，则又有 \(x \in A\) 或 \(x \in B\) ，由定义知 \(B \sube B \cup C\) ，因此对 \(x\) 有 \(x \in A\) 或 \(x \in B \cup C\) ，即 \(x \in A \cup (B \cup C)\) 。若 \(x \in C\) ，由定义知 \(C \sube B \cup C\) ，则 \(x \in B \cup C\) ，又由定义知 \(B \cup C \sube A \cup (B \cup C)\) ，因此 \(x \in A \cup (B \cup C)\) 。于是不论怎样， \(x \in A \cup (B \cup C)\) ，因此 \((A \cup B) \cup C \sube A \cup (B \cup C)\) 。&lt;br&gt;
+  (1) 由&lt;a class=&#34;link&#34; href=&#34;#20241108121107CST&#34;&gt;式(22)&lt;/a&gt;可得 \(A \cup B = \set{x|x \in A 或 x \in B}\)，而\(B \cup A = \set{x|x \in B 或 x \in A} = \set{x|x \in A 或 x \in B}\) ，故 \(A \cup B = B \cup A\) 。&lt;br&gt;
+  (2) 设 \(x \in (A \cup B) \cup C\) ，则有 \(x \in A \cup B\) 或 \(x \in C\) 。若 \(x \in A \cup B\) ，则又有 \(x \in A\) 或 \(x \in B\) ，由定义知 \(B \sube B \cup C\) ，因此对 \(x\) 有 \(x \in A\) 或 \(x \in B \cup C\) ，即 \(x \in A \cup (B \cup C)\) 。若 \(x \in C\) ，由定义知 \(C \sube B \cup C\) ，则 \(x \in B \cup C\) ，又由定义知 \(B \cup C \sube A \cup (B \cup C)\) ，因此 \(x \in A \cup (B \cup C)\) 。于是不论怎样， \(x \in A \cup (B \cup C)\) ，因此 \((A \cup B) \cup C \sube A \cup (B \cup C)\) 。&lt;br&gt;
   反之，设 \(x \in A \cup (B \cup C)\) ，则由定义知 \(x \in A\) 或 \(x \in B \cup C\) 。若 \(x \in A\) ，由定义知 \(A \sube A \cup B \sube (A \cup B) \cup C\) ，故 \(x \in (A \cup B) \cup C\) 。若 \(x \in B \cup C\) ，则 \(x \in B\) 或 \(x \in C\) ，又由定义知 \(B \sube A \cup B\) ，故 \(x \in A \cup B\) 或 \(x \in C\) ，即 \(x \in (A \cup B) \cup C\) 。于是不论怎样， \(x \in (A \cup B) \cup C\) ，因此 \(A \cup (B \cup C) \sube (A \cup B) \cup C\) 。&lt;br&gt;
   综上所述，由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可知， \(A \cup (B \cup C) = (A \cup B) \cup C\) 。&lt;br&gt;
   (3) 由&lt;a class=&#34;link&#34; href=&#34;#20241108095515CST&#34;&gt;式(15)&lt;/a&gt;知 \(A \sube A\) ，因此由(5)可知 \(A \cup A = A\) 。&lt;br&gt;
-  (4)由&lt;a class=&#34;link&#34; href=&#34;#20241107234826CST&#34;&gt;定理1&lt;/a&gt;可知 \(\varnothing \sube A\) 。因此由(5)可知 \(\varnothing \cup A = A\) 。&lt;br&gt;
-  (5)设 \(A \cup B = B\) ，任取 \(x \in A\) ，由(1)可知 \(A \sube A \cup B\) ，则 \(x \in A \cup B = B\) ，即 \(x \in B\) ，故 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A \cup B\) ，即 \(x \in A\) 或 \(x \in B\) 。如果 \(x \in A\) ，则由 \(A \sube B\) 可得 \(x \in B\) 。所以不管怎样都有 \(x \in B\) ，所以 \(A \cup B \sube B\) 。而由(1)可得 \(B \sube A \cup B\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可知 \(A \cup B = B\) 。&lt;br&gt;
-  (6)可直接由并集的定义得出。&lt;br&gt;
-  (7)若 \(A \cup B \sube C\) ，则对任意 \(x \in A \cup B\) ， \(x \in C\) 。而由 \(x \in A \cup B\) 和并集的定义可得 \(x \in A\) 或 \(x \in B\) ，故对任意 \(x \in A, x \in B\) 都有 \(x \in C\) ，即 \(A \sube C,B \sube C\) 。&lt;br&gt;
-  (8)设 \(A \sube C,B \sube C\) 。对任意 \(x \in A \cup B\) ，有 \(x \in A\) 或 \(x \in B\) 。若 \(x \in A\) ，由 \(A \sube C\) 可知 \(x \in C\) 。若 \(x \in B\) ，由 \(B \sube C\) 可知 \(x \in C\) 。总之 \(x \in C\) 。所以 \(A \cup B \sube C\) 。&lt;/p&gt;
+  (4) 由&lt;a class=&#34;link&#34; href=&#34;#20241107234826CST&#34;&gt;定理1&lt;/a&gt;可知 \(\varnothing \sube A\) 。因此由(5)可知 \(\varnothing \cup A = A\) 。&lt;br&gt;
+  (5) 设 \(A \cup B = B\) ，任取 \(x \in A\) ，由(1)可知 \(A \sube A \cup B\) ，则 \(x \in A \cup B = B\) ，即 \(x \in B\) ，故 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A \cup B\) ，即 \(x \in A\) 或 \(x \in B\) 。如果 \(x \in A\) ，则由 \(A \sube B\) 可得 \(x \in B\) 。所以不管怎样都有 \(x \in B\) ，所以 \(A \cup B \sube B\) 。而由(1)可得 \(B \sube A \cup B\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可知 \(A \cup B = B\) 。&lt;br&gt;
+  (6) 可直接由并集的定义得出。&lt;br&gt;
+  (7) 若 \(A \cup B \sube C\) ，则对任意 \(x \in A \cup B\) ， \(x \in C\) 。而由 \(x \in A \cup B\) 和并集的定义可得 \(x \in A\) 或 \(x \in B\) ，故对任意 \(x \in A, x \in B\) 都有 \(x \in C\) ，即 \(A \sube C,B \sube C\) 。&lt;br&gt;
+  (8) 设 \(A \sube C,B \sube C\) 。对任意 \(x \in A \cup B\) ，有 \(x \in A\) 或 \(x \in B\) 。若 \(x \in A\) ，由 \(A \sube C\) 可知 \(x \in C\) 。若 \(x \in B\) ，由 \(B \sube C\) 可知 \(x \in C\) 。总之 \(x \in C\) 。所以 \(A \cup B \sube C\) 。&lt;/p&gt;
+&lt;p&gt;  接下来是一些常用结论。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241109232752CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;结论1&lt;/strong&gt;：对集合 \(A,B,C,D\) ，若 \(A \sube C, B \sube D\) ，则有 \(则 A \cup B \sube C \cup D\) 。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109232752CST&#34;&gt;结论1&lt;/a&gt;）&lt;/strong&gt;：对任意 \(x \in A \cup B\) ，有 \(x \in A\) 或 \(x \in B\) 。由 \(A \sube C\) 有 \(x \in C\) ；由 \(B \sube D\) 有 \(x \in D\) 。故 \(x \in C\) 或 \(x \in D\) ，即 \(x \in C \cup D\) 。因此， \(A \cup B \sube C \cup D\) 。&lt;/p&gt;
 &lt;h4 id=&#34;无穷并集&#34;&gt;无穷并集
 &lt;/h4&gt;&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241108121714CST&#34;&gt;式(26)&lt;/a&gt;， \((A \cup B) \cup C = A \cup (B \cup C)\) ，因此 \(A \cup B \cup C\) 有意义。类似地，我们可以定义多个集合 \(A_1,A_2,\cdots,A_n\) 的并集 \(A_1 \cup A_2 \cup \cdots \cup A_n\) 为至少属于 \(A_1,A_2,\cdots,A_n\) 中之一的那些元素构成的集合。 \(A_1 \cup A_2 \cup \cdots \cup A_n\) 常缩写成 \(\displaystyle\bigcup_{i=1}^{n}A_i\) 。&lt;br&gt;
   若 \(A_1,A_2,\cdots,A_n,\cdots\) 是一个无穷集合的无穷序列，则它们的并集记为 \(A_1 \cup A_2 \cup \cdots \cup A_n \cup \cdots\) ，常缩写为 \(\displaystyle\bigcup_{i=1}^{\infin}A_n\) ，其定义为&lt;/p&gt;
@@ -299,17 +302,17 @@ x \notin A 或 x \notin B
 &lt;h4 id=&#34;交运算的性质&#34;&gt;交运算的性质
 &lt;/h4&gt;&lt;p&gt;  交运算有以下性质。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241108132608CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理3&lt;/strong&gt;：设 \(A,B,C\) 是任意三个集合，则&lt;/p&gt;
-&lt;p&gt;  (1)交换律成立。即&lt;/p&gt;
+&lt;p&gt;  (1) 交换律成立。即&lt;/p&gt;
 &lt;span id=&#34;20241108132655CST&#34;&gt;&lt;/span&gt;\[
 A \cap B = B \cap A
 \tag{38}
     \]
-&lt;p&gt;  (2)结合律成立。即&lt;/p&gt;
+&lt;p&gt;  (2) 结合律成立。即&lt;/p&gt;
 &lt;span id=&#34;20241108132744CST&#34;&gt;&lt;/span&gt;\[
 (A \cap B) \cap C = A \cap (B \cap C)
 \tag{39}
     \]
-&lt;p&gt;  (3)幂等律成立，即&lt;/p&gt;
+&lt;p&gt;  (3) 幂等律成立，即&lt;/p&gt;
 &lt;span id=&#34;20241108132755CST&#34;&gt;&lt;/span&gt;\[
 A \cap A = A
 \tag{40}
@@ -340,18 +343,21 @@ A \cap B \sube A,\quad A \cap B \sube B
 \tag{45}
     \]
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241108132608CST&#34;&gt;定理3&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
-  (1)由&lt;a class=&#34;link&#34; href=&#34;#20241108133209CST&#34;&gt;式(35)&lt;/a&gt;可得 \(A \cap B = \set{x|x \in A 且 x \in B}\)，而\(B \cap A = \set{x|x \in B 且 x \in A} = \set{x|x \in A 且 x \in B}\) ，故 \(A \cap B = B \cap A\) 。&lt;br&gt;
-  (2)设 \(x \in (A \cap B) \cap C\) ，则有 \(x \in A \cap B\) 且 \(x \in C\) 。而由 \(x \in A \cap B\) ，又有 \(x \in A\) 且 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A\) 且 \(x \in B \cap C\) ，即 \(x \in A \cap (B \cap C)\) 。由此可得 \((A \cap B) \cap C \sube A \cap (B \cap C)\) 。&lt;br&gt;
+  (1) 由&lt;a class=&#34;link&#34; href=&#34;#20241108133209CST&#34;&gt;式(35)&lt;/a&gt;可得 \(A \cap B = \set{x|x \in A 且 x \in B}\)，而\(B \cap A = \set{x|x \in B 且 x \in A} = \set{x|x \in A 且 x \in B}\) ，故 \(A \cap B = B \cap A\) 。&lt;br&gt;
+  (2) 设 \(x \in (A \cap B) \cap C\) ，则有 \(x \in A \cap B\) 且 \(x \in C\) 。而由 \(x \in A \cap B\) ，又有 \(x \in A\) 且 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A\) 且 \(x \in B \cap C\) ，即 \(x \in A \cap (B \cap C)\) 。由此可得 \((A \cap B) \cap C \sube A \cap (B \cap C)\) 。&lt;br&gt;
   反之，设 \(x \in A \cap (B \cap C)\) ，则由定义知 \(x \in A\) 且 \(x \in B \cup C\) 。而由 \(x \in B \cup C\) ,又有 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A\) 且 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A \cap B\) 且 \(x \in C\) ，即 \(x \in (A \cap B) \cap C\) 。由此可得 \(A \cap (B \cap C) \sube (A \cap B) \cap C\) 。&lt;br&gt;
   综上所述，由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可知， \(A \cup (B \cup C) = (A \cup B) \cup C\) 。&lt;br&gt;
-  (3)由&lt;a class=&#34;link&#34; href=&#34;#20241108095515CST&#34;&gt;式(15)&lt;/a&gt;知 \(A \sube A\) ，再由(5)得到 \(A \cap A = A\) 。&lt;br&gt;
-  (4)由&lt;a class=&#34;link&#34; href=&#34;#20241107234826CST&#34;&gt;定理1&lt;/a&gt;知 \(\varnothing \sube A\) 。再由(6)知 \(\varnothing \cap A = \varnothing\) 。&lt;br&gt;
-  (5)若 \(A \cap B = A\) ，任取 \(x \in A\) ， 由 \(A \cap B = A\) 可知 \(x \in A \cap B\) 。而由(1)可得 \(A \cap B \sube B\) ，故 \(x \in B\) ，因此 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A\)  ，因为 \(A \sube B\) 有 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) ，由交集定义可得 \(x \in A \cap B\) ，因此 \(A \sube A \cap B\) 。又由(1)得 \(A \cap B \sube A\) ，因此由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可知 \(A \cap B = A\) 。&lt;br&gt;
-  (6)可直接由交集的定义得到。&lt;br&gt;
-  (7)若 \(C \sube A \cap B\) ，对任意 \(x \in C\) ，有 \(x \in A \cap B\) ，即 \(x \in A\) 且 \(x \in B\) 。因此可得 \(C \sube A\) 和 \(C \sube B\) 。&lt;br&gt;
-  (8)设 \(A \sube C,B \sube C\) 。由(6)可得 \(A \cap B \sube A\) ，而 \(A \sube C\) ，因此 \(A \cap B \sube C\) 。&lt;/p&gt;
+  (3) 由&lt;a class=&#34;link&#34; href=&#34;#20241108095515CST&#34;&gt;式(15)&lt;/a&gt;知 \(A \sube A\) ，再由(5)得到 \(A \cap A = A\) 。&lt;br&gt;
+  (4) 由&lt;a class=&#34;link&#34; href=&#34;#20241107234826CST&#34;&gt;定理1&lt;/a&gt;知 \(\varnothing \sube A\) 。再由(6)知 \(\varnothing \cap A = \varnothing\) 。&lt;br&gt;
+  (5) 若 \(A \cap B = A\) ，任取 \(x \in A\) ， 由 \(A \cap B = A\) 可知 \(x \in A \cap B\) 。而由(1)可得 \(A \cap B \sube B\) ，故 \(x \in B\) ，因此 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A\)  ，因为 \(A \sube B\) 有 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) ，由交集定义可得 \(x \in A \cap B\) ，因此 \(A \sube A \cap B\) 。又由(1)得 \(A \cap B \sube A\) ，因此由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可知 \(A \cap B = A\) 。&lt;br&gt;
+  (6) 可直接由交集的定义得到。&lt;br&gt;
+  (7) 若 \(C \sube A \cap B\) ，对任意 \(x \in C\) ，有 \(x \in A \cap B\) ，即 \(x \in A\) 且 \(x \in B\) 。因此可得 \(C \sube A\) 和 \(C \sube B\) 。&lt;br&gt;
+  (8) 设 \(A \sube C,B \sube C\) 。由(6)可得 \(A \cap B \sube A\) ，而 \(A \sube C\) ，因此 \(A \cap B \sube C\) 。&lt;/p&gt;
+&lt;p&gt;  接下来是一些常用结论。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241109230637CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;结论2&lt;/strong&gt;：对集合 \(A,B,C,D\) ，若 \(A \sube C, B \sube D\) ，则有 \( A \cap B \sube C \cap D\) 。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109230637CST&#34;&gt;结论2&lt;/a&gt;）&lt;/strong&gt;：对任意 \(x \in A \cap B\) ，有 \(x \in A\) 且 \(x \in B\) 。由 \(A \sube C\) 有 \(x \in C\) ；由 \(B \sube D\) 有 \(x \in D\) 。故 \(x \in C\) 且 \(x \in D\) ，即 \(x \in C \cap D\) 。因此， \(A \cap B \sube C \cap D\) 。&lt;/p&gt;
 &lt;h4 id=&#34;无穷交集&#34;&gt;无穷交集
-&lt;/h4&gt;&lt;p&gt;  同样可定义 \(n\) 个集合 \(A_1,A_2,\cdots,\A_n\) 的交集，也可定义集合序列 \(A_1,A_2,\cdots,A_n,\cdots\) 的那些集的交集，并分别记为或定义为&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  同样可定义 \(n\) 个集合 \(A_1,A_2,\cdots,A_n\) 的交集，也可定义集合序列 \(A_1,A_2,\cdots,A_n,\cdots\) 的那些集的交集，并分别记为或定义为&lt;/p&gt;
 &lt;span id=&#34;20241108141400CST&#34;&gt;&lt;/span&gt;\[
 A_1 \cap A_2 \cap \cdots \cap A_n = \bigcap_{i=1}^{n}A_n=\set{x|\forall i \in \set{1,2,\cdots,n},x\in A_i}
 \tag{46}
@@ -388,12 +394,12 @@ A \cup \left(\bigcap_{l \in I}B_l\right)=\bigcap_{l \in I}\left(A \cup B_l \righ
   综上所述，由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可知 \(S=T\) ，即 \(\displaystyle A \cup \left(\bigcap_{l \in I}B_l\right)=\bigcap_{l \in I}\left(A \cup B_l \right)\) 。&lt;/p&gt;
 &lt;h4 id=&#34;分配律的简单形式&#34;&gt;分配律的简单形式
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241108183225CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理5&lt;/strong&gt;：设 \(A,B,C\) 为任意三个集合，则&lt;br&gt;
-  (1)交运算对并运算满足分配律，即&lt;/p&gt;
+  (1) 交运算对并运算满足分配律，即&lt;/p&gt;
 &lt;span id=&#34;20241108183311CST&#34;&gt;&lt;/span&gt;\[
 A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
 \tag{51}
     \]
-&lt;p&gt;  (2)并运算对交运算满足分配律，即&lt;/p&gt;
+&lt;p&gt;  (2) 并运算对交运算满足分配律，即&lt;/p&gt;
 &lt;span id=&#34;20241108183346CST&#34;&gt;&lt;/span&gt;\[
 A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
 \tag{52}
@@ -484,9 +490,9 @@ A \backslash B \sube A
     \]
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109150645CST&#34;&gt;定理7&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
   (1) 如果 \(A \backslash A\) 不为空，假设 \(x \in A \backslash A\) ，则 \(x \in A\) 且 \(x \notin A\) ，这种元素是不存在的，因此 \(A \backslash A\) 中不能有元素，即为空集。&lt;br&gt;
-  (2)由空集的定义， \(A \backslash \varnothing = \set{x | x \in A 且 x \notin \varnothing}= \set{x | x \in A} = A\) 。&lt;br&gt;
-  (3)不存在 \(x\) 满足 \(x \in \varnothing\) ，因此 \(\varnothing \backslash A = \set{x | x \in varnothing 且 x \in A}\) 没有元素，即为空集。&lt;br&gt;
-  (4)由定义知对任意 \(x \in A \backslash B\) 都有 \(x \in A\) 且 \(x \in B\) ，即都有 \(x \in A\) ，所以 \(A \backslash B \sube A\) 。&lt;/p&gt;
+  (2) 由空集的定义， \(A \backslash \varnothing = \set{x | x \in A 且 x \notin \varnothing}= \set{x | x \in A} = A\) 。&lt;br&gt;
+  (3) 不存在 \(x\) 满足 \(x \in \varnothing\) ，因此 \(\varnothing \backslash A = \set{x | x \in \varnothing 且 x \in A}\) 没有元素，即为空集。&lt;br&gt;
+  (4) 由定义知对任意 \(x \in A \backslash B\) 都有 \(x \in A\) 且 \(x \in B\) ，即都有 \(x \in A\) ，所以 \(A \backslash B \sube A\) 。&lt;/p&gt;
 &lt;h4 id=&#34;差运算与并运算&#34;&gt;差运算与并运算
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241109135747CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理8&lt;/strong&gt;：设 \(A,B\) 是任意两个集合，则&lt;/p&gt;
 &lt;p&gt;  (1)&lt;/p&gt;
@@ -500,10 +506,10 @@ A \backslash B \sube A
 \tag{65}
     \]
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109135747CST&#34;&gt;定理8&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
-  (1)设 \(x \in (A \backslash B) \cup B\) ，则 \(x \in A \backslash B\) 或 \(x \in B\) 。如果 \(x \in A \backslash B\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241109150714CST&#34;&gt;式(63)&lt;/a&gt;可知 \(x \in A\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241108135359CST&#34;&gt;式(30)&lt;/a&gt;可知 \(A \sube A \cup B\) ，即 \(x \in A \cup B\) 。如果 \(x \in B\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241108135359CST&#34;&gt;式(30)&lt;/a&gt;可知 \(B \sube A \cup B\) ，即 \(x \in A \cup B\) 。综上所述， \((A \backslash B) \cup B \sube A \cup B\) 。&lt;br&gt;
+  (1) 设 \(x \in (A \backslash B) \cup B\) ，则 \(x \in A \backslash B\) 或 \(x \in B\) 。如果 \(x \in A \backslash B\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241109150714CST&#34;&gt;式(63)&lt;/a&gt;可知 \(x \in A\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241108135359CST&#34;&gt;式(30)&lt;/a&gt;可知 \(A \sube A \cup B\) ，即 \(x \in A \cup B\) 。如果 \(x \in B\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241108135359CST&#34;&gt;式(30)&lt;/a&gt;可知 \(B \sube A \cup B\) ，即 \(x \in A \cup B\) 。综上所述， \((A \backslash B) \cup B \sube A \cup B\) 。&lt;br&gt;
   另外，假设 \(x \in A \cup B\) ，则 \(x \in A\) 或 \(x \in B\) 。假设 \(x \in A\) ，此时又分为两种情况： \(x \in B\) 或 \(x \notin B\) 。如果 \(x \in A\) 且 \(x \in B\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241108135359CST&#34;&gt;式(30)&lt;/a&gt;可知 \(B \sube (A \backslash B) \cup B\) ，即 \(x \in (A \backslash B) \cup B\) 。如果 \(x \in A\) 且 \(x \notin B\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241109001723CST&#34;&gt;差集的定义&lt;/a&gt;得 \(x \in A \backslash B\) ，又由&lt;a class=&#34;link&#34; href=&#34;#20241108135359CST&#34;&gt;式(30)&lt;/a&gt;得 \(A \backslash B \sube (A \backslash B) \cup B\) ，即 \(x \in (A \backslash B) \cup B\) 。所以当 \(x \in A\) 时总有 \(x \in (A \backslash B) \cup B\) 。当 \(x \in B\) 时，由&lt;a class=&#34;link&#34; href=&#34;#20241108135359CST&#34;&gt;式(30)&lt;/a&gt;可知 \(B \sube (A \backslash B) \cup B\) ，即 \(x \in (A \backslash B) \cup B\) 。总之， \(x \in A \cup B\) 时 \(x \in (A \backslash B) \cup B\) ，即 \(A \cup B \sube (A \backslash B) \cup B\) 。&lt;br&gt;
   因此由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可知 \((A \backslash B) \cup B = A \cup B\) 。&lt;br&gt;
-  (2)先假设 \((A \backslash B) \cup B = A\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241109140513CST&#34;&gt;式(31)&lt;/a&gt;可直接得 \(B \sube A\) 。再假设 \(B \sube A\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241109150714CST&#34;&gt;式(63)&lt;/a&gt;可得 \(A \backslash B \sube A\) 。和 \(B \sube A\) 一起由&lt;a class=&#34;link&#34; href=&#34;#20241109145732CST&#34;&gt;式(32)&lt;/a&gt;可得 \((A \backslash B) \cup B \sube A\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241109154714CST&#34;&gt;式(64)&lt;/a&gt;可得 \((A \backslash B) \cup B = A \cup B\) ，而由 \(A \sube A \cup B\) 可得 \(A \sube (A \backslash B) \cup B\) 。因此 \((A \backslash B) \cup B = A\) 。因此结论成立。&lt;/p&gt;
+  (2) 先假设 \((A \backslash B) \cup B = A\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241109140513CST&#34;&gt;式(31)&lt;/a&gt;可直接得 \(B \sube A\) 。再假设 \(B \sube A\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241109150714CST&#34;&gt;式(63)&lt;/a&gt;可得 \(A \backslash B \sube A\) 。和 \(B \sube A\) 一起由&lt;a class=&#34;link&#34; href=&#34;#20241109145732CST&#34;&gt;式(32)&lt;/a&gt;可得 \((A \backslash B) \cup B \sube A\) 。由&lt;a class=&#34;link&#34; href=&#34;#20241109154714CST&#34;&gt;式(64)&lt;/a&gt;可得 \((A \backslash B) \cup B = A \cup B\) ，而由 \(A \sube A \cup B\) 可得 \(A \sube (A \backslash B) \cup B\) 。因此 \((A \backslash B) \cup B = A\) 。因此结论成立。&lt;/p&gt;
 &lt;h4 id=&#34;差运算与交运算&#34;&gt;差运算与交运算
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241109003238CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理9&lt;/strong&gt;：设 \(A,B,C\) 为任意三个集合，则&lt;/p&gt;
 &lt;span id=&#34;20241109003250CST&#34;&gt;&lt;/span&gt;\[
@@ -562,7 +568,7 @@ A \triangle \varnothing = A
     \]
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109162639CST&#34;&gt;定理10&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
   (1) \(A \triangle B = (A \backslash B) \cup (B \backslash A)\) ，由并运算的交换律&lt;a class=&#34;link&#34; href=&#34;#20241108121702CST&#34;&gt;式(25)&lt;/a&gt;可得 \(B \triangle A = (B \backslash A) \cup (A \backslash B)=(A \backslash B) \cup (B \backslash A)=A \triangle B\) 。&lt;br&gt;
-  (2)对任意 \(x \in (A \triangle B) \triangle C\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241109182358CST&#34;&gt;式(69)&lt;/a&gt;知 \(x \in A \triangle B, x \notin C\) 或 \(x \notin A \triangle B, x \in C\) 。先看第一种可能 \(x \in A \triangle B, x \notin C\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241109182358CST&#34;&gt;式(69)&lt;/a&gt;知此时又可分为 \(x \in A, x \notin B, x \notin C\) 和 \(x \notin A, x \in B, x \notin C\) 两种情况。再看第二种可能 \(x \notin A \triangle B, x \in C\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241109182737CST&#34;&gt;式(70)&lt;/a&gt;知此时还有两种情况 \(x \notin A,x \notin B, x \in C\) 和 \(x \in A,x \in B,x \in C\) 。综上所述， \(x \in (A \triangle B) \triangle C\) 一共有四种情况，分别是&lt;/p&gt;
+  (2) 对任意 \(x \in (A \triangle B) \triangle C\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241109182358CST&#34;&gt;式(69)&lt;/a&gt;知 \(x \in A \triangle B, x \notin C\) 或 \(x \notin A \triangle B, x \in C\) 。先看第一种可能 \(x \in A \triangle B, x \notin C\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241109182358CST&#34;&gt;式(69)&lt;/a&gt;知此时又可分为 \(x \in A, x \notin B, x \notin C\) 和 \(x \notin A, x \in B, x \notin C\) 两种情况。再看第二种可能 \(x \notin A \triangle B, x \in C\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241109182737CST&#34;&gt;式(70)&lt;/a&gt;知此时还有两种情况 \(x \notin A,x \notin B, x \in C\) 和 \(x \in A,x \in B,x \in C\) 。综上所述， \(x \in (A \triangle B) \triangle C\) 一共有四种情况，分别是&lt;/p&gt;
 &lt;span id=&#34;20241109183725CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 x \in A, x \notin B, x \notin C \\[5pt]
@@ -583,8 +589,8 @@ x \notin A, x \notin B, x \in C
 \tag{76}
     \]
 &lt;p&gt;  我们发现&lt;a class=&#34;link&#34; href=&#34;#20241109183725CST&#34;&gt;式(75)&lt;/a&gt;和 &lt;a class=&#34;link&#34; href=&#34;#20241109184640CST&#34;&gt;式(76)&lt;/a&gt;是完全一样的，因此证明了 \((A \triangle B) \triangle C = A \triangle (B \triangle C)\) 。&lt;br&gt;
-  (3)由&lt;a class=&#34;link&#34; href=&#34;#20241109185458CST&#34;&gt;式(60)&lt;/a&gt;可知 \(A \backslash A = \varnothing\) 。因此， \(A \triangle A = (A \backslash A) \cup (A \backslash A) = \varnothing \cup \varnothing =\varnothing\) 。&lt;br&gt;
-  (4)由&lt;a class=&#34;link&#34; href=&#34;#20241109185519CST&#34;&gt;式(61)&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241109185531CST&#34;&gt;式(62)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241108121731CST&#34;&gt;式(28)&lt;/a&gt;可推导出 \(A \triangle \varnothing = (A \backslash \varnothing) \cup ( \varnothing \backslash A) = A \cup \varnothing \ A\) 。&lt;/p&gt;
+  (3) 由&lt;a class=&#34;link&#34; href=&#34;#20241109185458CST&#34;&gt;式(60)&lt;/a&gt;可知 \(A \backslash A = \varnothing\) 。因此， \(A \triangle A = (A \backslash A) \cup (A \backslash A) = \varnothing \cup \varnothing =\varnothing\) 。&lt;br&gt;
+  (4) 由&lt;a class=&#34;link&#34; href=&#34;#20241109185519CST&#34;&gt;式(61)&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241109185531CST&#34;&gt;式(62)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241108121731CST&#34;&gt;式(28)&lt;/a&gt;可推导出 \(A \triangle \varnothing = (A \backslash \varnothing) \cup ( \varnothing \backslash A) = A \cup \varnothing \ A\) 。&lt;/p&gt;
 &lt;h4 id=&#34;对称差与交运算&#34;&gt;对称差与交运算
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241109190033CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理11&lt;/strong&gt;：交运算关于对称差满足分配律，即&lt;/p&gt;
 &lt;span id=&#34;20241109190103CST&#34;&gt;&lt;/span&gt;\[
@@ -788,28 +794,34 @@ A \cap A^c = \varnothing，即\complement_SA\cap A = \varnothing
 A \cup A^c = S，即 A \cup \complement_SA=S
 \tag{82}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109175836CST&#34;&gt;定理12&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
-  (1)由&lt;a class=&#34;link&#34; href=&#34;#20241109185458CST&#34;&gt;式(60)&lt;/a&gt;可得 \(S^c=S \backslash S = \varnothing\) 。&lt;br&gt;
-  (2)由&lt;a class=&#34;link&#34; href=&#34;#20241109185519CST&#34;&gt;式(61)&lt;/a&gt;可得 \(\varnothing^c=S \backslash \varnothing = S\) 。&lt;br&gt;
-  (3)由&lt;a class=&#34;link&#34; href=&#34;#20241109003250CST&#34;&gt;式(66)&lt;/a&gt;、 \(A \sube S\) 、 &lt;a class=&#34;link&#34; href=&#34;#20241108132818CST&#34;&gt;式(42)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241108132755CST&#34;&gt;式(40)&lt;/a&gt;可得 \(A \cap A^c = A \cap ( S \backslash A)=(A \cap S) \backslash (A \cap A) = A \backslash A = \varnothing\) 。&lt;br&gt;
-  (4)由&lt;a class=&#34;link&#34; href=&#34;#20241109154714CST&#34;&gt;式(64)&lt;/a&gt;、 \(A \sube S\) 、&lt;a class=&#34;link&#34; href=&#34;#20241108121740CST&#34;&gt;式(29)&lt;/a&gt;可得 \(A \cup A^c = A \cup (S \backslash A) = (S \backslash A) \cup A = S \cup A = S\) 。&lt;/p&gt;
-&lt;h3 id=&#34;de-morgan公式&#34;&gt;De Morgan公式
-&lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241109195200CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理13（De Morgan公式）&lt;/strong&gt;：设 \(S\) 为任一集合， \(I\) 为标号集， \(\forall\xi\in I\) 有 \(A_\xi \sube S\) ，则有&lt;/p&gt;
-&lt;p&gt;  (1)并集的余集等于各余集的交集，即&lt;/p&gt;
-&lt;span id=&#34;20241109195454CST&#34;&gt;&lt;/span&gt;\[
-\left(\bigcup_{\xi \in I}A_\xi\right)^c=\bigcap_{\xi \in I}A_\xi^c
+&lt;p&gt;  (5)&lt;/p&gt;
+&lt;span id=&#34;20241109210009CST&#34;&gt;&lt;/span&gt;\[
+(A^c)^c=A
 \tag{83}
     \]
-&lt;p&gt;  (2)交集的余集等于各余集的并集，即&lt;/p&gt;
-&lt;span id=&#34;20241109195639CST&#34;&gt;&lt;/span&gt;\[
-\left(\bigcap_{\xi \in I}A_\xi\right)^c=\bigcup_{\xi in I}A_\xi^c
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109175836CST&#34;&gt;定理12&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
+  (1) 由&lt;a class=&#34;link&#34; href=&#34;#20241109185458CST&#34;&gt;式(60)&lt;/a&gt;可得 \(S^c=S \backslash S = \varnothing\) 。&lt;br&gt;
+  (2) 由&lt;a class=&#34;link&#34; href=&#34;#20241109185519CST&#34;&gt;式(61)&lt;/a&gt;可得 \(\varnothing^c=S \backslash \varnothing = S\) 。&lt;br&gt;
+  (3) 由&lt;a class=&#34;link&#34; href=&#34;#20241109003250CST&#34;&gt;式(66)&lt;/a&gt;、 \(A \sube S\) 、 &lt;a class=&#34;link&#34; href=&#34;#20241108132818CST&#34;&gt;式(42)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241108132755CST&#34;&gt;式(40)&lt;/a&gt;可得 \(A \cap A^c = A \cap ( S \backslash A)=(A \cap S) \backslash (A \cap A) = A \backslash A = \varnothing\) 。&lt;br&gt;
+  (4) 由&lt;a class=&#34;link&#34; href=&#34;#20241109154714CST&#34;&gt;式(64)&lt;/a&gt;、 \(A \sube S\) 、&lt;a class=&#34;link&#34; href=&#34;#20241108121740CST&#34;&gt;式(29)&lt;/a&gt;可得 \(A \cup A^c = A \cup (S \backslash A) = (S \backslash A) \cup A = S \cup A = S\) 。&lt;br&gt;
+  (5) 设 \(x \in (A^c)^c\) ，由定义有 \(x \in S \backslash A^c\) ，即 \(x \in S\) 且 \(x \notin A^c\) 。而对 \(x \in A^c\) 有 \(A^c = S \backslash A\) ,因此 \(x \notin S \backslash A\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241109182208CST&#34;&gt;式(59)&lt;/a&gt;可得 \(x \notin S 或 x \in A\) 。注意前面已经有了 \(x \in S\) 的条件，因此只能有 \(x \in A\) ，因此 \(x \in S \cup A\) 。又 \(A \sube S\) ，因此由&lt;a class=&#34;link&#34; href=&#34;#20241108121740CST&#34;&gt;式(29)&lt;/a&gt;可得 \(x \in A\) 。&lt;/p&gt;
+&lt;h3 id=&#34;de-morgan公式&#34;&gt;De Morgan公式
+&lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241109195200CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理13（De Morgan公式）&lt;/strong&gt;：设 \(S\) 为任一集合， \(I\) 为标号集， \(\forall\xi\in I\) 有 \(A_\xi \sube S\) ，则有&lt;/p&gt;
+&lt;p&gt;  (1) 并集的余集等于各余集的交集，即&lt;/p&gt;
+&lt;span id=&#34;20241109195454CST&#34;&gt;&lt;/span&gt;\[
+\left(\bigcup_{\xi \in I}A_\xi\right)^c=\bigcap_{\xi \in I}A_\xi^c
 \tag{84}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109195200CST&#34;&gt;De Morgan公式&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
-  (1)设 \(x \in \displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c\) ，则 \(x \in S\) 且 \(x \notin \displaystyle\bigcup_{\xi \in I}A_\xi\) ，从而 \(\forall\xi\in I,x \notin A_\xi\) 。于是， \(\forall\xi\in I,x \in A_\xi^c\) 。因此， \(x \in \displaystyle\bigcap_{\xi \in I}A_\xi^c\) ，故 \(\displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c \sube \bigcap_{\xi \in I}A_\xi^c\) 。&lt;br&gt;
+&lt;p&gt;  (2) 交集的余集等于各余集的并集，即&lt;/p&gt;
+&lt;span id=&#34;20241109195639CST&#34;&gt;&lt;/span&gt;\[
+\left(\bigcap_{\xi \in I}A_\xi\right)^c=\bigcup_{\xi in I}A_\xi^c
+\tag{85}
+    \]
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109195200CST&#34;&gt;集合及其运算-De Morgan公式&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
+  (1) 设 \(x \in \displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c\) ，则 \(x \in S\) 且 \(x \notin \displaystyle\bigcup_{\xi \in I}A_\xi\) ，从而 \(\forall\xi\in I,x \notin A_\xi\) 。于是， \(\forall\xi\in I,x \in A_\xi^c\) 。因此， \(x \in \displaystyle\bigcap_{\xi \in I}A_\xi^c\) ，故 \(\displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c \sube \bigcap_{\xi \in I}A_\xi^c\) 。&lt;br&gt;
   其次，设 \(x \in \displaystyle\bigcap_{\xi \in I}A_\xi^c\) ，则 \(\forall \xi \in I\) 都有 \(x \in A_\xi^c\) 。因此， \(\forall \xi \in I\) 都有 \(x \notin A_\xi\) ，且 \(x \in S\) ，故 \(x \notin \displaystyle\bigcup_{\xi \in I}A_\xi\) 。于是， \(x \in \displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c\) 。所以， \(\displaystyle\bigcap_{\xi \in I}A_\xi^c \sube \left(\bigcup_{\xi \in I}A_\xi\right)^c\) 。&lt;br&gt;
   由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可得 \(\displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c=\bigcap_{\xi \in I}A_\xi^c\) 。&lt;br&gt;
-  (2)设 \(x \in \displaystyle\left(\bigcap_{\xi \in I}A_\xi\right)^c\) ，则 \(x \in S\) 且 \(x \notin \displaystyle\bigcap_{\xi \in I}A_\xi\) ，从而 \(\exist\xi\in I,x \notin A_\xi\) 。于是， \(\exist\xi\in I,x \in A_\xi^c\) 。因此， \(x \in \displaystyle\bigcup_{\xi \in I}A_\xi^c\) ，故 \(\displaystyle\left(\bigcap_{\xi \in I}A_\xi\right)^c \sube \bigcup_{\xi \in I}A_\xi^c\) 。&lt;br&gt;
+  (2) 设 \(x \in \displaystyle\left(\bigcap_{\xi \in I}A_\xi\right)^c\) ，则 \(x \in S\) 且 \(x \notin \displaystyle\bigcap_{\xi \in I}A_\xi\) ，从而 \(\exist\xi\in I,x \notin A_\xi\) 。于是， \(\exist\xi\in I,x \in A_\xi^c\) 。因此， \(x \in \displaystyle\bigcup_{\xi \in I}A_\xi^c\) ，故 \(\displaystyle\left(\bigcap_{\xi \in I}A_\xi\right)^c \sube \bigcup_{\xi \in I}A_\xi^c\) 。&lt;br&gt;
   其次，设 \(x \in \displaystyle\bigcup_{\xi \in I}A_\xi^c\) ，则 \(\exist \xi \in I\) 都有 \(x \in A_\xi^c\) 。因此， \(\exist \xi \in I\) 都有 \(x \notin A_\xi\) ，且 \(x \in S\) ，故 \(x \notin \displaystyle\bigcap_{\xi \in I}A_\xi\) 。于是， \(x \in \displaystyle\left(\bigcap_{\xi \in I}A_\xi\right)^c\) 。所以， \(\displaystyle\bigcup_{\xi \in I}A_\xi^c \sube \left(\bigcap_{\xi \in I}A_\xi\right)^c\) 。&lt;br&gt;
   由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可得 \(\displaystyle\left(\bigcap_{\xi \in I}A_\xi\right)^c=\bigcup_{\xi \in I}A_\xi^c\) 。&lt;/p&gt;
 </description>

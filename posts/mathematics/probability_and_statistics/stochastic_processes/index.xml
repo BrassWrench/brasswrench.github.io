@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 07 Nov 2024 22:36:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/probability_and_statistics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 09 Nov 2024 23:56:19 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/probability_and_statistics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：Markov过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/probability_and_statistics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -107,7 +107,7 @@ p_{ij}^{\left(m+n\right)}=\sum_{k \in S}{p_{ik}^{\left(m\right)}}p_{kj}^{\left(n
 \bm{P}^{\left(n\right)}=\bm{P} \cdot \bm{P}^{\left(n-1\right)} = \bm{P} \cdot \bm{P} \cdot \bm{P}^{\left(n-2\right)} = \cdots = \bm{P}^n
 \tag{8}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;Markov过程-C-K方程&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929204323CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 p_{ij}^{\left(m+n\right)}&amp;=P\set{X_{m+n}=j|X_0=i}\\[5pt]
@@ -126,7 +126,7 @@ p_{ij}^{\left(m+n\right)}&amp;=P\set{X_{m+n}=j|X_0=i}\\[5pt]
 p_{ij}^{\left(n_1+n_2+n_3+\cdots+n_m\right)}\ge p_{ik_1}^{\left(n_1\right)}p_{k_1k_2}^{\left(n_2\right)}p_{k_2k_3}^{\left(n_3\right)}\cdots p_{k_{m-1}j}^{\left(n_m\right)}
 \tag{10}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;Markov过程-C-K方程&lt;/a&gt;和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;概率的非负性&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240930161647CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 p_{ij}^{\left(n_1+n_2+n_3+\cdots+n_m\right)}=&amp;\sum_{k \in S}p_{ik}^{\left(n_1\right)}p_{kj}^{\left(n_2+n_3+\cdots+n_m\right)}\\[5pt]
@@ -142,9 +142,9 @@ p_{ij}^{\left(n_1+n_2+n_3+\cdots+n_m\right)}=&amp;\sum_{k \in S}p_{ik}^{\left(n_
 &lt;/h2&gt;&lt;h3 id=&#34;可达互通类可约&#34;&gt;可达、互通、类、可约
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20240929203634CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义6（可达与互通）&lt;/strong&gt;：称状态 \(i\) &lt;strong&gt;可达&lt;/strong&gt;状态 \(j\left(i,j \in S\right)\) ，若存在 \(n \ge 0\) 使得 \(p_{ij}^{\left(n\right)} \ge 0\) ，记为 \(i \rightarrow j\) 。若同时有状态 \(j \rightarrow i\) ，则称 \(i\) 与 \(j\) &lt;strong&gt;互通&lt;/strong&gt;，记为 \(i \leftrightarrow j\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929205200CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理2&lt;/strong&gt;：互通是一种等价关系，即满足：&lt;br&gt;
-  (1)自反性： \(i \leftrightarrow i\) ；&lt;br&gt;
-  (2)对称性： \(i \leftrightarrow j\) ，则 \(j \leftrightarrow i\) ；&lt;br&gt;
-  (3)传递性： \(i \leftrightarrow j\) , \(j \leftrightarrow k\) ，则 \(i \leftrightarrow k\) 。&lt;/p&gt;
+  (1) 自反性： \(i \leftrightarrow i\) ；&lt;br&gt;
+  (2) 对称性： \(i \leftrightarrow j\) ，则 \(j \leftrightarrow i\) ；&lt;br&gt;
+  (3) 传递性： \(i \leftrightarrow j\) , \(j \leftrightarrow k\) ，则 \(i \leftrightarrow k\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205200CST&#34;&gt;定理2&lt;/a&gt;）&lt;/strong&gt;‌：从互通的定义可知(1)(2)是显然的，只证(3)。由互通定义可知，需证 \(i \rightarrow k\) 且 \(k \rightarrow i\) 。首先，由 \(i \rightarrow j\) ， \(j \rightarrow k\) 可知存在 \(m\) ， \(n\) 使得 \(p_{ij}^{\left(m\right)}&gt;0\) ， \(p_{jk}^{\left(n\right)}&gt;0\) 。再由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可知 \(p_{ik}^{\left(m+n\right)}\ge {p_{ij}^{\left(m\right)}p_{jk}^{\left(n\right)}}&gt;0\) ，故 \(i \rightarrow k\) 。反过来同样有 \(k \rightarrow i\) ，即证 \(i \leftrightarrow k\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240930163421CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义7（类）&lt;/strong&gt;：我们把任何两个相通状态归为一个&lt;strong&gt;类&lt;/strong&gt;，由上述定理可知，同在一类的状态应该都是互通的，并且任何一个状态不能同时属于两个不同的类。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929203638CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义8（可约）&lt;/strong&gt;：若Markov链只存在一个类，就称它是&lt;strong&gt;不可约的&lt;/strong&gt;。否则称为&lt;strong&gt;可约的&lt;/strong&gt;。&lt;/p&gt;
@@ -218,10 +218,10 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}{f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\
     \]
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212214CST&#34;&gt;引理1&lt;/a&gt;）&lt;/strong&gt;‌：用归纳法。对 \(n=1\) ，由 \(p_{ij}^{\left(1\right)}=f_{ij}^{\left(1\right)}\) ，易证上式成立。&lt;br&gt;
   假设对 \(n-1\) ，已有 \(p_{ij}^{\left(n-1\right)}=\displaystyle\sum_{l=1}^{n-1}{f_{ij}^{\left(l\right)}p_{jj}^{\left(n-1-l\right)}}\) 成立。&lt;br&gt;
-  当取 \(n\) 时，利用&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;、归纳假设和&lt;a class=&#34;link&#34; href=&#34;#20240929212905CST&#34;&gt;结论2&lt;/a&gt;，可以推导出&lt;/p&gt;
+  当取 \(n\) 时，利用&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;Markov过程-C-K方程&lt;/a&gt;、归纳假设和&lt;a class=&#34;link&#34; href=&#34;#20240929212905CST&#34;&gt;结论2&lt;/a&gt;，可以推导出&lt;/p&gt;
 &lt;span id=&#34;20240929212648CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
-p_{ij}^{\left(n\right)}&amp;=\sum_{k \in S}{p_{ik}^{\left(1\right)}p_{kj}^{\left(n-1\right)}} \qquad \text{（C-K方程）}\\
+p_{ij}^{\left(n\right)}&amp;=\sum_{k \in S}{p_{ik}^{\left(1\right)}p_{kj}^{\left(n-1\right)}} \qquad \text{（Markov过程-C-K方程）}\\
 &amp;=p_{ij}^{\left(1\right)}p_{jj}^{\left(n-1\right)}+\sum_{k \ne j,\thinspace k \in S}{p_{ik}^{\left(1\right)}p_{kj}^{\left(n-1\right)}}\\
 &amp;=f_{ij}^{\left(1\right)}p_{jj}^{\left(n-1\right)}+\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{\left(1\right)}p_{kj}^{\left(n-1\right)}} \text{（归纳法n=1时的情况）}\\
 &amp;=f_{ij}^{\left(1\right)}p_{jj}^{\left(n-1\right)}+\sum_{k \ne j,\thinspace k \in S}f_{ik}^{\left(1\right)}\left(\sum_{l=1}^{n-1}{f_{kj}^{\left(l\right)}p_{jj}^{\left(n-1-l\right)}}\right) \text{（归纳假设n-1时的情况）}\\
@@ -285,10 +285,10 @@ p_{jj}^{\left(n+m+l\right)} \ge p_{ji}^{\left(n\right)}p_{ii}^{\left(l\right)}p_
   假设 \(i\) 为零常返状态且 \(i \leftrightarrow j\) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;可知 \(\lim\limits_{m \rightarrow \infin}p_{ii}^{\left(m\right)}=0\) 。由于 \(i \leftrightarrow j\) ，存在 \(n,l\) 使得 \(p_{ij}^{\left(n\right)}&gt;0,p_{ji}^{\left(l\right)}&gt;0\) 。同时由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可得 \(p_{ii}^{\left(n+m+l\right)} \ge p_{ij}^{\left(n\right)}p_{jj}^{\left(m\right)}p_{ji}^{\left(l\right)}\ge0\) 。令 \(m \rightarrow \infin\) ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“高等数学”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 \(\lim\limits_{m \rightarrow \infin}p_{jj}^{\left(m\right)}=0\) ，故由&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;，状态 \(j\) 也是零常返状态。&lt;/p&gt;
 &lt;h4 id=&#34;状态空间分解定理&#34;&gt;状态空间分解定理
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205434CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理6（状态空间分解定理）&lt;/strong&gt;：任意Markov链的状态空间 \(S\) ，可唯一分解为有限个或可列个互不相交的子集 \(D,C_1,C_2,\cdots\) 之和，使得&lt;br&gt;
-  (1)每一个 \(C_n\) 是常返状态组成的不可约闭集， \(D\) 由全体非常返状态组成。&lt;br&gt;
+  (1) 每一个 \(C_n\) 是常返状态组成的不可约闭集， \(D\) 由全体非常返状态组成。&lt;br&gt;
   (2) \(C_n\) 中的状态同类，或者全是正常返态，或者全是零常返态。它们有相同的周期且 \(f_{ij}=1\left(i,j \in C_n\right)\) 。&lt;br&gt;
-  (3)自 \(C_n\) 中的状态出发不能到达 \(D\) 中状态。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;）&lt;/strong&gt;‌：设 \(C\) 为全体常返状态组成的集合，则 \(D=S-C\) 为非常返状态的全体组成的集合。注意到定义在 \(C\) 上的互通是一种等价关系，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;等价关系与集合的划分&lt;/a&gt;可知， \(C\) 可以按互通关系划分为 \(C_1 \bigcup C_2 \bigcup \dots\) ，其中每一个 \(C_n\) 是由同一类常返状态组成的不可约的闭集。因此 \(S=D \bigcup C_1 \bigcup C_2 \bigcup \dots\) 。定理假设和(1)证毕。由&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知 \(C_n\) 中的状态都是同类型的（正常返或零常返），由&lt;a class=&#34;link&#34; href=&#34;#20240929205205CST&#34;&gt;定理3&lt;/a&gt;可知 \(C_n\) 中的状态都有相同的周期，由&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;可知 \(C_n\) 中的状态都满足 \(f_{ij}=1\left(i,j \in C_n\right)\) 。  (2)证毕。对于  (3) ，可用反证法证明。假设 \(C_n\) 中的状态 \(i\) 可以到达 \(D\) 中的状态 \(j\) ，由于 \(i\) 是常返的，状态在到达 \(j\) 后必定还会再返回 \(i\) ，而后再由假设，状态还可能继续回到 \(j\) 。因此，状态从 \(j\) 出发后再次返回 \(j\) 的情况是可能出现的，这与 \(j\) 是非常返态相矛盾，因此假设不成立。故 \(C_n\) 中的状态 \(i\) 不可到达 \(D\) 中的状态 \(j\) 。  (3) 证毕。至此，&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;证毕。&lt;/p&gt;
+  (3) 自 \(C_n\) 中的状态出发不能到达 \(D\) 中状态。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;Markov过程-状态空间分解定理&lt;/a&gt;）&lt;/strong&gt;‌：设 \(C\) 为全体常返状态组成的集合，则 \(D=S-C\) 为非常返状态的全体组成的集合。注意到定义在 \(C\) 上的互通是一种等价关系，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;等价关系与集合的划分&lt;/a&gt;可知， \(C\) 可以按互通关系划分为 \(C_1 \bigcup C_2 \bigcup \dots\) ，其中每一个 \(C_n\) 是由同一类常返状态组成的不可约的闭集。因此 \(S=D \bigcup C_1 \bigcup C_2 \bigcup \dots\) 。定理假设和(1)证毕。由&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知 \(C_n\) 中的状态都是同类型的（正常返或零常返），由&lt;a class=&#34;link&#34; href=&#34;#20240929205205CST&#34;&gt;定理3&lt;/a&gt;可知 \(C_n\) 中的状态都有相同的周期，由&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;可知 \(C_n\) 中的状态都满足 \(f_{ij}=1\left(i,j \in C_n\right)\) 。  (2) 证毕。对于  (3) ，可用反证法证明。假设 \(C_n\) 中的状态 \(i\) 可以到达 \(D\) 中的状态 \(j\) ，由于 \(i\) 是常返的，状态在到达 \(j\) 后必定还会再返回 \(i\) ，而后再由假设，状态还可能继续回到 \(j\) 。因此，状态从 \(j\) 出发后再次返回 \(j\) 的情况是可能出现的，这与 \(j\) 是非常返态相矛盾，因此假设不成立。故 \(C_n\) 中的状态 \(i\) 不可到达 \(D\) 中的状态 \(j\) 。  (3) 证毕。至此，&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;Markov过程-状态空间分解定理&lt;/a&gt;证毕。&lt;/p&gt;
 &lt;h4 id=&#34;不可约markov链的转移&#34;&gt;不可约Markov链的转移
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205707CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理7&lt;/strong&gt;：周期为 \(d\) 的不可约Markov链，其状态空间 \(S\) 可唯一地分解为 \(d\) 个互不相交的子集之和，即&lt;/p&gt;
 &lt;span id=&#34;20240929213341CST&#34;&gt;&lt;/span&gt;\[
@@ -350,7 +350,7 @@ S_r与S_{d-\left(s-r\right)}^{\prime}完全对等，若r &lt; s
 \lim\limits_{n \rightarrow \infin}p_{jj}^{\left(nd\right)}=\frac{d}{\mu_j}
 \tag{34}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;）&lt;/strong&gt;‌：对 \(n \ge 0\) ，令：&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;Markov过程-极限定理&lt;/a&gt;）&lt;/strong&gt;‌：对 \(n \ge 0\) ，令：&lt;/p&gt;
 &lt;span id=&#34;20240929213442CST&#34;&gt;&lt;/span&gt;\[
 r_n=\sum_{v=n+1}^{\infin}{f_v}
 \tag{35}
@@ -499,13 +499,13 @@ r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
 \lim\limits_{n \rightarrow \infin}p_{nd}=\frac{d}{\mu_j}
 \tag{61}
     \]
-&lt;p&gt;  由此，&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;证毕。&lt;/p&gt;
+&lt;p&gt;  由此，&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;Markov过程-极限定理&lt;/a&gt;证毕。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929212113CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论1&lt;/strong&gt;：设 \(i\) 为常返状态，则&lt;/p&gt;
 &lt;span id=&#34;20240929213817CST&#34;&gt;&lt;/span&gt;\[
 i\text{为零常返状态}\iff\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0
 \tag{62}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;）&lt;/strong&gt;‌：若 \(i\) 为零常返状态，则 \(\mu_i \rightarrow \infin\) ，从而由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}=0\) 。而当 \(m\) 不等于 \(d\) 的整数倍时， \(p_{ii}^{\left(m\right)}=0\) ，故 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 。反之，若 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) ，假如 \(i\) 为正常返状态，则由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}&gt;0\) ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;知这与 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 矛盾，因此 \(i\) 为零常返状态。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;）&lt;/strong&gt;‌：若 \(i\) 为零常返状态，则 \(\mu_i \rightarrow \infin\) ，从而由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;Markov过程-极限定理&lt;/a&gt;知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}=0\) 。而当 \(m\) 不等于 \(d\) 的整数倍时， \(p_{ii}^{\left(m\right)}=0\) ，故 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 。反之，若 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) ，假如 \(i\) 为正常返状态，则由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;Markov过程-极限定理&lt;/a&gt;知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}&gt;0\) ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;知这与 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 矛盾，因此 \(i\) 为零常返状态。&lt;/p&gt;
 &lt;h4 id=&#34;再论非常返与零常返&#34;&gt;再论非常返与零常返
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205716CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理9&lt;/strong&gt;：若 \(j\) 为非常返状态或零常返状态，则对 \(\forall i \in S\)&lt;/p&gt;
 &lt;span id=&#34;20240929213832CST&#34;&gt;&lt;/span&gt;\[
@@ -522,7 +522,7 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\r
 \sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\right)}\le \sum_{l=1}^{N}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\right)}+\sum_{l=N+1}^{n}f_{ij}^{\left(l\right)}
 \tag{65}
     \]
-&lt;p&gt;  先固定 \(N\) ，令 \(n \rightarrow \infin\) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;知 \(p_{jj}^{\left(n\right)} \rightarrow 0\) ，故上式右端第一项为 \(0\) 。再令 \(N \rightarrow \infin\) ，上式右端第二项因 \(\displaystyle\sum_{l=1}^{n}f_{ij}^{\left(l\right)}&lt;1\) 而趋于 \(0\) ，故&lt;/p&gt;
+&lt;p&gt;  先固定 \(N\) ，令 \(n \rightarrow \infin\) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;Markov过程-极限定理&lt;/a&gt;知 \(p_{jj}^{\left(n\right)} \rightarrow 0\) ，故上式右端第一项为 \(0\) 。再令 \(N \rightarrow \infin\) ，上式右端第二项因 \(\displaystyle\sum_{l=1}^{n}f_{ij}^{\left(l\right)}&lt;1\) 而趋于 \(0\) ，故&lt;/p&gt;
 &lt;span id=&#34;20240929213854CST&#34;&gt;&lt;/span&gt;\[
 \lim\limits_{n \rightarrow \infin}p_{ij}^{\left(n\right)}=0
 \tag{66}
@@ -532,7 +532,7 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\r
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;）&lt;/strong&gt;‌：设状态空间 \(S=\set{1,2,\cdots,N}\) ，若全部 \(N\) 个状态都是非常返，则任取其中两个状态 \(i,j\) ，若 \(i \rightarrow j \) ，有 \(p_{ij}^{\left(n\right)}\rightarrow 0\) （&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;）；若 \(i \nrightarrow j\) ，则对 \(\forall n\) ， \(p_{ij}^{\left(n\right)}=0\) 。不管是哪种情况， \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}\to 0\) ，但是 \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}=1\) （与&lt;a class=&#34;link&#34; href=&#34;#20240929204123CST&#34;&gt;式(4)&lt;/a&gt;类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。&lt;br&gt;
   若 \(S\) 中有零常返状态，设为 \(i\) ，令 \(C=\set{j | i \rightarrow j}\) ，则有 \(\displaystyle\sum_{j \in C}p_{ij}^{\left(n\right)}=1\) 且 \(j \rightarrow i\) （ \(j \nrightarrow i\) 与 \(i\) 的常返性相矛盾，类似&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;的证明）。故 \(i \leftrightarrow j\) ，从而 \(j\) 也为零常返状态（&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;）。则 \(\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}=0\) （&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;），从而 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}\to 0\) 。但是由 \(j\) 的定义知 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}=1\) ，矛盾。因此有限状态的Markov链不可能有零常返状态。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929212124CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论3&lt;/strong&gt;：若Markov链有一个零常返状态，则必有无限个零常返状态。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212124CST&#34;&gt;推论3&lt;/a&gt;）&lt;/strong&gt;‌：假设Markov链有一个零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;可知这个零常返状态必然存在于某个不可约类中，又有&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知这个类必然全都是零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212124CST&#34;&gt;推论3&lt;/a&gt;）&lt;/strong&gt;‌：假设Markov链有一个零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;Markov过程-状态空间分解定理&lt;/a&gt;可知这个零常返状态必然存在于某个不可约类中，又有&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知这个类必然全都是零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。&lt;/p&gt;
 &lt;h4 id=&#34;再论正常返&#34;&gt;再论正常返
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205721CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理10&lt;/strong&gt;：若 \(j\) 为正常返状态且周期为 \(d\) ，则对 \(\forall i\) 及 \(0 \le r \le d-1\) ，有&lt;/p&gt;
 &lt;span id=&#34;20240929213918CST&#34;&gt;&lt;/span&gt;\[
@@ -557,7 +557,7 @@ p_{ij}^{\left(nd+r\right)}=&amp;\sum_{k=0}^{\left(nd+r\right)}f_{ij}^{\left(k\ri
 \sum_{m=0}^{N}f_{ij}^{\left(md+r\right)}p_{jj}^{\left(n-m\right)d}\le p_{ij}^{\left(nd+r\right)}\le \sum_{m=0}^{N}f_{ij}^{\left(md+r\right)}p_{jj}^{\left(n-m\right)d}+\sum_{N+1}^{n}f_{ij}^{\left(md+r\right)}
 \tag{70}
     \]
-&lt;p&gt;  类似于&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;的推导，先令 \(n \to \infin\) ，再令 \(N \to \infin\) ，由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;得&lt;/p&gt;
+&lt;p&gt;  类似于&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;的推导，先令 \(n \to \infin\) ，再令 \(N \to \infin\) ，由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;Markov过程-极限定理&lt;/a&gt;得&lt;/p&gt;
 &lt;span id=&#34;20240929213942CST&#34;&gt;&lt;/span&gt;\[
 f_{ij}\left(r\right)\space\frac{d}{\mu_j}\le p_{ij}^{\left(nd+r\right)} \le f_{ij}\left(r\right)\space\frac{d}{\mu_j}
 \tag{71}
@@ -660,9 +660,9 @@ P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
     \]
 &lt;p&gt;  称为Markov链的&lt;strong&gt;极限分布&lt;/strong&gt;。由&lt;a class=&#34;link&#34; href=&#34;#20240929212128CST&#34;&gt;推论4&lt;/a&gt;知 \(\pi_j\) 存在且 \(\pi_j=\displaystyle\frac{1}{\mu_j}\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929205730CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理12&lt;/strong&gt;：对于不可约非周期的Markov链：&lt;br&gt;
-  (1)若它是遍历的，则 \(\pi_j=\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}&gt;0\) 是不变分布且是唯一的不变分布（&lt;strong&gt;遍历定理&lt;/strong&gt;）。&lt;br&gt;
-  (2)若状态都是瞬过的或全为零常返的，则不变分布不存在。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205730CST&#34;&gt;定理12&lt;/a&gt;）&lt;/strong&gt;‌：(1)对遍历的Markov链，由&lt;a class=&#34;link&#34; href=&#34;#20240929212128CST&#34;&gt;推论4&lt;/a&gt;可知 \(\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}\) 存在，记为 \(\pi_j\) 。首先证 \(\set{\pi_j,j \in S}\) 是不变分布。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;可得（因为级数是&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Riemann-Stieljes积分&lt;/a&gt;的特例， 也可以看成关于点测度的Lebesgue积分， 所以Fatou引理和下文出现的Lebesgue控制收敛定理仍成立）。&lt;/p&gt;
+  (1) 若它是遍历的，则 \(\pi_j=\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}&gt;0\) 是不变分布且是唯一的不变分布（&lt;strong&gt;遍历定理&lt;/strong&gt;）。&lt;br&gt;
+  (2) 若状态都是瞬过的或全为零常返的，则不变分布不存在。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205730CST&#34;&gt;定理12&lt;/a&gt;）&lt;/strong&gt;‌：(1)对遍历的Markov链，由&lt;a class=&#34;link&#34; href=&#34;#20240929212128CST&#34;&gt;推论4&lt;/a&gt;可知 \(\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}\) 存在，记为 \(\pi_j\) 。首先证 \(\set{\pi_j,j \in S}\) 是不变分布。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Fatou引理&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;Markov过程-C-K方程&lt;/a&gt;可得（因为级数是&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;Riemann-Stieljes积分&lt;/a&gt;的特例， 也可以看成关于点测度的Lebesgue积分， 所以Fatou引理和下文出现的Lebesgue控制收敛定理仍成立）。&lt;/p&gt;
 &lt;span id=&#34;20240929214122CST&#34;&gt;&lt;/span&gt;\[
 \pi_j=\lim\limits_{n \to \infin}p_{ij}^{\left(n+1\right)}=\lim\limits_{n \to \infin}\sum_{k \in S}p_{ik}^{\left(n\right)}p_{kj}\ge\sum_{k \in S}\lim\limits_{n \to \infin}p_{ik}^{\left(n\right)}p_{kj}=\sum_{k \in S}\pi_kp_{kj}
 \tag{87}
@@ -677,7 +677,7 @@ P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 \pi_j=\sum_{k \in S}\pi_kp_{kj}
 \tag{89}
     \]
-&lt;p&gt;  从而 \(\set{\pi_j,j \in S}\) 是不变分布。再来证 \(\set{\pi_j,j \in S}\) 是唯一的不变分布。由上式和&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  从而 \(\set{\pi_j,j \in S}\) 是不变分布。再来证 \(\set{\pi_j,j \in S}\) 是唯一的不变分布。由上式和&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;Markov过程-C-K方程&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214143CST&#34;&gt;&lt;/span&gt;\[
 \pi_j=\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\sum_{l \in S}\pi_lp_{lk}p_{kj}=\sum_{l \in S}\pi_lp_{lj}^{\left(2\right)}=\cdots=\sum_{k \in S}\pi_kp_{kj}^{\left(n\right)}
 \tag{90}
@@ -745,9 +745,9 @@ P\set{\tau_i&gt;s+t|\tau_i&gt;s}=P\set{\tau_i&gt;t}
 &lt;h3 id=&#34;转移概率和kolmogorov微分方程&#34;&gt;转移概率和Kolmogorov微分方程
 &lt;/h3&gt;&lt;h4 id=&#34;转移概率的性质&#34;&gt;转移概率的性质
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929210959CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理14&lt;/strong&gt;：时齐连续时间Markov链的转移概率 \(p_{ij}\left(t\right)\) 满足：&lt;br&gt;
-  (1)\(p_{ij}\left(t\right)\ge 0\)&lt;br&gt;
-  (2)\(\displaystyle\sum_{j \in S}p_{ij}\left(t\right)=1\)&lt;br&gt;
-  (3)\(p_{ij}\left(t+s\right)=\displaystyle\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(s\right)\)   （&lt;strong&gt;连续时间Markov链的C-K方程&lt;/strong&gt;）&lt;/p&gt;
+  (1) \(p_{ij}\left(t\right)\ge 0\)&lt;br&gt;
+  (2) \(\displaystyle\sum_{j \in S}p_{ij}\left(t\right)=1\)&lt;br&gt;
+  (3) \(p_{ij}\left(t+s\right)=\displaystyle\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(s\right)\)   （&lt;strong&gt;连续时间Markov链的C-K方程&lt;/strong&gt;）&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;）&lt;/strong&gt;‌：(1)和(2)由 \(p_{ij}\left(t\right)\) 的定义易知。下面证明  (3) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929203710CST&#34;&gt;连续时间Markov链&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929203714CST&#34;&gt;时齐性&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214247CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
@@ -949,17 +949,17 @@ q_{i1}  &amp; q_{i2}  &amp; q_{i3} &amp; \cdots &amp; -q_{ii} &amp; \cdots \\[5p
 &lt;p&gt;  称为连续时间Markov链的 \(\bm{Q}\) 矩阵。当矩阵元素 \(q_{ii}=\sum_{j \ne i}q_{ij}&lt;+\infin\) 时，称该矩阵为&lt;strong&gt;保守的&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;kolmogorov微分方程&#34;&gt;Kolmogorov微分方程
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929211031CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理17（Kolmogorov微分方程）&lt;/strong&gt;：对一切 \(i,j \in S，t \ge 0\) 且 \(q_{ii}=\displaystyle\sum_{j \ne i}q_{ij}&lt;+\infin\) ，有&lt;br&gt;
-  (1)&lt;strong&gt;向后方程&lt;/strong&gt;
+  (1) &lt;strong&gt;向后方程&lt;/strong&gt;
 &lt;span id=&#34;20240929214533CST&#34;&gt;&lt;/span&gt;\[
 p_{ij}^\prime\left(t\right)=\sum_{k \ne i}q_{ik}p_{kj}\left(t\right)-q_{ii}p_{ij}\left(t\right)
 \tag{123}
     \]
-  (2)&lt;strong&gt;向前方程&lt;/strong&gt;（如果满足 \(\displaystyle\sum_{k \ne i}\frac{p_{kj}\left(h\right)}{h}\) 有限）
+  (2) &lt;strong&gt;向前方程&lt;/strong&gt;（如果满足 \(\displaystyle\sum_{k \ne i}\frac{p_{kj}\left(h\right)}{h}\) 有限）
 &lt;span id=&#34;20240929214539CST&#34;&gt;&lt;/span&gt;\[
 p_{ij}^\prime\left(t\right)=\sum_{k \ne j}q_{kj}p_{ik}\left(t\right)-q_{jj}p_{ij}\left(t\right)
 \tag{124}
     \]&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Kolmogorov微分方程&lt;/a&gt;）&lt;/strong&gt;‌：先证明&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;。由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Markov过程-Kolmogorov微分方程&lt;/a&gt;）&lt;/strong&gt;‌：先证明&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;。由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214546CST&#34;&gt;&lt;/span&gt;\[
 p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(h\right)p_{kj}\left(t\right)
 \tag{125}
@@ -1001,7 +1001,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)=\sum_{k \ne i,k \in S}p_{ik}\left(h\
 \lim\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}\left(h\right)}{h}p_{kj}\left(t\right)=\sum_{k \ne i}q_{ik}p_{kj}\left(t\right)
 \tag{131}
     \]
-&lt;p&gt;  因此无限状态下&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;仍然成立。实际上&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;可以被写成矩阵形式，也就是 \(\bm{P}^\prime\left(t\right)=\bm{Q}\bm{P}\left(t\right)\) ，其中 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) ， \(\bm{Q}=\left(q_{ij}\right)\) 。依&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Kolmogorov微分方程&lt;/a&gt;条件知 \(\bm{Q}\) 是保守的。&lt;br&gt;
+&lt;p&gt;  因此无限状态下&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;仍然成立。实际上&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;可以被写成矩阵形式，也就是 \(\bm{P}^\prime\left(t\right)=\bm{Q}\bm{P}\left(t\right)\) ，其中 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) ， \(\bm{Q}=\left(q_{ij}\right)\) 。依&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Markov过程-Kolmogorov微分方程&lt;/a&gt;条件知 \(\bm{Q}\) 是保守的。&lt;br&gt;
   下面证明&lt;a class=&#34;link&#34; href=&#34;#20240929214539CST&#34;&gt;式(124)&lt;/a&gt;。在&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;中计算 \(t+h\) 的状态时是对退后到时刻 \(h\) 的状态来取条件的（所以称为后退方程），这里我们考虑对时刻 \(t\) 的状态取条件，用&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;有&lt;/p&gt;
 &lt;span id=&#34;20240929214633CST&#34;&gt;&lt;/span&gt;\[
 p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(h\right)

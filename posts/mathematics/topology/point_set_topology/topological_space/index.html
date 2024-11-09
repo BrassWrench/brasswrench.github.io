@@ -131,7 +131,7 @@
 <meta property='og:description' content="定义在一个集合上并满足拓扑公理的子集族所构成的结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/topology/point_set_topology/topological_space/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-08T23:20:12&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-09T23:56:19&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="点集拓扑学（一）：拓扑空间">
 <meta name="twitter:description" content="定义在一个集合上并满足拓扑公理的子集族所构成的结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -614,6 +614,7 @@
         <li><a href="#拓扑空间中的几个基本概念">拓扑空间中的几个基本概念</a>
           <ol>
             <li><a href="#闭集">闭集</a></li>
+            <li><a href="#邻域点和内部">邻域，点和内部</a></li>
           </ol>
         </li>
       </ol>
@@ -943,7 +944,7 @@
 </svg>
 
             <time class="article-words">
-                2398 字
+                3461 字
             </time>
         </div>
 
@@ -958,7 +959,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -1008,11 +1009,11 @@
 <p>  集合 \(X\) 和它的一个拓扑 \(\tau\) 一起称为一个<strong>拓扑空间</strong>，记作 \((X,\tau)\) 。称 \(\tau\) 中的成员为这个拓扑空间的<strong>开集</strong>。<br>
   定义中的三个条件称为<strong>拓扑公理</strong>。(3)可等价地换为</p>
 <p>  (3′) \(\tau\) 中两个成员的交集仍在 \(\tau\) 中。</p>
-<p>  (3)蕴含(3′)，另一方面易用归纳法从(3′)推出(3)。</p>
+<p>  (3) 蕴含(3′)，另一方面易用归纳法从(3′)推出(3)。</p>
 <h4 id="离散拓扑和平凡拓扑">离散拓扑和平凡拓扑
 </h4><p>  从定义看出，给出集合的一个拓扑就是规定它的哪些子集是开集。这种规定不是任意的，必须满足三条拓扑公理。但一般来说一个集合上可以规定许多不相同的拓扑，因此说到一个拓扑空间时，要同时指明集合及所规定的拓扑，以后在不会引起误解的情况下，也常常只用集合来称呼一个拓扑空间，如拓扑空间 \(X\) ，拓扑空间 \(Y\) 等。<br>
   设 \(X\) 是一非空集合，显然 \(2^X\) 满足三个拓扑公理（见<a class="link" onclick="alert('抱歉，“集合论”还未上线~')">幂集</a>），构成 \(X\) 上的拓扑，称为 \(X\) 上的<strong>离散拓扑</strong>；\(\set{X,\varnothing}\) 也是 \(X\) 上的拓扑，称为 \(X\) 上的<strong>平凡拓扑</strong>。当 \(X\) 中包含多余一个点时，这两个拓扑不相同，并且 \(X\) 还有许多别的拓扑。例如设 \(X=\set{a,b,c}\) ，则 \(\set{X,\varnothing,\set{a}}\) 、 \(\set{X,\varnothing,\set{a,b}}\) 、 \(\set{X,\varnothing,\set{a},\set{a,b}}\) 都是 \(X\) 上的拓扑；但 \(\set{X,\varnothing,\set{a},\set{b}}\) 不是拓扑，因为条件(2)不满足。<br>
-  设 \(\tau_1,\tau_2\) 是集合 \(X\) 上的两个拓扑，如果 \(\tau_1 \subset \tau_2\) ，则说 \(\tau_2\) 比 \(\tau_1\) <strong>大</strong>（或者说 \(\tau_2\) 比 \(\tau_1\) <strong>精细</strong>）。离散拓扑比任何别的拓扑都大，而平凡拓扑比任何拓扑都小。</p>
+  设 \(\tau_1,\tau_2\) 是集合 \(X\) 上的两个拓扑，如果 \(\tau_1 \subeset \tau_2\) ，则说 \(\tau_2\) 比 \(\tau_1\) <strong>大</strong>（或者说 \(\tau_2\) 比 \(\tau_1\) <strong>精细</strong>）。离散拓扑比任何别的拓扑都大，而平凡拓扑比任何拓扑都小。</p>
 <h4 id="几个拓扑例子">几个拓扑例子
 </h4><p>  下面给出几个拓扑的例子。<br>
   <span id="20241025165258CST"></span><strong>例1</strong>：设 \(X\) 是无穷集合， \(\tau_f=\set{A^c|A是X的有限子集}\bigcup\set{\varnothing}\) ，则不难验证 \(\tau_f\) 是 \(X\) 上的一个拓扑，成为 \(X\) 上的<strong>余有限拓扑</strong>。<br>
@@ -1023,7 +1024,7 @@
 </h3><h4 id="度量与度量空间">度量与度量空间
 </h4><p>  集合 \(X\) 上的一个<strong>度量</strong> \(d\) 是一个映射 \(d:X\times X \to R\) ，它满足<br>
 <span id="20241108105402CST"></span>
-  (1)正定性。</p>
+  (1) 正定性。</p>
 <span id="20241107210556CST"></span>\[
 \begin{cases}
 d(x,x)=0,\forall x \in X\\[5pt]
@@ -1032,13 +1033,13 @@ d(x,y)>0,当x\ne y
 \tag{1}
     \]
 <p><span id="20241108105340CST"></span>
-  (2)对称性。</p>
+  (2) 对称性。</p>
 <span id="20241107210618CST"></span>\[
 d(x,y)=d(y,x),\quad\forall x,y \in x
 \tag{2}
     \]
 <p><span id="20241108105326CST"></span>
-  (3)三角不等式。</p>
+  (3) 三角不等式。</p>
 <span id="20241107210623CST"></span>\[
 d(x,z)\le d(x,y)+d(y,z),\space\forall x,y,z \in X
 \tag{3}
@@ -1096,7 +1097,7 @@ B(x_0,\varepsilon)=\set{x \in X | d(x_0,x)<\varepsilon}
   <circle cx="500.7111" cy="90.0101" r="3.1703"/>
   <path id="MJX-9-TEX-I-1D448" d="M474.8748,150.8207c-.415,0-.6347-.0244-.6591-.0732-.0122-.0244-.0183-.0732-.0183-.1465,0-.2929.0671-.4943.2014-.6042.0244-.0122.1282-.0183.3113-.0183.5004.0244,1.3305.0366,2.49.0366h1.1535c.354,0,.6286-.0061.8239-.0183s.3174-.0122.3662,0c.1953,0,.2929.061.2929.1831,0,.0244-.0122.1099-.0366.2563-.061.2075-.1221.3296-.1831.3662h-.2563c-.0488,0-.1038.0061-.1648.0183s-.116.0122-.1648,0c-.476.0122-.7812.0305-.9154.0549s-.2441.0915-.3296.2014c-.0122.0244-.1831.6652-.5127,1.9224-.3296,1.2572-.6591,2.5755-.9887,3.9547-.3296,1.3793-.5127,2.191-.5493,2.4351-.0244.1709-.0366.3479-.0366.531,0,.6591.1892,1.1779.5676,1.5563.3784.3784.9032.5676,1.5746.5676.8178,0,1.6356-.2746,2.4534-.8239s1.4159-1.3793,1.7943-2.49l.9338-3.6801c.5737-2.3436.8605-3.5642.8605-3.6618,0-.3296-.3906-.5188-1.1718-.5676-.2929,0-.4394-.0671-.4394-.2014,0-.0244.0122-.0976.0366-.2197.0488-.1953.0854-.3113.1099-.3479s.0854-.061.1831-.0732c.0366,0,.2319.0061.5859.0183s.8666.0244,1.538.0366c.6225,0,1.0985-.0061,1.4281-.0183s.5065-.0183.531-.0183c.1831,0,.2746.061.2746.1831,0,.2685-.0488.4516-.1465.5493-.0366.061-.1709.0915-.4028.0915-.8666.0488-1.4098.2929-1.6295.7324-.0244.061-.3296,1.2389-.9154,3.5336-.5004,2.0628-.8056,3.2773-.9154,3.6435-.4028,1.2206-1.1046,2.2154-2.1055,2.9844s-2.0384,1.1596-3.1125,1.1718c-1.123,0-2.0201-.3418-2.6914-1.0253-.6713-.6835-1.0131-1.4952-1.0253-2.4351v-.2929c0-.2197.3357-1.6722,1.007-4.3575.5981-2.4534.8971-3.7167.8971-3.79,0-.0854-.3479-.1404-1.0436-.1648Z"/>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;球形邻域的交集</p>
-<p>  <strong>证明（<a class="link" href="#20241107211233CST">引理1</a>）</strong>：设 \(U=B(x_1,\varepsilon_1)\cap B(x_2,\varepsilon_2)\) 。 \(\forall x \in U\) ，则由<a class="link" href="#20241107212315CST">球形邻域定义</a>知 \(\varepsilon_i-d(x,x_i)>0(i=1,2)\) 。记 \(\varepsilon_x=\min\set{\varepsilon_1-d(x,x_1),\varepsilon_2-d(x,x_2)}\) 。我们考虑任意 \(x' \in B(x,\varepsilon_x)\) ，由<a class="link" href="#20241107212315CST">球形邻域定义</a>知 \(d(x',x)<\varepsilon_x\) 。又知 \(\varepsilon_x=\min\set{\varepsilon_1-d(x,x_1),\varepsilon_2-d(x,x_2)}<\varepsilon_1-d(x,x_1)\) ，有 \(d(x',x)<\varepsilon_1-d(x,x_1)\) ，即 \(d(x',x)+d(x,x_1)<\varepsilon_1\) 。由<a class="link" href="#20241107210623CST">三角不等式</a>可知 \(d(x',x_1) < d(x',x)+d(x,x_1) < \varepsilon_1\) ，所以由<a class="link" href="#20241107212315CST">球形邻域定义</a>可知 \(x' \in B(x_1,\varepsilon_1)\) ，同理可证 \(x' \in B(x_2,\varepsilon_2)\) ，即 \(x' \in B(x_1,\varepsilon_1)\cap B(x_2,\varepsilon_2) = U\) ，故 \(B(x,\varepsilon_x) \subseteq U\) ，对所有 \(x\) 求并集有 \(\displaystyle\bigcup_{x\in U}B(x,\varepsilon_x) \subseteq U\) 。但是由<a class="link" href="#20241107212315CST">球形邻域定义</a>又有 \(\forall x \in U,x \in B(x,\varepsilon_x) \subseteq \displaystyle\bigcup_{x\in U}B(x,\varepsilon_x)\) ，即 \(U \subseteq \displaystyle\bigcup_{x\in U}B(x,\varepsilon_x)\) ，最后我们得到</p>
+<p>  <strong>证明（<a class="link" href="#20241107211233CST">引理1</a>）</strong>：设 \(U=B(x_1,\varepsilon_1)\cap B(x_2,\varepsilon_2)\) 。 \(\forall x \in U\) ，则由<a class="link" href="#20241107212315CST">球形邻域定义</a>知 \(\varepsilon_i-d(x,x_i)>0(i=1,2)\) 。记 \(\varepsilon_x=\min\set{\varepsilon_1-d(x,x_1),\varepsilon_2-d(x,x_2)}\) 。我们考虑任意 \(x' \in B(x,\varepsilon_x)\) ，由<a class="link" href="#20241107212315CST">球形邻域定义</a>知 \(d(x',x)<\varepsilon_x\) 。又知 \(\varepsilon_x=\min\set{\varepsilon_1-d(x,x_1),\varepsilon_2-d(x,x_2)}<\varepsilon_1-d(x,x_1)\) ，有 \(d(x',x)<\varepsilon_1-d(x,x_1)\) ，即 \(d(x',x)+d(x,x_1)<\varepsilon_1\) 。由<a class="link" href="#20241107210623CST">三角不等式</a>可知 \(d(x',x_1) < d(x',x)+d(x,x_1) < \varepsilon_1\) ，所以由<a class="link" href="#20241107212315CST">球形邻域定义</a>可知 \(x' \in B(x_1,\varepsilon_1)\) ，同理可证 \(x' \in B(x_2,\varepsilon_2)\) ，即 \(x' \in B(x_1,\varepsilon_1)\cap B(x_2,\varepsilon_2) = U\) ，故 \(B(x,\varepsilon_x) \subeseteq U\) ，对所有 \(x\) 求并集有 \(\displaystyle\bigcup_{x\in U}B(x,\varepsilon_x) \subeseteq U\) 。但是由<a class="link" href="#20241107212315CST">球形邻域定义</a>又有 \(\forall x \in U,x \in B(x,\varepsilon_x) \subeseteq \displaystyle\bigcup_{x\in U}B(x,\varepsilon_x)\) ，即 \(U \subeseteq \displaystyle\bigcup_{x\in U}B(x,\varepsilon_x)\) ，最后我们得到</p>
 <span id="20241107214755CST"></span>\[
 U=\bigcup_{x\in U}B(x,\varepsilon_x)
 \tag{7}
@@ -1123,8 +1124,33 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
 <p>  也就是说，闭集就是开集的余集，反过来开集一定是一个闭集的余集。例如在离散拓扑空间中，任何子集都是开集，从而任何子集也都是闭集；平凡拓扑空间 \(X\) 中，只有两个闭集： \(X=\varnothing^c\) 和 \(\varnothing = X^c\) 。在 \((\bm{R},\tau_f)\) 中，闭集或是 \(X\) ，或为有限集；而 \((\bm{R},\tau_c)\) 中的闭集是X或可数集。</p>
 <p>  <span id="20241108182659CST"></span><strong>命题2</strong>：拓扑空间的闭集满足：<br>
   (1) \(X\) 与 \(\varnothing\) 都是闭集。<br>
-  (2)任意多个闭集的交集是闭集。<br>
-  (3)有限个闭集的并集是闭集。</p>
+  (2) 任意多个闭集的交集是闭集。<br>
+  (3) 有限个闭集的并集是闭集。</p>
+<p>  <strong>证明（<a class="link" href="#20241108182659CST">命题2</a>）</strong>：<br>
+  (1) 由<a class="link" href="#20241015215625CST">拓扑空间</a>的定义可知 \(X,\varnothing\) 一定是某个拓扑 \(\tau\) 的子集，也就是 \(X,\varnothing\) 一定是开集。而 \(X^c=\varnothing,\varnothing^c = X\) ，因此 \(X,\varnothing\) 也是闭集。<br>
+  (2) 设有任意多个闭集 \(A_1,A_2,\cdots,A_i,\cdots\) 。由 \(A_i\) 是闭集可得 \(A_i^c\) 是开集，而由<a class="link" href="#20241015215625CST">拓扑公理(2)</a>，任意多个 \(A_i^c\) 的并集 \(\displaystyle\bigcup_{i=1}^{\infin} A_i^c\) 也在拓扑空间 \(\tau\) 内，即也是开集。因此由<a class="link" href="#20241108181806CST">定义3</a>， \(\displaystyle\left(\bigcup_{i=1}^{\infin} A_i^c\right)^c\) 是闭集，再由<a class="link" href="/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241109195200CST">集合及其运算-De Morgan公式</a>可得 \(\displaystyle\left(\bigcup_{i=1}^{\infin} A_i^c\right)^c=\bigcap_{i=1}^{\infin} (A_i^c)^c=\bigcap_{i=1}^{\infin} A_i\) 是闭集。因此任意多个闭集的交集是闭集。<br>
+  (3) 设有有限个闭集 \(A_1,A_2,\cdots,A_i,\cdots,A_n\) 。由 \(A_i\) 是闭集可得 \(A_i^c\) 是开集，而由<a class="link" href="#20241015215625CST">拓扑公理(3)</a>，有限个 \(A_i^c\) 的交集 \(\displaystyle\bigcap_{i=1}^{n} A_i^c\) 也在拓扑空间 \(\tau\) 内，即也是开集。因此由<a class="link" href="#20241108181806CST">定义3</a>， \(\displaystyle\left(\bigcap_{i=1}^{n} A_i^c\right)^c\) 是闭集，再由<a class="link" href="/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241109195200CST">集合及其运算-De Morgan公式</a>可得 \(\displaystyle\left(\bigcap_{i=1}^{n} A_i^c\right)^c=\bigcup_{i=1}^{n} (A_i^c)^c=\bigcup_{i=1}^{n} A_i\) 是闭集。因此有限个闭集的交集是闭集。</p>
+<h4 id="邻域点和内部">邻域，点和内部
+</h4><p>  <span id="20241109213315CST"></span><strong>定义4</strong>：设 \(A\) 是拓扑空间 \(X\) 的一个子集，点 \(x \in A\) 。如果存在开集 \(U\) ，使得 \(x \in U \sube A\) ，则称 \(x\) 是 \(A\) 的一个<strong>内点</strong>， \(A\) 是 \(x\) 的一个<strong>邻域</strong>。 \(A\) 的所有内点的集合称为 \(A\) 的<strong>内部</strong>，记作 \(\mathring{A}\) （或 \(A\degree\) ）。</p>
+<p>  <span id="20241109213550CST"></span><strong>命题3</strong>：<br>
+  (1) 若 \(A \sube B\) ，则 \(\mathring{A} \sube \mathring{B}\) 。<br>
+  (2) \(\mathring{A}\) 是包含在 \(A\) 中的所有开集的并集，因此是包含在 \(A\) 中的最大开集。<br>
+  (3) \(\mathring{A}=A\)  \(\Harr\)  \(A\) 是开集。<br>
+  (4) \((A \cap B)\degree = \mathring{A} \cap \mathring{B}\) 。<br>
+  (5) \((A \cup B)\degree \supseteq \mathring{A} \cup \mathring{B}\) 。</p>
+<p>  <strong>证明（<a class="link" href="#20241109213550CST">命题3</a>）</strong>：<br>
+  (1) 若 \(x\) 是 \(A\) 的内点，则存在开集 \(U\) 使得 \(x \in U \sube A\) 。因为 \(A \sube B\) ，所以 \(U \sube B\) ，于是 \(x\) 也是 \(B\) 的内点，这样， \(A\) 的内点都是 \(B\) 的内点， \(\mathring{A} \sube \mathring{B}\) 。<br>
+  (2) 记 \(\set{U_\alpha | \alpha \in \mathscr{A}}\) 是包含在 \(A\) 中的所有开集构成的子集族（即 \(\forall \alpha \in \mathscr{A},U_\alpha \sube A\) ）。 \(\forall x \in \displaystyle\bigcup_{\alpha \in \mathscr{A}}U_\alpha\) ，必存在 \(\alpha_0\) 使 \(x \in U_{\alpha_0}\) 。由 \(U_\alpha\) 的定义知 \(U_{\alpha_0} \in A\) ，再由<a class="link" href="#20241109213315CST">定义4</a>中内点的定义可知 \(x\) 是 \(A\) 的一个内点，因此 \(x \in \mathring{A}\) 。所以， \(\displaystyle\bigcup_{\alpha \in \mathscr{A}}U_\alpha \sube \mathring{A}\) 。反之， \(\forall x \in \mathring{A}\) ，由<a class="link" href="#20241109213315CST">定义4</a>中内点的定义可知存在开集 \(U\) 满足 \(x \in U \sube A\) ，而由集合 \(\set{U_\alpha | \alpha \in \mathscr{A}}\) 的定义知必存在 \(\alpha_0\) 使 \(U=U_{\alpha_0}\) 。即 \(x \in \displaystyle\bigcup_{\alpha \in \mathscr{A}}U_\alpha\) ，从而 \(\mathring{A} \sube \displaystyle\bigcup_{\alpha \in \mathscr{A}}U_\alpha\) 。综上所述，\(\mathring{A} = \displaystyle\bigcup_{\alpha \in \mathscr{A}}U_\alpha\) ，因此 \(\mathring{A}\) 是包含在 \(A\) 中的所有开集的并集。<br>
+  (3) 由(2)可知， \(\mathring{A}\) 是开集，若 \(\mathring{A}=A\) ，则 \(A\) 也是开集。反之，当 \(A\) 是开集时， \(A\) 就是包含在 \(A\) 中的最大开集。由(2)可直接得到 \(\mathring{A}=A\) 。<br>
+  (4)由<a class="link" href="/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241108135520CST">集合及其运算-式(43)</a>可得 \(A \cap B \sube A\) ，再由(1)可得 \((A \cap B) \degree \sube \mathring{A}\) ，同理可得 \((A \cap B) \degree \sube \mathring{B}\) ，因此  \((A \cap B) \degree \sube \mathring{A} \cap \mathring{B}\) 。由 \(\mathring{A} \sube A, \mathring{B} \sube B\) 和<a class="link" href="/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241109230637CST">集合及其运算-结论2</a>可得 \(\mathring{A} \cap \mathring{B} \sube A \cap B\) 。两边取邻域并由(1)可得 \((\mathring{A}\cap\mathring{B})\degree\sube (A \cap B)\degree\) 。因此 \((\mathring{A}\cap\mathring{B})\degree = (A \cap B)\degree\) 。又由(2)可得 \(\mathring{A},\mathring{B}\) 都是开集，因此由<a class="link" href="#20241015215625CST">拓扑公理(3)</a>可知 \(\mathring{A}\cap\mathring{B}\) 也是开集，所以由(3)可得 \( (\mathring{A}\cap\mathring{B})\degree=\mathring{A}\cap\mathring{B}\) 。因此 \((A \cap B)\degree = \mathring{A} \cap \mathring{B}\) 。<br>
+  (5)因为 \(\mathring{A}\cup\mathring{B}\) 是包含在 \(A \cup B\) 中的开集，根据(2)可知 \((A \cup B)\degree \supset \mathring{A} \cup \mathring{B}\) 。</p>
+<p>  用归纳法可以从(4)推导出</p>
+<span id="20241109234039CST"></span>\[
+\left(\bigcap_{i=1}^{n}A_i\right)\degree=\bigcap_{i=1}^{n}\mathring{A}_i
+\tag{9}
+    \]
+<p>  但对无穷多个子集的交集相应结果不成立。一般地(5)不能把包含号改成等号。在这里举一个反例。</p>
+<p>  <span id="20241109234556CST"></span><strong>例5</strong>：设 \(A=[0,1],B=(1,2]\) ，则 \((A \cup B)\degree = [0,2]\degree = (0,2)\) ，而 \(\mathring{A}=(0,1),\mathring{B}=(1,2)\) ，因此 \(\mathring{A}\cup \mathring{B} = (0,1)\cup(1,2)\) ，因此 \((A \cup B)\degree = \mathring{A} \cup \mathring{B}\) 。</p>
 
     </div>
 </section>
@@ -1166,7 +1192,7 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
 
 
         <span>
-            最后更新于 Nov 08, 2024 23:20 CST
+            最后更新于 Nov 09, 2024 23:56 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1331,7 +1357,7 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
             
             
         
-        <span>本图书馆累计发布了13篇文章 共161970字</span>
+        <span>本图书馆累计发布了13篇文章 共162957字</span>
     </section>
 
     <section class="site-visit-count">
