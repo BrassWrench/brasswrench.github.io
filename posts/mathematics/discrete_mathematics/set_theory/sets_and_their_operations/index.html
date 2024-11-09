@@ -131,7 +131,7 @@
 <meta property='og:description' content="集合的结构、运算及性质">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='集合论' /><meta property='article:tag' content='集合运算' /><meta property='article:published_time' content='2024-11-07T22:25:27&#43;08:00'/><meta property='article:modified_time' content='2024-11-09T12:23:23&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='集合论' /><meta property='article:tag' content='集合运算' /><meta property='article:published_time' content='2024-11-07T22:25:27&#43;08:00'/><meta property='article:modified_time' content='2024-11-09T16:19:14&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="集合论（一）：集合及其运算">
 <meta name="twitter:description" content="集合的结构、运算及性质"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -638,12 +638,20 @@
         </li>
         <li><a href="#差运算">差运算</a>
           <ol>
-            <li><a href="#差集">差集</a></li>
-            <li><a href="#交运算与差运算">交运算与差运算</a></li>
+            <li><a href="#差集的定义">差集的定义</a></li>
+            <li><a href="#差运算的性质">差运算的性质</a></li>
+            <li><a href="#差运算与并运算">差运算与并运算</a></li>
+            <li><a href="#差运算与交运算">差运算与交运算</a></li>
+          </ol>
+        </li>
+        <li><a href="#对称差">对称差</a>
+          <ol>
+            <li><a href="#对称差的定义">对称差的定义</a></li>
           </ol>
         </li>
       </ol>
     </li>
+    <li><a href="#余集de-morgan公式">余集、De Morgan公式</a></li>
   </ol>
 </nav>
         </div>
@@ -974,7 +982,7 @@
 </svg>
 
             <time class="article-words">
-                8507 字
+                9786 字
             </time>
         </div>
 
@@ -989,7 +997,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 17 分钟
+                    阅读时长: 20 分钟
                 </time>
             </div>
         
@@ -1113,12 +1121,12 @@ N \sube Q \sube R \sube C
 \set{1} \sube N,\set{1,1.2,9,9}\sube Q,\set{\sqrt{2},\pi}\sube R
 \tag{13}
     \]
-<p>  如果 \(A\) 不是 \(B\) 的子集，则记为 \(A \nsubseteq B\) （读 \(A\) 不包含在 \(B\) 里），显然，</p>
+<p>  如果 \(A\) 不是 \(B\) 的子集，则记为 \(A \nsubseteq B\) （读 \(A\) 不包含在 \(B\) 里），由定义得</p>
 <span id="20241107233740CST"></span>\[
 A \nsubseteq B \Harr \exist x \in A 使得 x \notin B
 \tag{14}
     \]
-<p>  若 \(A,B,C\) 都是集合，则显然有
+<p>  若 \(A,B,C\) 都是集合，则由定义有
 <span id="20241108095515CST"></span>\[
 A \sube A
 \tag{15}
@@ -1133,8 +1141,7 @@ A \sube A
   注意符号“ \(\in\) ”与“ \(\sube\) ”在概念上的区别。 \(\in\) 为元素与集合间的属于关系，而 \(\sube\) 为集合间的包含关系。</p>
 <h3 id="集合的相等">集合的相等
 </h3><p>  <span id="20241107234317CST"></span><strong>定义3</strong>：设 \(A,B\) 是集合，如果 \(A \sube B\) 且 \(B \sube A\) ，则称 \(B\) 与 \(A\) 相等,并记成 \(A=B\) 。<br>
-  这就是说，如果 \(A\) 和 \(B\) 由完全相同的元素组成时，那么 \(A\) 与 \(B\) 就是相等的两个集合。两个相等的集合并不意味着它们是用同样的方
-法定义的。如果 \(A\) 与 \(B\) 是两个不相等的集合，那么就记为 \(A \ne B\) 。显然，</p>
+  这就是说，如果 \(A\) 和 \(B\) 由完全相同的元素组成时，那么 \(A\) 与 \(B\) 就是相等的两个集合。两个相等的集合并不意味着它们是用同样的方法定义的。如果 \(A\) 与 \(B\) 是两个不相等的集合，那么就记为 \(A \ne B\) 。显然，</p>
 <span id="20241107234449CST"></span>\[
 A\ne B \Harr A \nsubseteq B 或 B \nsubseteq A
 \tag{17}
@@ -1191,73 +1198,80 @@ A \cup B = \set{x|x \in A 或 x \in B}
 <p>  对于 \(x \in A \cup B\) ，我们可以根据定义写成</p>
 <span id="20241109120728CST"></span>\[
 x \in A 或 x \in B
-\tag{34}
+\tag{36}
     \]
 <p>  但是对于 \(x \notin A \cup B\) ，实际上我们得到的是</p>
 <span id="20241109120809CST"></span>\[
 x \notin A 且 x \notin B
-\tag{35}
+\tag{37}
     \]
 <p>  的结论。</p>
 <h4 id="并运算的性质">并运算的性质
 </h4><p>  由并集的定义可知，并运算有下面的一些性质。</p>
-<p>  <span id="20241108132429CST"></span><strong>定理2</strong>：设 \(A,B,C\) 为任意的三个集合，则<br>
-<span id="20241108130531CST"></span>
-  (1)</p>
-<span id="20241108135359CST"></span>\[
-A \sube A \cup B,\quad B \sube A \cup B
-\tag{25}
-    \]
-<p>  (2)交换律成立。即</p>
+<p>  <span id="20241108132429CST"></span><strong>定理2</strong>：设 \(A,B,C\) 为任意的三个集合，则</p>
+<p>  (1)交换律成立。即</p>
 <span id="20241108121702CST"></span>\[
 A \cup B = B \cup A
-\tag{26}
+\tag{25}
     \]
-<p><span id="20241108130541CST"></span>
-  (3)结合律成立。即</p>
+<p>  (2)结合律成立。即</p>
 <span id="20241108121714CST"></span>\[
 (A \cup B ) \cup C = A \cup (B \cup C)
-\tag{27}
+\tag{26}
     \]
-<p><span id="20241108130552CST"></span>
-  (4)幂等律成立。即</p>
+<p>  (3)幂等律成立。即</p>
 <span id="20241108121723CST"></span>\[
 A \cup A = A
-\tag{28}
+\tag{27}
     \]
-<p><span id="20241108130601CST"></span>
-  (5)</p>
+<p>  (4)</p>
 <span id="20241108121731CST"></span>\[
 \varnothing \cup A = A
-\tag{29}
+\tag{28}
     \]
-<p><span id="20241108130612CST"></span>
-  (6)</p>
+<p>  (5)</p>
 <span id="20241108121740CST"></span>\[
 A \cup B = B \Harr A \sube B
+\tag{29}
+    \]
+<p>  (6)</p>
+<span id="20241108135359CST"></span>\[
+A \sube A \cup B,\quad B \sube A \cup B
 \tag{30}
     \]
+<p>  (7)</p>
+<span id="20241109140513CST"></span>\[
+若 A \cup B \sube C，则 A \sube C,B \sube C
+\tag{31}
+    \]
+<p>  (8)</p>
+<span id="20241109145732CST"></span>\[
+若A \sube C,B \sube C，则A \cup B \sube C
+\tag{32}
+    \]
 <p>  <strong>证明（<a class="link" href="#20241108132429CST">定理2</a>）</strong>：<br>
-  (1)可直接由并集的定义得出。<br>
-  (2)由<a class="link" href="#20241108121107CST">式(22)</a>可得 \(A \cup B = \set{x|x \in A 或 x \in B}\)，而\(B \cup A = \set{x|x \in B 或 x \in A} = \set{x|x \in A 或 x \in B}\) ，故 \(A \cup B = B \cup A\) 。<br>
-  (3)设 \(x \in (A \cup B) \cup C\) ，则有 \(x \in A \cup B\) 或 \(x \in C\) 。若 \(x \in A \cup B\) ，则又有 \(x \in A\) 或 \(x \in B\) ，由定义知 \(B \sube B \cup C\) ，因此对 \(x\) 有 \(x \in A\) 或 \(x \in B \cup C\) ，即 \(x \in A \cup (B \cup C)\) 。若 \(x \in C\) ，由定义知 \(C \sube B \cup C\) ，则 \(x \in B \cup C\) ，又由定义知 \(B \cup C \sube A \cup (B \cup C)\) ，因此 \(x \in A \cup (B \cup C)\) 。于是不论怎样， \(x \in A \cup (B \cup C)\) ，因此 \((A \cup B) \cup C \sube A \cup (B \cup C)\) 。<br>
+  (1)由<a class="link" href="#20241108121107CST">式(22)</a>可得 \(A \cup B = \set{x|x \in A 或 x \in B}\)，而\(B \cup A = \set{x|x \in B 或 x \in A} = \set{x|x \in A 或 x \in B}\) ，故 \(A \cup B = B \cup A\) 。<br>
+  (2)设 \(x \in (A \cup B) \cup C\) ，则有 \(x \in A \cup B\) 或 \(x \in C\) 。若 \(x \in A \cup B\) ，则又有 \(x \in A\) 或 \(x \in B\) ，由定义知 \(B \sube B \cup C\) ，因此对 \(x\) 有 \(x \in A\) 或 \(x \in B \cup C\) ，即 \(x \in A \cup (B \cup C)\) 。若 \(x \in C\) ，由定义知 \(C \sube B \cup C\) ，则 \(x \in B \cup C\) ，又由定义知 \(B \cup C \sube A \cup (B \cup C)\) ，因此 \(x \in A \cup (B \cup C)\) 。于是不论怎样， \(x \in A \cup (B \cup C)\) ，因此 \((A \cup B) \cup C \sube A \cup (B \cup C)\) 。<br>
   反之，设 \(x \in A \cup (B \cup C)\) ，则由定义知 \(x \in A\) 或 \(x \in B \cup C\) 。若 \(x \in A\) ，由定义知 \(A \sube A \cup B \sube (A \cup B) \cup C\) ，故 \(x \in (A \cup B) \cup C\) 。若 \(x \in B \cup C\) ，则 \(x \in B\) 或 \(x \in C\) ，又由定义知 \(B \sube A \cup B\) ，故 \(x \in A \cup B\) 或 \(x \in C\) ，即 \(x \in (A \cup B) \cup C\) 。于是不论怎样， \(x \in (A \cup B) \cup C\) ，因此 \(A \cup (B \cup C) \sube (A \cup B) \cup C\) 。<br>
   综上所述，由<a class="link" href="#20241107234317CST">定义3</a>可知， \(A \cup (B \cup C) = (A \cup B) \cup C\) 。<br>
-  (4) 由<a class="link" href="#20241108095515CST">式(15)</a>知 \(A \sube A\) ，因此由(6)可知 \(A \cup A = A\) 。<br>
-  (5)由<a class="link" href="#20241107234826CST">定理1</a>可知 \(\varnothing \sube A\) 。因此由(6)可知 \(\varnothing \cup A = A\) 。<br>
-  (6)设 \(A \cup B = B\) ，任取 \(x \in A\) ，由(1)可知 \(A \sube A \cup B\) ，则 \(x \in A \cup B = B\) ，即 \(x \in B\) ，故 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A \cup B\) ，即 \(x \in A\) 或 \(x \in B\) 。如果 \(x \in A\) ，则由 \(A \sube B\) 可得 \(x \in B\) 。所以不管怎样都有 \(x \in B\) ，所以 \(A \cup B \sube B\) 。而由(1)可得 \(B \sube A \cup B\) 。由<a class="link" href="#20241107234317CST">定义3</a>可知 \(A \cup B = B\) 。</p>
+  (3) 由<a class="link" href="#20241108095515CST">式(15)</a>知 \(A \sube A\) ，因此由(5)可知 \(A \cup A = A\) 。<br>
+  (4)由<a class="link" href="#20241107234826CST">定理1</a>可知 \(\varnothing \sube A\) 。因此由(5)可知 \(\varnothing \cup A = A\) 。<br>
+  (5)设 \(A \cup B = B\) ，任取 \(x \in A\) ，由(1)可知 \(A \sube A \cup B\) ，则 \(x \in A \cup B = B\) ，即 \(x \in B\) ，故 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A \cup B\) ，即 \(x \in A\) 或 \(x \in B\) 。如果 \(x \in A\) ，则由 \(A \sube B\) 可得 \(x \in B\) 。所以不管怎样都有 \(x \in B\) ，所以 \(A \cup B \sube B\) 。而由(1)可得 \(B \sube A \cup B\) 。由<a class="link" href="#20241107234317CST">定义3</a>可知 \(A \cup B = B\) 。<br>
+  (6)可直接由并集的定义得出。<br>
+  (7)若 \(A \cup B \sube C\) ，则对任意 \(x \in A \cup B\) ， \(x \in C\) 。而由 \(x \in A \cup B\) 和并集的定义可得 \(x \in A\) 或 \(x \in B\) ，故对任意 \(x \in A, x \in B\) 都有 \(x \in C\) ，即 \(A \sube C,B \sube C\) 。<br>
+  (8)设 \(A \sube C,B \sube C\) 。对任意 \(x \in A \cup B\) ，有 \(x \in A\) 或 \(x \in B\) 。若 \(x \in A\) ，由 \(A \sube C\) 可知 \(x \in C\) 。若 \(x \in B\) ，由 \(B \sube C\) 可知 \(x \in C\) 。总之 \(x \in C\) 。所以 \(A \cup B \sube C\) 。</p>
 <h4 id="无穷并集">无穷并集
-</h4><p>  由<a class="link" href="#20241108130541CST">并集性质(2)</a>， \((A \cup B) \cup C = A \cup (B \cup C)\) ，因此 \(A \cup B \cup C\) 有意义。类似地，我们可以定义多个集合 \(A_1,A_2,\cdots,A_n\) 的并集 \(A_1 \cup A_2 \cup \cdots \cup A_n\) 为至少属于 \(A_1,A_2,\cdots,A_n\) 中之一的那些元素构成的集合。 \(A_1 \cup A_2 \cup \cdots \cup A_n\) 常缩写成 \(\displaystyle\bigcup_{i=1}^{n}A_i\) 。<br>
+</h4><p>  由<a class="link" href="#20241108121714CST">式(26)</a>， \((A \cup B) \cup C = A \cup (B \cup C)\) ，因此 \(A \cup B \cup C\) 有意义。类似地，我们可以定义多个集合 \(A_1,A_2,\cdots,A_n\) 的并集 \(A_1 \cup A_2 \cup \cdots \cup A_n\) 为至少属于 \(A_1,A_2,\cdots,A_n\) 中之一的那些元素构成的集合。 \(A_1 \cup A_2 \cup \cdots \cup A_n\) 常缩写成 \(\displaystyle\bigcup_{i=1}^{n}A_i\) 。<br>
   若 \(A_1,A_2,\cdots,A_n,\cdots\) 是一个无穷集合的无穷序列，则它们的并集记为 \(A_1 \cup A_2 \cup \cdots \cup A_n \cup \cdots\) ，常缩写为 \(\displaystyle\bigcup_{i=1}^{\infin}A_n\) ，其定义为</p>
 <span id="20241108131244CST"></span>\[
 A_1 \cup A_2 \cup \cdots \cup A_n \cup \cdots = \bigcup_{i=1}^{\infin}A_n = \set{x | \exist\space n \in N 使得 x \in A_n}
-\tag{31}
+\tag{33}
     \]
 <p>  其中 \(N\) 是自然数之集。<br>
   一般地，若 \(\set{A_l}_{l \in I}\) 是任一集族，则集族中那些集之并集记为 \(\displaystyle\bigcup_{l \in I}A_l\) ，并且</p>
 <span id="20241108131831CST"></span>\[
 \bigcup_{l \in I}A_l=\set{x | \exist \space l \in I 使得 x \in A_l}
-\tag{32}
+\tag{34}
     \]
 <h3 id="交运算">交运算
 </h3><p>  集合的并运算，就是把给定集的那些元素放到一起合并成一个集合，在这个合并中，相同的元素只要一个。集合的另一个运算是交运算，它是由给定的集合的公共元素构成的集合。形式上，我们有如下的定义。</p>
@@ -1266,77 +1280,89 @@ A_1 \cup A_2 \cup \cdots \cup A_n \cup \cdots = \bigcup_{i=1}^{\infin}A_n = \set
   于是</p>
 <span id="20241108133209CST"></span>\[
 A \cap B = \set{x|x \in A 且 x \in B}
-\tag{33}
+\tag{35}
     \]
 <p>  <span id="20241108132258CST"></span><strong>例9</strong>：设 \(A=\set{a,b,c,d,e},B=\set{a,c,e,f}\) ，则 \(A \cap B = \set{a,c,e}\) 。</p>
 <p>  <span id="20241108132339CST"></span><strong>例10</strong>： \(A\) 为所有蓝眼睛的男人之集， \(B\) 为所有棕色头发男人之集，则 \(A \cap B\) 就是一切蓝眼睛棕色头发男人之集。</p>
 <p>  对于 \(x \in A \cap B\) ，我们可以根据定义写成</p>
 <span id="20241109120728CST"></span>\[
 x \in A 且 x \in B
-\tag{34}
+\tag{36}
     \]
 <p>  但是对于 \(x \notin A \cap B\) ，实际上我们得到的是</p>
 <span id="20241109120809CST"></span>\[
 x \notin A 或 x \notin B
-\tag{35}
+\tag{37}
     \]
 <p>  的结论。</p>
 <h4 id="交运算的性质">交运算的性质
 </h4><p>  交运算有以下性质。</p>
-<p>  <span id="20241108132608CST"></span><strong>定理3</strong>：设 \(A,B,C\) 是任意三个集合，则<br>
-  (1)</p>
-<span id="20241108135520CST"></span>\[
-A \cap B \sube A,\quad A \cap B \sube B
-\tag{36}
-    \]
-<p>  (2)交换律成立。即</p>
+<p>  <span id="20241108132608CST"></span><strong>定理3</strong>：设 \(A,B,C\) 是任意三个集合，则</p>
+<p>  (1)交换律成立。即</p>
 <span id="20241108132655CST"></span>\[
 A \cap B = B \cap A
-\tag{37}
-    \]
-<p>  (3)结合律成立。即</p>
-<span id="20241108132744CST"></span>\[
-(A \cap B) \cap C = A \cap (B \cap C)
 \tag{38}
     \]
-<p>  (4)幂等律成立，即</p>
-<span id="20241108132755CST"></span>\[
-A \cap A = A
+<p>  (2)结合律成立。即</p>
+<span id="20241108132744CST"></span>\[
+(A \cap B) \cap C = A \cap (B \cap C)
 \tag{39}
     \]
-<p>  (5)</p>
-<span id="20241108132807CST"></span>\[
-\varnothing \cap A = \varnothing
+<p>  (3)幂等律成立，即</p>
+<span id="20241108132755CST"></span>\[
+A \cap A = A
 \tag{40}
     \]
-<p>  (6)</p>
-<span id="20241108132818CST"></span>\[
-A \cap B = A \Harr A \sube B
+<p>  (4)</p>
+<span id="20241108132807CST"></span>\[
+\varnothing \cap A = \varnothing
 \tag{41}
     \]
+<p>  (5)</p>
+<span id="20241108132818CST"></span>\[
+A \cap B = A \Harr A \sube B
+\tag{42}
+    \]
+<p>  (6)</p>
+<span id="20241108135520CST"></span>\[
+A \cap B \sube A,\quad A \cap B \sube B
+\tag{43}
+    \]
+<p>  (7)</p>
+<span id="20241109141147CST"></span>\[
+若 C \sube A \cap B，则 C \sube A,C \sube B
+\tag{44}
+    \]
+<p>  (8)</p>
+<span id="20241109150119CST"></span>\[
+若A \sube C,B \sube C，则A \cap B \sube C
+\tag{45}
+    \]
 <p>  <strong>证明（<a class="link" href="#20241108132608CST">定理3</a>）</strong>：<br>
-  (1)可直接由交集的定义得到。<br>
-  (2)由<a class="link" href="#20241108133209CST">式(33)</a>可得 \(A \cap B = \set{x|x \in A 且 x \in B}\)，而\(B \cap A = \set{x|x \in B 且 x \in A} = \set{x|x \in A 且 x \in B}\) ，故 \(A \cap B = B \cap A\) 。<br>
-  (3)设 \(x \in (A \cap B) \cap C\) ，则有 \(x \in A \cap B\) 且 \(x \in C\) 。而由 \(x \in A \cap B\) ，又有 \(x \in A\) 且 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A\) 且 \(x \in B \cap C\) ，即 \(x \in A \cap (B \cap C)\) 。由此可得 \((A \cap B) \cap C \sube A \cap (B \cap C)\) 。<br>
+  (1)由<a class="link" href="#20241108133209CST">式(35)</a>可得 \(A \cap B = \set{x|x \in A 且 x \in B}\)，而\(B \cap A = \set{x|x \in B 且 x \in A} = \set{x|x \in A 且 x \in B}\) ，故 \(A \cap B = B \cap A\) 。<br>
+  (2)设 \(x \in (A \cap B) \cap C\) ，则有 \(x \in A \cap B\) 且 \(x \in C\) 。而由 \(x \in A \cap B\) ，又有 \(x \in A\) 且 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A\) 且 \(x \in B \cap C\) ，即 \(x \in A \cap (B \cap C)\) 。由此可得 \((A \cap B) \cap C \sube A \cap (B \cap C)\) 。<br>
   反之，设 \(x \in A \cap (B \cap C)\) ，则由定义知 \(x \in A\) 且 \(x \in B \cup C\) 。而由 \(x \in B \cup C\) ,又有 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A\) 且 \(x \in B\) 且 \(x \in C\) ，即 \(x \in A \cap B\) 且 \(x \in C\) ，即 \(x \in (A \cap B) \cap C\) 。由此可得 \(A \cap (B \cap C) \sube (A \cap B) \cap C\) 。<br>
   综上所述，由<a class="link" href="#20241107234317CST">定义3</a>可知， \(A \cup (B \cup C) = (A \cup B) \cup C\) 。<br>
-  (4)由<a class="link" href="#20241108095515CST">式(15)</a>知 \(A \sube A\) ，再由(6)得到 \(A \cap A = A\) 。<br>
-  (5)由<a class="link" href="#20241107234826CST">定理1</a>知 \(\varnothing \sube A\) 。再由(6)知 \(\varnothing \cap A = \varnothing\) 。<br>
-  (6)若 \(A \cap B = A\) ，任取 \(x \in A\) ， 由 \(A \cap B = A\) 可知 \(x \in A \cap B\) 。而由(1)可得 \(A \cap B \sube B\) ，故 \(x \in B\) ，因此 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A\)  ，因为 \(A \sube B\) 有 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) ，由交集定义可得 \(x \in A \cap B\) ，因此 \(A \sube A \cap B\) 。又由(1)得 \(A \cap B \sube A\) ，因此由<a class="link" href="#20241107234317CST">定义3</a>可知 \(A \cap B = A\) 。</p>
+  (3)由<a class="link" href="#20241108095515CST">式(15)</a>知 \(A \sube A\) ，再由(5)得到 \(A \cap A = A\) 。<br>
+  (4)由<a class="link" href="#20241107234826CST">定理1</a>知 \(\varnothing \sube A\) 。再由(6)知 \(\varnothing \cap A = \varnothing\) 。<br>
+  (5)若 \(A \cap B = A\) ，任取 \(x \in A\) ， 由 \(A \cap B = A\) 可知 \(x \in A \cap B\) 。而由(1)可得 \(A \cap B \sube B\) ，故 \(x \in B\) ，因此 \(A \sube B\) 。反过来，设 \(A \sube B\) 。对任意 \(x \in A\)  ，因为 \(A \sube B\) 有 \(x \in B\) ，即 \(x \in A\) 且 \(x \in B\) ，由交集定义可得 \(x \in A \cap B\) ，因此 \(A \sube A \cap B\) 。又由(1)得 \(A \cap B \sube A\) ，因此由<a class="link" href="#20241107234317CST">定义3</a>可知 \(A \cap B = A\) 。<br>
+  (6)可直接由交集的定义得到。<br>
+  (7)若 \(C \sube A \cap B\) ，对任意 \(x \in C\) ，有 \(x \in A \cap B\) ，即 \(x \in A\) 且 \(x \in B\) 。因此可得 \(C \sube A\) 和 \(C \sube B\) 。<br>
+  (8)设 \(A \sube C,B \sube C\) 。由(6)可得 \(A \cap B \sube A\) ，而 \(A \sube C\) ，因此 \(A \cap B \sube C\) 。</p>
 <h4 id="无穷交集">无穷交集
 </h4><p>  同样可定义 \(n\) 个集合 \(A_1,A_2,\cdots,\A_n\) 的交集，也可定义集合序列 \(A_1,A_2,\cdots,A_n,\cdots\) 的那些集的交集，并分别记为或定义为</p>
 <span id="20241108141400CST"></span>\[
 A_1 \cap A_2 \cap \cdots \cap A_n = \bigcap_{i=1}^{n}A_n=\set{x|\forall i \in \set{1,2,\cdots,n},x\in A_i}
-\tag{42}
+\tag{46}
     \]
 <span id="20241108141558CST"></span>\[
 A_1 \cap A_2 \cap \cdots \cap A_n \cap \cdots = \bigcap_{i=1}^{\infin}A_n=\set{x|\forall b \in N,x\in A_n}
-\tag{43}
+\tag{47}
     \]
 <p>  更一般地，集族 \(\set{A_l}_{l \in I}\) 中各集的交记成 \(\displaystyle\bigcap_{l \in I}A_l\) ，其定义为</p>
 <span id="20241108141724CST"></span>\[
 \bigcap_{l \in I}A_l=\set{x|\forall \xi \in I, x \in A_\xi}
-\tag{44}
+\tag{48}
     \]
 <h3 id="并运算与交运算的联系">并运算与交运算的联系
 </h3><h4 id="并运算与交运算的分配律">并运算与交运算的分配律
@@ -1344,100 +1370,137 @@ A_1 \cap A_2 \cap \cdots \cap A_n \cap \cdots = \bigcap_{i=1}^{\infin}A_n=\set{x
 <p>  <span id="20241108142028CST"></span><strong>定理4</strong>：设 \(A\) 为任一集合， \(\set{B_l}_{l \in I}\) 为任一集族，则</p>
 <span id="20241108142053CST"></span>\[
 A \cap \left(\bigcup_{l \in I}B_l\right)=\bigcup_{l \in I}\left(A \cap B_l \right)
-\tag{45}
+\tag{49}
     \]
 <span id="20241108142054CST"></span>\[
 A \cup \left(\bigcap_{l \in I}B_l\right)=\bigcap_{l \in I}\left(A \cup B_l \right)
-\tag{46}
+\tag{50}
     \]
 <p>  其中 \(I \ne \varnothing\) 。</p>
-<p>  <strong>证明（<a class="link" href="#20241108142028CST">定理4</a>）</strong>：先证<a class="link" href="#20241108142053CST">式(45)</a>。令 \(\displaystyle S = A \cap \left(\bigcup_{l \in I}B_l\right),T=\bigcup_{l \in I}\left(A \cap B_l \right)\) 。<br>
-  首先证明 \(S \sube T\) 。取任意 \(x \in S = \displaystyle A \cap \left(\bigcup_{l \in I}B_l\right)\) ，由<a class="link" href="#20241108132101CST">交集的定义</a>有 \(x \in A\) 且 \(x \in \displaystyle\bigcup_{l \in I}B_l\) ，由<a class="link" href="#20241108131831CST">式(32)</a>知存在一个 \(\xi_0 \in I\) 使得 \(x \in B_{\xi_0}\) 。于是 \(x \in A\) 且 \(x \in B_{\xi_0}\) 。由<a class="link" href="#20241108132101CST">交集的定义</a>有 \(x \in A \cap B_{\xi_0}\) 。由<a class="link" href="#20241108135359CST">式(25)</a>可得 \(x \in \displaystyle\bigcup_{\xi \in I}(A \cap B_\xi)\) ，即 \(x \in T\) 。因此， \(S \sube T\) 。<br>
-  其次，我们来证明 \(T \sube S\) 。取任意 \(x \in T = \displaystyle\bigcup_{l \in I}\left(A \cap B_l \right)\) ，由<a class="link" href="#20241108131831CST">式(32)</a>知必有 \(\xi_0 \in I\) 使得 \(x \in A \cap B_{\xi_0}\) 。因此由<a class="link" href="#20241108132101CST">交集的定义</a>有 \(x \in A\) 且 \(x \in B_{\xi_0}\) 。由<a class="link" href="#20241108135359CST">式(25)</a>可得 \(x \in A\) 且 \(x \in \left(\displaystyle\bigcup_{\xi \in I}B_\xi\right)\) ，因此由<a class="link" href="#20241108132101CST">交集的定义</a>有 \(x \in A \cap \left(\displaystyle\bigcup_{\xi \in I}B_\xi\right)\) ，即 \(T \sube S\) 。<br>
+<p>  <strong>证明（<a class="link" href="#20241108142028CST">定理4</a>）</strong>：先证<a class="link" href="#20241108142053CST">式(49)</a>。令 \(\displaystyle S = A \cap \left(\bigcup_{l \in I}B_l\right),T=\bigcup_{l \in I}\left(A \cap B_l \right)\) 。<br>
+  首先证明 \(S \sube T\) 。取任意 \(x \in S = \displaystyle A \cap \left(\bigcup_{l \in I}B_l\right)\) ，由<a class="link" href="#20241108132101CST">交集的定义</a>有 \(x \in A\) 且 \(x \in \displaystyle\bigcup_{l \in I}B_l\) ，由<a class="link" href="#20241108131831CST">式(34)</a>知存在一个 \(\xi_0 \in I\) 使得 \(x \in B_{\xi_0}\) 。于是 \(x \in A\) 且 \(x \in B_{\xi_0}\) 。由<a class="link" href="#20241108132101CST">交集的定义</a>有 \(x \in A \cap B_{\xi_0}\) 。由<a class="link" href="#20241108135359CST">式(30)</a>可得 \(x \in \displaystyle\bigcup_{\xi \in I}(A \cap B_\xi)\) ，即 \(x \in T\) 。因此， \(S \sube T\) 。<br>
+  其次，我们来证明 \(T \sube S\) 。取任意 \(x \in T = \displaystyle\bigcup_{l \in I}\left(A \cap B_l \right)\) ，由<a class="link" href="#20241108131831CST">式(34)</a>知必有 \(\xi_0 \in I\) 使得 \(x \in A \cap B_{\xi_0}\) 。因此由<a class="link" href="#20241108132101CST">交集的定义</a>有 \(x \in A\) 且 \(x \in B_{\xi_0}\) 。由<a class="link" href="#20241108135359CST">式(30)</a>可得 \(x \in A\) 且 \(x \in \left(\displaystyle\bigcup_{\xi \in I}B_\xi\right)\) ，因此由<a class="link" href="#20241108132101CST">交集的定义</a>有 \(x \in A \cap \left(\displaystyle\bigcup_{\xi \in I}B_\xi\right)\) ，即 \(T \sube S\) 。<br>
   因此由<a class="link" href="#20241107234317CST">定义3</a>可知 \(S=T\) ，即 \(\displaystyle A \cap \left(\bigcup_{l \in I}B_l\right)=\bigcup_{l \in I}\left(A \cap B_l \right)\) 。<br>
-  再证<a class="link" href="#20241108142054CST">式(46)</a>。令 \(S=\displaystyle A \cup \left(\bigcap_{l \in I}B_l\right),T=\bigcap_{l \in I}\left(A \cup B_l \right)\) 。<br>
-  首先证明 \(S \sube T\) 。设 \(x \in S=\displaystyle A \cup \left(\bigcap_{l \in I}B_l\right)\) ，由<a class="link" href="#20241108120842CST">并集的定义</a>可得 \(x \in A\) 或 \(x \in \displaystyle\bigcap_{l \in I}B_l\) 。如果 \(x \in A\) ，则由<a class="link" href="#20241108135359CST">式(25)</a>可知对任意 \(l\) 都有 \(x \in A \cup B_l\) ，即 \(x \in \displaystyle\bigcap_{l \in I}\left(A \cup B_l \right)\) 。如果 \(x \in \displaystyle\bigcap_{l \in I}B_l\) ，则由<a class="link" href="#20241108141724CST">式(44)</a>可得 \(\forall \xi \in I,x \in B_\xi\) ，再由<a class="link" href="#20241108135359CST">式(25)</a>可知 \(\forall \xi \in I,x \in A \cup B_\xi\) ，由<a class="link" href="#20241108141724CST">式(44)</a>得 \(x \in \displaystyle\bigcap_{l \in I}\left(A \cup B_l \right)\) 。总之不论如何都有 \(x \in \displaystyle\bigcap_{l \in I}\left(A \cup B_l \right)\) ，即 \(x \in T\) ，因此 \(S \sube T\) 。<br>
-  再证明 \(T \sube S\) 。设 \(x \in T\) ，由<a class="link" href="#20241108141724CST">式(44)</a>可得 \(\forall \xi \in I,x \in A \cup B_\xi\) ，则由<a class="link" href="#20241108120842CST">并集的定义</a>可得 \(\forall \xi \in I\)，\(x \in A\) 或 \(x \in B_\xi\) 。假设 \(x \in A\) ，则由<a class="link" href="#20241108135359CST">式(25)</a>可知 \(x \in \displaystyle A \cup \left(\bigcap_{l \in I}B_l\right) \) 。假设 \(x \in B_\xi\) ，则 \(\forall \in I,x \in B_\xi\) ，即 \(x \in \displaystyle\bigcap_{l \in I}B_l\) ，由<a class="link" href="#20241108135359CST">式(25)</a>可知 \(x \in A \cup \displaystyle\bigcap_{l \in I}B_l\) 。总之，不论如何都有 \(x \in A \cup \displaystyle\bigcap_{l \in I}B_l\) ，即 \(x \in S\) 。所以 \(T \sube S\) 。<br>
+  再证<a class="link" href="#20241108142054CST">式(50)</a>。令 \(S=\displaystyle A \cup \left(\bigcap_{l \in I}B_l\right),T=\bigcap_{l \in I}\left(A \cup B_l \right)\) 。<br>
+  首先证明 \(S \sube T\) 。设 \(x \in S=\displaystyle A \cup \left(\bigcap_{l \in I}B_l\right)\) ，由<a class="link" href="#20241108120842CST">并集的定义</a>可得 \(x \in A\) 或 \(x \in \displaystyle\bigcap_{l \in I}B_l\) 。如果 \(x \in A\) ，则由<a class="link" href="#20241108135359CST">式(30)</a>可知对任意 \(l\) 都有 \(x \in A \cup B_l\) ，即 \(x \in \displaystyle\bigcap_{l \in I}\left(A \cup B_l \right)\) 。如果 \(x \in \displaystyle\bigcap_{l \in I}B_l\) ，则由<a class="link" href="#20241108141724CST">式(48)</a>可得 \(\forall \xi \in I,x \in B_\xi\) ，再由<a class="link" href="#20241108135359CST">式(30)</a>可知 \(\forall \xi \in I,x \in A \cup B_\xi\) ，由<a class="link" href="#20241108141724CST">式(48)</a>得 \(x \in \displaystyle\bigcap_{l \in I}\left(A \cup B_l \right)\) 。总之不论如何都有 \(x \in \displaystyle\bigcap_{l \in I}\left(A \cup B_l \right)\) ，即 \(x \in T\) ，因此 \(S \sube T\) 。<br>
+  再证明 \(T \sube S\) 。设 \(x \in T\) ，由<a class="link" href="#20241108141724CST">式(48)</a>可得 \(\forall \xi \in I,x \in A \cup B_\xi\) ，则由<a class="link" href="#20241108120842CST">并集的定义</a>可得 \(\forall \xi \in I\)，\(x \in A\) 或 \(x \in B_\xi\) 。假设 \(x \in A\) ，则由<a class="link" href="#20241108135359CST">式(30)</a>可知 \(x \in \displaystyle A \cup \left(\bigcap_{l \in I}B_l\right) \) 。假设 \(x \in B_\xi\) ，则 \(\forall \in I,x \in B_\xi\) ，即 \(x \in \displaystyle\bigcap_{l \in I}B_l\) ，由<a class="link" href="#20241108135359CST">式(30)</a>可知 \(x \in A \cup \displaystyle\bigcap_{l \in I}B_l\) 。总之，不论如何都有 \(x \in A \cup \displaystyle\bigcap_{l \in I}B_l\) ，即 \(x \in S\) 。所以 \(T \sube S\) 。<br>
   综上所述，由<a class="link" href="#20241107234317CST">定义3</a>可知 \(S=T\) ，即 \(\displaystyle A \cup \left(\bigcap_{l \in I}B_l\right)=\bigcap_{l \in I}\left(A \cup B_l \right)\) 。</p>
 <h4 id="分配律的简单形式">分配律的简单形式
 </h4><p>  <span id="20241108183225CST"></span><strong>定理5</strong>：设 \(A,B,C\) 为任意三个集合，则<br>
   (1)交运算对并运算满足分配律，即</p>
 <span id="20241108183311CST"></span>\[
 A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
-\tag{47}
+\tag{51}
     \]
 <p>  (2)并运算对交运算满足分配律，即</p>
 <span id="20241108183346CST"></span>\[
 A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
-\tag{48}
+\tag{52}
     \]
 <p>  <strong>证明（<a class="link" href="#20241108183225CST">定理5</a>）</strong>：这个定理是<a class="link" href="#20241108142028CST">定理4</a>的一个特例，因此无须证明。</p>
-<p>  但是，我们可以证明该定理的结论(1)和结论(2)是可以互推的。我们先从(1)开始证(2)。利用并运算和交运算的交换、结合性质和<a class="link" href="#20241108183311CST">式(47)</a>、<a class="link" href="#20241108190436CST">式(51)</a>和<a class="link" href="#20241108190447CST">式(52)</a>可得</p>
+<p>  但是，我们可以证明该定理的结论(1)和结论(2)是可以互推的。我们先从(1)开始证(2)。利用并运算和交运算的交换、结合性质和<a class="link" href="#20241108183311CST">式(51)</a>、<a class="link" href="#20241108190436CST">式(55)</a>和<a class="link" href="#20241108190447CST">式(56)</a>可得</p>
 <span id="20241108185721CST"></span>\[
 \begin{aligned}
 (A \cup B) \cap (A \cup C)=&(A \cup C) \cap (A \cup B) \\[5pt]
-=&((A \cup C) \cap A) \cup ((A \cup C) \cap B)\text{（式(47)）}\\[5pt]
+=&((A \cup C) \cap A) \cup ((A \cup C) \cap B)\text{（式(51)）}\\[5pt]
 =&(A \cap (A \cup C)) \cup (B \cap (A \cup C))\text{（交换律）}\\[5pt]
-=& A \cup (B \cap (A \cup C))\text{（式(51)）}\\[5pt]
-=& A \cup ((B \cap A) \cup (B \cap C))\text{（式(47)）}\\[5pt]
+=& A \cup (B \cap (A \cup C))\text{（式(55)）}\\[5pt]
+=& A \cup ((B \cap A) \cup (B \cap C))\text{（式(51)）}\\[5pt]
 =& (A \cup (B \cap A)) \cup (B \cap C)\text{（结合律）}\\[5pt]
 =& (A \cup (A \cap B)) \cup (B \cap C)\text{（交换律）}\\[5pt]
-=& A \cup (B \cap C)\text{（式(52)）}
+=& A \cup (B \cap C)\text{（式(56)）}
 \end{aligned}
-\tag{49}
+\tag{53}
     \]
-<p>  我们再来从(2)推导(1)。利用并运算和交运算的交换、结合性质和<a class="link" href="#20241108183346CST">式(48)</a>、<a class="link" href="#20241108190436CST">式(51)</a>和<a class="link" href="#20241108190447CST">式(52)</a>可得</p>
+<p>  我们再来从(2)推导(1)。利用并运算和交运算的交换、结合性质和<a class="link" href="#20241108183346CST">式(52)</a>、<a class="link" href="#20241108190436CST">式(55)</a>和<a class="link" href="#20241108190447CST">式(56)</a>可得</p>
 <span id="20241108232114CST"></span>\[
 \begin{aligned}
 (A \cap B) \cup (A \cap C)=&(A \cap C) \cup (A \cap B)\\[5pt]
-=&((A \cap C) \cup A)\cap((A \cap C) \cup B)\text{（式(48)）}\\[5pt]
+=&((A \cap C) \cup A)\cap((A \cap C) \cup B)\text{（式(52)）}\\[5pt]
 =&(A \cup (A \cap C)) \cap (B \cup (A \cap C))\\[5pt]
-=&A \cap (B \cup (A \cap C))\text{（式(52)）}\\[5pt]
-=&A \cap ((B \cup A) \cap (B \cup C))\text{（式(48)）}\\[5pt]
+=&A \cap (B \cup (A \cap C))\text{（式(56)）}\\[5pt]
+=&A \cap ((B \cup A) \cap (B \cup C))\text{（式(52)）}\\[5pt]
 =&(A \cap (B \cup A))\cap(B \cup C)\\[5pt]
-=&A \cap (B \cup C)\text{（式(51)）}
+=&A \cap (B \cup C)\text{（式(55)）}
 \end{aligned}
-\tag{50}
+\tag{54}
     \]
 <h4 id="吸收律">吸收律
 </h4><p>  <span id="20241108190411CST"></span><strong>定理6</strong>：对任何集 \(A,B\) ，吸收律成立：<br>
   (1)</p>
 <span id="20241108190436CST"></span>\[
 A \cap (A \cup B) = A
-\tag{51}
+\tag{55}
     \]
 <p>  (2)</p>
 <span id="20241108190447CST"></span>\[
 A \cup (A \cap B) = A
-\tag{52}
+\tag{56}
     \]
-<p>  <strong>证明（<a class="link" href="#20241108190411CST">定理6</a>）</strong>：由<a class="link" href="#20241108135359CST">式(25)</a>可得 \(A \sube A \cup B\) ，又由<a class="link" href="#20241108132818CST">式(41)</a>可得 \(A \cap (A \cup B) = A\) 。同理，由<a class="link" href="#20241108135520CST">式(36)</a>可得 \(A \cap B \sube A\) ，又由<a class="link" href="#20241108121740CST">式(30)</a>可得 \((A \cap B) \cup A = A \cup (A \cap B) = A\) 。</p>
+<p>  <strong>证明（<a class="link" href="#20241108190411CST">定理6</a>）</strong>：由<a class="link" href="#20241108135359CST">式(30)</a>可得 \(A \sube A \cup B\) ，又由<a class="link" href="#20241108132818CST">式(42)</a>可得 \(A \cap (A \cup B) = A\) 。同理，由<a class="link" href="#20241108135520CST">式(43)</a>可得 \(A \cap B \sube A\) ，又由<a class="link" href="#20241108121740CST">式(29)</a>可得 \((A \cap B) \cup A = A \cup (A \cap B) = A\) 。</p>
 <h4 id="两两不相交的集序列">两两不相交的集序列
 </h4><p>  <span id="20241109001358CST"></span><strong>定义8</strong>：设 \(A,B\) 为任意集合，如果 \(A \cap B = \varnothing\) ，则称 \(A\) 与 \(B\) <strong>不相交</strong>。若集序列 \(A_1,A_2,\cdots,A_n,\cdots\) 的任两集 \(A_i\) 和 \(A_j\) （ \(i \ne j\) ）不相交，则称 \(A_1,A_2,\cdots,A_n,\cdots\) 是<strong>两两不相交的集序列</strong>。</p>
 <h3 id="差运算">差运算
-</h3><h4 id="差集">差集
+</h3><h4 id="差集的定义">差集的定义
 </h4><p>  <span id="20241109001723CST"></span><strong>定义9（差集）</strong>：设 \(A\) 与 \(B\) 为任意集合，由属于 \(A\) 但不属于 \(B\) 的一切元素构成的集合称为 \(A\) 与 \(B\) 的<strong>差集</strong>，并记为 \(A\backslash B\) 。于是</p>
 <span id="20241109003046CST"></span>\[
 A \backslash B = \set{x | x \in A 且 x \notin B}
-\tag{53}
+\tag{57}
     \]
 <p>  <span id="20241109003156CST"></span><strong>例11</strong>：设 \(A=\set{1,2,3,4,5},B=\set{3,4,5,6}\) ，则 \(A \backslash B = \set{1,2}\) 。</p>
-<h4 id="交运算与差运算">交运算与差运算
-</h4><p>  <span id="20241109003238CST"></span><strong>定理7</strong>：设 \(A,B,C\) 为任意三个集合，则</p>
+<h4 id="差运算的性质">差运算的性质
+</h4><p>  差运算有以下性质。</p>
+<p>  <span id="20241109150645CST"></span><strong>定理7</strong>：设 \(A,B,C\) 是任意三个集合，则</p>
+<p>  (1)</p>
+<span id="20241109150714CST"></span>\[
+A \backslash B \sube A
+\tag{58}
+    \]
+<p>  <strong>证明（<a class="link" href="#20241109150645CST">定理7</a>）</strong>：
+(1)由定义知对任意 \(x \in A \backslash B\) 都有 \(x \in A\) 且 \(x \in B\) ，即都有 \(x \in A\) ，所以 \(A \backslash B \sube A\) 。</p>
+<h4 id="差运算与并运算">差运算与并运算
+</h4><p>  <span id="20241109135747CST"></span><strong>定理8</strong>：设 \(A,B\) 是任意两个集合，则</p>
+<p>  (1)</p>
+<span id="20241109154714CST"></span>\[
+(A \backslash B) \cup B = A \cup B
+\tag{59}
+    \]
+<p>  (2)</p>
+<span id="20241109135849CST"></span>\[
+(A \backslash B) \cup B = A \Harr B \sube A
+\tag{60}
+    \]
+<p>  <strong>证明（<a class="link" href="#20241109135747CST">定理8</a>）</strong>：<br>
+  (1)设 \(x \in (A \backslash B) \cup B\) ，则 \(x \in A \backslash B\) 或 \(x \in B\) 。如果 \(x \in A \backslash B\) ，则由<a class="link" href="#20241109150714CST">式(58)</a>可知 \(x \in A\) ，由<a class="link" href="#20241108135359CST">式(30)</a>可知 \(A \sube A \cup B\) ，即 \(x \in A \cup B\) 。如果 \(x \in B\) ，则由<a class="link" href="#20241108135359CST">式(30)</a>可知 \(B \sube A \cup B\) ，即 \(x \in A \cup B\) 。综上所述， \((A \backslash B) \cup B \sube A \cup B\) 。<br>
+  另外，假设 \(x \in A \cup B\) ，则 \(x \in A\) 或 \(x \in B\) 。假设 \(x \in A\) ，此时又分为两种情况： \(x \in B\) 或 \(x \notin B\) 。如果 \(x \in A\) 且 \(x \in B\) ，由<a class="link" href="#20241108135359CST">式(30)</a>可知 \(B \sube (A \backslash B) \cup B\) ，即 \(x \in (A \backslash B) \cup B\) 。如果 \(x \in A\) 且 \(x \notin B\) ，由<a class="link" href="#20241109001723CST">差集的定义</a>得 \(x \in A \backslash B\) ，又由<a class="link" href="#20241108135359CST">式(30)</a>得 \(A \backslash B \sube (A \backslash B) \cup B\) ，即 \(x \in (A \backslash B) \cup B\) 。所以当 \(x \in A\) 时总有 \(x \in (A \backslash B) \cup B\) 。当 \(x \in B\) 时，由<a class="link" href="#20241108135359CST">式(30)</a>可知 \(B \sube (A \backslash B) \cup B\) ，即 \(x \in (A \backslash B) \cup B\) 。总之， \(x \in A \cup B\) 时 \(x \in (A \backslash B) \cup B\) ，即 \(A \cup B \sube (A \backslash B) \cup B\) 。<br>
+  因此由<a class="link" href="#20241107234317CST">定义3</a>可知 \((A \backslash B) \cup B = A \cup B\) 。<br>
+  (2)先假设 \((A \backslash B) \cup B = A\) 。由<a class="link" href="#20241109140513CST">式(31)</a>可直接得 \(B \sube A\) 。再假设 \(B \sube A\) 。由<a class="link" href="#20241109150714CST">式(58)</a>可得 \(A \backslash B \sube A\) 。和 \(B \sube A\) 一起由<a class="link" href="#20241109145732CST">式(32)</a>可得 \((A \backslash B) \cup B \sube A\) 。由<a class="link" href="#20241109154714CST">式(59)</a>可得 \((A \backslash B) \cup B = A \cup B\) ，而由 \(A \sube A \cup B\) 可得 \(A \sube (A \backslash B) \cup B\) 。因此 \((A \backslash B) \cup B = A\) 。因此结论成立。</p>
+<h4 id="差运算与交运算">差运算与交运算
+</h4><p>  <span id="20241109003238CST"></span><strong>定理9</strong>：设 \(A,B,C\) 为任意三个集合，则</p>
 <span id="20241109003250CST"></span>\[
 A \cap (B \backslash C)=(A \cap B) \backslash (A \cap C)
-\tag{54}
+\tag{61}
     \]
 <p>  该式称为交运算对差运算满足分配律。</p>
-<p>  <strong>证明（<a class="link" href="#20241109003238CST">定理7</a>）</strong>：设 \(x \in A \cap (B \backslash C)\) ，则 \(x \in A\) 且 \(x \in B \backslash C\) ，即 \(x \in B\) 且 \(x \notin C\) ，考虑 \(x \in A\) 并重复两次（在全是并运算的表达式中，由并运算的交换律可知可以这么做）即可得到 \(x \in A\) 且 \(x \in B\) 且 \(x \in A\) 且 \(x \notin C\) ，即 \(x \in A \cap B\) 且 \(x \notin A \cap C\) 。所以由差运算的定义， \(x \in (A \cap B) \backslash (A \cap C)\) ，从而 \(A \cap (B \backslash C) \sube (A \cap B) \backslash (A \cap C)\) 。<br>
-  反之，设 \(x \in (A \cap B) \backslash (A \cap C)\) 。则 \(x \in A \cap B \) 且 \(x \notin A \cap C\) 。因此， \(x \in A\) 且 \(x \in B\) 且 \(x \notin A \cap C\) 。而 \(x \notin A \cap C\) 等价于  \(x \notin A\) 或 \(x \notin C\) （见<a class="link" href="#20241109120809CST">式(35)</a>），但是注意有条件 \(x \in A\) ，因此 \(x \notin A \cap C\) 等价于 \(x \notin C\) 。即 \(x \in A\) 且 \(x \in B\) 且 \(x \notin C\) 。即 \(x \in A\) 且 \(x \in B \backslash C\) 。 \(x \in A \cap (B \backslash C)\) 。于是有 \((A \cap B) \backslash (A \cap C) \sube A \cap (B \backslash C)\) 。<br>
+<p>  <strong>证明（<a class="link" href="#20241109003238CST">定理9</a>）</strong>：设 \(x \in A \cap (B \backslash C)\) ，则 \(x \in A\) 且 \(x \in B \backslash C\) ，即 \(x \in B\) 且 \(x \notin C\) ，考虑 \(x \in A\) 重复两次（在全是并运算的表达式中，由并运算的交换律和结合律可知可以这么做）即可得到 \(x \in A\) 且 \(x \in B\) 且 \(x \in A\) 且 \(x \notin C\) ，即 \(x \in A \cap B\) 且 \(x \notin A \cap C\) 。所以由差运算的定义， \(x \in (A \cap B) \backslash (A \cap C)\) ，从而 \(A \cap (B \backslash C) \sube (A \cap B) \backslash (A \cap C)\) 。<br>
+  反之，设 \(x \in (A \cap B) \backslash (A \cap C)\) 。则 \(x \in A \cap B \) 且 \(x \notin A \cap C\) 。因此， \(x \in A\) 且 \(x \in B\) 且 \(x \notin A \cap C\) 。而 \(x \notin A \cap C\) 等价于  \(x \notin A\) 或 \(x \notin C\) （见<a class="link" href="#20241109120809CST">式(37)</a>），但是注意有条件 \(x \in A\) ，因此 \(x \notin A \cap C\) 等价于 \(x \notin C\) 。即 \(x \in A\) 且 \(x \in B\) 且 \(x \notin C\) 。即 \(x \in A\) 且 \(x \in B \backslash C\) 。 \(x \in A \cap (B \backslash C)\) 。于是有 \((A \cap B) \backslash (A \cap C) \sube A \cap (B \backslash C)\) 。<br>
   综上，由<a class="link" href="#20241107234317CST">定义3</a>， \(A \cap (B \backslash C) = (A \cap B) \backslash (A \cap C)\) 。</p>
 <p>  <span id="20241109121740CST"></span><strong>例12</strong>： \(A,B\) 为<a class="link" href="#20241109003156CST">例11</a>中的 \(A,B\) ，则</p>
 <span id="20241109121821CST"></span>\[
 B \backslash A = \set{6} \ne A \backslash B
-\tag{55}
+\tag{62}
     \]
 <p>  这表明差运算不满足交换律。若令 \(C=\set{3,4}\) ，则 \((A \backslash B) \backslash C = \set{1,2} \backslash C = \set{1,2}\) ，而 \(A \backslash (B \backslash C) = A \backslash \set{5,6} = \set{1,2,3,4}\) 。于是 \((A \backslash B) \backslash C \ne A \backslash (B \backslash C)\) 。这表明差运算也不满足结合律。</p>
+<h3 id="对称差">对称差
+</h3><h4 id="对称差的定义">对称差的定义
+</h4><p>  <span id="20241109161022CST"></span><strong>定义10</strong>：设 \(A\) 与 \(B\) 为任两个集合， \(A \backslash B\) 与 \(B \backslash A\) 的并集称为 \(A\) 与 \(B\) 的对称差，记为 \(A \triangle B\) 。于是</p>
+<span id="20241109161823CST"></span>
+    \[
+A \triangle B = (A \backslash B) \cup (B \backslash A) = \set{x | (x \in A 且x \notin B)或(x \in B且x \notin A)}
+\]
+<h2 id="余集de-morgan公式">余集、De Morgan公式
+</h2><p>  <span id="20241109153746CST"></span><strong>定义11</strong>：设 \(S\) 是一个集合， \(A \sube S\) ，差集 \(S \backslash A\) 称为集 \(A\) 对集 \(S\) 的<strong>余集</strong>，记为 \(A^c\) ，即 \(A^c=S \backslash A\) 。</p>
+<p>  在数学的文献中，余集也称为补集，并且记号也未统一。有的作者用 \(\complement_SA\) 表示 \(A\) 对 \(S\) 的余集，其优点是明确地指出是相对于 \(S\) 求 \(A\) 的余集，但不简洁。还有些作者使用 \(\bar{A}\) 、 \(A'\) 表示 \(A\) 的余集。记号 \(A^c,\bar{A},A'\) 的优点在于其简洁性，便于在公式中书写。但由于余集的概念是相对于某个集合而言，记号 \(A^c,\bar{A},A'\) 没有指明对哪个集求余集。然而，在具体问题中所考虑的集合 \(A\) 都是某个集 \(S\) 的子集，根据上下文， \(A\) 对哪个集求余集是清楚的。于是，记号 \(A^c,\bar{A},A'\) 的简洁性优点便突出来。因此，本文使用记号 \(A^c\) 表示 \(A\) 的余集，其中的 \(c\) 为 \(\text{complement}\) 的第一个字母。在易发生误会时就用 \(\complement_SA\) 注明。</p>
 
     </div>
 </section>
@@ -1479,7 +1542,7 @@ B \backslash A = \set{6} \ne A \backslash B
 
 
         <span>
-            最后更新于 Nov 09, 2024 12:23 CST
+            最后更新于 Nov 09, 2024 16:19 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1644,7 +1707,7 @@ B \backslash A = \set{6} \ne A \backslash B
             
             
         
-        <span>本图书馆累计发布了13篇文章 共158557字</span>
+        <span>本图书馆累计发布了13篇文章 共159836字</span>
     </section>
 
     <section class="site-visit-count">
