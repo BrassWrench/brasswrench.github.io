@@ -131,7 +131,7 @@
 <meta property='og:description' content="操作系统中关于进程的定义、控制、同步与线程的实现方法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/operating_system/process_description_and_control/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='进程' /><meta property='article:tag' content='线程' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-10T22:41:20&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='进程' /><meta property='article:tag' content='线程' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-10T22:56:08&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="操作系统（二）：进程的描述与控制">
 <meta name="twitter:description" content="操作系统中关于进程的定义、控制、同步与线程的实现方法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1053,7 +1053,7 @@
 </svg>
 
             <time class="article-words">
-                32605 字
+                32626 字
             </time>
         </div>
 
@@ -3453,7 +3453,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>  在生产者-消费者问题中应注意：首先，在每个程序中用于实现互斥的<code>wait(&amp;mutex)</code>和<code>signal(&amp;mutex)</code>必须成对地出现；其次，对资源信号量<code>empty</code>和<code>full</code>的<code>wait</code>和<code>signal</code>操作，同样需要成对地出现，但它们分别处于不同的程序中。例如，<code>wait(empty)</code>在计算进程中，而<code>signal(empty)</code>则在打印进程中，计算进程若因执行<code>wait(empty)</code>而阻塞，则以后将由打印进程将它唤醒；最后，在每个程序中的多个<code>wait</code>操作顺序不能颠倒。应先执行对资源信号量的<code>wait</code>操作，然后再执行对互斥信号量的<code>wait</code>操作，否则可能引起进程死锁。</p>
+</div><p>  在生产者-消费者问题中应注意：首先，在每个程序中用于实现互斥的<code>wait(&amp;mutex)</code>和<code>signal(&amp;mutex)</code>必须成对地出现；其次，对资源信号量<code>empty</code>和<code>full</code>的<code>wait</code>和<code>signal</code>操作，同样需要成对地出现，但它们分别处于不同的程序中。例如，<code>wait(&amp;empty)</code>在计算进程中，而<code>signal(&amp;empty)</code>则在打印进程中，计算进程若因执行<code>wait(&amp;empty)</code>而阻塞，则以后将由打印进程将它唤醒；最后，在每个程序中的多个<code>wait</code>操作顺序不能颠倒。应先执行对资源信号量的<code>wait</code>操作，然后再执行对互斥信号量的<code>wait</code>操作，否则可能引起进程死锁。</p>
 <h4 id="利用and型信号量解决生产者---消费者问题">利用AND型信号量解决生产者&mdash;消费者问题
 </h4><p>  对于生产者&mdash;消费者问题，也可利用AND信号量来解决，即用<code>Swait(&amp;empty, &amp;mutex)</code>来代替<code>wait(&amp;empty)</code>和<code>wait(&amp;mutex)</code>；用<code>Ssignal(&amp;mutex, &amp;full)</code>来代替<code>signal(&amp;mutex)</code>和<code>signal(&amp;full)</code>；用<code>Swait(&amp;full, &amp;mutex)</code>代替<code>wait(&amp;full)</code>和<code>wait(&amp;mutex)</code>，以及用<code>Ssignal(&amp;mutex, &amp;empty)</code>代替<code>Signal(&amp;mutex)</code>和<code>Signal(&amp;empty)</code>。利用AND信号量来解决生产者&mdash;消费者问题的算法中的生产者和消费者可描述如下：</p>
 <div class="highlight"><div class="chroma">
@@ -3518,11 +3518,11 @@
 </div>
 </div><h4 id="利用管程解决生产者---消费者问题">利用管程解决生产者&mdash;消费者问题
 </h4><p>  在利用管程方法来解决生产者&mdash;消费者问题时，首先便是为它们建立一个管程，并命名为<code>ProducerConsumer</code>，或简称为<code>PC</code>。其中包括两个过程：<br>
-  (1)<code>put(x)</code>过程。生产者利用该过程将自己生产的产品投放到缓冲池中，并用整型变量<code>count</code>来表示在缓冲池中己有的产品数目，当<code>count&gt;=N</code>时，表示缓冲池己满，生产者须等待。<br>
-  (2)<code>get(x)</code>过程。消费者利用该过程从缓冲池中取出一个产品，当<code>count&lt;=0</code>时，表示缓冲池中已无可取用的产品，消费者应等待。<br>
+  (1)<code>put(&amp;x)</code>过程。生产者利用该过程将自己生产的产品投放到缓冲池中，并用整型变量<code>count</code>来表示在缓冲池中己有的产品数目，当<code>count&gt;=N</code>时，表示缓冲池己满，生产者须等待。<br>
+  (2)<code>get(&amp;x)</code>过程。消费者利用该过程从缓冲池中取出一个产品，当<code>count&lt;=0</code>时，表示缓冲池中已无可取用的产品，消费者应等待。<br>
   对于条件变量<code>notfull</code>和<code>notempty</code>，分别有两个过程<code>cwait</code>和<code>csignal</code>对它们进行操作：<br>
-  (1)<code>cwait(condition)</code>过程：当管程被一个进程占用时，其他进程调用该过程时阻塞，并挂在条件<code>condition</code>的队列上。<br>
-  (2)<code>csignal(condition)</code>过程：唤醒在<code>cwait</code>执行后阻塞在条件condition队列上的进程，如果这样的进程不止一个，则选择其中一个实施唤醒操作；如果队列为空，则无操作而返回。<code>PC</code>管程可描述如下：</p>
+  (1)<code>cwait(&amp;condition)</code>过程：当管程被一个进程占用时，其他进程调用该过程时阻塞，并挂在条件<code>condition</code>的队列上。<br>
+  (2)<code>csignal(&amp;condition)</code>过程：唤醒在<code>cwait</code>执行后阻塞在条件condition队列上的进程，如果这样的进程不止一个，则选择其中一个实施唤醒操作；如果队列为空，则无操作而返回。<code>PC</code>管程可描述如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -3562,6 +3562,7 @@
 </span><span class="lnt">35
 </span><span class="lnt">36
 </span><span class="lnt">37
+</span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ProducerConsumer</span> <span class="p">{</span>              
@@ -3576,21 +3577,22 @@
 </span></span><span class="line"><span class="cl">    <span class="c1">//Producer放入物品
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="n">item</span> <span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//如果满了，则阻塞notfull下的队列（即Producer放入物品的队列）
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="n">N</span><span class="p">)</span> <span class="n">cwait</span><span class="p">(</span><span class="n">notfull</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="n">N</span><span class="p">)</span> <span class="n">cwait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">notfull</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">buffer</span><span class="p">[</span><span class="n">in</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="n">x</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">in</span> <span class="o">=</span> <span class="p">(</span><span class="n">in</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">csignal</span><span class="p">(</span><span class="n">notempty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">csignal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">notempty</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="c1">//Consumer取出物品
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">get</span><span class="p">(</span><span class="n">item</span> <span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//如果空了，则阻塞notempty下的队列（即Consumer取出物品的队列）
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">cwait</span><span class="p">(</span><span class="n">notempty</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">cwait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">notempty</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="o">*</span><span class="n">buffer</span><span class="p">[</span><span class="n">out</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">        <span class="n">out</span> <span class="o">=</span> <span class="p">(</span><span class="n">out</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">--</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">csignal</span><span class="p">(</span><span class="n">notfull</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">csignal</span><span class="p">(</span><span class="o">&amp;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">notfull</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// 构造函数
@@ -3661,32 +3663,24 @@
 </div><p>  所有信号量均被初始化为<code>1</code>，第<code>i</code>位哲学家的活动可描述为：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">do</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//eat
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span> 
-</span></span><span class="line"><span class="cl">    <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="c1">//eat
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="n">l</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//think
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="c1">//think
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>  在以上描述中，当哲学家饥饿时，总是先去拿他左边的筷子，即执行<code>wait(&amp;chopstick[i])</code>。成功后，再去拿他右边的筷子，即执行<code>wait(&amp;chopstick[(i+l)%5])</code>。又成功后便可进餐。进餐毕，又先放下他左边的筷子，然后再放他右边的筷子。虽然，上述解法可保证不会有两个相邻的哲学家同时进餐，但却有可能引起死锁。假如五位哲学家同时饥饿而各自拿起左边的筷子时，就会使五个信号量<code>chopstick</code>均为<code>0</code>；当他们再试图去拿右边的筷子时，都将因无筷子可拿而无限期地等待。对于这样的死锁问题，可采取以下几种解决方法：<br>
@@ -3697,29 +3691,21 @@
 </h4><p>  在哲学家进餐问题中，要求每个哲学家先获得两个临界资源（筷子）后方能进餐，这在 本质上就是前面所介绍的AND同步问题，故用AND信号量机制可获得最简洁的解法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">chopstick</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span><span class="err">；</span>
 </span></span><span class="line"><span class="cl"><span class="k">do</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//think
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Sswait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//eat
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">    <span class="n">Ssignal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="c1">//think
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Sswait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="c1">//eat
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Ssignal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -3766,7 +3752,7 @@
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">readcount</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wmutex</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">readcount</span><span class="o">++</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rmutex</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="c1">//读操作
+</span></span><span class="line"><span class="cl">        <span class="p">...</span><span class="c1">//读操作
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rmutex</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">readcount</span><span class="o">--</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">readcount</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wmutex</span><span class="p">);</span>
@@ -3877,7 +3863,7 @@
 
 
         <span>
-            最后更新于 Nov 10, 2024 22:41 CST
+            最后更新于 Nov 10, 2024 22:56 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4042,7 +4028,7 @@
             
             
         
-        <span>本图书馆累计发布了13篇文章 共176574字</span>
+        <span>本图书馆累计发布了13篇文章 共176595字</span>
     </section>
 
     <section class="site-visit-count">
