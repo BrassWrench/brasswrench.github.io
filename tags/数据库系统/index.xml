@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 09 Nov 2024 23:56:19 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 10 Nov 2024 14:30:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -2428,84 +2428,221 @@ R \div S = \set{a_1}
 &lt;h2 id=&#34;关系演算&#34;&gt;关系演算
 &lt;/h2&gt;&lt;p&gt;  关系演算是以数理逻辑中的谓词演算为基础的。按谓词变元的不同，关系演算可分为元组关系演算和域关系演算。本节先介绍元组关系演算，然后简单介绍域关系演算。&lt;/p&gt;
 &lt;h3 id=&#34;元组关系演算语言alpha&#34;&gt;元组关系演算语言ALPHA
-&lt;/h3&gt;&lt;p&gt;  元组关系演算以元组变量作为谓词变元的基本对象。一种典型的元组关系演算语言是E.F.Codd提出的ALPHA语言。这一语言虽然没有实际实现，但关系数据库管理系统INGRES最初所用的QUEL语言是参照ALPHA语言研制的，与ALPHA十分类似。ALPHA 语言主要有\(\text{GET}\)、\(\text{PUT}\)、\(\text{HOLD}\)、\(\text{UPDATE}\)、\(\text{DELETE}\)、\(\text{DROP}\) 6条语句，语句的基本格式为&lt;/p&gt;
-&lt;p&gt;  \(\text{操作语句 工作空间名 (表达式)：操作条件}\hspace{15em}\)&lt;/p&gt;
-&lt;p&gt;  其中表达式用于指定语句的操作对象，它可以是关系名或（和）属性名，一条语句可以同时操作多个关系或多个属性。操作条件是一个逻辑表达式，用于将操作结果限定在满足条件的元组中，操作条件可以为空。除此之外，还可以在基本格式的基础上加上排序要求以及指定返回元组的条数等。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  元组关系演算以元组变量作为谓词变元的基本对象。一种典型的元组关系演算语言是E.F.Codd提出的ALPHA语言。这一语言虽然没有实际实现，但关系数据库管理系统INGRES最初所用的QUEL语言是参照ALPHA语言研制的，与ALPHA十分类似。ALPHA 语言主要有&lt;code&gt;GET&lt;/code&gt;、&lt;code&gt;PUT&lt;/code&gt;、&lt;code&gt;HOLD&lt;/code&gt;、&lt;code&gt;UPDATE&lt;/code&gt;、&lt;code&gt;DELETE&lt;/code&gt;、&lt;code&gt;DROP&lt;/code&gt;6条语句，语句的基本格式为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;操作语句 工作空间名 (表达式)：操作条件
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  其中表达式用于指定语句的操作对象，它可以是关系名或（和）属性名，一条语句可以同时操作多个关系或多个属性。操作条件是一个逻辑表达式，用于将操作结果限定在满足条件的元组中，操作条件可以为空。除此之外，还可以在基本格式的基础上加上排序要求以及指定返回元组的条数等。&lt;/p&gt;
 &lt;h4 id=&#34;检索操作&#34;&gt;检索操作
-&lt;/h4&gt;&lt;p&gt;  检索操作用 \(\text{GET}\) 语句实现。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  检索操作用&lt;code&gt;GET&lt;/code&gt;语句实现。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 简单检索（即不带条件的检索）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027152547CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例14&lt;/strong&gt;：查询所有被选修的课程号码。&lt;/p&gt;
-&lt;p&gt;  \(\text{GET W (SC.Cno)}\)&lt;/p&gt;
-&lt;p&gt;  \(\text{W}\)为工作空间名。这里条件为空，表示没有限定条件。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (SC.Cno)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;W&lt;/code&gt;为工作空间名。这里条件为空，表示没有限定条件。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027152736CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例15&lt;/strong&gt;：查询所有学生的数据。&lt;/p&gt;
-&lt;p&gt;  \(\text{GET W (Student)}\)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2. 限定的检索（即带条件的检索）&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;2. 限定的检索（即带条件的检索）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027152903CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例16&lt;/strong&gt;：查询信息系（IS）中年龄小于20岁的学生的学号和年龄。&lt;/p&gt;
-&lt;p&gt;  \(\text{GET W (Student.Sno,Student.Sage): Student.Sdept=&#39;IS&#39;}\land\text{Student.Sage&lt;20}\)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;3. 带排序的检索&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sno,Student.Sage): Student.Sdept=&amp;#39;IS&amp;#39;}∧Student.Sage&amp;lt;20
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;3. 带排序的检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027153431CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例17&lt;/strong&gt;：查询计算机科学系（CS）学生的学号、年龄，结果按年龄降序排序。&lt;/p&gt;
-&lt;p&gt;  \(\text{GET W (Student.Sno,Student.Sage): Student.Sdept=&#39;CS&#39; DOWN Student.Sage}\)&lt;/p&gt;
-&lt;p&gt;  \(\text{DOWN}\)表示降序排序。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sno,Student.Sage): Student.Sdept=&amp;#39;CS&amp;#39; DOWN Student.Sage
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;code&gt;DOWN&lt;/code&gt;表示降序排序。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;4. 指定返回元组的条数的检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027154037CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例18&lt;/strong&gt;：取出一个信息系学生的学号。&lt;/p&gt;
-&lt;p&gt;  \(\text{GET W (1) (Student.Sno): Student.Sdept=&#39;IS&#39;}\)&lt;/p&gt;
-&lt;p&gt;  在\(\text{W}\)后括号中的数量就是指定的返回元组的个数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (1) (Student.Sno): Student.Sdept=&amp;#39;IS&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  在&lt;code&gt;W&lt;/code&gt;后括号中的数量就是指定的返回元组的个数。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027154310CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例19&lt;/strong&gt;：查询信息系年龄最大的三个学生的学号及其年龄，结果按年龄降序排序。&lt;/p&gt;
-&lt;p&gt;  \(\text{GET W (3) (Student.Sno,Student.Sage): Student.Sdept=&#39;IS&#39; DOWN Student.Sage}\)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;5. 用元组变量的检索&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (3) (Student.Sno,Student.Sage): Student.Sdept=&amp;#39;IS&amp;#39; DOWN Student.Sage
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;5. 用元组变量的检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  前面已讲到，元组关系演算是以元组变量作为谓词变元的基本对象。元组变量是在某一关系范围内变化的，所以也称为&lt;strong&gt;范围变量（range variable）&lt;/strong&gt;，一个关系可以设多个元组变量。&lt;/p&gt;
 &lt;p&gt;  元组变量主要有两方面的用途：&lt;br&gt;
   (1) 简化关系名。如果关系的名字很长，使用起来就会感到不方便，这时可以设一个较短名字的元组变量来代替关系名。如&lt;a class=&#34;link&#34; href=&#34;#20241027154449CST&#34;&gt;例20&lt;/a&gt;。&lt;br&gt;
   (2) 操作条件中使用量词时必须用元组变量。如&lt;a class=&#34;link&#34; href=&#34;#20241027163733CST&#34;&gt;例21&lt;/a&gt;至&lt;a class=&#34;link&#34; href=&#34;#20241027172019CST&#34;&gt;例23&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027154449CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例20&lt;/strong&gt;：查询信息系学生的名字。&lt;/p&gt;
-&lt;p&gt;  \(\text{RANGE Student X}\)&lt;br&gt;
-  \(\text{GET W (X.Sname): X.Sdept=&#39;IS&#39;}\)&lt;/p&gt;
-&lt;p&gt;  ALPHA语言用\(\text{RANGE}\)来说明元组变量。本例中\(\text{X}\)是关系\(\text{Student}\)上的元组变量，用途是简化关系名，即用\(\text{X}\)代表\(\text{Student}\)。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RANGE Student X 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (X.Sname): X.Sdept=&amp;#39;IS&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  ALPHA语言用&lt;code&gt;RANGE&lt;/code&gt;来说明元组变量。本例中&lt;code&gt;X&lt;/code&gt;是关系&lt;code&gt;Student&lt;/code&gt;上的元组变量，用途是简化关系名，即用&lt;code&gt;X&lt;/code&gt;代表&lt;code&gt;Student&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;6. 用存在量词（existential qualifier）检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027163733CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例21&lt;/strong&gt;：查询选修2号课程的学生的名字。&lt;/p&gt;
-&lt;p&gt;  \(\text{RANGE SC X}\)&lt;br&gt;
-  \(\text{GET W (Student.Sname): }\exists\text{X(X.Sno=Student.Sno}\land\text{X.Cno=&#39;2&#39;)}\)&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241027164425CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例22&lt;/strong&gt;：查询选修了这样课程的学生学号，其直接先行课是6号课程。&lt;/p&gt;
-&lt;p&gt;  \(\text{RANGE Course CX}\)&lt;br&gt;
-  \(\text{GET W (SC.Sno): }\exists\text{CX(CX.Cno=SC.Cno}\land\text{CX.Pcno=&#39;6&#39;)}\)&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241027172019CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例23&lt;/strong&gt;：查询至少选修一门其先行课为6号课程的学生名字。&lt;/p&gt;
-&lt;p&gt;  \(\text{RANGE Course CX}\)&lt;br&gt;
-  \(\text{SC SCX}\)&lt;br&gt;
-  \(\text{GET W (Student.Sname): }\exists\text{SCX(SCX.Sno=Student.Sno}\land\)&lt;br&gt;
-  \(\hspace{116pt}\exists\text{CX(CX.Cno=SCX.Cno}\land\text{CX.Pcno=&#39;6&#39;))}\)&lt;/p&gt;
-&lt;p&gt;  在本例中的元组关系演算公式可以变换为&lt;strong&gt;前束范式（prenex normal form）&lt;/strong&gt;‌的形式：&lt;/p&gt;
-&lt;p&gt;  \(\text{GET W (StudentSname): }\exists\text{SCX}\exists\text{CX(SCX.Sno=Student.Sno}\land\text{CX.Cno=SCX.Cno}\land\text{CX.Pcno=&#39;6&#39;)}\)&lt;/p&gt;
-&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241027163733CST&#34;&gt;例21&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241027164425CST&#34;&gt;例22&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241027172019CST&#34;&gt;例23&lt;/a&gt;中的元组变量都是为存在量词而设的。其中例2.23需要对两个关系使用存在量词，所以设了两个元组变量。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RANGE SC X` 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sname): ∃X(X.Sno=Student.Sno}∧X.Cno=&amp;#39;2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241027164425CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例22&lt;/strong&gt;：查询选修了这样课程的学生学号，其直接先行课是6号课程。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RANGE Course CX 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (SC.Sno): ∃CX(CX.Cno=SC.Cno}∧CX.Pcno=&amp;#39;6&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241027172019CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例23&lt;/strong&gt;：查询至少选修一门其先行课为6号课程的学生名字。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RANGE Course CX
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SC SCX  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sname): ∃SCX(SCX.Sno=Student.Sno}∧ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    ∃CX(CX.Cno=SCX.Cno}∧CX.Pcno=&amp;#39;6&amp;#39;))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  在本例中的元组关系演算公式可以变换为&lt;strong&gt;前束范式（prenex normal form）&lt;/strong&gt;‌的形式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (StudentSname): ∃SCX}∃CX(SCX.Sno=Student.Sno}∧
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                        CX.Cno=SCX.Cno∧CX.Pcno=&amp;#39;6&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241027163733CST&#34;&gt;例21&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241027164425CST&#34;&gt;例22&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241027172019CST&#34;&gt;例23&lt;/a&gt;中的元组变量都是为存在量词而设的。其中例2.23需要对两个关系使用存在量词，所以设了两个元组变量。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;7. 带有多个关系表达式的检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  上面所举的各个例子中，虽然查询时可能会涉及多个关系，即公式中可能涉及多个关系，但查询结果表达式中只有一个关系。实际上表达式中是可以有多个关系的。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028091117CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例24&lt;/strong&gt;：查询成绩为90分以上的学生名字与课程名字。&lt;br&gt;
   本查询所要求的结果是学生名字和课程名字，分别在Student和Course两个关系中。&lt;/p&gt;
-&lt;p&gt;  \(\text{RANGE SC SCX}\)&lt;br&gt;
-  \(\text{GET W (Student.Sname,Course.Cname): }\exists\text{SCX(SCX.Grade}\ge\text{90}\land\)&lt;br&gt;
-  \(\hspace{150pt}\text{SCX.Sno=Student.Sno}\land\text{Course.Cno=SCX.Cno)}\)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;8. 用全称量词（generality quantifier）的检索&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RANGE SC SCX 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sname,Course.Cname): ∃SCX(SCX.Grade}⩾90}∧ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                    SCX.Sno=Student.Sno}∧Course.Cno=SCX.Cno)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;8. 用全称量词（generality quantifier）的检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028091702CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例25&lt;/strong&gt;：查询不选1号课程的学生名字。&lt;/p&gt;
-&lt;p&gt;  \(\text{RANGE SC SCX}\)&lt;br&gt;
-  \(\text{GET W (Student.Sname): }\forall\text{SCX (SCX.Sno}\ne\text{Student.Sno}\land\text{SCX.Cno}\ne\text{&#39;1&#39;)}\)&lt;/p&gt;
-&lt;p&gt;  也可以用存在量词表示。&lt;/p&gt;
-&lt;p&gt;  \(\text{RANGE SC SCX}\)&lt;br&gt;
-  \(\text{GET W (Student.Sname): }\lnot\exists\text{SCX (SCX.Sno}=\text{Student.Sno}\land\text{SCX.Cno}=\text{&#39;1&#39;)}\)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;9. 用两种量词的检索&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RANGE SC SCX
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sname): }∀SCX (SCX.Sno}≠Student.Sno}∧SCX.Cno}≠&amp;#39;1&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  也可以用存在量词表示。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RANGE SC SCX
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sname): ¬∃SCX (SCX.Sno=Student.Sno∧SCX.Cno=&amp;#39;1&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;9. 用两种量词的检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028091719CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例26&lt;/strong&gt;：查询选修了全部课程的学生姓名。&lt;/p&gt;
-&lt;p&gt;  \(\text{RANGE Course CX}\)&lt;br&gt;
-  \(\text{SC SCX}\)&lt;br&gt;
-  \(\text{GET W (Student.Sname): }\forall\text{CX}\exist\text{SCX(SCX.Sno=Student.Sno}\land\text{SCX.Cno=CX.Cno)}\)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;10. 用蕴涵（implication）的检索&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RANGE Course CX
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SC SCX
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sname): ∀CX∃SCX(SCX.Sno=Student.Sno}∧SCX.Cno=CX.Cno)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;10. 用蕴涵（implication）的检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028091723CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例27&lt;/strong&gt;：查询最少选修了 201215122学生所选课程的学生学号。&lt;/p&gt;
 &lt;p&gt;  本例题的求解思路是，对Course中的所有课程依次检查每一门课程，看201215122是否选修了该课程，如果选修了，则再看某一个学生是否也选修了该门课。如果对于201215122所选的每门课程该学生都选修了，则该学生为满足要求的学生。把所有这样的学生全都找出来即完成了本题。&lt;/p&gt;
-&lt;p&gt;  \(\text{RANGE Course CX}\)&lt;br&gt;
-  \(\hspace{51pt}\text{SC SCX}\)&lt;br&gt;
-  \(\hspace{51pt}\text{SC SCY}\)&lt;br&gt;
-  \(\text{GET W (Student.Sno): }\forall\text{CX(}\exist\text{SCX(SCX.Sno=&#39;201215122&#39;}\land\text{SCX.Cno=CX.Cno)}\)&lt;br&gt;
-  \(\hspace{120pt}\Rarr\exist\text{SCY(SCY.Sno=Student.Sno }\land\text{SCY.Cno=CX.Cno))}\)&lt;/p&gt;
-&lt;p&gt;  蕴涵（ \(\Rarr\) ）见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数理逻辑”还未上线~&#39;)&#34;&gt;命题逻辑&lt;/a&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RANGE Course CX  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SC SCX
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SC SCY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sno): }∀CX(∃SCX(SCX.Sno=&amp;#39;201215122&amp;#39;∧SCX.Cno=CX.Cno) 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                          ⇒∃SCY(SCY.Sno=Student.Sno }∧SCY.Cno=CX.Cno))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  蕴涵（⇒）见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数理逻辑”还未上线~&#39;)&#34;&gt;命题逻辑&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;11. 聚集函数&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  用户在使用查询语言时经常要作一些简单的计算，例如要求符合某一查询要求的元组数，求某个关系中所有元组在某属性上的值的总和或平均值等。为了方便用户，关系数据语言中建立了有关这类运算的标准函数库供用户选用。这类函数通常称为&lt;strong&gt;聚集函数&lt;/strong&gt;或&lt;strong&gt;内置函数（built-in function）&lt;/strong&gt;，关系演算中提供了\(\text{COUNT}\)、\(\text{TOTAL}\)、\(\text{MAX}\)、\(\text{MIN}\)、\(\text{AVG}\)等聚集函数，其含义如&lt;a class=&#34;link&#34; href=&#34;#20241028142824CST&#34;&gt;表6&lt;/a&gt;所示。&lt;/p&gt;
+&lt;p&gt;  用户在使用查询语言时经常要作一些简单的计算，例如要求符合某一查询要求的元组数，求某个关系中所有元组在某属性上的值的总和或平均值等。为了方便用户，关系数据语言中建立了有关这类运算的标准函数库供用户选用。这类函数通常称为&lt;strong&gt;聚集函数&lt;/strong&gt;或&lt;strong&gt;内置函数（built-in function）&lt;/strong&gt;，关系演算中提供了&lt;code&gt;COUNT&lt;/code&gt;、&lt;code&gt;TOTAL&lt;/code&gt;、&lt;code&gt;MAX&lt;/code&gt;、&lt;code&gt;MIN&lt;/code&gt;、&lt;code&gt;AVG&lt;/code&gt;等聚集函数，其含义如&lt;a class=&#34;link&#34; href=&#34;#20241028142824CST&#34;&gt;表6&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241028142824CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -2515,78 +2652,151 @@ R \div S = \set{a_1}
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td&gt;\(\text{COUNT}\)&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;COUNT&lt;/code&gt;&lt;/td&gt;
           &lt;td&gt;对数据项计数&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td&gt;\(\text{TOTAL}\)&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;TOTAL&lt;/code&gt;&lt;/td&gt;
           &lt;td&gt;计算总和&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td&gt;\(\text{MAX}\)&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;MAX&lt;/code&gt;&lt;/td&gt;
           &lt;td&gt;查找最大值&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td&gt;\(\text{MIN}\)&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;MIN&lt;/code&gt;&lt;/td&gt;
           &lt;td&gt;查找最小值&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td&gt;\(\text{AVG}\)&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;AVG&lt;/code&gt;&lt;/td&gt;
           &lt;td&gt;计算平均值&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;关系演算中的聚集函数&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028143113CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例28&lt;/strong&gt;：查询学生所在系的数目。&lt;/p&gt;
-&lt;p&gt;  \(\text{GET W (COUNT(Student.Sdept))}\)&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241028143200CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例29&lt;/strong&gt;：查询信息系学生的平均年龄。&lt;/p&gt;
-&lt;p&gt;  \(\text{GET W (AVG(Student.Sage): Student.Sdept=&#39;IS&#39;)}\)&lt;/p&gt;
-&lt;h4 id=&#34;更新操作&#34;&gt;更新操作
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (COUNT(Student.Sdept))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241028143200CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例29&lt;/strong&gt;：查询信息系学生的平均年龄。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (AVG(Student.Sage): Student.Sdept=&amp;#39;IS&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;更新操作&#34;&gt;更新操作
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;1. 修改操作&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  (1) 首先用\(\text{HOLD}\)语句将要修改的元组从数据库中读到工作空间中： &lt;br&gt;
+&lt;p&gt;  (1) 首先用&lt;code&gt;HOLD&lt;/code&gt;语句将要修改的元组从数据库中读到工作空间中： &lt;br&gt;
   (2) 然后用宿主语言修改工作空间中元组的属性值；&lt;br&gt;
-  (3) 最后用\(\text{UPDATE}\)语句将修改后的元组送回数据库中。&lt;/p&gt;
+  (3) 最后用&lt;code&gt;UPDATE&lt;/code&gt;语句将修改后的元组送回数据库中。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028143603CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例30&lt;/strong&gt;：把201215127学生从计算机科学系转到信息系。&lt;/p&gt;
-&lt;p&gt;  \(\text{HOLD W (Student.Sno,Student Sdept): Student.Sno=&#39;201215127&#39;}\)&lt;br&gt;
-  \(\hspace{157pt}\text{(从Student关系中读出201215127学生的数据)}\)&lt;br&gt;
-  \(\text{MOVE &#39;IS&#39; TO W.Sdept}\hspace{50pt}\text{(用宿主语言进行修改)}\)&lt;br&gt;
-  \(\text{UPDATE W}\hspace{100pt}\text{(把修改后的元组送回Student关系)}\)&lt;/p&gt;
-&lt;p&gt;  在该例中用\(\text{HOLD}\)语句来读201215127的数据，而不是用\(\text{GET}\)语句。如果修改操作涉及两个关系的话，就要执行两次\(\text{HOLD-MOVE-UPDATE}\)操作序列。&lt;br&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HOLD W (Student.Sno,Student Sdept): Student.Sno=&amp;#39;201215127&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                           (从Student关系中读出201215127学生的数据)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;IS&amp;#39; TO W.Sdept       (用宿主语言进行修改)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;UPDATE W                   (把修改后的元组送回Student关系)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  在该例中用&lt;code&gt;HOLD&lt;/code&gt;语句来读201215127的数据，而不是用&lt;code&gt;GET&lt;/code&gt;语句。如果修改操作涉及两个关系的话，就要执行两次&lt;code&gt;HOLD-MOVE-UPDATE&lt;/code&gt;操作序列。&lt;br&gt;
   在ALPHA语言中，修改关系主码的操作是不允许的，例如不能用UPDATE语句将学 号201215121改为201215122。如果需要修改主码值，只能先用删除操作删除该元组，然后再把具有新主码值的元组插入到关系中。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. 插入操作&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  插入操作用\(\text{PUT}\)语句实现。其步骤是：&lt;br&gt;
+&lt;p&gt;  插入操作用&lt;code&gt;PUT&lt;/code&gt;语句实现。其步骤是：&lt;br&gt;
   (1) 首先用宿主语言在工作空间中建立新元组；&lt;br&gt;
-  (2) 然后用\(\text{PUT}\)语句把该元组存入指定的关系中。&lt;/p&gt;
+  (2) 然后用&lt;code&gt;PUT&lt;/code&gt;语句把该元组存入指定的关系中。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028144605CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例31&lt;/strong&gt;：学校新开设了一门2学分的课程&amp;quot;计算机组织与结构”，其课程号为8,直 接先行课为6号课程。插入该课程元组。&lt;/p&gt;
-&lt;p&gt;  \(\text{MOVE &#39;8&#39; TO W.Cno}\)&lt;br&gt;
-  \(\text{MOVE &#39;计算机组织与结构&#39; TO W.Cname}\)&lt;br&gt;
-  \(\text{MOVE &#39;6&#39; TO W.Cpno}\)&lt;br&gt;
-  \(\text{MOVE &#39;2&#39; TO W.Ccredit}\)&lt;br&gt;
-  \(\text{PUT W (Course)}\hspace{2em}\text{(把W中的元组插入指定关系Course中)}\)&lt;/p&gt;
-&lt;p&gt;  PUT语句只对一个关系操作，也就是说表达式必须为单个关系名。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;8&amp;#39; TO W.Cno
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;计算机组织与结构&amp;#39; TO W.Cname
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;6&amp;#39; TO W.Cpno
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;2&amp;#39; TO W.Ccredit
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PUT W (Course)      (把W中的元组插入指定关系Course中)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  PUT语句只对一个关系操作，也就是说表达式必须为单个关系名。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3. 删除操作&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  删除操作用\(\text{DELETE}\)语句实现。其步骤为：&lt;br&gt;
-  (1) 用\(\text{HOLD}\)语句把要删除的元组从数据库中读到工作空间中； &lt;br&gt;
-  (2) 用\(\text{DELETE}\)语句删除该元组。&lt;/p&gt;
+&lt;p&gt;  删除操作用&lt;code&gt;DELETE&lt;/code&gt;语句实现。其步骤为：&lt;br&gt;
+  (1) 用&lt;code&gt;HOLD&lt;/code&gt;语句把要删除的元组从数据库中读到工作空间中； &lt;br&gt;
+  (2) 用&lt;code&gt;DELETE&lt;/code&gt;语句删除该元组。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028145220CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例32&lt;/strong&gt;：201215230学生因故退学，删除该学生元组。&lt;/p&gt;
-&lt;p&gt;  \(\text{HOLD W (Student): Student.Sno=&#39;201215230&#39;}\)&lt;br&gt;
-  \(\text{DELETE W}\)&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241028145441CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例33&lt;/strong&gt;：将学号201215121改为 201215122。&lt;/p&gt;
-&lt;p&gt;  \(\text{HOLD W (Student): Student.Sno=&#39;201215121&#39;}\)&lt;br&gt;
-  \(\text{DELETE W}\)&lt;br&gt;
-  \(\text{MOVE &#39;201215122&#39; TO W.Sno}\)&lt;br&gt;
-  \(\text{MOVE &#39;李勇&#39; TO W.Sname}\)&lt;br&gt;
-  \(\text{MOVE &#39;男&#39; TO W.Ssex}\)&lt;br&gt;
-  \(\text{MOVE &#39;20&#39; TO W.Sage}\)&lt;br&gt;
-  \(\text{MOVE &#39;CS&#39; TO W.Sdept}\)&lt;br&gt;
-  \(\text{PUT W (Student)}\)&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241028145848CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例34&lt;/strong&gt;：删除全部学生。&lt;/p&gt;
-&lt;p&gt;  \(\text{HOLD W (Student)}\)&lt;br&gt;
-  \(\text{DELETE W}\)&lt;/p&gt;
-&lt;p&gt;  由于SC关系与Student关系之间具有参照关系，为保证参照完整性，删除Student中元组时相应地要删除SC中的元组（手工删除或由数据库管理系统自动执行）：&lt;/p&gt;
-&lt;p&gt;  \(\text{HOLD W (SC)}\)&lt;br&gt;
-  \(\text{DELETE W}\)&lt;/p&gt;
-&lt;h3 id=&#34;元组关系演算&#34;&gt;元组关系演算
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HOLD W (Student): Student.Sno=&amp;#39;201215230&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DELETE W
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241028145441CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例33&lt;/strong&gt;：将学号201215121改为 201215122。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HOLD W (Student): Student.Sno=&amp;#39;201215121&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DELETE W
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;201215122&amp;#39; TO W.Sno
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;李勇&amp;#39; TO W.Sname 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;男&amp;#39; TO W.Ssex 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;20&amp;#39; TO W.Sage 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MOVE &amp;#39;CS&amp;#39; TO W.Sdept 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PUT W (Student)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241028145848CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例34&lt;/strong&gt;：删除全部学生。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HOLD W (Student)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DELETE W
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  由于SC关系与Student关系之间具有参照关系，为保证参照完整性，删除Student中元组时相应地要删除SC中的元组（手工删除或由数据库管理系统自动执行）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HOLD W (SC)  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DELETE W
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;元组关系演算&#34;&gt;元组关系演算
 &lt;/h3&gt;&lt;p&gt;  为了讨论方便，先允许关系（的基数）是无限的，然后再对这种情况下定义的演算做适当的修改，保证关系演算中各个公式表示的是有限关系。&lt;br&gt;
   在元组关系演算系统中，称 \(\set{t|\phi(t)}\) 为&lt;strong&gt;元组演算表达式&lt;/strong&gt;。其中， \(t\) 是元组变量， \(\phi(t)\) 为元组关系演算公式，简称公式，它由原子公式和运算符组成。&lt;br&gt;
   原子公式有以下三类：&lt;br&gt;
