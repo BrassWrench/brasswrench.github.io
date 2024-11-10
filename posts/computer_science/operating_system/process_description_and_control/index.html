@@ -131,7 +131,7 @@
 <meta property='og:description' content="操作系统中关于进程的定义、控制、同步与线程的实现方法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/operating_system/process_description_and_control/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='进程' /><meta property='article:tag' content='线程' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-10T23:12:59&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='进程' /><meta property='article:tag' content='线程' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T00:05:08&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="操作系统（二）：进程的描述与控制">
 <meta name="twitter:description" content="操作系统中关于进程的定义、控制、同步与线程的实现方法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -752,7 +752,12 @@
             <li><a href="#客户机---服务器系统client-server-system">客户机&mdash;服务器系统（Client-Server System）</a></li>
           </ol>
         </li>
-        <li><a href="#消息传递通信的实现方式">消息传递通信的实现方式</a></li>
+        <li><a href="#消息传递通信的实现方式">消息传递通信的实现方式</a>
+          <ol>
+            <li><a href="#直接消息传递系统">直接消息传递系统</a></li>
+            <li><a href="#信箱通信">信箱通信</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -1066,7 +1071,7 @@
 </svg>
 
             <time class="article-words">
-                36713 字
+                39455 字
             </time>
         </div>
 
@@ -1081,7 +1086,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 74 分钟
+                    阅读时长: 79 分钟
                 </time>
             </div>
         
@@ -3862,7 +3867,7 @@
   （2）基于网络型：该类型通常采用的是非对称方式通信，即发送者需要提供接收者命名。通信双方的进程运行在不同主机的网络环境下，被分配了一对套接字，一个属于接收进程（或服务器端），一个属于发送进程（或客户端）。一般地，发送进程（或客户端）发出连接请求时，随机申请一个套接字，主机为之分配一个端口，与该套接字绑定，不再分配给其它进程。接收进程（或服务器端）拥有全局公认的套接字和指定的端口（如ftp服务器监听端口为21,Web或http服务器监听端口为80）,并通过监听端口等待客户请求。因此，任何进程都可以向它发出连接请求和信息请求，以方便进程之间通信连接的建立。接收进程（或服务器端）一旦收到请求，就接受来自发送进程（或客户端）的连接，完成连接，即在主机间传输的数据可以准确地发送到通信进程，实现进程间的通信：当通信结束时，系统通过关闭接收进程（或服务器端）的套接字撤销连接。<br>
   套接字的优势在于，它不仅适用于同一台计算机内部的进程通信，也适用于网络环境中不同计算机间的进程通信。由于每个套接字拥有唯一的套接字号（也称套接字标识符），这样系统中所有的连接都持有唯一的一对套接字及端口连接，对于来自不同应用程序进程或网络连接的通信，能够方便地加以区分，确保了通信双方之间逻辑链路的唯一性，便于实现数据传输的并发服务，而且隐藏了通信设施及实现细节，采用统一的接口进行处理。</p>
 <p><strong>2. 远程过程调用和远程方法调用</strong></p>
-<p>  <strong>远程过程（函数）调用RPC（RemoteProcedureCall）</strong>，是一个通信协议，用于通过网络连接的系统。该协议允许运行于一台主机（本地）系统上的进程调用另一台主机（远程）系统上的进程，而对程序员表现为常规的过程调用，无需额外地为此编程。如果涉及的软件采用面向对象编程，那么远程过程调用亦可称做远程方法调用。<br>
+<p>  <strong>远程过程（函数）调用RPC（Remote Procedure Call）</strong>，是一个通信协议，用于通过网络连接的系统。该协议允许运行于一台主机（本地）系统上的进程调用另一台主机（远程）系统上的进程，而对程序员表现为常规的过程调用，无需额外地为此编程。如果涉及的软件采用面向对象编程，那么远程过程调用亦可称做远程方法调用。<br>
   负责处理远程过程调用的进程有两个，一个是本地客户进程，另一个是远程服务器进程，这两个进程通常也被称为网络守护进程，主要负责在网络间的消息传递，一般情况下，这两个进程都是处于阻塞状态，等待消息。<br>
   为了使远程过程调用看上去与本地过程调用一样，即希望实现RPC的透明性，使得调用者感觉不到此次调用的过程是在其他主机（远程）上执行的，RPC引入一个<strong>存根（stub）</strong>‌的概念：在本地客户端，每个能够独立运行的远程过程都拥有一个<strong>客户存根（client stubborn）</strong>，本地进程调用远程过程实际是调用该过程关联的存根；与此类似，在每个远程进程所在的服务器端，其所对应的实际可执行进程也存在一个<strong>服务器存根（stub）</strong>‌与其关联。本地客户存根与对应的远程服务器存根一般也是处于阻塞状态，等待消息。<br>
   实际上，远程过程调用的主要步骤是：<br>
@@ -3878,7 +3883,87 @@
   (10)客户存根从消息中取出结果，返回给本地调用者进程，并完成控制权的转移。<br>
   这样，本地调用者再次获得控制权，并且得到了所需的数据，得以继续运行。显然，上述步骤的主要作用在于：将客户过程的本地调用转化为客户存根，再转化为服务器过程的本地调用，对客户与服务器来说，它们的中间步骤是不可见的，因此，调用者在整个过程中并不知道该过程的执行是在远程，而不是在本地。</p>
 <h3 id="消息传递通信的实现方式">消息传递通信的实现方式
-</h3>
+</h3><p>  在进程之间通信时，源进程可以直接或间接地将消息传送给目标进程，因此可将进程通信分为直接和间接两种通信方式。常见的直接消息传递系统和信箱通信就是分别采用这两种通信方式。</p>
+<h4 id="直接消息传递系统">直接消息传递系统
+</h4><p>  在直接消息传递系统中采用直接通信方式，即发送进程利用OS所提供的发送命令（原语），直接把消息发送给目标进程。</p>
+<p><strong>1. 直接通信原语</strong></p>
+<p>  (1)对称寻址方式。该方式要求发送进程和接收进程都必须以显式方式提供对方的标识符。通常，系统提供下述两条通信命令（原语）：<br>
+  <code>send(receiver,message);</code>  发送一个消息给接收进程<br>
+  <code>receive(sender,message);</code> 接收Sender发来的消息<br>
+  例如，原语<code>Send(P2,m1)</code>表示将消息<code>m1</code>发送给接收进程<code>P2</code>；而原语<code>Receive(P1,m1)</code>则表示接受由<code>P1</code>发来的消息<code>m1</code>。<br>
+  对称寻址方式的不足在于，一旦改变进程的名称，则可能需要检查所有其它进程的定义，有关对该进程旧名称的所有引用都必须查找到，以便将其修改为新名称，显然，这样的方式不利于实现进程定义的模块化。</p>
+<p>  (2)非对称寻址方式。在某些情况下，接收进程可能需要与多个发送进程通信，无法事先指定发送进程。例如，用于提供打印服务的进程，它可以接收来自任何一个进程的“打印请求”消息。对于这样的应用，在接收进程的原语中，不需要命名发送进程，只填写表示源进程的参数，即完成通信后的返回值，而发送进程仍需要命名接收进程。该方式的发送和接收原语可表示为：<br>
+  <code>send(P, message);</code>  发送一个消息给进程<code>P</code><br>
+  <code>receive(id, message);</code>  接收来自任何进程的消息，<code>id</code>变量可设置为进行通信的发送方进程<code>id</code>或名字。</p>
+<p><strong>2. 消息的格式</strong></p>
+<p>  在消息传递系统中所传递的消息，必须具有一定的消息格式。在单机系统环境中，由于发送进程和接收进程处于同一台机器中，有着相同的环境，所以消息的格式比较简单，可采用比较短的定长消息格式，以减少对消息的处理和存储开销。该方式可用于办公自动化系统中，为用户提供快速的便笺式通信。但这种方式对于需要发送较长消息的用户是不方便的。为此，可采用变长的消息格式，即进程所发送消息的长度是可变的。对于变长消息，系统无论在处理方面还是存储方面，都可能会付出更多的开销，但其优点在于方便了用户。</p>
+<p><strong>3. 进程的同步方式</strong></p>
+<p>  在进程之间进行通信时，同样需要有进程同步机制，以使诸进程间能协调通信。不论是发送进程还是接收进程，在完成消息的发送或接收后，都存在两种可能性，即进程或者继续发送（或接收）或者阻塞。由此，我们可得到三种情况：①发送进程阻塞，接收进程阻塞。这种情况主要用于进程之间紧密同步，发送进程和接收进程之间无缓冲时。②发送进程不阻塞、接收进程阻塞。这是一种应用最广的进程同步方式。平时，发送进程不阻塞，因而它可以尽快地把一个或多个消息发送给多个目标；而接收进程平时则处于阻塞状态，直到发送进程发来消息时才被唤醒。③发送进程和接收进程均不阻塞。这也是一种较常见的进程同步形式。平时，发送进程和接收进程都在忙于自己的事情，仅当发生某事件使它无法继续运行时，才把自己阻塞起来等待。</p>
+<p><strong>4. 通信链路</strong></p>
+<p>  为使在发送进程和接收进程之间能进行通信，必须在两者之间建立一条通信链路。有两种方式建立通信链路。第一种方式是：由发送进程在通信之前用显式的“建立连接”命令（原语）请求系统为之建立一条通信链路，在链路使用完后拆除链路。这种方式主要用于计算机网络中。第二种方式是：发送进程无须明确提出建立链路的请求，只须利用系统提供的发送命令（原语），系统会自动地为之建立一条链路。这种方式主要用于单机系统中。而根据通信方式的不同，则又可把链路分成两种：①单向通信链路，只允许发送进程向接收进程发送消息，或者相反；②双向通信链路，既允许由进程<code>A</code>向进程<code>B</code>发送消息，也允许进程<code>B</code>同时向进程<code>A</code>发送消息。</p>
+<h4 id="信箱通信">信箱通信
+</h4><p>  信箱通信属于间接通信方式，即进程之间的通信，需要通过某种中间实体（如共享数据结构等）来完成。该实体建立在随机存储器的公用缓冲区上，用来暂存发送进程发送给目标进程的消息；接收进程可以从该实体中取出发送进程发送给自己的消息，通常把这种中间实体称为<strong>邮箱（或信箱）</strong>，每个邮箱都有一个唯一的标识符。消息在邮箱中可以安全地保存，只允许核准的目标用户随时读取。因此，利用邮箱通信方式既可实现实时通信，又可实现非实时通信。</p>
+<p><strong>1. 信箱的结构</strong></p>
+<p>  信箱定义为一种数据结构。在逻辑上，可以将其分为两个部分：<br>
+  (1)信箱头，用以存放有关信箱的描述信息，如信箱标识符、信箱的拥有者、信箱口令、信箱的空格数等。<br>
+  (2)信箱体，由若干个可以存放消息（或消息头）的信箱格组成，信箱格的数目以及每格的大小是在创建信箱时确定的。<br>
+  在消息传递方式上，最简单的情况是单向传递。消息的传递也可以是双向的。<a class="link" href="#20241111000058CST">图16</a>示出了双向通信链路的通信方式。</p>
+<span id="20241111000058CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 170.2857">
+  <g>
+    <text transform="translate(183.7256 99.4047)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">进程A</tspan></text>
+    <circle cx="207.8816" cy="93.7709" r="34.2857" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(631.6624 99.4047)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">进程B</tspan></text>
+    <circle cx="655.8184" cy="93.7709" r="34.2857" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <rect x="347.3738" y="4.8254" width="168.9524" height="161.9048" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <text transform="translate(405.2982 36.8881)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">信箱头</tspan></text>
+    <text transform="translate(359.7372 100.6694)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">格</tspan><tspan x="0" y="21.6006">子</tspan><tspan x="4.8423" y="43.2002">1</tspan></text>
+    <text transform="translate(400.6828 100.6694)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">格</tspan><tspan x="0" y="21.6006">子</tspan><tspan x="4.8423" y="43.2002">2</tspan></text>
+    <text transform="translate(441.6279 100.6694)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">格</tspan><tspan x="0" y="21.6006">子</tspan><tspan x="4.8423" y="43.2002">3</tspan></text>
+    <text transform="translate(482.573 100.6694)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">格</tspan><tspan x="0" y="21.6006">子</tspan><tspan x="0" y="43.2002">…</tspan></text>
+    <line x1="516.3262" y1="55.4921" x2="347.3738" y2="55.4921" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="389.21" y1="166.7302" x2="389.21" y2="55.4921" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <path d="M430.0704,166.7302c.381-1.9048,0-111.2381,0-111.2381" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <path d="M471.0579,166.7302c.1905-1.3333,0-111.2381,0-111.2381" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="237.4556" y1="111.1111" x2="341.4041" y2="111.1111" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="338.5955 114.8142 340.1687 111.1111 338.5955 107.408 347.3738 111.1111 338.5955 114.8142"/>
+  </g>
+  <g>
+    <line x1="243.4254" y1="77.5238" x2="347.3738" y2="77.5238" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="246.234 81.2269 244.6607 77.5238 246.234 73.8207 237.4556 77.5238 246.234 81.2269"/>
+  </g>
+  <text transform="translate(271.7502 72.0386)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">接收</tspan></text>
+  <text transform="translate(271.7501 131.3745)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">发送</tspan></text>
+  <g>
+    <line x1="516.3262" y1="110.1217" x2="620.2747" y2="110.1217" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="617.4661 113.8249 619.0393 110.1217 617.4661 106.4186 626.2444 110.1217 617.4661 113.8249"/>
+  </g>
+  <g>
+    <line x1="522.2959" y1="76.5344" x2="626.2444" y2="76.5344" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="525.1045 80.2376 523.5312 76.5344 525.1045 72.8313 516.3262 76.5344 525.1045 80.2376"/>
+  </g>
+  <text transform="translate(550.6208 71.0492)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">接收</tspan></text>
+  <text transform="translate(550.6207 130.3851)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">发送</tspan></text>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图16&emsp;双向信箱示意图</p>
+<p>*<strong>2. 信箱通信原语</strong></p>
+<p>  系统为邮箱通信提供了若干条原语，分别用于：<br>
+  (1)邮箱的创建和撤消。进程可利用邮箱创建原语来建立一个新邮箱，创建者进程应给出邮箱名字、邮箱属性（公用、私用或共享）；对于共享邮箱，还应给出共享者的名字。当进程不再需要读邮箱时，可用邮箱撤消原语将之撤消。<br>
+  (2)消息的发送和接收。当进程之间要利用邮箱进行通信时，必须使用共享邮箱，并利用系统提供的下述通信原语进行通信。<br>
+  <code>Send(mailbox, message);</code> 将一消息发送到指定邮箱<br>
+  <code>Receive(mailbox, message);</code> 从指定邮箱中接收一个消息</p>
+<p><strong>3. 信箱的类型</strong></p>
+<p>  邮箱可由操作系统创建，也可由用户进程创建，创建者是邮箱的拥有者。据此，可把邮箱分为以下三类：<br>
+  (1)私用邮箱。用户进程可为自己建立一个新邮箱，并作为该进程的一部分。邮箱的拥有者有权从邮箱中读取消息，其他用户则只能将自己构成的消息发送到该邮箱中。这种私用邮箱可采用单向通信链路的邮箱来实现。当拥有该邮箱的进程结束时，邮箱也随之消失。<br>
+  (2)公用邮箱。由操作系统创建，并提供给系统中的所有核准进程使用。核准进程既可把消息发送到该邮箱中，也可从邮箱中读取发送给自己的消息。显然，公用邮箱应采用双向通信链路的邮箱来实现。通常，公用邮箱在系统运行期间始终存在。<br>
+  (3)共享邮箱。由某进程创建，在创建时或创建后指明它是可共享的，同时须指出共享进程（用户）的名字。邮箱的拥有者和共享者都有权从邮箱中取走发送给自己的消息。在利用邮箱通信时，在发送进程和接收进程之间，存在以下四种关系：①一对一关系。发送进程和接收进程可以建立一条两者专用的通信链路，使两者之间的交互不受其他进程的干扰。②多对一关系。允许提供服务的进程与多个用户进程之间进行交互，也称为客户/服务器交互(client/server interaction)。③一对多关系。允许一个发送进程与多个接收进程进行交互，使发送进程可用广播方式向接收者（多个）发送消息。④多对多关系。允许建立一个公用邮箱，让多个进程都能向邮箱中投递消息；也可从邮箱中取走属于自己的消息。</p>
+
     </div>
 </section>
 
@@ -3921,7 +4006,7 @@
 
 
         <span>
-            最后更新于 Nov 10, 2024 23:12 CST
+            最后更新于 Nov 11, 2024 00:05 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4086,7 +4171,7 @@
             
             
         
-        <span>本图书馆累计发布了13篇文章 共180549字</span>
+        <span>本图书馆累计发布了13篇文章 共183291字</span>
     </section>
 
     <section class="site-visit-count">
