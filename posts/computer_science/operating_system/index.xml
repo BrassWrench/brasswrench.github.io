@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 10 Nov 2024 13:31:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/operating_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 10 Nov 2024 13:36:37 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/computer_science/operating_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>操作系统（二）：进程的描述与控制</title>
         <link>https://www.brasswrench.com/posts/computer_science/operating_system/process_description_and_control/</link>
         <pubDate>Wed, 06 Nov 2024 15:37:29 +0800</pubDate>
@@ -1685,10 +1685,10 @@
   (4) 让权等待。当进程不能进入自己的临界区时，应立即释放处理机，以免进程陷入“忙等”状态。&lt;/p&gt;
 &lt;h3 id=&#34;硬件同步机制&#34;&gt;硬件同步机制
 &lt;/h3&gt;&lt;p&gt;  虽然可以利用软件方法解决诸进程互斥进入临界区的问题，但有一定难度，并且存在很大的局限性，因而现在已很少采用。相应地，目前许多计算机已提供了一些特殊的硬件指令，允许对一个字中的内容进行检测和修正，或者是对两个字的内容进行交换等。可利用这些特殊的指令来解决临界区问题。实际上，在对临界区进行管理时，可以将标志看做一个锁，“锁开”进入，“锁关”等待，初始时锁是打开的。每个要进入临界区的进程必须先对锁进行测试，当锁未开时，则必须等待，直至锁被打开。反之，当锁是打开的时候，则应立即把其锁上，以阻止其它进程进入临界区。显然，为防止多个进程同时测试到锁为打开的情况，测试和关锁操作必须是连续的，不允许分开进行。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1. 关中断&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  关中断是实现互斥的最简单的方法之一。在进入锁测试之前关闭中断，直到完成锁测试并上锁之后才能打开中断。这样，进程在临界区执行期间，计算机系统不响应中断，从而不会引发调度，也就不会发生进程或线程切换。由此，保证了对锁的测试和关锁操作的连续性和完整性，有效地保证了互斥。但是，关中断的方法存在许多缺点：①滥用关中断权力可能导致严重后果；②关中断时间过长，会影响系统效率，限制了处理器交叉执行程序的能力；③关中断方法也不适用于多CPU系统，因为在一个处理器上关中断并不能防止进程在其它处理器上执行相同的临界段代码。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2. 利用&lt;code&gt;Test-and-Set&lt;/code&gt;指令实现互斥&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  这是一种借助一条硬件指令——&lt;strong&gt;“测试并建立”指令&lt;code&gt;TS&lt;/code&gt;（&lt;code&gt;Test-and-Set&lt;/code&gt;）&lt;/strong&gt;‌以实现互斥的方法。在许多计算机中都提供了这种指令。&lt;code&gt;TS&lt;/code&gt;指令的一般性描述如下：&lt;/p&gt;
+&lt;h4 id=&#34;关中断&#34;&gt;关中断
+&lt;/h4&gt;&lt;p&gt;  关中断是实现互斥的最简单的方法之一。在进入锁测试之前关闭中断，直到完成锁测试并上锁之后才能打开中断。这样，进程在临界区执行期间，计算机系统不响应中断，从而不会引发调度，也就不会发生进程或线程切换。由此，保证了对锁的测试和关锁操作的连续性和完整性，有效地保证了互斥。但是，关中断的方法存在许多缺点：①滥用关中断权力可能导致严重后果；②关中断时间过长，会影响系统效率，限制了处理器交叉执行程序的能力；③关中断方法也不适用于多CPU系统，因为在一个处理器上关中断并不能防止进程在其它处理器上执行相同的临界段代码。&lt;/p&gt;
+&lt;h4 id=&#34;利用test-and-set指令实现互斥&#34;&gt;利用Test-and-Set指令实现互斥
+&lt;/h4&gt;&lt;p&gt;  这是一种借助一条硬件指令——&lt;strong&gt;“测试并建立”指令&lt;code&gt;TS&lt;/code&gt;（&lt;code&gt;Test-and-Set&lt;/code&gt;）&lt;/strong&gt;‌以实现互斥的方法。在许多计算机中都提供了这种指令。&lt;code&gt;TS&lt;/code&gt;指令的一般性描述如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1733,8 +1733,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;3. 利用&lt;code&gt;Swap&lt;/code&gt;指令实现互斥&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  该指令称为对换指令，在Intel 80x86中又称为&lt;code&gt;XCHG&lt;/code&gt;指令，用于交换两个字的内容。其处理过程描述如下：&lt;/p&gt;
+&lt;/div&gt;&lt;h4 id=&#34;利用swap指令实现互斥&#34;&gt;利用Swap指令实现互斥
+&lt;/h4&gt;&lt;p&gt;  该指令称为对换指令，在Intel 80x86中又称为&lt;code&gt;XCHG&lt;/code&gt;指令，用于交换两个字的内容。其处理过程描述如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1789,10 +1789,10 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  利用上述硬件指令能有效地实现进程互斥，但当临界资源忙碌时，其它访问进程必须不断地进行测试，处于一种&amp;quot;忙等”状态，不符合“让权等待”的原则，造成处理机时间的浪费，同时也很难将它们用于解决复杂的进程同步问题。&lt;/p&gt;
-&lt;h4 id=&#34;信号量机制&#34;&gt;信号量机制
-&lt;/h4&gt;&lt;p&gt;  1965年，荷兰学者Dijkstra提出的&lt;strong&gt;信号量（Semaphores）机制&lt;/strong&gt;是一种卓有成效的进程同步工具。在长期且广泛的应用中，信号量机制又得到了很大的发展，它从整型信号量经记录型信号量，进而发展为‌&lt;strong&gt;“信号量集”机制&lt;/strong&gt;。现在，信号量机制已被广泛地应用于单处理机和多处理机系统以及计算机网络中。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1. 整型信号量&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  最初由Dijkstra把整型信号量定义为一个用于表示资源数目的整型量&lt;code&gt;S&lt;/code&gt;，它与一般整型量不同，除初始化外，仅能通过两个标准的&lt;strong&gt;原子操作（Atomic Operation）&lt;/strong&gt;‌&lt;code&gt;wait(S)&lt;/code&gt;和&lt;code&gt;signal(S)&lt;/code&gt;来访问。很长时间以来，这两个操作一直被分别称为&lt;code&gt;P&lt;/code&gt;、&lt;code&gt;V&lt;/code&gt;操作。&lt;code&gt;wait&lt;/code&gt;和&lt;code&gt;signal&lt;/code&gt;操作可描述如下：&lt;/p&gt;
+&lt;h3 id=&#34;信号量机制&#34;&gt;信号量机制
+&lt;/h3&gt;&lt;p&gt;  1965年，荷兰学者Dijkstra提出的&lt;strong&gt;信号量（Semaphores）机制&lt;/strong&gt;是一种卓有成效的进程同步工具。在长期且广泛的应用中，信号量机制又得到了很大的发展，它从整型信号量经记录型信号量，进而发展为‌&lt;strong&gt;“信号量集”机制&lt;/strong&gt;。现在，信号量机制已被广泛地应用于单处理机和多处理机系统以及计算机网络中。&lt;/p&gt;
+&lt;h4 id=&#34;整型信号量&#34;&gt;整型信号量
+&lt;/h4&gt;&lt;p&gt;  最初由Dijkstra把整型信号量定义为一个用于表示资源数目的整型量&lt;code&gt;S&lt;/code&gt;，它与一般整型量不同，除初始化外，仅能通过两个标准的&lt;strong&gt;原子操作（Atomic Operation）&lt;/strong&gt;‌&lt;code&gt;wait(S)&lt;/code&gt;和&lt;code&gt;signal(S)&lt;/code&gt;来访问。很长时间以来，这两个操作一直被分别称为&lt;code&gt;P&lt;/code&gt;、&lt;code&gt;V&lt;/code&gt;操作。&lt;code&gt;wait&lt;/code&gt;和&lt;code&gt;signal&lt;/code&gt;操作可描述如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1816,8 +1816,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  &lt;code&gt;wait(S)&lt;/code&gt;和&lt;code&gt;signal(S)&lt;/code&gt;是两个原子操作，因此，它们在执行时是不可中断的。亦即，当一个进程在修改某信号量时，没有其它进程可同时对该信号量进行修改。此外，在&lt;code&gt;wait&lt;/code&gt;操作中，对&lt;code&gt;S&lt;/code&gt;值的测试和做&lt;code&gt;S=S-1&lt;/code&gt;操作时都不可中断。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2. 记录型信号量&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  在整型信号量机制中的&lt;code&gt;wait&lt;/code&gt;操作，只要是信号量&lt;code&gt;S⩽0&lt;/code&gt;，就会不断地测试。因此，该机制并未遵循“让权等待”的准则，而是使进程处于“忙等”的状态。记录型信号量机制则是一种不存在“忙等”现象的进程同步机制。但在采取了“让权等待”的策略后，又会出现多个进程等待访问同一临界资源的情况。为此，在信号量机制中，除了需要一个用于代表资源数目的整型变量&lt;code&gt;value&lt;/code&gt;外，还应增加一个进程链表指针&lt;code&gt;list&lt;/code&gt;，用于链接上述的所有等待进程。&lt;strong&gt;记录型信号量&lt;/strong&gt;是由于它采用了记录型的数据结构而得名的。它所包含的上述两个数据项可描述如下：&lt;/p&gt;
+&lt;h4 id=&#34;记录型信号量&#34;&gt;记录型信号量
+&lt;/h4&gt;&lt;p&gt;  在整型信号量机制中的&lt;code&gt;wait&lt;/code&gt;操作，只要是信号量&lt;code&gt;S⩽0&lt;/code&gt;，就会不断地测试。因此，该机制并未遵循“让权等待”的准则，而是使进程处于“忙等”的状态。记录型信号量机制则是一种不存在“忙等”现象的进程同步机制。但在采取了“让权等待”的策略后，又会出现多个进程等待访问同一临界资源的情况。为此，在信号量机制中，除了需要一个用于代表资源数目的整型变量&lt;code&gt;value&lt;/code&gt;外，还应增加一个进程链表指针&lt;code&gt;list&lt;/code&gt;，用于链接上述的所有等待进程。&lt;strong&gt;记录型信号量&lt;/strong&gt;是由于它采用了记录型的数据结构而得名的。它所包含的上述两个数据项可描述如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1864,8 +1864,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  在记录型信号量机制中，&lt;code&gt;S-&amp;gt;value&lt;/code&gt;的初值表示系统中某类资源的数目，因而又称为&lt;strong&gt;资源信号量&lt;/strong&gt;，对它的每次&lt;code&gt;wait&lt;/code&gt;操作，意味着进程请求一个单位的该类资源，使系统中可供分配的该类资源数减少一个，因此描述为&lt;code&gt;S-&amp;gt;value--&lt;/code&gt;；当&lt;code&gt;S.value&amp;lt;0&lt;/code&gt;时，表示该类资源已分配完毕，因此进程应调用&lt;code&gt;block&lt;/code&gt;原语进行自我阻塞，放弃处理机，并插入到信号量链表&lt;code&gt;S-&amp;gt;list&lt;/code&gt;中。可见，该机制遵循了“让权等待”准则。此时&lt;code&gt;S-&amp;gt;value&lt;/code&gt;的绝对值表示在该信号量链表中已阻塞进程的数目。对信号量的每次&lt;code&gt;signal&lt;/code&gt;操作表示执行进程释放一个单位资源，使系统中可供分配的该类资源数增加一个，故&lt;code&gt;S-&amp;gt;value++&lt;/code&gt;操作表示资源数目加&lt;code&gt;1&lt;/code&gt;。若加&lt;code&gt;1&lt;/code&gt;后仍是&lt;code&gt;S-&amp;gt;value⩽0&lt;/code&gt;,则表示在该信号量链表中仍有等待该资源的进程被阻塞，故还应调用&lt;code&gt;wakeup&lt;/code&gt;原语，将&lt;code&gt;S-&amp;gt;list&lt;/code&gt;链表中的第一个等待进程唤醒。如果&lt;code&gt;S-&amp;gt;value&lt;/code&gt;的初值为&lt;code&gt;1&lt;/code&gt;，表示只允许一个进程访问临界资源，此时的信号量转化为互斥信号量，用于进程互斥。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;3. AND型信号量&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  前面所述的进程互斥问题针对的是多个并发进程仅共享一个临界资源的情况。在有些应用场合，是一个进程往往需要获得两个或更多的共享资源后方能执行其任务。假定现有两个进程&lt;code&gt;A&lt;/code&gt;和&lt;code&gt;B&lt;/code&gt;，它们都要求访问共享数据&lt;code&gt;D&lt;/code&gt;和&lt;code&gt;E&lt;/code&gt;，当然，共享数据都应作为临界资源。为此，可为这两个数据分别设置用于互斥的信号量&lt;code&gt;Dmutex&lt;/code&gt;和&lt;code&gt;Emutex&lt;/code&gt;，并令它们的初值都是&lt;code&gt;1&lt;/code&gt;。相应地，在两个进程中都要包含两个对&lt;code&gt;Dmutex&lt;/code&gt;和&lt;code&gt;Emutex&lt;/code&gt;的操作，即&lt;/p&gt;
+&lt;h4 id=&#34;and型信号量&#34;&gt;AND型信号量
+&lt;/h4&gt;&lt;p&gt;  前面所述的进程互斥问题针对的是多个并发进程仅共享一个临界资源的情况。在有些应用场合，是一个进程往往需要获得两个或更多的共享资源后方能执行其任务。假定现有两个进程&lt;code&gt;A&lt;/code&gt;和&lt;code&gt;B&lt;/code&gt;，它们都要求访问共享数据&lt;code&gt;D&lt;/code&gt;和&lt;code&gt;E&lt;/code&gt;，当然，共享数据都应作为临界资源。为此，可为这两个数据分别设置用于互斥的信号量&lt;code&gt;Dmutex&lt;/code&gt;和&lt;code&gt;Emutex&lt;/code&gt;，并令它们的初值都是&lt;code&gt;1&lt;/code&gt;。相应地，在两个进程中都要包含两个对&lt;code&gt;Dmutex&lt;/code&gt;和&lt;code&gt;Emutex&lt;/code&gt;的操作，即&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1995,8 +1995,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;4. 信号量集&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  在前面所述的记录型信号量机制中，&lt;code&gt;wait(S)&lt;/code&gt;或&lt;code&gt;signal(S)&lt;/code&gt;操作仅能对信号量施以加&lt;code&gt;1&lt;/code&gt;或减&lt;code&gt;1&lt;/code&gt;操作，意味着每次只能对某类临界资源进行一个单位的申请或释放。当一次需要&lt;code&gt;N&lt;/code&gt;个单位时，便要进行&lt;code&gt;N&lt;/code&gt;次&lt;code&gt;wait(S)&lt;/code&gt;操作，这显然是低效的，甚至会增加死锁的概率。此外，在有些情况下，为确保系统的安全性，当所申请的资源数量低于某一下限值时，还必须进行管制，不予以分配。因此，当进程申请某类临界资源时，在每次分配之前，都必须测试资源的数量，判断是否大于可分配的下限值，决定是否予以分配。&lt;br&gt;
+&lt;/div&gt;&lt;h4 id=&#34;信号量集&#34;&gt;信号量集
+&lt;/h4&gt;&lt;p&gt;  在前面所述的记录型信号量机制中，&lt;code&gt;wait(S)&lt;/code&gt;或&lt;code&gt;signal(S)&lt;/code&gt;操作仅能对信号量施以加&lt;code&gt;1&lt;/code&gt;或减&lt;code&gt;1&lt;/code&gt;操作，意味着每次只能对某类临界资源进行一个单位的申请或释放。当一次需要&lt;code&gt;N&lt;/code&gt;个单位时，便要进行&lt;code&gt;N&lt;/code&gt;次&lt;code&gt;wait(S)&lt;/code&gt;操作，这显然是低效的，甚至会增加死锁的概率。此外，在有些情况下，为确保系统的安全性，当所申请的资源数量低于某一下限值时，还必须进行管制，不予以分配。因此，当进程申请某类临界资源时，在每次分配之前，都必须测试资源的数量，判断是否大于可分配的下限值，决定是否予以分配。&lt;br&gt;
   基于上述两点，可以对 AND 信号量机制加以扩充，对进程所申请的所有资源以及每类资源不同的资源需求量，在一次 &lt;code&gt;Swait&lt;/code&gt;、&lt;code&gt;Ssignal&lt;/code&gt; 原语操作中完成申请或释放。进程对信号量 &lt;code&gt;Si&lt;/code&gt; 的测试值不再是 &lt;code&gt;1&lt;/code&gt; ，而是该资源的分配下限值 &lt;code&gt;ti&lt;/code&gt; ，即要求 &lt;code&gt;Si &amp;gt;= ti&lt;/code&gt; ，否则不予分配。一旦允许分配，进程对该资源的需求值为 &lt;code&gt;di&lt;/code&gt; ，即表示资源占用量，进行 &lt;code&gt;Si = Si - di&lt;/code&gt; 操作，而不是简单的 &lt;code&gt;Si = Si - 1&lt;/code&gt; 。由此形成一般化的“信号量集”机制。对应的 &lt;code&gt;Swait&lt;/code&gt; 和 &lt;code&gt;Ssignal&lt;/code&gt; 格式为：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2010,9 +2010,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  一般信号量集还有下面几种特殊情况：&lt;br&gt;
   (1)&lt;code&gt;Swait(S,d,d)&lt;/code&gt;。此时在信号量集中只有一个信号量&lt;code&gt;S&lt;/code&gt;，但允许它每次申请&lt;code&gt;d&lt;/code&gt;个资源，当现有资源数少于&lt;code&gt;d&lt;/code&gt;时，不予分配。&lt;br&gt;
-  (2)&lt;code&gt;Swait(S,1,1)&lt;/code&gt;。此时的信号量集己退化为一般的记录型信号量（S&amp;gt; 1时）或互斥信号量（S = 1时）。&lt;br&gt;
-  (3)&lt;code&gt;Swait(S,1,0)&lt;/code&gt;。这是一种很特殊且很有用的信号量操作。当&lt;code&gt;S&amp;gt;=1&lt;/code&gt;时，允许多个进程进入某特定区；当S变为0后，将阻止任何进程进入特定区。换言之，它相当于一个可控开关。&lt;/p&gt;
-</description>
+  (2)&lt;code&gt;Swait(S,1,1)&lt;/code&gt;。此时的信号量集己退化为一般的记录型信号量（&lt;code&gt;S&amp;gt;1&lt;/code&gt;时）或互斥信号量（&lt;code&gt;S=1&lt;/code&gt;时）。&lt;br&gt;
+  (3)&lt;code&gt;Swait(S,1,0)&lt;/code&gt;。这是一种很特殊且很有用的信号量操作。当&lt;code&gt;S&amp;gt;=1&lt;/code&gt;时，允许多个进程进入某特定区；当&lt;code&gt;S&lt;/code&gt;变为&lt;code&gt;0&lt;/code&gt;后，将阻止任何进程进入特定区。换言之，它相当于一个可控开关。&lt;/p&gt;
+&lt;h3 id=&#34;信号量的应用&#34;&gt;信号量的应用
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>操作系统（一）：操作系统概论</title>
