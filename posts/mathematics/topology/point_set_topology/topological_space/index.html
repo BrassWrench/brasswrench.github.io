@@ -131,7 +131,7 @@
 <meta property='og:description' content="定义在一个集合上并满足拓扑公理的子集族所构成的结构">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/topology/point_set_topology/topological_space/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-10T00:29:50&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='点集拓扑学' /><meta property='article:tag' content='拓扑空间' /><meta property='article:published_time' content='2024-10-15T14:00:15&#43;08:00'/><meta property='article:modified_time' content='2024-11-10T19:12:36&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="点集拓扑学（一）：拓扑空间">
 <meta name="twitter:description" content="定义在一个集合上并满足拓扑公理的子集族所构成的结构"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -945,7 +945,7 @@
 </svg>
 
             <time class="article-words">
-                3731 字
+                3912 字
             </time>
         </div>
 
@@ -1156,6 +1156,31 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
 </h4><p>  <span id="20241109235647CST"></span><strong>定义5</strong>：设 \(A\) 是拓扑空间 \(X\) 的子集， \(x \in X\) 。如果 \(x\) 的每个邻域都含有 \(A \backslash \set{x}\) 中的点，则称 \(x\) 为 \(A\) 的<strong>聚点</strong>。 \(A\) 的所有聚点的集合称为 \(A\) 的<strong>导集</strong>，记作 \(A'\) 。称集合 \(\bar{A}=A \cup A'\) 为 \(A\) 的<strong>闭包</strong>。</p>
 <p>  <span id="20241110000944CST"></span><strong>结论1</strong>： \(x \in \bar{A}\) \(\Harr\) \(x\) 的任一邻域与 \(A\) 都有交点。</p>
 <p>  <strong>证明（<a class="link" href="#20241110000944CST">结论1</a>）</strong>：假设 \(x \in \bar{A}\) ，则 \(x \in A\) 或 \(x \in A'\) 。如果是 \(x \in A\) ，则显然任意 \(x\) 的邻域与 \(A\) 都有至少有交点 \(x\) 。如果是 \(x \in A'\) ，则由 \(A'\) 的定义可知 \(x\) 的每个邻域都含有 \(A\backslash\set{x}\) 中的点，即与 \(A\) 有交点。反过来，如果 \(x\) 的任一邻域都与 \(A\) 有交点。如果交点只是 \(x\) ，则可知 \(x \in A\) ，如果交点不止是 \(x\) 或者没有 \(x\) ，也就是有 \(A \backslash \set{x}\) 中的点，则由导集的定义知 \(x \in A'\) 。因此，结论成立。</p>
+<p>  <span id="20241110190322CST"></span><strong>命题4</strong>：若拓扑空间 \(X\) 的子集 \(A\) 与 \(B\) 互为余集，则 \(\bar{A}\) 与 \(\mathring{B}\) 互为余集。</p>
+<p>  <strong>证明（<a class="link" href="#20241110190322CST">命题4</a>）</strong>：由<a class="link" href="#20241110000944CST">结论1</a>和<a class="link" href="#20241109213315CST">定义4</a>可得如下等价关系</p>
+<span id="20241110190634CST"></span>\[
+\begin{aligned}
+x \in \bar{A}^c & \Harr x有邻域与 A 不相交\\[5pt]
+& \Harr x有邻域包含在B中\\[5pt]
+& \Harr x是B的内点
+\end{aligned}
+\tag{10}
+    \]
+<p>  因此 \(\bar{A}^c=\mathring{B}\) 。</p>
+<p>  <span id="20241110190824CST"></span><strong>命题5</strong>：<br>
+  (1)若 \(A \sube B \) ，则 \(\bar{A} \sube \bar{B}\) 。<br>
+  (2) \(\bar{A}\) 是所有包含 \(A\) 的闭集的交集，所以是包含 \(A\) 的最小闭集。<br>
+  (3) \(\bar{A}\A\)  \(\Harr\)  \(A\) 是闭集。<br>
+  (4)</p>
+<span id="20241110191101CST"></span>
+    \[
+\overline{A \cup B}=\bar{A} \cup \bar{B}
+\]
+<p>  (5)</p>
+<span id="20241110191105CST"></span>
+    \[
+\overline{A \cap B} = \bar{A} \cap \bar{B}
+\]
 
     </div>
 </section>
@@ -1197,7 +1222,7 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
 
 
         <span>
-            最后更新于 Nov 10, 2024 00:29 CST
+            最后更新于 Nov 10, 2024 19:12 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1362,7 +1387,7 @@ U \cup U' =& \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)\cap\lef
             
             
         
-        <span>本图书馆累计发布了13篇文章 共174280字</span>
+        <span>本图书馆累计发布了13篇文章 共174461字</span>
     </section>
 
     <section class="site-visit-count">
