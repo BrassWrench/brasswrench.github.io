@@ -1039,7 +1039,7 @@
 </svg>
 
             <time class="article-words">
-                12548 字
+                12395 字
             </time>
         </div>
 
@@ -1054,7 +1054,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 26 分钟
+                    阅读时长: 25 分钟
                 </time>
             </div>
         
@@ -1163,7 +1163,7 @@ p_{ij}^{\left(m+n\right)}=\sum_{k \in S}{p_{ik}^{\left(m\right)}}p_{kj}^{\left(n
 \bm{P}^{\left(n\right)}=\bm{P} \cdot \bm{P}^{\left(n-1\right)} = \bm{P} \cdot \bm{P} \cdot \bm{P}^{\left(n-2\right)} = \cdots = \bm{P}^n
 \tag{8}
     \]
-<p>  <strong>证明（<a class="link" href="#20240929204400CST">Markov过程-C-K方程</a>）</strong>‌：由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
+<p>  <strong>证明（<a class="link" href="#20240929204400CST">C-K方程</a>）</strong>‌：由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
 <span id="20240929204323CST"></span>\[
 \begin{aligned}
 p_{ij}^{\left(m+n\right)}&=P\set{X_{m+n}=j|X_0=i}\\[5pt]
@@ -1182,7 +1182,7 @@ p_{ij}^{\left(m+n\right)}&=P\set{X_{m+n}=j|X_0=i}\\[5pt]
 p_{ij}^{\left(n_1+n_2+n_3+\cdots+n_m\right)}\ge p_{ik_1}^{\left(n_1\right)}p_{k_1k_2}^{\left(n_2\right)}p_{k_2k_3}^{\left(n_3\right)}\cdots p_{k_{m-1}j}^{\left(n_m\right)}
 \tag{10}
     \]
-<p>  <strong>证明（<a class="link" href="#20240930161109CST">结论1</a>）</strong>‌：由<a class="link" href="#20240929204400CST">Markov过程-C-K方程</a>和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">概率的非负性</a>可得</p>
+<p>  <strong>证明（<a class="link" href="#20240930161109CST">结论1</a>）</strong>‌：由<a class="link" href="#20240929204400CST">C-K方程</a>和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">概率的非负性</a>可得</p>
 <span id="20240930161647CST"></span>\[
 \begin{aligned}
 p_{ij}^{\left(n_1+n_2+n_3+\cdots+n_m\right)}=&\sum_{k \in S}p_{ik}^{\left(n_1\right)}p_{kj}^{\left(n_2+n_3+\cdots+n_m\right)}\\[5pt]
@@ -1274,10 +1274,10 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}{f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\
     \]
 <p>  <strong>证明（<a class="link" href="#20240929212214CST">引理1</a>）</strong>‌：用归纳法。对 \(n=1\) ，由 \(p_{ij}^{\left(1\right)}=f_{ij}^{\left(1\right)}\) ，易证上式成立。<br>
   假设对 \(n-1\) ，已有 \(p_{ij}^{\left(n-1\right)}=\displaystyle\sum_{l=1}^{n-1}{f_{ij}^{\left(l\right)}p_{jj}^{\left(n-1-l\right)}}\) 成立。<br>
-  当取 \(n\) 时，利用<a class="link" href="#20240929204400CST">Markov过程-C-K方程</a>、归纳假设和<a class="link" href="#20240929212905CST">结论2</a>，可以推导出</p>
+  当取 \(n\) 时，利用<a class="link" href="#20240929204400CST">C-K方程</a>、归纳假设和<a class="link" href="#20240929212905CST">结论2</a>，可以推导出</p>
 <span id="20240929212648CST"></span>\[
 \begin{aligned}
-p_{ij}^{\left(n\right)}&=\sum_{k \in S}{p_{ik}^{\left(1\right)}p_{kj}^{\left(n-1\right)}} \qquad \text{（Markov过程-C-K方程）}\\
+p_{ij}^{\left(n\right)}&=\sum_{k \in S}{p_{ik}^{\left(1\right)}p_{kj}^{\left(n-1\right)}} \qquad \text{（C-K方程）}\\
 &=p_{ij}^{\left(1\right)}p_{jj}^{\left(n-1\right)}+\sum_{k \ne j,\thinspace k \in S}{p_{ik}^{\left(1\right)}p_{kj}^{\left(n-1\right)}}\\
 &=f_{ij}^{\left(1\right)}p_{jj}^{\left(n-1\right)}+\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{\left(1\right)}p_{kj}^{\left(n-1\right)}} \text{（归纳法n=1时的情况）}\\
 &=f_{ij}^{\left(1\right)}p_{jj}^{\left(n-1\right)}+\sum_{k \ne j,\thinspace k \in S}f_{ik}^{\left(1\right)}\left(\sum_{l=1}^{n-1}{f_{kj}^{\left(l\right)}p_{jj}^{\left(n-1-l\right)}}\right) \text{（归纳假设n-1时的情况）}\\
@@ -1344,7 +1344,7 @@ p_{jj}^{\left(n+m+l\right)} \ge p_{ji}^{\left(n\right)}p_{ii}^{\left(l\right)}p_
   (1) 每一个 \(C_n\) 是常返状态组成的不可约闭集， \(D\) 由全体非常返状态组成。<br>
   (2) \(C_n\) 中的状态同类，或者全是正常返态，或者全是零常返态。它们有相同的周期且 \(f_{ij}=1\left(i,j \in C_n\right)\) 。<br>
   (3) 自 \(C_n\) 中的状态出发不能到达 \(D\) 中状态。</p>
-<p>  <strong>证明（<a class="link" href="#20240929205434CST">Markov过程-状态空间分解定理</a>）</strong>‌：设 \(C\) 为全体常返状态组成的集合，则 \(D=S-C\) 为非常返状态的全体组成的集合。注意到定义在 \(C\) 上的互通是一种等价关系，由<a class="link" onclick="alert('抱歉，“集合论”还未上线~')">等价关系与集合的划分</a>可知， \(C\) 可以按互通关系划分为 \(C_1 \bigcup C_2 \bigcup \dots\) ，其中每一个 \(C_n\) 是由同一类常返状态组成的不可约的闭集。因此 \(S=D \bigcup C_1 \bigcup C_2 \bigcup \dots\) 。定理假设和(1)证毕。由<a class="link" href="#20240929205430CST">定理5</a>可知 \(C_n\) 中的状态都是同类型的（正常返或零常返），由<a class="link" href="#20240929205205CST">定理3</a>可知 \(C_n\) 中的状态都有相同的周期，由<a class="link" href="#20240929212219CST">引理2</a>可知 \(C_n\) 中的状态都满足 \(f_{ij}=1\left(i,j \in C_n\right)\) 。  (2) 证毕。对于  (3) ，可用反证法证明。假设 \(C_n\) 中的状态 \(i\) 可以到达 \(D\) 中的状态 \(j\) ，由于 \(i\) 是常返的，状态在到达 \(j\) 后必定还会再返回 \(i\) ，而后再由假设，状态还可能继续回到 \(j\) 。因此，状态从 \(j\) 出发后再次返回 \(j\) 的情况是可能出现的，这与 \(j\) 是非常返态相矛盾，因此假设不成立。故 \(C_n\) 中的状态 \(i\) 不可到达 \(D\) 中的状态 \(j\) 。  (3) 证毕。至此，<a class="link" href="#20240929205434CST">Markov过程-状态空间分解定理</a>证毕。</p>
+<p>  <strong>证明（<a class="link" href="#20240929205434CST">状态空间分解定理</a>）</strong>‌：设 \(C\) 为全体常返状态组成的集合，则 \(D=S-C\) 为非常返状态的全体组成的集合。注意到定义在 \(C\) 上的互通是一种等价关系，由<a class="link" onclick="alert('抱歉，“集合论”还未上线~')">等价关系与集合的划分</a>可知， \(C\) 可以按互通关系划分为 \(C_1 \bigcup C_2 \bigcup \dots\) ，其中每一个 \(C_n\) 是由同一类常返状态组成的不可约的闭集。因此 \(S=D \bigcup C_1 \bigcup C_2 \bigcup \dots\) 。定理假设和(1)证毕。由<a class="link" href="#20240929205430CST">定理5</a>可知 \(C_n\) 中的状态都是同类型的（正常返或零常返），由<a class="link" href="#20240929205205CST">定理3</a>可知 \(C_n\) 中的状态都有相同的周期，由<a class="link" href="#20240929212219CST">引理2</a>可知 \(C_n\) 中的状态都满足 \(f_{ij}=1\left(i,j \in C_n\right)\) 。  (2) 证毕。对于  (3) ，可用反证法证明。假设 \(C_n\) 中的状态 \(i\) 可以到达 \(D\) 中的状态 \(j\) ，由于 \(i\) 是常返的，状态在到达 \(j\) 后必定还会再返回 \(i\) ，而后再由假设，状态还可能继续回到 \(j\) 。因此，状态从 \(j\) 出发后再次返回 \(j\) 的情况是可能出现的，这与 \(j\) 是非常返态相矛盾，因此假设不成立。故 \(C_n\) 中的状态 \(i\) 不可到达 \(D\) 中的状态 \(j\) 。  (3) 证毕。至此，<a class="link" href="#20240929205434CST">状态空间分解定理</a>证毕。</p>
 <h4 id="不可约markov链的转移">不可约Markov链的转移
 </h4><p>  <span id="20240929205707CST"></span><strong>定理7</strong>：周期为 \(d\) 的不可约Markov链，其状态空间 \(S\) 可唯一地分解为 \(d\) 个互不相交的子集之和，即</p>
 <span id="20240929213341CST"></span>\[
@@ -1406,7 +1406,7 @@ S_r与S_{d-\left(s-r\right)}^{\prime}完全对等，若r < s
 \lim\limits_{n \rightarrow \infin}p_{jj}^{\left(nd\right)}=\frac{d}{\mu_j}
 \tag{34}
     \]
-<p>  <strong>证明（<a class="link" href="#20240929205712CST">Markov过程-极限定理</a>）</strong>‌：对 \(n \ge 0\) ，令：</p>
+<p>  <strong>证明（<a class="link" href="#20240929205712CST">极限定理</a>）</strong>‌：对 \(n \ge 0\) ，令：</p>
 <span id="20240929213442CST"></span>\[
 r_n=\sum_{v=n+1}^{\infin}{f_v}
 \tag{35}
@@ -1555,13 +1555,13 @@ r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
 \lim\limits_{n \rightarrow \infin}p_{nd}=\frac{d}{\mu_j}
 \tag{61}
     \]
-<p>  由此，<a class="link" href="#20240929205712CST">Markov过程-极限定理</a>证毕。</p>
+<p>  由此，<a class="link" href="#20240929205712CST">极限定理</a>证毕。</p>
 <p>  <span id="20240929212113CST"></span><strong>推论1</strong>：设 \(i\) 为常返状态，则</p>
 <span id="20240929213817CST"></span>\[
 i\text{为零常返状态}\iff\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0
 \tag{62}
     \]
-<p>  <strong>证明（<a class="link" href="#20240929212113CST">推论1</a>）</strong>‌：若 \(i\) 为零常返状态，则 \(\mu_i \rightarrow \infin\) ，从而由<a class="link" href="#20240929205712CST">Markov过程-极限定理</a>知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}=0\) 。而当 \(m\) 不等于 \(d\) 的整数倍时， \(p_{ii}^{\left(m\right)}=0\) ，故 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 。反之，若 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) ，假如 \(i\) 为正常返状态，则由<a class="link" href="#20240929205712CST">Markov过程-极限定理</a>知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}>0\) ，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">极限的性质</a>知这与 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 矛盾，因此 \(i\) 为零常返状态。</p>
+<p>  <strong>证明（<a class="link" href="#20240929212113CST">推论1</a>）</strong>‌：若 \(i\) 为零常返状态，则 \(\mu_i \rightarrow \infin\) ，从而由<a class="link" href="#20240929205712CST">极限定理</a>知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}=0\) 。而当 \(m\) 不等于 \(d\) 的整数倍时， \(p_{ii}^{\left(m\right)}=0\) ，故 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 。反之，若 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) ，假如 \(i\) 为正常返状态，则由<a class="link" href="#20240929205712CST">极限定理</a>知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}>0\) ，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">极限的性质</a>知这与 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 矛盾，因此 \(i\) 为零常返状态。</p>
 <h4 id="再论非常返与零常返">再论非常返与零常返
 </h4><p>  <span id="20240929205716CST"></span><strong>定理9</strong>：若 \(j\) 为非常返状态或零常返状态，则对 \(\forall i \in S\)</p>
 <span id="20240929213832CST"></span>\[
@@ -1578,7 +1578,7 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\r
 \sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\right)}\le \sum_{l=1}^{N}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\right)}+\sum_{l=N+1}^{n}f_{ij}^{\left(l\right)}
 \tag{65}
     \]
-<p>  先固定 \(N\) ，令 \(n \rightarrow \infin\) 。由<a class="link" href="#20240929205712CST">Markov过程-极限定理</a>知 \(p_{jj}^{\left(n\right)} \rightarrow 0\) ，故上式右端第一项为 \(0\) 。再令 \(N \rightarrow \infin\) ，上式右端第二项因 \(\displaystyle\sum_{l=1}^{n}f_{ij}^{\left(l\right)}<1\) 而趋于 \(0\) ，故</p>
+<p>  先固定 \(N\) ，令 \(n \rightarrow \infin\) 。由<a class="link" href="#20240929205712CST">极限定理</a>知 \(p_{jj}^{\left(n\right)} \rightarrow 0\) ，故上式右端第一项为 \(0\) 。再令 \(N \rightarrow \infin\) ，上式右端第二项因 \(\displaystyle\sum_{l=1}^{n}f_{ij}^{\left(l\right)}<1\) 而趋于 \(0\) ，故</p>
 <span id="20240929213854CST"></span>\[
 \lim\limits_{n \rightarrow \infin}p_{ij}^{\left(n\right)}=0
 \tag{66}
@@ -1588,7 +1588,7 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\r
 <p>  <strong>证明（<a class="link" href="#20240929212119CST">推论2</a>）</strong>‌：设状态空间 \(S=\set{1,2,\cdots,N}\) ，若全部 \(N\) 个状态都是非常返，则任取其中两个状态 \(i,j\) ，若 \(i \rightarrow j \) ，有 \(p_{ij}^{\left(n\right)}\rightarrow 0\) （<a class="link" href="#20240929205716CST">定理9</a>）；若 \(i \nrightarrow j\) ，则对 \(\forall n\) ， \(p_{ij}^{\left(n\right)}=0\) 。不管是哪种情况， \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}\to 0\) ，但是 \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}=1\) （与<a class="link" href="#20240929204123CST">式(4)</a>类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。<br>
   若 \(S\) 中有零常返状态，设为 \(i\) ，令 \(C=\set{j | i \rightarrow j}\) ，则有 \(\displaystyle\sum_{j \in C}p_{ij}^{\left(n\right)}=1\) 且 \(j \rightarrow i\) （ \(j \nrightarrow i\) 与 \(i\) 的常返性相矛盾，类似<a class="link" href="#20240929212219CST">引理2</a>的证明）。故 \(i \leftrightarrow j\) ，从而 \(j\) 也为零常返状态（<a class="link" href="#20240929205430CST">定理5</a>）。则 \(\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}=0\) （<a class="link" href="#20240929205716CST">定理9</a>），从而 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}\to 0\) 。但是由 \(j\) 的定义知 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}=1\) ，矛盾。因此有限状态的Markov链不可能有零常返状态。</p>
 <p>  <span id="20240929212124CST"></span><strong>推论3</strong>：若Markov链有一个零常返状态，则必有无限个零常返状态。</p>
-<p>  <strong>证明（<a class="link" href="#20240929212124CST">推论3</a>）</strong>‌：假设Markov链有一个零常返状态。由<a class="link" href="#20240929205434CST">Markov过程-状态空间分解定理</a>可知这个零常返状态必然存在于某个不可约类中，又有<a class="link" href="#20240929205430CST">定理5</a>可知这个类必然全都是零常返状态。由<a class="link" href="#20240929212119CST">推论2</a>可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。</p>
+<p>  <strong>证明（<a class="link" href="#20240929212124CST">推论3</a>）</strong>‌：假设Markov链有一个零常返状态。由<a class="link" href="#20240929205434CST">状态空间分解定理</a>可知这个零常返状态必然存在于某个不可约类中，又有<a class="link" href="#20240929205430CST">定理5</a>可知这个类必然全都是零常返状态。由<a class="link" href="#20240929212119CST">推论2</a>可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。</p>
 <h4 id="再论正常返">再论正常返
 </h4><p>  <span id="20240929205721CST"></span><strong>定理10</strong>：若 \(j\) 为正常返状态且周期为 \(d\) ，则对 \(\forall i\) 及 \(0 \le r \le d-1\) ，有</p>
 <span id="20240929213918CST"></span>\[
@@ -1613,7 +1613,7 @@ p_{ij}^{\left(nd+r\right)}=&\sum_{k=0}^{\left(nd+r\right)}f_{ij}^{\left(k\right)
 \sum_{m=0}^{N}f_{ij}^{\left(md+r\right)}p_{jj}^{\left(n-m\right)d}\le p_{ij}^{\left(nd+r\right)}\le \sum_{m=0}^{N}f_{ij}^{\left(md+r\right)}p_{jj}^{\left(n-m\right)d}+\sum_{N+1}^{n}f_{ij}^{\left(md+r\right)}
 \tag{70}
     \]
-<p>  类似于<a class="link" href="#20240929205716CST">定理9</a>的推导，先令 \(n \to \infin\) ，再令 \(N \to \infin\) ，由<a class="link" href="#20240929205712CST">Markov过程-极限定理</a>得</p>
+<p>  类似于<a class="link" href="#20240929205716CST">定理9</a>的推导，先令 \(n \to \infin\) ，再令 \(N \to \infin\) ，由<a class="link" href="#20240929205712CST">极限定理</a>得</p>
 <span id="20240929213942CST"></span>\[
 f_{ij}\left(r\right)\space\frac{d}{\mu_j}\le p_{ij}^{\left(nd+r\right)} \le f_{ij}\left(r\right)\space\frac{d}{\mu_j}
 \tag{71}
@@ -1718,7 +1718,7 @@ P\set{X_1=j}=&\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 <p>  <span id="20240929205730CST"></span><strong>定理12</strong>：对于不可约非周期的Markov链：<br>
   (1) 若它是遍历的，则 \(\pi_j=\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}>0\) 是不变分布且是唯一的不变分布（<strong>遍历定理</strong>）。<br>
   (2) 若状态都是瞬过的或全为零常返的，则不变分布不存在。</p>
-<p>  <strong>证明（<a class="link" href="#20240929205730CST">定理12</a>）</strong>‌：(1)对遍历的Markov链，由<a class="link" href="#20240929212128CST">推论4</a>可知 \(\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}\) 存在，记为 \(\pi_j\) 。首先证 \(\set{\pi_j,j \in S}\) 是不变分布。由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Fatou引理</a>和<a class="link" href="#20240929204400CST">Markov过程-C-K方程</a>可得（因为级数是<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Riemann-Stieljes积分</a>的特例， 也可以看成关于点测度的Lebesgue积分， 所以Fatou引理和下文出现的Lebesgue控制收敛定理仍成立）。</p>
+<p>  <strong>证明（<a class="link" href="#20240929205730CST">定理12</a>）</strong>‌：(1)对遍历的Markov链，由<a class="link" href="#20240929212128CST">推论4</a>可知 \(\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}\) 存在，记为 \(\pi_j\) 。首先证 \(\set{\pi_j,j \in S}\) 是不变分布。由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Fatou引理</a>和<a class="link" href="#20240929204400CST">C-K方程</a>可得（因为级数是<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">Riemann-Stieljes积分</a>的特例， 也可以看成关于点测度的Lebesgue积分， 所以Fatou引理和下文出现的Lebesgue控制收敛定理仍成立）。</p>
 <span id="20240929214122CST"></span>\[
 \pi_j=\lim\limits_{n \to \infin}p_{ij}^{\left(n+1\right)}=\lim\limits_{n \to \infin}\sum_{k \in S}p_{ik}^{\left(n\right)}p_{kj}\ge\sum_{k \in S}\lim\limits_{n \to \infin}p_{ik}^{\left(n\right)}p_{kj}=\sum_{k \in S}\pi_kp_{kj}
 \tag{87}
@@ -1733,7 +1733,7 @@ P\set{X_1=j}=&\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 \pi_j=\sum_{k \in S}\pi_kp_{kj}
 \tag{89}
     \]
-<p>  从而 \(\set{\pi_j,j \in S}\) 是不变分布。再来证 \(\set{\pi_j,j \in S}\) 是唯一的不变分布。由上式和<a class="link" href="#20240929204400CST">Markov过程-C-K方程</a>可得</p>
+<p>  从而 \(\set{\pi_j,j \in S}\) 是不变分布。再来证 \(\set{\pi_j,j \in S}\) 是唯一的不变分布。由上式和<a class="link" href="#20240929204400CST">C-K方程</a>可得</p>
 <span id="20240929214143CST"></span>\[
 \pi_j=\sum_{k \in S}\pi_kp_{kj}=\sum_{k \in S}\sum_{l \in S}\pi_lp_{lk}p_{kj}=\sum_{l \in S}\pi_lp_{lj}^{\left(2\right)}=\cdots=\sum_{k \in S}\pi_kp_{kj}^{\left(n\right)}
 \tag{90}
@@ -2015,7 +2015,7 @@ p_{ij}^\prime\left(t\right)=\sum_{k \ne i}q_{ik}p_{kj}\left(t\right)-q_{ii}p_{ij
 p_{ij}^\prime\left(t\right)=\sum_{k \ne j}q_{kj}p_{ik}\left(t\right)-q_{jj}p_{ij}\left(t\right)
 \tag{124}
     \]</p>
-<p>  <strong>证明（<a class="link" href="#20240929211031CST">Markov过程-Kolmogorov微分方程</a>）</strong>‌：先证明<a class="link" href="#20240929214533CST">式(123)</a>。由<a class="link" href="#20240929210959CST">定理14</a>可得</p>
+<p>  <strong>证明（<a class="link" href="#20240929211031CST">Kolmogorov微分方程</a>）</strong>‌：先证明<a class="link" href="#20240929214533CST">式(123)</a>。由<a class="link" href="#20240929210959CST">定理14</a>可得</p>
 <span id="20240929214546CST"></span>\[
 p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(h\right)p_{kj}\left(t\right)
 \tag{125}
@@ -2057,7 +2057,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)=\sum_{k \ne i,k \in S}p_{ik}\left(h\
 \lim\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}\left(h\right)}{h}p_{kj}\left(t\right)=\sum_{k \ne i}q_{ik}p_{kj}\left(t\right)
 \tag{131}
     \]
-<p>  因此无限状态下<a class="link" href="#20240929214533CST">式(123)</a>仍然成立。实际上<a class="link" href="#20240929214533CST">式(123)</a>可以被写成矩阵形式，也就是 \(\bm{P}^\prime\left(t\right)=\bm{Q}\bm{P}\left(t\right)\) ，其中 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) ， \(\bm{Q}=\left(q_{ij}\right)\) 。依<a class="link" href="#20240929211031CST">Markov过程-Kolmogorov微分方程</a>条件知 \(\bm{Q}\) 是保守的。<br>
+<p>  因此无限状态下<a class="link" href="#20240929214533CST">式(123)</a>仍然成立。实际上<a class="link" href="#20240929214533CST">式(123)</a>可以被写成矩阵形式，也就是 \(\bm{P}^\prime\left(t\right)=\bm{Q}\bm{P}\left(t\right)\) ，其中 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) ， \(\bm{Q}=\left(q_{ij}\right)\) 。依<a class="link" href="#20240929211031CST">Kolmogorov微分方程</a>条件知 \(\bm{Q}\) 是保守的。<br>
   下面证明<a class="link" href="#20240929214539CST">式(124)</a>。在<a class="link" href="#20240929214533CST">式(123)</a>中计算 \(t+h\) 的状态时是对退后到时刻 \(h\) 的状态来取条件的（所以称为后退方程），这里我们考虑对时刻 \(t\) 的状态取条件，用<a class="link" href="#20240929210959CST">定理14</a>有</p>
 <span id="20240929214633CST"></span>\[
 p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(h\right)
@@ -2268,7 +2268,7 @@ p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(h\right)
             
             
         
-        <span>本图书馆累计发布了13篇文章 共180682字</span>
+        <span>本图书馆累计发布了13篇文章 共180549字</span>
     </section>
 
     <section class="site-visit-count">
