@@ -131,7 +131,7 @@
 <meta property='og:description' content="基于关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T14:42:01&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='关系代数' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T18:36:38&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="基于关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -967,7 +967,7 @@
 </svg>
 
             <time class="article-words">
-                21284 字
+                21279 字
             </time>
         </div>
 
@@ -3451,7 +3451,7 @@ R \div S = \set{a_1}
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (Student.Sno,Student.Sage): Student.Sdept=&#39;IS&#39;}∧Student.Sage&lt;20
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (Student.Sno,Student.Sage): Student.Sdept=&#39;IS&#39;∧Student.Sage&lt;20
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>3. 带排序的检索</strong></p>
@@ -3510,7 +3510,7 @@ R \div S = \set{a_1}
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE SC X` 
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE SC X
 </span></span><span class="line"><span class="cl">GET W (Student.Sname): ∃X(X.Sno=Student.Sno∧X.Cno=&#39;2&#39;)
 </span></span></code></pre></td></tr></table>
 </div>
@@ -3535,9 +3535,9 @@ R \div S = \set{a_1}
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE Course CX
-</span></span><span class="line"><span class="cl">SC SCX  
+</span></span><span class="line"><span class="cl">      SC SCX  
 </span></span><span class="line"><span class="cl">GET W (Student.Sname): ∃SCX(SCX.Sno=Student.Sno∧ 
-</span></span><span class="line"><span class="cl">                    ∃CX(CX.Cno=SCX.Cno∧CX.Pcno=&#39;6&#39;))
+</span></span><span class="line"><span class="cl">                       ∃CX(CX.Cno=SCX.Cno∧CX.Pcno=&#39;6&#39;))
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>  在本例中的元组关系演算公式可以变换为<strong>前束范式（prenex normal form）</strong>‌的形式：</p>
@@ -3547,8 +3547,8 @@ R \div S = \set{a_1}
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (StudentSname): ∃SCX}∃CX(SCX.Sno=Student.Sno∧
-</span></span><span class="line"><span class="cl">                        CX.Cno=SCX.Cno∧CX.Pcno=&#39;6&#39;)
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET W (StudentSname): ∃SCX∃CX(SCX.Sno=Student.Sno∧
+</span></span><span class="line"><span class="cl">                               CX.Cno=SCX.Cno∧CX.Pcno=&#39;6&#39;)
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>  <a class="link" href="#20241027163733CST">例21</a>、<a class="link" href="#20241027164425CST">例22</a>、<a class="link" href="#20241027172019CST">例23</a>中的元组变量都是为存在量词而设的。其中例2.23需要对两个关系使用存在量词，所以设了两个元组变量。</p>
@@ -3565,7 +3565,7 @@ R \div S = \set{a_1}
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE SC SCX 
 </span></span><span class="line"><span class="cl">GET W (Student.Sname,Course.Cname): ∃SCX(SCX.Grade⩾90∧ 
-</span></span><span class="line"><span class="cl">                                    SCX.Sno=Student.Sno∧Course.Cno=SCX.Cno)
+</span></span><span class="line"><span class="cl">                                     SCX.Sno=Student.Sno∧Course.Cno=SCX.Cno)
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>8. 用全称量词（generality quantifier）的检索</strong></p>
@@ -3577,7 +3577,7 @@ R \div S = \set{a_1}
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE SC SCX
-</span></span><span class="line"><span class="cl">GET W (Student.Sname): }∀SCX (SCX.Sno≠Student.Sno∧SCX.Cno≠&#39;1&#39;)
+</span></span><span class="line"><span class="cl">GET W (Student.Sname): ∀SCX(SCX.Sno≠Student.Sno∨SCX.Cno≠&#39;1&#39;)
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>  也可以用存在量词表示。</p>
@@ -3588,7 +3588,7 @@ R \div S = \set{a_1}
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE SC SCX
-</span></span><span class="line"><span class="cl">GET W (Student.Sname): ¬∃SCX (SCX.Sno=Student.Sno∧SCX.Cno=&#39;1&#39;)
+</span></span><span class="line"><span class="cl">GET W (Student.Sname): ¬∃SCX(SCX.Sno=Student.Sno∧SCX.Cno=&#39;1&#39;)
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>9. 用两种量词的检索</strong></p>
@@ -3601,7 +3601,7 @@ R \div S = \set{a_1}
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE Course CX
-</span></span><span class="line"><span class="cl">SC SCX
+</span></span><span class="line"><span class="cl">      SC SCX
 </span></span><span class="line"><span class="cl">GET W (Student.Sname): ∀CX∃SCX(SCX.Sno=Student.Sno∧SCX.Cno=CX.Cno)
 </span></span></code></pre></td></tr></table>
 </div>
@@ -3618,10 +3618,10 @@ R \div S = \set{a_1}
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RANGE Course CX  
-</span></span><span class="line"><span class="cl">SC SCX
-</span></span><span class="line"><span class="cl">SC SCY
-</span></span><span class="line"><span class="cl">GET W (Student.Sno): }∀CX(∃SCX(SCX.Sno=&#39;201215122&#39;∧SCX.Cno=CX.Cno) 
-</span></span><span class="line"><span class="cl">                          ⇒∃SCY(SCY.Sno=Student.Sno }∧SCY.Cno=CX.Cno))
+</span></span><span class="line"><span class="cl">      SC SCX
+</span></span><span class="line"><span class="cl">      SC SCY
+</span></span><span class="line"><span class="cl">GET W (Student.Sno): ∀CX(∃SCX(SCX.Sno=&#39;201215122&#39;∧SCX.Cno=CX.Cno) 
+</span></span><span class="line"><span class="cl">                         ⇒∃SCY(SCY.Sno=Student.Sno∧SCY.Cno=CX.Cno))
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>  蕴涵（⇒）见<a class="link" onclick="alert('抱歉，“数理逻辑”还未上线~')">命题逻辑</a>。</p>
@@ -4744,6 +4744,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
         
             <a href="/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/">关系数据库</a>
         
+            <a href="/tags/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/">关系代数</a>
+        
     </section>
 
 
@@ -4769,7 +4771,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 
 
         <span>
-            最后更新于 Nov 11, 2024 14:42 CST
+            最后更新于 Nov 11, 2024 18:36 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4856,6 +4858,18 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
             </a>
         </article>
     
+        <article>
+            <a href="/posts/computer_science/database_system/the_standard_language_for_relational_databases_sql/">
+                <div class="article-details">
+                    <h2 class="article-title">下一篇：关系数据库标准语言SQL</h2>
+                    
+                </div>
+
+                
+                
+            </a>
+        </article>
+    
 </div>
      
     
@@ -4934,7 +4948,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
             
             
         
-        <span>本图书馆累计发布了13篇文章 共194795字</span>
+            
+            
+        
+        <span>本图书馆累计发布了14篇文章 共194790字</span>
     </section>
 
     <section class="site-visit-count">
