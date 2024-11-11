@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/computer_science/operating_system/process_description_and_control/'>
 
-<link rel="stylesheet" href="/scss/style.min.c99d0152eea2eaad815d52a3f98640f99cabc123af9634be0d34fca60200c2d2.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.1fb82b158454f213b71dae549893dc6d34b00f7e1b31fc8980a3ca5b0f15763f.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="操作系统中关于进程的定义、控制、同步与线程的实现方法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/operating_system/process_description_and_control/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='进程' /><meta property='article:tag' content='线程' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T16:20:36&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='进程' /><meta property='article:tag' content='线程' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T22:41:20&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="操作系统（二）：进程的描述与控制">
 <meta name="twitter:description" content="操作系统中关于进程的定义、控制、同步与线程的实现方法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1127,7 +1127,7 @@
 </svg>
 
             <time class="article-words">
-                50959 字
+                50969 字
             </time>
         </div>
 
@@ -2193,9 +2193,9 @@
   </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;具有创建、终止和挂起状态的进程状态图</p>
 <h3 id="进程管理中的数据结构">进程管理中的数据结构
-</h3><p>  如<a class="link" href="/posts/computer_science/operating_system/introduction_to_operating_system/#20241106221347CST">第一章1.1节</a>所述，一方面，为了便于对计算机中的各类资源(包括硬件和信息)的使用和管理，OS将它们抽象为相应的各种数据结构，以及提供一组对资源进行操作的命令，用户可利用这些数据结构及操作命令来执行相关的操作，而无需关心其实现的具体细节。另一方面，操作系统作为计算机资源的管理者，尤其是为了协调诸多用户对系统中共享资源的使用，它还必须记录和查询各种资源的使用及各类进程运行情况的信息。OS对于这些信息的组织和维护也是通过建立和维护各种数据结构的方式来实现的。</p>
+</h3><p>  如<a class="link" href="/posts/computer_science/operating_system/introduction_to_operating_system/#20241106221347CST">操作系统概论-操作系统的目标和作用</a>所述，一方面，为了便于对计算机中的各类资源（包括硬件和信息）的使用和管理，OS将它们抽象为相应的各种数据结构，以及提供一组对资源进行操作的命令，用户可利用这些数据结构及操作命令来执行相关的操作，而无需关心其实现的具体细节。另一方面，操作系统作为计算机资源的管理者，尤其是为了协调诸多用户对系统中共享资源的使用，它还必须记录和查询各种资源的使用及各类进程运行情况的信息。OS对于这些信息的组织和维护也是通过建立和维护各种数据结构的方式来实现的。</p>
 <h4 id="操作系统中用于管理控制的数据结构">操作系统中用于管理控制的数据结构
-</h4><p>  在计算机系统中，对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为<strong>资源信息表</strong>或<strong>进程信息表</strong>，其中包含了资源或进程的标识、描述、状态等信息以及一批指针。通过这些指针，可以将同类资源或进程的信息表，或者同一进程所占用的资源信息表分类链接成不同的队列，便于操作系统进行查找。如<a class="link" href="#20241106223515CST">图9</a>所示，OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。本节着重介绍PCB，其它的表将在后面的章节中陆续介绍。</p>
+</h4><p>  在计算机系统中，对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为<strong>资源信息表</strong>或<strong>进程信息表</strong>，其中包含了资源或进程的标识、描述、状态等信息以及一批指针。通过这些指针，可以将同类资源或进程的信息表，或者同一进程所占用的资源信息表分类链接成不同的队列，便于操作系统进行查找。如<a class="link" href="#20241106223515CST">图9</a>所示，OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。本节着重介绍PCB，其它的表将在后面的篇章中陆续介绍。</p>
 <span id="20241106223515CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 343.619">
@@ -2675,7 +2675,7 @@
 </h4><p>  当系统中发生激活进程的事件时，OS将利用激活原语<code>active</code>，将指定进程激活。激活原语先将进程从外存调入内存，检查该进程的现行状态，若是静止就绪，便将之改为活动就绪；若为静止阻塞，便将之改为活动阻塞。假如采用的是抢占调度策略，则每当有静止就绪进程被激活而插入就绪队列时，便应检查是否要进行重新调度，即由调度程序将被激活的进程与当前进程两者的优先级进行比较，如果被激活进程的优先级低，就不必重新调度；否则，立即剥夺当前进程的运行，把处理机分配给刚刚被激活的进程。</p>
 <h2 id="进程同步">进程同步
 </h2><p>  在OS中引入进程后，一方面可以使系统中的多道程序并发执行，这不仅能有效地改善资源利用率，还可显著地提高系统的吞吐量，但另一方面却使系统变得更加复杂。如果不能采取有效的措施，对多个进程的运行进行妥善的管理，必然会因为这些进程对系统资源的无序争夺给系统造成混乱。致使每次处理的结果存在着不确定性，即显现出其不可再现性。<br>
-  为保证多个进程能有条不紊地运行，在多道程序系统中，必须引入进程同步机制。在 本章中，将详细介绍在单处理机系统中的进程同步机制&mdash;&mdash;硬件同步机制、信号量机制、管程机制等，利用它们来保证程序执行的可再现性。</p>
+  为保证多个进程能有条不紊地运行，在多道程序系统中，必须引入进程同步机制。在本文中，将详细介绍在单处理机系统中的进程同步机制&mdash;&mdash;硬件同步机制、信号量机制、管程机制等，利用它们来保证程序执行的可再现性。</p>
 <h3 id="进程同步的基本概念">进程同步的基本概念
 </h3><p>  进程同步机制的主要任务，是对多个相关进程在执行次序上进行协调，使并发执行的诸进程之间能按照一定的规则（或时序）共享系统资源，并能很好地相互合作，从而使程序的执行具有可再现性。</p>
 <h4 id="两种形式的制约关系">两种形式的制约关系
@@ -2686,7 +2686,7 @@
 <p>  某些应用程序，为了完成某任务而建立了两个或多个进程。这些进程将为完成同一项任务而相互合作。进程间的直接制约关系就是源于它们之间的相互合作。例如，有两个相互合作的进程&mdash;&mdash;输入进程<code>A</code>和计算进程<code>B</code>，它们之间共享一个缓冲区。进程<code>A</code>通过缓冲向进程<code>B</code>提供数据。进程<code>B</code>从缓冲中取出数据，并对数据进行处理。但如果该缓冲空时，计算进程因不能获得所需数据而被阻塞。一旦进程<code>A</code>把数据输入缓冲区后便将进程<code>B</code>唤醒；反之，当缓冲区已满时，进程<code>A</code>因不能再向缓冲区投放数据而被阻塞，当进程<code>B</code>将缓冲区数据取走后便可唤醒<code>A</code>。</p>
 <p>  在多道程序环境下，由于存在着上述两类相互制约关系，进程在运行过程中是否能获得处理机运行与以怎样的速度运行，并不能由进程自身所控制，此即进程的异步性。由此会产生对共享变量或数据结构等资源不正确的访问次序，从而造成进程每次执行结果的不一致。这种差错往往与时间有关，故称为“与时间有关的错误”。为了杜绝这种差错，必须对进程的执行次序进行协调，保证诸进程能按序执行。</p>
 <h4 id="临界资源critical-resource">临界资源（Critical Resource）
-</h4><p>  在第一章中我们曾经介绍过，许多硬件资源如打印机、磁带机等，都属于临界资源，诸进程间应采取互斥方式，实现对这种资源的共享。下面我们将通过一个简单的例子来说明这一过程。<br>
+</h4><p>  在第一篇中我们曾经介绍过，许多硬件资源如打印机、磁带机等，都属于临界资源，诸进程间应采取互斥方式，实现对这种资源的共享。下面我们将通过一个简单的例子来说明这一过程。<br>
   生产者&mdash;消费者（producer-consumer）问题是一个著名的进程同步问题。它描述的是：有一群生产者进程在生产产品，并将这些产品提供给消费者进程去消费。为使生产者进程与消费者进程能并发执行，在两者之间设置了一个具有n个缓冲区的缓冲池，生产者进程将其所生产的产品放入一个缓冲区中:消费者进程可从一个缓冲区中取走产品去消费。尽管所有的生产者进程和消费者进程都是以异步方式运行的，但它们之间必须保持同步，既不允许消费者进程到一个空缓冲区去取产品，也不允许生产者进程向一个已装满产品且尚未被取走的缓冲区中投放产品。<br>
   我们可利用一个数组<code>buffer</code>来表示上述的具有<code>n</code>个缓冲区的缓冲池。每投入（或取出）一个产品时,缓冲池<code>buffer</code>中暂存产品（或已取走产品的空闲单元）的数组单元指针<code>in</code>（或<code>out</code>）加<code>1</code>。由于这里由<code>buffer</code>组成的缓冲池是被组织成循环缓冲的，故应把输入指针<code>in</code>（或输出指针<code>out</code>）加<code>1</code>，表示成<code>in=(in+1)%n</code>（或<code>out=(out+1)%n</code>）。当<code>(in+1)%n=out</code>时表示缓冲池满；而<code>in=out</code>则表示缓冲池空。此外，还引入了一个整型变量<code>counter</code>，其初始值为<code>0</code>。每当生产者进程向缓冲池中投放（或取走）一个产品后，使<code>counter</code>加<code>1</code>(或减<code>1</code>)。生产者和消费者两进程共享下面的变量：</p>
 <div class="highlight"><div class="chroma">
@@ -4649,7 +4649,7 @@
 
 
         <span>
-            最后更新于 Nov 11, 2024 16:20 CST
+            最后更新于 Nov 11, 2024 22:41 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4817,7 +4817,7 @@
             
             
         
-        <span>本图书馆累计发布了14篇文章 共195969字</span>
+        <span>本图书馆累计发布了14篇文章 共199529字</span>
     </section>
 
     <section class="site-visit-count">

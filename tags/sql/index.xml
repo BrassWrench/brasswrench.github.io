@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 11 Nov 2024 19:45:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/sql/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 11 Nov 2024 22:41:20 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/sql/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/the_standard_language_for_relational_databases_sql/</link>
         <pubDate>Mon, 11 Nov 2024 17:45:02 +0800</pubDate>
@@ -87,11 +87,403 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp;SQL标准的进展过程&lt;/p&gt;
 &lt;p&gt;  2008年、2011年又对SQL2003做了一些修改和补充。可以发现，SQL标准的内容越来越丰富，也越来越复杂。SQL99合计超过1700页。SQL/86和SQL/89都是单个文档。SQL/92和SQL99已经扩展为一系列开放的部分。例如，SQL/92除了SQL基本部分外还增加了SQL调用接口、SQL永久存储模块；而SQL99则进一步扩展为框架、SQL基础部分、SQL调用接口、SQL永久存储模块、SQL宿主语言绑定、SQL外部数据的管理和SQL
 对象语言绑定等多个部分。&lt;br&gt;
   目前，没有一个数据库系统能够支持SQL标准的所有概念和特性。大部分数据库系统能支持SQL/92标准中的大部分功能以及SQL99、SQL2003中的部分新概念。同时，许多软件厂商对SQL基本命令集还进行了不同程度的扩充和修改，又可以支持标准以外的一些功能特性。本文不是介绍完整的SQL，而是介绍SQL的基本概念和基本功能。因此，在使用具体系统时要查阅各产品的用户手册。&lt;/p&gt;
-</description>
+&lt;h3 id=&#34;sql的特点&#34;&gt;SQL的特点
+&lt;/h3&gt;&lt;p&gt;  SQL之所以能够为用户和业界所接受并成为国际标准，是因为它是一个综合的、功能极强同时又简洁易学的语言。SQL集数据查询（data query）、数据操纵（data manipulation）、数据定义（data definition）和数据控制（data control）功能于一体，其主要特点包括以下几部分。&lt;/p&gt;
+&lt;h4 id=&#34;综合统一&#34;&gt;综合统一
+&lt;/h4&gt;&lt;p&gt;  数据库系统的主要功能是通过数据库支持的数据语言来实现的。&lt;br&gt;
+  非关系模型（层次模型、网状模型）的数据语言一般都分为：&lt;br&gt;
+  (1)模式数据定义语言（Schema Data Definition Language，模式 DDL）。&lt;br&gt;
+  (2)外模式数据定义语言（Subschema Data Definition Language，外模式DDL或子模式DDL）。&lt;br&gt;
+  (3)数据存储有关的描述语言(Data Storage Description Language, DSDL)。&lt;br&gt;
+  (4)数据操纵语言（Data Manipulation Language, DML）。&lt;br&gt;
+  它们分别用于定义模式、外模式、内模式和进行数据的存取与处置。当用户数据库投入运行后，如果需要修改模式，必须停止现有数据库的运行，转储数据，修改模式并编译后再重装数据库，十分麻烦。&lt;/p&gt;
+&lt;p&gt;  SQL集数据定义语言、数据操纵语言、数据控制语言的功能于一体，语言风格统一，可以独立完成数据库生命周期中的全部活动，包括以下一系列操作要求：&lt;br&gt;
+  ◾定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。&lt;br&gt;
+  ◾对数据库中的数据进行查询和更新。&lt;br&gt;
+  ◾数据库重构和维护。&lt;br&gt;
+  ◾数据库安全性、完整性控制，以及事务控制。&lt;br&gt;
+  ◾嵌入式SQL和动态SQL定义。&lt;br&gt;
+  这就为数据库应用系统的开发提供了良好的环境。特别是用户在数据库系统投入运行后还可根据需要随时地、逐步地修改模式，并不影响数据库的运行，从而使系统具有良好的可扩展性。&lt;br&gt;
+  另外，在关系模型中实体和实体间的联系均用关系表示，这种数据结构的单一性带来了数据操作符的统一性，查找、插入、删除、更新等每一种操作都只需一种操作符，
+从而克服了非关系系统由于信息表示方式的多样性带来的操作复杂性。例如，在DBTG网状数据库系统中，需要两种插入操作符：&lt;code&gt;STORE&lt;/code&gt;用来把记录存入数据库，&lt;code&gt;CONNECT&lt;/code&gt;用来把记录插入系值（系值是网状数据库中记录之间的一种联系方式）以建立数据之间的联系。&lt;/p&gt;
+&lt;h4 id=&#34;高度非过程化&#34;&gt;高度非过程化
+&lt;/h4&gt;&lt;p&gt;  非关系数据模型的数据操纵语言是“面向过程”的语言，用“过程化”语言完成某项请求必须指定存取路径。而用SQL进行数据操作时，只要提出“做什么”，而无须指明“怎么做”，因此无须了解存取路径。存取路径的选择以及SQL的操作过程由系统自动完成。
+这不但大大减轻了用户负担，而且有利于提高数据独立性。&lt;/p&gt;
+&lt;h4 id=&#34;面向集合的操作方式&#34;&gt;面向集合的操作方式
+&lt;/h4&gt;&lt;p&gt;  非关系数据模型采用的是面向记录的操作方式，操作对象是一条记录。例如查询所有平均成绩在80分以上的学生姓名，用户必须一条一条地把满足条件的学生记录找出来（通常要说明具体处理过程，即按照哪条路径，如何循环等）。而SQL采用集合操作方式，不仅操作对象、查找结果可以是元组的集合，而且一次插入、删除、更新操作的对象也可以是元组的集合。&lt;/p&gt;
+&lt;h4 id=&#34;以同一种语法结构提供多种使用方式&#34;&gt;以同一种语法结构提供多种使用方式
+&lt;/h4&gt;&lt;p&gt;  SQL既是独立的语言，又是嵌入式语言。作为独立的语言，它能够独立地用于联机交互的使用方式，用户可以在终端键盘上直接键入SQL命令对数据库进行操作；作为嵌入式语言，SQL语句能够嵌入到高级语言（例如C、C++、Java）程序中，供程序员设计程序时使用。而在两种不同的使用方式下，SQL的语法结构基本上是一致的。这种以统一的语法结构提供多种不同使用方式的做法，提供了极大的灵活性与方便性。&lt;/p&gt;
+&lt;h4 id=&#34;语言简洁易学易用&#34;&gt;语言简洁、易学易用
+&lt;/h4&gt;&lt;p&gt;  SQL功能极强，但由于设计巧妙，语言十分简洁，完成核心功能只用了9个动词，如&lt;a class=&#34;link&#34; href=&#34;#20241111210404CST&#34;&gt;表2&lt;/a&gt;所示。SQL接近英语口语，因此易于学习和使用。&lt;/p&gt;
+&lt;span id=&#34;20241111210404CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;SQL功能&lt;/th&gt;
+          &lt;th&gt;动词&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;数据查询&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;SELECT&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;数据定义&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;CREATE&lt;/code&gt;，&lt;code&gt;DROP&lt;/code&gt;，&lt;code&gt;ALTER&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;数据操纵&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;INSERT&lt;/code&gt;，&lt;code&gt;UPDATE&lt;/code&gt;，&lt;code&gt;DELETE&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;数据控制&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;GRANT&lt;/code&gt;、&lt;code&gt;REVOKE&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;SQL的动词&lt;/p&gt;
+&lt;h3 id=&#34;sql的基本概念&#34;&gt;SQL的基本概念
+&lt;/h3&gt;&lt;p&gt;  支持SQL的关系数据库管理系统同样支持关系数据库三级模式结构。如&lt;a class=&#34;link&#34; href=&#34;#20241111211554CST&#34;&gt;图1&lt;/a&gt;所示，其中外模式包括若干&lt;strong&gt;视图（view）&lt;/strong&gt;‌和部分&lt;strong&gt;基本表（base table）&lt;/strong&gt;，数据库模式包括若干基本表，内模式包括若干&lt;strong&gt;存储文件（stored file）&lt;/strong&gt;。&lt;/p&gt;
+&lt;span id=&#34;20241111211554CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 329.7143&#34;&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;308.3165&#34; y=&#34;7.3651&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(340.1887 32.27)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .006em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.0977&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.019em;&#34;&gt;Q&lt;/tspan&gt;&lt;tspan x=&#34;23.4175&#34; y=&#34;0&#34;&gt;L&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;308.3165&#34; y=&#34;101.057&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(334.6535 125.9619)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;视图1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;308.3165&#34; y=&#34;194.7493&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(325.6535 219.6542)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;基本表2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;308.3165&#34; y=&#34;288.4411&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(316.6535 313.3459)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;存储文件1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;534.2308&#34; y=&#34;101.4396&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(560.5678 126.3445)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;视图2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;159.5352&#34; y=&#34;194.7493&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(176.8722 219.6542)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;基本表1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;457.0978&#34; y=&#34;194.7493&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(474.4348 219.6542)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;基本表3&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;605.8791&#34; y=&#34;194.7493&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(623.2162 219.6542)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;基本表4&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;605.8791&#34; y=&#34;288.441&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(614.2162 313.3459)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;存储文件2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;357.4593&#34; y1=&#34;48.6999&#34; x2=&#34;357.4593&#34; y2=&#34;95.0873&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;353.7562 51.5085 357.4593 49.9352 361.1624 51.5085 357.4593 42.7302 353.7562 51.5085&#34;/&gt;
+    &lt;polygon points=&#34;353.7562 92.2787 357.4593 93.852 361.1624 92.2787 357.4593 101.057 353.7562 92.2787&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;412.2701&#34; y1=&#34;44.6045&#34; x2=&#34;578.4677&#34; y2=&#34;99.5652&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;413.7739 49.0022 413.4429 44.9923 416.0993 41.9704 406.6022 42.7302 413.7739 49.0022&#34;/&gt;
+    &lt;polygon points=&#34;574.6384 102.1993 577.2948 99.1774 576.9638 95.1675 584.1356 101.4396 574.6384 102.1993&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;305.0303&#34; y1=&#34;47.714&#34; x2=&#34;211.9642&#34; y2=&#34;188.8574&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;300.3926 48.0203 304.3503 48.7453 306.5758 52.0972 308.3165 42.7302 300.3926 48.0203&#34;/&gt;
+    &lt;polygon points=&#34;210.4187 184.4742 212.6443 187.8261 216.6019 188.5512 208.678 193.8413 210.4187 184.4742&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;357.4593&#34; y1=&#34;142.7744&#34; x2=&#34;357.4593&#34; y2=&#34;189.1618&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;353.7562 145.583 357.4593 144.0097 361.1624 145.583 357.4593 136.8046 353.7562 145.583&#34;/&gt;
+    &lt;polygon points=&#34;353.7562 186.3532 357.4593 187.9264 361.1624 186.3532 357.4593 195.1315 353.7562 186.3532&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;357.4593&#34; y1=&#34;236.0841&#34; x2=&#34;357.4593&#34; y2=&#34;282.4715&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;353.7562 238.8927 357.4593 237.3195 361.1624 238.8927 357.4593 230.1144 353.7562 238.8927&#34;/&gt;
+    &lt;polygon points=&#34;353.7562 279.6629 357.4593 281.2362 361.1624 279.6629 357.4593 288.4413 353.7562 279.6629&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;655.022&#34; y1=&#34;236.0841&#34; x2=&#34;655.022&#34; y2=&#34;282.4715&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;651.3188 238.8927 655.022 237.3195 658.7251 238.8927 655.022 230.1144 651.3188 238.8927&#34;/&gt;
+    &lt;polygon points=&#34;651.3188 279.6629 655.022 281.2362 658.7251 279.6629 655.022 288.4413 651.3188 279.6629&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;561.1895&#34; y1=&#34;141.6861&#34; x2=&#34;510.52&#34; y2=&#34;190.9692&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;556.5942 140.9898 560.304 142.5474 561.7581 146.2989 565.4689 137.5238 556.5942 140.9898&#34;/&gt;
+    &lt;polygon points=&#34;509.9514 186.3564 511.4056 190.1079 515.1153 191.6656 506.2407 195.1315 509.9514 186.3564&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;600.0731&#34; y1=&#34;141.6861&#34; x2=&#34;650.7426&#34; y2=&#34;190.9692&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;599.5045 146.2989 600.9587 142.5474 604.6684 140.9898 595.7938 137.5238 599.5045 146.2989&#34;/&gt;
+    &lt;polygon points=&#34;646.1473 191.6656 649.8571 190.1079 651.3112 186.3564 655.022 195.1315 646.1473 191.6656&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;501.0925&#34; y1=&#34;233.943&#34; x2=&#34;413.4106&#34; y2=&#34;285.4189&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;496.7957 232.1714 500.0272 234.5684 500.5453 238.5584 506.2407 230.9206 496.7957 232.1714&#34;/&gt;
+    &lt;polygon points=&#34;413.9579 280.8035 414.476 284.7935 417.7075 287.1905 408.2625 288.4413 413.9579 280.8035&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;213.8481&#34; y1=&#34;233.9053&#34; x2=&#34;303.1464&#34; y2=&#34;285.4564&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;214.429 238.5166 214.918 234.5229 218.1319 232.1024 208.678 230.9206 214.429 238.5166&#34;/&gt;
+    &lt;polygon points=&#34;298.8626 287.2593 302.0765 284.8388 302.5655 280.8452 308.3165 288.4411 298.8626 287.2593&#34;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;SQL对关系数据库模式的支持&lt;/p&gt;
+&lt;p&gt;  用户可以用SQL对基本表和视图进行查询或其他操作，基本表和视图一样，都是关系。&lt;br&gt;
+  基本表是本身独立存在的表，在关系数据库管理系统中一个关系就对应一个基本表。一个或多个基本表对应一个存储文件，一个表可以带若干索引，索引也存放在存储文件中。存储文件的逻辑结构组成了关系数据库的内模式。存储文件的物理结构对最终用户是隐蔽的。&lt;br&gt;
+  视图是从一个或几个基本表导出的表。它本身不独立存储在数据库中，即数据库中只存放视图的定义而不存放视图对应的数据。这些数据仍存放在导出视图的基本表中，因此视图是一个虚表。视图在概念上与基本表等同，用户可以在视图上再定义视图。&lt;br&gt;
+  下面将逐一介绍各SQL语句的功能和格式。为了突出基本概念和基本功能，略去了许多语法细节。各个关系数据库管理系统产品在实现标准SQL时各有差别，与SQL标准的符合程度也不相同，一般在85%以上。因此，具体使用某个关系数据库管理系统产品时，还应参阅系统提供的有关手册。&lt;/p&gt;
+&lt;h2 id=&#34;学生课程数据库&#34;&gt;学生—课程数据库
+&lt;/h2&gt;&lt;p&gt;  本章以学生—课程数据库为例来讲解SQL的数据定义、数据操纵、数据查询和数据控制语句。&lt;br&gt;
+  为此，首先要定义一个学生—课程模式&lt;code&gt;S-T&lt;/code&gt;（见&lt;a class=&#34;link&#34; href=&#34;#20241111223104CST&#34;&gt;例1&lt;/a&gt;）。学生-课程数据库中包括以下三个表，它们的定义见3.3.2小节中例3.5、例3.6和例3.7。&lt;br&gt;
+  ◾学生表：Student(&lt;u&gt;Sno&lt;/u&gt;,Sname,Ssex,Sage,Sdept)&lt;br&gt;
+  ◾课程表：Course(&lt;u&gt;Cno&lt;/u&gt;,Cnme,Cpno,Ccredit)&lt;br&gt;
+  ◾学生选课表：SC(&lt;u&gt;Sno&lt;/u&gt;,&lt;u&gt;Cno&lt;/u&gt;,Grade)&lt;br&gt;
+  关系的主码加下划线表示。各个表中的数据示例如&lt;a class=&#34;link&#34; href=&#34;#20241111214851CST&#34;&gt;表3&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111215950CST&#34;&gt;表4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111220809CST&#34;&gt;表5&lt;/a&gt;所示。&lt;/p&gt;
+&lt;span id=&#34;20241111214851CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;p style=&#34;margin-bottom: 0;&#34;&gt;&amp;emsp;&amp;emsp;Student&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;学号&lt;br/&gt;Sno&lt;/th&gt;
+          &lt;th&gt;姓名&lt;br/&gt;Sname&lt;/th&gt;
+          &lt;th&gt;性别&lt;br/&gt;Ssex&lt;/th&gt;
+          &lt;th&gt;年龄&lt;br/&gt;Sage&lt;/th&gt;
+          &lt;th&gt;所在系&lt;br/&gt;Sdept&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;李勇&lt;/td&gt;
+          &lt;td&gt;男&lt;/td&gt;
+          &lt;td&gt;20&lt;/td&gt;
+          &lt;td&gt;CS&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215122&lt;/td&gt;
+          &lt;td&gt;刘晨&lt;/td&gt;
+          &lt;td&gt;女&lt;/td&gt;
+          &lt;td&gt;19&lt;/td&gt;
+          &lt;td&gt;CS&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215123&lt;/td&gt;
+          &lt;td&gt;王敏&lt;/td&gt;
+          &lt;td&gt;女&lt;/td&gt;
+          &lt;td&gt;18&lt;/td&gt;
+          &lt;td&gt;MA&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215125&lt;/td&gt;
+          &lt;td&gt;张立&lt;/td&gt;
+          &lt;td&gt;男&lt;/td&gt;
+          &lt;td&gt;19&lt;/td&gt;
+          &lt;td&gt;IS&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表3&amp;emsp;Student表格中的数据示例&lt;/p&gt;
+&lt;span id=&#34;20241111215950CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;p style=&#34;margin-bottom: 0;&#34;&gt;&amp;emsp;&amp;emsp;Course&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;课程号&lt;br/&gt;Cno&lt;/th&gt;
+          &lt;th&gt;课程名&lt;br/&gt;Cname&lt;/th&gt;
+          &lt;th&gt;先行课&lt;br/&gt;Cpno&lt;/th&gt;
+          &lt;th&gt;学分&lt;br/&gt;Ccredit&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;数据库&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;数学&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;信息系统&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;操作系统&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;数据结构&lt;/td&gt;
+          &lt;td&gt;7&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;数据处理&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;7&lt;/td&gt;
+          &lt;td&gt;PASCAL语言&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表4&amp;emsp;Course表格中的数据示例&lt;/p&gt;
+&lt;span id=&#34;20241111220809CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;p style=&#34;margin-bottom: 0;&#34;&gt;&amp;emsp;&amp;emsp;SC&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;学号&lt;br/&gt;Sno&lt;/th&gt;
+          &lt;th&gt;课程号&lt;br/&gt;Cno&lt;/th&gt;
+          &lt;th&gt;成绩&lt;br/&gt;Grade&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;92&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;85&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;88&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215122&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;90&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215122&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;80&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表5&amp;emsp;SC表格中的数据示例&lt;/p&gt;
+&lt;h2 id=&#34;数据定义&#34;&gt;数据定义
+&lt;/h2&gt;&lt;p&gt;  关系数据库系统支持三级模式结构，其模式、外模式和内模式中的基本对象有模式、表、视图和索引等。因此SQL的数据定义功能包括模式定义、表定义、视图和索引的定义, 如&lt;a class=&#34;link&#34; href=&#34;#20241111221858CST&#34;&gt;表6&lt;/a&gt;所示。&lt;/p&gt;
+&lt;span id=&#34;20241111221858CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th rowspan=&#34;2&#34;&gt;操作对象&lt;/th&gt;
+    &lt;th colspan=&#34;3&#34;&gt;操作方式&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;创建&lt;/th&gt;
+    &lt;th&gt;删除&lt;/th&gt;
+    &lt;th&gt;修改&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;模式&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;CREATE SCHEMA&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;DROP SCHEMA&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;表&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;CREATE TABLE&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;DROP TABLE&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;ALTER TABLE&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;视图&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;CREATE VIEW&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;DROP VIEW&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;索引&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;CREATE INDEX&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;DROP INDEX&lt;/code&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;code&gt;ALTER INDEX&lt;/code&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;SQL的数据定义语句&lt;/p&gt;
+&lt;p&gt;  SQL标准不提供修改模式定义和修改视图定义的操作。用户如果想修改这些对象，只能先将它们删除然后再重建。SQL标准也没有提供索引相关的语句，但为了提高查询效率，商用关系数据库管理系统通常都提供了索引机制和相关的语句，如&lt;a class=&#34;link&#34; href=&#34;#20241111221858CST&#34;&gt;表6&lt;/a&gt;中创建、删除和修改索引等。&lt;br&gt;
+  在早期的数据库系统中，所有数据库对象都属于一个数据库，也就是说只有一个命名空间。现代的关系数据库管理系统提供了一个层次化的数据库对象命名机制，如图3.3所示。一个关系数据库管理系统的&lt;strong&gt;实例（instance）&lt;/strong&gt;‌中可以建立多个数据库,一个数据库中可以建立多个模式，一个模式下通常包括多个表、视图和索引等数据库对象。本节介绍如何定义模式、基本表和索引，视图的概念及其定义方法将在3.7节专门
+讨论。&lt;/p&gt;
+&lt;h3 id=&#34;模式的定义与删除&#34;&gt;模式的定义与删除
+&lt;/h3&gt;&lt;h4 id=&#34;定义模式&#34;&gt;定义模式
+&lt;/h4&gt;&lt;p&gt;  在SQL中，模式定义语句如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SCHEMA&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;模式名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AUTHORIZATION&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  如果没有指定&lt;code&gt;&amp;lt;模式名&amp;gt;&lt;/code&gt;，那么&lt;code&gt;&amp;lt;模式名&amp;gt;&lt;/code&gt;隐含为&lt;code&gt;&amp;lt;用户名&amp;gt;&lt;/code&gt;。&lt;br&gt;
+  要创建模式，调用该命令的用户必须拥有数据库管理员权限，或者获得了数据库管理员授予的&lt;code&gt;CREATE SCHEMA&lt;/code&gt;的权限。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241111223104CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例1&lt;/strong&gt;：为用户&lt;code&gt;WANG&lt;/code&gt;定义一个学生—课程模式&lt;code&gt;S-T&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SCHEMA&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;S-T&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AUTHORIZATION&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;WANG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  ：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SCHEMA&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AUTHORIZATION&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;WANG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  该语句没有指定&lt;code&gt;&amp;lt;模式名&amp;gt;&lt;/code&gt;，所以&lt;code&gt;&amp;lt;模式名&amp;gt;&lt;/code&gt;隐含为用户名&lt;code&gt;WANG&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;  定义模式实际上定义了一个命名空间，在这个空间中可以进一步定义该模式包含的数据库对象，例如基本表、视图、索引等。&lt;br&gt;
+  这些数据库对象可以用&lt;a class=&#34;link&#34; href=&#34;#20241111221858CST&#34;&gt;表6&lt;/a&gt;中相应的&lt;code&gt;CREATE&lt;/code&gt;语句来定义。&lt;br&gt;
+  目前，在&lt;code&gt;CREATE SCHEMA&lt;/code&gt;中可以接受&lt;code&gt;CREATE TABLE&lt;/code&gt;、&lt;code&gt;CREATE VIEW&lt;/code&gt;和&lt;code&gt;GRANT&lt;/code&gt;子句。也就是说用户可以在创建模式的同时在这个模式定义中进一步创建基本表、视图，定义授权。即&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SCHEMA&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TEST&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AUTHORIZATION&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ZHANG&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TAB&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;SMALLINT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;INT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL3&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL4&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;NUMERIC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL5&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;DECIMAL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;                    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;删除模式&#34;&gt;删除模式
+&lt;/h4&gt;</description>
         </item>
         
     </channel>

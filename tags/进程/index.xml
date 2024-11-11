@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 11 Nov 2024 16:20:36 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%BF%9B%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 11 Nov 2024 22:41:20 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%BF%9B%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>操作系统（二）：进程的描述与控制</title>
         <link>https://www.brasswrench.com/posts/computer_science/operating_system/process_description_and_control/</link>
         <pubDate>Wed, 06 Nov 2024 15:37:29 +0800</pubDate>
@@ -1049,9 +1049,9 @@
   &lt;/g&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;具有创建、终止和挂起状态的进程状态图&lt;/p&gt;
 &lt;h3 id=&#34;进程管理中的数据结构&#34;&gt;进程管理中的数据结构
-&lt;/h3&gt;&lt;p&gt;  如&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/computer_science/operating_system/introduction_to_operating_system/#20241106221347CST&#34;&gt;第一章1.1节&lt;/a&gt;所述，一方面，为了便于对计算机中的各类资源(包括硬件和信息)的使用和管理，OS将它们抽象为相应的各种数据结构，以及提供一组对资源进行操作的命令，用户可利用这些数据结构及操作命令来执行相关的操作，而无需关心其实现的具体细节。另一方面，操作系统作为计算机资源的管理者，尤其是为了协调诸多用户对系统中共享资源的使用，它还必须记录和查询各种资源的使用及各类进程运行情况的信息。OS对于这些信息的组织和维护也是通过建立和维护各种数据结构的方式来实现的。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  如&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/computer_science/operating_system/introduction_to_operating_system/#20241106221347CST&#34;&gt;操作系统概论-操作系统的目标和作用&lt;/a&gt;所述，一方面，为了便于对计算机中的各类资源（包括硬件和信息）的使用和管理，OS将它们抽象为相应的各种数据结构，以及提供一组对资源进行操作的命令，用户可利用这些数据结构及操作命令来执行相关的操作，而无需关心其实现的具体细节。另一方面，操作系统作为计算机资源的管理者，尤其是为了协调诸多用户对系统中共享资源的使用，它还必须记录和查询各种资源的使用及各类进程运行情况的信息。OS对于这些信息的组织和维护也是通过建立和维护各种数据结构的方式来实现的。&lt;/p&gt;
 &lt;h4 id=&#34;操作系统中用于管理控制的数据结构&#34;&gt;操作系统中用于管理控制的数据结构
-&lt;/h4&gt;&lt;p&gt;  在计算机系统中，对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为&lt;strong&gt;资源信息表&lt;/strong&gt;或&lt;strong&gt;进程信息表&lt;/strong&gt;，其中包含了资源或进程的标识、描述、状态等信息以及一批指针。通过这些指针，可以将同类资源或进程的信息表，或者同一进程所占用的资源信息表分类链接成不同的队列，便于操作系统进行查找。如&lt;a class=&#34;link&#34; href=&#34;#20241106223515CST&#34;&gt;图9&lt;/a&gt;所示，OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。本节着重介绍PCB，其它的表将在后面的章节中陆续介绍。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  在计算机系统中，对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为&lt;strong&gt;资源信息表&lt;/strong&gt;或&lt;strong&gt;进程信息表&lt;/strong&gt;，其中包含了资源或进程的标识、描述、状态等信息以及一批指针。通过这些指针，可以将同类资源或进程的信息表，或者同一进程所占用的资源信息表分类链接成不同的队列，便于操作系统进行查找。如&lt;a class=&#34;link&#34; href=&#34;#20241106223515CST&#34;&gt;图9&lt;/a&gt;所示，OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。本节着重介绍PCB，其它的表将在后面的篇章中陆续介绍。&lt;/p&gt;
 &lt;span id=&#34;20241106223515CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34; 图层 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 343.619&#34;&gt;
@@ -1531,7 +1531,7 @@
 &lt;/h4&gt;&lt;p&gt;  当系统中发生激活进程的事件时，OS将利用激活原语&lt;code&gt;active&lt;/code&gt;，将指定进程激活。激活原语先将进程从外存调入内存，检查该进程的现行状态，若是静止就绪，便将之改为活动就绪；若为静止阻塞，便将之改为活动阻塞。假如采用的是抢占调度策略，则每当有静止就绪进程被激活而插入就绪队列时，便应检查是否要进行重新调度，即由调度程序将被激活的进程与当前进程两者的优先级进行比较，如果被激活进程的优先级低，就不必重新调度；否则，立即剥夺当前进程的运行，把处理机分配给刚刚被激活的进程。&lt;/p&gt;
 &lt;h2 id=&#34;进程同步&#34;&gt;进程同步
 &lt;/h2&gt;&lt;p&gt;  在OS中引入进程后，一方面可以使系统中的多道程序并发执行，这不仅能有效地改善资源利用率，还可显著地提高系统的吞吐量，但另一方面却使系统变得更加复杂。如果不能采取有效的措施，对多个进程的运行进行妥善的管理，必然会因为这些进程对系统资源的无序争夺给系统造成混乱。致使每次处理的结果存在着不确定性，即显现出其不可再现性。&lt;br&gt;
-  为保证多个进程能有条不紊地运行，在多道程序系统中，必须引入进程同步机制。在 本章中，将详细介绍在单处理机系统中的进程同步机制&amp;mdash;&amp;mdash;硬件同步机制、信号量机制、管程机制等，利用它们来保证程序执行的可再现性。&lt;/p&gt;
+  为保证多个进程能有条不紊地运行，在多道程序系统中，必须引入进程同步机制。在本文中，将详细介绍在单处理机系统中的进程同步机制&amp;mdash;&amp;mdash;硬件同步机制、信号量机制、管程机制等，利用它们来保证程序执行的可再现性。&lt;/p&gt;
 &lt;h3 id=&#34;进程同步的基本概念&#34;&gt;进程同步的基本概念
 &lt;/h3&gt;&lt;p&gt;  进程同步机制的主要任务，是对多个相关进程在执行次序上进行协调，使并发执行的诸进程之间能按照一定的规则（或时序）共享系统资源，并能很好地相互合作，从而使程序的执行具有可再现性。&lt;/p&gt;
 &lt;h4 id=&#34;两种形式的制约关系&#34;&gt;两种形式的制约关系
@@ -1542,7 +1542,7 @@
 &lt;p&gt;  某些应用程序，为了完成某任务而建立了两个或多个进程。这些进程将为完成同一项任务而相互合作。进程间的直接制约关系就是源于它们之间的相互合作。例如，有两个相互合作的进程&amp;mdash;&amp;mdash;输入进程&lt;code&gt;A&lt;/code&gt;和计算进程&lt;code&gt;B&lt;/code&gt;，它们之间共享一个缓冲区。进程&lt;code&gt;A&lt;/code&gt;通过缓冲向进程&lt;code&gt;B&lt;/code&gt;提供数据。进程&lt;code&gt;B&lt;/code&gt;从缓冲中取出数据，并对数据进行处理。但如果该缓冲空时，计算进程因不能获得所需数据而被阻塞。一旦进程&lt;code&gt;A&lt;/code&gt;把数据输入缓冲区后便将进程&lt;code&gt;B&lt;/code&gt;唤醒；反之，当缓冲区已满时，进程&lt;code&gt;A&lt;/code&gt;因不能再向缓冲区投放数据而被阻塞，当进程&lt;code&gt;B&lt;/code&gt;将缓冲区数据取走后便可唤醒&lt;code&gt;A&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;  在多道程序环境下，由于存在着上述两类相互制约关系，进程在运行过程中是否能获得处理机运行与以怎样的速度运行，并不能由进程自身所控制，此即进程的异步性。由此会产生对共享变量或数据结构等资源不正确的访问次序，从而造成进程每次执行结果的不一致。这种差错往往与时间有关，故称为“与时间有关的错误”。为了杜绝这种差错，必须对进程的执行次序进行协调，保证诸进程能按序执行。&lt;/p&gt;
 &lt;h4 id=&#34;临界资源critical-resource&#34;&gt;临界资源（Critical Resource）
-&lt;/h4&gt;&lt;p&gt;  在第一章中我们曾经介绍过，许多硬件资源如打印机、磁带机等，都属于临界资源，诸进程间应采取互斥方式，实现对这种资源的共享。下面我们将通过一个简单的例子来说明这一过程。&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  在第一篇中我们曾经介绍过，许多硬件资源如打印机、磁带机等，都属于临界资源，诸进程间应采取互斥方式，实现对这种资源的共享。下面我们将通过一个简单的例子来说明这一过程。&lt;br&gt;
   生产者&amp;mdash;消费者（producer-consumer）问题是一个著名的进程同步问题。它描述的是：有一群生产者进程在生产产品，并将这些产品提供给消费者进程去消费。为使生产者进程与消费者进程能并发执行，在两者之间设置了一个具有n个缓冲区的缓冲池，生产者进程将其所生产的产品放入一个缓冲区中:消费者进程可从一个缓冲区中取走产品去消费。尽管所有的生产者进程和消费者进程都是以异步方式运行的，但它们之间必须保持同步，既不允许消费者进程到一个空缓冲区去取产品，也不允许生产者进程向一个已装满产品且尚未被取走的缓冲区中投放产品。&lt;br&gt;
   我们可利用一个数组&lt;code&gt;buffer&lt;/code&gt;来表示上述的具有&lt;code&gt;n&lt;/code&gt;个缓冲区的缓冲池。每投入（或取出）一个产品时,缓冲池&lt;code&gt;buffer&lt;/code&gt;中暂存产品（或已取走产品的空闲单元）的数组单元指针&lt;code&gt;in&lt;/code&gt;（或&lt;code&gt;out&lt;/code&gt;）加&lt;code&gt;1&lt;/code&gt;。由于这里由&lt;code&gt;buffer&lt;/code&gt;组成的缓冲池是被组织成循环缓冲的，故应把输入指针&lt;code&gt;in&lt;/code&gt;（或输出指针&lt;code&gt;out&lt;/code&gt;）加&lt;code&gt;1&lt;/code&gt;，表示成&lt;code&gt;in=(in+1)%n&lt;/code&gt;（或&lt;code&gt;out=(out+1)%n&lt;/code&gt;）。当&lt;code&gt;(in+1)%n=out&lt;/code&gt;时表示缓冲池满；而&lt;code&gt;in=out&lt;/code&gt;则表示缓冲池空。此外，还引入了一个整型变量&lt;code&gt;counter&lt;/code&gt;，其初始值为&lt;code&gt;0&lt;/code&gt;。每当生产者进程向缓冲池中投放（或取走）一个产品后，使&lt;code&gt;counter&lt;/code&gt;加&lt;code&gt;1&lt;/code&gt;(或减&lt;code&gt;1&lt;/code&gt;)。生产者和消费者两进程共享下面的变量：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

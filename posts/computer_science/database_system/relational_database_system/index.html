@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 
-<link rel="stylesheet" href="/scss/style.min.c99d0152eea2eaad815d52a3f98640f99cabc123af9634be0d34fca60200c2d2.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.1fb82b158454f213b71dae549893dc6d34b00f7e1b31fc8980a3ca5b0f15763f.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="基于关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='关系代数' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T18:36:38&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='关系代数' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T22:41:20&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="基于关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -967,7 +967,7 @@
 </svg>
 
             <time class="article-words">
-                21279 字
+                21264 字
             </time>
         </div>
 
@@ -1204,8 +1204,8 @@ R(D_1,D_2,\times,D_n)
   (4) 任意两个元组的候选码不能取相同的值。<br>
   (5) 行的顺序无所谓，即行的次序可以任意交换。<br>
   (6) 分量必须取原子值，即每一个分量都必须是不可分的数据项。</p>
-<p>  关系模型要求关系必须是<strong>规范化（normalization）</strong>‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为<strong>范式（NormalForm,NF）</strong>。范式的概念将在第6章关系数据理论中做进一步讲解。
-例如，表2.3虽然很好地表达了导师与研究生之间的一对多关系，但由于属性 \(\text{POSTGRADUATE}\) 中分量取了两个值，不符合规范化的要求，因此这样的关系在数据库中是不允许的。通俗地讲，关系表中不允许还有表，简言之不允许“表中有表”。直观地描述，表2.3中还有一个小表。</p>
+<p>  关系模型要求关系必须是<strong>规范化（normalization）</strong>‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为<strong>范式（Normal Form，NF）</strong>。范式的概念将在第6篇关系数据理论中做进一步讲解。
+例如，<a class="link" href="#20241024180959CST">表3</a>虽然很好地表达了导师与研究生之间的一对多关系，但由于属性 \(\text{POSTGRADUATE}\) 中分量取了两个值，不符合规范化的要求，因此这样的关系在数据库中是不允许的。通俗地讲，关系表中不允许还有表，简言之不允许“表中有表”。直观地描述，<a class="link" href="#20241024180959CST">表3</a>中还有一个小表。</p>
 <span id="20241024180959CST"></span><div class="normal-table"><div class="table-wrapper"><table>
   <tr>
     <th rowspan="2">\(\text{SUPERVISOR}\)</th>
@@ -1428,15 +1428,15 @@ R(A_1,A_2,\cdots,A_n)
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;关系的参照图</p>
 <p>  需要指出的是，外码并不一定要与相应的主码同名，如例2.3中学生关系的主码为学号，外码为班长。不过，在实际应用中为了便于识别，当外码与相应的主码属于不同关系时，往往给它们取相同的名字。</p>
 <p>  参照完整性规则就是定义外码与主码之间的引用规则。</p>
-<p>  <strong>参照完整性规则</strong>：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须：<br>
-  ◾或者取空值（ \(F\) 的每个属性值均为空值）。
+<p>  <strong>参照完整性规则</strong>：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须： <br>
+  ◾或者取空值（ \(F\) 的每个属性值均为空值）。<br>
   ◾或者等于 \(S\) 中某个元组的主码值。</p>
-<p>  例如，对于<a class="link" href="#20241024190508CST">例1</a>，学生关系中每个元组的“专业号”属性只能取下面两类值：
-  ◾空值，表示尚未给该学生分配专业。
+<p>  例如，对于<a class="link" href="#20241024190508CST">例1</a>，学生关系中每个元组的“专业号”属性只能取下面两类值：<br>
+  ◾空值，表示尚未给该学生分配专业。<br>
   ◾非空值，这时该值必须是专业关系中某个元组的“专业号”值，表示该学生不可能分配到一个不存在的专业中。即被参照关系“专业”中一定存在一个元组，它的主码值等于该参照关系&quot;学生&quot;中的外码值。</p>
 <p>  对于<a class="link" href="#20241025091438CST">例2</a>，按照参照完整性规则，“学号”和“课程号”属性也可以取两类值：空值或目标关系中已经存在的值。但由于“学号&quot;和&quot;课程号”是选修关系中的主属性，按照<a class="link" href="#20241025155618CST">实体完整性规则</a>，它们均不能取空值，所以选修关系中的&quot;学号”和“课程号”属性实际上只能取相应被参照关系中已经存在的主码值。<br>
   参照完整性规则中， \(R\) 与 \(S\) 可以是同一个关系。例如对于<a class="link" href="#20241025092202CST">例3</a>按照参照完整性规则，“班长”属性值可以取两类值：<br>
-  ◾空值，表示该学生所在班级尚未选出班长；
+  ◾空值，表示该学生所在班级尚未选出班长。<br>
   ◾非空值，这时该值必须是本关系中某个元组的学号值。</p>
 <h3 id="用户定义的完整性">用户定义的完整性
 </h3><p>  任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反映某一具体应用所涉及的数据必须满足的语义要求。例如某个属性必须取唯一值、某个非主属性不能取空值等。例如，在<a class="link" href="#20241024190508CST">例1</a>的学生关系中，若按照应用的要求学生不能没有姓名，则可以定义学生姓名不能取空值；某个属性（如学生的成绩），的取值范围可以定义在0〜100之间等。<br>
@@ -2134,7 +2134,7 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
 X_1\theta Y_1
 \tag{21}
     \]
-<p>  其中 \(\theta\) 表示比较运算符，它可以是 \(>,\ge,<,\le,=\) 或 \(<>\) 。 \(X_1,Y_1\) 是属性名，或为常量，或为简单常数；属性名也可以用它的序号来代替，在基本的选择条件上可以进一步进行逻辑运算，即进行求非（ \(\lnot\) ）、与（ \(\land\) ）、或（ \(\lor\) ）运算。条件表达式中的运算符如表2.5所示。</p>
+<p>  其中 \(\theta\) 表示比较运算符，它可以是 \(>,\ge,<,\le,=\) 或 \(<>\) 。 \(X_1,Y_1\) 是属性名，或为常量，或为简单常数；属性名也可以用它的序号来代替，在基本的选择条件上可以进一步进行逻辑运算，即进行求非（ \(\lnot\) ）、与（ \(\land\) ）、或（ \(\lor\) ）运算。条件表达式中的运算符如20241026141516CST所示。</p>
 <span id="20241026141516CST"></span><div class="normal-table"><div class="table-wrapper"><table>
     <tr>
         <th colspan="2">运算符</th>
@@ -2181,7 +2181,7 @@ X_1\theta Y_1
 </table></div>
 </div>
 <p>  选择运算实际上是从关系火中选取使逻辑表达式 \(F\) 为真的元组。这是从行的角度进行的运算。</p>
-<p>  设有一个学生&mdash;课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如<a class="link" href="#20241026152329CST">图6</a>所示。下面的多个例子将对这三个关系进行运算。</p>
+<p>  设有一个学生—课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如<a class="link" href="#20241026152329CST">图6</a>所示。下面的多个例子将对这三个关系进行运算。</p>
 <span id="20241026152329CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 643.2851">
@@ -3364,7 +3364,7 @@ R \div S = \set{a_1}
     <text transform="translate(524.1108 322.7352)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.025em;">(</tspan><tspan x="5.8501" y="0">c)</tspan></text>
   </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图11&emsp;除运算举例</p>
-<p>  下面再以学生&mdash;课程数据库（<a class="link" href="#20241026152329CST">图6</a>）为例，给出几个综合应用多种关系代数运算进行查询的例子。</p>
+<p>  下面再以学生—课程数据库（<a class="link" href="#20241026152329CST">图6</a>）为例，给出几个综合应用多种关系代数运算进行查询的例子。</p>
 <p>  <span id="20241027140259CST"></span><strong>例10</strong>：查询1号课程和3号课程都选秀了的学生的号码。<br>
   首先建立一个临时关系 \(K\) ：</p>
 <span id="20241027141922CST"></span><div class="svg-figure">
@@ -3832,7 +3832,7 @@ R\times S=\set{t^{(n+m)}|(\exist u^{(n)})(\exist v^{(m)})(R(u)\land S(v) \land (
 \tag{41}
     \]
    \(F'\) 是公式 \(F\) 用 \(t[i]\) 代替运算对象 \(i\) 得到的等价公式。</p>
-<p>  下面用关系演算来对<a class="link" href="#20241026152329CST">图6</a>中的学生&mdash;课程数据库进行查询。</p>
+<p>  下面用关系演算来对<a class="link" href="#20241026152329CST">图6</a>中的学生—课程数据库进行查询。</p>
 <p>  <span id="20241105202856CST"></span><strong>例35</strong>：查询信息（IS）系全体学生。
 <span id="20241105202908CST"></span>\[
 S_{IS}=\set{t|\text{Student}(t)\land (t[5]=\text{'IS'})}
@@ -4052,7 +4052,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     <polygon points="380.202 191.8919 377.3123 194.6915 377.3212 198.7149 370.6746 191.8889 380.202 191.8919"/>
   </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图14&emsp;QBE操作框架</p>
-<p>  下面以学生&mdash;课程数据库为例，说明QBE的用法。</p>
+<p>  下面以学生—课程数据库为例，说明QBE的用法。</p>
 <h4 id="检索操作-1">检索操作
 </h4><p><strong>1. 简单查询</strong></p>
 <p>  <span id="20241105222703CST"></span><strong>例39</strong>：求信息系全体学生的姓名。<br>
@@ -4771,7 +4771,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 
 
         <span>
-            最后更新于 Nov 11, 2024 18:36 CST
+            最后更新于 Nov 11, 2024 22:41 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4951,7 +4951,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
             
             
         
-        <span>本图书馆累计发布了14篇文章 共195969字</span>
+        <span>本图书馆累计发布了14篇文章 共199529字</span>
     </section>
 
     <section class="site-visit-count">

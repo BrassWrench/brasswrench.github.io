@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 11 Nov 2024 18:36:38 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 11 Nov 2024 22:41:20 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -220,8 +220,8 @@ R(D_1,D_2,\times,D_n)
   (4) 任意两个元组的候选码不能取相同的值。&lt;br&gt;
   (5) 行的顺序无所谓，即行的次序可以任意交换。&lt;br&gt;
   (6) 分量必须取原子值，即每一个分量都必须是不可分的数据项。&lt;/p&gt;
-&lt;p&gt;  关系模型要求关系必须是&lt;strong&gt;规范化（normalization）&lt;/strong&gt;‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为&lt;strong&gt;范式（NormalForm,NF）&lt;/strong&gt;。范式的概念将在第6章关系数据理论中做进一步讲解。
-例如，表2.3虽然很好地表达了导师与研究生之间的一对多关系，但由于属性 \(\text{POSTGRADUATE}\) 中分量取了两个值，不符合规范化的要求，因此这样的关系在数据库中是不允许的。通俗地讲，关系表中不允许还有表，简言之不允许“表中有表”。直观地描述，表2.3中还有一个小表。&lt;/p&gt;
+&lt;p&gt;  关系模型要求关系必须是&lt;strong&gt;规范化（normalization）&lt;/strong&gt;‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为&lt;strong&gt;范式（Normal Form，NF）&lt;/strong&gt;。范式的概念将在第6篇关系数据理论中做进一步讲解。
+例如，&lt;a class=&#34;link&#34; href=&#34;#20241024180959CST&#34;&gt;表3&lt;/a&gt;虽然很好地表达了导师与研究生之间的一对多关系，但由于属性 \(\text{POSTGRADUATE}\) 中分量取了两个值，不符合规范化的要求，因此这样的关系在数据库中是不允许的。通俗地讲，关系表中不允许还有表，简言之不允许“表中有表”。直观地描述，&lt;a class=&#34;link&#34; href=&#34;#20241024180959CST&#34;&gt;表3&lt;/a&gt;中还有一个小表。&lt;/p&gt;
 &lt;span id=&#34;20241024180959CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;tr&gt;
     &lt;th rowspan=&#34;2&#34;&gt;\(\text{SUPERVISOR}\)&lt;/th&gt;
@@ -444,15 +444,15 @@ R(A_1,A_2,\cdots,A_n)
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;关系的参照图&lt;/p&gt;
 &lt;p&gt;  需要指出的是，外码并不一定要与相应的主码同名，如例2.3中学生关系的主码为学号，外码为班长。不过，在实际应用中为了便于识别，当外码与相应的主码属于不同关系时，往往给它们取相同的名字。&lt;/p&gt;
 &lt;p&gt;  参照完整性规则就是定义外码与主码之间的引用规则。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;参照完整性规则&lt;/strong&gt;：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须：&lt;br&gt;
-  ◾或者取空值（ \(F\) 的每个属性值均为空值）。
+&lt;p&gt;  &lt;strong&gt;参照完整性规则&lt;/strong&gt;：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须： &lt;br&gt;
+  ◾或者取空值（ \(F\) 的每个属性值均为空值）。&lt;br&gt;
   ◾或者等于 \(S\) 中某个元组的主码值。&lt;/p&gt;
-&lt;p&gt;  例如，对于&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;，学生关系中每个元组的“专业号”属性只能取下面两类值：
-  ◾空值，表示尚未给该学生分配专业。
+&lt;p&gt;  例如，对于&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;，学生关系中每个元组的“专业号”属性只能取下面两类值：&lt;br&gt;
+  ◾空值，表示尚未给该学生分配专业。&lt;br&gt;
   ◾非空值，这时该值必须是专业关系中某个元组的“专业号”值，表示该学生不可能分配到一个不存在的专业中。即被参照关系“专业”中一定存在一个元组，它的主码值等于该参照关系&amp;quot;学生&amp;quot;中的外码值。&lt;/p&gt;
 &lt;p&gt;  对于&lt;a class=&#34;link&#34; href=&#34;#20241025091438CST&#34;&gt;例2&lt;/a&gt;，按照参照完整性规则，“学号”和“课程号”属性也可以取两类值：空值或目标关系中已经存在的值。但由于“学号&amp;quot;和&amp;quot;课程号”是选修关系中的主属性，按照&lt;a class=&#34;link&#34; href=&#34;#20241025155618CST&#34;&gt;实体完整性规则&lt;/a&gt;，它们均不能取空值，所以选修关系中的&amp;quot;学号”和“课程号”属性实际上只能取相应被参照关系中已经存在的主码值。&lt;br&gt;
   参照完整性规则中， \(R\) 与 \(S\) 可以是同一个关系。例如对于&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;按照参照完整性规则，“班长”属性值可以取两类值：&lt;br&gt;
-  ◾空值，表示该学生所在班级尚未选出班长；
+  ◾空值，表示该学生所在班级尚未选出班长。&lt;br&gt;
   ◾非空值，这时该值必须是本关系中某个元组的学号值。&lt;/p&gt;
 &lt;h3 id=&#34;用户定义的完整性&#34;&gt;用户定义的完整性
 &lt;/h3&gt;&lt;p&gt;  任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反映某一具体应用所涉及的数据必须满足的语义要求。例如某个属性必须取唯一值、某个非主属性不能取空值等。例如，在&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;的学生关系中，若按照应用的要求学生不能没有姓名，则可以定义学生姓名不能取空值；某个属性（如学生的成绩），的取值范围可以定义在0〜100之间等。&lt;br&gt;
@@ -1150,7 +1150,7 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
 X_1\theta Y_1
 \tag{21}
     \]
-&lt;p&gt;  其中 \(\theta\) 表示比较运算符，它可以是 \(&gt;,\ge,&lt;,\le,=\) 或 \(&lt;&gt;\) 。 \(X_1,Y_1\) 是属性名，或为常量，或为简单常数；属性名也可以用它的序号来代替，在基本的选择条件上可以进一步进行逻辑运算，即进行求非（ \(\lnot\) ）、与（ \(\land\) ）、或（ \(\lor\) ）运算。条件表达式中的运算符如表2.5所示。&lt;/p&gt;
+&lt;p&gt;  其中 \(\theta\) 表示比较运算符，它可以是 \(&gt;,\ge,&lt;,\le,=\) 或 \(&lt;&gt;\) 。 \(X_1,Y_1\) 是属性名，或为常量，或为简单常数；属性名也可以用它的序号来代替，在基本的选择条件上可以进一步进行逻辑运算，即进行求非（ \(\lnot\) ）、与（ \(\land\) ）、或（ \(\lor\) ）运算。条件表达式中的运算符如20241026141516CST所示。&lt;/p&gt;
 &lt;span id=&#34;20241026141516CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
     &lt;tr&gt;
         &lt;th colspan=&#34;2&#34;&gt;运算符&lt;/th&gt;
@@ -1197,7 +1197,7 @@ X_1\theta Y_1
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;p&gt;  选择运算实际上是从关系火中选取使逻辑表达式 \(F\) 为真的元组。这是从行的角度进行的运算。&lt;/p&gt;
-&lt;p&gt;  设有一个学生&amp;mdash;课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;所示。下面的多个例子将对这三个关系进行运算。&lt;/p&gt;
+&lt;p&gt;  设有一个学生—课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;所示。下面的多个例子将对这三个关系进行运算。&lt;/p&gt;
 &lt;span id=&#34;20241026152329CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34; 图层 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 643.2851&#34;&gt;
@@ -2380,7 +2380,7 @@ R \div S = \set{a_1}
     &lt;text transform=&#34;translate(524.1108 322.7352)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.025em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;5.8501&#34; y=&#34;0&#34;&gt;c)&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图11&amp;emsp;除运算举例&lt;/p&gt;
-&lt;p&gt;  下面再以学生&amp;mdash;课程数据库（&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;）为例，给出几个综合应用多种关系代数运算进行查询的例子。&lt;/p&gt;
+&lt;p&gt;  下面再以学生—课程数据库（&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;）为例，给出几个综合应用多种关系代数运算进行查询的例子。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027140259CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例10&lt;/strong&gt;：查询1号课程和3号课程都选秀了的学生的号码。&lt;br&gt;
   首先建立一个临时关系 \(K\) ：&lt;/p&gt;
 &lt;span id=&#34;20241027141922CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
@@ -2848,7 +2848,7 @@ R\times S=\set{t^{(n+m)}|(\exist u^{(n)})(\exist v^{(m)})(R(u)\land S(v) \land (
 \tag{41}
     \]
    \(F&#39;\) 是公式 \(F\) 用 \(t[i]\) 代替运算对象 \(i\) 得到的等价公式。&lt;/p&gt;
-&lt;p&gt;  下面用关系演算来对&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;中的学生&amp;mdash;课程数据库进行查询。&lt;/p&gt;
+&lt;p&gt;  下面用关系演算来对&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;中的学生—课程数据库进行查询。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241105202856CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例35&lt;/strong&gt;：查询信息（IS）系全体学生。
 &lt;span id=&#34;20241105202908CST&#34;&gt;&lt;/span&gt;\[
 S_{IS}=\set{t|\text{Student}(t)\land (t[5]=\text{&#39;IS&#39;})}
@@ -3068,7 +3068,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;polygon points=&#34;380.202 191.8919 377.3123 194.6915 377.3212 198.7149 370.6746 191.8889 380.202 191.8919&#34;/&gt;
   &lt;/g&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图14&amp;emsp;QBE操作框架&lt;/p&gt;
-&lt;p&gt;  下面以学生&amp;mdash;课程数据库为例，说明QBE的用法。&lt;/p&gt;
+&lt;p&gt;  下面以学生—课程数据库为例，说明QBE的用法。&lt;/p&gt;
 &lt;h4 id=&#34;检索操作-1&#34;&gt;检索操作
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;1. 简单查询&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241105222703CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例39&lt;/strong&gt;：求信息系全体学生的姓名。&lt;br&gt;
