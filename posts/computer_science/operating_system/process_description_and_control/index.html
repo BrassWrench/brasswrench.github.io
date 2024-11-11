@@ -131,7 +131,7 @@
 <meta property='og:description' content="操作系统中关于进程的定义、控制、同步与线程的实现方法">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/operating_system/process_description_and_control/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='进程' /><meta property='article:tag' content='线程' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T00:08:19&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='进程' /><meta property='article:tag' content='线程' /><meta property='article:published_time' content='2024-11-06T15:37:29&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T14:16:10&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="操作系统（二）：进程的描述与控制">
 <meta name="twitter:description" content="操作系统中关于进程的定义、控制、同步与线程的实现方法"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -758,6 +758,14 @@
             <li><a href="#信箱通信">信箱通信</a></li>
           </ol>
         </li>
+        <li><a href="#直接消息传递系统实例">直接消息传递系统实例</a>
+          <ol>
+            <li><a href="#消息缓冲队列通信机制中的数据结构">消息缓冲队列通信机制中的数据结构</a></li>
+            <li><a href="#发送原语">发送原语</a></li>
+            <li><a href="#接收原语">接收原语</a></li>
+          </ol>
+        </li>
+        <li><a href="#线程threads的基本概念">线程（Threads）的基本概念</a></li>
       </ol>
     </li>
   </ol>
@@ -1071,7 +1079,7 @@
 </svg>
 
             <time class="article-words">
-                39455 字
+                40576 字
             </time>
         </div>
 
@@ -1086,7 +1094,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 79 分钟
+                    阅读时长: 81 分钟
                 </time>
             </div>
         
@@ -3779,9 +3787,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">writer</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">do</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wmutex</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">...</span><span class="c1">//写操作
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">...</span><span class="c1">//写操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wmutex</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span> 
@@ -3963,7 +3971,214 @@
   (1)私用邮箱。用户进程可为自己建立一个新邮箱，并作为该进程的一部分。邮箱的拥有者有权从邮箱中读取消息，其他用户则只能将自己构成的消息发送到该邮箱中。这种私用邮箱可采用单向通信链路的邮箱来实现。当拥有该邮箱的进程结束时，邮箱也随之消失。<br>
   (2)公用邮箱。由操作系统创建，并提供给系统中的所有核准进程使用。核准进程既可把消息发送到该邮箱中，也可从邮箱中读取发送给自己的消息。显然，公用邮箱应采用双向通信链路的邮箱来实现。通常，公用邮箱在系统运行期间始终存在。<br>
   (3)共享邮箱。由某进程创建，在创建时或创建后指明它是可共享的，同时须指出共享进程（用户）的名字。邮箱的拥有者和共享者都有权从邮箱中取走发送给自己的消息。在利用邮箱通信时，在发送进程和接收进程之间，存在以下四种关系：①一对一关系。发送进程和接收进程可以建立一条两者专用的通信链路，使两者之间的交互不受其他进程的干扰。②多对一关系。允许提供服务的进程与多个用户进程之间进行交互，也称为客户/服务器交互(client/server interaction)。③一对多关系。允许一个发送进程与多个接收进程进行交互，使发送进程可用广播方式向接收者（多个）发送消息。④多对多关系。允许建立一个公用邮箱，让多个进程都能向邮箱中投递消息；也可从邮箱中取走属于自己的消息。</p>
-
+<h3 id="直接消息传递系统实例">直接消息传递系统实例
+</h3><p>  消息缓冲队列通信机制首先由美国的Hansan提出，并在RC4000系统上实现，后来被广泛应用于本地进程之间的通信中。在这种通信机制中，发送进程利用<code>Send</code>原语将消息直接发送给接收进程；接收进程则利用<code>Receive</code>原语接收消息。</p>
+<h4 id="消息缓冲队列通信机制中的数据结构">消息缓冲队列通信机制中的数据结构
+</h4><p>  (1)消息缓冲区。在消息缓冲队列通信方式中，主要利用的数据结构是消息缓冲区。它可描述如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">message_buffer</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sender</span><span class="p">;</span>                   <span class="c1">//发送者进程标识符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>                     <span class="c1">//消息长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">;</span>                   <span class="c1">//消息正文
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="nc">message_buffer</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>  <span class="c1">//指向下一个消息缓冲区的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  (2)PCB中有关通信的数据项。在操作系统中采用了消息缓冲队列通信机制时，除了需要为进程设置消息缓冲队列外，还应在进程的PCB中增加消息队列队首指针，用于对消息队列进行操作，以及用于实现同步的互斥信号量<code>mutex</code>和资源信号量<code>sm</code>。在PCB中应增加的数据项可描述如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">processcontrol_block</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">message_buffer</span> <span class="o">*</span><span class="n">mq</span><span class="p">;</span>    <span class="c1">//消息队列队首指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">semaphore</span> <span class="n">mutex</span><span class="p">;</span>              <span class="c1">//消息队列互斥信号量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">semaphore</span> <span class="n">sm</span><span class="p">;</span>                 <span class="c1">//消息队列资源信号量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="n">PCB</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="发送原语">发送原语
+</h4><p>  发送进程在利用发送原语发送消息之前，应先在自己的内存空间设置一发送区<code>a</code>，如图2.17所示，把待发送的消息正文、发送进程标识符、消息长度等信息填入其中，然后调用发送原语，把消息发送给目标（接收）进程。发送原语首先根据发送区<code>a</code>中所设置的消息长度<code>a.size</code>来申请一缓冲区<code>i</code>，接着，把发送区<code>a</code>中的信息复制到缓冲区<code>i</code>中。为了能将<code>i</code>挂在接收进程的消息队列<code>mq</code>上，应先获得接收进程的内部标识符<code>j</code>，然后将<code>i</code>挂在<code>j.mq</code>上。由于该队列属于临界资源，故在执行<code>insert</code>操作的前后都要执行<code>wait</code>和<code>signal</code>操作。最后，释放信号量<code>sm</code>表示消息发送完毕。</p>
+<span id="20241111134540CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 409.1429">
+  <rect x="90.0421" y="32.676" width="125" height="370.6274" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(120.526 19.6157)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">进程A</tspan></text>
+  <text transform="translate(112.5286 93.0442)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">send(</tspan><tspan x="47.1055" y="0" style="letter-spacing: -.024em;">B</tspan><tspan x="58.4634" y="0" style="letter-spacing: -.021em;">,</tspan><tspan x="63.8994" y="0" style="letter-spacing: 0em;">a)</tspan></text>
+  <text transform="translate(408.5472 91.0445)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">mq</tspan></text>
+  <g>
+    <rect x="360.0421" y="32.676" width="125" height="140" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="360.0421" y1="67.676" x2="485.0421" y2="67.676" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="360.0421" y1="102.676" x2="485.0421" y2="102.676" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="360.0421" y1="137.676" x2="485.0421" y2="137.676" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(395.1196 126.0865)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">mutex</tspan></text>
+  <text transform="translate(409.7263 160.8114)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">sm</tspan></text>
+  <text transform="translate(392.3891 294.4572)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">size=5</tspan></text>
+  <g>
+    <rect x="356.1691" y="236.0887" width="125" height="140" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="356.1691" y1="271.0887" x2="481.1691" y2="271.0887" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="356.1691" y1="306.0887" x2="481.1691" y2="306.0887" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="356.1691" y1="341.0887" x2="481.1691" y2="341.0887" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(363.8147 329.4992)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">tex</tspan><tspan x="25.9736" y="0" style="letter-spacing: -.027em;">t</tspan><tspan x="31.9136" y="0">-</tspan><tspan x="37.9614" y="0" style="letter-spacing: -.48em;">&gt;</tspan><tspan x="39.5996" y="0" style="letter-spacing: -.02em;">“</tspan><tspan x="57.2397" y="0">h</tspan><tspan x="68.9937" y="0" style="letter-spacing: -.011em;">e</tspan><tspan x="78.4438" y="0">ll</tspan><tspan x="90.1792" y="0" style="letter-spacing: -.02em;">o</tspan><tspan x="100.3496" y="0" style="letter-spacing: -.48em;">”</tspan></text>
+  <text transform="translate(366.9915 364.2241)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">nex</tspan><tspan x="31.2656" y="0" style="letter-spacing: -.027em;">t</tspan><tspan x="37.2056" y="0">-&gt;</tspan><tspan x="53.5312" y="0" style="letter-spacing: -.01em;">N</tspan><tspan x="67.5356" y="0" style="letter-spacing: -.021em;">U</tspan><tspan x="81.3413" y="0" style="letter-spacing: -.013em;">L</tspan><tspan x="92.2314" y="0">L</tspan></text>
+  <text transform="translate(377.9265 258.8376)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">sender=A</tspan></text>
+  <circle cx="473.6853" cy="86.5883" r="3.4845"/>
+  <g>
+    <polyline points="473.6853 86.5883 519.9151 86.5883 519.9151 193.6919 333.2484 193.6919 333.2484 236.0887 350.1993 236.0887" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="347.3907 239.7919 348.964 236.0887 347.3907 232.3856 356.1691 236.0887 347.3907 239.7919"/>
+  </g>
+  <text transform="translate(355.6689 223.6351)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">第一消息缓冲区</tspan></text>
+  <text transform="translate(126.2621 294.4572)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">size=5</tspan></text>
+  <g>
+    <rect x="90.0421" y="236.0887" width="125" height="105" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="90.0421" y1="271.0887" x2="215.0421" y2="271.0887" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="90.0421" y1="306.0887" x2="215.0421" y2="306.0887" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(97.6877 329.4992)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">tex</tspan><tspan x="25.9736" y="0" style="letter-spacing: -.027em;">t</tspan><tspan x="31.9136" y="0">-</tspan><tspan x="37.9614" y="0" style="letter-spacing: -.48em;">&gt;</tspan><tspan x="39.5996" y="0" style="letter-spacing: -.02em;">“</tspan><tspan x="57.2397" y="0">h</tspan><tspan x="68.9937" y="0" style="letter-spacing: -.011em;">e</tspan><tspan x="78.4438" y="0">ll</tspan><tspan x="90.1792" y="0" style="letter-spacing: -.02em;">o</tspan><tspan x="100.3496" y="0" style="letter-spacing: -.48em;">”</tspan></text>
+  <text transform="translate(111.7994 258.8376)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">sender=A</tspan></text>
+  <circle cx="207.7246" cy="86.5883" r="3.4845"/>
+  <g>
+    <polyline points="207.7246 86.5883 253.9544 86.5883 253.9544 193.6919 67.2877 193.6919 67.2877 236.0887 84.2386 236.0887" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="81.4301 239.7919 83.0033 236.0887 81.4301 232.3856 90.2084 236.0887 81.4301 239.7919"/>
+  </g>
+  <text transform="translate(53.1418 239.5805)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">a</tspan></text>
+  <g>
+    <path id="MJX-14-TEX-S4-23A7" d="M89.8421,236.0887l.1099.1099v.5127c0,.1343-.0854.2502-.2563.3479-.9399.6469-1.715,1.477-2.3253,2.4901s-1.0192,2.1422-1.2267,3.3872c0,.0122-.0061.0366-.0183.0732-.0488.3418-.0793,1.3915-.0915,3.1492v1.9957c0,2.9539-.0061,4.4431-.0183,4.4675-.0122.0488-.0671.0793-.1648.0915s-.4028.0183-.9155.0183c-.6347,0-.9643-.0061-.9887-.0183-.0366-.0122-.061-.0366-.0732-.0732-.0244-.1221-.0366-1.5563-.0366-4.3027v-1.5014c0-.6103-.0061-1.0375-.0183-1.2817,0-1.2084.0549-2.1422.1648-2.8013s.3662-1.3976.769-2.2154c.9277-1.8309,2.3314-3.2713,4.2111-4.321l.238-.1282h.6408Z"/>
+    <path id="MJX-14-TEX-S4-23A9" d="M89.952,342.173l-.1099.1099h-.6408l-.2014-.1099c-1.5136-.83-2.722-1.9225-3.6252-3.2774-.9033-1.3549-1.4098-2.8074-1.5197-4.3576-.0122-.1221-.0183-1.3061-.0183-3.552,0-3.4788.0061-5.2304.0183-5.2548l.0732-.0732c.0366-.0122.3723-.0183,1.007-.0183.5127,0,.8178.0061.9155.0183s.1526.0427.1648.0915c.0122.0244.0183,1.5075.0183,4.4492v2.3253c0,1.2694.0244,2.1666.0732,2.6915.0488.5249.1831,1.1108.4028,1.7577.1953.5859.4333,1.1291.7141,1.6295s.5737.9216.8788,1.2633.5737.6164.8056.8239.4638.3967.6958.5676.3418.2502.3296.238-.0061.1099.0183.3662v.3113Z"/>
+    <path id="MJX-14-TEX-S4-23A8" d="M83.9282,272.5427c.0244-.0122.4272-.0183,1.2084-.0183.5005,0,.7629.0061.7873.0183.0366.0122.061.0366.0732.0732.0244.1221.0366,1.5319.0366,4.2295,0,2.844-.0061,4.321-.0183,4.4309-.1099,1.6234-.5859,3.1065-1.4281,4.4492-.8422,1.3427-1.953,2.4412-3.3323,3.2957l-.2563.1648.2563.1648c1.2939.8056,2.3802,1.8737,3.2591,3.2041.8788,1.3305,1.3793,2.8441,1.5014,4.5407.0122.1099.0183,1.5868.0183,4.4309v3.7534c0,.354-.0305.5371-.0915.5493h-.0183c-.0244.0122-.354.0183-.9887.0183s-.9643-.0061-.9887-.0183c-.0366-.0122-.061-.0366-.0732-.0732-.0244-.1221-.0366-1.5258-.0366-4.2111v-2.6182c0-1.2939-.0427-2.307-.1282-3.0393s-.2991-1.5014-.6408-2.307c-.2075-.5371-.4577-1.0375-.7507-1.5014s-.5737-.8483-.8422-1.1535c-.2685-.3052-.5188-.5554-.7507-.7507s-.4211-.354-.5676-.476-.2197-.1831-.2197-.1831c-.0122-.0122-.0183-.1221-.0183-.3296s.0061-.3174.0183-.3296c0-.0122.1221-.1099.3662-.2929s.5432-.4699.8972-.8605c.354-.3906.7202-.8544,1.0986-1.3915s.708-1.2511.9887-2.1422c.2807-.8911.4577-1.837.531-2.8379.0122-.1465.0183-1.6478.0183-4.5041,0-2.7708.0061-4.1745.0183-4.2111l.0732-.0732Z"/>
+    <path id="MJX-14-TEX-S4-23AA" d="M83.8366,261.1855v-13.3805c0-2.9222.0305-4.5755.0915-4.96.0244-.0769.4272-.1153,1.2084-.1153.5005,0,.7629.0385.7873.1153.0488.0769.0793.4998.0915,1.2688.0122,1.1535.0183,6.844.0183,17.0716v15.9181c0,1.538-.0305,2.3454-.0915,2.4223h-.0183c-.0244.0769-.354.1153-.9887.1153s-.9643-.0384-.9887-.1153c-.0488-.0769-.0793-.4998-.0915-1.2688-.0122-1.1535-.0183-6.844-.0183-17.0716Z"/>
+    <path id="MJX-14-TEX-S4-23AA-2" data-name="MJX-14-TEX-S4-23AA" d="M83.8366,314.3007v-13.3805c0-2.9222.0305-4.5755.0915-4.96.0244-.0769.4272-.1153,1.2084-.1153.5005,0,.7629.0385.7873.1153.0488.0769.0793.4998.0915,1.2688.0122,1.1535.0183,6.844.0183,17.0716v15.9181c0,1.538-.0305,2.3454-.0915,2.4223h-.0183c-.0244.0769-.354.1153-.9887.1153s-.9643-.0384-.9887-.1153c-.0488-.0769-.0793-.4998-.0915-1.2688-.0122-1.1535-.0183-6.844-.0183-17.0716Z"/>
+  </g>
+  <text transform="translate(58.2877 268.3004)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">发</tspan><tspan x="0" y="21.6006">送</tspan><tspan x="0" y="43.2002">区</tspan><tspan x="5.2471" y="64.7998">a</tspan></text>
+  <g>
+    <polyline points="215.0421 280.1765 337.2692 280.1765 337.2692 271.0887 356.1691 289.9886" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polyline points="215.0421 299.8006 337.2692 299.8006 337.2692 308.8884 356.1691 289.9886" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <rect x="622.2877" y="32.676" width="125" height="370.6274" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(661.7476 20.8602)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">进程B</tspan></text>
+  <text transform="translate(642.4426 94.2887)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.018em;">r</tspan><tspan x="7.7041" y="0">ece</tspan><tspan x="36.4858" y="0" style="letter-spacing: -.011em;">i</tspan><tspan x="42.1382" y="0" style="letter-spacing: -.015em;">v</tspan><tspan x="51.5161" y="0">e(</tspan><tspan x="67.4639" y="0" style="letter-spacing: -.018em;">b</tspan><tspan x="78.3901" y="0">)</tspan></text>
+  <text transform="translate(658.5076 295.7017)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">size=5</tspan></text>
+  <g>
+    <rect x="622.2877" y="237.3333" width="125" height="105" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="622.2877" y1="272.3333" x2="747.2877" y2="272.3333" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="622.2877" y1="307.3333" x2="747.2877" y2="307.3333" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(629.9327 330.7438)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">tex</tspan><tspan x="25.9736" y="0" style="letter-spacing: -.027em;">t</tspan><tspan x="31.9136" y="0">-</tspan><tspan x="37.9614" y="0" style="letter-spacing: -.48em;">&gt;</tspan><tspan x="39.5996" y="0" style="letter-spacing: -.02em;">“</tspan><tspan x="57.2397" y="0">h</tspan><tspan x="68.9937" y="0" style="letter-spacing: -.011em;">e</tspan><tspan x="78.4438" y="0">ll</tspan><tspan x="90.1792" y="0" style="letter-spacing: -.02em;">o</tspan><tspan x="100.3496" y="0" style="letter-spacing: -.48em;">”</tspan></text>
+  <text transform="translate(644.045 260.0821)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">sender=A</tspan></text>
+  <g>
+    <polyline points="739.9702 87.8329 786.2 87.8329 786.2 194.9364 599.5333 194.9364 599.5333 237.3333 616.4843 237.3333" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="613.6757 241.0364 615.2489 237.3333 613.6757 233.6301 622.454 237.3333 613.6757 241.0364"/>
+  </g>
+  <circle cx="739.8191" cy="87.4489" r="3.4845"/>
+  <g>
+    <path id="MJX-14-TEX-S4-23A7-2" data-name="MJX-14-TEX-S4-23A7" d="M747.3976,237.3333l-.1099.1099v.5127c0,.1343.0854.2502.2563.3479.9399.6469,1.715,1.477,2.3253,2.4901s1.0192,2.1422,1.2267,3.3872c0,.0122.0061.0366.0183.0732.0488.3418.0793,1.3915.0915,3.1492v1.9957c0,2.9539.0061,4.4431.0183,4.4675.0122.0488.0671.0793.1648.0915s.4028.0183.9155.0183c.6347,0,.9643-.0061.9887-.0183.0366-.0122.061-.0366.0732-.0732.0244-.1221.0366-1.5563.0366-4.3027v-1.5014c0-.6103.0061-1.0375.0183-1.2817,0-1.2084-.0549-2.1422-.1648-2.8013s-.3662-1.3976-.769-2.2154c-.9277-1.8309-2.3314-3.2713-4.2111-4.321l-.238-.1282h-.6408Z"/>
+    <path id="MJX-14-TEX-S4-23A9-2" data-name="MJX-14-TEX-S4-23A9" d="M747.2877,343.4175l.1099.1099h.6408l.2014-.1099c1.5136-.83,2.722-1.9225,3.6252-3.2774.9033-1.3549,1.4098-2.8074,1.5197-4.3576.0122-.1221.0183-1.3061.0183-3.552,0-3.4788-.0061-5.2304-.0183-5.2548l-.0732-.0732c-.0366-.0122-.3723-.0183-1.007-.0183-.5127,0-.8178.0061-.9155.0183s-.1526.0427-.1648.0915c-.0122.0244-.0183,1.5075-.0183,4.4492v2.3253c0,1.2694-.0244,2.1666-.0732,2.6915-.0488.5249-.1831,1.1108-.4028,1.7577-.1953.5859-.4333,1.1291-.7141,1.6295s-.5737.9216-.8788,1.2633-.5737.6164-.8056.8239-.4638.3967-.6958.5676-.3418.2502-.3296.238.0061.1099-.0183.3662v.3113Z"/>
+    <path id="MJX-14-TEX-S4-23A8-2" data-name="MJX-14-TEX-S4-23A8" d="M753.3115,273.7872c-.0244-.0122-.4272-.0183-1.2084-.0183-.5005,0-.7629.0061-.7873.0183-.0366.0122-.061.0366-.0732.0732-.0244.1221-.0366,1.5319-.0366,4.2295,0,2.844.0061,4.321.0183,4.4309.1099,1.6234.5859,3.1065,1.4281,4.4492.8422,1.3427,1.953,2.4412,3.3323,3.2957l.2563.1648-.2563.1648c-1.2939.8056-2.3802,1.8737-3.2591,3.2041-.8788,1.3305-1.3793,2.8441-1.5014,4.5407-.0122.1099-.0183,1.5868-.0183,4.4309v3.7534c0,.354.0305.5371.0915.5493h.0183c.0244.0122.354.0183.9887.0183s.9643-.0061.9887-.0183c.0366-.0122.061-.0366.0732-.0732.0244-.1221.0366-1.5258.0366-4.2111v-2.6182c0-1.2939.0427-2.307.1282-3.0393s.2991-1.5014.6408-2.307c.2075-.5371.4577-1.0375.7507-1.5014s.5737-.8483.8422-1.1535c.2685-.3052.5188-.5554.7507-.7507s.4211-.354.5676-.476.2197-.1831.2197-.1831c.0122-.0122.0183-.1221.0183-.3296s-.0061-.3174-.0183-.3296c0-.0122-.1221-.1099-.3662-.2929s-.5432-.4699-.8972-.8605c-.354-.3906-.7202-.8544-1.0986-1.3915s-.708-1.2511-.9887-2.1422c-.2807-.8911-.4577-1.837-.531-2.8379-.0122-.1465-.0183-1.6478-.0183-4.5041,0-2.7708-.0061-4.1745-.0183-4.2111l-.0732-.0732Z"/>
+    <path id="MJX-14-TEX-S4-23AA-3" data-name="MJX-14-TEX-S4-23AA" d="M753.403,262.43v-13.3805c0-2.9222-.0305-4.5755-.0915-4.96-.0244-.0769-.4272-.1153-1.2084-.1153-.5005,0-.7629.0385-.7873.1153-.0488.0769-.0793.4998-.0915,1.2688-.0122,1.1535-.0183,6.844-.0183,17.0716v15.9181c0,1.538.0305,2.3454.0915,2.4223h.0183c.0244.0769.354.1153.9887.1153s.9643-.0384.9887-.1153c.0488-.0769.0793-.4998.0915-1.2688.0122-1.1535.0183-6.844.0183-17.0716Z"/>
+    <path id="MJX-14-TEX-S4-23AA-4" data-name="MJX-14-TEX-S4-23AA" d="M753.403,315.5452v-13.3805c0-2.9222-.0305-4.5755-.0915-4.96-.0244-.0769-.4272-.1153-1.2084-.1153-.5005,0-.7629.0385-.7873.1153-.0488.0769-.0793.4998-.0915,1.2688-.0122,1.1535-.0183,6.844-.0183,17.0716v15.9181c0,1.538.0305,2.3454.0915,2.4223h.0183c.0244.0769.354.1153.9887.1153s.9643-.0384.9887-.1153c.0488-.0769.0793-.4998.0915-1.2688.0122-1.1535.0183-6.844.0183-17.0716Z"/>
+  </g>
+  <text transform="translate(762.8282 268.3004)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">接</tspan><tspan x="0" y="21.6006">收</tspan><tspan x="0" y="43.2002">区</tspan><tspan x="4.4731" y="64.7998">b</tspan></text>
+  <text transform="translate(583.5442 242.7294)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">b</tspan></text>
+  <text transform="translate(395.0924 19.6159)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">PCB(</tspan><tspan x="41.7412" y="0" style="letter-spacing: -.018em;">b</tspan><tspan x="52.6675" y="0">)</tspan></text>
+  <g>
+    <polyline points="480.769 280.1766 602.9962 280.1766 602.9962 271.0888 621.896 289.9886" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polyline points="480.769 299.8007 602.9962 299.8007 602.9962 308.8885 621.896 289.9886" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图17&emsp;消息缓冲通信</p>
+<p>  发送原语可描述如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">send</span><span class="p">(</span><span class="n">Process</span> <span class="o">*</span><span class="n">receiver</span><span class="p">,</span> <span class="n">Message</span> <span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>       <span class="c1">//receive为接收进程标识符，a为发送区首地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Buffer</span> <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="n">getbuf</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">);</span>         <span class="c1">//根据a.size申请缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="cm">/* 将发送区a中的信息复制到消息缓冲区i中 */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">-&gt;</span><span class="n">sender</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">sender</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">-&gt;</span><span class="n">size</span><span class="o">=</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">copy</span><span class="p">(</span><span class="n">i</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">pcb</span> <span class="o">*</span><span class="n">j</span> <span class="o">=</span> <span class="n">get_pcb</span><span class="p">(</span><span class="n">receiver</span><span class="p">);</span> <span class="c1">//获取接收进程内部的标识符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">j</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">insert</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">j</span><span class="o">-&gt;</span><span class="n">mq</span><span class="p">),</span> <span class="n">i</span><span class="p">);</span>          <span class="c1">//将消息缓冲区插入消息队列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">j</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">j</span><span class="o">-&gt;</span><span class="n">sm</span><span class="p">));</span>             <span class="c1">//发送完毕
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="接收原语">接收原语
+</h4><p>  从自己的消息缓冲队列<code>mq</code>中摘下第一个消息缓冲 并将其中的数据复制到以<code>b</code>为首址的指定消息接收区内。接收原语描述如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">receive</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pcb</span><span class="o">*</span> <span class="n">j</span> <span class="o">=</span> <span class="n">get_pid</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>         <span class="c1">//j为接收进程b内部的标识符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">j</span><span class="o">-&gt;</span><span class="n">sm</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">j</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Buffer</span><span class="o">*</span> <span class="n">i</span> <span class="o">=</span> <span class="n">remove</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">j</span><span class="o">-&gt;</span><span class="n">mq</span><span class="p">));</span>    <span class="c1">//将消息队列中的第一个消息移出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">signal</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">j</span><span class="p">.</span><span class="n">mutex</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="cm">/* 将消息缓冲区i中的信息复制到接收区b */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="o">-&gt;</span><span class="n">sender</span> <span class="o">=</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">sender</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="o">-&gt;</span><span class="n">size</span> <span class="o">=</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">copy</span><span class="p">(</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">,</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">releasebuf</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>               <span class="c1">//释放消息缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="线程threads的基本概念">线程（Threads）的基本概念
+</h3>
     </div>
 </section>
 
@@ -4006,7 +4221,7 @@
 
 
         <span>
-            最后更新于 Nov 11, 2024 00:08 CST
+            最后更新于 Nov 11, 2024 14:16 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4171,7 +4386,7 @@
             
             
         
-        <span>本图书馆累计发布了13篇文章 共183291字</span>
+        <span>本图书馆累计发布了13篇文章 共184412字</span>
     </section>
 
     <section class="site-visit-count">
