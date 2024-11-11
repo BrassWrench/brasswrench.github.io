@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 09 Nov 2024 23:56:19 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/probability_and_statistics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 11 Nov 2024 14:42:01 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/mathematics/probability_and_statistics/stochastic_processes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>随机过程（四）：Markov过程</title>
         <link>https://www.brasswrench.com/posts/mathematics/probability_and_statistics/stochastic_processes/markov_process/</link>
         <pubDate>Sat, 14 Sep 2024 21:05:01 +0800</pubDate>
@@ -142,8 +142,8 @@ p_{ij}^{\left(n_1+n_2+n_3+\cdots+n_m\right)}=&amp;\sum_{k \in S}p_{ik}^{\left(n_
 &lt;/h2&gt;&lt;h3 id=&#34;可达互通类可约&#34;&gt;可达、互通、类、可约
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20240929203634CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义6（可达与互通）&lt;/strong&gt;：称状态 \(i\) &lt;strong&gt;可达&lt;/strong&gt;状态 \(j\left(i,j \in S\right)\) ，若存在 \(n \ge 0\) 使得 \(p_{ij}^{\left(n\right)} \ge 0\) ，记为 \(i \rightarrow j\) 。若同时有状态 \(j \rightarrow i\) ，则称 \(i\) 与 \(j\) &lt;strong&gt;互通&lt;/strong&gt;，记为 \(i \leftrightarrow j\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929205200CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理2&lt;/strong&gt;：互通是一种等价关系，即满足：&lt;br&gt;
-  (1) 自反性： \(i \leftrightarrow i\) ；&lt;br&gt;
-  (2) 对称性： \(i \leftrightarrow j\) ，则 \(j \leftrightarrow i\) ；&lt;br&gt;
+  (1) 自反性： \(i \leftrightarrow i\) 。&lt;br&gt;
+  (2) 对称性： \(i \leftrightarrow j\) ，则 \(j \leftrightarrow i\) 。&lt;br&gt;
   (3) 传递性： \(i \leftrightarrow j\) , \(j \leftrightarrow k\) ，则 \(i \leftrightarrow k\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205200CST&#34;&gt;定理2&lt;/a&gt;）&lt;/strong&gt;‌：从互通的定义可知(1)(2)是显然的，只证(3)。由互通定义可知，需证 \(i \rightarrow k\) 且 \(k \rightarrow i\) 。首先，由 \(i \rightarrow j\) ， \(j \rightarrow k\) 可知存在 \(m\) ， \(n\) 使得 \(p_{ij}^{\left(m\right)}&gt;0\) ， \(p_{jk}^{\left(n\right)}&gt;0\) 。再由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可知 \(p_{ik}^{\left(m+n\right)}\ge {p_{ij}^{\left(m\right)}p_{jk}^{\left(n\right)}}&gt;0\) ，故 \(i \rightarrow k\) 。反过来同样有 \(k \rightarrow i\) ，即证 \(i \leftrightarrow k\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240930163421CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义7（类）&lt;/strong&gt;：我们把任何两个相通状态归为一个&lt;strong&gt;类&lt;/strong&gt;，由上述定理可知，同在一类的状态应该都是互通的，并且任何一个状态不能同时属于两个不同的类。&lt;/p&gt;

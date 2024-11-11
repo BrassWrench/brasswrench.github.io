@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 10 Nov 2024 16:44:30 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 11 Nov 2024 14:42:01 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（二）：关系数据库</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/</link>
         <pubDate>Thu, 24 Oct 2024 15:31:25 +0800</pubDate>
@@ -2191,10 +2191,10 @@ R\div S=\set{t_r[X]|(t_r\in R)\land(\Pi_Y (S)\sube Y_x)}
   除操作是同时从行和列角度进行运算。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027112320CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例9&lt;/strong&gt;：设关系 \(R\) 、 \(S\) 分别为&lt;a class=&#34;link&#34; href=&#34;#20241027135213CST&#34;&gt;图11&lt;/a&gt;中的(a)和(b)， \(R \div S\) 的结果为&lt;a class=&#34;link&#34; href=&#34;#20241027135213CST&#34;&gt;图11&lt;/a&gt;(c)。&lt;br&gt;
   在关系 \(R\) 中， \(A\) 可以取 \(4\) 个值 \(\set{a_1,a_2,a_3,a_4}\) 。其中：&lt;br&gt;
-   \(a_1\) 的象集为 \(\set{(b_1,c_2),(b_2,c_3),(b_2,c_1)}\) ；&lt;br&gt;
-   \(a_2\) 的象集为 \(\set{(b_3,c_7),(b_2,c_3)}\) ；&lt;br&gt;
-   \(a_3\) 的象集为 \(\set{(b_4,c_6)}\) ；&lt;br&gt;
-   \(a_4\) 的象集为 \(\set{(b_6,c_6)}\) ；&lt;br&gt;
+   \(a_1\) 的象集为 \(\set{(b_1,c_2),(b_2,c_3),(b_2,c_1)}\) 。&lt;br&gt;
+   \(a_2\) 的象集为 \(\set{(b_3,c_7),(b_2,c_3)}\) 。&lt;br&gt;
+   \(a_3\) 的象集为 \(\set{(b_4,c_6)}\) 。&lt;br&gt;
+   \(a_4\) 的象集为 \(\set{(b_6,c_6)}\) 。&lt;br&gt;
    \(S\) 在 \((B,C)\) 上的投影为 \(\set{(b_1,c_2),(b_2,c_1),(b_2,c_3)}\) 。&lt;br&gt;
   显然只有 \(a_1\) 的象集 \((B,C)_{a_1}\) 包含了 \(S\) 在 \((B,C)\) 属性组上的投影，所以&lt;/p&gt;
 &lt;span id=&#34;20241027140014CST&#34;&gt;&lt;/span&gt;\[
@@ -2695,7 +2695,7 @@ R \div S = \set{a_1}
 &lt;/div&gt;&lt;h4 id=&#34;更新操作&#34;&gt;更新操作
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;1. 修改操作&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  (1) 首先用&lt;code&gt;HOLD&lt;/code&gt;语句将要修改的元组从数据库中读到工作空间中： &lt;br&gt;
-  (2) 然后用宿主语言修改工作空间中元组的属性值；&lt;br&gt;
+  (2) 然后用宿主语言修改工作空间中元组的属性值。&lt;br&gt;
   (3) 最后用&lt;code&gt;UPDATE&lt;/code&gt;语句将修改后的元组送回数据库中。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028143603CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例30&lt;/strong&gt;：把201215127学生从计算机科学系转到信息系。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2716,7 +2716,7 @@ R \div S = \set{a_1}
   在ALPHA语言中，修改关系主码的操作是不允许的，例如不能用UPDATE语句将学 号201215121改为201215122。如果需要修改主码值，只能先用删除操作删除该元组，然后再把具有新主码值的元组插入到关系中。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. 插入操作&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  插入操作用&lt;code&gt;PUT&lt;/code&gt;语句实现。其步骤是：&lt;br&gt;
-  (1) 首先用宿主语言在工作空间中建立新元组；&lt;br&gt;
+  (1) 首先用宿主语言在工作空间中建立新元组。&lt;br&gt;
   (2) 然后用&lt;code&gt;PUT&lt;/code&gt;语句把该元组存入指定的关系中。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028144605CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例31&lt;/strong&gt;：学校新开设了一门2学分的课程&amp;quot;计算机组织与结构”，其课程号为8,直 接先行课为6号课程。插入该课程元组。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2738,7 +2738,7 @@ R \div S = \set{a_1}
 &lt;/div&gt;&lt;p&gt;  PUT语句只对一个关系操作，也就是说表达式必须为单个关系名。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3. 删除操作&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  删除操作用&lt;code&gt;DELETE&lt;/code&gt;语句实现。其步骤为：&lt;br&gt;
-  (1) 用&lt;code&gt;HOLD&lt;/code&gt;语句把要删除的元组从数据库中读到工作空间中； &lt;br&gt;
+  (1) 用&lt;code&gt;HOLD&lt;/code&gt;语句把要删除的元组从数据库中读到工作空间中。 &lt;br&gt;
   (2) 用&lt;code&gt;DELETE&lt;/code&gt;语句删除该元组。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028145220CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例32&lt;/strong&gt;：201215230学生因故退学，删除该学生元组。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

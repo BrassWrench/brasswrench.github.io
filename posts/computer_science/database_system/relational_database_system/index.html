@@ -131,7 +131,7 @@
 <meta property='og:description' content="基于关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-10T16:44:30&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T14:42:01&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="基于关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -3175,10 +3175,10 @@ R\div S=\set{t_r[X]|(t_r\in R)\land(\Pi_Y (S)\sube Y_x)}
   除操作是同时从行和列角度进行运算。</p>
 <p>  <span id="20241027112320CST"></span><strong>例9</strong>：设关系 \(R\) 、 \(S\) 分别为<a class="link" href="#20241027135213CST">图11</a>中的(a)和(b)， \(R \div S\) 的结果为<a class="link" href="#20241027135213CST">图11</a>(c)。<br>
   在关系 \(R\) 中， \(A\) 可以取 \(4\) 个值 \(\set{a_1,a_2,a_3,a_4}\) 。其中：<br>
-   \(a_1\) 的象集为 \(\set{(b_1,c_2),(b_2,c_3),(b_2,c_1)}\) ；<br>
-   \(a_2\) 的象集为 \(\set{(b_3,c_7),(b_2,c_3)}\) ；<br>
-   \(a_3\) 的象集为 \(\set{(b_4,c_6)}\) ；<br>
-   \(a_4\) 的象集为 \(\set{(b_6,c_6)}\) ；<br>
+   \(a_1\) 的象集为 \(\set{(b_1,c_2),(b_2,c_3),(b_2,c_1)}\) 。<br>
+   \(a_2\) 的象集为 \(\set{(b_3,c_7),(b_2,c_3)}\) 。<br>
+   \(a_3\) 的象集为 \(\set{(b_4,c_6)}\) 。<br>
+   \(a_4\) 的象集为 \(\set{(b_6,c_6)}\) 。<br>
    \(S\) 在 \((B,C)\) 上的投影为 \(\set{(b_1,c_2),(b_2,c_1),(b_2,c_3)}\) 。<br>
   显然只有 \(a_1\) 的象集 \((B,C)_{a_1}\) 包含了 \(S\) 在 \((B,C)\) 属性组上的投影，所以</p>
 <span id="20241027140014CST"></span>\[
@@ -3679,7 +3679,7 @@ R \div S = \set{a_1}
 </div><h4 id="更新操作">更新操作
 </h4><p><strong>1. 修改操作</strong></p>
 <p>  (1) 首先用<code>HOLD</code>语句将要修改的元组从数据库中读到工作空间中： <br>
-  (2) 然后用宿主语言修改工作空间中元组的属性值；<br>
+  (2) 然后用宿主语言修改工作空间中元组的属性值。<br>
   (3) 最后用<code>UPDATE</code>语句将修改后的元组送回数据库中。</p>
 <p>  <span id="20241028143603CST"></span><strong>例30</strong>：把201215127学生从计算机科学系转到信息系。</p>
 <div class="highlight"><div class="chroma">
@@ -3700,7 +3700,7 @@ R \div S = \set{a_1}
   在ALPHA语言中，修改关系主码的操作是不允许的，例如不能用UPDATE语句将学 号201215121改为201215122。如果需要修改主码值，只能先用删除操作删除该元组，然后再把具有新主码值的元组插入到关系中。</p>
 <p><strong>2. 插入操作</strong></p>
 <p>  插入操作用<code>PUT</code>语句实现。其步骤是：<br>
-  (1) 首先用宿主语言在工作空间中建立新元组；<br>
+  (1) 首先用宿主语言在工作空间中建立新元组。<br>
   (2) 然后用<code>PUT</code>语句把该元组存入指定的关系中。</p>
 <p>  <span id="20241028144605CST"></span><strong>例31</strong>：学校新开设了一门2学分的课程&quot;计算机组织与结构”，其课程号为8,直 接先行课为6号课程。插入该课程元组。</p>
 <div class="highlight"><div class="chroma">
@@ -3722,7 +3722,7 @@ R \div S = \set{a_1}
 </div><p>  PUT语句只对一个关系操作，也就是说表达式必须为单个关系名。</p>
 <p><strong>3. 删除操作</strong></p>
 <p>  删除操作用<code>DELETE</code>语句实现。其步骤为：<br>
-  (1) 用<code>HOLD</code>语句把要删除的元组从数据库中读到工作空间中； <br>
+  (1) 用<code>HOLD</code>语句把要删除的元组从数据库中读到工作空间中。 <br>
   (2) 用<code>DELETE</code>语句删除该元组。</p>
 <p>  <span id="20241028145220CST"></span><strong>例32</strong>：201215230学生因故退学，删除该学生元组。</p>
 <div class="highlight"><div class="chroma">
@@ -4769,7 +4769,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 
 
         <span>
-            最后更新于 Nov 10, 2024 16:44 CST
+            最后更新于 Nov 11, 2024 14:42 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4934,7 +4934,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
             
             
         
-        <span>本图书馆累计发布了13篇文章 共184412字</span>
+        <span>本图书馆累计发布了13篇文章 共188977字</span>
     </section>
 
     <section class="site-visit-count">
