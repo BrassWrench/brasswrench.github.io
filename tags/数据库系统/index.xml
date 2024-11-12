@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 12 Nov 2024 00:44:22 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 12 Nov 2024 14:23:00 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/the_standard_language_for_relational_databases_sql/</link>
         <pubDate>Mon, 11 Nov 2024 17:45:02 +0800</pubDate>
@@ -23,7 +23,7 @@
 
 &lt;iframe
   class=&#34;netease-cloud-music-frame&#34;
-  title=&#34;song&amp;#39;s 2067668285&#34;
+  title=&#34;song&amp;#39;s 1965902593&#34;
   frameborder=&#34;no&#34;
   border=&#34;0&#34;
   marginwidth=&#34;0&#34;
@@ -31,7 +31,7 @@
   width=&#34;100%&#34;
   height=&#34;86&#34;
   loading=&#34;lazy&#34;
-  src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=2067668285&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
+  src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=1965902593&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
 &lt;/iframe&gt;
 
 &lt;h1 id=&#34;关系数据库标准语言sql&#34;&gt;关系数据库标准语言SQL
@@ -677,11 +677,11 @@
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&lt;code&gt;DATE&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;日期，包含年、月、日，格式为YYYY-MM-DD&lt;/td&gt;
+          &lt;td&gt;日期，包含年、月、日，格式为&lt;code&gt;YYYY-MM-DD&lt;/code&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&lt;code&gt;TIME&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;时间，包含一日的时、分、秒，格式为HH:MM:SS&lt;/td&gt;
+          &lt;td&gt;时间，包含一日的时、分、秒，格式为&lt;code&gt;HH:MM:SS&lt;/code&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;&lt;code&gt;TIMESTAMP&lt;/code&gt;&lt;/td&gt;
@@ -855,8 +855,88 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  &lt;strong&gt;注意&lt;/strong&gt;：不同的数据库产品在遵循SQL标准的基础上具体实现细节和处理策略会与标准有差别。&lt;/p&gt;
 &lt;p&gt;  下面就SQL 2011标准对&lt;code&gt;DROP TABLE&lt;/code&gt;的规定，对比分析Kingbase ES、Oracle 12c Release 1(12.1)、MS SQL Server 2012这三种数据库产品对&lt;code&gt;DROP TABLE&lt;/code&gt;的不同处理策略。&lt;br&gt;
-  表3.5中的R表示&lt;code&gt;RESTRICT&lt;/code&gt;，即&lt;code&gt;DROP TABLE &amp;lt;基本表名&amp;gt; RESTRICT&lt;/code&gt;；C表示&lt;code&gt;CASCADE&lt;/code&gt;，即&lt;code&gt;DROP TABLE &amp;lt;基本表名&amp;gt; CASCADE&lt;/code&gt;；其中Oracle 12c没有&lt;code&gt;RESTRICT&lt;/code&gt;选项；&lt;code&gt;SQL Server&lt;/code&gt;没有&lt;code&gt;RESTRICT&lt;/code&gt;和&lt;code&gt;CASCADE&lt;/code&gt;选项。&lt;/p&gt;
-&lt;span id=&#34;20241112003812CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表8&amp;emsp;DROP TABLE时，SQL2Q11与3个关系数据库管理系统的处理策略比较&lt;/p&gt;
+  &lt;a class=&#34;link&#34; href=&#34;#20241112003812CST&#34;&gt;表8&lt;/a&gt;中的R表示&lt;code&gt;RESTRICT&lt;/code&gt;，即&lt;code&gt;DROP TABLE &amp;lt;基本表名&amp;gt; RESTRICT&lt;/code&gt;；C表示&lt;code&gt;CASCADE&lt;/code&gt;，即&lt;code&gt;DROP TABLE &amp;lt;基本表名&amp;gt; CASCADE&lt;/code&gt;；其中Oracle 12c没有&lt;code&gt;RESTRICT&lt;/code&gt;选项；&lt;code&gt;SQL Server&lt;/code&gt;没有&lt;code&gt;RESTRICT&lt;/code&gt;和&lt;code&gt;CASCADE&lt;/code&gt;选项。&lt;/p&gt;
+&lt;span id=&#34;20241112003812CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;style&gt;
+
+    #_20241112003812CST {
+        /* th单元格 */
+        .slash-wrap {
+          position: relative;
+          box-sizing: border-box;
+          width: 250px;
+          height: 150px;
+        }
+    
+        /* 斜线 */
+        .slash {
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 0;
+          /* 斜边边长 */
+          /* Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) */
+          width: 291.54759474226501px;
+          height: 0.5px;
+          background-color:#000;
+          /* 旋转角度计算公式 */ 
+          /*  Math.atan(height / width) * 180 / Math.PI  */
+          transform: rotate(30.96375653207352deg); 
+          transform-origin: top left;
+        }
+    
+        /* 左下角文字 */
+        .left {
+          position: absolute;
+          /* 左下角 left:0; bottom: 0; */
+          left: 5px;
+          bottom: 5px;
+        }
+    
+        /* 右上角文字 */
+        .right {
+          position: absolute;
+          /* 右上角 right:0; top: 0; */
+          right: 5px;
+          top: 5px;
+        }
+    }
+  &lt;/style&gt;
+  &lt;div&gt;
+    &lt;table id=&#34;_20241112003812CST&#34;&gt;
+      &lt;tr&gt;
+        &lt;th rowspan=&#34;2&#34;&gt;序号&lt;/th&gt;
+        &lt;th class=&#34;slash-wrap&#34; rowspan=&#34;2&#34;&gt;
+          &lt;span class=&#34;left&#34;&gt;依赖基本表的对象&lt;/span&gt;
+          &lt;span class=&#34;slash&#34;&gt;&lt;/span&gt;
+          &lt;span class=&#34;right&#34;&gt;标准及主流数据库&lt;/br&gt;的处理方式&lt;/span&gt;
+        &lt;/th&gt;
+        &lt;th colspan=&#34;2&#34;&gt;SQL2011&lt;/th&gt;
+        &lt;th colspan=&#34;2&#34;&gt;Kingbase ES&lt;/th&gt;
+        &lt;th colspan=&#34;2&#34;&gt;Oracle 12c&lt;/th&gt;
+        &lt;th&gt;MS SQL Server 2012&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;R&lt;/td&gt;&lt;td&gt;C&lt;/td&gt;&lt;td&gt;R&lt;/td&gt;&lt;td&gt;C&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;C&lt;/td&gt;&lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;索引&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;无规定&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;视图&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/br&gt;保留&lt;/td&gt;&lt;td&gt;√&lt;/br&gt;保留&lt;/td&gt;&lt;td&gt;√&lt;/br&gt;保留&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;&lt;code&gt;DEFAULT&lt;/code&gt;,&lt;code&gt;PRIMARY KEY&lt;/code&gt;,&lt;code&gt;CHECK&lt;/code&gt;（只含该表的列）,&lt;code&gt;NOT NULL&lt;/code&gt;等约束&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;外码&lt;code&gt;FOREIGN KEY&lt;/code&gt;&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;触发器&lt;code&gt;TRIGGER&lt;/code&gt;&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;函数或存储过程&lt;/td&gt;&lt;td&gt;×&lt;/td&gt;&lt;td&gt;√&lt;/td&gt;&lt;td&gt;√&lt;/br&gt;保留&lt;/td&gt;&lt;td&gt;√&lt;/br&gt;保留&lt;/td&gt;&lt;td&gt;√&lt;/br&gt;保留&lt;/td&gt;&lt;td&gt;√&lt;/br&gt;保留&lt;/td&gt;&lt;td&gt;√&lt;/br&gt;保留&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表8&amp;emsp;&lt;code&gt;DROP TABLE&lt;/code&gt;时，SQL2011与3个关系数据库管理系统的处理策略比较&lt;/p&gt;
+&lt;p&gt;  “×”表示不能删除基本表，“√”表示能删除基本表，“保留”表示删除基本表后，还保留依赖对象。从比较表中可以知道：&lt;br&gt;
+  (1)对于索引，删除基本表后，这三个关系数据库管理系统都自动删除该基本表上己经建立的所有索引。&lt;br&gt;
+  (2)对于视图，Oracle 12c与SQL Server 2012是删除基本表后，还保留此基本表上的视图定义，但是己经失效。Kingbase ES分两种情况，若删除基本表时带RESTRICT选项， 则不可以删除基本表；若删除基本表时带CASCADE选项，则可以删除基本表，同时也删 除视图。Kingbase ES的这种策略符合SQL 2011标准。&lt;br&gt;
+  (3)对于存储过程和函数，删除基本表后，这三个数据库产品都不自动删除建立在此基本表上的存储过程和函数，但是已经失效。&lt;br&gt;
+  (4)如果欲删除的基本表上有触发器，或者被其他基本表的约束所引用（&lt;code&gt;CHECK&lt;/code&gt;、&lt;code&gt;FOREIGN KEY&lt;/code&gt;等），读者可以从比较表中得到这三个系统的处理策略，这里就不一一说明了。同样，对于其他的SQL语句，不同的数据库产品在处理策略上会与标准有所差别。因此，如果发现本文中个别例子在某个数据库产品上不能通过时，请读者参见有关产品的用户手册，适当修改即可。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -1004,7 +1084,7 @@ D1\times D2\times D3=｛&amp;(张清玫,计算机专业,李勇),(张清玫,目�
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp; \(D_1,D_2,D_3\) 的Cartesian乘积&lt;/p&gt;。&lt;/p&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp;\(D_1,D_2,D_3\) 的Cartesian乘积&lt;/p&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;关系-1&#34;&gt;关系
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024171300CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3（关系）&lt;/strong&gt; \(D_1\times D_2 \times \cdots\times D_n\) 的子集叫做在域 \(D_1,D_2,\times,D_n\) 以上的关系，表示为&lt;/p&gt;
 &lt;span id=&#34;20241024171425CST&#34;&gt;&lt;/span&gt;\[
@@ -3247,7 +3327,7 @@ R \div S = \set{a_1}
   &lt;text transform=&#34;translate(427.0439 83.2616)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(427.0443 119.2358)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(425.3789 15.8398)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;K&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图12&amp;emsp;临时关系 \(\text{K}\) &lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图12&amp;emsp;临时关系 \(\text{K}\)&lt;/p&gt;
 &lt;p&gt;  然后求&lt;/p&gt;
 &lt;span id=&#34;20241027142101CST&#34;&gt;&lt;/span&gt;\[
 \Pi_{\text{Sno},\text{Cno}}(\text{SC})\div \text{K}

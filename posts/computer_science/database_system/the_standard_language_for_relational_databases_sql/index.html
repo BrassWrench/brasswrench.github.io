@@ -131,7 +131,7 @@
 <meta property='og:description' content="关系数据库的标准查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/the_standard_language_for_relational_databases_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-12T00:44:22&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-12T14:23:00&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="关系数据库的标准查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -950,7 +950,7 @@
 </svg>
 
             <time class="article-words">
-                8706 字
+                9358 字
             </time>
         </div>
 
@@ -965,7 +965,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 18 分钟
+                    阅读时长: 19 分钟
                 </time>
             </div>
         
@@ -990,7 +990,7 @@
 
 <iframe
   class="netease-cloud-music-frame"
-  title="song&#39;s 2067668285"
+  title="song&#39;s 1965902593"
   frameborder="no"
   border="0"
   marginwidth="0"
@@ -998,7 +998,7 @@
   width="100%"
   height="86"
   loading="lazy"
-  src="https://music.163.com/outchain/player?type=2&amp;id=2067668285&amp;auto=0&amp;height=66">
+  src="https://music.163.com/outchain/player?type=2&amp;id=1965902593&amp;auto=0&amp;height=66">
 </iframe>
 
 <h1 id="关系数据库标准语言sql">关系数据库标准语言SQL
@@ -1644,11 +1644,11 @@
       </tr>
       <tr>
           <td><code>DATE</code></td>
-          <td>日期，包含年、月、日，格式为YYYY-MM-DD</td>
+          <td>日期，包含年、月、日，格式为<code>YYYY-MM-DD</code></td>
       </tr>
       <tr>
           <td><code>TIME</code></td>
-          <td>时间，包含一日的时、分、秒，格式为HH:MM:SS</td>
+          <td>时间，包含一日的时、分、秒，格式为<code>HH:MM:SS</code></td>
       </tr>
       <tr>
           <td><code>TIMESTAMP</code></td>
@@ -1822,8 +1822,88 @@
 </div>
 </div><p>  <strong>注意</strong>：不同的数据库产品在遵循SQL标准的基础上具体实现细节和处理策略会与标准有差别。</p>
 <p>  下面就SQL 2011标准对<code>DROP TABLE</code>的规定，对比分析Kingbase ES、Oracle 12c Release 1(12.1)、MS SQL Server 2012这三种数据库产品对<code>DROP TABLE</code>的不同处理策略。<br>
-  表3.5中的R表示<code>RESTRICT</code>，即<code>DROP TABLE &lt;基本表名&gt; RESTRICT</code>；C表示<code>CASCADE</code>，即<code>DROP TABLE &lt;基本表名&gt; CASCADE</code>；其中Oracle 12c没有<code>RESTRICT</code>选项；<code>SQL Server</code>没有<code>RESTRICT</code>和<code>CASCADE</code>选项。</p>
-<span id="20241112003812CST"></span><div class="normal-table"></div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表8&emsp;DROP TABLE时，SQL2Q11与3个关系数据库管理系统的处理策略比较</p>
+  <a class="link" href="#20241112003812CST">表8</a>中的R表示<code>RESTRICT</code>，即<code>DROP TABLE &lt;基本表名&gt; RESTRICT</code>；C表示<code>CASCADE</code>，即<code>DROP TABLE &lt;基本表名&gt; CASCADE</code>；其中Oracle 12c没有<code>RESTRICT</code>选项；<code>SQL Server</code>没有<code>RESTRICT</code>和<code>CASCADE</code>选项。</p>
+<span id="20241112003812CST"></span><div class="normal-table"><style>
+
+    #_20241112003812CST {
+        /* th单元格 */
+        .slash-wrap {
+          position: relative;
+          box-sizing: border-box;
+          width: 250px;
+          height: 150px;
+        }
+    
+        /* 斜线 */
+        .slash {
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 0;
+          /* 斜边边长 */
+          /* Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) */
+          width: 291.54759474226501px;
+          height: 0.5px;
+          background-color:#000;
+          /* 旋转角度计算公式 */ 
+          /*  Math.atan(height / width) * 180 / Math.PI  */
+          transform: rotate(30.96375653207352deg); 
+          transform-origin: top left;
+        }
+    
+        /* 左下角文字 */
+        .left {
+          position: absolute;
+          /* 左下角 left:0; bottom: 0; */
+          left: 5px;
+          bottom: 5px;
+        }
+    
+        /* 右上角文字 */
+        .right {
+          position: absolute;
+          /* 右上角 right:0; top: 0; */
+          right: 5px;
+          top: 5px;
+        }
+    }
+  </style>
+  <div>
+    <table id="_20241112003812CST">
+      <tr>
+        <th rowspan="2">序号</th>
+        <th class="slash-wrap" rowspan="2">
+          <span class="left">依赖基本表的对象</span>
+          <span class="slash"></span>
+          <span class="right">标准及主流数据库</br>的处理方式</span>
+        </th>
+        <th colspan="2">SQL2011</th>
+        <th colspan="2">Kingbase ES</th>
+        <th colspan="2">Oracle 12c</th>
+        <th>MS SQL Server 2012</th>
+      </tr>
+      <tr><td>R</td><td>C</td><td>R</td><td>C</td><td></td><td>C</td><td></td>
+      </tr>
+      <tr><td>1</td><td>索引</td><td colspan="2">无规定</td><td>√</td><td>√</td><td>√</td><td>√</td><td>√</td>
+      </tr>
+      <tr><td>2</td><td>视图</td><td>×</td><td>√</td><td>×</td><td>√</td><td>√</br>保留</td><td>√</br>保留</td><td>√</br>保留</td>
+      </tr>
+      <tr><td>3</td><td><code>DEFAULT</code>,<code>PRIMARY KEY</code>,<code>CHECK</code>（只含该表的列）,<code>NOT NULL</code>等约束</td><td>√</td><td>√</td><td>√</td><td>√</td><td>√</td><td>√</td><td>√</td>
+      </tr>
+      <tr><td>4</td><td>外码<code>FOREIGN KEY</code></td><td>×</td><td>√</td><td>×</td><td>√</td><td>×</td><td>√</td><td>×</td>
+      </tr>
+      <tr><td>5</td><td>触发器<code>TRIGGER</code></td><td>×</td><td>√</td><td>×</td><td>√</td><td>√</td><td>√</td><td>√</td>
+      </tr>
+      <tr><td>6</td><td>函数或存储过程</td><td>×</td><td>√</td><td>√</br>保留</td><td>√</br>保留</td><td>√</br>保留</td><td>√</br>保留</td><td>√</br>保留</td>
+      </tr>
+    </table>
+  </div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表8&emsp;<code>DROP TABLE</code>时，SQL2011与3个关系数据库管理系统的处理策略比较</p>
+<p>  “×”表示不能删除基本表，“√”表示能删除基本表，“保留”表示删除基本表后，还保留依赖对象。从比较表中可以知道：<br>
+  (1)对于索引，删除基本表后，这三个关系数据库管理系统都自动删除该基本表上己经建立的所有索引。<br>
+  (2)对于视图，Oracle 12c与SQL Server 2012是删除基本表后，还保留此基本表上的视图定义，但是己经失效。Kingbase ES分两种情况，若删除基本表时带RESTRICT选项， 则不可以删除基本表；若删除基本表时带CASCADE选项，则可以删除基本表，同时也删 除视图。Kingbase ES的这种策略符合SQL 2011标准。<br>
+  (3)对于存储过程和函数，删除基本表后，这三个数据库产品都不自动删除建立在此基本表上的存储过程和函数，但是已经失效。<br>
+  (4)如果欲删除的基本表上有触发器，或者被其他基本表的约束所引用（<code>CHECK</code>、<code>FOREIGN KEY</code>等），读者可以从比较表中得到这三个系统的处理策略，这里就不一一说明了。同样，对于其他的SQL语句，不同的数据库产品在处理策略上会与标准有所差别。因此，如果发现本文中个别例子在某个数据库产品上不能通过时，请读者参见有关产品的用户手册，适当修改即可。</p>
 
     </div>
 </section>
@@ -1867,7 +1947,7 @@
 
 
         <span>
-            最后更新于 Nov 12, 2024 00:44 CST
+            最后更新于 Nov 12, 2024 14:23 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2035,7 +2115,7 @@
             
             
         
-        <span>本图书馆累计发布了14篇文章 共203493字</span>
+        <span>本图书馆累计发布了14篇文章 共204163字</span>
     </section>
 
     <section class="site-visit-count">
