@@ -131,7 +131,7 @@
 <meta property='og:description' content="文本的表示、自然语言处理的任务、基本问题和评价指标">
 <meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='自然语言处理' /><meta property='article:published_time' content='2024-11-13T01:11:04&#43;08:00'/><meta property='article:modified_time' content='2024-11-13T01:28:04&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='自然语言处理' /><meta property='article:published_time' content='2024-11-13T01:11:04&#43;08:00'/><meta property='article:modified_time' content='2024-11-13T02:04:54&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="自然语言处理（二）：自然语言处理基础">
 <meta name="twitter:description" content="文本的表示、自然语言处理的任务、基本问题和评价指标"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -576,6 +576,40 @@
         
             
                 
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M9 6h11" />
+    <path d="M12 12h8" />
+    <path d="M15 18h5" />
+    <path d="M5 6v.01" />
+    <path d="M8 12v.01" />
+    <path d="M11 18v.01" />
+  </svg>
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#文本的表示">文本的表示</a>
+      <ol>
+        <li><a href="#词的独热表示">词的独热表示</a></li>
+        <li><a href="#词的分布式表示">词的分布式表示</a>
+          <ol>
+            <li><a href="#分布式语义假设">分布式语义假设</a></li>
+            <li><a href="#点互信息">点互信息</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
             
         
 
@@ -887,7 +921,7 @@
 </svg>
 
             <time class="article-words">
-                0 字
+                3150 字
             </time>
         </div>
 
@@ -902,7 +936,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -938,7 +972,202 @@
   src="https://music.163.com/outchain/player?type=2&amp;id=2067668285&amp;auto=0&amp;height=66">
 </iframe>
 
-
+<h1 id="自然语言处理基础">自然语言处理基础
+</h1><p>  本章首先介绍自然语言处理中最基础、最本质的问题，即文本如何在计算机内表示，才能达到易于处理和计算的目的。其中，词的表示大体经过了早期的独热（One-hot）表示，到后来的分布式表示，再到最近的词向量三个阶段。至于更长文本的表示方法，本章只对最简单的词袋模型加以介绍，后续章节将介绍其他更好的表示方法。接着介绍三大类自然语言处理任务，即：语言模型、基础任务以及应用任务。其中，基础任务包括中文分词、词性标注、句法分析和语义分析等，应用任务包括信息抽取、情感分析、问答系统、机器翻译和对话系统等。由于这些任务基本可以归纳为文本分类、结构预测和序列到序列三大类问题，所以同时介绍这三大类问题的解决思路。最后，介绍自然语言处理任务的评价方法，主要包括针对确定答案的准确率和F值，针对非确定答案的BLEU值，以及针对开放答案的人工评价等。</p>
+<h2 id="文本的表示">文本的表示
+</h2><p>  若要利用计算机对自然语言进行处理，首先需要解决语言（本书特指文本）
+在计算机内部的存储和计算问题。<strong>字符串（String）</strong>‌是文本最自然，也是最常用的机内存储形式。所谓字符串，即字符序列，而其中的一个字符本质上就是一个整数。基于字符串的文本表示方式可以实现简单的字符串增删改查等编辑任务，并能够通过编辑距离等算法计算两个字符串之间的字面相似度。在使用字符串表示（也叫符号表示）计算文本的语义信息时，往往需要使用基于规则的方法。例如,要判断一个句子的情感极性（褒义或贬义），规则的形式可能为：如果句子中出现“喜欢””漂亮”等词则为褒义；如果出现“讨厌”“丑陋&quot;等词则为贬义。<br>
+  这种基于规则的方法存在很多问题。首先，规则的归纳依赖专家的经验，需 要花费大量的人力、物力和财力；其次，规则的表达能力有限，很多语言现象无法用简单的规则描述；最后，随着规则的增多，规则之间可能存在矛盾和冲突的情况，导致最终无法做出决策。例如，一个句子中既出现了“喜欢”，又出现了“讨厌”，那么其极性应该是什么呢？<br>
+  为了解决基于规则的方法存在的以上诸多问题，基于机器学习的自然语言处理技术应运而生，其最本质的思想是将文本表示为向量，其中的每一维代表一个特征。在进行决策的时候，只要对这些特征的相应值进行加权求和，就可以得到一个分数用于最终的判断。仍然以情感极性识别为例，一种非常简单的将原始文本表示为向量的方法为：令向量 \(\bm{x}\) 的每一维表示某个词在该文本中出现的次数,如 \(x_1\) 表示“我”出现的次数， \(x_2\) 表示“喜欢”出现的次数， \(x_3\) 表示“电影”出现的次数， \(x_4\) 表示“讨厌”出现的次数等，如果某个词在该句中没有出现，则相应的维数被设置为0。可见，输入向量 \(\bm{x}\) 的大小恰好为整个词表（所有不相同的词）的大小。然后就可以根据每个词对判断情感极性的重要性进行加权，如“喜欢”（ \(x_2\) ）对应的权重 \(\omega_2\) 可能比较大，而“讨厌&quot;（ \(x_4\) ）对应的权重 \(\omega_4\) 可能比较小（可以为负数），对于情感极性影响比较小的词，如“我”“电影”等，对应的权重可能会趋近于 \(0\) 。这种文本表示的方法是两种技术的组合，即词的独热表示和文本的词袋表示。除了可以应用于基于机器学习的方法，文本向量表示还可以用于计算两个文本之间的相似度，即使用余弦函数等度量函数表示两个向量之间的相似度，并应用于信息检索等任务。下面就以上提到的各项技术分别进行详细的介绍。</p>
+<h3 id="词的独热表示">词的独热表示
+</h3><p>  所谓词的独热表示，即使用一个词表大小的向量表示一个词（假设词表为 \(
+\mathbb{V}\) ，则其大小为 \(|\mathbb{V}|\) ),然后将词表中的第 \(i\) 个词 \(\omega_i\) 表示为向量：</p>
+<span id="20241113014020CST"></span>\[
+\bm{e}_{\omega_i}=[0,0,\cdots,\underbrace{1}_{第i个词},\cdots,0] \in \set{0,1}^{|\mathbb{V}|}
+\tag{1}
+    \]
+<p>  在该向量中，词表中第 \(i\) 个词在第 \(i\) 维上被设置为 \(1\) ，其余维均为 \(0\) 。这种表示被称为词的<strong>独热表示</strong>或<strong>独热编码（One-hot Encoding）</strong>。<br>
+  独热表示的一个主要问题就是不同词使用完全不同的向量进行表示，这会导 致即使两个词在语义上很相似，但是通过余弦函数来度量它们之间的相似度时值却为 \(0\) 。另外，当应用于基于机器学习的方法时，独热模型会导致<strong>数据稀疏（Data Sparsity）</strong>‌问题。例如，假设在训练数据中只见过“漂亮”，在测试数据中出现了
+“美丽”，虽然它们之间很相似，但是系统仍然无法恰当地对“美丽”进行加权。由于数据稀疏问题，导致当训练数据规模有限时，很多语言现象没有被充分地学习到。<br>
+  为了缓解数据稀疏问题，传统的做法是除了词自身，再提取更多和词相关的泛化特征，如词性特征、词义特征和词聚类特征等。以语义特征为例，通过引入WordNet等语义词典，可以获知“漂亮”和“美丽”是同义词，然后引入它们的共同语义信息作为新的额外特征，从而缓解同义词的独热表示不同的问题。可以说，在使用传统机器学习方法解决自然语言处理问题时，研究者的很大一部分精力都用在了挖掘有效的特征上。</p>
+<h3 id="词的分布式表示">词的分布式表示
+</h3><p>  词的独热表示容易导致数据稀疏问题，而通过引入特征的方法虽然可以缓解
+该问题，但是特征的设计费时费力。那么有没有办法自动提取特征并设置相应的特征值呢？</p>
+<h4 id="分布式语义假设">分布式语义假设
+</h4><p>  人们在阅读过程中遇到从未见过的词时，通常会根据上下文来推断其含义以 及相关属性。基于这种思想，John Rupert Firth于1957年提出了<strong>分布式语义假设</strong>：词的含义可由其上下文的分布进行表示。基于该思想，可以利用大规模的未标注文本数据，根据每个词的上下文分布对词进行表示。当然，分布式语义假设仅仅提供了一种语义建模的思想。具体到表示形式和上下文的选择，以及如何利用上下文的分布特征，都是需要解决的问题。<br>
+  下面用一个具体的例子演示如何构建词的分布式表示。假设语料库中有以下三句话：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">我 喜欢 自然 语言 处理 。
+</span></span><span class="line"><span class="cl">我 爱 深度 学习 。
+</span></span><span class="line"><span class="cl">我 喜欢 机器 学习 。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  假设以词所在句子中的其他词语作为上下文，那么可以创建如<a class="link" href="#20241113015119CST">表1</a>所示的词语共现频次表。其中，词表 \(\mathbb{V}\) 包含“我”“喜欢”···“。”共10个词，即 \(|\mathbb{V}|=10\) 。表中的每一项代表一个词 \(w_i\) 与另一个词 \(w_j\) （上下文）在同一个句子中的共现频次，每个词与自身的共现频次设置为 \(0\) 。</p>
+<span id="20241113015119CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>我</th>
+          <th>喜欢</th>
+          <th>自然</th>
+          <th>语言</th>
+          <th>处理</th>
+          <th>爱</th>
+          <th>深度</th>
+          <th>学习</th>
+          <th>机器</th>
+          <th>。</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>我</td>
+          <td>0</td>
+          <td>2</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2</td>
+          <td>1</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>喜欢</td>
+          <td>2</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>自然</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>语言</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>处理</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>爱</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>深度</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>学习</td>
+          <td>2</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>机器</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>。</td>
+          <td>3</td>
+          <td>2</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2</td>
+          <td>1</td>
+          <td>0</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;词语共现频次表</p>
+<p>  表中的每一行代表一个词的向量。通过计算两个向量之间的余弦函数，就可 以计算两个词的相似度。如“喜欢”和“爱”，由于有共同的上下文“我”和“学习”，使得它们之间具有了一定的相似性，而不是如独热表示一样，没有任何关系。<br>
+  除了词，上下文的选择有很多种方式，而选择不同的上下文得到的词向量表示性质会有所不同。例如，可以使用词在句子中的一个固定窗口内的词作为其上下文，也可以使用所在的文档本身作为上下文。前者得到的词表示将更多地反映词的局部性质：具有相似词法、句法属性的词将会具有相似的向量表示。而后者 将更多地反映词代表的主题信息。
+不过，直接使用与上下文的共现频次作为词的向量表示，至少存在以下三个问题：<br>
+◾高频词误导计算结果。如上例中，“我”“。”与其他词的共现频次很高，导致实际上可能没有关系的两个词由于都和这些词共现过，从而产生了较高的 相似度。<br>
+◾共现频次无法反映词之间的高阶关系。例如，假设词“A”与”B”共现过，“B”与&quot;C”共现过，“C”与“D&quot;共现过，通过共现频次，只能获知“A”与“C”都与“B”共现过，它们之间存在一定的关系，而“A”与“D”这种高阶的关系则无法知晓。<br>
+◾然存在稀疏性的问题。即向量中仍有大量的值为0，这一点从<a class="link" href="#20241113015119CST">表1</a>中也可以看出。</p>
+<p>  下面分别介绍如何通过点互信息和奇异值分解两种技术来解决这些问题。</p>
+<h4 id="点互信息">点互信息
+</h4>
     </div>
 </section>
 
@@ -977,7 +1206,7 @@
 
 
         <span>
-            最后更新于 Nov 13, 2024 01:28 CST
+            最后更新于 Nov 13, 2024 02:04 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1148,7 +1377,7 @@
             
             
         
-        <span>本图书馆累计发布了15篇文章 共211726字</span>
+        <span>本图书馆累计发布了15篇文章 共214868字</span>
     </section>
 
     <section class="site-visit-count">
