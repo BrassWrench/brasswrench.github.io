@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 12 Nov 2024 15:48:31 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 12 Nov 2024 16:49:17 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/the_standard_language_for_relational_databases_sql/</link>
         <pubDate>Mon, 11 Nov 2024 17:45:02 +0800</pubDate>
@@ -1013,7 +1013,82 @@
 &lt;h3 id=&#34;数据字典&#34;&gt;数据字典
 &lt;/h3&gt;&lt;p&gt;  数据字典是关系数据库管理系统内部的一组系统表，它记录了数据库中所有的定义信息，包括关系模式定义、视图定义、索引定义、完整性约束定义、各类用户对数据库的操作权限、统计信息等。关系数据库管理系统在执行SQL的数据定义语句时，实际上就是在更新数据字典表中的相应信息。在进行查询优化和查询处理时，数据字典中的信息是其重要依据。&lt;/p&gt;
 &lt;h2 id=&#34;数据查询&#34;&gt;数据查询
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;p&gt;  数据查询是数据库的核心操作。SQL提供了&lt;code&gt;SELECT&lt;/code&gt;语句进行数据查询，该语句具有灵活的使用方式和丰富的功能。其一般格式为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ALL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DISTINCT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;目标列表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;目标列表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名或视图名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名或视图名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SELECT语句&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;别名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;条件表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GROUP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;HAVING&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;条件表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ORDER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ASC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  整个&lt;code&gt;SELECT&lt;/code&gt;语句的含义是，根据&lt;code&gt;WHERE&lt;/code&gt;子句的条件表达式从&lt;code&gt;FROM&lt;/code&gt;子句指定的基本表、视图或派生表中找出满足条件的元组，再按&lt;code&gt;SELECT&lt;/code&gt;子句中的目标列表达式选出元组中的属性值形成结果表。&lt;br&gt;
+  如果有&lt;code&gt;GROUP BY&lt;/code&gt;子句，则将结果按&lt;code&gt;&amp;lt;列名1&amp;gt;&lt;/code&gt;的值进行分组，该属性列值相等的元组为一个组。通常会在每组中作用聚集函数。如果&lt;code&gt;GROUP BY&lt;/code&gt;子句带&lt;code&gt;HAVING&lt;/code&gt;短语，则只 有满足指定条件的组才予以输出。&lt;br&gt;
+  如果有&lt;code&gt;ORDER BY&lt;/code&gt;子句，则结果表还要按&lt;code&gt;&amp;lt;列名2&amp;gt;&lt;/code&gt;的值的升序或降序排序。&lt;code&gt;SELECT&lt;/code&gt;语句既可以完成简单的单表查询，也可以完成复杂的连接查询和嵌套查询。 下面以学生—课程数据库为例说明&lt;code&gt;SELECT&lt;/code&gt;语句的各种用法。&lt;/p&gt;
+&lt;h3 id=&#34;单表查询&#34;&gt;单表查询
+&lt;/h3&gt;&lt;p&gt;  单表查询是指仅涉及一个表的查询。&lt;/p&gt;
+&lt;h4 id=&#34;选择表中的若干列&#34;&gt;选择表中的若干列
+&lt;/h4&gt;&lt;p&gt;  选择表中的全部或部分列即关系代数的投影运算。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 查询指定列&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  在很多情况下，用户只对表中的一部分属性列感兴趣，这时可以通过在&lt;code&gt;SELECT&lt;/code&gt;子句的&lt;code&gt;&amp;lt;目标列表达式&amp;gt;&lt;/code&gt;中指定要查询的属性列。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241112161101CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例16&lt;/strong&gt;：查询全体学生的学号与姓名。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  该语句的执行过程可以是这样的：从&lt;code&gt;Student&lt;/code&gt;表中取出一个元组，取出该元组在属性&lt;code&gt;Sno&lt;/code&gt;和&lt;code&gt;Sname&lt;/code&gt;上的值，形成一个新的元组作为输出。对&lt;code&gt;Student&lt;/code&gt;表中的所有元组做相同的处理，最后形成一个结果关系作为输出。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241112161207CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例17&lt;/strong&gt;：查询全体学生的姓名、学号、所在系。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;code&gt;&amp;lt;目标列表达式&amp;gt;&lt;/code&gt;中各个列的先后顺序可以与表中的顺序不一致。用户可以根据应用的需要改变列的显示顺序。本例中先列出姓名，再列出学号和所在系。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 查询全部列&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  将表中的所有属性列都选出来有两种方法，一种方法就是在&lt;code&gt;SELECT&lt;/code&gt;关键字后列出所有列名；如果列的显示顺序与其在基表中的顺序相同，也可以简单地将&lt;code&gt;&amp;lt;目标列表达式&amp;gt;&lt;/code&gt;指定为&lt;code&gt;*&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241112161438CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例18&lt;/strong&gt;：查询全体学生的详细记录。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  等价于&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ssex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;3. 查询经过计算的值&lt;/strong&gt;&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>打赏</title>
@@ -17595,7 +17670,7 @@ p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(h\right)
         <guid>https://www.brasswrench.com/about/</guid>
         <description>&lt;p&gt;  欢迎来到黄铜扳手的个人图书馆！我是一名来自哈尔滨工业大学本部人工智能专业的大三学生，“Brass Wrench”是我的别名&amp;mdash;&amp;mdash;这个名字的灵感源自广受欢迎的革命性Minecraft模组“机械动力”中的黄铜扳手。这是我用来记录和整理知识的个人知识库，主要内容涵盖我在学习和研究过程中遇到的各种基础概念、技术原理和解决方案。&lt;br&gt;
   我对许多领域都有浓厚的兴趣，虽然经常都是三分钟热度，但这也使得我的知识积累非常丰富，横跨很多个学科领域，包括基础科学、计算机科学、工程科学、经济学、医学、法学、社会学、哲学甚至艺术学。在不久的将来，我会将来自各个领域的知识逐渐整理成册，发布在图书馆的各个页面中。这些页面之间有着严谨的上下文和逻辑联系，且均按照各个学科严格的教学标准进行书写，以方便访客在图书馆内进行学习、理解和查找。当然这份知识库将不仅限于理论知识，还包括我在某些领域实践得到的经验和解决方案。同时，我写文章的宗旨是尽量不相互重合，尽量不向外引用、尽量不出现不明白或未给出推导的结论，即所有的逻辑都能自洽，所有的知识点都能在本图书馆中找到依赖，从而为各位来访者进行学习和研究建立好强大的地基。&lt;br&gt;
-  同时由于长期服用精神类药物，我记忆力实在是太差，因此这个图书馆的创建初衷也是为了找到一种有效的方法来管理和巩固我所学习的知识，以此作为“第二大脑”。我希望在未来的某个时刻，当我突然想到某个知识点时，能够迅速找到我需要的信息。这个图书馆将帮助我更系统地整理和回顾学习的内容，从而提高我的学习效率和科研能力。&lt;br&gt;
+  然而遗憾的是，我本人也是一名双相情感障碍患者。由于反复发作和长期服用精神类药物，我记忆力实在是太差，因此这个图书馆的创建初衷也是为了找到一种有效的方法来管理和巩固我所学习的知识，以此作为“第二大脑”。我希望在未来的某个时刻，当我突然想到某个知识点时，能够迅速找到我需要的信息。这个图书馆将帮助我更系统地整理和回顾学习的内容，从而提高我的学习效率和科研能力。&lt;br&gt;
   此外，我也希望通过这个图书馆将我的工作公开分享，让那些有类似需求的人能够方便地找到他们需要的知识。我相信在信息爆炸的时代，很多人都在寻找有用的资源。我的图书馆旨在提供一个集中而完善的知识库，帮助来访者们快速找到他们所需要的信息，同时也希望这能成为一个有价值的参考来源，促进知识的传播与共享。希望您在这里能够找到有用的内容，也欢迎您提出建议和意见，共同推动这个知识库的完善与发展。&lt;/p&gt;
 &lt;p&gt;  以下介绍一下该图书馆的使用方法。&lt;/p&gt;
 &lt;p&gt;  黄铜扳手图书馆整理了基础科学、计算机科学、工程科学、经济学、医学、法学、社会学、哲学、艺术学等领域的丰富资源。资料按照学科内容进行层次化归类，来访者可以通过侧边导航栏点击“分类”开始查找某一领域相关内容。同时，侧边导航栏和右上角的搜索框提供了关键词搜索功能，可以搜索到每篇文章的内容。不同领域的学科知识以中长篇文章的方式呈现，通过页面主题和所在编号进行组织。值得一提的是，页面内的知识和页面间的引用关系非常明确，通过内嵌链接可以跳转到相关内容。各页面相互链接，保证逻辑自洽，便于跨学科的综合查询，支持深度学习与研究。在点击跳转链接后可以通过点击右侧箭头按钮返回原来的位置。&lt;/p&gt;
