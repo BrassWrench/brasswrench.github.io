@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 13 Nov 2024 19:39:33 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 13 Nov 2024 21:07:29 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -152,7 +152,7 @@ PMI(w,c)=&amp;\log_2\frac{P(w,c)}{P(w)P(c)}\\[15pt]
 PPMI(w,c)=\max\set{PMI(w,c),0}
 \tag{5}
     \]
-&lt;p&gt;  接下来介绍PMI的代码实现。首先，将类似&lt;a class=&#34;link&#34; href=&#34;#20241113015119CST&#34;&gt;表1&lt;/a&gt;形式的共现频次表定义为&lt;strong&gt;共现矩阵&lt;/strong&gt;的形式，即 \(\bm{M} \in \mathbb{R}^{|\mathbb{V}|\times|\mathbb{C}}|\) ，其中 \(|\mathbb{V}|\) 为词表， \(\mathbb{C}\) 为全部的上下文， \(M_{ij}\) 为词 \(w_i\) 与上下文 \(c_j\) 在语料库中的共现频次。然后，编写如下代码计PPMI：&lt;/p&gt;
+&lt;p&gt;  接下来介绍PMI的代码实现。首先，将类似&lt;a class=&#34;link&#34; href=&#34;#20241113015119CST&#34;&gt;表1&lt;/a&gt;形式的共现频次表定义为&lt;strong&gt;共现矩阵&lt;/strong&gt;的形式，即 \(\bm{M} \in \mathbb{R}^{|\mathbb{V}|\times|\mathbb{C}|}\) ，其中 \(|\mathbb{V}|\) 为词表， \(\mathbb{C}\) 为全部的上下文， \(M_{ij}\) 为词 \(w_i\) 与上下文 \(c_j\) 在语料库中的共现频次。然后，编写如下代码计PPMI：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
