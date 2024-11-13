@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 13 Nov 2024 02:04:54 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 13 Nov 2024 19:39:33 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -40,12 +40,12 @@
 &lt;/h2&gt;&lt;p&gt;  若要利用计算机对自然语言进行处理，首先需要解决语言（本书特指文本）
 在计算机内部的存储和计算问题。&lt;strong&gt;字符串（String）&lt;/strong&gt;‌是文本最自然，也是最常用的机内存储形式。所谓字符串，即字符序列，而其中的一个字符本质上就是一个整数。基于字符串的文本表示方式可以实现简单的字符串增删改查等编辑任务，并能够通过编辑距离等算法计算两个字符串之间的字面相似度。在使用字符串表示（也叫符号表示）计算文本的语义信息时，往往需要使用基于规则的方法。例如,要判断一个句子的情感极性（褒义或贬义），规则的形式可能为：如果句子中出现“喜欢””漂亮”等词则为褒义；如果出现“讨厌”“丑陋&amp;quot;等词则为贬义。&lt;br&gt;
   这种基于规则的方法存在很多问题。首先，规则的归纳依赖专家的经验，需 要花费大量的人力、物力和财力；其次，规则的表达能力有限，很多语言现象无法用简单的规则描述；最后，随着规则的增多，规则之间可能存在矛盾和冲突的情况，导致最终无法做出决策。例如，一个句子中既出现了“喜欢”，又出现了“讨厌”，那么其极性应该是什么呢？&lt;br&gt;
-  为了解决基于规则的方法存在的以上诸多问题，基于机器学习的自然语言处理技术应运而生，其最本质的思想是将文本表示为向量，其中的每一维代表一个特征。在进行决策的时候，只要对这些特征的相应值进行加权求和，就可以得到一个分数用于最终的判断。仍然以情感极性识别为例，一种非常简单的将原始文本表示为向量的方法为：令向量 \(\bm{x}\) 的每一维表示某个词在该文本中出现的次数,如 \(x_1\) 表示“我”出现的次数， \(x_2\) 表示“喜欢”出现的次数， \(x_3\) 表示“电影”出现的次数， \(x_4\) 表示“讨厌”出现的次数等，如果某个词在该句中没有出现，则相应的维数被设置为0。可见，输入向量 \(\bm{x}\) 的大小恰好为整个词表（所有不相同的词）的大小。然后就可以根据每个词对判断情感极性的重要性进行加权，如“喜欢”（ \(x_2\) ）对应的权重 \(\omega_2\) 可能比较大，而“讨厌&amp;quot;（ \(x_4\) ）对应的权重 \(\omega_4\) 可能比较小（可以为负数），对于情感极性影响比较小的词，如“我”“电影”等，对应的权重可能会趋近于 \(0\) 。这种文本表示的方法是两种技术的组合，即词的独热表示和文本的词袋表示。除了可以应用于基于机器学习的方法，文本向量表示还可以用于计算两个文本之间的相似度，即使用余弦函数等度量函数表示两个向量之间的相似度，并应用于信息检索等任务。下面就以上提到的各项技术分别进行详细的介绍。&lt;/p&gt;
+  为了解决基于规则的方法存在的以上诸多问题，基于机器学习的自然语言处理技术应运而生，其最本质的思想是将文本表示为向量，其中的每一维代表一个特征。在进行决策的时候，只要对这些特征的相应值进行加权求和，就可以得到一个分数用于最终的判断。仍然以情感极性识别为例，一种非常简单的将原始文本表示为向量的方法为：令向量 \(\bm{x}\) 的每一维表示某个词在该文本中出现的次数,如 \(x_1\) 表示“我”出现的次数， \(x_2\) 表示“喜欢”出现的次数， \(x_3\) 表示“电影”出现的次数， \(x_4\) 表示“讨厌”出现的次数等，如果某个词在该句中没有出现，则相应的维数被设置为0。可见，输入向量 \(\bm{x}\) 的大小恰好为整个词表（所有不相同的词）的大小。然后就可以根据每个词对判断情感极性的重要性进行加权，如“喜欢”（ \(x_2\) ）对应的权重 \(w_2\) 可能比较大，而“讨厌&amp;quot;（ \(x_4\) ）对应的权重 \(w_4\) 可能比较小（可以为负数），对于情感极性影响比较小的词，如“我”“电影”等，对应的权重可能会趋近于 \(0\) 。这种文本表示的方法是两种技术的组合，即词的独热表示和文本的词袋表示。除了可以应用于基于机器学习的方法，文本向量表示还可以用于计算两个文本之间的相似度，即使用余弦函数等度量函数表示两个向量之间的相似度，并应用于信息检索等任务。下面就以上提到的各项技术分别进行详细的介绍。&lt;/p&gt;
 &lt;h3 id=&#34;词的独热表示&#34;&gt;词的独热表示
 &lt;/h3&gt;&lt;p&gt;  所谓词的独热表示，即使用一个词表大小的向量表示一个词（假设词表为 \(
-\mathbb{V}\) ，则其大小为 \(|\mathbb{V}|\) ),然后将词表中的第 \(i\) 个词 \(\omega_i\) 表示为向量：&lt;/p&gt;
+\mathbb{V}\) ，则其大小为 \(|\mathbb{V}|\) ),然后将词表中的第 \(i\) 个词 \(w_i\) 表示为向量：&lt;/p&gt;
 &lt;span id=&#34;20241113014020CST&#34;&gt;&lt;/span&gt;\[
-\bm{e}_{\omega_i}=[0,0,\cdots,\underbrace{1}_{第i个词},\cdots,0] \in \set{0,1}^{|\mathbb{V}|}
+\bm{e}_{w_i}=[0,0,\cdots,\underbrace{1}_{第i个词},\cdots,0] \in \set{0,1}^{|\mathbb{V}|}
 \tag{1}
     \]
 &lt;p&gt;  在该向量中，词表中第 \(i\) 个词在第 \(i\) 维上被设置为 \(1\) ，其余维均为 \(0\) 。这种表示被称为词的&lt;strong&gt;独热表示&lt;/strong&gt;或&lt;strong&gt;独热编码（One-hot Encoding）&lt;/strong&gt;。&lt;br&gt;
@@ -65,7 +65,7 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;我 喜欢 自然 语言 处理 。
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;我 喜欢 自然 语言 处理 。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;我 爱 深度 学习 。
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;我 喜欢 机器 学习 。
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -73,162 +73,185 @@
 &lt;/div&gt;&lt;p&gt;  假设以词所在句子中的其他词语作为上下文，那么可以创建如&lt;a class=&#34;link&#34; href=&#34;#20241113015119CST&#34;&gt;表1&lt;/a&gt;所示的词语共现频次表。其中，词表 \(\mathbb{V}\) 包含“我”“喜欢”···“。”共10个词，即 \(|\mathbb{V}|=10\) 。表中的每一项代表一个词 \(w_i\) 与另一个词 \(w_j\) （上下文）在同一个句子中的共现频次，每个词与自身的共现频次设置为 \(0\) 。&lt;/p&gt;
 &lt;span id=&#34;20241113015119CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;&lt;/th&gt;
-          &lt;th&gt;我&lt;/th&gt;
-          &lt;th&gt;喜欢&lt;/th&gt;
-          &lt;th&gt;自然&lt;/th&gt;
-          &lt;th&gt;语言&lt;/th&gt;
-          &lt;th&gt;处理&lt;/th&gt;
-          &lt;th&gt;爱&lt;/th&gt;
-          &lt;th&gt;深度&lt;/th&gt;
-          &lt;th&gt;学习&lt;/th&gt;
-          &lt;th&gt;机器&lt;/th&gt;
-          &lt;th&gt;。&lt;/th&gt;
-      &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th class=&#34;diagonal_th&#34; style=&#34;width: 100px; height: 80px;&#34;&gt;
+            &lt;span class=&#34;diagonal_th_right&#34; style=&#34;right: 15px;&#34;&gt;\(w_j\)&lt;/span&gt;
+            &lt;span class=&#34;diagonal_th_bottom&#34; style=&#34;left: 15px;&#34;&gt;\(w_i\)&lt;/span&gt;
+        &lt;/th&gt;
+    &lt;th&gt;我&lt;/th&gt;&lt;th&gt;喜欢&lt;/th&gt;&lt;th&gt;自然&lt;/th&gt;&lt;th&gt;语言&lt;/th&gt;&lt;th&gt;处理&lt;/th&gt;&lt;th&gt;爱&lt;/th&gt;&lt;th&gt;深度&lt;/th&gt;&lt;th&gt;学习&lt;/th&gt;&lt;th&gt;机器&lt;/th&gt;&lt;th&gt;。&lt;/th&gt;
+    &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;我&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;2&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;2&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;3&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;喜欢&lt;/td&gt;
-          &lt;td&gt;2&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;2&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;自然&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;语言&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;处理&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;爱&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;深度&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;学习&lt;/td&gt;
-          &lt;td&gt;2&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;机器&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;。&lt;/td&gt;
-          &lt;td&gt;3&lt;/td&gt;
-          &lt;td&gt;2&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;2&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;0&lt;/td&gt;
-      &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;我&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;喜欢&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;自然&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;语言&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;处理&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;爱&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;深度&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;学习&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;机器&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;。&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp;词语共现频次表&lt;/p&gt;
 &lt;p&gt;  表中的每一行代表一个词的向量。通过计算两个向量之间的余弦函数，就可 以计算两个词的相似度。如“喜欢”和“爱”，由于有共同的上下文“我”和“学习”，使得它们之间具有了一定的相似性，而不是如独热表示一样，没有任何关系。&lt;br&gt;
   除了词，上下文的选择有很多种方式，而选择不同的上下文得到的词向量表示性质会有所不同。例如，可以使用词在句子中的一个固定窗口内的词作为其上下文，也可以使用所在的文档本身作为上下文。前者得到的词表示将更多地反映词的局部性质：具有相似词法、句法属性的词将会具有相似的向量表示。而后者 将更多地反映词代表的主题信息。
 不过，直接使用与上下文的共现频次作为词的向量表示，至少存在以下三个问题：&lt;br&gt;
-◾高频词误导计算结果。如上例中，“我”“。”与其他词的共现频次很高，导致实际上可能没有关系的两个词由于都和这些词共现过，从而产生了较高的 相似度。&lt;br&gt;
-◾共现频次无法反映词之间的高阶关系。例如，假设词“A”与”B”共现过，“B”与&amp;quot;C”共现过，“C”与“D&amp;quot;共现过，通过共现频次，只能获知“A”与“C”都与“B”共现过，它们之间存在一定的关系，而“A”与“D”这种高阶的关系则无法知晓。&lt;br&gt;
-◾然存在稀疏性的问题。即向量中仍有大量的值为0，这一点从&lt;a class=&#34;link&#34; href=&#34;#20241113015119CST&#34;&gt;表1&lt;/a&gt;中也可以看出。&lt;/p&gt;
-&lt;p&gt;  下面分别介绍如何通过点互信息和奇异值分解两种技术来解决这些问题。&lt;/p&gt;
+  ◾高频词误导计算结果。如上例中，“我”“。”与其他词的共现频次很高，导致实际上可能没有关系的两个词由于都和这些词共现过，从而产生了较高的 相似度。&lt;br&gt;
+  ◾共现频次无法反映词之间的高阶关系。例如，假设词“A”与”B”共现过，“B”与&amp;quot;C”共现过，“C”与“D&amp;quot;共现过，通过共现频次，只能获知“A”与“C”都与“B”共现过，它们之间存在一定的关系，而“A”与“D”这种高阶的关系则无法知晓。&lt;br&gt;
+  ◾仍然存在稀疏性的问题。即向量中仍有大量的值为0，这一点从&lt;a class=&#34;link&#34; href=&#34;#20241113015119CST&#34;&gt;表1&lt;/a&gt;中也可以看出。&lt;br&gt;
+  下面分别介绍如何通过点互信息和奇异值分解两种技术来解决这些问题。&lt;/p&gt;
 &lt;h4 id=&#34;点互信息&#34;&gt;点互信息
+&lt;/h4&gt;&lt;p&gt;  首先看如何解决高频词误导计算结果的问题。最直接的想法是：如果一个词与很多词共现，则降低其权重；反之，如果一个词只与个别词共现，则提高其权重。信息论中的&lt;strong&gt;点互信息（Pointwise Mutual Information，PMI）&lt;/strong&gt;‌恰好能够做到这一点。对于词 \(w\) 和上下文 \(c\) ，其PMI为：&lt;/p&gt;
+&lt;span id=&#34;20241113020554CST&#34;&gt;&lt;/span&gt;\[
+PMI(w,c)=\log_2\frac{P(w,c)}{P(w)P(c)}
+\tag{2}
+    \]
+&lt;p&gt;  式中， \(P(w,c)\) 、 \(P(w)\) 、 \(P(c)\) 分别是 \(w\) 与 \(c\) 的共现概率，以及 \(w\) 和 \(c\) 分别出现的概率。可见，通过PMI公式计算，如果 \(w\) 和 \(c\) 的共现概率（与频次正相关）较高, 但是 \(w\) 或者 \(c\) 出现的概率也较高（高频词），则最终的PMI值会变小；反之，即便 \(w\) 和 \(e\) 的共现概率不高，但是 \(w\) 或者 \(c\) 出现的概率较低（低频词），则最终的PMI值也可能会比较大。从而较好地解决高频词误导计算结果的问题。&lt;br&gt;
+  可以通过&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数理统计”还未上线~&#39;)&#34;&gt;最大似然估计（Maximum Likelihood Estimation，MLE）&lt;/a&gt;，分别计算相关的概率值。具体公式为：&lt;/p&gt;
+&lt;span id=&#34;20241113020840CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+P(w,c)=&amp;\frac{C(w,c)}{\sum_{w&#39;,c&#39;}C(w&#39;,c&#39;)}\\[15pt]
+P(w)=&amp;\frac{C(w)}{\sum_{w&#39;}C(w&#39;)}=\frac{\sum_{c&#39;}C(w,c&#39;)}{\sum_{w&#39;}\sum_{c&#39;}C(w&#39;,c&#39;)}\\[15pt]
+P(c)=&amp;\frac{C(c)}{\sum_{c&#39;}C(c&#39;)}=\frac{\sum_{w&#39;}C(w&#39;,c)}{\sum_{w&#39;}\sum_{c&#39;}C(w&#39;,c&#39;)}
+\end{aligned}
+\tag{3}
+    \]
+&lt;p&gt;  式中： \(C(w,c)\) 表示词 \(w\) 和上下文 \(c\) 在语料库中出现的次数（也成为频次）； \(\sum_{c&#39;}C(w,c&#39;)\) 为&lt;a class=&#34;link&#34; href=&#34;#20241113015119CST&#34;&gt;表1&lt;/a&gt;按行求和， \(\sum_{w&#39;}C(w&#39;,c)\) 为&lt;a class=&#34;link&#34; href=&#34;#20241113015119CST&#34;&gt;表1&lt;/a&gt;按列求和； \(\sum_{w&#39;}\sum_{c&#39;}C(w&#39;,c&#39;)\) 为全部共现频次的和。代入以上 \(3\) 个公式，&lt;a class=&#34;link&#34; href=&#34;#20241113020554CST&#34;&gt;式(2)&lt;/a&gt;可进一步写为&lt;/p&gt;
+&lt;span id=&#34;20241113173818CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+PMI(w,c)=&amp;\log_2\frac{P(w,c)}{P(w)P(c)}\\[15pt]
+=&amp;\log_2\frac{\displaystyle\frac{C(w,c)}{\sum_{w&#39;,c&#39;}C(w&#39;,c&#39;)}}{\displaystyle\frac{\sum_{c&#39;}C(w,c&#39;)}{\sum_{w&#39;}\sum_{c&#39;}C(w&#39;,c&#39;)}\cdot\frac{\sum_{w&#39;}C(w&#39;,c)}{\sum_{w&#39;}\sum_{c&#39;}C(w&#39;,c&#39;)}}\\[30pt]
+=&amp;\log_2\frac{\displaystyle C(w,c)}{\displaystyle\frac{\sum_{c&#39;}C(w,c&#39;)\sum_{w&#39;}C(w&#39;,c)}{\sum_{w&#39;}\sum_{c&#39;}C(w&#39;,c&#39;)}}
+\end{aligned}
+\tag{4}
+    \]
+&lt;p&gt;  另外，当某个词与上下文之间共现次数较低时，可能会得到负的PMI值。考虑到这种情况下的PMI不太稳定（具有较大的方差），在实际应用中通常采用&lt;strong&gt;PPMI（Positive PMI）&lt;/strong&gt;‌的形式，即：&lt;/p&gt;
+&lt;span id=&#34;20241113174633CST&#34;&gt;&lt;/span&gt;\[
+PPMI(w,c)=\max\set{PMI(w,c),0}
+\tag{5}
+    \]
+&lt;p&gt;  接下来介绍PMI的代码实现。首先，将类似&lt;a class=&#34;link&#34; href=&#34;#20241113015119CST&#34;&gt;表1&lt;/a&gt;形式的共现频次表定义为&lt;strong&gt;共现矩阵&lt;/strong&gt;的形式，即 \(\bm{M} \in \mathbb{R}^{|\mathbb{V}|\times|\mathbb{C}}|\) ，其中 \(|\mathbb{V}|\) 为词表， \(\mathbb{C}\) 为全部的上下文， \(M_{ij}\) 为词 \(w_i\) 与上下文 \(c_j\) 在语料库中的共现频次。然后，编写如下代码计PPMI：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;numpy&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;np&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#共现矩阵&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;              &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#求PPMI值函数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;pmi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;positive&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;col_totals&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;axis&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#按列求和&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;row_totals&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;axis&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#按行求和&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;total&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;col_totals&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#总频次&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;expected&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;outer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;row_totals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;col_totals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;total&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#获得每个元素的分子&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;expected&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#取对数前的PMI值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;errstate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;divide&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;ignore&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#不显示log(0)的警告&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#取对数得PMI值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;isinf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.0&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;#将log(0)置为0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;positive&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.0&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#执行PPMI的max操作&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;M&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#PPMI值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;M_pmi&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pmi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#计算PPMI值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;np&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set_printoptions&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;precision&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#控制输出结果精度为两位小数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M_pmi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#打印结果&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  则最终输出结果为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;[[0.   0.18 0.07 0.07 0.07 0.3  0.3  0.3  0.3  0.22]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt; [0.18 0.   0.44 0.44 0.44 0.   0.   0.   0.66 0.18]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt; [0.07 0.44 0.   1.03 1.03 0.   0.   0.   0.   0.07]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt; [0.07 0.44 1.03 0.   1.03 0.   0.   0.   0.   0.07]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt; [0.07 0.44 1.03 1.03 0.   0.   0.   0.   0.   0.07]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt; [0.3  0.   0.   0.   0.   0.   1.48 0.78 0.   0.3 ]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt; [0.3  0.   0.   0.   0.   1.48 0.   0.78 0.   0.3 ]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt; [0.3  0.   0.   0.   0.   0.78 0.78 0.   0.78 0.3 ]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt; [0.3  0.66 0.   0.   0.   0.   0.   0.78 0.   0.3 ]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt; [0.22 0.18 0.07 0.07 0.07 0.3  0.3  0.3  0.3  0.  ]]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  除了PMI,还有很多种其他方法可以达到类似的目的，如信息检索中常用的 TF-IDF等，在此不再加以赘述。&lt;/p&gt;
+&lt;h4 id=&#34;奇异值分解&#34;&gt;奇异值分解
 &lt;/h4&gt;</description>
         </item>
         <item>
@@ -1080,59 +1103,13 @@
 &lt;/div&gt;&lt;p&gt;  &lt;strong&gt;注意&lt;/strong&gt;：不同的数据库产品在遵循SQL标准的基础上具体实现细节和处理策略会与标准有差别。&lt;/p&gt;
 &lt;p&gt;  下面就SQL 2011标准对&lt;code&gt;DROP TABLE&lt;/code&gt;的规定，对比分析Kingbase ES、Oracle 12c Release 1(12.1)、MS SQL Server 2012这三种数据库产品对&lt;code&gt;DROP TABLE&lt;/code&gt;的不同处理策略。&lt;br&gt;
   &lt;a class=&#34;link&#34; href=&#34;#20241112003812CST&#34;&gt;表8&lt;/a&gt;中的R表示&lt;code&gt;RESTRICT&lt;/code&gt;，即&lt;code&gt;DROP TABLE &amp;lt;基本表名&amp;gt; RESTRICT&lt;/code&gt;；C表示&lt;code&gt;CASCADE&lt;/code&gt;，即&lt;code&gt;DROP TABLE &amp;lt;基本表名&amp;gt; CASCADE&lt;/code&gt;；其中Oracle 12c没有&lt;code&gt;RESTRICT&lt;/code&gt;选项；&lt;code&gt;SQL Server&lt;/code&gt;没有&lt;code&gt;RESTRICT&lt;/code&gt;和&lt;code&gt;CASCADE&lt;/code&gt;选项。&lt;/p&gt;
-&lt;span id=&#34;20241112003812CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;style&gt;
-
-    #_20241112003812CST {
-        /* th单元格 */
-        .slash-wrap {
-          position: relative;
-          box-sizing: border-box;
-          width: 250px;
-          height: 150px;
-        }
-    
-        /* 斜线 */
-        .slash {
-          position: absolute;
-          display: block;
-          top: 0;
-          left: 0;
-          /* 斜边边长 */
-          /* Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) */
-          width: 291.54759474226501px;
-          height: 0.5px;
-          background-color:#000;
-          /* 旋转角度计算公式 */ 
-          /*  Math.atan(height / width) * 180 / Math.PI  */
-          transform: rotate(30.96375653207352deg); 
-          transform-origin: top left;
-        }
-    
-        /* 左下角文字 */
-        .left {
-          position: absolute;
-          /* 左下角 left:0; bottom: 0; */
-          left: 5px;
-          bottom: 5px;
-        }
-    
-        /* 右上角文字 */
-        .right {
-          position: absolute;
-          /* 右上角 right:0; top: 0; */
-          right: 5px;
-          top: 5px;
-        }
-    }
-  &lt;/style&gt;
-  &lt;div&gt;
-    &lt;table id=&#34;_20241112003812CST&#34; style=&#34;overflow-x: auto;&#34;&gt;
+&lt;span id=&#34;20241112003812CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;  &lt;div&gt;
+    &lt;table&gt;
       &lt;tr&gt;
         &lt;th rowspan=&#34;2&#34;&gt;序号&lt;/th&gt;
-        &lt;th class=&#34;slash-wrap&#34; rowspan=&#34;2&#34;&gt;
-          &lt;span class=&#34;right&#34;&gt;标准及主流数据库&lt;/br&gt;的处理方式&lt;/span&gt;
-          &lt;span class=&#34;slash&#34;&gt;&lt;/span&gt;
-          &lt;span class=&#34;left&#34;&gt;依赖基本表的对象&lt;/span&gt;
+        &lt;th class=&#34;diagonal_th&#34; rowspan=&#34;2&#34; style=&#34;width: 250px; height:150px;&#34;&gt;
+            &lt;span class=&#34;diagonal_th_right&#34;&gt;标准及主流数据库&lt;/br&gt;的处理方式&lt;/span&gt;
+            &lt;span class=&#34;diagonal_th_bottom&#34;&gt;依赖基本表的对象&lt;/span&gt;
         &lt;/th&gt;
         &lt;th colspan=&#34;2&#34;&gt;SQL2011&lt;/th&gt;
         &lt;th colspan=&#34;2&#34;&gt;Kingbase ES&lt;/th&gt;

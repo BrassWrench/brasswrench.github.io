@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 13 Nov 2024 02:04:54 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 13 Nov 2024 19:39:33 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/the_standard_language_for_relational_databases_sql/</link>
         <pubDate>Mon, 11 Nov 2024 17:45:02 +0800</pubDate>
@@ -856,59 +856,13 @@
 &lt;/div&gt;&lt;p&gt;  &lt;strong&gt;注意&lt;/strong&gt;：不同的数据库产品在遵循SQL标准的基础上具体实现细节和处理策略会与标准有差别。&lt;/p&gt;
 &lt;p&gt;  下面就SQL 2011标准对&lt;code&gt;DROP TABLE&lt;/code&gt;的规定，对比分析Kingbase ES、Oracle 12c Release 1(12.1)、MS SQL Server 2012这三种数据库产品对&lt;code&gt;DROP TABLE&lt;/code&gt;的不同处理策略。&lt;br&gt;
   &lt;a class=&#34;link&#34; href=&#34;#20241112003812CST&#34;&gt;表8&lt;/a&gt;中的R表示&lt;code&gt;RESTRICT&lt;/code&gt;，即&lt;code&gt;DROP TABLE &amp;lt;基本表名&amp;gt; RESTRICT&lt;/code&gt;；C表示&lt;code&gt;CASCADE&lt;/code&gt;，即&lt;code&gt;DROP TABLE &amp;lt;基本表名&amp;gt; CASCADE&lt;/code&gt;；其中Oracle 12c没有&lt;code&gt;RESTRICT&lt;/code&gt;选项；&lt;code&gt;SQL Server&lt;/code&gt;没有&lt;code&gt;RESTRICT&lt;/code&gt;和&lt;code&gt;CASCADE&lt;/code&gt;选项。&lt;/p&gt;
-&lt;span id=&#34;20241112003812CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;style&gt;
-
-    #_20241112003812CST {
-        /* th单元格 */
-        .slash-wrap {
-          position: relative;
-          box-sizing: border-box;
-          width: 250px;
-          height: 150px;
-        }
-    
-        /* 斜线 */
-        .slash {
-          position: absolute;
-          display: block;
-          top: 0;
-          left: 0;
-          /* 斜边边长 */
-          /* Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) */
-          width: 291.54759474226501px;
-          height: 0.5px;
-          background-color:#000;
-          /* 旋转角度计算公式 */ 
-          /*  Math.atan(height / width) * 180 / Math.PI  */
-          transform: rotate(30.96375653207352deg); 
-          transform-origin: top left;
-        }
-    
-        /* 左下角文字 */
-        .left {
-          position: absolute;
-          /* 左下角 left:0; bottom: 0; */
-          left: 5px;
-          bottom: 5px;
-        }
-    
-        /* 右上角文字 */
-        .right {
-          position: absolute;
-          /* 右上角 right:0; top: 0; */
-          right: 5px;
-          top: 5px;
-        }
-    }
-  &lt;/style&gt;
-  &lt;div&gt;
-    &lt;table id=&#34;_20241112003812CST&#34; style=&#34;overflow-x: auto;&#34;&gt;
+&lt;span id=&#34;20241112003812CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;  &lt;div&gt;
+    &lt;table&gt;
       &lt;tr&gt;
         &lt;th rowspan=&#34;2&#34;&gt;序号&lt;/th&gt;
-        &lt;th class=&#34;slash-wrap&#34; rowspan=&#34;2&#34;&gt;
-          &lt;span class=&#34;right&#34;&gt;标准及主流数据库&lt;/br&gt;的处理方式&lt;/span&gt;
-          &lt;span class=&#34;slash&#34;&gt;&lt;/span&gt;
-          &lt;span class=&#34;left&#34;&gt;依赖基本表的对象&lt;/span&gt;
+        &lt;th class=&#34;diagonal_th&#34; rowspan=&#34;2&#34; style=&#34;width: 250px; height:150px;&#34;&gt;
+            &lt;span class=&#34;diagonal_th_right&#34;&gt;标准及主流数据库&lt;/br&gt;的处理方式&lt;/span&gt;
+            &lt;span class=&#34;diagonal_th_bottom&#34;&gt;依赖基本表的对象&lt;/span&gt;
         &lt;/th&gt;
         &lt;th colspan=&#34;2&#34;&gt;SQL2011&lt;/th&gt;
         &lt;th colspan=&#34;2&#34;&gt;Kingbase ES&lt;/th&gt;
