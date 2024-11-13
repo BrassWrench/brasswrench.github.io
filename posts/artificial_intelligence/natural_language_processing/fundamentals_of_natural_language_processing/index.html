@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/'>
 
-<link rel="stylesheet" href="/scss/style.min.a273ac9e6150ea9dc4560d874ad3f4eaa06893778662ed8ff1b5bbdc9b2bec0b.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.b7929939682b25938f9768d6f6295abbef318cbc7fb027123148ee2e4a6d3c0a.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="文本的表示、自然语言处理的任务、基本问题和评价指标">
 <meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='自然语言处理' /><meta property='article:published_time' content='2024-11-13T01:11:04&#43;08:00'/><meta property='article:modified_time' content='2024-11-14T01:01:42&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='自然语言处理' /><meta property='article:published_time' content='2024-11-13T01:11:04&#43;08:00'/><meta property='article:modified_time' content='2024-11-14T02:54:15&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="自然语言处理（二）：自然语言处理基础">
 <meta name="twitter:description" content="文本的表示、自然语言处理的任务、基本问题和评价指标"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -171,6 +171,34 @@
         document.head.appendChild(customFont);
     })();
 </script>
+
+<style>
+    .gallery-photos{width:100%;break-inside: avoid;margin-bottom: 10px;}
+    .gallery-photo{width:33.3%;position: relative;padding:0px 4px 0px 4px;visibility: hidden;overflow: hidden;}
+    .gallery-photo.visible{visibility: visible;}
+    .gallery-photo img{width: 100%;height: 100%;object-fit: cover;border-radius: 5px;box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);}
+    @media screen and (min-width: 1200x) {
+        .gallery-photo{
+            width: 100%;
+            columns: 3;
+            column-gap: 20px;
+        }
+    }
+    @media screen and (min-width: 860px) and (max-width: 1323.98px) {
+        .gallery-photo{
+            width: 100%;
+            columns: 2;
+            column-gap: 20px;}
+    }
+    @media screen and (max-width: 860px) {
+        .gallery-photo{
+            width: 100%;
+            columns: 1;}
+    }
+    @media (max-width: 767.98px){
+        .photo-time{display: none;}
+    }
+</style>
 
     </head>
     <body class="
@@ -617,6 +645,11 @@
             <li><a href="#语言模型性能评价">语言模型性能评价</a></li>
           </ol>
         </li>
+        <li><a href="#自然语言处理基础任务">自然语言处理基础任务</a>
+          <ol>
+            <li><a href="#中文分词">中文分词</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -930,7 +963,7 @@
 </svg>
 
             <time class="article-words">
-                8555 字
+                10244 字
             </time>
         </div>
 
@@ -945,7 +978,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 18 分钟
+                    阅读时长: 21 分钟
                 </time>
             </div>
         
@@ -1506,7 +1539,7 @@ PPMI(w,c)=\max\set{PMI(w,c),0}
 <p>  在信息检索等领域，也经常通过词与其出现的文档构成“词-文档”共现矩阵，此时也可以通过以上介绍的奇异值分解技术进行降维，并在低维空间（潜在语义空间）内计算词语或者文档之间的相似度，该技术也称<strong>潜在语义索引（Latent Semantic Indexing，LSI）</strong>。<br>
   虽然在基于传统机器学习的方法中，词的分布式表示取得了不错的效果，但是其仍然存在一些问题。首先，当共现矩阵规模较大时，奇异值分解的运行速度非常慢；其次，如果想在原来语料库的基础上增加更多的数据，则需要重新运行奇异值分解算法，代价非常高；另外，分布式表示只能用于表示比较短的单元，如词或短语等，如果待表示的单元比较长，如段落、句子等，由于与其共现的上下文会非常少，则无法获得有效的分布式表示；最后，分布式表示一旦训练完成，则无法修改，也就是说，无法根据具体的任务调整其表示方式。为了解决这些问题，可引入一种新的词表示方式——词嵌入表示。</p>
 <h3 id="词嵌入表示">词嵌入表示
-</h3><p>  与词的分布式表示类似，<strong>词嵌入表示（WordEmbedding）</strong>‌也使用一个连续、低维、稠密的向量来表示词，经常直接简称为词向量，但与分布式表示不同之处在于其赋值方式。在词的分布式表示中，向量值是通过对语料库进行统计得到的，然后再经过点互信息、奇异值分解等变换，一旦确定则无法修改。而词向量中的向量值，是随着目标任务的优化过程自动调整的，也就是说，可以将词向量中的向量值看作模型的参数。不过，如果目标任务的训练数据比较少，学习合适的词向量难度会比较大，因此，利用自然语言文本中所蕴含的自监督学习信号（即词与上下文的共现信息），先来预训练词向量，往往会获得更好的结果。</p>
+</h3><p>  与词的分布式表示类似，<strong>词嵌入表示（Word Embedding）</strong>‌也使用一个连续、低维、稠密的向量来表示词，经常直接简称为词向量，但与分布式表示不同之处在于其赋值方式。在词的分布式表示中，向量值是通过对语料库进行统计得到的，然后再经过点互信息、奇异值分解等变换，一旦确定则无法修改。而词向量中的向量值，是随着目标任务的优化过程自动调整的，也就是说，可以将词向量中的向量值看作模型的参数。不过，如果目标任务的训练数据比较少，学习合适的词向量难度会比较大，因此，利用自然语言文本中所蕴含的自监督学习信号（即词与上下文的共现信息），先来预训练词向量，往往会获得更好的结果。</p>
 <h3 id="文本的词袋表示">文本的词袋表示
 </h3><p>  上面介绍了几种常见的词表示方法，那么如何通过词的表示构成更长文本的
 表示呢？在此介绍一种最简单的文本表示方法——**词袋（Bag-Of-Words，BOW）**表示。所谓词袋表示，就是假设文本中的词语是没有顺序的集合，将文本中的全部词所对应的向量表示（既可以是独热表示，也可以是分布式表示或词向量）相加，即构成了文本的向量表示。如在使用独热表示时，文本向量表示的每一维恰好是相应的词在文本中出现的次数。<br>
@@ -1567,8 +1600,127 @@ P(w_i|w_{i-1})=\frac{C(w_{i-1}w_i)+\delta}{\sum_{w}(C(w_{i-1}w)+\delta)}=\frac{C
 <p>  关于超参数 \(\delta\) 的取值，需要用到开发集数据。根据开发集上的困惑度对不同 \(\delta\) 取值下的语言模型进行评价，最终将最优的 \(\delta\) 用于测试集。<br>
   由于引入了马尔可夫假设，导致N元语言模型无法对长度超过N的长距离词语依赖关系进行建模，如果将N扩大，又会带来更严重的数据稀疏问题，同 时还会急剧增加模型的参数量（N-gram数目），为存储和计算都带来极大的挑战。在后续篇章中将要介绍的神经网络语言模型可以较好地解决N元语言模型的这些缺陷。</p>
 <h4 id="语言模型性能评价">语言模型性能评价
-</h4><p>  如何衡量一个语言模型的好坏呢？一种方法是将其应用于具体的外部任务（如机器翻译），并根据该任务上指标的高低对语言模型进行评价。这种方法也 被称为“外部任务评价”，是最接近实际应用需求的一种评价方法。但是，这种方式的计算代价较高，实现的难度也较大。因此，目前最为常用的是基于**困惑度（Perplexity，PPL）的“内部评价”方式。<br>
-  </p>
+</h4><p>  如何衡量一个语言模型的好坏呢？一种方法是将其应用于具体的外部任务（如机器翻译），并根据该任务上指标的高低对语言模型进行评价。这种方法也 被称为“外部任务评价”，是最接近实际应用需求的一种评价方法。但是，这种方式的计算代价较高，实现的难度也较大。因此，目前最为常用的是基于<strong>困惑度（Perplexity，PPL）</strong>‌的“内部评价”方式。<br>
+  为了进行内部评价，首先将数据划分为不相交的两个集合，分别称为<strong>训练集</strong> \(\mathbb{D}^{\text{train}}\) 和<strong>测试集</strong> \(\mathbb{D}^{\text{test}}\) ，其中 \(\mathbb{D}^{\text{train}}\) 用于估计语言模型的参数。由该模型计算出的测试集的概率 \(P(\mathbb{D}^{\text{test}})\) 则反映了模型在测试集上的泛化能力。<br>
+  假设测试集 \(\mathbb{D}^{\text{test}}=w_1w_2 \cdots w_N\) （每个句子的开始和结束分布增加&lt;BOS&gt;与&lt;EOS&gt;标记），那么测试集的概率为：</p>
+<span id="20241114020136CST"></span>\[
+\begin{aligned}
+P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
+=&\prod_{i=1}^{N}P(w_i|w_{1:i-1})
+\end{aligned}
+\tag{14}
+    \]
+<p>  困惑度则为模型分配给测试集中每一个词的概率的几何平均值的倒数</p>
+<span id="20241114020308CST"></span>\[
+\text{PPL}(\mathbb{D}^{\text{test}})=\left(\prod_{i=1}^{N}P(w_i|w_{1:i-1})\right)^{-\frac{1}{N}}
+\tag{15}
+    \]
+<p>  例如，对于bigram语言模型而言</p>
+<span id="20241114020358CST"></span>\[
+\text{PPL}(\mathbb{D}^{\text{test}})=\left(\prod_{i=1}^{N}P(w_i|w_{i-1})\right)^{-\frac{1}{N}}
+\tag{16}
+    \]
+<p>  考虑到多个概率的连乘可能带来浮点数下溢的问题，通常需要将<a class="link" href="#20241114020358CST">式(16)</a>转化为对数和的形式</p>
+<span id="20241114020439CST"></span>\[
+\text{PPL}(\mathbb{D}^{\text{test}})=2^{-\displaystyle\frac{1}{N}\sum_{i=1}^{N}\log_2 P(w_i|w_{i-1})}
+\tag{17}
+    \]
+<p>  困惑度越小，意味着单词序列的概率越大，也意味着模型能够更好地解释测试集中的数据。需要注意的是，困惑度越低的语言模型并不总是能在外部任务上取得更好的性能指标，但是两者之间通常呈现出一定的正相关性。因此，困惑度可以作为一种快速评价语言模型性能的指标，而在将其应用于下游任务时，仍然需要根据其在具体任务上的表现进行评价。</p>
+<h3 id="自然语言处理基础任务">自然语言处理基础任务
+</h3><p>  自然语言处理的一大特点是任务种类纷繁复杂，有多种划分的方式。从处理
+顺序的角度，可以分为底层的基础任务以及上层的应用任务。其中，基础任务往往是语言学家根据内省的方式定义的，输出的结果往往作为整个系统的一个环节或者下游任务的额外语言学特征，而并非面向普罗大众。本节介绍几种常见的基础任务，包括词法分析（分词、词性标注）、句法分析和语义分析等。</p>
+<h4 id="中文分词">中文分词
+</h4><p>  词（Word）是最小的能独立使用的音义结合体，是能够独立运用并能够表达语义或语用内容的最基本单元。在以英语为代表的印欧语（Indo-European languages）中，词之间通常用分隔符（空格等）区分。但是在以汉语为代表的汉藏语系（Sino-Tibetan languages），以及以阿拉伯语为代表的闪—含语系（Semito-Hamitic languages）中，却不包含明显的词之间的分隔符。因此，为了进行后续的自然语言处理，通常需要首先对不含分隔符的语言进行<strong>分词（Word Segmentation）</strong>‌操作。本节以中文分词为例，介绍词的切分问题和最简单的分词算法。<br>
+  中文分词就是将一串连续的字符构成的句子分割成词语序列，如“我喜欢读书”，分词后的结果为“我 喜欢 读书”。最简单的分词算法叫作<strong>正向最大匹配（Forward Maximum Matching，FMM）分词算法</strong>，即从前向后扫描句子中的字符
+串，尽量找到词典中较长的单词作为分词的结果。具体代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fmm_word_seg</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">lexicon</span><span class="p">,</span> <span class="n">max_len</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    sentence: 待分词的句子
+</span></span></span><span class="line"><span class="cl"><span class="s2">    lexicon: 词典（所有单词集合）
+</span></span></span><span class="line"><span class="cl"><span class="s2">    max_len: 词典中最长单词长度
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">begin</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">begin</span> <span class="o">+</span> <span class="n">max_len</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">begin</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">word</span> <span class="o">=</span> <span class="n">sentence</span><span class="p">[</span><span class="n">begin</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">lexicon</span> <span class="ow">or</span> <span class="n">end</span> <span class="o">-</span> <span class="n">begin</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">begin</span> <span class="o">=</span> <span class="n">end</span>
+</span></span><span class="line"><span class="cl">            <span class="n">end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">begin</span> <span class="o">+</span> <span class="n">max_len</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">end</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">words</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  通过下面的代码加载词典并调用正向最大匹配分词算法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">load_dict</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;lexicon.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lexicon</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_len</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">word</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lexicon</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_len</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">lexicon</span><span class="p">,</span> <span class="n">max_len</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">lexicon</span><span class="p">,</span> <span class="n">max_len</span> <span class="o">=</span> <span class="n">load_dict</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">words</span> <span class="o">=</span> <span class="n">fmm_word_seg</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;请输入句子：&#34;</span><span class="p">),</span> <span class="n">lexicon</span><span class="p">,</span> <span class="n">max_len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">,)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  正向最大匹配分词算法存在的明显缺点是倾向于切分出较长的词，这容易导致错误的切分结果，如“研究生命的起源”，由于“研究生”是词典中的词，所以使用正向最大匹配分词算法的分词结果为“研究生 命 的 起源”，显然分词结果不正确。<br>
+  这种情况一般被称为切分歧义问题，即同一个句子可能存在多种分词结果，一旦分词错误，则会影响对句子的语义理解。正向最大匹配分词算法除了存在切分歧义，对中文词的定义也不明确，如“哈尔滨市”可以是一个词，也可以认为“哈尔滨”是一个词，“市”是一个词。因此，目前存在多种中文分词的规范，根据不同规范又标注了不同的数据集。<br>
+  另外，就是未登录词问题，也就是说有一些词并没有收录在词典中，如新词、命名实体、领域相关词和拼写错误词等。由于语言的动态性，新词语的出现可谓是层出不穷，所以无法将全部的词都及时地收录到词典中，因此，一个好的分词系统必须能够较好地处理未登录词问题。相比于切分歧义问题，在真实应用环境中，由未登录词问题引起的分词错误比例更高。因此，分词任务本身也是一项富有挑战的自然语言处理基础任务。</p>
 
     </div>
 </section>
@@ -1608,7 +1760,7 @@ P(w_i|w_{i-1})=\frac{C(w_{i-1}w_i)+\delta}{\sum_{w}(C(w_{i-1}w)+\delta)}=\frac{C
 
 
         <span>
-            最后更新于 Nov 14, 2024 01:01 CST
+            最后更新于 Nov 14, 2024 02:54 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1779,7 +1931,7 @@ P(w_i|w_{i-1})=\frac{C(w_{i-1}w_i)+\delta}{\sum_{w}(C(w_{i-1}w)+\delta)}=\frac{C
             
             
         
-        <span>本图书馆累计发布了15篇文章 共220273字</span>
+        <span>本图书馆累计发布了15篇文章 共221962字</span>
     </section>
 
     <section class="site-visit-count">
@@ -2016,6 +2168,47 @@ P(w_i|w_{i-1})=\frac{C(w_{i-1}w_i)+\delta}{\sum_{w}(C(w_{i-1}w)+\delta)}=\frac{C
     }
 </script>
 
+
+<script src="https://immmmm.com/waterfall.min.js"></script>
+<script src="https://immmmm.com/imgStatus.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        var photosAll = document.getElementsByTagName('gallery') || '';
+        if(photosAll){
+            for(var i=0;i < photosAll.length;i++){
+                photosAll[i].innerHTML = '<div class="gallery-photos">'+photosAll[i].innerHTML+'</div>'
+                var photosIMG = photosAll[i].getElementsByTagName('img')
+                for(var j=0;j < photosIMG.length;j++){
+                    wrap(photosIMG[j], document.createElement('div'));
+                }
+            }
+        }
+        function wrap(el, wrapper) {
+            wrapper.className = "gallery-photo";
+            el.parentNode.insertBefore(wrapper, el);
+            wrapper.appendChild(el);
+        }
+        
+        let galleryPhotos = document.querySelectorAll('.gallery-photos') || ''
+        if(galleryPhotos){
+            imgStatus.watch('.gallery-photo img', function(imgs) {
+                if(imgs.isDone()){
+                    for(var i=0;i < galleryPhotos.length;i++){
+                        waterfall(galleryPhotos[i]);
+                        let pagePhoto = galleryPhotos[i].querySelectorAll('.gallery-photo');
+                        for(var j=0;j < pagePhoto.length;j++){pagePhoto[j].className += " visible"};
+                    }
+                }
+            });
+            window.addEventListener('resize', function () {
+                for(var i=0;i < galleryPhotos.length;i++){
+                    waterfall(galleryPhotos[i]);
+                }
+            });
+        }
+    });
+</script>
 
 
     </body>
