@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 13 Nov 2024 22:57:48 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 14 Nov 2024 01:01:42 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -559,7 +559,70 @@ PPMI(w,c)=\max\set{PMI(w,c),0}
 &lt;p&gt;  在信息检索等领域，也经常通过词与其出现的文档构成“词-文档”共现矩阵，此时也可以通过以上介绍的奇异值分解技术进行降维，并在低维空间（潜在语义空间）内计算词语或者文档之间的相似度，该技术也称&lt;strong&gt;潜在语义索引（Latent Semantic Indexing，LSI）&lt;/strong&gt;。&lt;br&gt;
   虽然在基于传统机器学习的方法中，词的分布式表示取得了不错的效果，但是其仍然存在一些问题。首先，当共现矩阵规模较大时，奇异值分解的运行速度非常慢；其次，如果想在原来语料库的基础上增加更多的数据，则需要重新运行奇异值分解算法，代价非常高；另外，分布式表示只能用于表示比较短的单元，如词或短语等，如果待表示的单元比较长，如段落、句子等，由于与其共现的上下文会非常少，则无法获得有效的分布式表示；最后，分布式表示一旦训练完成，则无法修改，也就是说，无法根据具体的任务调整其表示方式。为了解决这些问题，可引入一种新的词表示方式——词嵌入表示。&lt;/p&gt;
 &lt;h3 id=&#34;词嵌入表示&#34;&gt;词嵌入表示
-&lt;/h3&gt;</description>
+&lt;/h3&gt;&lt;p&gt;  与词的分布式表示类似，&lt;strong&gt;词嵌入表示（WordEmbedding）&lt;/strong&gt;‌也使用一个连续、低维、稠密的向量来表示词，经常直接简称为词向量，但与分布式表示不同之处在于其赋值方式。在词的分布式表示中，向量值是通过对语料库进行统计得到的，然后再经过点互信息、奇异值分解等变换，一旦确定则无法修改。而词向量中的向量值，是随着目标任务的优化过程自动调整的，也就是说，可以将词向量中的向量值看作模型的参数。不过，如果目标任务的训练数据比较少，学习合适的词向量难度会比较大，因此，利用自然语言文本中所蕴含的自监督学习信号（即词与上下文的共现信息），先来预训练词向量，往往会获得更好的结果。&lt;/p&gt;
+&lt;h3 id=&#34;文本的词袋表示&#34;&gt;文本的词袋表示
+&lt;/h3&gt;&lt;p&gt;  上面介绍了几种常见的词表示方法，那么如何通过词的表示构成更长文本的
+表示呢？在此介绍一种最简单的文本表示方法——**词袋（Bag-Of-Words，BOW）**表示。所谓词袋表示，就是假设文本中的词语是没有顺序的集合，将文本中的全部词所对应的向量表示（既可以是独热表示，也可以是分布式表示或词向量）相加，即构成了文本的向量表示。如在使用独热表示时，文本向量表示的每一维恰好是相应的词在文本中出现的次数。&lt;br&gt;
+  虽然这种文本表示的方法非常简单、直观，但是其缺点也非常明显：首先是 没有考虑词的顺序信息，导致“张三打李四”和“李四打张三”，虽然含义不同，但是由于它们包含的词相同，即使词序不同，词袋表示的结果也是一样的；其次是无法融入上下文信息。比如要表示“不喜欢”，只能将两个词的向量相加，无法进行更细致的语义操作。当然，可以通过增加词表的方法加以解决，比如引入二元词（Bigram）词表，将&amp;quot;不+喜欢&amp;quot;等作为&amp;quot;词”，然后同时学习二元词的词向量表示。这种方法既能部分解决否定词的问题，也能部分解决局部词序的问题，但是随着词表的增大，会引入更严重的数据稀疏问题。深度学习技术的引入为解决这些问题提供了更好的方案，后续将详细介绍。&lt;/p&gt;
+&lt;h2 id=&#34;自然语言处理任务&#34;&gt;自然语言处理任务
+&lt;/h2&gt;&lt;p&gt;  本节依次介绍三大类常见的自然语言处理任务，即：语言模型、基础任务以
+及应用任务。&lt;/p&gt;
+&lt;h3 id=&#34;语言模型&#34;&gt;语言模型
+&lt;/h3&gt;&lt;p&gt;  &lt;strong&gt;语言模型（Language Model，LM）&lt;/strong&gt;（也称&lt;strong&gt;统计语言模型&lt;/strong&gt;）是描述自然语言概率分布的模型，是一个非常基础和重要的自然语言处理任务。利用语言模型，可以计算一个词序列或一句话的概率，也可以在给定上文的条件下对接下来可能出现 的词进行概率分布的估计。同时，语言模型是一项天然的预训练任务，在基于预训练模型的自然语言处理方法中起到非常重要的作用，因此这种预训练模型有时也被称为预训练语言模型。本篇将主要介绍经典的&lt;strong&gt;N元语言模型（N-gramLanguage Model）&lt;/strong&gt;，现代的神经网络语言模型（Neural Network Language Model）将在后续进行详细的介绍。&lt;/p&gt;
+&lt;h4 id=&#34;n元语言模型&#34;&gt;N元语言模型
+&lt;/h4&gt;&lt;p&gt;  语言模型的基本任务是在给定词序列 \(w_1w_2\cdots w_{t-1}\) 的条件下，对下一时刻 \(t\) 可能出现的词 \(w_t\) 的条件概率 \(P(w_t | w_1w_2\cdots w_{t-1})\) 进行估计。一般地，把 \(w_1w_2\cdots w_{t-1}\) 一称为 \(w_t\) 的历史。例如，对于历史“我 喜欢”，希望得到下一个词为“读书”的概率，即： \(P(读书|我\space 喜欢)\) 。在给定一个语料库时，该条件概率可以理解为当语料中出现“我喜欢”时，有多少次下一个词为“读书”，然后通过最大似然估计进行计算：&lt;/p&gt;
+&lt;span id=&#34;20241113234208CST&#34;&gt;&lt;/span&gt;\[
+P(读书|我 喜欢)=\frac{C(我\space喜欢\space读书)}{C(我\space喜欢)}
+\tag{7}
+    \]
+&lt;p&gt;  式中， \(C(\cdot)\) 表示相应词序列在语料库中出现的次数（也成为频次）。&lt;br&gt;
+  通过以上的条件概率，可以进一步计算一个句子出现的概率，即相应单词序 列的联合概率 \(P(w_1w_2\cdots w_l)\) 为序列的长度。可以利用链式法则对该式进行分解，从而将其转化为条件概率的计算问题，即：&lt;/p&gt;
+&lt;span id=&#34;20241113234416CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+P(w_1w_2\cdots w_l)=&amp;P(w_1)P(w_2|w_1)P(w_3|w_1w_2)\cdots P(w_l|w_1w_2\cdots w_{l-1})\\[10pt]
+=&amp;\prod_{i=1}^{l}P(w_i|w_{1:i-1})
+\end{aligned}
+\tag{8}
+    \]
+&lt;p&gt;  式中， \(w_{i:j}\) 表示由位置 \(i\) 到 \(j\) 的子串 \(w_iw_{i+1}\cdots w_j\) 。&lt;br&gt;
+  然而，随着句子长度的增加， \(w_{1:i-1}\) 出现的次数会越来越少，甚至从未出现过，那么 \(P(w_i|w_{1:i-1})\) 则很可能为 \(0\) ，此时对于概率估计就没有意义了。为了解决该问题，可以假设“下一个词出现的概率只依赖于它前面 \(n-1\) 个词&amp;quot;，即&lt;/p&gt;
+&lt;span id=&#34;20241114002737CST&#34;&gt;&lt;/span&gt;\[
+P(w_t|w_1w_2\cdots w_{t-1})\approx P(w_t|w_{t-(n-1):t-1})
+\tag{9}
+    \]
+&lt;p&gt;  该假设被称为&lt;strong&gt;马尔可夫假设（Markov Assumption）&lt;/strong&gt;。满足这种假设的模型，被称为&lt;strong&gt;N元语法&lt;/strong&gt;或&lt;strong&gt;N元文法（N-gram）&lt;/strong&gt;‌模型。特别地，当 \(n=1\) 时，下一个词的出现独立于其历史，相应的一元语法通常记作unigram。当 \(n=2\) 时，下一个词只依赖于前 \(1\) 个词，对应的二元语法记作bigram。二元语法模型也被称为一阶马尔可夫链（MarkovChain）。类似的，三元语法假设（ \(n=3\) ）也被称为二阶马尔可夫假设，相应的三元语法记作trigram。 \(n\) 的取值越大，考虑的历史越完整。在unigram模型中，由于词与词之间相互独立，因此它是与语序无关的。&lt;br&gt;
+  以bigram模型为例，&lt;a class=&#34;link&#34; href=&#34;#20241113234416CST&#34;&gt;式(8)&lt;/a&gt;可转换为&lt;/p&gt;
+&lt;span id=&#34;20241114004143CST&#34;&gt;&lt;/span&gt;\[
+P(w_1w_2 \cdots w_l)= \prod_{i=1}^{l}P(w_i|w_{i-1})
+\tag{10}
+    \]
+&lt;p&gt;  为了使 \(P(w_i|w_{i-1})\) 对于 \(i=1\) 有意义，可在句子的开头增加一个句首标记&amp;lt;BOS&amp;gt;（ Begin Of Sentence），并设 \(w_0=\) &amp;lt;BOS&amp;gt;。同时，也可以在句子的结尾增加一个句尾标记&amp;lt;EOS&amp;gt;（End Of Sentence），设 \(w_{l+1}=\) &amp;lt;EOS&amp;gt;。&lt;/p&gt;
+&lt;h4 id=&#34;平滑&#34;&gt;平滑
+&lt;/h4&gt;&lt;p&gt;  虽然马尔可夫假设（下一个词出现的概率只依赖于它前面 \(n-1\) 个词）降低了句子概率为 \(0\) 的可能性，但是当 \(n\) 比较大或者测试句子中含有&lt;strong&gt;未登录词（Out-Of-Vocabulary，OOV）&lt;/strong&gt;‌时，仍然会出现“零概率”问题。由于数据的稀疏性，训练数据很难覆盖测试数据中所有可能出现的N-gram，但这并不意味着这些N-gram出现的概率为0。为了避免该问题，需要使用&lt;strong&gt;平滑（Smoothing）&lt;/strong&gt;‌技术调整概率估计的结果。本节将介绍一种最基本，也最简单的平滑算法——折扣法。&lt;br&gt;
+  &lt;strong&gt;折扣法（Discounting）&lt;/strong&gt;‌平滑的基本思想是“损有余而补不足”，即从频繁出现的N-gram中匀出一部分概率并分配给低频次（含零频次）的N-gram，从而使得整体概率分布趋于均匀。&lt;br&gt;
+  &lt;strong&gt;加1平滑（Add-one Discounting）&lt;/strong&gt;‌是一种典型的折扣法，也被称为&lt;strong&gt;拉普拉斯平滑（Laplace Smoothing）&lt;/strong&gt;，它假设所有N-gram的频次比实际出现的频次多一次。例如，对于unigram模型来说，平滑之后的概率可由以下公式计算&lt;/p&gt;
+&lt;span id=&#34;20241114004729CST&#34;&gt;&lt;/span&gt;\[
+P(w_i)=\frac{C(w_i)+1}{\sum_w(C(w)+1)}=\frac{C(w_i)+1}{N+|\mathbb{V}|}
+\tag{11}
+    \]
+&lt;p&gt;  式中， \(|\mathbb{V}|\) 是词表大小。所有未登录词可以映射为一个区别于其他已知词汇的独立标记，如&amp;lt;UNK&amp;gt;。&lt;br&gt;
+  相应的，对于bigram模型，则有&lt;/p&gt;
+&lt;span id=&#34;20241114005125CST&#34;&gt;&lt;/span&gt;\[
+P(w_i|w_{i-1})=\frac{C(w_{i-1}w_i)+1}{\sum_{w}(C(w_{i-1}w)+1)}=\frac{C(w_{i-1}w_{i})+1}{C(w_{i-1})+|\mathbb{V}|}
+\tag{12}
+    \]
+&lt;p&gt;  在实际应用中，尤其当训练数据较小时，加1平滑将对低频次或零频次事件 给出过高的概率估计。一种自然的扩展是加 \(\delta\) 平滑。在加 \(\delta\) 平滑中，假设所有事件的频次比实际出现的频次多 \(\delta\) 次，其中 \(0 \le \delta \le 1\) 。&lt;br&gt;
+  以bigram语言模型为例，使用加 \(\delta\) 平滑之后的条件概率为&lt;/p&gt;
+&lt;span id=&#34;20241114005858CST&#34;&gt;&lt;/span&gt;\[
+P(w_i|w_{i-1})=\frac{C(w_{i-1}w_i)+\delta}{\sum_{w}(C(w_{i-1}w)+\delta)}=\frac{C(w_{i-1}w_{i})+\delta}{C(w_{i-1})+\delta|\mathbb{V}|}
+\tag{13}
+    \]
+&lt;p&gt;  关于超参数 \(\delta\) 的取值，需要用到开发集数据。根据开发集上的困惑度对不同 \(\delta\) 取值下的语言模型进行评价，最终将最优的 \(\delta\) 用于测试集。&lt;br&gt;
+  由于引入了马尔可夫假设，导致N元语言模型无法对长度超过N的长距离词语依赖关系进行建模，如果将N扩大，又会带来更严重的数据稀疏问题，同 时还会急剧增加模型的参数量（N-gram数目），为存储和计算都带来极大的挑战。在后续篇章中将要介绍的神经网络语言模型可以较好地解决N元语言模型的这些缺陷。&lt;/p&gt;
+&lt;h4 id=&#34;语言模型性能评价&#34;&gt;语言模型性能评价
+&lt;/h4&gt;&lt;p&gt;  如何衡量一个语言模型的好坏呢？一种方法是将其应用于具体的外部任务（如机器翻译），并根据该任务上指标的高低对语言模型进行评价。这种方法也 被称为“外部任务评价”，是最接近实际应用需求的一种评价方法。但是，这种方式的计算代价较高，实现的难度也较大。因此，目前最为常用的是基于**困惑度（Perplexity，PPL）的“内部评价”方式。&lt;br&gt;
+  &lt;/p&gt;
+</description>
         </item>
         <item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
