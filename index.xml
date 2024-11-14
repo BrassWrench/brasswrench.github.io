@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 14 Nov 2024 02:54:15 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 14 Nov 2024 19:24:59 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -596,7 +596,7 @@ P(w_t|w_1w_2\cdots w_{t-1})\approx P(w_t|w_{t-(n-1):t-1})
 P(w_1w_2 \cdots w_l)= \prod_{i=1}^{l}P(w_i|w_{i-1})
 \tag{10}
     \]
-&lt;p&gt;  为了使 \(P(w_i|w_{i-1})\) 对于 \(i=1\) 有意义，可在句子的开头增加一个句首标记&amp;lt;BOS&amp;gt;（ Begin Of Sentence），并设 \(w_0=\) &amp;lt;BOS&amp;gt;。同时，也可以在句子的结尾增加一个句尾标记&amp;lt;EOS&amp;gt;（End Of Sentence），设 \(w_{l+1}=\) &amp;lt;EOS&amp;gt;。&lt;/p&gt;
+&lt;p&gt;  为了使 \(P(w_i|w_{i-1})\) 对于 \(i=1\) 有意义，可在句子的开头增加一个句首标记&lt;code&gt;&amp;lt;BOS&amp;gt;&lt;/code&gt;（ Begin Of Sentence），并设 \(w_0=\) &lt;code&gt;&amp;lt;BOS&amp;gt;&lt;/code&gt;。同时，也可以在句子的结尾增加一个句尾标记&lt;code&gt;&amp;lt;EOS&amp;gt;&lt;/code&gt;（End Of Sentence），设 \(w_{l+1}=\) &lt;code&gt;&amp;lt;EOS&amp;gt;&lt;/code&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;平滑&#34;&gt;平滑
 &lt;/h4&gt;&lt;p&gt;  虽然马尔可夫假设（下一个词出现的概率只依赖于它前面 \(n-1\) 个词）降低了句子概率为 \(0\) 的可能性，但是当 \(n\) 比较大或者测试句子中含有&lt;strong&gt;未登录词（Out-Of-Vocabulary，OOV）&lt;/strong&gt;‌时，仍然会出现“零概率”问题。由于数据的稀疏性，训练数据很难覆盖测试数据中所有可能出现的N-gram，但这并不意味着这些N-gram出现的概率为0。为了避免该问题，需要使用&lt;strong&gt;平滑（Smoothing）&lt;/strong&gt;‌技术调整概率估计的结果。本节将介绍一种最基本，也最简单的平滑算法——折扣法。&lt;br&gt;
   &lt;strong&gt;折扣法（Discounting）&lt;/strong&gt;‌平滑的基本思想是“损有余而补不足”，即从频繁出现的N-gram中匀出一部分概率并分配给低频次（含零频次）的N-gram，从而使得整体概率分布趋于均匀。&lt;br&gt;
@@ -622,7 +622,7 @@ P(w_i|w_{i-1})=\frac{C(w_{i-1}w_i)+\delta}{\sum_{w}(C(w_{i-1}w)+\delta)}=\frac{C
 &lt;h4 id=&#34;语言模型性能评价&#34;&gt;语言模型性能评价
 &lt;/h4&gt;&lt;p&gt;  如何衡量一个语言模型的好坏呢？一种方法是将其应用于具体的外部任务（如机器翻译），并根据该任务上指标的高低对语言模型进行评价。这种方法也 被称为“外部任务评价”，是最接近实际应用需求的一种评价方法。但是，这种方式的计算代价较高，实现的难度也较大。因此，目前最为常用的是基于&lt;strong&gt;困惑度（Perplexity，PPL）&lt;/strong&gt;‌的“内部评价”方式。&lt;br&gt;
   为了进行内部评价，首先将数据划分为不相交的两个集合，分别称为&lt;strong&gt;训练集&lt;/strong&gt; \(\mathbb{D}^{\text{train}}\) 和&lt;strong&gt;测试集&lt;/strong&gt; \(\mathbb{D}^{\text{test}}\) ，其中 \(\mathbb{D}^{\text{train}}\) 用于估计语言模型的参数。由该模型计算出的测试集的概率 \(P(\mathbb{D}^{\text{test}})\) 则反映了模型在测试集上的泛化能力。&lt;br&gt;
-  假设测试集 \(\mathbb{D}^{\text{test}}=w_1w_2 \cdots w_N\) （每个句子的开始和结束分布增加&amp;lt;BOS&amp;gt;与&amp;lt;EOS&amp;gt;标记），那么测试集的概率为：&lt;/p&gt;
+  假设测试集 \(\mathbb{D}^{\text{test}}=w_1w_2 \cdots w_N\) （每个句子的开始和结束分布增加&lt;code&gt;&amp;lt;BOS&amp;gt;&lt;/code&gt;与&lt;code&gt;&amp;lt;EOS&amp;gt;&lt;/code&gt;标记），那么测试集的概率为：&lt;/p&gt;
 &lt;span id=&#34;20241114020136CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
@@ -738,10 +738,300 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;word&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,)&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  正向最大匹配分词算法存在的明显缺点是倾向于切分出较长的词，这容易导致错误的切分结果，如“研究生命的起源”，由于“研究生”是词典中的词，所以使用正向最大匹配分词算法的分词结果为“研究生 命 的 起源”，显然分词结果不正确。&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;  这里提供一个可运行的辞典的例子&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/attachments/lexicon.txt&#34;target=&#34;_blank&#34;&gt;lexicon.txt&lt;/a&gt;[&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/attachments/lexicon.txt&#34;target=&#34;_blank&#34;download=&#34;lexicon.txt&#34;&gt;点此下载&lt;/a&gt;]。&lt;br&gt;
+  正向最大匹配分词算法存在的明显缺点是倾向于切分出较长的词，这容易导致错误的切分结果，如“研究生命的起源”，由于“研究生”是词典中的词，所以使用正向最大匹配分词算法的分词结果为“研究生 命 的 起源”，显然分词结果不正确。&lt;br&gt;
   这种情况一般被称为切分歧义问题，即同一个句子可能存在多种分词结果，一旦分词错误，则会影响对句子的语义理解。正向最大匹配分词算法除了存在切分歧义，对中文词的定义也不明确，如“哈尔滨市”可以是一个词，也可以认为“哈尔滨”是一个词，“市”是一个词。因此，目前存在多种中文分词的规范，根据不同规范又标注了不同的数据集。&lt;br&gt;
   另外，就是未登录词问题，也就是说有一些词并没有收录在词典中，如新词、命名实体、领域相关词和拼写错误词等。由于语言的动态性，新词语的出现可谓是层出不穷，所以无法将全部的词都及时地收录到词典中，因此，一个好的分词系统必须能够较好地处理未登录词问题。相比于切分歧义问题，在真实应用环境中，由未登录词问题引起的分词错误比例更高。因此，分词任务本身也是一项富有挑战的自然语言处理基础任务。&lt;/p&gt;
-</description>
+&lt;h4 id=&#34;子词切分&#34;&gt;子词切分
+&lt;/h4&gt;&lt;p&gt;  一般认为，以英语为代表的印欧语系的语言，词语之间通常已有分隔符（空格等）进行切分，无须再进行额外的分词处理。然而，由于这些语言往往具有复杂的词形变化，如果仅以天然的分隔符进行切分，不但会造成一定的数据稀疏问题，还会导致由于词表过大而降低处理速度。如“computer”“computers”“computing”等，虽然它们语义相近，但是被认为是截然不同的单词。传统的处理方法是根据语言学规则，引入&lt;strong&gt;词形还原（Lemmatization）&lt;/strong&gt;‌或者&lt;strong&gt;词干提取（Stemming）&lt;/strong&gt;‌等任务， 提取出单词的词根，从而在一定程度上克服数据稀疏问题。其中，词形还原指的是将变形的词语转换为原形，如将“computing”还原为“compute”；而词干提取则是将前缀、后缀等去掉，保留词干（Stem），如“computing”的词干为“comput”，可见，词干提取的结果可能不是一个完整的单词。&lt;br&gt;
+  词形还原或词干提取虽然在一定程度上解决了数据稀疏问题，但是需要人工撰写大量的规则，这种基于规则的方法既不容易扩展到新的领域，也不容易扩展到新的语言上。因此，基于统计的无监督子词（Subword）切分任务应运而生，并在现代的预训练模型中使用。&lt;br&gt;
+  所谓子词切分，就是将一个单词切分为若干连续的片段。目前有多种常用的
+子词切分算法，它们的方法大同小异，基本的原理都是使用尽量长且频次高的子词对单词进行切分。此处重点介绍常用的&lt;strong&gt;字节对编码（Byte Pair Encoding，BPE）&lt;/strong&gt;‌算法。&lt;br&gt;
+  首先，BPE通过&lt;a class=&#34;link&#34; href=&#34;#20241114164453CST&#34;&gt;算法1&lt;/a&gt;构造子词词表。&lt;/p&gt;
+
+  &lt;span id=&#34;20241114164453CST&#34;&gt;&lt;/span&gt;
+  &lt;hr style=&#34;width: 100%; height: 2px; background-color: #000000; margin:0 0;&#34;/&gt;&lt;strong&gt;算法1（BPE中子词词表构造算法）&lt;/strong&gt;&lt;div&gt;&lt;strong&gt;输入：&lt;/strong&gt;大规生文本语料库；期望子词词表大小L&lt;br /&gt;&lt;strong&gt;输出：&lt;/strong&gt;子词词表&lt;br /&gt;&lt;/div&gt;
+  &lt;hr style=&#34;width: 100%; height: 1px; background-color: #000000; margin:0 0;&#34;/&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;1.&lt;/div&gt;
+      &lt;div&gt;将语料库中每个单词切分成字符作为子词；&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;2.&lt;/div&gt;
+      &lt;div&gt;用切分的子词构成初始子词词表。&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;3.&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;while&lt;/strong&gt; 子词词表小于或等于L &lt;strong&gt;do&lt;/strong&gt;&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;4.&lt;/div&gt;
+      &lt;div&gt;&amp;emsp;&amp;emsp;在语料库中统计单词内相邻子词对的频次；&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;5.&lt;/div&gt;
+      &lt;div&gt;&amp;emsp;&amp;emsp;选取频次最高的子词对，合并成新的子词；&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;6.&lt;/div&gt;
+      &lt;div&gt;&amp;emsp;&amp;emsp;将新的子词加入子词词表；&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;7.&lt;/div&gt;
+      &lt;div&gt;&amp;emsp;&amp;emsp;将语料库中不再存在的子词从子词词表中删除。 &lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;8.&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;end&lt;/strong&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;hr style=&#34;width: 100%; height: 2px; background-color: #000000; margin:0 0;&#34;/&gt;
+&lt;p&gt;  下面，通过一个例子说明如何构造子词词表。首先，假设语料库中存在下列 Python词典中的3个单词以及每个单词对应的频次。其中，每个单词结尾增加了一个&lt;code&gt;&#39;&amp;lt;/w&amp;gt;&#39;&lt;/code&gt;字符，并将每个单词切分成独立的字符构成子词。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l o w e r &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n e w e s t &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;w i d e s t &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  初始化的子词词表表为3个单词包含的全部字符：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;o&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;e&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;t&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;d&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  然后，统计单词内相邻的两个子词的频次，并选取频次最高的子词对&lt;code&gt;e&lt;/code&gt;，和&lt;code&gt;s&lt;/code&gt;，合并成新的子词&lt;code&gt;es&lt;/code&gt;（共出现9次），然后加入子词词表中，并将语料库中不再存在的子词&lt;code&gt;s&lt;/code&gt;从子词词表中删除。此时，语料库以及子词词表变为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l o w e r &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n e w es t &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;w i d es t &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;o&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;e&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;t&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;d&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;es&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  然后，合并下一个子词对&lt;code&gt;es&lt;/code&gt;和&lt;code&gt;t&lt;/code&gt;，新的语料库和子词词表为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l o w e r &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n e w est &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;w i d est &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;o&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;e&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;d&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;est&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  重复以上过程，直到子词词表大小达到一个期望的词表大小为止。构造好子词词表后，如何将一个单词切分成子词序列呢？可以采用贪心的方法，即首先将子词词表按照子词的长度由大到小进行排序。然后，从前向后遍历子词词表，依次判断一个子词是否为单词的子串，如果是的话，则将该单词切分，然 后继续向后遍历子词词表。如果子词词表全部遍历结束，单词中仍然有子串没有被切分，那么这些子串一定为低频串，则使用统一的标记，如&lt;code&gt;&#39;&amp;lt;UNK&amp;gt;&#39;&lt;/code&gt;进行替换。&lt;br&gt;
+  例如,对一个含有三个单词的句子&lt;code&gt;[&#39;the&amp;lt;/w&amp;gt;&#39;, &#39;highest&amp;lt;/w&amp;gt;&#39;, &#39;mountain &amp;lt;/w&amp;gt;]&lt;/code&gt;进行切分，假设排好序的词表为&lt;code&gt;[&#39;errrr&amp;lt;/w&amp;gt;&#39;，&#39;tain&amp;lt;/w&amp;gt;&#39; ,&#39;moun&#39; , &#39;est&amp;lt;/w&amp;gt;&#39; , &#39;high&#39; , &#39;the&amp;lt;/w&amp;gt;&#39; , &#39;a&amp;lt;/w&amp;gt;&#39;]&lt;/code&gt;，则子词切分的结果为&lt;code&gt;[&#39;the&amp;lt;/w&amp;gt;&#39;, &#39;high&#39;, &#39;est&amp;lt;/w&amp;gt;&#39;, &#39;moun&#39;, &#39;tain&amp;lt;/w&amp;gt;&#39;]&lt;/code&gt;。此过程也叫作对句子（单词序列）进行编码。&lt;br&gt;
+  那么，如何对一个编码后的句子进行解码，也就是还原成原始的句子呢？此 时，单词结尾字符&lt;code&gt;&#39;&amp;lt;/w&amp;gt;&#39;&lt;/code&gt;便发挥作用了。只要将全部子词进行拼接，然后将结尾字符替换为空格，就恰好为原始的句子了。&lt;br&gt;
+  通过以上过程可以发现，BPE算法中的编码步骤需要遍历整个词表，是一个 非常耗时的过程。可以通过缓存技术加快编码的速度，即将常见单词对应的编码结果事先存储下来，然后编码时通过查表的方式快速获得编码的结果。对于查不到的单词再实际执行编码算法。由于高频词能够覆盖语言中的大部分单词，因此 该方法实际执行编码算法的次数并不多，因此可以极大地提高编码过程的速度。&lt;br&gt;
+  除了BPE,还有很多其他类似的子词切分方法，如WordPiece、Unigram Language Model（ULM）算法等。其中，WordPiece与BPE算法类似，也是每次从子词词表中选出两个子词进行合并。与BPE的最大区别在于，选择两个子词进行合并的策略不同：BPE选择频次最高的相邻子词合并，而WordPiece选择能够提升语言模型概率最大的相邻子词进行合并。经过公式推导，提升语言模型概率最大的相邻子词具有最大的互信息值，也就是两子词在语言模型上具有较强的关联性，它们经常在语料中以相邻方式同时出现。&lt;br&gt;
+  与WordPiece一样，ULM同样使用语言模型挑选子词。不同之处在于，BPE和WordPiece算法的词表大小都是从小到大变化，属于增量法。而ULM则是减量法，即先初始化一个大词表，根据评估准则不断丢弃词表中的子词，直到满足限定条件。ULM算法考虑了句子的不同分词可能，因而能够输出带概率的多个子词分段。&lt;br&gt;
+  为了更方便地使用上述子词切分算法，Google推出了&lt;a class=&#34;link&#34; href=&#34;https://github.com/google/sentencepiece&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;SentencePiece开源工具包&lt;/a&gt;，其中集成了 BPE、ULM等子词切分算法，并支持Python、C++编程语言的调 用，具有快速、轻量的优点。此外，通过将句子看作Unicode编码序列，从而使其能够处理多种语言。&lt;/p&gt;
+&lt;h4 id=&#34;词性标注&#34;&gt;词性标注
+&lt;/h4&gt;&lt;p&gt;  词性是词语在句子中扮演的语法角色，也被称为&lt;strong&gt;词类（Part-Of-Speech，POS）&lt;/strong&gt;。例如，表示抽象或具体事物名字（如“计算机”）的词被归为名词，而表示动作（如“打”）、状态（如“存在”）的词被归为动词。词性可为句法分析、语义理解等提供帮助。&lt;br&gt;
+  &lt;strong&gt;词性标注（POS Tagging）&lt;/strong&gt;‌任务是指给定一个句子，输出句子中每个词相应的词性。例如，当输入句子为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;他 喜欢 下 象棋 。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  则词性标注的输出为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;他/PN 喜欢/W 下/VV 象棋/NN 。/PU
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  其中，斜杠后面的&lt;code&gt;PN&lt;/code&gt;、&lt;code&gt;VV&lt;/code&gt;、&lt;code&gt;NN&lt;/code&gt;和&lt;code&gt;PU&lt;/code&gt;分别代表代词、动词、名词和标点符号。词性标注的主要难点在于歧义性，即一个词在不同的上下文中可能有不同的 词性。例如，上例中的“下”，既可以表示动词，也可以表示方位词。因此，需要结合上下文确定词在句子中的具体词性。&lt;/p&gt;
+&lt;h4 id=&#34;句法分析&#34;&gt;句法分析
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;句法分析（SyntacticParsing）&lt;/strong&gt;‌的主要目标是给定一个句子，分析句子的句法成分信息，例如主谓宾定状补等成分。最终的目标是将词序列表示的句子转换成树状结构，从而有助于更准确地理解句子的含义，并辅助下游自然语言处理任务。例如，对于以下两个句子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;您转的这篇文章很无知。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;您转这篇文章很无知。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  虽然它们只相差一个“的”字，但是表达的语义是截然不同的，这主要是因为两句话的主语不同。其中，第一句话的主语是“文章”，而第二句话的主语是&amp;quot;转&amp;quot;的动作。通过对两句话进行句法分析，就可以准确地获知各自的主语，从而推导出不同的语义。&lt;br&gt;
+  典型的句法结构表示方法包含两种——短语结构句法表示和依存结构句法表示。它们的不同点在于依托的文法规则不一样。其中，短语结构句法表示依托上下文无关文法，属于一种层次性的表示方法。而依存结构句法表示依托依存文法。&lt;br&gt;
+  &lt;a class=&#34;link&#34; href=&#34;#20241114184735CST&#34;&gt;图2&lt;/a&gt;对比了两种句法结构表示方法。在短语结构句法表示中，&lt;code&gt;S&lt;/code&gt;代表起始符号，&lt;code&gt;NP&lt;/code&gt;和&lt;code&gt;VP&lt;/code&gt;分别代表名词短语和动词短语。在依存结构句法表示中，&lt;code&gt;sub&lt;/code&gt;和&lt;code&gt;obj&lt;/code&gt;分别表示主语和宾语，&lt;code&gt;root&lt;/code&gt;表示虚拟根节点，其指向整个句子的核心谓词。&lt;/p&gt;
+&lt;span id=&#34;20241114184735CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 273.7143&#34;&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(216.5534 19.0488)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(271.2055 114.2951)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;V&lt;/tspan&gt;&lt;tspan x=&#34;12.6001&#34; y=&#34;0&#34;&gt;P&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(109.3092 164.7575)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;PN&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(173.1732 164.7577)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;VV&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(237.0013 164.7575)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;VV&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(297.7599 164.7575)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;MN&lt;/tspan&gt;&lt;/text&gt;
+    &lt;polyline points=&#34;255.0939 141.3175 282.2685 120.4921 311.2209 141.3175&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polyline points=&#34;186.4796 141.3175 255.1841 72.3251 284.1365 93.1505&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(243.6582 67.0254)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;V&lt;/tspan&gt;&lt;tspan x=&#34;12.6001&#34; y=&#34;0&#34;&gt;P&lt;/tspan&gt;&lt;/text&gt;
+    &lt;polyline points=&#34;123.2415 90.5238 222.1415 27.2671 251.0939 48.0925&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(109.3455 114.2953)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;14.1118&#34; y=&#34;0&#34;&gt;P&lt;/tspan&gt;&lt;/text&gt;
+    &lt;line x1=&#34;123.2415&#34; y1=&#34;120.4921&#34; x2=&#34;123.2415&#34; y2=&#34;141.3175&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;123.2415&#34; y1=&#34;175.1587&#34; x2=&#34;123.2415&#34; y2=&#34;195.9841&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;187.1677&#34; y1=&#34;175.1587&#34; x2=&#34;187.1677&#34; y2=&#34;195.9841&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;251.0939&#34; y1=&#34;175.1587&#34; x2=&#34;251.0939&#34; y2=&#34;195.9841&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;315.0201&#34; y1=&#34;175.1587&#34; x2=&#34;315.0201&#34; y2=&#34;195.9841&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(113.7607 221.603)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;他&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(169.1677 221.6028)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;喜欢&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(242.0938 221.603)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;下&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(297.02 221.6029)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;象棋&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(494.7141 221.6028)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;他&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(563.2725 221.6026)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;喜欢&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(649.8314 221.6028)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;下&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(718.3904 221.6027)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;象棋&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(406.2288 221.6032)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.011em;&#34;&gt;R&lt;/tspan&gt;&lt;tspan x=&#34;12.4199&#34; y=&#34;0&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;22.9497&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;33.4258&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(526.9641 178.4379)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;sub&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path d=&#34;M570.3516,198.6398c-.9127-3.2053-2.6878-7.9266-6.2857-12.7619-2.4765-3.3282-5.0993-5.7465-7.2381-7.4286&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;g&gt;
+      &lt;path d=&#34;M525.7802,178.6398c-2.7161.7602-7.7213,2.5484-12.5714,6.8571-2.6307,2.337-4.5396,4.8148-5.9148,7.0355&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;505.3853 188.3799 507.9504 191.4797 511.9622 191.7854 504.6373 197.8779 505.3853 188.3799&#34;/&gt;
+    &lt;/g&gt;
+    &lt;text transform=&#34;translate(494.0483 140.5596)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;r&lt;/tspan&gt;&lt;tspan x=&#34;7.7041&#34; y=&#34;0&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;18.2339&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;28.71&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path d=&#34;M428.1294,199.5287c3.5008-9.8294,11.606-29.4973,26.8714-44.381,13.2557-12.9243,25.816-16.2991,32.6718-17.3333&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;g&gt;
+      &lt;path d=&#34;M530.9865,136.4811c10.6312,4.7037,26.3833,14.3103,41.6476,35.0476,4.6827,6.3617,8.6503,12.8617,11.9931,19.079&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;580.0285 189.8342 584.0396 189.5192 586.5974 186.4134 587.3674 195.9097 580.0285 189.8342&#34;/&gt;
+    &lt;/g&gt;
+    &lt;text transform=&#34;translate(608.7924 178.4376)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;10.4761&#34; y=&#34;0&#34;&gt;bj&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path d=&#34;M593.2087,203.4652c.14-3.0892,1.0062-13.8125,9.3333-20.7619,1.8442-1.5391,3.7475-2.637,5.5238-3.4286&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;g&gt;
+      &lt;path d=&#34;M638.3516,178.1319c4.4799,3.6451,9.629,8.6742,14.2858,15.4286.3975.5766.7807,1.1501,1.1501,1.7199&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;649.1153 194.8238 653.0981 194.253 655.4521 190.99 656.8278 200.4176 649.1153 194.8238&#34;/&gt;
+    &lt;/g&gt;
+    &lt;text transform=&#34;translate(687.6228 176.0066)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;10.4761&#34; y=&#34;0&#34;&gt;bj&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path d=&#34;M662.0003,200.197c.212-3.815,1.5245-17.058,14.1409-25.6405,2.7941-1.9007,5.6778-3.2567,8.3691-4.2342&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;g&gt;
+      &lt;path d=&#34;M715.9389,170.3224c6.8271,5.2652,14.6741,12.5294,21.7707,22.2857,1.1776,1.619,2.2728,3.2216,3.2916,4.7993&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;736.3318 196.9904 740.3091 196.3829 742.6329 193.0983 744.0955 202.5128 736.3318 196.9904&#34;/&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(146.0052 267.1945)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.3716&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;a)短语结构句法树&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(504.6371 267.1948)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.2998&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;b&lt;/tspan&gt;&lt;tspan x=&#34;17.2261&#34; y=&#34;0&#34;&gt;)依存结构句法树&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;两种句法结构表示方法结果对比&lt;/p&gt;
+&lt;h4 id=&#34;语义分析&#34;&gt;语义分析
+&lt;/h4&gt;&lt;p&gt;  自然语言处理的核心任务即是让计算机“理解”自然语言所蕴含的意义，即&lt;strong&gt;语义（Semantic）&lt;/strong&gt;。本章前面介绍的文本向量表示，可以被认为隐性地蕴含了很多语义信息。而一般意义上的语义分析指的是通过离散的符号及结构显性地表示语义。根据待表示语言单元粒度以及语义表示方法的不同，语义分析又可以被分为多种形式。&lt;br&gt;
+  从词语的粒度考虑，一个词语可能具有多种语义（词义），例如“打”，含义既可能是“攻击”（如“打人”），还可能是“玩”（如“打篮球”），甚至“编织”（如“打毛衣&amp;quot;）等。根据词语出现的不同上下文，确定其具体含义的自然语言处理任务被称为&lt;strong&gt;词义消歧（Word Sense Disambiguation，WSD）&lt;/strong&gt;。对于每个词可能具有的词义，往往是通过语义词典确定的，如WordNet等。除了以上一词多义情况，还有多词一义的情况，如“马铃薯”和“土豆”具有相同的词义。&lt;br&gt;
+  由于语言的语义组合性和进化性，无法像词语一样使用词典定义句子、段落或篇章的语义，因此很难用统一的形式对句子等语言单元的语义进行表示。众多的语言学流派提出了各自不同的语义表示形式，如语义角色标注（Semantic Role Labeling，SRL）、语义依存分析（Semantic Dependency Parsing，SDP）等。&lt;br&gt;
+  其中，语义角色标注也称谓词论元结构（Predicate-Argument Structure），即首先识别句子中可能的谓词（一般为动词），然后为每个谓词确定所携带的语义角色（也称作论元），如表示动作发出者的施事（Agent），表示动作承受者的受事（Patient）等。除了核心语义角色，还有一类辅助描述动作的语言成分，被称为附 加语义角色，如动作发生的时间、地点和方式等。&lt;a class=&#34;link&#34; href=&#34;#20241114190513CST&#34;&gt;表2&lt;/a&gt;展示了一个语义角色标注的示例，其中有两个谓词——“喜欢”和“下”并针对每个谓词产生相应的论元输出结果。&lt;/p&gt;
+&lt;span id=&#34;20241114190513CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;输入&lt;/th&gt;
+          &lt;th&gt;他&lt;/th&gt;
+          &lt;th&gt;喜欢&lt;/th&gt;
+          &lt;th&gt;下&lt;/th&gt;
+          &lt;th&gt;象棋&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;输出1&lt;/td&gt;
+          &lt;td&gt;施事&lt;/td&gt;
+          &lt;td&gt;谓词&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;受事&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;输出2&lt;/td&gt;
+          &lt;td&gt;施事&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;谓词&lt;/td&gt;
+          &lt;td&gt;受事&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;语义角色标注示例&lt;/p&gt;
+&lt;p&gt;  语义依存分析则利用通用图表示更丰富的语义信息。根据图中节点类型的不同，又可分为两种表示——&lt;strong&gt;语义依存图（Semantic Dependency Graph）&lt;/strong&gt;‌表示和&lt;strong&gt;概念语义图（Conceptual Graph）&lt;/strong&gt;‌表示。其中，语义依存图中的节点是句子中实际存在的词语，在词与词之间创建语义关系边。而概念语义图首先将句子转化为虚拟的概念节点，然后在概念节点之间创建语义关系边。&lt;a class=&#34;link&#34; href=&#34;#20241114192135CST&#34;&gt;图3&lt;/a&gt;展示了一个语义依存图分析结果示例。&lt;/p&gt;
+&lt;span id=&#34;20241114192135CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 78.4586&#34;&gt;
+  &lt;text transform=&#34;translate(332.563 73.5075)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;他&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(386.7541 73.5082)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;喜欢&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(452.9455 73.5078)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;下&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(507.1369 73.5081)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;象棋&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(359.6585 41.708)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;施事&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(413.8499 41.7075)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;受事&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;path d=&#34;M357.6013,39.2972c-5.5016,2.55-10.4339,6.7597-14.1888,12.2741&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;341.7313 47.306 344.1113 50.55 348.0985 51.089 340.431 56.7443 341.7313 47.306&#34;/&gt;
+  &lt;/g&gt;
+  &lt;path d=&#34;M397.9231,54.6808c-.4033-.7872-4.2345-7.9709-11.9687-12.9731&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;path d=&#34;M441.4194,39.6442c4.4449,2.5161,8.436,6.6482,11.4949,12.055&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;448.2785 50.852 452.2957 50.6275 454.9229 47.5801 455.4786 57.0914 448.2785 50.852&#34;/&gt;
+  &lt;/g&gt;
+  &lt;path d=&#34;M397.9231,54.8543c.4033-.7872,4.2345-7.9709,11.9687-12.9731&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;path d=&#34;M380.6831,8.9316c-20.085,5.7536-36.7835,21.4547-43.5063,42.3023&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;334.4599 47.5399 337.5875 50.0711 341.5805 49.5771 335.6057 56.9982 334.4599 47.5399&#34;/&gt;
+  &lt;/g&gt;
+  &lt;path d=&#34;M459.2882,56.1094c-5.2919-22.3366-21.8004-39.7059-42.4109-46.4818&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(385.9547 10.248)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;施事&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(476.796 42.7038)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;受事&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;path d=&#34;M504.3655,40.6405c4.4449,2.5161,8.436,6.6482,11.4949,12.055&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;511.2245 51.8483 515.2418 51.6237 517.869 48.5764 518.4247 58.0876 511.2245 51.8483&#34;/&gt;
+  &lt;/g&gt;
+  &lt;path d=&#34;M460.8692,55.8506c.4033-.7872,4.2345-7.9709,11.9687-12.9731&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;语义依存图分析结果示例&lt;/p&gt;
+&lt;p&gt;  以上的语义表示方式属于通用语义表示方式，也就是针对各种语言现象，设计统一的语义表示。除此之外，还有另一类语义分析用于专门处理具体的任务，如将自然语言表示的数据库查询转换成结构化查询语言（SQL）。例如，对于如表2-3所示的学生信息表，系统需要将用户的自然语言查询：年龄大于18岁的学生姓名, 转化为 SQL 语句：&lt;code&gt;select name where age &amp;gt; 18&lt;/code&gt;。&lt;/p&gt;
+&lt;span id=&#34;20241114192241CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;学号&lt;/th&gt;
+          &lt;th&gt;姓名&lt;/th&gt;
+          &lt;th&gt;年龄&lt;/th&gt;
+          &lt;th&gt;\(\cdots\)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1001&lt;/td&gt;
+          &lt;td&gt;张三&lt;/td&gt;
+          &lt;td&gt;18&lt;/td&gt;
+          &lt;td&gt;\(\cdots\)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1002&lt;/td&gt;
+          &lt;td&gt;李四&lt;/td&gt;
+          &lt;td&gt;19&lt;/td&gt;
+          &lt;td&gt;\(\cdots\)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;\(\vdots\)&lt;/td&gt;
+          &lt;td&gt;\(\vdots\)&lt;/td&gt;
+          &lt;td&gt;\(\vdots\)&lt;/td&gt;
+          &lt;td&gt;\(\vdots\)&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表3&amp;emsp;学生信息表&lt;/p&gt;
+&lt;h3 id=&#34;自然语言处理应用任务&#34;&gt;自然语言处理应用任务
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
@@ -2914,7 +3204,7 @@ A \cup A^c = S，即 A \cup \complement_SA=S
 \left(\bigcap_{\xi \in I}A_\xi\right)^c=\bigcup_{\xi in I}A_\xi^c
 \tag{88}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109195200CST&#34;&gt;De Morgan公式&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241109195200CST&#34;&gt;定理13&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
   (1) 设 \(x \in \displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c\) ，则 \(x \in S\) 且 \(x \notin \displaystyle\bigcup_{\xi \in I}A_\xi\) ，从而 \(\forall\xi\in I,x \notin A_\xi\) 。于是， \(\forall\xi\in I,x \in A_\xi^c\) 。因此， \(x \in \displaystyle\bigcap_{\xi \in I}A_\xi^c\) ，故 \(\displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c \sube \bigcap_{\xi \in I}A_\xi^c\) 。&lt;br&gt;
   其次，设 \(x \in \displaystyle\bigcap_{\xi \in I}A_\xi^c\) ，则 \(\forall \xi \in I\) 都有 \(x \in A_\xi^c\) 。因此， \(\forall \xi \in I\) 都有 \(x \notin A_\xi\) ，且 \(x \in S\) ，故 \(x \notin \displaystyle\bigcup_{\xi \in I}A_\xi\) 。于是， \(x \in \displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c\) 。所以， \(\displaystyle\bigcap_{\xi \in I}A_\xi^c \sube \left(\bigcup_{\xi \in I}A_\xi\right)^c\) 。&lt;br&gt;
   由&lt;a class=&#34;link&#34; href=&#34;#20241107234317CST&#34;&gt;定义3&lt;/a&gt;可得 \(\displaystyle\left(\bigcup_{\xi \in I}A_\xi\right)^c=\bigcap_{\xi \in I}A_\xi^c\) 。&lt;br&gt;
@@ -6575,7 +6865,7 @@ R(D_1,D_2,\times,D_n)
     \]
 &lt;p&gt;  假设研究生不会重名（这在实际生活中是不合适的，这里只是为了举例方便），则 \(\text{POSTGRADUATE}\) 属性的每一个值都唯一地标识了一个元组，因此可以作为SAP关系的主码。&lt;br&gt;
   关系可以有三种类型：基本关系（通常又称为基本表或基表）、查询表和视图表。其中，&lt;strong&gt;基本表&lt;/strong&gt;是实际存在的表，它是实际存储数据的逻辑表示：&lt;strong&gt;查询表&lt;/strong&gt;是查询结果对应的表；&lt;strong&gt;视图表&lt;/strong&gt;是由基本表或其他视图表导出的表，是虚表，不对应实际存储的数据。&lt;br&gt;
-  按照&lt;a class=&#34;link&#34; href=&#34;#20241024155054CST&#34;&gt;Cartesian乘积&lt;/a&gt;，关系可以是一个无限集合。由于组成Cartesian乘积的域不满足交换律，所以按照数学定义， \((d_1,d_2,\cdots,d_n)\ne(d_2,d_1,\cdots,d_n)\) 。当关系作为关系数据模型的数据结构时，需要给予如下的限定和扩充。&lt;/p&gt;
+  按照&lt;a class=&#34;link&#34; href=&#34;#20241024155054CST&#34;&gt;定义2&lt;/a&gt;，关系可以是一个无限集合。由于组成Cartesian乘积的域不满足交换律，所以按照数学定义， \((d_1,d_2,\cdots,d_n)\ne(d_2,d_1,\cdots,d_n)\) 。当关系作为关系数据模型的数据结构时，需要给予如下的限定和扩充。&lt;/p&gt;
 &lt;p&gt;  (1) 无限关系在数据库系统中是无意义的。因此，限定关系数据模型中的关系必须是有限集合。&lt;br&gt;
   (2) 通过为关系的每个列附加一个属性名的方法取消关系属性的有序性，即 \((d_1,d_2,\cdots,d_i,d_j,\cdots,d_n)=(d_1,d_2,\cdots,d_j,d_i,\cdots,d_n)\quad(i,j=1,2,\cdots,n)\)&lt;/p&gt;
 &lt;p&gt;  因此，基本关系具有以下6条性质。&lt;/p&gt;
@@ -12616,16 +12906,16 @@ U \cup U&#39; =&amp; \left(\bigcup_{\alpha}B(x_\alpha,\varepsilon_\alpha)\right)
 &lt;h3 id=&#34;拓扑空间中的几个基本概念&#34;&gt;拓扑空间中的几个基本概念
 &lt;/h3&gt;&lt;p&gt;  下面要讲的几个基本的拓扑概念在欧氏空间和度量空间中都已出现过，但现在用开集概念来规定它们。&lt;/p&gt;
 &lt;h4 id=&#34;闭集&#34;&gt;闭集
-&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241108181806CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3&lt;/strong&gt;：拓扑空间 \(X\) 的一个子集 \(A\) 称为&lt;strong&gt;闭集&lt;/strong&gt;，如果 \(A^c\) 是开集（见&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;拓扑空间&lt;/a&gt;）。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241108181806CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3&lt;/strong&gt;：拓扑空间 \(X\) 的一个子集 \(A\) 称为&lt;strong&gt;闭集&lt;/strong&gt;，如果 \(A^c\) 是开集（见&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;定义1&lt;/a&gt;）。&lt;/p&gt;
 &lt;p&gt;  也就是说，闭集就是开集的余集，反过来开集一定是一个闭集的余集。例如在离散拓扑空间中，任何子集都是开集，从而任何子集也都是闭集；平凡拓扑空间 \(X\) 中，只有两个闭集： \(X=\varnothing^c\) 和 \(\varnothing = X^c\) 。在 \((\bm{R},\tau_f)\) 中，闭集或是 \(X\) ，或为有限集；而 \((\bm{R},\tau_c)\) 中的闭集是X或可数集。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241108182659CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;命题2&lt;/strong&gt;：拓扑空间的闭集满足：&lt;br&gt;
   (1) \(X\) 与 \(\varnothing\) 都是闭集。&lt;br&gt;
   (2) 任意多个闭集的交集是闭集。&lt;br&gt;
   (3) 有限个闭集的并集是闭集。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241108182659CST&#34;&gt;命题2&lt;/a&gt;）&lt;/strong&gt;：&lt;br&gt;
-  (1) 由&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;拓扑空间&lt;/a&gt;的定义可知 \(X,\varnothing\) 一定是某个拓扑 \(\tau\) 的子集，也就是 \(X,\varnothing\) 一定是开集。而 \(X^c=\varnothing,\varnothing^c = X\) ，因此 \(X,\varnothing\) 也是闭集。&lt;br&gt;
-  (2) 设有任意多个闭集 \(A_1,A_2,\cdots,A_i,\cdots\) 。由 \(A_i\) 是闭集可得 \(A_i^c\) 是开集，而由&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;拓扑公理(2)&lt;/a&gt;，任意多个 \(A_i^c\) 的并集 \(\displaystyle\bigcup_{i=1}^{\infin} A_i^c\) 也在拓扑空间 \(\tau\) 内，即也是开集。因此由&lt;a class=&#34;link&#34; href=&#34;#20241108181806CST&#34;&gt;定义3&lt;/a&gt;， \(\displaystyle\left(\bigcup_{i=1}^{\infin} A_i^c\right)^c\) 是闭集，再由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241109195200CST&#34;&gt;集合及其运算-De Morgan公式&lt;/a&gt;可得 \(\displaystyle\left(\bigcup_{i=1}^{\infin} A_i^c\right)^c=\bigcap_{i=1}^{\infin} (A_i^c)^c=\bigcap_{i=1}^{\infin} A_i\) 是闭集。因此任意多个闭集的交集是闭集。&lt;br&gt;
-  (3) 设有有限个闭集 \(A_1,A_2,\cdots,A_i,\cdots,A_n\) 。由 \(A_i\) 是闭集可得 \(A_i^c\) 是开集，而由&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;拓扑公理(3)&lt;/a&gt;，有限个 \(A_i^c\) 的交集 \(\displaystyle\bigcap_{i=1}^{n} A_i^c\) 也在拓扑空间 \(\tau\) 内，即也是开集。因此由&lt;a class=&#34;link&#34; href=&#34;#20241108181806CST&#34;&gt;定义3&lt;/a&gt;， \(\displaystyle\left(\bigcap_{i=1}^{n} A_i^c\right)^c\) 是闭集，再由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241109195200CST&#34;&gt;集合及其运算-De Morgan公式&lt;/a&gt;可得 \(\displaystyle\left(\bigcap_{i=1}^{n} A_i^c\right)^c=\bigcup_{i=1}^{n} (A_i^c)^c=\bigcup_{i=1}^{n} A_i\) 是闭集。因此有限个闭集的交集是闭集。&lt;/p&gt;
+  (1) 由&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;定义1&lt;/a&gt;的定义可知 \(X,\varnothing\) 一定是某个拓扑 \(\tau\) 的子集，也就是 \(X,\varnothing\) 一定是开集。而 \(X^c=\varnothing,\varnothing^c = X\) ，因此 \(X,\varnothing\) 也是闭集。&lt;br&gt;
+  (2) 设有任意多个闭集 \(A_1,A_2,\cdots,A_i,\cdots\) 。由 \(A_i\) 是闭集可得 \(A_i^c\) 是开集，而由&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;拓扑公理(2)&lt;/a&gt;，任意多个 \(A_i^c\) 的并集 \(\displaystyle\bigcup_{i=1}^{\infin} A_i^c\) 也在拓扑空间 \(\tau\) 内，即也是开集。因此由&lt;a class=&#34;link&#34; href=&#34;#20241108181806CST&#34;&gt;定义3&lt;/a&gt;， \(\displaystyle\left(\bigcup_{i=1}^{\infin} A_i^c\right)^c\) 是闭集，再由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241109195200CST&#34;&gt;集合及其运算-定理13&lt;/a&gt;可得 \(\displaystyle\left(\bigcup_{i=1}^{\infin} A_i^c\right)^c=\bigcap_{i=1}^{\infin} (A_i^c)^c=\bigcap_{i=1}^{\infin} A_i\) 是闭集。因此任意多个闭集的交集是闭集。&lt;br&gt;
+  (3) 设有有限个闭集 \(A_1,A_2,\cdots,A_i,\cdots,A_n\) 。由 \(A_i\) 是闭集可得 \(A_i^c\) 是开集，而由&lt;a class=&#34;link&#34; href=&#34;#20241015215625CST&#34;&gt;拓扑公理(3)&lt;/a&gt;，有限个 \(A_i^c\) 的交集 \(\displaystyle\bigcap_{i=1}^{n} A_i^c\) 也在拓扑空间 \(\tau\) 内，即也是开集。因此由&lt;a class=&#34;link&#34; href=&#34;#20241108181806CST&#34;&gt;定义3&lt;/a&gt;， \(\displaystyle\left(\bigcap_{i=1}^{n} A_i^c\right)^c\) 是闭集，再由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/discrete_mathematics/set_theory/sets_and_their_operations/#20241109195200CST&#34;&gt;集合及其运算-定理13&lt;/a&gt;可得 \(\displaystyle\left(\bigcap_{i=1}^{n} A_i^c\right)^c=\bigcup_{i=1}^{n} (A_i^c)^c=\bigcup_{i=1}^{n} A_i\) 是闭集。因此有限个闭集的交集是闭集。&lt;/p&gt;
 &lt;h4 id=&#34;邻域点和内部&#34;&gt;邻域，点和内部
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241109213315CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义4&lt;/strong&gt;：设 \(A\) 是拓扑空间 \(X\) 的一个子集，点 \(x \in A\) 。如果存在开集 \(U\) ，使得 \(x \in U \sube A\) ，则称 \(x\) 是 \(A\) 的一个&lt;strong&gt;内点&lt;/strong&gt;， \(A\) 是 \(x\) 的一个&lt;strong&gt;邻域&lt;/strong&gt;。 \(A\) 的所有内点的集合称为 \(A\) 的&lt;strong&gt;内部&lt;/strong&gt;，记作 \(\mathring{A}\) （或 \(A\degree\) ）。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241109213550CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;命题3&lt;/strong&gt;：&lt;br&gt;
@@ -12868,12 +13158,12 @@ g(x(t),y(t),z(t))\equiv 0
 \end{cases}
 \tag{14}
     \]
-&lt;p&gt;  由上式和&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241019105434CST&#34;&gt;Euclid空间-Lagrange矢量公式&lt;/a&gt;，这意味着&lt;/p&gt;
+&lt;p&gt;  由上式和&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241019105434CST&#34;&gt;Euclid空间-公式2&lt;/a&gt;，这意味着&lt;/p&gt;
 &lt;span id=&#34;20241015124846CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 &amp;\bm{r}&#39;(t)\times\left(\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\times\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\right)\\[15pt]
 =&amp;\left((x&#39;(t),y&#39;(t),z&#39;(t))\cdot\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\right)\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)-\\[15pt]
-&amp;\left((x&#39;(t),y&#39;(t),z&#39;(t))\cdot\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\right)\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\text{（Euclid空间-Lagrange矢量公式）}\\[15pt]
+&amp;\left((x&#39;(t),y&#39;(t),z&#39;(t))\cdot\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\right)\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\text{（Euclid空间-公式2）}\\[15pt]
 =&amp;\left(\frac{\partial g}{\partial x}\cdot x&#39;(t)+\frac{\partial g}{\partial y}\cdot y&#39;(t)+\frac{\partial g}{\partial z}\cdot z&#39;(t)\right)\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)-\\[15pt]
 &amp;\left(\frac{\partial f}{\partial x}\cdot x&#39;(t)+\frac{\partial f}{\partial y}\cdot y&#39;(t)+\frac{\partial f}{\partial z}\cdot z&#39;(t)\right)\left(\frac{\partial g}{\partial x},\frac{\partial g}{\partial y},\frac{\partial g}{\partial z}\right)\\[15pt]
 =&amp;\space \bm{0}
@@ -13304,7 +13594,7 @@ s(t)=\int_a^t|\bm{r}&#39;(t&#39;)|\mathrm{d}t&#39;
 \bm{\beta}(t)=\bm{\gamma}(t)\times\bm{\alpha}(t)
 \tag{56}
     \]
-&lt;p&gt;  代入&lt;a class=&#34;link&#34; href=&#34;#20241018125609CST&#34;&gt;式(55)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241018123009CST&#34;&gt;式(50)&lt;/a&gt;再利用&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241019105434CST&#34;&gt;Euclid空间-Lagrange矢量公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  代入&lt;a class=&#34;link&#34; href=&#34;#20241018125609CST&#34;&gt;式(55)&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241018123009CST&#34;&gt;式(50)&lt;/a&gt;再利用&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241019105434CST&#34;&gt;Euclid空间-公式2&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241018125936CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \bm{\beta}(t)=&amp;\frac{(\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t))\times\bm{r}&#39;(t)}{|\bm{r}&#39;(t)|\cdot|\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t)|}\\[10pt]
@@ -13460,7 +13750,7 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=\ta
 \bm{r}(s)-\bm{r}_0=\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)
 \tag{78}
     \]
-&lt;p&gt;  将上式对于 \(s\) 求导并且利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;得到&lt;/p&gt;
+&lt;p&gt;  将上式对于 \(s\) 求导并且利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;得到&lt;/p&gt;
 &lt;span id=&#34;20241018225238CST&#34;&gt;&lt;/span&gt;\[
 \bm{\alpha}(s)=-\lambda(s)\kappa(s)\bm{\alpha}(s)+(\lambda&#39;(s)-\mu(s)\tau(s))\bm{\beta}(s)+(\lambda(s)\tau(s)+\mu&#39;(s))\bm{\gamma}(s)
 \tag{79}
@@ -13486,14 +13776,14 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=\ta
 \tag{83}
     \]
 &lt;h3 id=&#34;挠率的计算&#34;&gt;挠率的计算
-&lt;/h3&gt;&lt;p&gt;  设曲线的参数方程是 \(\bm{r}=\bm{r}(t)\) ，将&lt;a class=&#34;link&#34; href=&#34;#20241018125609CST&#34;&gt;式(55)&lt;/a&gt;两边对 \(t\) 求导并利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;得到&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  设曲线的参数方程是 \(\bm{r}=\bm{r}(t)\) ，将&lt;a class=&#34;link&#34; href=&#34;#20241018125609CST&#34;&gt;式(55)&lt;/a&gt;两边对 \(t\) 求导并利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;得到&lt;/p&gt;
 &lt;span id=&#34;20241019001830CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 -\tau(t)\bm{\beta}(t)\cdot\frac{\mathrm{d}s}{\mathrm{d}t}=\frac{\bm{r}&#39;(t)\times\bm{r}&#39;&#39;&#39;(t)}{|\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t)|}+\frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{1}{|\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t)|}\right)\cdot\left(\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t)\right)
 \end{aligned}
 \tag{84}
     \]
-&lt;p&gt;  将上式两边用&lt;a class=&#34;link&#34; href=&#34;#20241018125936CST&#34;&gt;式(57)&lt;/a&gt;作点乘并利用叉乘的性质 \(\bm{a}\cdot(\bm{a}\times\bm{b})=0\) 和&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241020000349CST&#34;&gt;Euclid空间-混合积恒等式&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  将上式两边用&lt;a class=&#34;link&#34; href=&#34;#20241018125936CST&#34;&gt;式(57)&lt;/a&gt;作点乘并利用叉乘的性质 \(\bm{a}\cdot(\bm{a}\times\bm{b})=0\) 和&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241020000349CST&#34;&gt;Euclid空间-公式1&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241019220643CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 -\tau(t)|\bm{\beta}(t)|^2\cdot\frac{\mathrm{d}s}{\mathrm{d}t}
@@ -13511,7 +13801,7 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=\ta
 \tau(t)=\frac{(\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t))}{|\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t)|^2}
 \tag{86}
     \]
-&lt;p&gt;  如果 \(t\) 是弧长参数 \(s\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241020000302CST&#34;&gt;Euclid空间-Lagrange恒等式&lt;/a&gt;，上式成为&lt;/p&gt;
+&lt;p&gt;  如果 \(t\) 是弧长参数 \(s\) ，则由&lt;a class=&#34;link&#34; href=&#34;#20241016213554CST&#34;&gt;定理1&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241020000302CST&#34;&gt;Euclid空间-公式5&lt;/a&gt;，上式成为&lt;/p&gt;
 &lt;span id=&#34;20241020142730CST&#34;&gt;&lt;/span&gt;\[
 \tau(s)=\frac{(\bm{r}&#39;(s),\bm{s}&#39;&#39;(s),\bm{s}&#39;&#39;&#39;(s))}{|\bm{r}&#39;&#39;(s)|^2}
 \tag{87}
@@ -13521,7 +13811,7 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=\ta
 (\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t)) \equiv 0
 \tag{88}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241020143444CST&#34;&gt;定理6&lt;/a&gt;）&lt;/strong&gt;：先证必要性。如果 \(\bm{r}=\bm{r}(t)\) 是一条直线，由&lt;a class=&#34;link&#34; href=&#34;#20241018101114CST&#34;&gt;定理3&lt;/a&gt;可得 \(\kappa(s)\equiv 0\) ，再由&lt;a class=&#34;link&#34; href=&#34;#20241018125515CST&#34;&gt;式(54)&lt;/a&gt;可得 \(\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t)=\bm{0}\) ，因此由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241020000349CST&#34;&gt;Euclid空间-混合积恒等式&lt;/a&gt;得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241020143444CST&#34;&gt;定理6&lt;/a&gt;）&lt;/strong&gt;：先证必要性。如果 \(\bm{r}=\bm{r}(t)\) 是一条直线，由&lt;a class=&#34;link&#34; href=&#34;#20241018101114CST&#34;&gt;定理3&lt;/a&gt;可得 \(\kappa(s)\equiv 0\) ，再由&lt;a class=&#34;link&#34; href=&#34;#20241018125515CST&#34;&gt;式(54)&lt;/a&gt;可得 \(\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t)=\bm{0}\) ，因此由&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/mathematics/geometry/differential_geometry/euclidean_space/#20241020000349CST&#34;&gt;Euclid空间-公式1&lt;/a&gt;得&lt;/p&gt;
 &lt;span id=&#34;20241020151230CST&#34;&gt;&lt;/span&gt;\[
 (\bm{r}&#39;(t),\bm{r}&#39;&#39;(t),\bm{r}&#39;&#39;&#39;(t))=(\bm{r}&#39;(t)\times\bm{r}&#39;&#39;(t))\cdot\bm{r}&#39;&#39;&#39;(t) \equiv 0
 \tag{89}
@@ -13542,7 +13832,7 @@ c(s)=\bm{\beta}(s)\cdot\bm{\gamma}(s)=-\bm{\beta}(s)\cdot\bm{\gamma}&#39;(s)=\ta
 f(s)=(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))^2+(\bm{\beta}_1(s)-\bm{\beta}_2(s))^2+(\bm{\gamma}_1(s)-\bm{\gamma}_2(s))^2
 \tag{91}
     \]
-&lt;p&gt;  根据假设得知 \(f(0)=0\) 。对 \(f(s)\) 直接求导，利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;并且注意到 \(\kappa_1(s)=\kappa_2(s),\tau_1(s)=\tau_2(s)\) ，则得&lt;/p&gt;
+&lt;p&gt;  根据假设得知 \(f(0)=0\) 。对 \(f(s)\) 直接求导，利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;并且注意到 \(\kappa_1(s)=\kappa_2(s),\tau_1(s)=\tau_2(s)\) ，则得&lt;/p&gt;
 &lt;span id=&#34;20241020203444CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \frac{1}{2}\frac{\mathrm{d}f(s)}{\mathrm{d}s}=&amp;(\bm{\alpha}_1(s)-\bm{\alpha}_2(s))\cdot(\kappa_1(s)\bm{\beta}_1(s)-\kappa_2(s)\bm{\beta}_2(s))\\[5pt]
@@ -13592,7 +13882,7 @@ s(t)=s_1(t)=s_2(\lambda(t))
     \]
 &lt;p&gt;  故由&lt;a class=&#34;link&#34; href=&#34;#20241020220039CST&#34;&gt;式(96)&lt;/a&gt;可得 \(\kappa_1(s)=\kappa_2(s)\) 。同理可得 \(\tau_1(s)=\tau_2(s)\) 。此时由&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;可以直接得到&lt;a class=&#34;link&#34; href=&#34;#20241020215207CST&#34;&gt;定理8&lt;/a&gt;的结论。&lt;/p&gt;
 &lt;h3 id=&#34;给定连续可微的曲率和挠率曲率大于零则必有曲线对应&#34;&gt;给定连续可微的曲率和挠率（曲率大于零）则必有曲线对应
-&lt;/h3&gt;&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20241020230735CST&#34;&gt;曲线的曲率和Frenet标架&lt;/a&gt;中已经知道，在曲率 \(\kappa(s)\) 处处不为零的正则曲线上有内在的、确定的Frenet标架场，所以 \(E^3\) 中的曲线便变成在 \(E^3\) 的正交标架空间中的一条曲线．而&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;正好是这个标架场的运动方程其系数恰好是曲线的曲率和挠率，它们完全确定了曲线在空间中的形状。我们的问题是：给定了曲率和挠率作为弧长参数 \(s\) 的函数 \(\kappa(s),\tau(s)\) 之后，在空间 \(E^3\) 中是否存在正则参数曲线以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率？根据上面的分析，我们在 \(E^3\) 上由全体正交标架构成的6维空间中考虑，千是Frenet公式成为现成的已知常微分方程组，它的解是依赖参数 \(s\) 的一族正交标架，其标架原点在 \(E^3\) 中描出的轨迹应该是我们所要的曲线，而这族正交标架本身应该是曲线的Frenet标架场。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20241020230735CST&#34;&gt;曲线的曲率和Frenet标架&lt;/a&gt;中已经知道，在曲率 \(\kappa(s)\) 处处不为零的正则曲线上有内在的、确定的Frenet标架场，所以 \(E^3\) 中的曲线便变成在 \(E^3\) 的正交标架空间中的一条曲线．而&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;正好是这个标架场的运动方程其系数恰好是曲线的曲率和挠率，它们完全确定了曲线在空间中的形状。我们的问题是：给定了曲率和挠率作为弧长参数 \(s\) 的函数 \(\kappa(s),\tau(s)\) 之后，在空间 \(E^3\) 中是否存在正则参数曲线以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率？根据上面的分析，我们在 \(E^3\) 上由全体正交标架构成的6维空间中考虑，千是Frenet公式成为现成的已知常微分方程组，它的解是依赖参数 \(s\) 的一族正交标架，其标架原点在 \(E^3\) 中描出的轨迹应该是我们所要的曲线，而这族正交标架本身应该是曲线的Frenet标架场。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241020231130CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理9&lt;/strong&gt;：设 \(\kappa(s),\tau(s)\) 是在区间 \([a,b]\) 上两个任意给定的连续可微函数，并且 \(\kappa(s)&gt;0\) ，则在空间 \(E^3\) 中存在正则参数曲线 \(\bm{r}=\bm{r}(s),a\le s \le b\) ，以 \(s\) 为弧长参数，以给定的函数 \(\kappa(s),\tau(s)\) 为它的曲率和挠率，且这样的曲线在空间 \(E^3\) 中是完全确定的，其差异至多为曲线在空间中的位置不同。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241020231130CST&#34;&gt;定理9&lt;/a&gt;）&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;#20241020153808CST&#34;&gt;定理7&lt;/a&gt;已经证明这样的曲线在空间 \(E^3\) 中确定到至多差一个位置的不同，因此我们只要证明这样的曲线的存在性。&lt;br&gt;
   为了能够用和式表示方程组，引进新的函数记号&lt;/p&gt;
@@ -13706,17 +13996,17 @@ g_{ij}(s)\equiv 0,\quad 1 \le i,j \le 3
 \lim\limits_{s \to 0}\frac{|\bm{\omicron}(s^3)|}{s^3}=0
 \tag{115}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;第一式取 \(s=0\) 可得&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;第一式取 \(s=0\) 可得&lt;/p&gt;
 &lt;span id=&#34;20241028183757CST&#34;&gt;&lt;/span&gt;\[
 \bm{r}&#39;(0)=\bm{\alpha}(0)
 \tag{116}
     \]
-&lt;p&gt;  将上式代入&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;第二式并取 \(s=0\) 可得&lt;/p&gt;
+&lt;p&gt;  将上式代入&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;第二式并取 \(s=0\) 可得&lt;/p&gt;
 &lt;span id=&#34;20241028184300CST&#34;&gt;&lt;/span&gt;\[
 \bm{r}&#39;&#39;(0)=\kappa(0)\bm{\beta}(0)
 \tag{117}
     \]
-&lt;p&gt;  将&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;第1. 二式代入第三式&lt;/p&gt;
+&lt;p&gt;  将&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;第1. 二式代入第三式&lt;/p&gt;
 &lt;span id=&#34;20241028184539CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \bm{\beta}&#39;(s)=&amp;\left(\frac{\bm{\alpha}&#39;(s)}{\kappa(s)}\right)&#39;=\frac{\bm{\alpha}&#39;&#39;(s)\kappa(s)-\bm{\alpha}&#39;(s)\kappa&#39;(s)}{\kappa(s)^2}=\frac{\bm{r}&#39;&#39;&#39;(s)\kappa(s)+\kappa(s)\kappa&#39;(s)\bm{\beta}(s)}{\kappa(s)^2}\\[15pt]
@@ -13980,7 +14270,7 @@ x=0,\quad y=\frac{\kappa_0}{2}s^2,\quad z=\frac{\kappa_0\tau_0}{6}s^3
 \bm{r}_1(0)=\bm{r}_2(0),\quad \bm{r}&#39;_1(0)=\bm{r}&#39;_2(0), \quad \bm{r}&#39;&#39;_1(0)=\bm{r}&#39;&#39;_2(0)
 \tag{134}
     \]
-&lt;p&gt;  前两式说明这两条曲线相切。将第三式代入&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;的前两式可得&lt;/p&gt;
+&lt;p&gt;  前两式说明这两条曲线相切。将第三式代入&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;的前两式可得&lt;/p&gt;
 &lt;span id=&#34;20241029121738CST&#34;&gt;&lt;/span&gt;\[
 \kappa_1(0)\bm{\beta}_1(0)=\kappa_2(0)\bm{\beta}_2(0)
 \tag{135}
@@ -14160,7 +14450,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\
 \bm{r}_2(s)=\bm{r}_1(s)+\lambda(s)\bm{\beta}_1(s)
 \tag{164}
     \]
-&lt;p&gt;  并且 \(\bm{\beta}_1(s)=\pm\bm{\beta}_2(s)\) 。利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;对上式求导数得到&lt;/p&gt;
+&lt;p&gt;  并且 \(\bm{\beta}_1(s)=\pm\bm{\beta}_2(s)\) 。利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;对上式求导数得到&lt;/p&gt;
 &lt;span id=&#34;20241030121349CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \bm{\alpha}_2(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}=&amp;\bm{\alpha}_1(s)+\lambda&#39;(s)\bm{\beta}_1(s)+\lambda(s)(-\kappa_1(s)\bm{\alpha}_1(s)+\tau_1(s)\bm{\gamma}_1(s))\\[5pt]
@@ -14183,7 +14473,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\
 |\bm{r}_2(s)-\bm{r}_1(s)|=|\lambda(s)\bm{\beta}_1(s)|=|\lambda|
 \tag{168}
     \]
-&lt;p&gt;  对 \(\bm{\alpha}_1(s)\cdot\bm{\alpha}_2(s)\) 求导并利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;得到&lt;/p&gt;
+&lt;p&gt;  对 \(\bm{\alpha}_1(s)\cdot\bm{\alpha}_2(s)\) 求导并利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;得到&lt;/p&gt;
 &lt;span id=&#34;20241030130353CST&#34;&gt;&lt;/span&gt;\[
 \frac{\mathrm{d}}{\mathrm{d}s}(\bm{\alpha}_1(s)\cdot\bm{\alpha}_2(s))=\kappa_1(s)\bm{\beta}_1(s)\cdot\bm{\alpha}_2(s)+\kappa_2(s)\bm{\alpha}_1(s)\cdot\bm{\beta}_2(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}
 \tag{169}
@@ -14235,7 +14525,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\
 \bm{r}_1(s)=\bm{r}(s)+\lambda\bm{\beta}(s)
 \tag{178}
     \]
-&lt;p&gt;  则由&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  则由&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241101164354CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \bm{r}_1&#39;(s)=&amp;\bm{\alpha}(s)+\lambda(-\kappa\bm{\alpha}(s)+\tau(s)\bm{\gamma}(s))\\[5pt]
@@ -14252,7 +14542,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\
 \end{aligned}
 \tag{180}
     \]
-&lt;p&gt;  若用 \(\tilde{s}\) 记曲线 \(C_1\) 的弧长参数，则上式两边对 \(s\) 求导，并两边分别使用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  若用 \(\tilde{s}\) 记曲线 \(C_1\) 的弧长参数，则上式两边对 \(s\) 求导，并两边分别使用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241101165619CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 \frac{\mathrm{d}\bm{\alpha}_1(s)}{\mathrm{d}\tilde{s}}\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}=&amp;\kappa_1(s)\bm{\beta}_1(s)\frac{\mathrm{d}\tilde{s}}{\mathrm{d}s}\\[15pt]
@@ -14299,7 +14589,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\
 \bm{r}_1(s)=\bm{r}(s)+\lambda(s)\bm{\alpha}(s)
 \tag{183}
     \]
-&lt;p&gt;  是曲线 \(C\) 的渐伸线。由渐伸线的定义&lt;a class=&#34;link&#34; href=&#34;#20241101185856CST&#34;&gt;定义4&lt;/a&gt;可知， \(\bm{\alpha}(s)\) 是曲线 \(\bm{r}_1(s)\) 的法向量。对上式求导并利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  是曲线 \(C\) 的渐伸线。由渐伸线的定义&lt;a class=&#34;link&#34; href=&#34;#20241101185856CST&#34;&gt;定义4&lt;/a&gt;可知， \(\bm{\alpha}(s)\) 是曲线 \(\bm{r}_1(s)\) 的法向量。对上式求导并利用&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20241102125746CST&#34;&gt;&lt;/span&gt;\[
 \bm{r}_1&#39;(s)=(1+\lambda&#39;(s))\bm{\alpha}(s)+\lambda(s)\kappa(s)\bm{\beta}(s)
 \tag{184}
@@ -14327,7 +14617,7 @@ a=0,\quad b=\frac{1}{\kappa_0},\quad c=-\frac{\kappa&#39;_0}{\kappa_0^2\tau_0}=\
 \bm{r}_1(s)=\bm{r}(s)+\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)
 \tag{188}
     \]
-&lt;p&gt;  是曲线的渐缩线。那么 \(\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)\) 应该与曲线 \(\bm{r}_1(s)\) 的切向量 \(\bm{r}_1&#39;(s)\) 平行。对上式求导再由&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;Frenet公式&lt;/a&gt;得到&lt;/p&gt;
+&lt;p&gt;  是曲线的渐缩线。那么 \(\lambda(s)\bm{\beta}(s)+\mu(s)\bm{\gamma}(s)\) 应该与曲线 \(\bm{r}_1(s)\) 的切向量 \(\bm{r}_1&#39;(s)\) 平行。对上式求导再由&lt;a class=&#34;link&#34; href=&#34;#20241019110326CST&#34;&gt;公式1&lt;/a&gt;得到&lt;/p&gt;
 &lt;span id=&#34;20241102132133CST&#34;&gt;&lt;/span&gt;\[
 \bm{r}_1&#39;(s)=(1-\lambda(s)\kappa(s))\bm{\alpha}(s)+(\lambda&#39;(s)-\mu(s)\tau(s))\bm{\beta}(s)+(\mu&#39;(s)+\lambda(s)\tau(s))\bm{\gamma}(s)
 \tag{189}
@@ -14560,7 +14850,7 @@ i(C)=\frac{1}{2\pi}(\theta(b)-\theta(a))
     \]
 &lt;p&gt;  称为连续可谓闭曲线 \(C\) 的&lt;strong&gt;旋转指标&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241104100217CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理16（Hopf Umlaufsatz定理）&lt;/strong&gt;：若 \(C\) 是平面 \(E^2\) 上一条连续可微的简单闭曲线，则它的旋转指标 \(i(C)=\pm 1\) 。&lt;/p&gt;
-&lt;p&gt;  要证明Hopf Umlaufsatz定理，首先证明如下两个引理。&lt;/p&gt;
+&lt;p&gt;  要证明定理16，首先证明如下两个引理。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241104191916CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;引理1&lt;/strong&gt;：对于区间 \(I=[a,b]\) ，函数 \(f\in C(I,S^1)\) 满足 \(f(a)=f(b)\) ，则存在 \(\theta\in C(I,\R)\) 使得 \(f(t)=(\cos\theta(t),\sin\theta(t)),\forall t \in I\) 。其中 \(S^1\) 表示以原点为中心的单位圆。并称 \(\cfrac{1}{2\pi}(\theta(b)-\theta(a))\) 为 \(f\) 的&lt;strong&gt;角度改变量&lt;/strong&gt;（注意 \(f(a)=f(b)\) ，因此 \(\theta(b)-\theta(a)\) 必为 \(2\pi\) 的整数倍）。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241104191916CST&#34;&gt;引理1&lt;/a&gt;）&lt;/strong&gt;：任取一点 \(t_0 \in I\) ，由 \(f\) 的连续性，存在 \(\varepsilon_0&gt;0\) 和连续函数 \(\theta_{t_0}\) 使得 \(f(t)=(\cos\theta_{t_0}(t),\sin\theta_{t_0}(t))\) ，对于任意 \(t \in (t_0-\varepsilon_0,t_0+\varepsilon_0)\cap I\) 成立。注意对于所有 \(t_0 \in I\) 都有这样的 \((t_0-\varepsilon_0,t_0+\varepsilon_0)\cap I\) 成立，但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;有限覆盖定理&lt;/a&gt;，存在其中的有限个区间 \(\set{t_i-\varepsilon_i,t_i+\varepsilon_i}_{i=1}^{N}\) 覆盖 \(I\) 。不妨设 \(t_1 &lt; t_2 &lt; \cdots &lt; t_N \) ，记 \(I_i=(t_i-\varepsilon_i,t_i+\varepsilon_i)\) ，则相邻开区间交集非空，并且由 \(f(t),\cos\theta,\sin\theta\) 的连续性可知交集处的 \(f(t)\) 不会出现多值，即 \(f(t)_{t_i}=f(t)_{t_{i+1}},\theta(t)_{t_i}=\theta(t)_{t_{i+1}},t\in I_i \cap I_{i+1} \cap I\) 。定义 \(\theta(t)=\theta_{t_i}(t)\) 当 \( t \in I_i \cap I\) ，则 \(\theta(t)\) 连续，即满足条件的角函数。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241104191920CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;引理2&lt;/strong&gt;：对于区间 \(I=[a,b]\) ，函数 \(f_1,f_2 \in C(I,S^1)\) 满足 \(f_1(a)=f_1(b),f_2(a)=f_2(b)\) 。若 \(f_1\) 与 \(f_2\) 的角度改变量不相等，则存在 \(t_0 \in I\) 使得 \(f_1(t_0)=-f_2(t_0)\) 。相反，若不存在 \(t \in I\) 使得 \(f_1(t)=-f_2(t)\) ，则 \(f_1\) 与 \(f_2\) 角度改变量相等。&lt;/p&gt;
@@ -14587,8 +14877,8 @@ f_2(t_0)=(\cos\theta_2(t_0),\sin\theta_2(t_0))
 f_1(t_0)=-f_2(t_0)
 \tag{226}
     \]
-&lt;p&gt;  接下来证明Hopf Umlaufsatz定理。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241104100217CST&#34;&gt;Hopf Umlaufsatz定理&lt;/a&gt;）&lt;/strong&gt;：首先建立曲线相关的坐标系。设有一不和曲线 \(C\) 相交的直线，平行移动这条直线直到与曲线 \(C\) 相切，记此时的这条直线为 \(L\) ，切点为 \(p\) 。此时，整条曲线 \(C\) 落在 \(L\) 的一侧。如下图所示。&lt;/p&gt;
+&lt;p&gt;  接下来证明定理16。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20241104100217CST&#34;&gt;定理16&lt;/a&gt;）&lt;/strong&gt;：首先建立曲线相关的坐标系。设有一不和曲线 \(C\) 相交的直线，平行移动这条直线直到与曲线 \(C\) 相切，记此时的这条直线为 \(L\) ，切点为 \(p\) 。此时，整条曲线 \(C\) 落在 \(L\) 的一侧。如下图所示。&lt;/p&gt;
 &lt;span id=&#34;20241105125605CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 204&#34;&gt;
@@ -14752,7 +15042,7 @@ f_1(t_0)=-f_2(t_0)
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;连续映射&lt;/p&gt;
 &lt;p&gt;  我们假设这一族曲线段在在&lt;a class=&#34;link&#34; href=&#34;#20241104225400CST&#34;&gt;图8&lt;/a&gt;坐标系中的参数都是 \(t \in [0,1]\) ， \(t\) 不一定是弧长参数，但是可以表征点在单个曲线上的位置。参数 \(t\) 先经过 \(\alpha_u(t)\) 变换成 \((s_1,s_2) \in T\)  ，再经过 \(\bm{\psi}(s_1,s_2)\) 变换成 \(S^1\) 上的单位向量。对于任意 \(u \in [0,1]\) ，定义 \(D(u)\) 为 \(\bm{\psi} \circ \alpha_u:[0,1] \to S^1\) 的角度改变量。由映射 \((u,t) \to \alpha_u(t), \space [0,1]\times[0,1] \to T\) 和 \(\bm{\psi}\) 的连续性可得函数 \(\bm{\psi} \circ \alpha_u(t)\) 关于 \((u,t)\) 连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“拓扑空间”还未写完~&#39;)&#34;&gt;拓扑空间-命题9&lt;/a&gt;）。因此，任取 \(u_0 \in [0,1]\) ，对于任意 \(\varepsilon &gt; 0\) ，存在 \(\delta &gt; 0\) 使得 \(|\bm{\psi} \circ \alpha_u(t) - \bm{\psi} \circ \alpha_{u_0}(t)| &lt; \varepsilon,\forall s \in [0,1], u \in B(u_0,\delta)\cap [0,1]\) 。只需要取 \(\varepsilon_0 = 1\) ，则存在 \(\delta_0\) ，任取 \(u \in B(u_0,\delta)\cap [0,1]\) ，有 \(|\bm{\psi} \circ \alpha_u(t) - \bm{\psi} \circ \alpha_{u_0}(t)| &lt; \varepsilon_0=1\) ，因此 \(\bm{\psi} \circ \alpha_u(t) \ne -\bm{\psi} \circ \alpha_{u_0}(t), \forall s \in [0,1]\) 。否则 \(|\bm{\psi} \circ \alpha_u(t) - \bm{\psi} \circ \alpha_{u_0}(t)| = 2|\bm{\psi} \circ \alpha_u(t)| = 2 &gt; 1 = \varepsilon_0\) （注意 \(\bm{\psi} \circ \alpha_u(t)\) 是映射到 \(S^1\) 上的单位向量，因此模长为 \(1\) ）。因此根据&lt;a class=&#34;link&#34; href=&#34;#20241104191920CST&#34;&gt;引理2&lt;/a&gt;， \(\bm{\psi} \circ \alpha_u(t)\) 和 \(\bm{\psi} \circ \alpha_{u_0}(t)\) 的角度改变量相等。因此 \(D(u)\) 是一个局部连续的常函数（在 \(B(u_0,\delta)\cap [0,1]\) 内）。但是注意由&lt;a class=&#34;link&#34; href=&#34;#20241104191916CST&#34;&gt;引理1&lt;/a&gt;， \(D(u)\) 必须是整数，因此其不能跳跃，只能是在 \([0,1]\) 上的常函数。&lt;br&gt;
   我们可以观察一下 \(D(0)=\bm{\psi} \circ \alpha_0:[0,1] \to S^1\) 。对直线段 \(\alpha_0\) 有 \(s_1=s_2=s,s\in[0,l]\) ，由&lt;a class=&#34;link&#34; href=&#34;#20241104203350CST&#34;&gt;式(228)&lt;/a&gt;可知此时 \(\bm{\psi} \circ \alpha_0 = \bm{r}&#39;(s)\) ，而由 \(D(u)\) 的定义， \(D(0)\) 就是 \(\bm{r}&#39;(s),s \in [0,l]\) 的角度改变量，也就是&lt;a class=&#34;link&#34; href=&#34;#20241103204505CST&#34;&gt;式(222)&lt;/a&gt;中的旋转指标。由于我们已经证明了 \(D(u)\) 是个常函数，因此有 \(D(0)=D(1)\) ，那我们不妨通过求 \(D(1)\) 来求旋转指标 \(D(0)\) 。对 \(D(1)\) ，从 \((0,0)\) 到 \((0,l)\) 这段路， \(\alpha_1(t)=(0,s_2),s_2 \in [0,l],(0,s_2)\in T\) ，因此 \(\bm{\psi}\circ\alpha_1(t)=\bm{\psi}(0,s_2)=\cfrac{\bm{r}(s_2)-\bm{r}(0)}{|\bm{r}(s_2)-\bm{r}(0)|},s_2 \in [0,1]\) 。注意对于&lt;a class=&#34;link&#34; href=&#34;#20241105125605CST&#34;&gt;图7&lt;/a&gt;坐标系， \(\bm{r}(s_2)\) 是不可能翻到直线 \(L\) 的另一侧去的，因此 \(\bm{r}(s_2),s_2\in [0,l]\) 的角度变化量必然被限制在 \([0,\pi]\) 内， \(\bm{\psi}(0,s_2)=\cfrac{\bm{r}(s_2)-\bm{r}(0)}{|\bm{r}(s_2)-\bm{r}(0)|},s_2 \in [0,l]\) 的角度变化量也被限制在 \([0,\pi]\) 内。而由&lt;a class=&#34;link&#34; href=&#34;#20241104203350CST&#34;&gt;式(228)&lt;/a&gt;可知 \(\bm{\psi}(0,0)=\bm{r}&#39;(0),\bm{\psi}(0,l)=-\bm{r}&#39;(0)\) ，刚好转了 \(\pi\) 角度，因此 \(\bm{\psi}\circ\alpha_1(t)=\bm{\psi}(0,s_2)\) 在 \(s_2 \in [0,l]\) 上的角度变化量就是 \(\pi\) 。再考虑 \((0,l)\) 到 \((l,l)\) 这段路径。此时 \(\alpha_1(t)=(s_1,l),s_1 \in [0,1],(s_1,l)\in T\) ， \(\bm{\psi}\circ\alpha_1(t)=\bm{\psi}(s_1,l)=\cfrac{\bm{r}(s_1)-\bm{r}(l)}{|\bm{r}(s_1)-\bm{r}(l)|},s_1 \in [0,1]\) ，同理由&lt;a class=&#34;link&#34; href=&#34;#20241104203350CST&#34;&gt;式(228)&lt;/a&gt;可知 \(\bm{\psi}(0,l)=-\bm{r}&#39;(0),\bm{\psi}(l,l)=\bm{r}&#39;(l)=\bm{r}&#39;(0)\) ， \(\bm{\psi}\circ\alpha_1(t)=\bm{\psi}(s_1,l),s_1 \in [0,1]\) 的角度改变量也是 \(\pi\) 。综上所述，由&lt;a class=&#34;link&#34; href=&#34;#20241104191916CST&#34;&gt;角度改变量&lt;/a&gt;的可叠加性， \(\bm{\psi} \circ \alpha_1(t), t \in [0,1]\) 的角度改变量为 \(\pi+\pi=2\pi\) ，即 \(D(1)=2\pi\) 。由于 \(D(0)=D(1)\) ， \(D(0)=2\pi\) ，即旋转指标为 \(2\pi\) 。注意我们对曲线 \(C\) 的弧长参数 \(s\) 假设的是以逆时针方向为正方向，倘若以顺时针方向为正方向，由 \(\bm{r}&#39;(0)\) 转到 \(-\bm{r}&#39;(0)\) 就必须是转 \(-\pi\) 角才能实现的了， \(-\bm{r}&#39;(0)\) 转到 \(\bm{r}&#39;(0)\) 同理。因此，根据弧长参数的方向是顺时针还是逆时针， \(D(0)\) 可取 \(\pm 2\pi\) 。即 \(i(C)=\pm 2\pi\) 。证毕。&lt;/p&gt;
-&lt;p&gt;  Hopf Umlaufsatz定理是曲线大范围微分几何性质，其直观意义是明显的。若 \(C\) 是分段光滑的简单闭曲线，则曲线的方向角的总变差是&lt;/p&gt;
+&lt;p&gt;  定理16是曲线大范围微分几何性质，其直观意义是明显的。若 \(C\) 是分段光滑的简单闭曲线，则曲线的方向角的总变差是&lt;/p&gt;
 &lt;span id=&#34;20241105140254CST&#34;&gt;&lt;/span&gt;\[
 \theta(b)-\theta(a)=\int_a^b\kappa_r(s)\mathrm{d}s+\sum_i\theta_i
 \tag{233}
@@ -14762,7 +15052,7 @@ f_1(t_0)=-f_2(t_0)
 \theta_i = \angle(\bm{\alpha}(s_i^-),\bm{\alpha}(s_i^+))
 \tag{234}
     \]
-&lt;p&gt;  其中 \(s_i\) 是曲线的角点所对应的参数，曲线在每一段区间 \((s_i,s_{i+1})\) 上是连续可微的。在上述意义下，Hopf Umlaufsatz定理对于分段连续可微的简单闭曲线仍然是成立的。实际上，在每个角点引入一小段弧线，让整体连续可微再取极限即可直接套用Hopf Umlaufsatz定理。&lt;/p&gt;
+&lt;p&gt;  其中 \(s_i\) 是曲线的角点所对应的参数，曲线在每一段区间 \((s_i,s_{i+1})\) 上是连续可微的。在上述意义下，定理16对于分段连续可微的简单闭曲线仍然是成立的。实际上，在每个角点引入一小段弧线，让整体连续可微再取极限即可直接套用定理16。&lt;/p&gt;
 &lt;blockquote&gt;
     &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
 给岁月以文明，而不是给文明以岁月。
@@ -15847,7 +16137,7 @@ b_1&#39;(t) &amp; b_2&#39;(t)
 (1-x^2)\frac{\mathrm{d}^2y}{\mathrm{d}x^2}-2x\frac{\mathrm{d}y}{\mathrm{d}x}+\left(\nu(\nu+1)-\frac{\mu}{1-x^2}\right)y=0
 \tag{2}
     \]
-&lt;p&gt;  该方程的解称为&lt;strong&gt;连带Legendre函数&lt;/strong&gt;。可以看到，&lt;a class=&#34;link&#34; href=&#34;#20241003121244CST&#34;&gt;Legendre方程&lt;/a&gt;是连带Legendre方程在 \(\mu=0\) 时的特殊情况。&lt;br&gt;
+&lt;p&gt;  该方程的解称为&lt;strong&gt;连带Legendre函数&lt;/strong&gt;。可以看到，&lt;a class=&#34;link&#34; href=&#34;#20241003121244CST&#34;&gt;定义1&lt;/a&gt;是连带Legendre方程在 \(\mu=0\) 时的特殊情况。&lt;br&gt;
   该方程有三个&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数（二）”还未写完~&#39;)&#34;&gt;奇点&lt;/a&gt;： \(-1,1,\infin\) ，而且都是&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数（二）”还未写完~&#39;)&#34;&gt;正则奇点&lt;/a&gt;，指标分别为 \(\displaystyle\left(\frac{\mu}{2},-\frac{\mu}{2}\right),\left(\frac{\mu}{2},-\frac{\mu}{2}\right),\left(\nu+1,\nu\right)\) ，因此这个方程属于&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数（二）”还未写完~&#39;)&#34;&gt;超几何方程&lt;/a&gt;类型。它的解也可以用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数（四）”还未写完~&#39;)&#34;&gt;超几何方程&lt;/a&gt;表达。由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数（二）”还未写完~&#39;)&#34;&gt;《特殊函数概论》2.9节(12)和(16)&lt;/a&gt;有该方程解为&lt;/p&gt;
 &lt;span id=&#34;20241006225759CST&#34;&gt;&lt;/span&gt;\[
 P
@@ -17837,7 +18127,7 @@ p_{ij}^{\left(m+n\right)}=\sum_{k \in S}{p_{ik}^{\left(m\right)}}p_{kj}^{\left(n
 \bm{P}^{\left(n\right)}=\bm{P} \cdot \bm{P}^{\left(n-1\right)} = \bm{P} \cdot \bm{P} \cdot \bm{P}^{\left(n-2\right)} = \cdots = \bm{P}^n
 \tag{8}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;C-K方程&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929204400CST&#34;&gt;定理1&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929204323CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 p_{ij}^{\left(m+n\right)}&amp;=P\set{X_{m+n}=j|X_0=i}\\[5pt]
@@ -17881,12 +18171,12 @@ p_{ij}^{\left(n_1+n_2+n_3+\cdots+n_m\right)}=&amp;\sum_{k \in S}p_{ik}^{\left(n_
 &lt;h3 id=&#34;周期&#34;&gt;周期
 &lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20240929203650CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义9（周期）&lt;/strong&gt;：若集合 \(\set{n|n \ge 1,p_{ii}^{\left(n\right)} \ge 0}\) 非空，则称它的最大公约数 \(d=d\left(i\right)\) 为状态 \(i\) 的&lt;strong&gt;周期&lt;/strong&gt;。若 \(d \ge 1\) ，则称 \(i\) 是&lt;strong&gt;周期的&lt;/strong&gt;；若 \(d=1\) ，则称 \(i\) 是&lt;strong&gt;非周期的&lt;/strong&gt;。并特别规定上述集合为空集时，称 \(i\) 的周期为&lt;strong&gt;无穷大&lt;/strong&gt;。 。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929205205CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理3&lt;/strong&gt;：若状态 \(i,j\) 同属一类，则 \(d\left(i\right)=d\left(j\right)\) 。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205205CST&#34;&gt;定理3&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; href=&#34;#20240930163421CST&#34;&gt;类&lt;/a&gt;的定义可知 \(i \leftrightarrow j\) ，即存在 \(m,n\) 使 \(p_{ij}^{\left(m\right)}&gt;0,p_{ji}^{\left(n\right)}&gt;0\) 。则由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;知 \(p_{ii}^{\left(m+n\right)}\ge p_{ij}^{\left(m\right)}p_{ji}^{\left(n\right)}&gt;0\) ，同时对所有使得 \(p_{jj}^{\left(s\right)} &gt; 0\) 的 \(s\) ，有&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205205CST&#34;&gt;定理3&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; href=&#34;#20240930163421CST&#34;&gt;定义7&lt;/a&gt;的定义可知 \(i \leftrightarrow j\) ，即存在 \(m,n\) 使 \(p_{ij}^{\left(m\right)}&gt;0,p_{ji}^{\left(n\right)}&gt;0\) 。则由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;知 \(p_{ii}^{\left(m+n\right)}\ge p_{ij}^{\left(m\right)}p_{ji}^{\left(n\right)}&gt;0\) ，同时对所有使得 \(p_{jj}^{\left(s\right)} &gt; 0\) 的 \(s\) ，有&lt;/p&gt;
 &lt;span id=&#34;20240929212541CST&#34;&gt;&lt;/span&gt;\[
 p_{ii}^{\left(m+s+n\right)} \ge p_{ij}^{\left(m\right)}p_{jj}^{\left(s\right)}p_{ji}^{\left(n\right)}&gt;0
 \tag{12}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义可知，由于 \(p_{ii}^{\left(m+n\right)}&gt;0\) 且 \(p_{ii}^{\left(m+s+n\right)}&gt;0\) ， \(d\left(i\right)\) 必然同时整除 \(n+m\) 和 \(n+m+s\) ，因此，它也必然整除 \(s\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。同时我们还需注意我们已经假设了 \(p_{jj}^{\left(s\right)} &gt; 0\) ，因此 \(d\left(j\right)\) 必定也整除 \(s\) 。注意 \(s\) 的任意性，不妨直接令 \(s=d\left(j\right)\) ，由此可得 \(d\left(i\right)\) 整除 \(d\left(j\right)\) 。我们把上述证明的 \(i\) 和 \(j\) 交换一下，就也能得到 \(d\left(j\right)\) 整除 \(d\left(i\right)\) ，于是 \(d\left(i\right)=d\left(j\right)\) （见 &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;定义9&lt;/a&gt;的定义可知，由于 \(p_{ii}^{\left(m+n\right)}&gt;0\) 且 \(p_{ii}^{\left(m+s+n\right)}&gt;0\) ， \(d\left(i\right)\) 必然同时整除 \(n+m\) 和 \(n+m+s\) ，因此，它也必然整除 \(s\) （见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。同时我们还需注意我们已经假设了 \(p_{jj}^{\left(s\right)} &gt; 0\) ，因此 \(d\left(j\right)\) 必定也整除 \(s\) 。注意 \(s\) 的任意性，不妨直接令 \(s=d\left(j\right)\) ，由此可得 \(d\left(i\right)\) 整除 \(d\left(j\right)\) 。我们把上述证明的 \(i\) 和 \(j\) 交换一下，就也能得到 \(d\left(j\right)\) 整除 \(d\left(i\right)\) ，于是 \(d\left(i\right)=d\left(j\right)\) （见 &lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。&lt;/p&gt;
 &lt;h3 id=&#34;常返&#34;&gt;常返
 &lt;/h3&gt;&lt;h4 id=&#34;首达概率常返与非常返瞬过&#34;&gt;首达概率、常返与非常返（瞬过）
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929203654CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义10（首达概率）&lt;/strong&gt;：对于任何状态 \(i,j\) ，以 \(f_{ij}^{\left(n\right)}\) 记从i出发经n步后首次到达 \(j\) 的概率（&lt;strong&gt;首达概率&lt;/strong&gt;），则有&lt;/p&gt;
@@ -17927,7 +18217,7 @@ P\left(\bigcup_{n=1}^{\infin}{A_n}\right)=\sum_{n=1}^{\infin}{P\left(A_n\right)}
 f_{ij}^{\left(l+1\right)}=\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{\left(1\right)}f_{kj}^{\left(l\right)}}
 \tag{17}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212905CST&#34;&gt;结论2&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; href=&#34;#20240929203654CST&#34;&gt;首达概率&lt;/a&gt;的定义、&lt;a class=&#34;link&#34; href=&#34;#20240929203511CST&#34;&gt;Markov链&lt;/a&gt;的定义、&lt;a class=&#34;link&#34; href=&#34;#20240929203556CST&#34;&gt;时齐&lt;/a&gt;的定义和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212905CST&#34;&gt;结论2&lt;/a&gt;）&lt;/strong&gt;‌：由&lt;a class=&#34;link&#34; href=&#34;#20240929203654CST&#34;&gt;定义10&lt;/a&gt;的定义、&lt;a class=&#34;link&#34; href=&#34;#20240929203511CST&#34;&gt;定义1&lt;/a&gt;的定义、&lt;a class=&#34;link&#34; href=&#34;#20240929203556CST&#34;&gt;定义3&lt;/a&gt;的定义和&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“概率论”还未上线~&#39;)&#34;&gt;全概率公式&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929212629CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 f_{ij}^{\left(l+1\right)}=&amp;P\set{X_{l+1}=j,X_m \ne j\left(m=1,2,\cdots ,l\right) | X_0=i}\quad \text{（首达概率）}\\[5pt]
@@ -18018,7 +18308,7 @@ p_{jj}^{\left(n+m+l\right)} \ge p_{ji}^{\left(n\right)}p_{ii}^{\left(l\right)}p_
   (1) 每一个 \(C_n\) 是常返状态组成的不可约闭集， \(D\) 由全体非常返状态组成。&lt;br&gt;
   (2) \(C_n\) 中的状态同类，或者全是正常返态，或者全是零常返态。它们有相同的周期且 \(f_{ij}=1\left(i,j \in C_n\right)\) 。&lt;br&gt;
   (3) 自 \(C_n\) 中的状态出发不能到达 \(D\) 中状态。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;）&lt;/strong&gt;‌：设 \(C\) 为全体常返状态组成的集合，则 \(D=S-C\) 为非常返状态的全体组成的集合。注意到定义在 \(C\) 上的互通是一种等价关系，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;等价关系与集合的划分&lt;/a&gt;可知， \(C\) 可以按互通关系划分为 \(C_1 \bigcup C_2 \bigcup \dots\) ，其中每一个 \(C_n\) 是由同一类常返状态组成的不可约的闭集。因此 \(S=D \bigcup C_1 \bigcup C_2 \bigcup \dots\) 。定理假设和(1)证毕。由&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知 \(C_n\) 中的状态都是同类型的（正常返或零常返），由&lt;a class=&#34;link&#34; href=&#34;#20240929205205CST&#34;&gt;定理3&lt;/a&gt;可知 \(C_n\) 中的状态都有相同的周期，由&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;可知 \(C_n\) 中的状态都满足 \(f_{ij}=1\left(i,j \in C_n\right)\) 。  (2) 证毕。对于  (3) ，可用反证法证明。假设 \(C_n\) 中的状态 \(i\) 可以到达 \(D\) 中的状态 \(j\) ，由于 \(i\) 是常返的，状态在到达 \(j\) 后必定还会再返回 \(i\) ，而后再由假设，状态还可能继续回到 \(j\) 。因此，状态从 \(j\) 出发后再次返回 \(j\) 的情况是可能出现的，这与 \(j\) 是非常返态相矛盾，因此假设不成立。故 \(C_n\) 中的状态 \(i\) 不可到达 \(D\) 中的状态 \(j\) 。  (3) 证毕。至此，&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;证毕。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;定理6&lt;/a&gt;）&lt;/strong&gt;‌：设 \(C\) 为全体常返状态组成的集合，则 \(D=S-C\) 为非常返状态的全体组成的集合。注意到定义在 \(C\) 上的互通是一种等价关系，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“集合论”还未上线~&#39;)&#34;&gt;等价关系与集合的划分&lt;/a&gt;可知， \(C\) 可以按互通关系划分为 \(C_1 \bigcup C_2 \bigcup \dots\) ，其中每一个 \(C_n\) 是由同一类常返状态组成的不可约的闭集。因此 \(S=D \bigcup C_1 \bigcup C_2 \bigcup \dots\) 。定理假设和(1)证毕。由&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知 \(C_n\) 中的状态都是同类型的（正常返或零常返），由&lt;a class=&#34;link&#34; href=&#34;#20240929205205CST&#34;&gt;定理3&lt;/a&gt;可知 \(C_n\) 中的状态都有相同的周期，由&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;可知 \(C_n\) 中的状态都满足 \(f_{ij}=1\left(i,j \in C_n\right)\) 。  (2) 证毕。对于  (3) ，可用反证法证明。假设 \(C_n\) 中的状态 \(i\) 可以到达 \(D\) 中的状态 \(j\) ，由于 \(i\) 是常返的，状态在到达 \(j\) 后必定还会再返回 \(i\) ，而后再由假设，状态还可能继续回到 \(j\) 。因此，状态从 \(j\) 出发后再次返回 \(j\) 的情况是可能出现的，这与 \(j\) 是非常返态相矛盾，因此假设不成立。故 \(C_n\) 中的状态 \(i\) 不可到达 \(D\) 中的状态 \(j\) 。  (3) 证毕。至此，&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;定理6&lt;/a&gt;证毕。&lt;/p&gt;
 &lt;h4 id=&#34;不可约markov链的转移&#34;&gt;不可约Markov链的转移
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205707CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理7&lt;/strong&gt;：周期为 \(d\) 的不可约Markov链，其状态空间 \(S\) 可唯一地分解为 \(d\) 个互不相交的子集之和，即&lt;/p&gt;
 &lt;span id=&#34;20240929213341CST&#34;&gt;&lt;/span&gt;\[
@@ -18039,7 +18329,7 @@ p_{ii}^{\left(nd+r+h\right)} \ge p_{ij}^{\left(nd+r\right)}p_{ji}^{\left(h\right
 p_{ii}^{\left(md+s+h\right)} \ge p_{ij}^{\left(md+s\right)}p_{ji}^{\left(h\right)}&gt;0
 \tag{29}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义可知 \(nd+r+h\) 和 \(md+s+h\) 都可以被 \(d\) 整除。省去前面的 \(n\) 和 \(m\) 可得 \(r+h\) 和 \(s+h\) 都可被 \(d\) 整除。从而其差 \(\left(r+h\right)-\left(s+h\right)=r-s\) 都能被 \(d\) 整除（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。但是 \(0 \le r \le d-1,0 \le s \le d-1\) ，故 \(0 \le r-s \le d-1\) ，因此 \(r-s\) 只能为 \(0\) ，也就是 \(r=s\) 。故 \(S_r=S_s\) ，假设不成立，故 \(S_r\) 不相交。&lt;br&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;定义9&lt;/a&gt;的定义可知 \(nd+r+h\) 和 \(md+s+h\) 都可以被 \(d\) 整除。省去前面的 \(n\) 和 \(m\) 可得 \(r+h\) 和 \(s+h\) 都可被 \(d\) 整除。从而其差 \(\left(r+h\right)-\left(s+h\right)=r-s\) 都能被 \(d\) 整除（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数论”还未上线~&#39;)&#34;&gt;整除的基本性质&lt;/a&gt;）。但是 \(0 \le r \le d-1,0 \le s \le d-1\) ，故 \(0 \le r-s \le d-1\) ，因此 \(r-s\) 只能为 \(0\) ，也就是 \(r=s\) 。故 \(S_r=S_s\) ，假设不成立，故 \(S_r\) 不相交。&lt;br&gt;
   接下来证明自 \(S_r\) 任意状态出发，经 \(1\) 步转移必进入 \(S_{r+1}\) 中（其中 \(S_d=S_0\) ）。等价于证明对任意 \(j \in S_r\) ，有 \(\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{\left(1\right)}}=1\) 。事实上，由 &lt;a class=&#34;link&#34; href=&#34;#20240929213348CST&#34;&gt;式(28)&lt;/a&gt;可知 \(p_{ij}^{\left(nd+r\right)}&gt;0\) ，同样可知对 \(k \notin S_{r+1}\) 必有 \(p_{ik}^{\left(nd+r+1\right)}=0\) 。因此由&lt;a class=&#34;link&#34; href=&#34;#20240930161109CST&#34;&gt;结论1&lt;/a&gt;可推导：&lt;/p&gt;
 &lt;span id=&#34;20240929213405CST&#34;&gt;&lt;/span&gt;\[
 0=p_{ik}^{\left(nd+r+1\right)} \ge p_{ij}^{\left(nd+r\right)}p_{jk}^{\left(1\right)}&gt;0
@@ -18080,7 +18370,7 @@ S_r与S_{d-\left(s-r\right)}^{\prime}完全对等，若r &lt; s
 \lim\limits_{n \rightarrow \infin}p_{jj}^{\left(nd\right)}=\frac{d}{\mu_j}
 \tag{34}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;）&lt;/strong&gt;‌：对 \(n \ge 0\) ，令：&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;定理8&lt;/a&gt;）&lt;/strong&gt;‌：对 \(n \ge 0\) ，令：&lt;/p&gt;
 &lt;span id=&#34;20240929213442CST&#34;&gt;&lt;/span&gt;\[
 r_n=\sum_{v=n+1}^{\infin}{f_v}
 \tag{35}
@@ -18144,7 +18434,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\left(\sum_{v=1,v \ne s}^{\infin}f_{v}\right)\limsup\limits_{m \rightarrow \infin}p_{n_md}
 \tag{44}
     \]
-&lt;p&gt;  注意状态 \(j\) 是&lt;a class=&#34;link&#34; href=&#34;#20240930164408CST&#34;&gt;常返&lt;/a&gt;的，所以 \(\displaystyle\sum_{v=1}^{\infin}f_{v}=1\) ，也就是 \(\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s\) 。而将&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(41)&lt;/a&gt;代入&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式(44)&lt;/a&gt;后再将&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式(44)&lt;/a&gt;代回&lt;a class=&#34;link&#34; href=&#34;#20240929213539CST&#34;&gt;式(42)&lt;/a&gt;得&lt;/p&gt;
+&lt;p&gt;  注意状态 \(j\) 是&lt;a class=&#34;link&#34; href=&#34;#20240930164408CST&#34;&gt;定义11&lt;/a&gt;的，所以 \(\displaystyle\sum_{v=1}^{\infin}f_{v}=1\) ，也就是 \(\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s\) 。而将&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(41)&lt;/a&gt;代入&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式(44)&lt;/a&gt;后再将&lt;a class=&#34;link&#34; href=&#34;#20240929213601CST&#34;&gt;式(44)&lt;/a&gt;代回&lt;a class=&#34;link&#34; href=&#34;#20240929213539CST&#34;&gt;式(42)&lt;/a&gt;得&lt;/p&gt;
 &lt;span id=&#34;20240929213611CST&#34;&gt;&lt;/span&gt;\[
 \lambda\le f_s\liminf\limits_{m \rightarrow \infin}p_{n_md-s}+\left(1-f_s\right)\lambda
 \tag{45}
@@ -18154,7 +18444,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda
 \tag{46}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义和 \(f_s&gt;0\) 知 \(d\) 必整除 \(s\) 。因此 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda\) 。但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的定义&lt;/a&gt;可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\) ，即 \(\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda\) 。故由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda\) 。又由&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(41)&lt;/a&gt;可得：&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;定义9&lt;/a&gt;的定义和 \(f_s&gt;0\) 知 \(d\) 必整除 \(s\) 。因此 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda\) 。但是由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;上下极限的定义&lt;/a&gt;可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\) ，即 \(\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda\) 。故由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;夹挤准则&lt;/a&gt;可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda\) 。又由&lt;a class=&#34;link&#34; href=&#34;#20240929213532CST&#34;&gt;式(41)&lt;/a&gt;可得：&lt;/p&gt;
 &lt;span id=&#34;20240929213629CST&#34;&gt;&lt;/span&gt;\[
 \lambda=\lim\limits_{m \rightarrow \infin}p_{n_md}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-2s}=\cdots
 \tag{47}
@@ -18164,7 +18454,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \lim\limits_{m \rightarrow \infin}p_{n_md-c_id_i}=\lambda
 \tag{48}
     \]
-&lt;p&gt;  注意由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义， \(d\) 一定可以整除 \(d_i\) 。假设 \(d_i=k_id\) ， \(k_i\) 为正整数，则上式又可以写为&lt;/p&gt;
+&lt;p&gt;  注意由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;定义9&lt;/a&gt;的定义， \(d\) 一定可以整除 \(d_i\) 。假设 \(d_i=k_id\) ， \(k_i\) 为正整数，则上式又可以写为&lt;/p&gt;
 &lt;span id=&#34;20240929213645CST&#34;&gt;&lt;/span&gt;\[
 \lim\limits_{m \rightarrow \infin}p_{\left(n_m-c_ik_i\right)d}=\lambda
 \tag{49}
@@ -18189,7 +18479,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \lim\limits_{m \rightarrow \infin}p_{n_md-u}=\lambda
 \tag{53}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;周期&lt;/a&gt;的定义知，存在满足 \(f_{d_i}&gt;0\) 的 \(d_i,i=1,2,\cdots,l\) 使得 \(d_1,d_2,\cdots,d_l\) 的最大公因子也是 \(d\) 。于是，当 \(k\) 大于某个正整数 \(k_0\) 时，必有正整数 \(c_i\) ，使得&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203650CST&#34;&gt;定义9&lt;/a&gt;的定义知，存在满足 \(f_{d_i}&gt;0\) 的 \(d_i,i=1,2,\cdots,l\) 使得 \(d_1,d_2,\cdots,d_l\) 的最大公因子也是 \(d\) 。于是，当 \(k\) 大于某个正整数 \(k_0\) 时，必有正整数 \(c_i\) ，使得&lt;/p&gt;
 &lt;span id=&#34;20240929213720CST&#34;&gt;&lt;/span&gt;\[
 kd=\sum_{i=1}^{l}c_id_i
 \tag{54}
@@ -18229,13 +18519,13 @@ r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
 \lim\limits_{n \rightarrow \infin}p_{nd}=\frac{d}{\mu_j}
 \tag{61}
     \]
-&lt;p&gt;  由此，&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;证毕。&lt;/p&gt;
+&lt;p&gt;  由此，&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;定理8&lt;/a&gt;证毕。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929212113CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论1&lt;/strong&gt;：设 \(i\) 为常返状态，则&lt;/p&gt;
 &lt;span id=&#34;20240929213817CST&#34;&gt;&lt;/span&gt;\[
 i\text{为零常返状态}\iff\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0
 \tag{62}
     \]
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;）&lt;/strong&gt;‌：若 \(i\) 为零常返状态，则 \(\mu_i \rightarrow \infin\) ，从而由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}=0\) 。而当 \(m\) 不等于 \(d\) 的整数倍时， \(p_{ii}^{\left(m\right)}=0\) ，故 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 。反之，若 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) ，假如 \(i\) 为正常返状态，则由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}&gt;0\) ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;知这与 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 矛盾，因此 \(i\) 为零常返状态。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212113CST&#34;&gt;推论1&lt;/a&gt;）&lt;/strong&gt;‌：若 \(i\) 为零常返状态，则 \(\mu_i \rightarrow \infin\) ，从而由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;定理8&lt;/a&gt;知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}=0\) 。而当 \(m\) 不等于 \(d\) 的整数倍时， \(p_{ii}^{\left(m\right)}=0\) ，故 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 。反之，若 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) ，假如 \(i\) 为正常返状态，则由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;定理8&lt;/a&gt;知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}&gt;0\) ，由&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;极限的性质&lt;/a&gt;知这与 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 矛盾，因此 \(i\) 为零常返状态。&lt;/p&gt;
 &lt;h4 id=&#34;再论非常返与零常返&#34;&gt;再论非常返与零常返
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205716CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理9&lt;/strong&gt;：若 \(j\) 为非常返状态或零常返状态，则对 \(\forall i \in S\)&lt;/p&gt;
 &lt;span id=&#34;20240929213832CST&#34;&gt;&lt;/span&gt;\[
@@ -18252,7 +18542,7 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\r
 \sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\right)}\le \sum_{l=1}^{N}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\right)}+\sum_{l=N+1}^{n}f_{ij}^{\left(l\right)}
 \tag{65}
     \]
-&lt;p&gt;  先固定 \(N\) ，令 \(n \rightarrow \infin\) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;知 \(p_{jj}^{\left(n\right)} \rightarrow 0\) ，故上式右端第一项为 \(0\) 。再令 \(N \rightarrow \infin\) ，上式右端第二项因 \(\displaystyle\sum_{l=1}^{n}f_{ij}^{\left(l\right)}&lt;1\) 而趋于 \(0\) ，故&lt;/p&gt;
+&lt;p&gt;  先固定 \(N\) ，令 \(n \rightarrow \infin\) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;定理8&lt;/a&gt;知 \(p_{jj}^{\left(n\right)} \rightarrow 0\) ，故上式右端第一项为 \(0\) 。再令 \(N \rightarrow \infin\) ，上式右端第二项因 \(\displaystyle\sum_{l=1}^{n}f_{ij}^{\left(l\right)}&lt;1\) 而趋于 \(0\) ，故&lt;/p&gt;
 &lt;span id=&#34;20240929213854CST&#34;&gt;&lt;/span&gt;\[
 \lim\limits_{n \rightarrow \infin}p_{ij}^{\left(n\right)}=0
 \tag{66}
@@ -18262,7 +18552,7 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\r
 &lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;）&lt;/strong&gt;‌：设状态空间 \(S=\set{1,2,\cdots,N}\) ，若全部 \(N\) 个状态都是非常返，则任取其中两个状态 \(i,j\) ，若 \(i \rightarrow j \) ，有 \(p_{ij}^{\left(n\right)}\rightarrow 0\) （&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;）；若 \(i \nrightarrow j\) ，则对 \(\forall n\) ， \(p_{ij}^{\left(n\right)}=0\) 。不管是哪种情况， \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}\to 0\) ，但是 \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}=1\) （与&lt;a class=&#34;link&#34; href=&#34;#20240929204123CST&#34;&gt;式(4)&lt;/a&gt;类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。&lt;br&gt;
   若 \(S\) 中有零常返状态，设为 \(i\) ，令 \(C=\set{j | i \rightarrow j}\) ，则有 \(\displaystyle\sum_{j \in C}p_{ij}^{\left(n\right)}=1\) 且 \(j \rightarrow i\) （ \(j \nrightarrow i\) 与 \(i\) 的常返性相矛盾，类似&lt;a class=&#34;link&#34; href=&#34;#20240929212219CST&#34;&gt;引理2&lt;/a&gt;的证明）。故 \(i \leftrightarrow j\) ，从而 \(j\) 也为零常返状态（&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;）。则 \(\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}=0\) （&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;），从而 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}\to 0\) 。但是由 \(j\) 的定义知 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}=1\) ，矛盾。因此有限状态的Markov链不可能有零常返状态。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20240929212124CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;推论3&lt;/strong&gt;：若Markov链有一个零常返状态，则必有无限个零常返状态。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212124CST&#34;&gt;推论3&lt;/a&gt;）&lt;/strong&gt;‌：假设Markov链有一个零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;状态空间分解定理&lt;/a&gt;可知这个零常返状态必然存在于某个不可约类中，又有&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知这个类必然全都是零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929212124CST&#34;&gt;推论3&lt;/a&gt;）&lt;/strong&gt;‌：假设Markov链有一个零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929205434CST&#34;&gt;定理6&lt;/a&gt;可知这个零常返状态必然存在于某个不可约类中，又有&lt;a class=&#34;link&#34; href=&#34;#20240929205430CST&#34;&gt;定理5&lt;/a&gt;可知这个类必然全都是零常返状态。由&lt;a class=&#34;link&#34; href=&#34;#20240929212119CST&#34;&gt;推论2&lt;/a&gt;可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。&lt;/p&gt;
 &lt;h4 id=&#34;再论正常返&#34;&gt;再论正常返
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929205721CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理10&lt;/strong&gt;：若 \(j\) 为正常返状态且周期为 \(d\) ，则对 \(\forall i\) 及 \(0 \le r \le d-1\) ，有&lt;/p&gt;
 &lt;span id=&#34;20240929213918CST&#34;&gt;&lt;/span&gt;\[
@@ -18287,7 +18577,7 @@ p_{ij}^{\left(nd+r\right)}=&amp;\sum_{k=0}^{\left(nd+r\right)}f_{ij}^{\left(k\ri
 \sum_{m=0}^{N}f_{ij}^{\left(md+r\right)}p_{jj}^{\left(n-m\right)d}\le p_{ij}^{\left(nd+r\right)}\le \sum_{m=0}^{N}f_{ij}^{\left(md+r\right)}p_{jj}^{\left(n-m\right)d}+\sum_{N+1}^{n}f_{ij}^{\left(md+r\right)}
 \tag{70}
     \]
-&lt;p&gt;  类似于&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;的推导，先令 \(n \to \infin\) ，再令 \(N \to \infin\) ，由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;极限定理&lt;/a&gt;得&lt;/p&gt;
+&lt;p&gt;  类似于&lt;a class=&#34;link&#34; href=&#34;#20240929205716CST&#34;&gt;定理9&lt;/a&gt;的推导，先令 \(n \to \infin\) ，再令 \(N \to \infin\) ，由&lt;a class=&#34;link&#34; href=&#34;#20240929205712CST&#34;&gt;定理8&lt;/a&gt;得&lt;/p&gt;
 &lt;span id=&#34;20240929213942CST&#34;&gt;&lt;/span&gt;\[
 f_{ij}\left(r\right)\space\frac{d}{\mu_j}\le p_{ij}^{\left(nd+r\right)} \le f_{ij}\left(r\right)\space\frac{d}{\mu_j}
 \tag{71}
@@ -18312,7 +18602,7 @@ f_{ij}\left(r\right)\space\frac{d}{\mu_j}\le p_{ij}^{\left(nd+r\right)} \le f_{i
 \lim\limits_{n \to \infin}p_{ij}^{\left(nd\right)}=f_{ij}\left(0\right)\space\frac{d}{\mu_j}
 \tag{74}
     \]
-&lt;p&gt;  其中 \(f_{ij}\left(0\right)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{\left(md\right)}\) 。若 \(i\) 与 \(j\) 不在同一个 \(S_s\) 中，则由&lt;a class=&#34;link&#34; href=&#34;#20240929205707CST&#34;&gt;定理7&lt;/a&gt;可知所有的 \(f_{ij}^{\left(md\right)}=0\) 。若 \(i,j\) 在同一个 \(S_s\) 中，注意当 \(n\) 不为 \(d\) 的倍数的时候 \(p_{ij}^{\left(n\right)}=0\) ，因此 \(f_{ij}^{\left(n\right)}=0\) （见&lt;a class=&#34;link&#34; href=&#34;#20240930164408CST&#34;&gt;常返&lt;/a&gt;）。此时有&lt;/p&gt;
+&lt;p&gt;  其中 \(f_{ij}\left(0\right)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{\left(md\right)}\) 。若 \(i\) 与 \(j\) 不在同一个 \(S_s\) 中，则由&lt;a class=&#34;link&#34; href=&#34;#20240929205707CST&#34;&gt;定理7&lt;/a&gt;可知所有的 \(f_{ij}^{\left(md\right)}=0\) 。若 \(i,j\) 在同一个 \(S_s\) 中，注意当 \(n\) 不为 \(d\) 的倍数的时候 \(p_{ij}^{\left(n\right)}=0\) ，因此 \(f_{ij}^{\left(n\right)}=0\) （见&lt;a class=&#34;link&#34; href=&#34;#20240930164408CST&#34;&gt;定义11&lt;/a&gt;）。此时有&lt;/p&gt;
 &lt;span id=&#34;20240929214005CST&#34;&gt;&lt;/span&gt;\[
 f_{ij}\left(0\right)=\sum_{m=0}^{\infin}f_{ij}^{\left(md\right)}=\sum_{m=0}^{\infin}f_{ij}^{\left(m\right)}=f_{ij}=1
 \tag{75}
@@ -18449,7 +18739,7 @@ P\set{X_1=j}=&amp;\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 P\set{\tau_i&gt;s+t|\tau_i&gt;s}=P\set{\tau_i&gt;t}
 \tag{95}
     \]
-&lt;p&gt;  将上式写开并由&lt;a class=&#34;link&#34; href=&#34;#20240929203710CST&#34;&gt;连续时间Markov链&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929203714CST&#34;&gt;时齐性&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  将上式写开并由&lt;a class=&#34;link&#34; href=&#34;#20240929203710CST&#34;&gt;定义15&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929203714CST&#34;&gt;定义16&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214227CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 &amp;P\set{\tau_i&gt;s+t|\tau_i&gt;s}\\[5pt]
@@ -18478,7 +18768,7 @@ P\set{\tau_i&gt;s+t|\tau_i&gt;s}=P\set{\tau_i&gt;t}
   (1) \(p_{ij}\left(t\right)\ge 0\)&lt;br&gt;
   (2) \(\displaystyle\sum_{j \in S}p_{ij}\left(t\right)=1\)&lt;br&gt;
   (3) \(p_{ij}\left(t+s\right)=\displaystyle\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(s\right)\)   （&lt;strong&gt;连续时间Markov链的C-K方程&lt;/strong&gt;）&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;）&lt;/strong&gt;‌：(1)和(2)由 \(p_{ij}\left(t\right)\) 的定义易知。下面证明  (3) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929203710CST&#34;&gt;连续时间Markov链&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929203714CST&#34;&gt;时齐性&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;）&lt;/strong&gt;‌：(1)和(2)由 \(p_{ij}\left(t\right)\) 的定义易知。下面证明  (3) 。由&lt;a class=&#34;link&#34; href=&#34;#20240929203710CST&#34;&gt;定义15&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20240929203714CST&#34;&gt;定义16&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214247CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 p_{ij}\left(t+s\right)=&amp;P\set{X\left(t+s\right)=j|X\left(0\right)=i}\\[5pt]
@@ -18486,8 +18776,8 @@ p_{ij}\left(t+s\right)=&amp;P\set{X\left(t+s\right)=j|X\left(0\right)=i}\\[5pt]
 =&amp;\sum_{k \in S}\frac{P\set{X\left(t+s\right)=j,X\left(t\right)=k,X\left(0\right)=i}}{P\set{X\left(0\right)=i}}\\[5pt]
 =&amp;\sum_{k \in S}\frac{P\set{X\left(t+s\right)=j,X\left(t\right)=k,X\left(0\right)=i}}{P\set{X\left(t\right)=k,X\left(0\right)=i}}\frac{P\set{X\left(t\right)=k,X\left(0\right)=i}}{P\set{X\left(0\right)=i}}\\[5pt]
 =&amp;\sum_{k \in S}P\set{X\left(t+s\right)=j|X\left(t\right)=k,X\left(0\right)=i}P\set{X\left(t\right)=k|X\left(0\right)=i}\\[5pt]
-=&amp;\sum_{k \in S}P\set{X\left(t+s\right)=j|X\left(t\right)=k}p_{ik}\left(t\right)\quad\text{（连续时间Markov链）}\\[5pt]
-=&amp;\sum_{k \in S}p_{kj}\left(s\right)p_{ik}\left(t\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(s\right)\quad\text{（时齐性）}
+=&amp;\sum_{k \in S}P\set{X\left(t+s\right)=j|X\left(t\right)=k}p_{ik}\left(t\right)\quad\text{（定义15）}\\[5pt]
+=&amp;\sum_{k \in S}p_{kj}\left(s\right)p_{ik}\left(t\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(s\right)\quad\text{（定义16）}
 \end{aligned}
 \tag{98}
     \]
@@ -18523,7 +18813,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)\le&amp;\sum_{k \ne i, k \in S}p_{ik}
 |p_{ij}\left(t+h\right)-p_{ij}\left(t\right)|\le 1-p_{ii}\left(h\right)
 \tag{102}
     \]
-&lt;p&gt;  对 \(h&lt;0\) 也可以得到类似的结果。注意由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可知 \(\displaystyle\lim\limits_{h \to 0}p_{ii}\left(h\right)=1\) 。因此 \(\forall \varepsilon &gt; 0\) ， \(\exist \delta &gt; 0\) 满足 \(h &lt; \delta\) 时恒有 \(1-p_{ii}\left(h\right)&lt;\varepsilon\) ，即 \(|p_{ij}\left(t+h\right)-p_{ij}\left(t\right)|&lt;\varepsilon\) 。因此， \(p_{ij}\left(t\right)\) 一致连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;  对 \(h&lt;0\) 也可以得到类似的结果。注意由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;定义17&lt;/a&gt;可知 \(\displaystyle\lim\limits_{h \to 0}p_{ii}\left(h\right)=1\) 。因此 \(\forall \varepsilon &gt; 0\) ， \(\exist \delta &gt; 0\) 满足 \(h &lt; \delta\) 时恒有 \(1-p_{ii}\left(h\right)&lt;\varepsilon\) ，即 \(|p_{ij}\left(t+h\right)-p_{ij}\left(t\right)|&lt;\varepsilon\) 。因此， \(p_{ij}\left(t\right)\) 一致连续（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数学分析”还未上线~&#39;)&#34;&gt;一致连续性&lt;/a&gt;）。&lt;/p&gt;
 &lt;h4 id=&#34;转移速率&#34;&gt;转移速率
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20240929211024CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定理16&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241105182452CST&#34;&gt;&lt;/span&gt;\[
@@ -18535,7 +18825,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)\le&amp;\sum_{k \ne i, k \in S}p_{ik}
 \tag{104}
     \]&lt;/p&gt;
 &lt;p&gt;  称 \(q_{ij}\) 为从状态 \(i\) 转移到状态 \(j\) 的&lt;strong&gt;转移速率&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211024CST&#34;&gt;定理16&lt;/a&gt;）&lt;/strong&gt;‌：先证&lt;a class=&#34;link&#34; href=&#34;#20241105182452CST&#34;&gt;式(103)&lt;/a&gt;。首先由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可知对任意固定的 \(t&gt;0\) ，当 \(n\) 充分大时，有 \(p_{ii}\left(\displaystyle\frac{t}{n}\right)&gt;0\) ，再由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得结论 \(p_{ii}\left(s+t\right)=\displaystyle\sum_{k \in S}p_{ik}\left(s\right)p_{ki}\left(t\right)\ge p_{ii}\left(s\right)p_{ii}\left(t\right)\) ，因此 \(p_{ii}\left(t\right)\ge \left(p_{ii}\left(\displaystyle\frac{t}{n}\right)\right)^n&gt;0\) 。故可以定义 \(\phi\left(t\right)=-\ln p_{ii}\left(t\right)\) ，它非负有限，且由于 \(p_{ii}\left(s+t\right)\ge p_{ii}\left(s\right)p_{ii}\left(t\right)\) ，有 \(\phi\left(s+t\right) \le \phi\left(s\right)+\phi\left(t\right)\) 。令 \(q_{ii}=\displaystyle\sup\limits_{t&gt;0}\frac{\phi\left(t\right)}{t}\) ，现在要证明 \(\displaystyle\frac{\phi\left(t\right)}{t}\) 极限存在且为其上确界。显然&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211024CST&#34;&gt;定理16&lt;/a&gt;）&lt;/strong&gt;‌：先证&lt;a class=&#34;link&#34; href=&#34;#20241105182452CST&#34;&gt;式(103)&lt;/a&gt;。首先由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;定义17&lt;/a&gt;可知对任意固定的 \(t&gt;0\) ，当 \(n\) 充分大时，有 \(p_{ii}\left(\displaystyle\frac{t}{n}\right)&gt;0\) ，再由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得结论 \(p_{ii}\left(s+t\right)=\displaystyle\sum_{k \in S}p_{ik}\left(s\right)p_{ki}\left(t\right)\ge p_{ii}\left(s\right)p_{ii}\left(t\right)\) ，因此 \(p_{ii}\left(t\right)\ge \left(p_{ii}\left(\displaystyle\frac{t}{n}\right)\right)^n&gt;0\) 。故可以定义 \(\phi\left(t\right)=-\ln p_{ii}\left(t\right)\) ，它非负有限，且由于 \(p_{ii}\left(s+t\right)\ge p_{ii}\left(s\right)p_{ii}\left(t\right)\) ，有 \(\phi\left(s+t\right) \le \phi\left(s\right)+\phi\left(t\right)\) 。令 \(q_{ii}=\displaystyle\sup\limits_{t&gt;0}\frac{\phi\left(t\right)}{t}\) ，现在要证明 \(\displaystyle\frac{\phi\left(t\right)}{t}\) 极限存在且为其上确界。显然&lt;/p&gt;
 &lt;span id=&#34;20240929214326CST&#34;&gt;&lt;/span&gt;\[
 0 \le q_{ii} \le \infin,\quad \limsup\limits_{t \to 0}\le q_{ii}
 \tag{105}
@@ -18550,7 +18840,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)\le&amp;\sum_{k \ne i, k \in S}p_{ik}
 \lim\limits_{t \to 0}\frac{1-p_{ii}\left(t\right)}{t}=\lim\limits_{t \to 0}\frac{1-e^{-\phi\left(t\right)}}{\phi\left(t\right)}\frac{\phi\left(t\right)}{t}=\lim\limits_{t \to 0}\frac{\phi\left(t\right)}{t}=q_{ii}
 \tag{107}
     \]
-&lt;p&gt;  再证&lt;a class=&#34;link&#34; href=&#34;#20241105182458CST&#34;&gt;式(104)&lt;/a&gt;。由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;，对任意 \(\displaystyle 0 &lt; \varepsilon &lt; \frac{1}{3}\) ，存在 \(0 &lt; \delta &lt; 1\) ，使当 \(0 &lt; t \le \delta \) 时，有 \(p_{ii}\left(t\right)&gt;1-\varepsilon\) ， \(p_{jj}\left(t\right)&gt;1-\varepsilon\) ， \(p_{ji}\left(t\right)&lt;\varepsilon\) 。&lt;br&gt;
+&lt;p&gt;  再证&lt;a class=&#34;link&#34; href=&#34;#20241105182458CST&#34;&gt;式(104)&lt;/a&gt;。由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;定义17&lt;/a&gt;，对任意 \(\displaystyle 0 &lt; \varepsilon &lt; \frac{1}{3}\) ，存在 \(0 &lt; \delta &lt; 1\) ，使当 \(0 &lt; t \le \delta \) 时，有 \(p_{ii}\left(t\right)&gt;1-\varepsilon\) ， \(p_{jj}\left(t\right)&gt;1-\varepsilon\) ， \(p_{ji}\left(t\right)&lt;\varepsilon\) 。&lt;br&gt;
   下面要证：对任意 \(0 \le h &lt; t\) ，只要 \(t \le \delta\) ，则有&lt;/p&gt;
 &lt;span id=&#34;20240929214343CST&#34;&gt;&lt;/span&gt;\[
 p_{ij}\left(h\right)\le\frac{p_{ij}\left(t\right)}{n}\frac{1}{1-3\varepsilon}
@@ -18580,12 +18870,12 @@ _jp_{ik}\left(mh\right)=&amp;\sum_{r \ne j}{_jp_{ir}\left(\left(m-1\right)h\righ
 \end{aligned}
 \tag{110}
     \]
-&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;正则性&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  由&lt;a class=&#34;link&#34; href=&#34;#20240929203718CST&#34;&gt;定义17&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214407CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 p_{ik}\left(mh\right)=&amp;_jp_{ik}\left(mh\right)+\sum_{l=1}^{m-1}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}\\
 =&amp;_jp_{ij}\left(mh\right)\delta_{jk}+\sum_{l=1}^{m-1}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}\\
-=&amp;_jp_{ij}\left(mh\right)p_{jk}\left(0\right)+\sum_{l=1}^{m-1}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}\quad（正则性）\\
+=&amp;_jp_{ij}\left(mh\right)p_{jk}\left(0\right)+\sum_{l=1}^{m-1}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}\quad（定义17）\\
 =&amp;\sum_{l=1}^{m}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}
 \end{aligned}
 \tag{111}
@@ -18689,7 +18979,7 @@ p_{ij}^\prime\left(t\right)=\sum_{k \ne i}q_{ik}p_{kj}\left(t\right)-q_{ii}p_{ij
 p_{ij}^\prime\left(t\right)=\sum_{k \ne j}q_{kj}p_{ik}\left(t\right)-q_{jj}p_{ij}\left(t\right)
 \tag{124}
     \]&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Kolmogorov微分方程&lt;/a&gt;）&lt;/strong&gt;‌：先证明&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;。由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;证明（&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;定理17&lt;/a&gt;）&lt;/strong&gt;‌：先证明&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;。由&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;可得&lt;/p&gt;
 &lt;span id=&#34;20240929214546CST&#34;&gt;&lt;/span&gt;\[
 p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(h\right)p_{kj}\left(t\right)
 \tag{125}
@@ -18731,7 +19021,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)=\sum_{k \ne i,k \in S}p_{ik}\left(h\
 \lim\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}\left(h\right)}{h}p_{kj}\left(t\right)=\sum_{k \ne i}q_{ik}p_{kj}\left(t\right)
 \tag{131}
     \]
-&lt;p&gt;  因此无限状态下&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;仍然成立。实际上&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;可以被写成矩阵形式，也就是 \(\bm{P}^\prime\left(t\right)=\bm{Q}\bm{P}\left(t\right)\) ，其中 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) ， \(\bm{Q}=\left(q_{ij}\right)\) 。依&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;Kolmogorov微分方程&lt;/a&gt;条件知 \(\bm{Q}\) 是保守的。&lt;br&gt;
+&lt;p&gt;  因此无限状态下&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;仍然成立。实际上&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;可以被写成矩阵形式，也就是 \(\bm{P}^\prime\left(t\right)=\bm{Q}\bm{P}\left(t\right)\) ，其中 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) ， \(\bm{Q}=\left(q_{ij}\right)\) 。依&lt;a class=&#34;link&#34; href=&#34;#20240929211031CST&#34;&gt;定理17&lt;/a&gt;条件知 \(\bm{Q}\) 是保守的。&lt;br&gt;
   下面证明&lt;a class=&#34;link&#34; href=&#34;#20240929214539CST&#34;&gt;式(124)&lt;/a&gt;。在&lt;a class=&#34;link&#34; href=&#34;#20240929214533CST&#34;&gt;式(123)&lt;/a&gt;中计算 \(t+h\) 的状态时是对退后到时刻 \(h\) 的状态来取条件的（所以称为后退方程），这里我们考虑对时刻 \(t\) 的状态取条件，用&lt;a class=&#34;link&#34; href=&#34;#20240929210959CST&#34;&gt;定理14&lt;/a&gt;有&lt;/p&gt;
 &lt;span id=&#34;20240929214633CST&#34;&gt;&lt;/span&gt;\[
 p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(h\right)

@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/mathematics/probability_and_statistics/stochastic_processes/markov_process/'>
 
-<link rel="stylesheet" href="/scss/style.min.b7929939682b25938f9768d6f6295abbef318cbc7fb027123148ee2e4a6d3c0a.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.d40135f789c3c52cf5f391730d992099c074e5b669f96a7d26f008e564e2d39c.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="一种无后效性的随机过程">
 <meta property='og:url' content='https://www.brasswrench.com/posts/mathematics/probability_and_statistics/stochastic_processes/markov_process/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='随机过程' /><meta property='article:tag' content='Markov过程' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-11-11T14:42:01&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='随机过程' /><meta property='article:tag' content='Markov过程' /><meta property='article:published_time' content='2024-09-14T21:05:01&#43;08:00'/><meta property='article:modified_time' content='2024-11-14T19:24:59&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="随机过程（四）：Markov过程">
 <meta name="twitter:description" content="一种无后效性的随机过程"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1067,7 +1067,7 @@
 </svg>
 
             <time class="article-words">
-                12395 字
+                12347 字
             </time>
         </div>
 
@@ -1191,7 +1191,7 @@ p_{ij}^{\left(m+n\right)}=\sum_{k \in S}{p_{ik}^{\left(m\right)}}p_{kj}^{\left(n
 \bm{P}^{\left(n\right)}=\bm{P} \cdot \bm{P}^{\left(n-1\right)} = \bm{P} \cdot \bm{P} \cdot \bm{P}^{\left(n-2\right)} = \cdots = \bm{P}^n
 \tag{8}
     \]
-<p>  <strong>证明（<a class="link" href="#20240929204400CST">C-K方程</a>）</strong>‌：由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
+<p>  <strong>证明（<a class="link" href="#20240929204400CST">定理1</a>）</strong>‌：由<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
 <span id="20240929204323CST"></span>\[
 \begin{aligned}
 p_{ij}^{\left(m+n\right)}&=P\set{X_{m+n}=j|X_0=i}\\[5pt]
@@ -1235,12 +1235,12 @@ p_{ij}^{\left(n_1+n_2+n_3+\cdots+n_m\right)}=&\sum_{k \in S}p_{ik}^{\left(n_1\ri
 <h3 id="周期">周期
 </h3><p>  <span id="20240929203650CST"></span><strong>定义9（周期）</strong>：若集合 \(\set{n|n \ge 1,p_{ii}^{\left(n\right)} \ge 0}\) 非空，则称它的最大公约数 \(d=d\left(i\right)\) 为状态 \(i\) 的<strong>周期</strong>。若 \(d \ge 1\) ，则称 \(i\) 是<strong>周期的</strong>；若 \(d=1\) ，则称 \(i\) 是<strong>非周期的</strong>。并特别规定上述集合为空集时，称 \(i\) 的周期为<strong>无穷大</strong>。 。</p>
 <p>  <span id="20240929205205CST"></span><strong>定理3</strong>：若状态 \(i,j\) 同属一类，则 \(d\left(i\right)=d\left(j\right)\) 。</p>
-<p>  <strong>证明（<a class="link" href="#20240929205205CST">定理3</a>）</strong>‌：由<a class="link" href="#20240930163421CST">类</a>的定义可知 \(i \leftrightarrow j\) ，即存在 \(m,n\) 使 \(p_{ij}^{\left(m\right)}>0,p_{ji}^{\left(n\right)}>0\) 。则由<a class="link" href="#20240930161109CST">结论1</a>知 \(p_{ii}^{\left(m+n\right)}\ge p_{ij}^{\left(m\right)}p_{ji}^{\left(n\right)}>0\) ，同时对所有使得 \(p_{jj}^{\left(s\right)} > 0\) 的 \(s\) ，有</p>
+<p>  <strong>证明（<a class="link" href="#20240929205205CST">定理3</a>）</strong>‌：由<a class="link" href="#20240930163421CST">定义7</a>的定义可知 \(i \leftrightarrow j\) ，即存在 \(m,n\) 使 \(p_{ij}^{\left(m\right)}>0,p_{ji}^{\left(n\right)}>0\) 。则由<a class="link" href="#20240930161109CST">结论1</a>知 \(p_{ii}^{\left(m+n\right)}\ge p_{ij}^{\left(m\right)}p_{ji}^{\left(n\right)}>0\) ，同时对所有使得 \(p_{jj}^{\left(s\right)} > 0\) 的 \(s\) ，有</p>
 <span id="20240929212541CST"></span>\[
 p_{ii}^{\left(m+s+n\right)} \ge p_{ij}^{\left(m\right)}p_{jj}^{\left(s\right)}p_{ji}^{\left(n\right)}>0
 \tag{12}
     \]
-<p>  由<a class="link" href="#20240929203650CST">周期</a>的定义可知，由于 \(p_{ii}^{\left(m+n\right)}>0\) 且 \(p_{ii}^{\left(m+s+n\right)}>0\) ， \(d\left(i\right)\) 必然同时整除 \(n+m\) 和 \(n+m+s\) ，因此，它也必然整除 \(s\) （见<a class="link" onclick="alert('抱歉，“数论”还未上线~')">整除的基本性质</a>）。同时我们还需注意我们已经假设了 \(p_{jj}^{\left(s\right)} > 0\) ，因此 \(d\left(j\right)\) 必定也整除 \(s\) 。注意 \(s\) 的任意性，不妨直接令 \(s=d\left(j\right)\) ，由此可得 \(d\left(i\right)\) 整除 \(d\left(j\right)\) 。我们把上述证明的 \(i\) 和 \(j\) 交换一下，就也能得到 \(d\left(j\right)\) 整除 \(d\left(i\right)\) ，于是 \(d\left(i\right)=d\left(j\right)\) （见 <a class="link" onclick="alert('抱歉，“数论”还未上线~')">整除的基本性质</a>）。</p>
+<p>  由<a class="link" href="#20240929203650CST">定义9</a>的定义可知，由于 \(p_{ii}^{\left(m+n\right)}>0\) 且 \(p_{ii}^{\left(m+s+n\right)}>0\) ， \(d\left(i\right)\) 必然同时整除 \(n+m\) 和 \(n+m+s\) ，因此，它也必然整除 \(s\) （见<a class="link" onclick="alert('抱歉，“数论”还未上线~')">整除的基本性质</a>）。同时我们还需注意我们已经假设了 \(p_{jj}^{\left(s\right)} > 0\) ，因此 \(d\left(j\right)\) 必定也整除 \(s\) 。注意 \(s\) 的任意性，不妨直接令 \(s=d\left(j\right)\) ，由此可得 \(d\left(i\right)\) 整除 \(d\left(j\right)\) 。我们把上述证明的 \(i\) 和 \(j\) 交换一下，就也能得到 \(d\left(j\right)\) 整除 \(d\left(i\right)\) ，于是 \(d\left(i\right)=d\left(j\right)\) （见 <a class="link" onclick="alert('抱歉，“数论”还未上线~')">整除的基本性质</a>）。</p>
 <h3 id="常返">常返
 </h3><h4 id="首达概率常返与非常返瞬过">首达概率、常返与非常返（瞬过）
 </h4><p>  <span id="20240929203654CST"></span><strong>定义10（首达概率）</strong>：对于任何状态 \(i,j\) ，以 \(f_{ij}^{\left(n\right)}\) 记从i出发经n步后首次到达 \(j\) 的概率（<strong>首达概率</strong>），则有</p>
@@ -1281,7 +1281,7 @@ P\left(\bigcup_{n=1}^{\infin}{A_n}\right)=\sum_{n=1}^{\infin}{P\left(A_n\right)}
 f_{ij}^{\left(l+1\right)}=\sum_{k \ne j,\thinspace k \in S}{f_{ik}^{\left(1\right)}f_{kj}^{\left(l\right)}}
 \tag{17}
     \]
-<p>  <strong>证明（<a class="link" href="#20240929212905CST">结论2</a>）</strong>‌：由<a class="link" href="#20240929203654CST">首达概率</a>的定义、<a class="link" href="#20240929203511CST">Markov链</a>的定义、<a class="link" href="#20240929203556CST">时齐</a>的定义和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
+<p>  <strong>证明（<a class="link" href="#20240929212905CST">结论2</a>）</strong>‌：由<a class="link" href="#20240929203654CST">定义10</a>的定义、<a class="link" href="#20240929203511CST">定义1</a>的定义、<a class="link" href="#20240929203556CST">定义3</a>的定义和<a class="link" onclick="alert('抱歉，“概率论”还未上线~')">全概率公式</a>可得</p>
 <span id="20240929212629CST"></span>\[
 \begin{aligned}
 f_{ij}^{\left(l+1\right)}=&P\set{X_{l+1}=j,X_m \ne j\left(m=1,2,\cdots ,l\right) | X_0=i}\quad \text{（首达概率）}\\[5pt]
@@ -1372,7 +1372,7 @@ p_{jj}^{\left(n+m+l\right)} \ge p_{ji}^{\left(n\right)}p_{ii}^{\left(l\right)}p_
   (1) 每一个 \(C_n\) 是常返状态组成的不可约闭集， \(D\) 由全体非常返状态组成。<br>
   (2) \(C_n\) 中的状态同类，或者全是正常返态，或者全是零常返态。它们有相同的周期且 \(f_{ij}=1\left(i,j \in C_n\right)\) 。<br>
   (3) 自 \(C_n\) 中的状态出发不能到达 \(D\) 中状态。</p>
-<p>  <strong>证明（<a class="link" href="#20240929205434CST">状态空间分解定理</a>）</strong>‌：设 \(C\) 为全体常返状态组成的集合，则 \(D=S-C\) 为非常返状态的全体组成的集合。注意到定义在 \(C\) 上的互通是一种等价关系，由<a class="link" onclick="alert('抱歉，“集合论”还未上线~')">等价关系与集合的划分</a>可知， \(C\) 可以按互通关系划分为 \(C_1 \bigcup C_2 \bigcup \dots\) ，其中每一个 \(C_n\) 是由同一类常返状态组成的不可约的闭集。因此 \(S=D \bigcup C_1 \bigcup C_2 \bigcup \dots\) 。定理假设和(1)证毕。由<a class="link" href="#20240929205430CST">定理5</a>可知 \(C_n\) 中的状态都是同类型的（正常返或零常返），由<a class="link" href="#20240929205205CST">定理3</a>可知 \(C_n\) 中的状态都有相同的周期，由<a class="link" href="#20240929212219CST">引理2</a>可知 \(C_n\) 中的状态都满足 \(f_{ij}=1\left(i,j \in C_n\right)\) 。  (2) 证毕。对于  (3) ，可用反证法证明。假设 \(C_n\) 中的状态 \(i\) 可以到达 \(D\) 中的状态 \(j\) ，由于 \(i\) 是常返的，状态在到达 \(j\) 后必定还会再返回 \(i\) ，而后再由假设，状态还可能继续回到 \(j\) 。因此，状态从 \(j\) 出发后再次返回 \(j\) 的情况是可能出现的，这与 \(j\) 是非常返态相矛盾，因此假设不成立。故 \(C_n\) 中的状态 \(i\) 不可到达 \(D\) 中的状态 \(j\) 。  (3) 证毕。至此，<a class="link" href="#20240929205434CST">状态空间分解定理</a>证毕。</p>
+<p>  <strong>证明（<a class="link" href="#20240929205434CST">定理6</a>）</strong>‌：设 \(C\) 为全体常返状态组成的集合，则 \(D=S-C\) 为非常返状态的全体组成的集合。注意到定义在 \(C\) 上的互通是一种等价关系，由<a class="link" onclick="alert('抱歉，“集合论”还未上线~')">等价关系与集合的划分</a>可知， \(C\) 可以按互通关系划分为 \(C_1 \bigcup C_2 \bigcup \dots\) ，其中每一个 \(C_n\) 是由同一类常返状态组成的不可约的闭集。因此 \(S=D \bigcup C_1 \bigcup C_2 \bigcup \dots\) 。定理假设和(1)证毕。由<a class="link" href="#20240929205430CST">定理5</a>可知 \(C_n\) 中的状态都是同类型的（正常返或零常返），由<a class="link" href="#20240929205205CST">定理3</a>可知 \(C_n\) 中的状态都有相同的周期，由<a class="link" href="#20240929212219CST">引理2</a>可知 \(C_n\) 中的状态都满足 \(f_{ij}=1\left(i,j \in C_n\right)\) 。  (2) 证毕。对于  (3) ，可用反证法证明。假设 \(C_n\) 中的状态 \(i\) 可以到达 \(D\) 中的状态 \(j\) ，由于 \(i\) 是常返的，状态在到达 \(j\) 后必定还会再返回 \(i\) ，而后再由假设，状态还可能继续回到 \(j\) 。因此，状态从 \(j\) 出发后再次返回 \(j\) 的情况是可能出现的，这与 \(j\) 是非常返态相矛盾，因此假设不成立。故 \(C_n\) 中的状态 \(i\) 不可到达 \(D\) 中的状态 \(j\) 。  (3) 证毕。至此，<a class="link" href="#20240929205434CST">定理6</a>证毕。</p>
 <h4 id="不可约markov链的转移">不可约Markov链的转移
 </h4><p>  <span id="20240929205707CST"></span><strong>定理7</strong>：周期为 \(d\) 的不可约Markov链，其状态空间 \(S\) 可唯一地分解为 \(d\) 个互不相交的子集之和，即</p>
 <span id="20240929213341CST"></span>\[
@@ -1393,7 +1393,7 @@ p_{ii}^{\left(nd+r+h\right)} \ge p_{ij}^{\left(nd+r\right)}p_{ji}^{\left(h\right
 p_{ii}^{\left(md+s+h\right)} \ge p_{ij}^{\left(md+s\right)}p_{ji}^{\left(h\right)}>0
 \tag{29}
     \]
-<p>  由<a class="link" href="#20240929203650CST">周期</a>的定义可知 \(nd+r+h\) 和 \(md+s+h\) 都可以被 \(d\) 整除。省去前面的 \(n\) 和 \(m\) 可得 \(r+h\) 和 \(s+h\) 都可被 \(d\) 整除。从而其差 \(\left(r+h\right)-\left(s+h\right)=r-s\) 都能被 \(d\) 整除（见<a class="link" onclick="alert('抱歉，“数论”还未上线~')">整除的基本性质</a>）。但是 \(0 \le r \le d-1,0 \le s \le d-1\) ，故 \(0 \le r-s \le d-1\) ，因此 \(r-s\) 只能为 \(0\) ，也就是 \(r=s\) 。故 \(S_r=S_s\) ，假设不成立，故 \(S_r\) 不相交。<br>
+<p>  由<a class="link" href="#20240929203650CST">定义9</a>的定义可知 \(nd+r+h\) 和 \(md+s+h\) 都可以被 \(d\) 整除。省去前面的 \(n\) 和 \(m\) 可得 \(r+h\) 和 \(s+h\) 都可被 \(d\) 整除。从而其差 \(\left(r+h\right)-\left(s+h\right)=r-s\) 都能被 \(d\) 整除（见<a class="link" onclick="alert('抱歉，“数论”还未上线~')">整除的基本性质</a>）。但是 \(0 \le r \le d-1,0 \le s \le d-1\) ，故 \(0 \le r-s \le d-1\) ，因此 \(r-s\) 只能为 \(0\) ，也就是 \(r=s\) 。故 \(S_r=S_s\) ，假设不成立，故 \(S_r\) 不相交。<br>
   接下来证明自 \(S_r\) 任意状态出发，经 \(1\) 步转移必进入 \(S_{r+1}\) 中（其中 \(S_d=S_0\) ）。等价于证明对任意 \(j \in S_r\) ，有 \(\displaystyle\sum_{k \in S_{r+1}}{p_{jk}^{\left(1\right)}}=1\) 。事实上，由 <a class="link" href="#20240929213348CST">式(28)</a>可知 \(p_{ij}^{\left(nd+r\right)}>0\) ，同样可知对 \(k \notin S_{r+1}\) 必有 \(p_{ik}^{\left(nd+r+1\right)}=0\) 。因此由<a class="link" href="#20240930161109CST">结论1</a>可推导：</p>
 <span id="20240929213405CST"></span>\[
 0=p_{ik}^{\left(nd+r+1\right)} \ge p_{ij}^{\left(nd+r\right)}p_{jk}^{\left(1\right)}>0
@@ -1434,7 +1434,7 @@ S_r与S_{d-\left(s-r\right)}^{\prime}完全对等，若r < s
 \lim\limits_{n \rightarrow \infin}p_{jj}^{\left(nd\right)}=\frac{d}{\mu_j}
 \tag{34}
     \]
-<p>  <strong>证明（<a class="link" href="#20240929205712CST">极限定理</a>）</strong>‌：对 \(n \ge 0\) ，令：</p>
+<p>  <strong>证明（<a class="link" href="#20240929205712CST">定理8</a>）</strong>‌：对 \(n \ge 0\) ，令：</p>
 <span id="20240929213442CST"></span>\[
 r_n=\sum_{v=n+1}^{\infin}{f_v}
 \tag{35}
@@ -1498,7 +1498,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \liminf\limits_{m \rightarrow \infin}\sum_{v=1,v \ne s}^{n_md}f_{v}p_{n_md-v}=\sum_{v=1,v \ne s}^{\infin}f_{v}\limsup\limits_{m \rightarrow \infin}p_{n_md-v}\le\left(\sum_{v=1,v \ne s}^{\infin}f_{v}\right)\limsup\limits_{m \rightarrow \infin}p_{n_md}
 \tag{44}
     \]
-<p>  注意状态 \(j\) 是<a class="link" href="#20240930164408CST">常返</a>的，所以 \(\displaystyle\sum_{v=1}^{\infin}f_{v}=1\) ，也就是 \(\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s\) 。而将<a class="link" href="#20240929213532CST">式(41)</a>代入<a class="link" href="#20240929213601CST">式(44)</a>后再将<a class="link" href="#20240929213601CST">式(44)</a>代回<a class="link" href="#20240929213539CST">式(42)</a>得</p>
+<p>  注意状态 \(j\) 是<a class="link" href="#20240930164408CST">定义11</a>的，所以 \(\displaystyle\sum_{v=1}^{\infin}f_{v}=1\) ，也就是 \(\displaystyle\sum_{v=1,v \ne s}^{\infin}f_{v}=1-f_s\) 。而将<a class="link" href="#20240929213532CST">式(41)</a>代入<a class="link" href="#20240929213601CST">式(44)</a>后再将<a class="link" href="#20240929213601CST">式(44)</a>代回<a class="link" href="#20240929213539CST">式(42)</a>得</p>
 <span id="20240929213611CST"></span>\[
 \lambda\le f_s\liminf\limits_{m \rightarrow \infin}p_{n_md-s}+\left(1-f_s\right)\lambda
 \tag{45}
@@ -1508,7 +1508,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda
 \tag{46}
     \]
-<p>  由<a class="link" href="#20240929203650CST">周期</a>的定义和 \(f_s>0\) 知 \(d\) 必整除 \(s\) 。因此 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda\) 。但是由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">上下极限的定义</a>可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\) ，即 \(\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda\) 。故由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">夹挤准则</a>可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda\) 。又由<a class="link" href="#20240929213532CST">式(41)</a>可得：</p>
+<p>  由<a class="link" href="#20240929203650CST">定义9</a>的定义和 \(f_s>0\) 知 \(d\) 必整除 \(s\) 。因此 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\limsup\limits_{m \rightarrow \infin}p_{n_md}=\lambda\) 。但是由<a class="link" onclick="alert('抱歉，“实变函数”还未上线~')">上下极限的定义</a>可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\) ，即 \(\lambda=\limsup\limits_{m \rightarrow \infin}p_{n_md-s}\ge\liminf\limits_{m \rightarrow \infin}p_{n_md-s}\ge\lambda\) 。故由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">夹挤准则</a>可知 \(\limsup\limits_{m \rightarrow \infin}p_{n_md-s}=\liminf\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lambda\) 。又由<a class="link" href="#20240929213532CST">式(41)</a>可得：</p>
 <span id="20240929213629CST"></span>\[
 \lambda=\lim\limits_{m \rightarrow \infin}p_{n_md}=\lim\limits_{m \rightarrow \infin}p_{n_md-s}=\lim\limits_{m \rightarrow \infin}p_{n_md-2s}=\cdots
 \tag{47}
@@ -1518,7 +1518,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \lim\limits_{m \rightarrow \infin}p_{n_md-c_id_i}=\lambda
 \tag{48}
     \]
-<p>  注意由<a class="link" href="#20240929203650CST">周期</a>的定义， \(d\) 一定可以整除 \(d_i\) 。假设 \(d_i=k_id\) ， \(k_i\) 为正整数，则上式又可以写为</p>
+<p>  注意由<a class="link" href="#20240929203650CST">定义9</a>的定义， \(d\) 一定可以整除 \(d_i\) 。假设 \(d_i=k_id\) ， \(k_i\) 为正整数，则上式又可以写为</p>
 <span id="20240929213645CST"></span>\[
 \lim\limits_{m \rightarrow \infin}p_{\left(n_m-c_ik_i\right)d}=\lambda
 \tag{49}
@@ -1543,7 +1543,7 @@ p_n=p_{jj}^{\left(n\right)}=\sum_{l=1}^{n}{f_{jj}^{\left(l\right)}p_{jj}^{\left(
 \lim\limits_{m \rightarrow \infin}p_{n_md-u}=\lambda
 \tag{53}
     \]
-<p>  由<a class="link" href="#20240929203650CST">周期</a>的定义知，存在满足 \(f_{d_i}>0\) 的 \(d_i,i=1,2,\cdots,l\) 使得 \(d_1,d_2,\cdots,d_l\) 的最大公因子也是 \(d\) 。于是，当 \(k\) 大于某个正整数 \(k_0\) 时，必有正整数 \(c_i\) ，使得</p>
+<p>  由<a class="link" href="#20240929203650CST">定义9</a>的定义知，存在满足 \(f_{d_i}>0\) 的 \(d_i,i=1,2,\cdots,l\) 使得 \(d_1,d_2,\cdots,d_l\) 的最大公因子也是 \(d\) 。于是，当 \(k\) 大于某个正整数 \(k_0\) 时，必有正整数 \(c_i\) ，使得</p>
 <span id="20240929213720CST"></span>\[
 kd=\sum_{i=1}^{l}c_id_i
 \tag{54}
@@ -1583,13 +1583,13 @@ r_{vd} = r_{vd+1} = \cdots = r_{vd+d-1} = \frac{1}{d}\sum_{j=vd}^{vd+d-1}r_j
 \lim\limits_{n \rightarrow \infin}p_{nd}=\frac{d}{\mu_j}
 \tag{61}
     \]
-<p>  由此，<a class="link" href="#20240929205712CST">极限定理</a>证毕。</p>
+<p>  由此，<a class="link" href="#20240929205712CST">定理8</a>证毕。</p>
 <p>  <span id="20240929212113CST"></span><strong>推论1</strong>：设 \(i\) 为常返状态，则</p>
 <span id="20240929213817CST"></span>\[
 i\text{为零常返状态}\iff\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0
 \tag{62}
     \]
-<p>  <strong>证明（<a class="link" href="#20240929212113CST">推论1</a>）</strong>‌：若 \(i\) 为零常返状态，则 \(\mu_i \rightarrow \infin\) ，从而由<a class="link" href="#20240929205712CST">极限定理</a>知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}=0\) 。而当 \(m\) 不等于 \(d\) 的整数倍时， \(p_{ii}^{\left(m\right)}=0\) ，故 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 。反之，若 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) ，假如 \(i\) 为正常返状态，则由<a class="link" href="#20240929205712CST">极限定理</a>知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}>0\) ，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">极限的性质</a>知这与 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 矛盾，因此 \(i\) 为零常返状态。</p>
+<p>  <strong>证明（<a class="link" href="#20240929212113CST">推论1</a>）</strong>‌：若 \(i\) 为零常返状态，则 \(\mu_i \rightarrow \infin\) ，从而由<a class="link" href="#20240929205712CST">定理8</a>知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}=0\) 。而当 \(m\) 不等于 \(d\) 的整数倍时， \(p_{ii}^{\left(m\right)}=0\) ，故 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 。反之，若 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) ，假如 \(i\) 为正常返状态，则由<a class="link" href="#20240929205712CST">定理8</a>知 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(nd\right)}>0\) ，由<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">极限的性质</a>知这与 \(\lim\limits_{n \rightarrow \infin}p_{ii}^{\left(n\right)}=0\) 矛盾，因此 \(i\) 为零常返状态。</p>
 <h4 id="再论非常返与零常返">再论非常返与零常返
 </h4><p>  <span id="20240929205716CST"></span><strong>定理9</strong>：若 \(j\) 为非常返状态或零常返状态，则对 \(\forall i \in S\)</p>
 <span id="20240929213832CST"></span>\[
@@ -1606,7 +1606,7 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\r
 \sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\right)}\le \sum_{l=1}^{N}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\right)}+\sum_{l=N+1}^{n}f_{ij}^{\left(l\right)}
 \tag{65}
     \]
-<p>  先固定 \(N\) ，令 \(n \rightarrow \infin\) 。由<a class="link" href="#20240929205712CST">极限定理</a>知 \(p_{jj}^{\left(n\right)} \rightarrow 0\) ，故上式右端第一项为 \(0\) 。再令 \(N \rightarrow \infin\) ，上式右端第二项因 \(\displaystyle\sum_{l=1}^{n}f_{ij}^{\left(l\right)}<1\) 而趋于 \(0\) ，故</p>
+<p>  先固定 \(N\) ，令 \(n \rightarrow \infin\) 。由<a class="link" href="#20240929205712CST">定理8</a>知 \(p_{jj}^{\left(n\right)} \rightarrow 0\) ，故上式右端第一项为 \(0\) 。再令 \(N \rightarrow \infin\) ，上式右端第二项因 \(\displaystyle\sum_{l=1}^{n}f_{ij}^{\left(l\right)}<1\) 而趋于 \(0\) ，故</p>
 <span id="20240929213854CST"></span>\[
 \lim\limits_{n \rightarrow \infin}p_{ij}^{\left(n\right)}=0
 \tag{66}
@@ -1616,7 +1616,7 @@ p_{ij}^{\left(n\right)}=\sum_{l=1}^{n}f_{ij}^{\left(l\right)}p_{jj}^{\left(n-l\r
 <p>  <strong>证明（<a class="link" href="#20240929212119CST">推论2</a>）</strong>‌：设状态空间 \(S=\set{1,2,\cdots,N}\) ，若全部 \(N\) 个状态都是非常返，则任取其中两个状态 \(i,j\) ，若 \(i \rightarrow j \) ，有 \(p_{ij}^{\left(n\right)}\rightarrow 0\) （<a class="link" href="#20240929205716CST">定理9</a>）；若 \(i \nrightarrow j\) ，则对 \(\forall n\) ， \(p_{ij}^{\left(n\right)}=0\) 。不管是哪种情况， \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}\to 0\) ，但是 \(\displaystyle\sum_{j=0}^{N}p_{ij}^{\left(n\right)}=1\) （与<a class="link" href="#20240929204123CST">式(4)</a>类似），矛盾。因此有限状态的Markov链，不可能全为非常返状态。<br>
   若 \(S\) 中有零常返状态，设为 \(i\) ，令 \(C=\set{j | i \rightarrow j}\) ，则有 \(\displaystyle\sum_{j \in C}p_{ij}^{\left(n\right)}=1\) 且 \(j \rightarrow i\) （ \(j \nrightarrow i\) 与 \(i\) 的常返性相矛盾，类似<a class="link" href="#20240929212219CST">引理2</a>的证明）。故 \(i \leftrightarrow j\) ，从而 \(j\) 也为零常返状态（<a class="link" href="#20240929205430CST">定理5</a>）。则 \(\lim\limits_{n \to \infin}p_{ij}^{\left(n\right)}=0\) （<a class="link" href="#20240929205716CST">定理9</a>），从而 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}\to 0\) 。但是由 \(j\) 的定义知 \(\displaystyle\sum_{j \in C}^{}p_{ij}^{\left(n\right)}=1\) ，矛盾。因此有限状态的Markov链不可能有零常返状态。</p>
 <p>  <span id="20240929212124CST"></span><strong>推论3</strong>：若Markov链有一个零常返状态，则必有无限个零常返状态。</p>
-<p>  <strong>证明（<a class="link" href="#20240929212124CST">推论3</a>）</strong>‌：假设Markov链有一个零常返状态。由<a class="link" href="#20240929205434CST">状态空间分解定理</a>可知这个零常返状态必然存在于某个不可约类中，又有<a class="link" href="#20240929205430CST">定理5</a>可知这个类必然全都是零常返状态。由<a class="link" href="#20240929212119CST">推论2</a>可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。</p>
+<p>  <strong>证明（<a class="link" href="#20240929212124CST">推论3</a>）</strong>‌：假设Markov链有一个零常返状态。由<a class="link" href="#20240929205434CST">定理6</a>可知这个零常返状态必然存在于某个不可约类中，又有<a class="link" href="#20240929205430CST">定理5</a>可知这个类必然全都是零常返状态。由<a class="link" href="#20240929212119CST">推论2</a>可知该不可约类不可能是有限状态的。因此，该Markov链必然有无限个零常返状态。</p>
 <h4 id="再论正常返">再论正常返
 </h4><p>  <span id="20240929205721CST"></span><strong>定理10</strong>：若 \(j\) 为正常返状态且周期为 \(d\) ，则对 \(\forall i\) 及 \(0 \le r \le d-1\) ，有</p>
 <span id="20240929213918CST"></span>\[
@@ -1641,7 +1641,7 @@ p_{ij}^{\left(nd+r\right)}=&\sum_{k=0}^{\left(nd+r\right)}f_{ij}^{\left(k\right)
 \sum_{m=0}^{N}f_{ij}^{\left(md+r\right)}p_{jj}^{\left(n-m\right)d}\le p_{ij}^{\left(nd+r\right)}\le \sum_{m=0}^{N}f_{ij}^{\left(md+r\right)}p_{jj}^{\left(n-m\right)d}+\sum_{N+1}^{n}f_{ij}^{\left(md+r\right)}
 \tag{70}
     \]
-<p>  类似于<a class="link" href="#20240929205716CST">定理9</a>的推导，先令 \(n \to \infin\) ，再令 \(N \to \infin\) ，由<a class="link" href="#20240929205712CST">极限定理</a>得</p>
+<p>  类似于<a class="link" href="#20240929205716CST">定理9</a>的推导，先令 \(n \to \infin\) ，再令 \(N \to \infin\) ，由<a class="link" href="#20240929205712CST">定理8</a>得</p>
 <span id="20240929213942CST"></span>\[
 f_{ij}\left(r\right)\space\frac{d}{\mu_j}\le p_{ij}^{\left(nd+r\right)} \le f_{ij}\left(r\right)\space\frac{d}{\mu_j}
 \tag{71}
@@ -1666,7 +1666,7 @@ f_{ij}\left(r\right)\space\frac{d}{\mu_j}\le p_{ij}^{\left(nd+r\right)} \le f_{i
 \lim\limits_{n \to \infin}p_{ij}^{\left(nd\right)}=f_{ij}\left(0\right)\space\frac{d}{\mu_j}
 \tag{74}
     \]
-<p>  其中 \(f_{ij}\left(0\right)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{\left(md\right)}\) 。若 \(i\) 与 \(j\) 不在同一个 \(S_s\) 中，则由<a class="link" href="#20240929205707CST">定理7</a>可知所有的 \(f_{ij}^{\left(md\right)}=0\) 。若 \(i,j\) 在同一个 \(S_s\) 中，注意当 \(n\) 不为 \(d\) 的倍数的时候 \(p_{ij}^{\left(n\right)}=0\) ，因此 \(f_{ij}^{\left(n\right)}=0\) （见<a class="link" href="#20240930164408CST">常返</a>）。此时有</p>
+<p>  其中 \(f_{ij}\left(0\right)=\displaystyle\sum_{m=0}^{\infin}f_{ij}^{\left(md\right)}\) 。若 \(i\) 与 \(j\) 不在同一个 \(S_s\) 中，则由<a class="link" href="#20240929205707CST">定理7</a>可知所有的 \(f_{ij}^{\left(md\right)}=0\) 。若 \(i,j\) 在同一个 \(S_s\) 中，注意当 \(n\) 不为 \(d\) 的倍数的时候 \(p_{ij}^{\left(n\right)}=0\) ，因此 \(f_{ij}^{\left(n\right)}=0\) （见<a class="link" href="#20240930164408CST">定义11</a>）。此时有</p>
 <span id="20240929214005CST"></span>\[
 f_{ij}\left(0\right)=\sum_{m=0}^{\infin}f_{ij}^{\left(md\right)}=\sum_{m=0}^{\infin}f_{ij}^{\left(m\right)}=f_{ij}=1
 \tag{75}
@@ -1803,7 +1803,7 @@ P\set{X_1=j}=&\sum_{i \in S}P\set{X_1=j|X_0=i}P\set{X_0=i}\\
 P\set{\tau_i>s+t|\tau_i>s}=P\set{\tau_i>t}
 \tag{95}
     \]
-<p>  将上式写开并由<a class="link" href="#20240929203710CST">连续时间Markov链</a>和<a class="link" href="#20240929203714CST">时齐性</a>可得</p>
+<p>  将上式写开并由<a class="link" href="#20240929203710CST">定义15</a>和<a class="link" href="#20240929203714CST">定义16</a>可得</p>
 <span id="20240929214227CST"></span>\[
 \begin{aligned}
 &P\set{\tau_i>s+t|\tau_i>s}\\[5pt]
@@ -1832,7 +1832,7 @@ P\set{\tau_i>s+t|\tau_i>s}=P\set{\tau_i>t}
   (1) \(p_{ij}\left(t\right)\ge 0\)<br>
   (2) \(\displaystyle\sum_{j \in S}p_{ij}\left(t\right)=1\)<br>
   (3) \(p_{ij}\left(t+s\right)=\displaystyle\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(s\right)\)   （<strong>连续时间Markov链的C-K方程</strong>）</p>
-<p>  <strong>证明（<a class="link" href="#20240929210959CST">定理14</a>）</strong>‌：(1)和(2)由 \(p_{ij}\left(t\right)\) 的定义易知。下面证明  (3) 。由<a class="link" href="#20240929203710CST">连续时间Markov链</a>和<a class="link" href="#20240929203714CST">时齐性</a>可得</p>
+<p>  <strong>证明（<a class="link" href="#20240929210959CST">定理14</a>）</strong>‌：(1)和(2)由 \(p_{ij}\left(t\right)\) 的定义易知。下面证明  (3) 。由<a class="link" href="#20240929203710CST">定义15</a>和<a class="link" href="#20240929203714CST">定义16</a>可得</p>
 <span id="20240929214247CST"></span>\[
 \begin{aligned}
 p_{ij}\left(t+s\right)=&P\set{X\left(t+s\right)=j|X\left(0\right)=i}\\[5pt]
@@ -1840,8 +1840,8 @@ p_{ij}\left(t+s\right)=&P\set{X\left(t+s\right)=j|X\left(0\right)=i}\\[5pt]
 =&\sum_{k \in S}\frac{P\set{X\left(t+s\right)=j,X\left(t\right)=k,X\left(0\right)=i}}{P\set{X\left(0\right)=i}}\\[5pt]
 =&\sum_{k \in S}\frac{P\set{X\left(t+s\right)=j,X\left(t\right)=k,X\left(0\right)=i}}{P\set{X\left(t\right)=k,X\left(0\right)=i}}\frac{P\set{X\left(t\right)=k,X\left(0\right)=i}}{P\set{X\left(0\right)=i}}\\[5pt]
 =&\sum_{k \in S}P\set{X\left(t+s\right)=j|X\left(t\right)=k,X\left(0\right)=i}P\set{X\left(t\right)=k|X\left(0\right)=i}\\[5pt]
-=&\sum_{k \in S}P\set{X\left(t+s\right)=j|X\left(t\right)=k}p_{ik}\left(t\right)\quad\text{（连续时间Markov链）}\\[5pt]
-=&\sum_{k \in S}p_{kj}\left(s\right)p_{ik}\left(t\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(s\right)\quad\text{（时齐性）}
+=&\sum_{k \in S}P\set{X\left(t+s\right)=j|X\left(t\right)=k}p_{ik}\left(t\right)\quad\text{（定义15）}\\[5pt]
+=&\sum_{k \in S}p_{kj}\left(s\right)p_{ik}\left(t\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(s\right)\quad\text{（定义16）}
 \end{aligned}
 \tag{98}
     \]
@@ -1877,7 +1877,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)\le&\sum_{k \ne i, k \in S}p_{ik}\lef
 |p_{ij}\left(t+h\right)-p_{ij}\left(t\right)|\le 1-p_{ii}\left(h\right)
 \tag{102}
     \]
-<p>  对 \(h<0\) 也可以得到类似的结果。注意由<a class="link" href="#20240929203718CST">正则性</a>可知 \(\displaystyle\lim\limits_{h \to 0}p_{ii}\left(h\right)=1\) 。因此 \(\forall \varepsilon > 0\) ， \(\exist \delta > 0\) 满足 \(h < \delta\) 时恒有 \(1-p_{ii}\left(h\right)<\varepsilon\) ，即 \(|p_{ij}\left(t+h\right)-p_{ij}\left(t\right)|<\varepsilon\) 。因此， \(p_{ij}\left(t\right)\) 一致连续（见<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">一致连续性</a>）。</p>
+<p>  对 \(h<0\) 也可以得到类似的结果。注意由<a class="link" href="#20240929203718CST">定义17</a>可知 \(\displaystyle\lim\limits_{h \to 0}p_{ii}\left(h\right)=1\) 。因此 \(\forall \varepsilon > 0\) ， \(\exist \delta > 0\) 满足 \(h < \delta\) 时恒有 \(1-p_{ii}\left(h\right)<\varepsilon\) ，即 \(|p_{ij}\left(t+h\right)-p_{ij}\left(t\right)|<\varepsilon\) 。因此， \(p_{ij}\left(t\right)\) 一致连续（见<a class="link" onclick="alert('抱歉，“数学分析”还未上线~')">一致连续性</a>）。</p>
 <h4 id="转移速率">转移速率
 </h4><p>  <span id="20240929211024CST"></span><strong>定理16</strong>：</p>
 <p><span id="20241105182452CST"></span>\[
@@ -1889,7 +1889,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)\le&\sum_{k \ne i, k \in S}p_{ik}\lef
 \tag{104}
     \]</p>
 <p>  称 \(q_{ij}\) 为从状态 \(i\) 转移到状态 \(j\) 的<strong>转移速率</strong>。</p>
-<p>  <strong>证明（<a class="link" href="#20240929211024CST">定理16</a>）</strong>‌：先证<a class="link" href="#20241105182452CST">式(103)</a>。首先由<a class="link" href="#20240929203718CST">正则性</a>可知对任意固定的 \(t>0\) ，当 \(n\) 充分大时，有 \(p_{ii}\left(\displaystyle\frac{t}{n}\right)>0\) ，再由<a class="link" href="#20240929210959CST">定理14</a>可得结论 \(p_{ii}\left(s+t\right)=\displaystyle\sum_{k \in S}p_{ik}\left(s\right)p_{ki}\left(t\right)\ge p_{ii}\left(s\right)p_{ii}\left(t\right)\) ，因此 \(p_{ii}\left(t\right)\ge \left(p_{ii}\left(\displaystyle\frac{t}{n}\right)\right)^n>0\) 。故可以定义 \(\phi\left(t\right)=-\ln p_{ii}\left(t\right)\) ，它非负有限，且由于 \(p_{ii}\left(s+t\right)\ge p_{ii}\left(s\right)p_{ii}\left(t\right)\) ，有 \(\phi\left(s+t\right) \le \phi\left(s\right)+\phi\left(t\right)\) 。令 \(q_{ii}=\displaystyle\sup\limits_{t>0}\frac{\phi\left(t\right)}{t}\) ，现在要证明 \(\displaystyle\frac{\phi\left(t\right)}{t}\) 极限存在且为其上确界。显然</p>
+<p>  <strong>证明（<a class="link" href="#20240929211024CST">定理16</a>）</strong>‌：先证<a class="link" href="#20241105182452CST">式(103)</a>。首先由<a class="link" href="#20240929203718CST">定义17</a>可知对任意固定的 \(t>0\) ，当 \(n\) 充分大时，有 \(p_{ii}\left(\displaystyle\frac{t}{n}\right)>0\) ，再由<a class="link" href="#20240929210959CST">定理14</a>可得结论 \(p_{ii}\left(s+t\right)=\displaystyle\sum_{k \in S}p_{ik}\left(s\right)p_{ki}\left(t\right)\ge p_{ii}\left(s\right)p_{ii}\left(t\right)\) ，因此 \(p_{ii}\left(t\right)\ge \left(p_{ii}\left(\displaystyle\frac{t}{n}\right)\right)^n>0\) 。故可以定义 \(\phi\left(t\right)=-\ln p_{ii}\left(t\right)\) ，它非负有限，且由于 \(p_{ii}\left(s+t\right)\ge p_{ii}\left(s\right)p_{ii}\left(t\right)\) ，有 \(\phi\left(s+t\right) \le \phi\left(s\right)+\phi\left(t\right)\) 。令 \(q_{ii}=\displaystyle\sup\limits_{t>0}\frac{\phi\left(t\right)}{t}\) ，现在要证明 \(\displaystyle\frac{\phi\left(t\right)}{t}\) 极限存在且为其上确界。显然</p>
 <span id="20240929214326CST"></span>\[
 0 \le q_{ii} \le \infin,\quad \limsup\limits_{t \to 0}\le q_{ii}
 \tag{105}
@@ -1904,7 +1904,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)\le&\sum_{k \ne i, k \in S}p_{ik}\lef
 \lim\limits_{t \to 0}\frac{1-p_{ii}\left(t\right)}{t}=\lim\limits_{t \to 0}\frac{1-e^{-\phi\left(t\right)}}{\phi\left(t\right)}\frac{\phi\left(t\right)}{t}=\lim\limits_{t \to 0}\frac{\phi\left(t\right)}{t}=q_{ii}
 \tag{107}
     \]
-<p>  再证<a class="link" href="#20241105182458CST">式(104)</a>。由<a class="link" href="#20240929203718CST">正则性</a>，对任意 \(\displaystyle 0 < \varepsilon < \frac{1}{3}\) ，存在 \(0 < \delta < 1\) ，使当 \(0 < t \le \delta \) 时，有 \(p_{ii}\left(t\right)>1-\varepsilon\) ， \(p_{jj}\left(t\right)>1-\varepsilon\) ， \(p_{ji}\left(t\right)<\varepsilon\) 。<br>
+<p>  再证<a class="link" href="#20241105182458CST">式(104)</a>。由<a class="link" href="#20240929203718CST">定义17</a>，对任意 \(\displaystyle 0 < \varepsilon < \frac{1}{3}\) ，存在 \(0 < \delta < 1\) ，使当 \(0 < t \le \delta \) 时，有 \(p_{ii}\left(t\right)>1-\varepsilon\) ， \(p_{jj}\left(t\right)>1-\varepsilon\) ， \(p_{ji}\left(t\right)<\varepsilon\) 。<br>
   下面要证：对任意 \(0 \le h < t\) ，只要 \(t \le \delta\) ，则有</p>
 <span id="20240929214343CST"></span>\[
 p_{ij}\left(h\right)\le\frac{p_{ij}\left(t\right)}{n}\frac{1}{1-3\varepsilon}
@@ -1934,12 +1934,12 @@ _jp_{ik}\left(mh\right)=&\sum_{r \ne j}{_jp_{ir}\left(\left(m-1\right)h\right)p_
 \end{aligned}
 \tag{110}
     \]
-<p>  由<a class="link" href="#20240929203718CST">正则性</a>可得</p>
+<p>  由<a class="link" href="#20240929203718CST">定义17</a>可得</p>
 <span id="20240929214407CST"></span>\[
 \begin{aligned}
 p_{ik}\left(mh\right)=&_jp_{ik}\left(mh\right)+\sum_{l=1}^{m-1}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}\\
 =&_jp_{ij}\left(mh\right)\delta_{jk}+\sum_{l=1}^{m-1}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}\\
-=&_jp_{ij}\left(mh\right)p_{jk}\left(0\right)+\sum_{l=1}^{m-1}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}\quad（正则性）\\
+=&_jp_{ij}\left(mh\right)p_{jk}\left(0\right)+\sum_{l=1}^{m-1}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}\quad（定义17）\\
 =&\sum_{l=1}^{m}{_jp_{ij}\left(lh\right)p_{jk}\left(\left(m-l\right)h\right)}
 \end{aligned}
 \tag{111}
@@ -2043,7 +2043,7 @@ p_{ij}^\prime\left(t\right)=\sum_{k \ne i}q_{ik}p_{kj}\left(t\right)-q_{ii}p_{ij
 p_{ij}^\prime\left(t\right)=\sum_{k \ne j}q_{kj}p_{ik}\left(t\right)-q_{jj}p_{ij}\left(t\right)
 \tag{124}
     \]</p>
-<p>  <strong>证明（<a class="link" href="#20240929211031CST">Kolmogorov微分方程</a>）</strong>‌：先证明<a class="link" href="#20240929214533CST">式(123)</a>。由<a class="link" href="#20240929210959CST">定理14</a>可得</p>
+<p>  <strong>证明（<a class="link" href="#20240929211031CST">定理17</a>）</strong>‌：先证明<a class="link" href="#20240929214533CST">式(123)</a>。由<a class="link" href="#20240929210959CST">定理14</a>可得</p>
 <span id="20240929214546CST"></span>\[
 p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(h\right)p_{kj}\left(t\right)
 \tag{125}
@@ -2085,7 +2085,7 @@ p_{ij}\left(t+h\right)-p_{ij}\left(t\right)=\sum_{k \ne i,k \in S}p_{ik}\left(h\
 \lim\limits_{h \to 0}\sum_{k \ne i}\frac{p_{ik}\left(h\right)}{h}p_{kj}\left(t\right)=\sum_{k \ne i}q_{ik}p_{kj}\left(t\right)
 \tag{131}
     \]
-<p>  因此无限状态下<a class="link" href="#20240929214533CST">式(123)</a>仍然成立。实际上<a class="link" href="#20240929214533CST">式(123)</a>可以被写成矩阵形式，也就是 \(\bm{P}^\prime\left(t\right)=\bm{Q}\bm{P}\left(t\right)\) ，其中 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) ， \(\bm{Q}=\left(q_{ij}\right)\) 。依<a class="link" href="#20240929211031CST">Kolmogorov微分方程</a>条件知 \(\bm{Q}\) 是保守的。<br>
+<p>  因此无限状态下<a class="link" href="#20240929214533CST">式(123)</a>仍然成立。实际上<a class="link" href="#20240929214533CST">式(123)</a>可以被写成矩阵形式，也就是 \(\bm{P}^\prime\left(t\right)=\bm{Q}\bm{P}\left(t\right)\) ，其中 \(\bm{P}\left(t\right)=\left(p_{ij}\left(t\right)\right)\) ， \(\bm{Q}=\left(q_{ij}\right)\) 。依<a class="link" href="#20240929211031CST">定理17</a>条件知 \(\bm{Q}\) 是保守的。<br>
   下面证明<a class="link" href="#20240929214539CST">式(124)</a>。在<a class="link" href="#20240929214533CST">式(123)</a>中计算 \(t+h\) 的状态时是对退后到时刻 \(h\) 的状态来取条件的（所以称为后退方程），这里我们考虑对时刻 \(t\) 的状态取条件，用<a class="link" href="#20240929210959CST">定理14</a>有</p>
 <span id="20240929214633CST"></span>\[
 p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(h\right)
@@ -2143,7 +2143,7 @@ p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(h\right)
 
 
         <span>
-            最后更新于 Nov 11, 2024 14:42 CST
+            最后更新于 Nov 14, 2024 19:24 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2302,7 +2302,7 @@ p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(h\right)
             
             
         
-        <span>本图书馆累计发布了15篇文章 共221962字</span>
+        <span>本图书馆累计发布了15篇文章 共226309字</span>
     </section>
 
     <section class="site-visit-count">

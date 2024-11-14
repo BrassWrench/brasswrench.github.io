@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Thu, 14 Nov 2024 02:54:15 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 14 Nov 2024 19:24:59 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -596,7 +596,7 @@ P(w_t|w_1w_2\cdots w_{t-1})\approx P(w_t|w_{t-(n-1):t-1})
 P(w_1w_2 \cdots w_l)= \prod_{i=1}^{l}P(w_i|w_{i-1})
 \tag{10}
     \]
-&lt;p&gt;  为了使 \(P(w_i|w_{i-1})\) 对于 \(i=1\) 有意义，可在句子的开头增加一个句首标记&amp;lt;BOS&amp;gt;（ Begin Of Sentence），并设 \(w_0=\) &amp;lt;BOS&amp;gt;。同时，也可以在句子的结尾增加一个句尾标记&amp;lt;EOS&amp;gt;（End Of Sentence），设 \(w_{l+1}=\) &amp;lt;EOS&amp;gt;。&lt;/p&gt;
+&lt;p&gt;  为了使 \(P(w_i|w_{i-1})\) 对于 \(i=1\) 有意义，可在句子的开头增加一个句首标记&lt;code&gt;&amp;lt;BOS&amp;gt;&lt;/code&gt;（ Begin Of Sentence），并设 \(w_0=\) &lt;code&gt;&amp;lt;BOS&amp;gt;&lt;/code&gt;。同时，也可以在句子的结尾增加一个句尾标记&lt;code&gt;&amp;lt;EOS&amp;gt;&lt;/code&gt;（End Of Sentence），设 \(w_{l+1}=\) &lt;code&gt;&amp;lt;EOS&amp;gt;&lt;/code&gt;。&lt;/p&gt;
 &lt;h4 id=&#34;平滑&#34;&gt;平滑
 &lt;/h4&gt;&lt;p&gt;  虽然马尔可夫假设（下一个词出现的概率只依赖于它前面 \(n-1\) 个词）降低了句子概率为 \(0\) 的可能性，但是当 \(n\) 比较大或者测试句子中含有&lt;strong&gt;未登录词（Out-Of-Vocabulary，OOV）&lt;/strong&gt;‌时，仍然会出现“零概率”问题。由于数据的稀疏性，训练数据很难覆盖测试数据中所有可能出现的N-gram，但这并不意味着这些N-gram出现的概率为0。为了避免该问题，需要使用&lt;strong&gt;平滑（Smoothing）&lt;/strong&gt;‌技术调整概率估计的结果。本节将介绍一种最基本，也最简单的平滑算法——折扣法。&lt;br&gt;
   &lt;strong&gt;折扣法（Discounting）&lt;/strong&gt;‌平滑的基本思想是“损有余而补不足”，即从频繁出现的N-gram中匀出一部分概率并分配给低频次（含零频次）的N-gram，从而使得整体概率分布趋于均匀。&lt;br&gt;
@@ -622,7 +622,7 @@ P(w_i|w_{i-1})=\frac{C(w_{i-1}w_i)+\delta}{\sum_{w}(C(w_{i-1}w)+\delta)}=\frac{C
 &lt;h4 id=&#34;语言模型性能评价&#34;&gt;语言模型性能评价
 &lt;/h4&gt;&lt;p&gt;  如何衡量一个语言模型的好坏呢？一种方法是将其应用于具体的外部任务（如机器翻译），并根据该任务上指标的高低对语言模型进行评价。这种方法也 被称为“外部任务评价”，是最接近实际应用需求的一种评价方法。但是，这种方式的计算代价较高，实现的难度也较大。因此，目前最为常用的是基于&lt;strong&gt;困惑度（Perplexity，PPL）&lt;/strong&gt;‌的“内部评价”方式。&lt;br&gt;
   为了进行内部评价，首先将数据划分为不相交的两个集合，分别称为&lt;strong&gt;训练集&lt;/strong&gt; \(\mathbb{D}^{\text{train}}\) 和&lt;strong&gt;测试集&lt;/strong&gt; \(\mathbb{D}^{\text{test}}\) ，其中 \(\mathbb{D}^{\text{train}}\) 用于估计语言模型的参数。由该模型计算出的测试集的概率 \(P(\mathbb{D}^{\text{test}})\) 则反映了模型在测试集上的泛化能力。&lt;br&gt;
-  假设测试集 \(\mathbb{D}^{\text{test}}=w_1w_2 \cdots w_N\) （每个句子的开始和结束分布增加&amp;lt;BOS&amp;gt;与&amp;lt;EOS&amp;gt;标记），那么测试集的概率为：&lt;/p&gt;
+  假设测试集 \(\mathbb{D}^{\text{test}}=w_1w_2 \cdots w_N\) （每个句子的开始和结束分布增加&lt;code&gt;&amp;lt;BOS&amp;gt;&lt;/code&gt;与&lt;code&gt;&amp;lt;EOS&amp;gt;&lt;/code&gt;标记），那么测试集的概率为：&lt;/p&gt;
 &lt;span id=&#34;20241114020136CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
 P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
@@ -738,10 +738,300 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;word&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,)&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  正向最大匹配分词算法存在的明显缺点是倾向于切分出较长的词，这容易导致错误的切分结果，如“研究生命的起源”，由于“研究生”是词典中的词，所以使用正向最大匹配分词算法的分词结果为“研究生 命 的 起源”，显然分词结果不正确。&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;  这里提供一个可运行的辞典的例子&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/attachments/lexicon.txt&#34;target=&#34;_blank&#34;&gt;lexicon.txt&lt;/a&gt;[&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/attachments/lexicon.txt&#34;target=&#34;_blank&#34;download=&#34;lexicon.txt&#34;&gt;点此下载&lt;/a&gt;]。&lt;br&gt;
+  正向最大匹配分词算法存在的明显缺点是倾向于切分出较长的词，这容易导致错误的切分结果，如“研究生命的起源”，由于“研究生”是词典中的词，所以使用正向最大匹配分词算法的分词结果为“研究生 命 的 起源”，显然分词结果不正确。&lt;br&gt;
   这种情况一般被称为切分歧义问题，即同一个句子可能存在多种分词结果，一旦分词错误，则会影响对句子的语义理解。正向最大匹配分词算法除了存在切分歧义，对中文词的定义也不明确，如“哈尔滨市”可以是一个词，也可以认为“哈尔滨”是一个词，“市”是一个词。因此，目前存在多种中文分词的规范，根据不同规范又标注了不同的数据集。&lt;br&gt;
   另外，就是未登录词问题，也就是说有一些词并没有收录在词典中，如新词、命名实体、领域相关词和拼写错误词等。由于语言的动态性，新词语的出现可谓是层出不穷，所以无法将全部的词都及时地收录到词典中，因此，一个好的分词系统必须能够较好地处理未登录词问题。相比于切分歧义问题，在真实应用环境中，由未登录词问题引起的分词错误比例更高。因此，分词任务本身也是一项富有挑战的自然语言处理基础任务。&lt;/p&gt;
-</description>
+&lt;h4 id=&#34;子词切分&#34;&gt;子词切分
+&lt;/h4&gt;&lt;p&gt;  一般认为，以英语为代表的印欧语系的语言，词语之间通常已有分隔符（空格等）进行切分，无须再进行额外的分词处理。然而，由于这些语言往往具有复杂的词形变化，如果仅以天然的分隔符进行切分，不但会造成一定的数据稀疏问题，还会导致由于词表过大而降低处理速度。如“computer”“computers”“computing”等，虽然它们语义相近，但是被认为是截然不同的单词。传统的处理方法是根据语言学规则，引入&lt;strong&gt;词形还原（Lemmatization）&lt;/strong&gt;‌或者&lt;strong&gt;词干提取（Stemming）&lt;/strong&gt;‌等任务， 提取出单词的词根，从而在一定程度上克服数据稀疏问题。其中，词形还原指的是将变形的词语转换为原形，如将“computing”还原为“compute”；而词干提取则是将前缀、后缀等去掉，保留词干（Stem），如“computing”的词干为“comput”，可见，词干提取的结果可能不是一个完整的单词。&lt;br&gt;
+  词形还原或词干提取虽然在一定程度上解决了数据稀疏问题，但是需要人工撰写大量的规则，这种基于规则的方法既不容易扩展到新的领域，也不容易扩展到新的语言上。因此，基于统计的无监督子词（Subword）切分任务应运而生，并在现代的预训练模型中使用。&lt;br&gt;
+  所谓子词切分，就是将一个单词切分为若干连续的片段。目前有多种常用的
+子词切分算法，它们的方法大同小异，基本的原理都是使用尽量长且频次高的子词对单词进行切分。此处重点介绍常用的&lt;strong&gt;字节对编码（Byte Pair Encoding，BPE）&lt;/strong&gt;‌算法。&lt;br&gt;
+  首先，BPE通过&lt;a class=&#34;link&#34; href=&#34;#20241114164453CST&#34;&gt;算法1&lt;/a&gt;构造子词词表。&lt;/p&gt;
+
+  &lt;span id=&#34;20241114164453CST&#34;&gt;&lt;/span&gt;
+  &lt;hr style=&#34;width: 100%; height: 2px; background-color: #000000; margin:0 0;&#34;/&gt;&lt;strong&gt;算法1（BPE中子词词表构造算法）&lt;/strong&gt;&lt;div&gt;&lt;strong&gt;输入：&lt;/strong&gt;大规生文本语料库；期望子词词表大小L&lt;br /&gt;&lt;strong&gt;输出：&lt;/strong&gt;子词词表&lt;br /&gt;&lt;/div&gt;
+  &lt;hr style=&#34;width: 100%; height: 1px; background-color: #000000; margin:0 0;&#34;/&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;1.&lt;/div&gt;
+      &lt;div&gt;将语料库中每个单词切分成字符作为子词；&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;2.&lt;/div&gt;
+      &lt;div&gt;用切分的子词构成初始子词词表。&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;3.&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;while&lt;/strong&gt; 子词词表小于或等于L &lt;strong&gt;do&lt;/strong&gt;&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;4.&lt;/div&gt;
+      &lt;div&gt;&amp;emsp;&amp;emsp;在语料库中统计单词内相邻子词对的频次；&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;5.&lt;/div&gt;
+      &lt;div&gt;&amp;emsp;&amp;emsp;选取频次最高的子词对，合并成新的子词；&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;6.&lt;/div&gt;
+      &lt;div&gt;&amp;emsp;&amp;emsp;将新的子词加入子词词表；&lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;7.&lt;/div&gt;
+      &lt;div&gt;&amp;emsp;&amp;emsp;将语料库中不再存在的子词从子词词表中删除。 &lt;/div&gt;
+    &lt;/div&gt;&lt;div style=&#34;display: flex;&#34;&gt;
+      &lt;div style=&#34;margin-right: 10px;&#34;&gt;8.&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;end&lt;/strong&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;hr style=&#34;width: 100%; height: 2px; background-color: #000000; margin:0 0;&#34;/&gt;
+&lt;p&gt;  下面，通过一个例子说明如何构造子词词表。首先，假设语料库中存在下列 Python词典中的3个单词以及每个单词对应的频次。其中，每个单词结尾增加了一个&lt;code&gt;&#39;&amp;lt;/w&amp;gt;&#39;&lt;/code&gt;字符，并将每个单词切分成独立的字符构成子词。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l o w e r &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n e w e s t &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;w i d e s t &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  初始化的子词词表表为3个单词包含的全部字符：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;o&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;e&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;t&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;d&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  然后，统计单词内相邻的两个子词的频次，并选取频次最高的子词对&lt;code&gt;e&lt;/code&gt;，和&lt;code&gt;s&lt;/code&gt;，合并成新的子词&lt;code&gt;es&lt;/code&gt;（共出现9次），然后加入子词词表中，并将语料库中不再存在的子词&lt;code&gt;s&lt;/code&gt;从子词词表中删除。此时，语料库以及子词词表变为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l o w e r &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n e w es t &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;w i d es t &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;o&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;e&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;t&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;d&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;es&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  然后，合并下一个子词对&lt;code&gt;es&lt;/code&gt;和&lt;code&gt;t&lt;/code&gt;，新的语料库和子词词表为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l o w e r &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n e w est &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;w i d est &amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;l&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;o&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;e&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;/w&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;n&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;i&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;d&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;est&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  重复以上过程，直到子词词表大小达到一个期望的词表大小为止。构造好子词词表后，如何将一个单词切分成子词序列呢？可以采用贪心的方法，即首先将子词词表按照子词的长度由大到小进行排序。然后，从前向后遍历子词词表，依次判断一个子词是否为单词的子串，如果是的话，则将该单词切分，然 后继续向后遍历子词词表。如果子词词表全部遍历结束，单词中仍然有子串没有被切分，那么这些子串一定为低频串，则使用统一的标记，如&lt;code&gt;&#39;&amp;lt;UNK&amp;gt;&#39;&lt;/code&gt;进行替换。&lt;br&gt;
+  例如,对一个含有三个单词的句子&lt;code&gt;[&#39;the&amp;lt;/w&amp;gt;&#39;, &#39;highest&amp;lt;/w&amp;gt;&#39;, &#39;mountain &amp;lt;/w&amp;gt;]&lt;/code&gt;进行切分，假设排好序的词表为&lt;code&gt;[&#39;errrr&amp;lt;/w&amp;gt;&#39;，&#39;tain&amp;lt;/w&amp;gt;&#39; ,&#39;moun&#39; , &#39;est&amp;lt;/w&amp;gt;&#39; , &#39;high&#39; , &#39;the&amp;lt;/w&amp;gt;&#39; , &#39;a&amp;lt;/w&amp;gt;&#39;]&lt;/code&gt;，则子词切分的结果为&lt;code&gt;[&#39;the&amp;lt;/w&amp;gt;&#39;, &#39;high&#39;, &#39;est&amp;lt;/w&amp;gt;&#39;, &#39;moun&#39;, &#39;tain&amp;lt;/w&amp;gt;&#39;]&lt;/code&gt;。此过程也叫作对句子（单词序列）进行编码。&lt;br&gt;
+  那么，如何对一个编码后的句子进行解码，也就是还原成原始的句子呢？此 时，单词结尾字符&lt;code&gt;&#39;&amp;lt;/w&amp;gt;&#39;&lt;/code&gt;便发挥作用了。只要将全部子词进行拼接，然后将结尾字符替换为空格，就恰好为原始的句子了。&lt;br&gt;
+  通过以上过程可以发现，BPE算法中的编码步骤需要遍历整个词表，是一个 非常耗时的过程。可以通过缓存技术加快编码的速度，即将常见单词对应的编码结果事先存储下来，然后编码时通过查表的方式快速获得编码的结果。对于查不到的单词再实际执行编码算法。由于高频词能够覆盖语言中的大部分单词，因此 该方法实际执行编码算法的次数并不多，因此可以极大地提高编码过程的速度。&lt;br&gt;
+  除了BPE,还有很多其他类似的子词切分方法，如WordPiece、Unigram Language Model（ULM）算法等。其中，WordPiece与BPE算法类似，也是每次从子词词表中选出两个子词进行合并。与BPE的最大区别在于，选择两个子词进行合并的策略不同：BPE选择频次最高的相邻子词合并，而WordPiece选择能够提升语言模型概率最大的相邻子词进行合并。经过公式推导，提升语言模型概率最大的相邻子词具有最大的互信息值，也就是两子词在语言模型上具有较强的关联性，它们经常在语料中以相邻方式同时出现。&lt;br&gt;
+  与WordPiece一样，ULM同样使用语言模型挑选子词。不同之处在于，BPE和WordPiece算法的词表大小都是从小到大变化，属于增量法。而ULM则是减量法，即先初始化一个大词表，根据评估准则不断丢弃词表中的子词，直到满足限定条件。ULM算法考虑了句子的不同分词可能，因而能够输出带概率的多个子词分段。&lt;br&gt;
+  为了更方便地使用上述子词切分算法，Google推出了&lt;a class=&#34;link&#34; href=&#34;https://github.com/google/sentencepiece&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;SentencePiece开源工具包&lt;/a&gt;，其中集成了 BPE、ULM等子词切分算法，并支持Python、C++编程语言的调 用，具有快速、轻量的优点。此外，通过将句子看作Unicode编码序列，从而使其能够处理多种语言。&lt;/p&gt;
+&lt;h4 id=&#34;词性标注&#34;&gt;词性标注
+&lt;/h4&gt;&lt;p&gt;  词性是词语在句子中扮演的语法角色，也被称为&lt;strong&gt;词类（Part-Of-Speech，POS）&lt;/strong&gt;。例如，表示抽象或具体事物名字（如“计算机”）的词被归为名词，而表示动作（如“打”）、状态（如“存在”）的词被归为动词。词性可为句法分析、语义理解等提供帮助。&lt;br&gt;
+  &lt;strong&gt;词性标注（POS Tagging）&lt;/strong&gt;‌任务是指给定一个句子，输出句子中每个词相应的词性。例如，当输入句子为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;他 喜欢 下 象棋 。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  则词性标注的输出为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;他/PN 喜欢/W 下/VV 象棋/NN 。/PU
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  其中，斜杠后面的&lt;code&gt;PN&lt;/code&gt;、&lt;code&gt;VV&lt;/code&gt;、&lt;code&gt;NN&lt;/code&gt;和&lt;code&gt;PU&lt;/code&gt;分别代表代词、动词、名词和标点符号。词性标注的主要难点在于歧义性，即一个词在不同的上下文中可能有不同的 词性。例如，上例中的“下”，既可以表示动词，也可以表示方位词。因此，需要结合上下文确定词在句子中的具体词性。&lt;/p&gt;
+&lt;h4 id=&#34;句法分析&#34;&gt;句法分析
+&lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;句法分析（SyntacticParsing）&lt;/strong&gt;‌的主要目标是给定一个句子，分析句子的句法成分信息，例如主谓宾定状补等成分。最终的目标是将词序列表示的句子转换成树状结构，从而有助于更准确地理解句子的含义，并辅助下游自然语言处理任务。例如，对于以下两个句子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;您转的这篇文章很无知。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;您转这篇文章很无知。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  虽然它们只相差一个“的”字，但是表达的语义是截然不同的，这主要是因为两句话的主语不同。其中，第一句话的主语是“文章”，而第二句话的主语是&amp;quot;转&amp;quot;的动作。通过对两句话进行句法分析，就可以准确地获知各自的主语，从而推导出不同的语义。&lt;br&gt;
+  典型的句法结构表示方法包含两种——短语结构句法表示和依存结构句法表示。它们的不同点在于依托的文法规则不一样。其中，短语结构句法表示依托上下文无关文法，属于一种层次性的表示方法。而依存结构句法表示依托依存文法。&lt;br&gt;
+  &lt;a class=&#34;link&#34; href=&#34;#20241114184735CST&#34;&gt;图2&lt;/a&gt;对比了两种句法结构表示方法。在短语结构句法表示中，&lt;code&gt;S&lt;/code&gt;代表起始符号，&lt;code&gt;NP&lt;/code&gt;和&lt;code&gt;VP&lt;/code&gt;分别代表名词短语和动词短语。在依存结构句法表示中，&lt;code&gt;sub&lt;/code&gt;和&lt;code&gt;obj&lt;/code&gt;分别表示主语和宾语，&lt;code&gt;root&lt;/code&gt;表示虚拟根节点，其指向整个句子的核心谓词。&lt;/p&gt;
+&lt;span id=&#34;20241114184735CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 273.7143&#34;&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(216.5534 19.0488)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(271.2055 114.2951)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;V&lt;/tspan&gt;&lt;tspan x=&#34;12.6001&#34; y=&#34;0&#34;&gt;P&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(109.3092 164.7575)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;PN&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(173.1732 164.7577)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;VV&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(237.0013 164.7575)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;VV&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(297.7599 164.7575)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;MN&lt;/tspan&gt;&lt;/text&gt;
+    &lt;polyline points=&#34;255.0939 141.3175 282.2685 120.4921 311.2209 141.3175&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polyline points=&#34;186.4796 141.3175 255.1841 72.3251 284.1365 93.1505&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(243.6582 67.0254)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;V&lt;/tspan&gt;&lt;tspan x=&#34;12.6001&#34; y=&#34;0&#34;&gt;P&lt;/tspan&gt;&lt;/text&gt;
+    &lt;polyline points=&#34;123.2415 90.5238 222.1415 27.2671 251.0939 48.0925&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(109.3455 114.2953)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;14.1118&#34; y=&#34;0&#34;&gt;P&lt;/tspan&gt;&lt;/text&gt;
+    &lt;line x1=&#34;123.2415&#34; y1=&#34;120.4921&#34; x2=&#34;123.2415&#34; y2=&#34;141.3175&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;123.2415&#34; y1=&#34;175.1587&#34; x2=&#34;123.2415&#34; y2=&#34;195.9841&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;187.1677&#34; y1=&#34;175.1587&#34; x2=&#34;187.1677&#34; y2=&#34;195.9841&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;251.0939&#34; y1=&#34;175.1587&#34; x2=&#34;251.0939&#34; y2=&#34;195.9841&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;315.0201&#34; y1=&#34;175.1587&#34; x2=&#34;315.0201&#34; y2=&#34;195.9841&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;text transform=&#34;translate(113.7607 221.603)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;他&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(169.1677 221.6028)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;喜欢&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(242.0938 221.603)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;下&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(297.02 221.6029)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;象棋&lt;/tspan&gt;&lt;/text&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(494.7141 221.6028)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;他&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(563.2725 221.6026)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;喜欢&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(649.8314 221.6028)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;下&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(718.3904 221.6027)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;象棋&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(406.2288 221.6032)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.011em;&#34;&gt;R&lt;/tspan&gt;&lt;tspan x=&#34;12.4199&#34; y=&#34;0&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;22.9497&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;33.4258&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;text transform=&#34;translate(526.9641 178.4379)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;sub&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path d=&#34;M570.3516,198.6398c-.9127-3.2053-2.6878-7.9266-6.2857-12.7619-2.4765-3.3282-5.0993-5.7465-7.2381-7.4286&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;g&gt;
+      &lt;path d=&#34;M525.7802,178.6398c-2.7161.7602-7.7213,2.5484-12.5714,6.8571-2.6307,2.337-4.5396,4.8148-5.9148,7.0355&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;505.3853 188.3799 507.9504 191.4797 511.9622 191.7854 504.6373 197.8779 505.3853 188.3799&#34;/&gt;
+    &lt;/g&gt;
+    &lt;text transform=&#34;translate(494.0483 140.5596)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;r&lt;/tspan&gt;&lt;tspan x=&#34;7.7041&#34; y=&#34;0&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;18.2339&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;28.71&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path d=&#34;M428.1294,199.5287c3.5008-9.8294,11.606-29.4973,26.8714-44.381,13.2557-12.9243,25.816-16.2991,32.6718-17.3333&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;g&gt;
+      &lt;path d=&#34;M530.9865,136.4811c10.6312,4.7037,26.3833,14.3103,41.6476,35.0476,4.6827,6.3617,8.6503,12.8617,11.9931,19.079&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;580.0285 189.8342 584.0396 189.5192 586.5974 186.4134 587.3674 195.9097 580.0285 189.8342&#34;/&gt;
+    &lt;/g&gt;
+    &lt;text transform=&#34;translate(608.7924 178.4376)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;10.4761&#34; y=&#34;0&#34;&gt;bj&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path d=&#34;M593.2087,203.4652c.14-3.0892,1.0062-13.8125,9.3333-20.7619,1.8442-1.5391,3.7475-2.637,5.5238-3.4286&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;g&gt;
+      &lt;path d=&#34;M638.3516,178.1319c4.4799,3.6451,9.629,8.6742,14.2858,15.4286.3975.5766.7807,1.1501,1.1501,1.7199&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;649.1153 194.8238 653.0981 194.253 655.4521 190.99 656.8278 200.4176 649.1153 194.8238&#34;/&gt;
+    &lt;/g&gt;
+    &lt;text transform=&#34;translate(687.6228 176.0066)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;10.4761&#34; y=&#34;0&#34;&gt;bj&lt;/tspan&gt;&lt;/text&gt;
+    &lt;path d=&#34;M662.0003,200.197c.212-3.815,1.5245-17.058,14.1409-25.6405,2.7941-1.9007,5.6778-3.2567,8.3691-4.2342&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;g&gt;
+      &lt;path d=&#34;M715.9389,170.3224c6.8271,5.2652,14.6741,12.5294,21.7707,22.2857,1.1776,1.619,2.2728,3.2216,3.2916,4.7993&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+      &lt;polygon points=&#34;736.3318 196.9904 740.3091 196.3829 742.6329 193.0983 744.0955 202.5128 736.3318 196.9904&#34;/&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(146.0052 267.1945)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.3716&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;a)短语结构句法树&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(504.6371 267.1948)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.2998&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;b&lt;/tspan&gt;&lt;tspan x=&#34;17.2261&#34; y=&#34;0&#34;&gt;)依存结构句法树&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;两种句法结构表示方法结果对比&lt;/p&gt;
+&lt;h4 id=&#34;语义分析&#34;&gt;语义分析
+&lt;/h4&gt;&lt;p&gt;  自然语言处理的核心任务即是让计算机“理解”自然语言所蕴含的意义，即&lt;strong&gt;语义（Semantic）&lt;/strong&gt;。本章前面介绍的文本向量表示，可以被认为隐性地蕴含了很多语义信息。而一般意义上的语义分析指的是通过离散的符号及结构显性地表示语义。根据待表示语言单元粒度以及语义表示方法的不同，语义分析又可以被分为多种形式。&lt;br&gt;
+  从词语的粒度考虑，一个词语可能具有多种语义（词义），例如“打”，含义既可能是“攻击”（如“打人”），还可能是“玩”（如“打篮球”），甚至“编织”（如“打毛衣&amp;quot;）等。根据词语出现的不同上下文，确定其具体含义的自然语言处理任务被称为&lt;strong&gt;词义消歧（Word Sense Disambiguation，WSD）&lt;/strong&gt;。对于每个词可能具有的词义，往往是通过语义词典确定的，如WordNet等。除了以上一词多义情况，还有多词一义的情况，如“马铃薯”和“土豆”具有相同的词义。&lt;br&gt;
+  由于语言的语义组合性和进化性，无法像词语一样使用词典定义句子、段落或篇章的语义，因此很难用统一的形式对句子等语言单元的语义进行表示。众多的语言学流派提出了各自不同的语义表示形式，如语义角色标注（Semantic Role Labeling，SRL）、语义依存分析（Semantic Dependency Parsing，SDP）等。&lt;br&gt;
+  其中，语义角色标注也称谓词论元结构（Predicate-Argument Structure），即首先识别句子中可能的谓词（一般为动词），然后为每个谓词确定所携带的语义角色（也称作论元），如表示动作发出者的施事（Agent），表示动作承受者的受事（Patient）等。除了核心语义角色，还有一类辅助描述动作的语言成分，被称为附 加语义角色，如动作发生的时间、地点和方式等。&lt;a class=&#34;link&#34; href=&#34;#20241114190513CST&#34;&gt;表2&lt;/a&gt;展示了一个语义角色标注的示例，其中有两个谓词——“喜欢”和“下”并针对每个谓词产生相应的论元输出结果。&lt;/p&gt;
+&lt;span id=&#34;20241114190513CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;输入&lt;/th&gt;
+          &lt;th&gt;他&lt;/th&gt;
+          &lt;th&gt;喜欢&lt;/th&gt;
+          &lt;th&gt;下&lt;/th&gt;
+          &lt;th&gt;象棋&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;输出1&lt;/td&gt;
+          &lt;td&gt;施事&lt;/td&gt;
+          &lt;td&gt;谓词&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;受事&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;输出2&lt;/td&gt;
+          &lt;td&gt;施事&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;谓词&lt;/td&gt;
+          &lt;td&gt;受事&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;语义角色标注示例&lt;/p&gt;
+&lt;p&gt;  语义依存分析则利用通用图表示更丰富的语义信息。根据图中节点类型的不同，又可分为两种表示——&lt;strong&gt;语义依存图（Semantic Dependency Graph）&lt;/strong&gt;‌表示和&lt;strong&gt;概念语义图（Conceptual Graph）&lt;/strong&gt;‌表示。其中，语义依存图中的节点是句子中实际存在的词语，在词与词之间创建语义关系边。而概念语义图首先将句子转化为虚拟的概念节点，然后在概念节点之间创建语义关系边。&lt;a class=&#34;link&#34; href=&#34;#20241114192135CST&#34;&gt;图3&lt;/a&gt;展示了一个语义依存图分析结果示例。&lt;/p&gt;
+&lt;span id=&#34;20241114192135CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 78.4586&#34;&gt;
+  &lt;text transform=&#34;translate(332.563 73.5075)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;他&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(386.7541 73.5082)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;喜欢&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(452.9455 73.5078)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;下&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(507.1369 73.5081)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;象棋&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(359.6585 41.708)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;施事&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(413.8499 41.7075)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;受事&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;path d=&#34;M357.6013,39.2972c-5.5016,2.55-10.4339,6.7597-14.1888,12.2741&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;341.7313 47.306 344.1113 50.55 348.0985 51.089 340.431 56.7443 341.7313 47.306&#34;/&gt;
+  &lt;/g&gt;
+  &lt;path d=&#34;M397.9231,54.6808c-.4033-.7872-4.2345-7.9709-11.9687-12.9731&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;path d=&#34;M441.4194,39.6442c4.4449,2.5161,8.436,6.6482,11.4949,12.055&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;448.2785 50.852 452.2957 50.6275 454.9229 47.5801 455.4786 57.0914 448.2785 50.852&#34;/&gt;
+  &lt;/g&gt;
+  &lt;path d=&#34;M397.9231,54.8543c.4033-.7872,4.2345-7.9709,11.9687-12.9731&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;path d=&#34;M380.6831,8.9316c-20.085,5.7536-36.7835,21.4547-43.5063,42.3023&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;334.4599 47.5399 337.5875 50.0711 341.5805 49.5771 335.6057 56.9982 334.4599 47.5399&#34;/&gt;
+  &lt;/g&gt;
+  &lt;path d=&#34;M459.2882,56.1094c-5.2919-22.3366-21.8004-39.7059-42.4109-46.4818&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(385.9547 10.248)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;施事&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(476.796 42.7038)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 12px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;受事&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;path d=&#34;M504.3655,40.6405c4.4449,2.5161,8.436,6.6482,11.4949,12.055&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;511.2245 51.8483 515.2418 51.6237 517.869 48.5764 518.4247 58.0876 511.2245 51.8483&#34;/&gt;
+  &lt;/g&gt;
+  &lt;path d=&#34;M460.8692,55.8506c.4033-.7872,4.2345-7.9709,11.9687-12.9731&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;语义依存图分析结果示例&lt;/p&gt;
+&lt;p&gt;  以上的语义表示方式属于通用语义表示方式，也就是针对各种语言现象，设计统一的语义表示。除此之外，还有另一类语义分析用于专门处理具体的任务，如将自然语言表示的数据库查询转换成结构化查询语言（SQL）。例如，对于如表2-3所示的学生信息表，系统需要将用户的自然语言查询：年龄大于18岁的学生姓名, 转化为 SQL 语句：&lt;code&gt;select name where age &amp;gt; 18&lt;/code&gt;。&lt;/p&gt;
+&lt;span id=&#34;20241114192241CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;学号&lt;/th&gt;
+          &lt;th&gt;姓名&lt;/th&gt;
+          &lt;th&gt;年龄&lt;/th&gt;
+          &lt;th&gt;\(\cdots\)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1001&lt;/td&gt;
+          &lt;td&gt;张三&lt;/td&gt;
+          &lt;td&gt;18&lt;/td&gt;
+          &lt;td&gt;\(\cdots\)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1002&lt;/td&gt;
+          &lt;td&gt;李四&lt;/td&gt;
+          &lt;td&gt;19&lt;/td&gt;
+          &lt;td&gt;\(\cdots\)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;\(\vdots\)&lt;/td&gt;
+          &lt;td&gt;\(\vdots\)&lt;/td&gt;
+          &lt;td&gt;\(\vdots\)&lt;/td&gt;
+          &lt;td&gt;\(\vdots\)&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表3&amp;emsp;学生信息表&lt;/p&gt;
+&lt;h3 id=&#34;自然语言处理应用任务&#34;&gt;自然语言处理应用任务
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>自然语言处理（一）：自然语言处理概论</title>
