@@ -1386,7 +1386,7 @@
   \(S_2\to S_3,S_3\to S_2\)</p>
 <span id="20241106181930CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 322.2857">
+<svg id="_layer_1" data-name="layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 322.2857">
   <g>
     <g>
       <g>
@@ -1539,7 +1539,7 @@
 </h4><p>  通常，一个应用程序由若干个程序段组成，每一个程序段完成特定的功能，它们在执行时，都需要按照某种先后次序顺序执行，仅当前一程序段执行完后，才运行后一程序段。例如，在进行计算时，应先运行输入程序，用于输入用户的程序和数据；然后运行计算程序，对所输入的数据进行计算；最后才是运行打印程序，打印计算结果。我们用<strong>结点（Node）</strong>‌代表各程序段的操作（在<a class="link" href="#20241106181930CST">图1</a>中用圆圈表示），其中 \(I\) 代表输入操作， \(C\) 代表计算操作， \(P\) 为打印操作，用箭头指示操作的先后次序。这样，上述的三个程序段间就存在着这样的前趋关系： \(I_i\to C_i \to P_i\) ，其执行的顺序可用前趋图<a class="link" href="#20241106190822CST">图2</a>(a)描述。</p>
 <span id="20241106190822CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 104.7761">
+<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 104.7761">
   <text transform="translate(231.9902 100.8165)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: .004em;">(</tspan><tspan x="6.3716" y="0" style="letter-spacing: 0em;">a)程序的顺序执行</tspan></text>
   <text transform="translate(569.3856 100.8162)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">(</tspan><tspan x="6.2998" y="0" style="letter-spacing: -.018em;">b</tspan><tspan x="17.2261" y="0">)三条语句的顺序执行</tspan></text>
   <g>
@@ -1636,7 +1636,7 @@
   由<a class="link" href="#20241106194040CST">图3</a>可以看出，存在前趋关系 \(I_i \to C_i,I_i \to I_{i+1},C_i \to P_i, C_i \to C_{i+1},P_i\to P_{i+1}\) 而 \(I_{i+1}\) 和 \(C_i\) 及 \(P_{i-1}\) 是重叠的，即在 \(P_{i-1}\) 和 \(C_i\) 以及 \(I_{i+1}\) 之间，不存在前趋关系，可以并发执行。</p>
 <span id="20241106194040CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 261.7143">
+<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 261.7143">
   <g>
     <circle cx="138.3359" cy="22.9763" r="18.7937" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <g>
@@ -1810,7 +1810,7 @@
   可画出<a class="link" href="#20241106194815CST">图4</a>所示的前趋关系。可以看出： \(S_3\) 必须在a和b被赋值后方能执行； \(S_4\) 必须在 \(S_3\) 之后执行；但 \(S_1\) 和 \(S_2\) 则可以并发执行，因为它们彼此互不依赖。</p>
 <span id="20241106194815CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 261.7143">
+<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 261.7143">
   <g>
     <g>
       <circle cx="259.0145" cy="60.4944" r="18.7937" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -1893,7 +1893,7 @@
 </h4><p>  进程在运行过程中会经常发生状态的转换。例如，处于就绪状态的进程，在调度程序为之分配了处理机之后便可执行，相应地，其状态就由就绪态转变为执行态；正在执行的进程（当前进程）如果因分配给它的时间片己完而被剥夺处理机暂停执行时，其状态便由执行转为就绪：如果因发生某事件，致使当前进程的执行受阻（例如进程访问某临界资源，而该资源正被其它进程访问时），使之无法继续执行，则该进程状态将由执行转变为阻塞。<a class="link" href="#20241106211555CST">图5</a>示出了进程的三种基本状态，以及各状态之间的转换关系。</p>
 <span id="20241106211555CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 222.6533">
+<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 222.6533">
   <g>
     <text transform="translate(269.9534 201.4224)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">阻塞</tspan></text>
     <circle cx="287.9533" cy="193.7009" r="28.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -1941,7 +1941,7 @@
 <p>  进程的终止也要通过两个步骤：首先，是等待操作系统进行善后处理，最后将其PCB清零，并将PCB空间返还系统。当一个进程到达了自然结束点，或是出现了无法克服的错误，或是被操作系统所终结，或是被其他有终止权的进程所终结，它将进入终止状态。进入终止态的进程以后不能再执行，但在操作系统中依然保留一个记录，其中保存状态码和一些计时统计数据，供其他进程收集。一旦其他进程完成了对其信息的提取之后，操作系统将删除该进程，即将其PCB清零，并将该空白PCB返还系统。<a class="link" href="#20241106212101CST">图6</a>示出了增加了创建状态和终止状态后进程的五种状态及转换关系图。</p>
 <span id="20241106212101CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 222.6533">
+<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 222.6533">
   <g>
     <g style="isolation: isolate;">
       <text transform="translate(273.7752 201.4224)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">阻塞</tspan></text>
@@ -2028,7 +2028,7 @@
   (4) 静止阻塞🠖活动阻塞。处于<code>Blockeds</code>状态的进程若用激活原语<code>Active</code>激活后，进程将转变为<code>Blockeda</code>状态。<a class="link" href="#20241106215410CST">图7</a>示出了具有挂起状态的进程状态图。</p>
 <span id="20241106215410CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8303">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8303">
   <g style="isolation: isolate;">
     <g style="isolation: isolate;">
       <g style="isolation: isolate;">
@@ -2190,7 +2190,7 @@
   (4) 执行🠖终止：当一个进程已完成任务时，或是出现了无法克服的错误，或是被OS，或是被其他进程所终结，此时将进程的状态转换为终止状态。</p>
 <span id="20241106221112CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 337.8">
   <g style="isolation: isolate;">
     <g style="isolation: isolate;">
       <g style="isolation: isolate;">
@@ -2391,7 +2391,7 @@
 </h4><p>  在计算机系统中，对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为<strong>资源信息表</strong>或<strong>进程信息表</strong>，其中包含了资源或进程的标识、描述、状态等信息以及一批指针。通过这些指针，可以将同类资源或进程的信息表，或者同一进程所占用的资源信息表分类链接成不同的队列，便于操作系统进行查找。如<a class="link" href="#20241106223515CST">图9</a>所示，OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。本节着重介绍PCB，其它的表将在后面的篇章中陆续介绍。</p>
 <span id="20241106223515CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 343.619">
+<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 343.619">
   <text transform="translate(128.1422 55.4633)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">内存</tspan></text>
   <g>
     <rect x="96.1419" y="35.3997" width="100" height="100" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -2486,7 +2486,7 @@
   (1) 线性方式，即将系统中所有的PCB都组织在一张线性表中，将该表的首址存放在内存的一个专用区域中。该方式实现简单、开销小，但每次查找时都需要扫描整张表，因此适合进程数目不多的系统。<a class="link" href="#20241106225847CST">图10</a>示出了线性表的PCB组织方式。</p>
 <span id="20241106225847CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 182.8571">
+<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 182.8571">
   <g>
     <rect x="381.85" y="4.0794" width="100" height="175" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <line x1="381.85" y1="154.0794" x2="481.85" y2="154.0794" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -2507,7 +2507,7 @@
 <p>  (2) 链接方式，即把具有相同状态进程的PCB分别通过PCB中的链接字链接成一个队列。这样，可以形成就绪队列、若干个阻塞队列和空白队列等。对就绪队列而言，往往按进程的优先级将PCB从高到低进行排列，将优先级高的进程PCB排在队列的前面。同样，也可把处于阻塞状态进程的PCB根据其阻塞原因的不同，排成多个阻塞队列，如等待I/O操作完成的队列和等待分配内存的队列等。<a class="link" href="#20241106232851CST">图11</a>示出了一种链接队列的组织方式。</p>
 <span id="20241106232851CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name=" 图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 257.9048">
+<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 257.9048">
   <g>
     <text transform="translate(232.773 95.1697)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">就绪队列指针</tspan></text>
     <rect x="186.773" y="75.2174" width="200" height="25" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -2605,7 +2605,7 @@
 <p>  (3) 索引方式，即系统根据所有进程状态的不同，建立几张索引表，例如，就绪索引表、阻塞索引表等，并把各索引表在内存的首地址记录在内存的一些专用单元中。在每个索引表的表目中，记录具有相应状态的某个PCB在PCB表中的地址。<a class="link" href="#20241107110135CST">图12</a>示出了索引方式的PCB组织。</p>
 <span id="20241107110135CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 283.9143">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 283.9143">
   <g>
     <text transform="translate(203.2068 28.0545)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">执行指针</tspan></text>
     <rect x="164.2226" y="3.9143" width="149.9683" height="35.0476" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -2724,7 +2724,7 @@
 </h4><p>  为了形象地描述一个进程的家族关系而引入了<strong>进程图（Process Graph）</strong>。所谓进程图就是用于描述进程间关系的一棵有向树，如<a class="link" href="#20241107125722CST">图13</a>所示。图中的结点代表进程。在进程 \(P_i\) 创建了进程 \(P_j\) 之后，称 \(P_i\) 是 \(P_j\) 的<strong>父进程（Parent Process）</strong>， \(P_j\) 是 \(P_i\) 的<strong>子进程（Progeny Process）</strong>。这里可用一条由进程 \(P_i\) 指向进程 \(P_j\) 的有向边来描述它们之间的父子关系。创建父进程的进程称为<strong>祖先进程</strong>，这样便形成了一棵进程树，把树的根结点作为进程家族的<strong>祖先（Ancestor）</strong>。</p>
 <span id="20241107125722CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 329.7143">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 329.7143">
   <g>
     <circle cx="431.85" cy="22.5589" r="18.7937" transform="translate(320.1341 440.3183) rotate(-78.0188)" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <path id="MJX-8-TEX-I-1D434" d="M428.6911,27.7598c0,.293.2808.4639.8424.5128.2198,0,.3296.0671.3296.2014,0,.0122-.0122.0916-.0366.2381-.0366.1709-.0733.2808-.1099.3296-.0366.0488-.116.0733-.2381.0733h-.2198c-.1221,0-.3296-.0061-.6226-.0183-.293-.0122-.6837-.0183-1.172-.0183-.8668,0-1.4223.0122-1.6665.0366h-.1465c-.0855-.0855-.1282-.1526-.1282-.2014.0244-.3296.1038-.5433.2381-.6409h.2564c.8546-.0366,1.4772-.3418,1.8679-.9156.0733-.0733,1.1781-1.9351,3.3146-5.5854,2.1365-3.6504,3.2231-5.5,3.2597-5.5488.0855-.1465.232-.2198.4395-.2198h.4578c.0733.1099.1099.1709.1099.1831l.5128,5.9151c.3418,3.9434.525,5.9334.5494,5.97.061.1343.4578.2014,1.1903.2014.3052,0,.4578.061.4578.1831,0,.0244-.0183.1099-.0549.2564-.0366.1831-.0671.293-.0916.3296s-.1099.061-.2564.0733h-.2564c-.1343,0-.3724-.0061-.7142-.0183-.3418-.0122-.7875-.0183-1.3368-.0183-1.1476,0-1.8984.0122-2.2525.0366h-.2198c-.0733-.0733-.1099-.1282-.1099-.1648s.0122-.1465.0366-.3296c.0488-.1587.0855-.2564.1099-.293l.0733-.0549h.3663c.6593-.0366,1.0499-.1404,1.172-.3113l-.2198-2.7469h-4.3585l-.6226,1.0621c-.5006.8424-.7508,1.3368-.7508,1.4833ZM434.3314,24.3536c0-.1343-.0733-1.0866-.2198-2.8568-.1465-1.7702-.232-2.6615-.2564-2.6737l-.4944.7875c-.1953.3296-.5799.9828-1.1537,1.9595l-1.6482,2.7836,1.8862.0183c1.2575,0,1.8862-.0061,1.8862-.0183Z"/>
@@ -3447,7 +3447,7 @@
 </div><p>‌</p>
 <span id="20241110145609CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 331.4286">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 331.4286">
   <g>
     <circle cx="512.9574" cy="23.6556" r="18.7937" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <g>
@@ -3573,7 +3573,7 @@
 </div><p>‌</p>
 <span id="20241110163451CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 367.4286">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 367.4286">
   <text transform="translate(400.8324 85.287)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">共享数据</tspan></text>
   <text transform="translate(382.832 263.2583)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">一组操作过程</tspan></text>
   <g>
@@ -4159,7 +4159,7 @@
   在消息传递方式上，最简单的情况是单向传递。消息的传递也可以是双向的。<a class="link" href="#20241111000058CST">图16</a>示出了双向通信链路的通信方式。</p>
 <span id="20241111000058CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 170.2857">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 170.2857">
   <g>
     <text transform="translate(183.7256 99.4047)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">进程A</tspan></text>
     <circle cx="207.8816" cy="93.7709" r="34.2857" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -4259,7 +4259,7 @@
 </h4><p>  发送进程在利用发送原语发送消息之前，应先在自己的内存空间设置一发送区<code>a</code>，如<a class="link" href="#20241111134540CST">图17</a>所示，把待发送的消息正文、发送进程标识符、消息长度等信息填入其中，然后调用发送原语，把消息发送给目标（接收）进程。发送原语首先根据发送区<code>a</code>中所设置的消息长度<code>a.size</code>来申请一缓冲区<code>i</code>，接着，把发送区<code>a</code>中的信息复制到缓冲区<code>i</code>中。为了能将<code>i</code>挂在接收进程的消息队列<code>mq</code>上，应先获得接收进程的内部标识符<code>j</code>，然后将<code>i</code>挂在<code>j.mq</code>上。由于该队列属于临界资源，故在执行<code>insert</code>操作的前后都要执行<code>wait</code>和<code>signal</code>操作。最后，释放信号量<code>sm</code>表示消息发送完毕。</p>
 <span id="20241111134540CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 409.1429">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 409.1429">
   <rect x="90.0421" y="32.676" width="125" height="370.6274" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <text transform="translate(120.526 19.6157)" style="font-family: AdobeSongStd-Light-GBpc-EUC-H, &apos;Adobe Song Std&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0">进程A</tspan></text>
   <text transform="translate(112.5286 93.0442)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">send(</tspan><tspan x="47.1055" y="0" style="letter-spacing: -.024em;">B</tspan><tspan x="58.4634" y="0" style="letter-spacing: -.021em;">,</tspan><tspan x="63.8994" y="0" style="letter-spacing: 0em;">a)</tspan></text>
@@ -4492,7 +4492,7 @@
   (3)多对多模型，即将许多用户线程映射到同样数量或更少数量的内核线程上。如<a class="link" href="#20241111151915CST">图18</a>(c)所示，内核控制线程的数目可以根据应用进程和系统的不同而变化，可以比用户线程少，也可以与之相同。该模型结合上述两种模型的优点，它可以像一对一模型那样，使一个进程的多个线程并行地运行在多处理机系统上，也可像多对一模型那样，减少线程的管理开销和提高效率。</p>
 <span id="20241111151915CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 307.9564">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 307.9564">
   <g>
     <rect x="28.1429" y="39.7183" width="170.8571" height="182.2857" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <line x1="28.1429" y1="130.8612" x2="199" y2="130.8612" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -4690,7 +4690,7 @@
 </h4><p>  在仅设置了内核支持线程的OS中，一种可能的线程控制方法是，系统在建一个新进程时，便为它分配一个<strong>任务数据区PTDA（Per Task Data Area）</strong>，其中包括若干个线程控制块TCB空间，如<a class="link" href="#20241111152443CST">图19</a>所示。在每一个TCB中可保存线程标识符、优先级、线程运行的CPU状态等信息。虽然这些信息与用户级线程TCB中的信息相同，但现在却是被保存在内核空间中。</p>
 <span id="20241111152443CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 125.1429">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 125.1429">
   <rect x="288.1357" y="8.127" width="287.4286" height="114.2857" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <text transform="translate(293.5372 29.1439)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: .009em;">P</tspan><tspan x="11.4658" y="0" style="letter-spacing: 0em;">T</tspan><tspan x="23.0752" y="0" style="letter-spacing: -.045em;">D</tspan><tspan x="35.9814" y="0">A</tspan></text>
   <text transform="translate(362.1362 29.1436)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程资源</tspan></text>
@@ -4712,7 +4712,7 @@
 间系统时用户级线程的实现方法。</p>
 <span id="20241111155236CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 394.8186">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 394.8186">
   <g>
     <polyline points="719.9878 327.4139 719.9878 333.4139 713.9878 333.4139" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <line x1="707.9307" y1="333.4139" x2="202.1592" y2="333.4139" style="fill: none; stroke: #000; stroke-dasharray: 12.1143 6.0571; stroke-miterlimit: 10;"/>
@@ -5014,7 +5014,7 @@
             
         
         
-        <span>本图书馆累计发布了15篇文章 共23.3万字</span>
+        <span>本图书馆累计发布了15篇文章 共23.4万字</span>
         
     </section>
 
