@@ -131,7 +131,7 @@
 <meta property='og:description' content="文本的表示、自然语言处理的任务、基本问题和评价指标">
 <meta property='og:url' content='https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='自然语言处理' /><meta property='article:published_time' content='2024-11-13T01:11:04&#43;08:00'/><meta property='article:modified_time' content='2024-11-15T00:10:24&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='自然语言处理' /><meta property='article:published_time' content='2024-11-13T01:11:04&#43;08:00'/><meta property='article:modified_time' content='2024-11-15T14:31:19&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="自然语言处理（二）：自然语言处理基础">
 <meta name="twitter:description" content="文本的表示、自然语言处理的任务、基本问题和评价指标"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -988,7 +988,7 @@
 </svg>
 
             <time class="article-words">
-                21902 字
+                21920 字
             </time>
         </div>
 
@@ -1755,8 +1755,8 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
   首先，BPE通过<a class="link" href="#20241114164453CST">算法1</a>构造子词词表。</p>
 
   <span id="20241114164453CST"></span>
-  <hr style="width: 100%; height: 2px; background-color: #000000; margin:0 0;"/><strong>算法1（BPE中子词词表构造算法）</strong><div><strong>输入：</strong>大规生文本语料库；期望子词词表大小L<br /><strong>输出：</strong>子词词表<br /></div>
-  <hr style="width: 100%; height: 1px; background-color: #000000; margin:0 0;"/><div style="display: flex;">
+  <hr style="width: 100%; height: 2px; background-color: var(--article-font-color); margin:0 0;"/><strong>算法1（BPE中子词词表构造算法）</strong><div><strong>输入：</strong>大规生文本语料库；期望子词词表大小L<br /><strong>输出：</strong>子词词表<br /></div>
+  <hr style="width: 100%; height: 1px; background-color: var(--article-font-color); margin:0 0;"/><div style="display: flex;">
       <div style="margin-right: 10px;">1.</div>
       <div>将语料库中每个单词切分成字符作为子词；</div>
     </div><div style="display: flex;">
@@ -1781,7 +1781,7 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
       <div style="margin-right: 10px;">8.</div>
       <div><strong>end</strong></div>
     </div>
-  <hr style="width: 100%; height: 2px; background-color: #000000; margin:0 0;"/>
+  <hr style="width: 100%; height: 2px; background-color: var(--article-font-color); margin:0 0;"/>
 <p>  下面，通过一个例子说明如何构造子词词表。首先，假设语料库中存在下列 Python词典中的3个单词以及每个单词对应的频次。其中，每个单词结尾增加了一个<code>'&lt;/w&gt;'</code>字符，并将每个单词切分成独立的字符构成子词。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2362,7 +2362,67 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
   </g>
   <text transform="translate(456.8014 113.0121)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.003em;">S</tspan><tspan x="9.936" y="0">H</tspan></text>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;面向依存句法分析的标准弧转移算法中的三种动作</p>
-<span id="20241115000931CST"></span><div class="normal-table"></div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表9&emsp;基于标准弧转移算法的依存句法树生成动作序列示例</p>
+<span id="20241115000931CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>步骤</th>
+          <th>栈</th>
+          <th>队列</th>
+          <th>下一步动作</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表9&emsp;基于标准弧转移算法的依存句法树生成动作序列示例</p>
 
     </div>
 </section>
@@ -2402,7 +2462,7 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
 
 
         <span>
-            最后更新于 Nov 15, 2024 00:10 CST
+            最后更新于 Nov 15, 2024 14:31 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
