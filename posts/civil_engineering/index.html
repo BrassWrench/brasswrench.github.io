@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/civil_engineering/'>
 
-<link rel="stylesheet" href="/scss/style.min.d40135f789c3c52cf5f391730d992099c074e5b669f96a7d26f008e564e2d39c.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.d880575f1069ba6ee119587bb02594cb3b7e9aa8b16306acffdf45bfda6b59dc.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -580,13 +580,23 @@
     <aside class="sidebar right-sidebar sticky">
         
             
-                <form action="/search/" class="widget-search-form" >
-        <p>
-            <label>搜索</label>
-            <input name="keyword" required placeholder="输入关键词..." />
+                <div class="widget-search-form">
+    <p>
+        <label class="search-title">搜索当前页面</label>
+        <input name="keyword" required placeholder="输入关键词..." />
 
-            <button title="搜索">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <label class="now-total"></label>
+
+        <button class="search-up" title="上一个">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6 -6l6 6"></path> </svg>
+        </button>
+
+        <button class="search-down" title="下一个">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6l6 -6"></path> </svg>
+        </button>
+
+        <button class="search-icon" title="搜索当前页面">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="10" cy="10" r="7" />
   <line x1="21" y1="21" x2="15" y2="15" />
@@ -594,9 +604,164 @@
 
 
 
-            </button>
-        </p>
-    </form>
+        </button>
+    </p>
+</div>
+
+<script>
+
+    let lastSearch = '';
+    let currentIndex = -1; 
+    let searchResults = []; 
+
+    function searchContent() {
+
+        searchResults = [];
+        currentIndex = -1;
+
+        
+        document.querySelectorAll('.search-highlight').forEach(element => {
+            const parent = element.parentNode;
+            parent.replaceChild(document.createTextNode(element.textContent), element);
+            
+            parent.normalize();
+        });
+        document.querySelector('.now-total').textContent = '';
+
+        const query = document.querySelector('input[name="keyword"]').value;
+        lastSearch = query;
+        if (!query) {
+            
+            return;
+        }
+
+        
+        const regex = new RegExp(`(${query})`, 'gi');
+
+        
+        const articleContent = document.querySelector('.main');
+        if (!articleContent) {
+            return;
+        }
+
+        
+        function highlightTextAndCollectResults(node) {
+            if (node.nodeType === Node.TEXT_NODE && !node.hasChildNodes()) {
+                
+                const highlightedText = node.textContent.replace(regex, '<span class="search-highlight" style="background-color:#ffff00;">$&</span>');
+                if (highlightedText !== node.textContent) {
+                    
+                    const span = document.createElement('span');
+                    span.innerHTML = highlightedText;
+                    node.parentNode.replaceChild(span, node);
+
+                    Array.from(span.childNodes).forEach((child) => {
+                        if (regex.test(child.textContent)) {
+                            searchResults.push(child);
+                        }
+                    });
+                }
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                
+                Array.from(node.childNodes).forEach(highlightTextAndCollectResults);
+            }
+        }
+
+        
+        highlightTextAndCollectResults(articleContent);
+
+        
+        document.querySelector('.search-up').disabled = searchResults.length === 0;
+        document.querySelector('.search-down').disabled = searchResults.length === 0;
+
+        
+        if (searchResults.length > 0) {
+            currentIndex = 0;
+            updateSelectedElement();
+        }
+
+    }
+
+    function updateSelectedElement() {
+        
+        searchResults.forEach(result => result.style.backgroundColor = '');
+
+        
+        if (currentIndex >= 0 && currentIndex < searchResults.length) {
+            searchResults[currentIndex].style.backgroundColor = '#ff9632';
+            document.querySelector('.now-total').textContent = `${currentIndex + 1}/${searchResults.length}`;
+            searchResults[currentIndex].scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    
+    document.querySelector('.search-up').addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateSelectedElement();
+        }
+    });
+
+    document.querySelector('.search-down').addEventListener('click', function() {
+        if (currentIndex < searchResults.length - 1) {
+            currentIndex++;
+            updateSelectedElement();
+        }
+    });
+
+    
+    document.querySelector('input[name="keyword"]').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            if (currentIndex !== -1 && document.querySelector('input[name="keyword"]').value === lastSearch ) {
+                if (currentIndex < searchResults.length - 1) {
+                    currentIndex++;
+                    updateSelectedElement();
+                } else if (currentIndex === searchResults.length - 1) {
+                    currentIndex = 0;
+                    updateSelectedElement();
+                }
+            } else {
+                searchContent();
+            }
+            event.preventDefault(); 
+        }
+
+        if (event.key === 'Enter' && event.shiftKey) {
+            if(currentIndex !== -1 && document.querySelector('input[name="keyword"]').value === lastSearch) {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSelectedElement();
+                } else if (currentIndex === 0) {
+                    currentIndex = searchResults.length - 1;
+                    updateSelectedElement();
+                }
+            }
+            event.preventDefault(); 
+        }
+
+        if (event.key === 'Escape') {
+            
+            var searchInput = document.querySelector('input[name="keyword"]');
+            searchInput.value = '';
+            
+            searchContent();
+            event.preventDefault(); 
+        }
+
+    });
+
+    
+    document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && event.shiftKey && event.key === 'F') {
+            event.preventDefault();
+            document.querySelector('input[name="keyword"]').focus();
+        }
+    });
+
+    
+    document.querySelector('button[title="搜索当前页面"]').addEventListener('click', searchContent);
+
+</script>
             
         
             
