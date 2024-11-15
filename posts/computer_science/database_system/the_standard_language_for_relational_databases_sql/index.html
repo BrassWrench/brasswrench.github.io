@@ -131,7 +131,7 @@
 <meta property='og:description' content="关系数据库的标准查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/the_standard_language_for_relational_databases_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-15T23:00:53&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-15T23:56:23&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="关系数据库的标准查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1171,7 +1171,7 @@
 </svg>
 
             <time class="article-words">
-                13169 字
+                14801 字
             </time>
         </div>
 
@@ -1186,7 +1186,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 27 分钟
+                    阅读时长: 30 分钟
                 </time>
             </div>
         
@@ -2499,7 +2499,8 @@
   </tbody>
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表14</p>
-<p>  用于进行比较的运算符一般包括<code>=</code>（等于），<code>&gt;</code>（大于），<code>&lt;</code>（小于），<code>&gt;=</code>（大于等于），<code>&lt;=</code>（小于等于），<code>!=</code>或<code>&lt;&gt;</code>（不等于），<code>!&gt;</code>（不大于），<code>!&lt;</code>（不小于）。</p>
+<p>  (1)比较大小<br>
+  用于进行比较的运算符一般包括<code>=</code>（等于），<code>&gt;</code>（大于），<code>&lt;</code>（小于），<code>&gt;=</code>（大于等于），<code>&lt;=</code>（小于等于），<code>!=</code>或<code>&lt;&gt;</code>（不等于），<code>!&gt;</code>（不大于），<code>!&lt;</code>（不小于）。</p>
 <p>  <span id="20241112191011CST"></span><strong>例22</strong>：查询计算机科学系全体学生的名单。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2515,7 +2516,256 @@
 </div>
 </div><p>  关系数据库管理系统执行该查询的一种可能过程是：对<code>Student</code>表进行全表扫描，取 出一个元组，检查该元组在<code>Sdept</code>列的值是否等于<code>CS</code>，如果相等，则取出<code>Sname</code>列的值形成一个新的元组输出；否则跳过该元组，取下一个元组。重复该过程，直到处理完<code>Student</code>表的所有元组。<br>
   如果全校有数万个学生，计算机系的学生人数是全校学生的5%左右，可以在<code>Student</code>表的<code>Sdept</code>列上建立索引，系统会利用该索引找出<code>Sdept='CS'</code>的元组，从中取出<code>Sname</code>列值形成结果关系。这就避免了对<code>Student</code>表的全表扫描，加快了查询速度。注意如果学生较少，索引查找不一定能提高查询效率，系统仍会使用全表扫描。这由查询优化器按照某些规则或估计执行代价来作出选择。</p>
-
+<p>  <span id="20241115230437CST"></span><strong>例23</strong>：查询所有年龄在20岁以下的学生姓名及其年龄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241115230555CST"></span><strong>例24</strong>：查询考试成绩不及格的学生的学号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="o">&lt;</span><span class="mi">60</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这里使用了<code>DISTINCT</code>短语，当一个学生有多门课程不及格，他的学号也只列一次。</p>
+<p>  (2)确定范围<br>
+  谓词<code>BETWEEN···AND···</code>和<code>NOT BETWEEN···AND··</code>可以用来查找找属性值在（或不在）指定范围内的元组，其中<code>BETWEEN</code>后是范围的下限（即低值），<code>AND</code>后是范围的上限（即高值）。</p>
+<p>  <span id="20241115230904CST"></span><strong>例25</strong>：查询年龄在20〜23岁（包括20岁和23岁）之间的学生的姓名、系别和年龄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sdept</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241115230943CST"></span><strong>例26</strong>：查询年龄不在20〜23岁之间的学生姓名、系别和年龄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sdept</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  (3)确定集合<br>
+  谓词<code>IN</code>可以用来查找属性值属于指定集合的元组。</p>
+<p>  <span id="20241115231013CST"></span><strong>例27</strong>：查询计算机科学系（<code>CS</code>）、数学系（<code>MA</code>）和信息系（<code>IS</code>）学生的姓名和性别。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Ssex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="s1">&#39;MA&#39;</span><span class="p">,</span><span class="s1">&#39;IS&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  与<code>IN</code>相对的谓词是<code>NOT IN</code>，用于查找属性值不属于指定集合的元组。</p>
+<p>  <span id="20241115231122CST"></span><strong>例28</strong>：查询既不是计算机科学系、数学系，也不是信息系的学生的姓名和性别。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Ssex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="s1">&#39;MA&#39;</span><span class="p">,</span><span class="s1">&#39;IS&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  (4)字符匹配<br>
+  谓词<code>LIKE</code>可以用来进行字符串的匹配。其一般语法格式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="p">[</span><span class="k">NOT</span><span class="p">]</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;&lt;匹配串&gt;&#39;</span><span class="w"> </span><span class="p">[</span><span class="k">ESCAPE</span><span class="w"> </span><span class="s1">&#39;换码字符&#39;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  其含义是查找指定的属性列值与<code>&lt;匹配串&gt;</code> 相匹配的元组。<code>&lt;匹配串&gt;</code>可以是一个完整的字符串，也可以含有通配符<code>%</code>和<code>_</code>。其中：<br>
+  ◦<code>%</code>（百分号）代表任意长度（长度可以为<code>0</code>）的字符串。例如<code>a%b</code>表示以<code>a</code>开头，以<code>b</code>结尾的任意长度的字符串。如<code>acb</code>、<code>addgb</code>、<code>ab</code>等都满足该匹配串。<br>
+  ◦<code>_</code>（下横线）代表任意单个字符。例如<code>a_b</code>表示以<code>a</code>开头，以<code>b</code>结尾的长度为<code>3</code>的任意字符串。如<code>acb</code>、<code>afb</code>等都满足该匹配串。</p>
+<p>  <span id="20241115231437CST"></span><strong>例29</strong>：查询学号为<code>201215121</code>的学生的详细情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;201215121&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  等价于</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;201215121&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  如果<code>LIKE</code>后面的匹配串中不含通配符，则可以用<code>=</code>（等于）运算符取代<code>LIKE</code>谓词，用<code>!=</code>或<code>&lt;&gt;</code>（不等于）运算符取代<code>NOT LIKE</code>谓词。</p>
+<p>  <span id="20241115231729CST"></span><strong>例30</strong>：查询所有姓刘的学生的姓名、学号和性别。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sno</span><span class="p">,</span><span class="n">Ssex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;刘%&#39;</span><span class="err">；</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241115231831CST"></span><strong>例31</strong>：查询姓“欧阳”且全名为三个汉字的学生的姓名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;欧阳_&#39;</span><span class="err">；</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  注意：数据库字符集为ASCII时一个汉字需要两个<code>_</code>；当字符集为GBK时只需要一个<code>_</code>。</p>
+<p>  <span id="20241115231938CST"></span><strong>例32</strong>：查询名字中第二个字为“阳&quot;的学生的姓名和学号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;_阳%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241115232018CST"></span><strong>例33</strong>：查询所有不姓刘的学生的姓名、学号和性别。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sno</span><span class="p">,</span><span class="n">Ssex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;刘％&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  如果用户要查询的字符串本身就含有通配符<code>%</code>或<code>_</code>，这时就要使用<code>ESCAPE '&lt;换码字符&gt;'</code>短语对通配符进行转义了。</p>
+<p>  <span id="20241115234753CST"></span><strong>例34</strong>：查询DB_Design课程的课程号和学分。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Cno</span><span class="p">,</span><span class="n">Ccredit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="o">`</span><span class="n">DB</span><span class="err">\</span><span class="n">_Design</span><span class="o">`</span><span class="w"> </span><span class="k">ESCAPE</span><span class="w"> </span><span class="s1">&#39;\&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <code>ESCAPE '_'</code>表示为“<em>”为换码字符。这样匹配串中紧跟在后面的字符“</em>”不再具有通配符的含义，转义为普通的字符。</p>
+<p>  <span id="20241115234956CST"></span><strong>例35</strong>：查询以<code>'DB_'</code>开头，且倒数第三个字符为<code>'i'</code>的课程的详细情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;DB\_%i__&#39;</span><span class="w"> </span><span class="k">ESCAPE</span><span class="w"> </span><span class="s1">&#39;\&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这里的匹配串为<code>'DB\_%i__'</code>。第一个<code>_</code>前面有换码字符所以它被转义为普通的<code>_</code>字符。而<code>i</code>后面的两个<code>_</code>的前面均没有换码字符<code>\</code>，所以它们仍作为通配符。</p>
+<p>  (5)涉及空值的查询<br>
+  <span id="20241115235203CST"></span><strong>例36</strong>：某些学生选修课程后没有参加考试，所以有选课记录，但没有考试成绩。查询缺少成绩的学生的学号和相应的课程号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span><span class="w"> </span><span class="cm">/*分数 Grade 是空值*/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  注意这里的<code>IS</code>不能用等号（<code>=</code>）代替。</p>
+<p>  <span id="20241115235317CST"></span><strong>例37</strong>：查所有有成绩的学生学号和课程号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  (6)多重条件查询<br>
+  逻辑运算符<code>AND</code>和<code>OR</code>可用来连接多个查询条件。<code>AND</code>的优先级高于<code>OR</code>，但用户可以用括号改变优先级。</p>
+<p>  <span id="20241115235410CST"></span><strong>例38</strong>：查询计算机科学系年龄在20岁以下的学生姓名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sage</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
 </section>
 
@@ -2558,7 +2808,7 @@
 
 
         <span>
-            最后更新于 Nov 15, 2024 23:00 CST
+            最后更新于 Nov 15, 2024 23:56 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2730,7 +2980,7 @@
             
         
         
-        <span>本图书馆累计发布了15篇文章 共23.7万字</span>
+        <span>本图书馆累计发布了15篇文章 共23.9万字</span>
         
     </section>
 
