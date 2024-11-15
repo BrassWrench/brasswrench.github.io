@@ -646,6 +646,10 @@
 
         
         function highlightTextAndCollectResults(node) {
+
+            if (node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'svg') {
+                return;
+            }
             if (node.nodeType === Node.TEXT_NODE && !node.hasChildNodes()) {
                 
                 const highlightedText = node.textContent.replace(regex, '<span class="search-highlight" style="background-color:#ffff00;">$&</span>');
@@ -699,12 +703,18 @@
         if (currentIndex > 0) {
             currentIndex--;
             updateSelectedElement();
+        } else if (currentIndex === 0) {
+            currentIndex = searchResults.length - 1;
+            updateSelectedElement();
         }
     });
 
     document.querySelector('.search-down').addEventListener('click', function() {
         if (currentIndex < searchResults.length - 1) {
             currentIndex++;
+            updateSelectedElement();
+        } else if (currentIndex === searchResults.length - 1) {
+            currentIndex = 0;
             updateSelectedElement();
         }
     });
