@@ -131,7 +131,7 @@
 <meta property='og:description' content="关系数据库的标准查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/computer_science/database_system/the_standard_language_for_relational_databases_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-13T19:39:33&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-15T23:00:53&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="关系数据库的标准查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1290,11 +1290,11 @@
   (4)数据操纵语言（Data Manipulation Language, DML）。<br>
   它们分别用于定义模式、外模式、内模式和进行数据的存取与处置。当用户数据库投入运行后，如果需要修改模式，必须停止现有数据库的运行，转储数据，修改模式并编译后再重装数据库，十分麻烦。</p>
 <p>  SQL集数据定义语言、数据操纵语言、数据控制语言的功能于一体，语言风格统一，可以独立完成数据库生命周期中的全部活动，包括以下一系列操作要求：<br>
-  ◾定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。<br>
-  ◾对数据库中的数据进行查询和更新。<br>
-  ◾数据库重构和维护。<br>
-  ◾数据库安全性、完整性控制，以及事务控制。<br>
-  ◾嵌入式SQL和动态SQL定义。<br>
+  ◦定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。<br>
+  ◦对数据库中的数据进行查询和更新。<br>
+  ◦数据库重构和维护。<br>
+  ◦数据库安全性、完整性控制，以及事务控制。<br>
+  ◦嵌入式SQL和动态SQL定义。<br>
   这就为数据库应用系统的开发提供了良好的环境。特别是用户在数据库系统投入运行后还可根据需要随时地、逐步地修改模式，并不影响数据库的运行，从而使系统具有良好的可扩展性。<br>
   另外，在关系模型中实体和实体间的联系均用关系表示，这种数据结构的单一性带来了数据操作符的统一性，查找、插入、删除、更新等每一种操作都只需一种操作符，
 从而克服了非关系系统由于信息表示方式的多样性带来的操作复杂性。例如，在DBTG网状数据库系统中，需要两种插入操作符：<code>STORE</code>用来把记录存入数据库，<code>CONNECT</code>用来把记录插入系值（系值是网状数据库中记录之间的一种联系方式）以建立数据之间的联系。</p>
@@ -1433,9 +1433,9 @@
 <h2 id="学生课程数据库">学生—课程数据库
 </h2><p>  本章以学生—课程数据库为例来讲解SQL的数据定义、数据操纵、数据查询和数据控制语句。<br>
   为此，首先要定义一个学生—课程模式<code>S-T</code>（见<a class="link" href="#20241111223104CST">例1</a>）。学生-课程数据库中包括以下三个表，它们的定义见<a class="link" href="#20241111233348CST">例5</a>、<a class="link" href="#20241111233814CST">例6</a>和<a class="link" href="#20241111234007CST">例7</a>。<br>
-  ◾学生表：Student(<u>Sno</u>,Sname,Ssex,Sage,Sdept)<br>
-  ◾课程表：Course(<u>Cno</u>,Cnme,Cpno,Ccredit)<br>
-  ◾学生选课表：SC(<u>Sno</u>,<u>Cno</u>,Grade)<br>
+  ◦学生表：Student(<u>Sno</u>,Sname,Ssex,Sage,Sdept)<br>
+  ◦课程表：Course(<u>Cno</u>,Cnme,Cpno,Ccredit)<br>
+  ◦学生选课表：SC(<u>Sno</u>,<u>Cno</u>,Grade)<br>
   关系的主码加下划线表示。各个表中的数据示例如<a class="link" href="#20241111214851CST">表3</a>、<a class="link" href="#20241111215950CST">表4</a>、<a class="link" href="#20241111220809CST">表5</a>所示。</p>
 <span id="20241111214851CST"></span><div class="normal-table"><p style="margin-bottom: 0;">&emsp;&emsp;Student</p>
 <div class="table-wrapper"><table>
@@ -2558,7 +2558,7 @@
 
 
         <span>
-            最后更新于 Nov 13, 2024 19:39 CST
+            最后更新于 Nov 15, 2024 23:00 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 13 Nov 2024 19:39:33 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/sql/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 15 Nov 2024 23:00:53 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/sql/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
         <link>https://www.brasswrench.com/posts/computer_science/database_system/the_standard_language_for_relational_databases_sql/</link>
         <pubDate>Mon, 11 Nov 2024 17:45:02 +0800</pubDate>
@@ -102,11 +102,11 @@
   (4)数据操纵语言（Data Manipulation Language, DML）。&lt;br&gt;
   它们分别用于定义模式、外模式、内模式和进行数据的存取与处置。当用户数据库投入运行后，如果需要修改模式，必须停止现有数据库的运行，转储数据，修改模式并编译后再重装数据库，十分麻烦。&lt;/p&gt;
 &lt;p&gt;  SQL集数据定义语言、数据操纵语言、数据控制语言的功能于一体，语言风格统一，可以独立完成数据库生命周期中的全部活动，包括以下一系列操作要求：&lt;br&gt;
-  ◾定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。&lt;br&gt;
-  ◾对数据库中的数据进行查询和更新。&lt;br&gt;
-  ◾数据库重构和维护。&lt;br&gt;
-  ◾数据库安全性、完整性控制，以及事务控制。&lt;br&gt;
-  ◾嵌入式SQL和动态SQL定义。&lt;br&gt;
+  ◦定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。&lt;br&gt;
+  ◦对数据库中的数据进行查询和更新。&lt;br&gt;
+  ◦数据库重构和维护。&lt;br&gt;
+  ◦数据库安全性、完整性控制，以及事务控制。&lt;br&gt;
+  ◦嵌入式SQL和动态SQL定义。&lt;br&gt;
   这就为数据库应用系统的开发提供了良好的环境。特别是用户在数据库系统投入运行后还可根据需要随时地、逐步地修改模式，并不影响数据库的运行，从而使系统具有良好的可扩展性。&lt;br&gt;
   另外，在关系模型中实体和实体间的联系均用关系表示，这种数据结构的单一性带来了数据操作符的统一性，查找、插入、删除、更新等每一种操作都只需一种操作符，
 从而克服了非关系系统由于信息表示方式的多样性带来的操作复杂性。例如，在DBTG网状数据库系统中，需要两种插入操作符：&lt;code&gt;STORE&lt;/code&gt;用来把记录存入数据库，&lt;code&gt;CONNECT&lt;/code&gt;用来把记录插入系值（系值是网状数据库中记录之间的一种联系方式）以建立数据之间的联系。&lt;/p&gt;
@@ -245,9 +245,9 @@
 &lt;h2 id=&#34;学生课程数据库&#34;&gt;学生—课程数据库
 &lt;/h2&gt;&lt;p&gt;  本章以学生—课程数据库为例来讲解SQL的数据定义、数据操纵、数据查询和数据控制语句。&lt;br&gt;
   为此，首先要定义一个学生—课程模式&lt;code&gt;S-T&lt;/code&gt;（见&lt;a class=&#34;link&#34; href=&#34;#20241111223104CST&#34;&gt;例1&lt;/a&gt;）。学生-课程数据库中包括以下三个表，它们的定义见&lt;a class=&#34;link&#34; href=&#34;#20241111233348CST&#34;&gt;例5&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111233814CST&#34;&gt;例6&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241111234007CST&#34;&gt;例7&lt;/a&gt;。&lt;br&gt;
-  ◾学生表：Student(&lt;u&gt;Sno&lt;/u&gt;,Sname,Ssex,Sage,Sdept)&lt;br&gt;
-  ◾课程表：Course(&lt;u&gt;Cno&lt;/u&gt;,Cnme,Cpno,Ccredit)&lt;br&gt;
-  ◾学生选课表：SC(&lt;u&gt;Sno&lt;/u&gt;,&lt;u&gt;Cno&lt;/u&gt;,Grade)&lt;br&gt;
+  ◦学生表：Student(&lt;u&gt;Sno&lt;/u&gt;,Sname,Ssex,Sage,Sdept)&lt;br&gt;
+  ◦课程表：Course(&lt;u&gt;Cno&lt;/u&gt;,Cnme,Cpno,Ccredit)&lt;br&gt;
+  ◦学生选课表：SC(&lt;u&gt;Sno&lt;/u&gt;,&lt;u&gt;Cno&lt;/u&gt;,Grade)&lt;br&gt;
   关系的主码加下划线表示。各个表中的数据示例如&lt;a class=&#34;link&#34; href=&#34;#20241111214851CST&#34;&gt;表3&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111215950CST&#34;&gt;表4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111220809CST&#34;&gt;表5&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241111214851CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;p style=&#34;margin-bottom: 0;&#34;&gt;&amp;emsp;&amp;emsp;Student&lt;/p&gt;
 &lt;table&gt;
