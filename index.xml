@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 15 Nov 2024 21:36:08 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 15 Nov 2024 22:00:37 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -1225,8 +1225,7 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
 &lt;/h3&gt;&lt;p&gt;  与文本分类问题不同，在结构预测问题中，输出类别之间具有较强的相互关
 联性。例如，在词性标注任务中，一句话中不同词的词性之间往往相互影响，如副词之后往往出现动词或形容词，形容词之后往往跟着名词等。结构预测任务通常是自然语言处理独有的。下面介绍三种典型的结构预测问题——序列标注、序列分割和图结构生成。&lt;/p&gt;
 &lt;h4 id=&#34;序列标注&#34;&gt;序列标注
-&lt;/h4&gt;&lt;p&gt;  所谓&lt;strong&gt;序列标注（Sequence Labeling）&lt;/strong&gt;，指的是为输入文本序列中的每个词标注相应的标签，如词性标注是为每个词标注一个词性标签，包括名词、动词和形容词等。其中，输入词和输出标签数目相同且一一对应。表2-7展示了一个序列标注
-（词性标注）示例。序列标注问题可以简单地看成多个独立的文本分类问题，即针 对每个词提取特征，然后进行标签分类，并不考虑输出标签之间的关系。条件随机场（Conditional Random Field，CRF）模型是一种被广泛应用的序列标注模型，其不但考虑了每个词属于某一标签的概率（发射概率），还考虑了标签之间的相互关系（转移概率）。循环神经网络模型也隐含地建模了标签之间的相互关系，为了进一步提高准确率，也可以在循环神经网络之上再使用条件随机场模型。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  所谓&lt;strong&gt;序列标注（Sequence Labeling）&lt;/strong&gt;，指的是为输入文本序列中的每个词标注相应的标签，如词性标注是为每个词标注一个词性标签，包括名词、动词和形容词等。其中，输入词和输出标签数目相同且一一对应。&lt;a class=&#34;link&#34; href=&#34;#20241114210143CST&#34;&gt;表7&lt;/a&gt;展示了一个序列标注（词性标注）示例。序列标注问题可以简单地看成多个独立的文本分类问题，即针 对每个词提取特征，然后进行标签分类，并不考虑输出标签之间的关系。条件随机场（Conditional Random Field，CRF）模型是一种被广泛应用的序列标注模型，其不但考虑了每个词属于某一标签的概率（发射概率），还考虑了标签之间的相互关系（转移概率）。循环神经网络模型也隐含地建模了标签之间的相互关系，为了进一步提高准确率，也可以在循环神经网络之上再使用条件随机场模型。&lt;/p&gt;
 &lt;span id=&#34;20241114210143CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1251,7 +1250,7 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表7&amp;emsp;序列标注示例&lt;/p&gt;
 &lt;h4 id=&#34;序列分割&#34;&gt;序列分割
-&lt;/h4&gt;&lt;p&gt;  除了序列标注问题，还有很多自然语言处理问题可以被建模为序列分割问题，如分词问题，就是将字符序列切分成若干连续的子序列；命名实体识别问题，也是在文本序列中切分出子序列，并为每个子序列赋予一个实体的类别，如人名、地名和机构名等。可以使用专门的序列分割模型对这些问题进行建模，不过为了简化，往往将它们转换为序列标注任务统一加以解决。如命名实体识别，序列标注的输出标签可以为一个实体的开始（B-XXX）、中间（I-XXX）或者非实体（O）等，其中B代表开始（Begin）、I代表中间（Inside）、O代表其他（Other）、XXX代表实体的类型，如人名（PER）、地名（LOC）和机构名（0RG）等。分词问题也可以转换为序列标注问题，即为每个字符标注一个标签，指明该字符是一个词的开始（B）或者中间（I）等。&lt;a class=&#34;link&#34; href=&#34;#20241114210606CST&#34;&gt;表8&lt;/a&gt;展示了使用序列标注方法解决序列分割（分词和命名实体识别）问题示例。其中，对于输入：&amp;ldquo;我爱北京天安门。”分词输出结果是：“我 爱 北京 天安门 。”，命名实体识别输出结果是：“北京天安门=LOC”。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  除了序列标注问题，还有很多自然语言处理问题可以被建模为序列分割问题，如分词问题，就是将字符序列切分成若干连续的子序列；命名实体识别问题，也是在文本序列中切分出子序列，并为每个子序列赋予一个实体的类别，如人名、地名和机构名等。可以使用专门的序列分割模型对这些问题进行建模，不过为了简化，往往将它们转换为序列标注任务统一加以解决。如命名实体识别，序列标注的输出标签可以为一个实体的开始（B-XXX）、中间（I-XXX）或者非实体（O）等，其中B代表开始（Begin）、I代表中间（Inside）、O代表其他（Other）、XXX代表实体的类型，如人名（PER）、地名（LOC）和机构名（ORG）等。分词问题也可以转换为序列标注问题，即为每个字符标注一个标签，指明该字符是一个词的开始（B）或者中间（I）等。&lt;a class=&#34;link&#34; href=&#34;#20241114210606CST&#34;&gt;表8&lt;/a&gt;展示了使用序列标注方法解决序列分割（分词和命名实体识别）问题示例。其中，对于输入：&amp;ldquo;我爱北京天安门。”分词输出结果是：“我 爱 北京 天安门 。”，命名实体识别输出结果是：“北京天安门=LOC”。&lt;/p&gt;
 &lt;span id=&#34;20241114210606CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1647,6 +1646,93 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
   &lt;text transform=&#34;translate(578.912 343.7405)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Decoder&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;编码器—解码器模型示例&lt;/p&gt;
 &lt;p&gt;  除了机器翻译，还有很多自然语言处理问题可以被建模为序列到序列问题，如对话系统中，用户话语可被视为输入序列，机器的回复则可被视为输出序列，甚至文本分类问题也可以被建模为序列到序列问题。首先，使用编码器对输入文本进行表示，然后，解码器只输出一个“词”，即文本所属的类别。结构预测问题也类似，首先，也需要使用编码器对输入文本进行表示，然后，在处理序列标注问题时，使用解码器生成输出标签序列（需要保证输出序列与输入序列长度相同）；在处理序列分割问题时，直接输出结果序列；在处理图结构生成问题时，需要将图表示的结果进行序列化，即通过一定的遍历顺序，将图中的节点和边转换为一个序列，然后再执行解码操作。不过，由于输入和输出有较强的对应关系，而序列到序列模型很难保证这种对应关系，所以结构预测问题较少直接使用序列到序列模型加以解决。但是无论如何，由于序列到序列模型具备强大的建模能力，其已成为自然语言处理的大一统框架，越来越多的问题都可以尝试使用该模型加以解决。也就是说，可以将复杂的自然语言处理问题转化为编码、解码两个子问题，然后就可以分别使用独立的模型建模了。&lt;/p&gt;
+&lt;h2 id=&#34;评价指标&#34;&gt;评价指标
+&lt;/h2&gt;&lt;p&gt;  由于自然语言处理任务的多样性以及评价的主观性，因此很难使用单一的评
+价指标衡量所有任务的性能，所以针对不同类型的任务，往往采用不同的评价方法。对评价方法的准确把握，有助于深入理解各项自然语言处理任务。&lt;br&gt;
+  &lt;strong&gt;准确率（Accuracy）&lt;/strong&gt;‌是最简单、直观的评价指标，经常被应用于文本分类等问题。其计算公式为：&lt;/p&gt;
+&lt;span id=&#34;20241115213730CST&#34;&gt;&lt;/span&gt;\[
+\text{ACC}^{\text{pos}}=\frac{\text{正确分类的文本数}}{\text{测试文本总数}}
+\tag{18}
+    \]
+&lt;p&gt;  词性标注等序列标注问题也可以采用准确率进行评价，即:&lt;/p&gt;
+&lt;span id=&#34;20241115213813CST&#34;&gt;&lt;/span&gt;\[
+\text{ACC}^{\text{pos}}=\frac{\text{正确标注的词数}}{\text{测试文本中词的总数}}
+\tag{19}
+    \]
+&lt;p&gt;  但是，并非全部的序列标注问题都可以采用准确率进行评价，如在将分词、命名实体识别等序列分割问题转化为序列标注问题后，就不应该使用准确率进行评价。以命名实体识别为例，如果采用按词计算的准确率，则很多非命名实体（相应词对应的类别为&lt;code&gt;O&lt;/code&gt;）也被计入准确率的计算之中。另外，如果错标了部分词，那么命名实体识别结果就是错误的，但是按照词准确率计算的话，仍然有部分词被认为分类正确了。如&lt;a class=&#34;link&#34; href=&#34;#20241115214019CST&#34;&gt;表10&lt;/a&gt;中的例子所示，按照词（此处为汉字）计算，在 \(8\) 个输入词中，仅仅预测错了 \(1\) 个（三），则准确率为 \(8/7=0.875\) ，这显然是不合理的。分词等其他序列分割问题的评价也存在类似的问题。&lt;/p&gt;
+&lt;span id=&#34;20241115214019CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;输入&lt;/th&gt;
+          &lt;th&gt;张&lt;/th&gt;
+          &lt;th&gt;三&lt;/th&gt;
+          &lt;th&gt;是&lt;/th&gt;
+          &lt;th&gt;哈&lt;/th&gt;
+          &lt;th&gt;尔&lt;/th&gt;
+          &lt;th&gt;滨&lt;/th&gt;
+          &lt;th&gt;人&lt;/th&gt;
+          &lt;th&gt;。&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;正确标注序列&lt;/td&gt;
+          &lt;td&gt;B-PER&lt;/td&gt;
+          &lt;td&gt;I-PER&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt;B-LOC&lt;/td&gt;
+          &lt;td&gt;I-LOC&lt;/td&gt;
+          &lt;td&gt;I-LOC&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;预测标注序列&lt;/td&gt;
+          &lt;td&gt;B-PER&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt;B-LOC&lt;/td&gt;
+          &lt;td&gt;I-LOC&lt;/td&gt;
+          &lt;td&gt;I-LOC&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+          &lt;td&gt;O&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表10&amp;emsp;命名体识别评价示例&lt;/p&gt;
+&lt;p&gt;  那么，如何更合理地评价序列分割问题的性能呢？这就需要引入&lt;strong&gt;F值（F-Measure或F-Score）&lt;/strong&gt;‌评价指标，其是精确率（Precision）和召回率（Recall）的加权调和平均，具体公式为&lt;/p&gt;
+&lt;span id=&#34;20241115214510CST&#34;&gt;&lt;/span&gt;\[
+\text{F值}=\frac{(\beta^2+1)PR}{\beta^2(P+R)}
+\tag{20}
+    \]
+&lt;p&gt;  式中， \(\beta\) 是加权调和参数；\(P\) 是精确率， \(R\) 是召回率。当 \(\beta=1\) 时，即精确率和召回率相同，此时F值又称 \(\text{F}_1\) 值，具体公式为&lt;/p&gt;
+&lt;span id=&#34;20241115214710CST&#34;&gt;&lt;/span&gt;\[
+\text{F}_1=\frac{2PR}{P+R}
+\tag{21}
+    \]
+&lt;p&gt;  在命名实体识别问题中，精确率和召回率的定义分别为:&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;20241115214736CST&#34;&gt;&lt;/span&gt;\[
+P=\frac{\text{正确识别的命名实体树木}}{\text{识别出的命名实体总数}}
+\tag{22}
+    \]
+&lt;span id=&#34;20241115214802CST&#34;&gt;&lt;/span&gt;\[
+R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实体的总数}}
+\tag{23}
+    \]&lt;/p&gt;
+&lt;p&gt;  仍以&lt;a class=&#34;link&#34; href=&#34;#20241115214019CST&#34;&gt;表10&lt;/a&gt;中的示例为例，其中，“正确识别的命名实体数目”为 \(1\) （“哈尔滨”），“识别出的命名实体总数”为 \(2\) （&amp;ldquo;张”和“哈尔滨”），“测试文本中命名实体的总数”为 \(2\) （&amp;ldquo;张三”和“哈尔滨”），那么此时精确率和召回率皆为 \(1/2 = 0.5\) ，最终的 \(\text{F}_1\) 。与基于词计算的准确率（ \(0.875\) ）相比，该值更为合理了。&lt;br&gt;
+  理解了准确率和F值两种评价指标的区别和联系后，就可以很容易地为一个自然语言处理任务选择合适的评价指标。例如，在评价依存句法分析时（分析结果是一棵句法依存树），由于正确的标注结果为每个词都赋予了一个正确的父节点，因此可以使用以词为单位的准确率对依存句法分析结果进行评价，以表明有多大比例的词正确地找到了父节点。不过，评价指标通常不被直接称作准确率，而使用UAS （Unlabeled Attachment Score）指标，即词的父节点被正确识别的准确率。另外，在考虑一个词与父节点的关系时，则使用LAS（Labeled Attachment Score）指标进行评价，即词的父节点以及与父节点的句法关系都被正确识别的准确率。而在对语义依存图任务进行评价时，由于每个词的父节点的个数不确定，则无法使用准确率进行评价，此时就需要使用F值了，即以图中的弧为单位，计算 其识别的精确率和召回率，然后计算F值。与依存句法分析一样，F值也分为考虑语义关系和不考虑语义关系两种情况。类似地，短语结构句法分析也无法使用 准确率进行评价，可以使用句法结构中包含短语（包括短语类型及短语所覆盖的范围）的F值进行评价。&lt;br&gt;
+  虽然准确率和F值可以用来对标准答案比较明确的任务进行评价，但是很多自然语言处理问题的答案并不明确，或者说并不唯一。如语言模型问题，在给定历史文本预测下一个词时，除了在语料库中出现的词，还有许多其他词也是合理的。因此，不能简单地使用准确率进行评价，所以才引入了困惑度这一评价指标。&lt;br&gt;
+  对机器翻译系统的评价也类似，测试数据中的参考译文并非唯一正确的答案,目标语言翻译结果只要与源语言语义相同，其表达方式可以非常的灵活。BLEU值是最常用的机器翻译自动评价指标，其计算方法是统计机器译文与参考译文（可以不止一个）中N-gram匹配的数目占机器译文中所有N-gram总数的比率，即N-gram的精确率。其中N的取值不易过大，也不易过小。过大的N会导致机器译文与参考译文中共现的N-gram过少，而过小的N会无法衡量机器译文中词语的顺序信息，所以一般N最大取4。另外，由于此评价方法仅考虑了精确率，而忽视了召回率，所以其倾向于较短的翻译。因此，BLEU值引入了一个长度惩罚因子，鼓励机器译文中单词数目尽量接近参考译文中的数目。最终，BLEU值的区间是0〜1，得分越高表明机器翻译系统的译文质量越好。&lt;br&gt;
+  对人机对话系统的评价，虽然也可以利用历史上人人对话数据，采用BLEU值等指标，但是由于回复的开放性，这种自动评价的结果很难保证公正、客观。因为与机器翻译类似，人机对话系统的机器回复也没有唯一的标准答案，但比机器翻译评价更困难的是，人机对话系统的回复甚至都没有需要与输入语义相同这一约束，也就是说人机对话系统的答案是开放式的。此外，由于对话的交互性，不能简单地通过一轮人机对话就对系统进行评价。以上这些问题都给人机对话系统的自动评价带来了极大的挑战。因此，在评价一个人机对话系统时，往往采用人工评价的方式，即通过人与系统进行多轮对话后，最终给出一个总的或多个维度（流畅度、相关度和准确性等）的主观分数。由于评分的主观性，人工评价的一致性往往又比较低，也就是说不同人打分可能差异比较大，为了消除这种差异性,又需要多人进行评价并最终取一个平均分数。因此，人工评价的代价往往非常高,很难在系统开发的过程中多次进行。综上，人机对话系统的评价方法仍是目前自然语言处理领域一个非常棘手的开放性问题，并没有很好地被解决。&lt;/p&gt;
+&lt;h2 id=&#34;小结&#34;&gt;小结
+&lt;/h2&gt;&lt;p&gt;  本篇首先介绍了词的向量表示方法，从传统的独热向量表示、分布式向量表
+示到最新的词向量和词袋表示。然后，介绍了传统的N元语言模型，分词、词性标注等自然语言处理基础任务，其中以BPE为代表的子词切分经常被用于现代的预训练语言模型中。接着，简单介绍了信息抽取、情感分析等自然语言处理应用任务。以上任务看似纷繁复杂，但是基本可以归纳为三类问题，即：文本分类、结构预测和序列到序列问题，并可以使用相应的模型加以解决。最后，介绍了如何评价一个自然语言处理任务。&lt;/p&gt;
+&lt;blockquote&gt;
+    &lt;p&gt;
+
+&amp;emsp;&amp;emsp;我再也不会给你写信了，因为我终于意识到我们的联络不过是巨大的幻觉。事实上，我们每个人都不过是在给自己写信，我毫无疑问地深深地爱着你，但我又绝望地发现你远离我时，我爱你更深。
+
+&lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;安德烈·纪德, &lt;/span&gt;&lt;cite&gt;《窄门》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
         <item>
@@ -7280,9 +7366,12 @@ A \cup A^c = S，即 A \cup \complement_SA=S
 &lt;/h4&gt;&lt;p&gt;  当一个线程完成了自己的任务（工作）后，或是线程在运行中出现异常情况而须被强行终止时，由终止线程通过调用相应的函数（或系统调用）对它执行终止操作。但有些线程（主要是系统线程），它们一旦被建立起来之后，便一直运行下去而不被终止。在大多数的OS中，线程被中止后并不立即释放它所占有的资源，只有当进程中的其它线程执行了分离函数后，被终止的线程才与资源分离，此时的资源才能被其它线程利用。&lt;br&gt;
   虽已被终止但尚未释放资源的线程仍可以被需要它的线程所调用，以使被终止线程重新恢复运行。为此，调用线程须调用一条被称为“等待线程终止”的连接命令来与该线程进行连接。如果在一个调用者线程调用“等待线程终止”的连接命令，试图与指定线程相连接时，若指定线程尚未被终止，则调用连接命令的线程将会阻塞，直至指定线程被终止后，才能实现它与调用者线程的连接并继续执行：若指定线程已被终止，则调用者线程不会被阻塞而是继续执行。&lt;/p&gt;
 &lt;blockquote&gt;
-    &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
+    &lt;p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
 人生只若如初见，何事秋风悲画扇。
 &lt;/div&gt;
+
 &lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;纳兰性德, &lt;/span&gt;&lt;cite&gt;《木兰花·拟古决绝词柬友》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
@@ -11019,9 +11108,12 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;/table&gt;
 &lt;/div&gt;
 &lt;blockquote&gt;
-    &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
+    &lt;p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
 无言是最大的轻蔑。
 &lt;/div&gt;
+
 &lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;刘慈欣, &lt;/span&gt;&lt;cite&gt;《三体Ⅲ：死神永生》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
@@ -11313,9 +11405,12 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   为了能够刻画大规模数据中复杂的语言现象，还要求所使用的深度学习模型
 容量足够大。基于自注意力的Transformer模型显著地提升了对于自然语言的建模能力，是近年来具有里程碑意义的进展之一。要想在可容忍的时间内，在如此大规模的数据上训练一个超大规模的Transformer模型，也离不开以GPU、TPU为代表的现代并行计算硬件。可以说，超大规模预训练语言模型完全依赖“蛮力”，在大数据、大模型和大算力的加持下，使自然语言处理取得了长足的进步。如OpenAI推出的GPT-3，是一个具有1750亿个参数的巨大规模，无须接受任何特定任务的训练，便可以通过小样本学习完成十余种文本生成任务，如问答、风格迁移、网页生成和自动编曲等。目前，预训练模型已经成为自然语言处理的新范式。&lt;/p&gt;
 &lt;blockquote&gt;
-    &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
+    &lt;p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
 人类不感谢罗辑。
 &lt;/div&gt;
+
 &lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;刘慈欣, &lt;/span&gt;&lt;cite&gt;《三体Ⅲ：死神永生》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
@@ -13364,9 +13459,12 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   (2) 简单用户。数据库的多数最终用户都是简单用户，其主要工作是查询和更新数据库，一般都是通过应用程序员精心设计并具有友好界面的应用程序存取数据库。银行的职员、航空公司的机票预订工作人员、宾馆总台服务员等都属于这类用户。&lt;br&gt;
   (3) 复杂用户。复杂用户包括工程师、科学家、经济学家、科学技术工作者等具有较高科学技术背景的人员。这类用户一般都比较熟悉数据库管理系统的各种功能，能够直接使用数据库语言访问数据库，甚至能够基于数据库管理系统的应用程序接口编制自己的应用程序。&lt;/p&gt;
 &lt;blockquote&gt;
-    &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
+    &lt;p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
 我们都是阴沟里的虫子，但总还是得有人仰望星空。
 &lt;/div&gt;
+
 &lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;刘慈欣, &lt;/span&gt;&lt;cite&gt;《三体Ⅰ：地球往事》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
@@ -15670,9 +15768,12 @@ f_1(t_0)=-f_2(t_0)
     \]
 &lt;p&gt;  其中 \(s_i\) 是曲线的角点所对应的参数，曲线在每一段区间 \((s_i,s_{i+1})\) 上是连续可微的。在上述意义下，定理16对于分段连续可微的简单闭曲线仍然是成立的。实际上，在每个角点引入一小段弧线，让整体连续可微再取极限即可直接套用定理16。&lt;/p&gt;
 &lt;blockquote&gt;
-    &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
+    &lt;p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
 给岁月以文明，而不是给文明以岁月。
 &lt;/div&gt;
+
 &lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;刘慈欣, &lt;/span&gt;&lt;cite&gt;《三体Ⅱ：黑暗森林》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
@@ -16665,9 +16766,12 @@ b_1&#39;(t) &amp; b_2&#39;(t)
     \]
 &lt;p&gt;  证毕。&lt;/p&gt;
 &lt;blockquote&gt;
-    &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
+    &lt;p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
 失去人性，失去很多；失去兽性，失去一切。
 &lt;/div&gt;
+
 &lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;刘慈欣, &lt;/span&gt;&lt;cite&gt;《三体Ⅲ：死神永生》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
@@ -18637,9 +18741,12 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图12&amp;emsp;在传统OS和微内核OS中的上下文切换&lt;/p&gt;
 &lt;p&gt;  为了改善运行效率，可以重新把一些常用的操作系统基本功能由服务器移入微内核中。这样可使客户对常用操作系统功能的请求所发生的用户/内核模式和上下文的切换的次数由4次或8次降为2次。但这又会使微内核的容量明显地增大，在小型接口定义和适应性方面的优点也有所下降，并提高了微内核的设计代价。&lt;/p&gt;
 &lt;blockquote&gt;
-    &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
+    &lt;p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
 弱小和无知不是生存的障碍，傲慢才是。
 &lt;/div&gt;
+
 &lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;刘慈欣, &lt;/span&gt;&lt;cite&gt;《三体Ⅲ：死神永生》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
@@ -19650,9 +19757,12 @@ p_{ij}\left(t+h\right)=\sum_{k \in S}p_{ik}\left(t\right)p_{kj}\left(h\right)
     \]
 &lt;p&gt;  注意上式的极限和求和不一定是能交换的（ \(\displaystyle\sum_{k \ne i}\frac{p_{kj}\left(h\right)}{h}\) 不一定有限，因此&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“实变函数”还未上线~&#39;)&#34;&gt;反向Fatou引理&lt;/a&gt;不可用）。如果上式的极限和求和运算可以交换，则可得&lt;a class=&#34;link&#34; href=&#34;#20240929214539CST&#34;&gt;式(124)&lt;/a&gt;成立。&lt;/p&gt;
 &lt;blockquote&gt;
-    &lt;p&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
+    &lt;p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
 前进！前进！不择手段的前进！
 &lt;/div&gt;
+
 &lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;刘慈欣, &lt;/span&gt;&lt;cite&gt;《三体Ⅱ：黑暗森林》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
