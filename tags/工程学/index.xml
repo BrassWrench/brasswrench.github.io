@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sat, 16 Nov 2024 19:51:16 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%B7%A5%E7%A8%8B%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 17 Nov 2024 01:09:09 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%B7%A5%E7%A8%8B%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -3247,7 +3247,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cname&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LIKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DB&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_Design&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ESCAPE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;\&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  &lt;code&gt;ESCAPE &#39;_&#39;&lt;/code&gt;表示为“&lt;em&gt;”为换码字符。这样匹配串中紧跟在后面的字符“&lt;/em&gt;”不再具有通配符的含义，转义为普通的字符。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;code&gt;ESCAPE &#39;_&#39;&lt;/code&gt;表示为“&lt;code&gt;_&lt;/code&gt;”为换码字符。这样匹配串中紧跟在后面的字符“&lt;code&gt;_&lt;/code&gt;”不再具有通配符的含义，转义为普通的字符。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241115234956CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例35&lt;/strong&gt;：查询以&lt;code&gt;&#39;DB_&#39;&lt;/code&gt;开头，且倒数第三个字符为&lt;code&gt;&#39;i&#39;&lt;/code&gt;的课程的详细情况。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3386,6 +3386,486 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表15&amp;emsp;SQL提供的聚集函数&lt;/p&gt;
+&lt;p&gt;  如果指定&lt;code&gt;DISTINCT&lt;/code&gt;短语，则表示在计算时要取消指定列中的重复值。如果不指定&lt;code&gt;DISTINCT&lt;/code&gt;短语或指定&lt;code&gt;ALL&lt;/code&gt;短语（&lt;code&gt;ALL&lt;/code&gt;为默认值），则表示不取消重复值。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241116195257CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例41&lt;/strong&gt;：查询学生总人数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COUNT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241116195321CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例42&lt;/strong&gt;：查询选修了课程的学生人数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COUNT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DISTINCT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  学生每选修一门课，在SC中都有一条相应的记录。一个学生要选修多门课程，为避免重复计算学生人数，必须在&lt;code&gt;COUNT&lt;/code&gt;函数中用&lt;code&gt;DISTINCT&lt;/code&gt;短语。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241116195427CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例43&lt;/strong&gt;：计算选修1号课程的学生平均成绩。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AVG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241116195439CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例44&lt;/strong&gt;：查询选修&lt;code&gt;1&lt;/code&gt;号课程的学生最高分数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;MAX&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241116195620CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例45&lt;/strong&gt;：查询学生&lt;code&gt;201215012&lt;/code&gt;选修课程的总学分数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SUM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ccredit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Course&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;201215012&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AND&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Course&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  当聚集函数遇到空值时，除&lt;code&gt;COUNT(*)&lt;/code&gt;外，都跳过空值而只处理非空值。&lt;code&gt;COUNT(*)&lt;/code&gt;是对元组进行计数，某个元组的一个或部分列取空值不影响&lt;code&gt;COUNT&lt;/code&gt;的统计结果。&lt;br&gt;
+  注意，&lt;code&gt;WHERE&lt;/code&gt;子句中是不能用聚集函数作为条件表达式的。聚集函数只能用于&lt;code&gt;SELECT&lt;/code&gt;子句和&lt;code&gt;GROUP BY&lt;/code&gt;中的&lt;code&gt;HAVING&lt;/code&gt;子句。&lt;/p&gt;
+&lt;h4 id=&#34;group-by子句&#34;&gt;GROUP BY子句
+&lt;/h4&gt;&lt;p&gt;  GROUP BY子句将查询结果按某一列或多列的值分组，值相等的为一组。&lt;br&gt;
+  对查询结果分组的目的是为了细化聚集函数的作用对象。如果未对查询结果分组，聚集函数将作用于整个查询结果，如前面的&lt;a class=&#34;link&#34; href=&#34;#20241116195257CST&#34;&gt;例41&lt;/a&gt;〜&lt;a class=&#34;link&#34; href=&#34;#20241116195620CST&#34;&gt;例45&lt;/a&gt;。分组后聚集函数将作用于每一个组，即每一组都有一个函数值。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241116200044CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例46&lt;/strong&gt;：求各个课程号及相应的选课人数。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COUNT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GROUP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  该语句对查询结果按&lt;code&gt;Cno&lt;/code&gt;的值分组，所有具有相同&lt;code&gt;Cno&lt;/code&gt;值的元组为一组，然后对每一组作用聚集函数&lt;code&gt;COUNT&lt;/code&gt;进行计算，以求得该组的学生人数。&lt;/p&gt;
+&lt;p&gt;  查询结果可能为&lt;/p&gt;
+&lt;span id=&#34;20241116200151CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Cno&lt;/th&gt;
+          &lt;th&gt;COUNT(Sno)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;22&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;34&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;44&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;33&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;48&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表16&lt;/p&gt;
+&lt;p&gt;  如果分组后还要求按一定的条件对这些组进行筛选，最终只输出满足指定条件的组，则可以使用&lt;code&gt;HAVING&lt;/code&gt;短语指定筛选条件。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241116200317CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例47&lt;/strong&gt;：查询选修了三门以上课程的学生学号。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GROUP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;HAVING&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COUNT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  这里先用&lt;code&gt;GROUP BY&lt;/code&gt;子句按&lt;code&gt;Sno&lt;/code&gt;进行分组，再用聚集函数&lt;code&gt;COUNT&lt;/code&gt;对每一组计数；&lt;code&gt;HAVING&lt;/code&gt;短语给出了选择组的条件，只有满足条件（即元组个数&amp;gt;3，表示此学生选修的课超过3门）的组才会被选出来。&lt;br&gt;
+  &lt;code&gt;WHERE&lt;/code&gt;子句与&lt;code&gt;HAVING&lt;/code&gt;短语的区别在于作用对象不同。WHERE子句作用于基本表或视图，从中选择满足条件的元组。&lt;code&gt;HAVING&lt;/code&gt;短语作用于组，从中选择满足条件的组。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241116202325CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例48&lt;/strong&gt;：查询平均成绩大于等于90分的学生学号和平均成绩。&lt;/p&gt;
+&lt;p&gt;  下面的语句是不对的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AVG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AVG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GROUP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  因为&lt;code&gt;WHERE&lt;/code&gt;子句中是不能用聚集函数作为条件表达式的，正确的查询语句应该是：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AVG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GROUP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;HAVING&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AVG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;连接查询&#34;&gt;连接查询
+&lt;/h3&gt;&lt;p&gt;  前面的查询都是针对一个表进行的。若一个查询同时涉及两个以上的表，则称之为连接查询。连接查询是关系数据库中最主要的查询，包括等值连接查询、自然连接查询、非等值连接查询、自身连接查询、外连接查询和复合条件连接查询等。&lt;/p&gt;
+&lt;h4 id=&#34;等值与非等值连接查询&#34;&gt;等值与非等值连接查询
+&lt;/h4&gt;&lt;p&gt;  连接查询的&lt;code&gt;WHERE&lt;/code&gt;子句中用来连接两个表的条件称为连接条件或连接谓词，其一般格式为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;比较运算符&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  其中比较运算符主要有&lt;code&gt;=&lt;/code&gt;、&lt;code&gt;&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;&lt;/code&gt;、&lt;code&gt;&amp;gt;=&lt;/code&gt;、&lt;code&gt;&amp;lt;=&lt;/code&gt;、&lt;code&gt;!=&lt;/code&gt;（或&lt;code&gt;＜＞&lt;/code&gt;）等。&lt;/p&gt;
+&lt;p&gt;  此外连接谓词还可以使用下面形式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BETWEEN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AND&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  当连接运算符为&lt;code&gt;=&lt;/code&gt;时，称为&lt;strong&gt;等值连接&lt;/strong&gt;。使用其他运算符称为&lt;strong&gt;非等值连接&lt;/strong&gt;。&lt;br&gt;
+  连接谓词中的列名称为&lt;strong&gt;连接字段&lt;/strong&gt;。连接条件中的各连接字段类型必须是可比的，但名字不必相同。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241116202830CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例49&lt;/strong&gt;：查询每个学生及其选修课程的情况。&lt;br&gt;
+  学生情况存放在&lt;code&gt;Student&lt;/code&gt;表中，学生选课情况存放在&lt;code&gt;SC&lt;/code&gt;表中，所以本查询实际上涉及&lt;code&gt;Student&lt;/code&gt;与&lt;code&gt;SC&lt;/code&gt;两个表。这两个表之间的联系是通过公共属性&lt;code&gt;Sno&lt;/code&gt;实现的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* 将Student与SC中同一学生的元组连接起来 */&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  假设Student表、SC表的数据如&lt;a class=&#34;link&#34; href=&#34;#20241111214851CST&#34;&gt;表3&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241111220809CST&#34;&gt;表5&lt;/a&gt;所示，该查询的执行结果如下表所示。&lt;/p&gt;
+&lt;span id=&#34;20241116203316CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Student.Sno&lt;/th&gt;
+          &lt;th&gt;Sname&lt;/th&gt;
+          &lt;th&gt;Ssex&lt;/th&gt;
+          &lt;th&gt;Sage&lt;/th&gt;
+          &lt;th&gt;Sdept&lt;/th&gt;
+          &lt;th&gt;SC.Sno&lt;/th&gt;
+          &lt;th&gt;Cno&lt;/th&gt;
+          &lt;th&gt;Grade&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;李勇&lt;/td&gt;
+          &lt;td&gt;男&lt;/td&gt;
+          &lt;td&gt;20&lt;/td&gt;
+          &lt;td&gt;CS&lt;/td&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;92&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;李勇&lt;/td&gt;
+          &lt;td&gt;男&lt;/td&gt;
+          &lt;td&gt;20&lt;/td&gt;
+          &lt;td&gt;CS&lt;/td&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;85&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;李勇&lt;/td&gt;
+          &lt;td&gt;男&lt;/td&gt;
+          &lt;td&gt;20&lt;/td&gt;
+          &lt;td&gt;CS&lt;/td&gt;
+          &lt;td&gt;201215121&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;88&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215122&lt;/td&gt;
+          &lt;td&gt;刘晨&lt;/td&gt;
+          &lt;td&gt;女&lt;/td&gt;
+          &lt;td&gt;19&lt;/td&gt;
+          &lt;td&gt;CS&lt;/td&gt;
+          &lt;td&gt;201215122&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;90&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;201215122&lt;/td&gt;
+          &lt;td&gt;刘晨&lt;/td&gt;
+          &lt;td&gt;女&lt;/td&gt;
+          &lt;td&gt;19&lt;/td&gt;
+          &lt;td&gt;CS&lt;/td&gt;
+          &lt;td&gt;201215122&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;80&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表17&lt;/p&gt;
+&lt;p&gt;  本例中，&lt;code&gt;SELECT&lt;/code&gt;子句与&lt;code&gt;WHERE&lt;/code&gt;子句中的属性名前都加上了表名前缀，这是为了避免混淆。如果属性名在参加连接的各表中是唯一的，则可以省略表名前缀。&lt;br&gt;
+  关系数据库管理系统执行该连接操作的一种可能过程是：首先在表&lt;code&gt;Student&lt;/code&gt;中找到第一个元组，然后从头开始扫描&lt;code&gt;SC&lt;/code&gt;表，逐一查找与&lt;code&gt;Student&lt;/code&gt;第一个元组的Sno相等的&lt;code&gt;SC&lt;/code&gt;元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第一个元组与该元组拼接起来，形成结果表中一个元组。&lt;code&gt;SC&lt;/code&gt;全部查找完后，再找&lt;code&gt;Student&lt;/code&gt;中第二个元组，然后再从头开始扫描&lt;code&gt;SC&lt;/code&gt;,逐一查找满足连接条件的元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到&lt;code&gt;Student&lt;/code&gt;中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如图3.5所示。&lt;/p&gt;
+&lt;span id=&#34;20241116211750CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 236.9314&#34;&gt;
+  &lt;defs&gt;
+    &lt;clipPath id=&#34;clippath&#34;&gt;
+      &lt;polygon points=&#34;39.2785 20.2287 448.7519 20.2287 448.7519 93.3625 39.2785 93.3625 39.2785 20.2287 39.2785 20.2287&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-1&#34;&gt;
+      &lt;polygon points=&#34;247.2529 20.2287 310.4832 20.2287 310.4832 93.3625 247.2529 93.3625 247.2529 20.2287 247.2529 20.2287&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-2&#34;&gt;
+      &lt;polygon points=&#34;310.8641 20.2287 376.3799 20.2287 376.3799 93.3625 310.8641 93.3625 310.8641 20.2287 310.8641 20.2287&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-3&#34;&gt;
+      &lt;polygon points=&#34;376.7608 20.2287 448.371 20.2287 448.371 93.3625 376.7608 93.3625 376.7608 20.2287 376.7608 20.2287&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-4&#34;&gt;
+      &lt;polygon points=&#34;39.2785 20.2287 448.7519 20.2287 448.7519 212.9668 39.2785 212.9668 39.2785 20.2287 39.2785 20.2287&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-5&#34;&gt;
+      &lt;polygon points=&#34;38.8976 19.8477 448.7519 19.8477 448.7519 212.9668 38.8976 212.9668 38.8976 19.8477 38.8976 19.8477&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-8&#34;&gt;
+      &lt;polygon points=&#34;530.7685 20.0382 824.4467 20.0382 824.4467 93.172 530.7685 93.172 530.7685 20.0382 530.7685 20.0382&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-9&#34;&gt;
+      &lt;polygon points=&#34;665.2282 20.0382 745.9802 20.0382 745.9802 93.172 665.2282 93.172 665.2282 20.0382 665.2282 20.0382&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-10&#34;&gt;
+      &lt;polygon points=&#34;746.3611 20.0382 824.0658 20.0382 824.0658 93.172 746.3611 93.172 746.3611 20.0382 746.3611 20.0382&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-11&#34;&gt;
+      &lt;polygon points=&#34;530.7685 20.0382 824.4467 20.0382 824.4467 234.488 530.7685 234.488 530.7685 20.0382 530.7685 20.0382&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-12&#34;&gt;
+      &lt;polygon points=&#34;530.7685 212.7764 824.4467 212.7764 824.4467 234.1071 530.7685 234.1071 530.7685 212.7764 530.7685 212.7764&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+    &lt;clipPath id=&#34;clippath-13&#34;&gt;
+      &lt;polygon points=&#34;530.3876 19.6573 824.4467 19.6573 824.4467 234.488 530.3876 234.488 530.3876 19.6573 530.3876 19.6573&#34; style=&#34;clip-rule: evenodd; fill: none;&#34;/&gt;
+    &lt;/clipPath&gt;
+  &lt;/defs&gt;
+  &lt;text transform=&#34;translate(38.0264 15.8399)&#34; style=&#34;font-family: NotoSerifSC-Light, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.01em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;9.8999&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.001em;&#34;&gt;t&lt;/tspan&gt;&lt;tspan x=&#34;16.3979&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;u&lt;/tspan&gt;&lt;tspan x=&#34;28.0083&#34; y=&#34;0&#34;&gt;dent&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(531.6144 15.8398)&#34; style=&#34;font-family: NotoSerifSC-Light, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.1699&#34; y=&#34;0&#34;&gt;C&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;518.603&#34; y1=&#34;93.7332&#34; x2=&#34;518.603&#34; y2=&#34;195.99&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;514.8999 193.1814 518.603 194.7546 522.3061 193.1814 518.603 201.9597 514.8999 193.1814&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;506.9246&#34; y1=&#34;94.3354&#34; x2=&#34;506.9246&#34; y2=&#34;100.3354&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;506.9246&#34; y1=&#34;105.9765&#34; x2=&#34;506.9246&#34; y2=&#34;187.7717&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 11.2821 5.641; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;506.9246&#34; y1=&#34;190.5922&#34; x2=&#34;506.9246&#34; y2=&#34;196.5922&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;503.2214 193.7836 506.9246 195.3568 510.6277 193.7836 506.9246 202.5619 503.2214 193.7836&#34;/&gt;
+  &lt;/g&gt;
+  &lt;line x1=&#34;140.5936&#34; y1=&#34;131.7885&#34; x2=&#34;530.7685&#34; y2=&#34;93.172&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12 6; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;140.5936&#34; y1=&#34;100.8718&#34; x2=&#34;524.8&#34; y2=&#34;93.2898&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;522.065 97.0477 523.5648 93.3142 521.9188 89.6428 530.7686 93.172 522.065 97.0477&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath);&#34;&gt;
+      &lt;text transform=&#34;translate(74.6983 48.4096)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学号&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(76.2217 77.7455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.2935&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;n&lt;/tspan&gt;&lt;tspan x=&#34;22.4702&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;o&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(178.6827 48.4096)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;姓名&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(166.4952 77.7455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.2935&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;nam&lt;/tspan&gt;&lt;tspan x=&#34;50.6445&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-1);&#34;&gt;
+      &lt;text transform=&#34;translate(260.5811 48.4096)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;性别&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(259.0577 77.7455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.293&#34; y=&#34;0&#34; style=&#34;letter-spacing: .006em;&#34;&gt;s&lt;/tspan&gt;&lt;tspan x=&#34;19.0508&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;28.9609&#34; y=&#34;0&#34;&gt;x&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-2);&#34;&gt;
+      &lt;text transform=&#34;translate(325.3311 48.4096)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;年龄&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(323.0499 77.7455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.293&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;a&lt;/tspan&gt;&lt;tspan x=&#34;20.5684&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;g&lt;/tspan&gt;&lt;tspan x=&#34;30.8623&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-3);&#34;&gt;
+      &lt;text transform=&#34;translate(385.1358 48.4096)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;所在系&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(387.4249 77.7455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.293&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;d&lt;/tspan&gt;&lt;tspan x=&#34;21.7383&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;31.6484&#34; y=&#34;0&#34; style=&#34;letter-spacing: .0069em;&#34;&gt;p&lt;/tspan&gt;&lt;tspan x=&#34;43.4404&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-4);&#34;&gt;
+      &lt;text transform=&#34;translate(49.9405 115.0736)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;0&lt;/tspan&gt;&lt;tspan x=&#34;20.2759&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;30.478&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;40.6064&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;50.8086&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;60.9375&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;71.1392&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;81.2681&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(178.6827 115.0736)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;李勇&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(269.7217 115.0736)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;男&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(333.3311 115.0736)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34;&gt;0&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(401.128 115.0736)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;12.5791&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(49.1749 145.1674)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;0&lt;/tspan&gt;&lt;tspan x=&#34;20.2759&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;30.478&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;40.6064&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;50.8086&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;60.9375&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;71.1392&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;81.2681&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(178.6827 145.1674)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;刘晨&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(269.7217 145.1674)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;女&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(334.0967 145.1674)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;10.2021&#34; y=&#34;0&#34;&gt;9&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(401.128 145.1674)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;12.5791&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(49.1749 175.2455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;0&lt;/tspan&gt;&lt;tspan x=&#34;20.2759&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;30.478&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;40.6064&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;50.8086&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;60.9375&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;71.1392&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;81.2681&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(178.6827 175.2455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;王敏&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(269.7217 175.2455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;女&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(334.0967 175.2455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;10.2021&#34; y=&#34;0&#34;&gt;8&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(397.3233 175.2455)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;M&lt;/tspan&gt;&lt;tspan x=&#34;17.8994&#34; y=&#34;0&#34;&gt;A&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(49.1749 204.5814)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;0&lt;/tspan&gt;&lt;tspan x=&#34;20.2759&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;30.478&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;40.6064&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;50.8086&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;60.9375&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;71.1392&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;81.2681&#34; y=&#34;0&#34;&gt;5&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(178.6827 204.5814)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;张立&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(269.7217 204.5814)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;男&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(334.0967 204.5814)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;10.2021&#34; y=&#34;0&#34;&gt;9&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(403.7999 204.5814)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.009em;&#34;&gt;I&lt;/tspan&gt;&lt;tspan x=&#34;7.2402&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-5);&#34;&gt;
+      &lt;polyline points=&#34;38.8976 19.8477 38.8976 19.4668 39.2785 19.4668 39.2785 19.8477 38.8976 19.8477&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;146.6938 19.8477 146.6938 19.4668 147.0747 19.4668 147.0747 19.8477 146.6938 19.8477&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;246.872 19.8477 246.872 19.4668 247.2529 19.4668 247.2529 19.8477 246.872 19.8477&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;310.4832 19.8477 310.4832 19.4668 310.8641 19.4668 310.8641 19.8477 310.4832 19.8477&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;376.3799 19.8477 376.3799 19.4668 376.7608 19.4668 376.7608 19.8477 376.3799 19.8477&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;448.371 19.8477 448.371 19.4668 448.7519 19.4668 448.7519 19.8477 448.371 19.8477&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;38.5166 19.4668 38.5166 213.3478 39.6594 213.3478 39.6594 19.4668 38.5166 19.4668&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;146.3129 20.6095 146.3129 213.3478 147.4556 213.3478 147.4556 20.6095 146.3129 20.6095&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;246.4911 20.6095 246.4911 213.3478 247.6338 213.3478 247.6338 20.6095 246.4911 20.6095&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;310.1023 20.6095 310.1023 213.3478 311.245 213.3478 311.245 20.6095 310.1023 20.6095&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;375.999 20.6095 375.999 213.3478 377.1417 213.3478 377.1417 20.6095 375.999 20.6095&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;447.9901 20.6095 447.9901 213.3478 449.1328 213.3478 449.1328 20.6095 447.9901 20.6095&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;39.6594 19.4668 39.6594 20.6095 449.1328 20.6095 449.1328 19.4668 39.6594 19.4668&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;39.6594 92.9816 39.6594 94.1243 449.1328 94.1243 449.1328 92.9816 39.6594 92.9816&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;39.6594 123.0731 39.6594 124.2159 449.1328 124.2159 449.1328 123.0731 39.6594 123.0731&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;39.6594 153.1647 39.6594 154.3074 449.1328 154.3074 449.1328 153.1647 39.6594 153.1647&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;39.6594 183.2562 39.6594 184.3989 449.1328 184.3989 449.1328 183.2562 39.6594 183.2562&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;39.6594 212.205 39.6594 213.3478 449.1328 213.3478 449.1328 212.205 39.6594 212.205&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-8);&#34;&gt;
+      &lt;text transform=&#34;translate(579.5173 48.2164)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学号&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(581.0407 77.5524)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.004em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.2935&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;n&lt;/tspan&gt;&lt;tspan x=&#34;22.4702&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;o&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-9);&#34;&gt;
+      &lt;text transform=&#34;translate(678.1735 48.2164)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;课程号&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(687.697 77.5524)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;12.5791&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;n&lt;/tspan&gt;&lt;tspan x=&#34;24.7559&#34; y=&#34;0&#34;&gt;o&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-10);&#34;&gt;
+      &lt;text transform=&#34;translate(766.9235 48.2164)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;成绩&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(758.1579 77.5524)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .009em;&#34;&gt;G&lt;/tspan&gt;&lt;tspan x=&#34;13.7129&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;r&lt;/tspan&gt;&lt;tspan x=&#34;22.1045&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;a&lt;/tspan&gt;&lt;tspan x=&#34;32.3799&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;d&lt;/tspan&gt;&lt;tspan x=&#34;43.8252&#34; y=&#34;0&#34;&gt;e&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-11);&#34;&gt;
+      &lt;text transform=&#34;translate(554.7595 114.8805)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;0&lt;/tspan&gt;&lt;tspan x=&#34;20.2759&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;30.478&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;40.6064&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;50.8086&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;60.9375&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;71.1392&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;81.2681&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(701.4079 114.8805)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(774.9235 114.8805)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;92&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(554.7595 144.9742)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;0&lt;/tspan&gt;&lt;tspan x=&#34;20.2759&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;30.478&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;40.6064&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;50.8086&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;60.9375&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;71.1392&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;81.2681&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(700.6501 144.9742)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(774.9235 144.9742)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;8&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34;&gt;5&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(554.7595 175.0602)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;0&lt;/tspan&gt;&lt;tspan x=&#34;20.2759&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;30.478&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;40.6064&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;50.8086&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;60.9375&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;71.1392&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;81.2681&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(700.6501 175.0602)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(774.9235 175.0602)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;8&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34;&gt;8&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(553.9939 204.3883)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;0&lt;/tspan&gt;&lt;tspan x=&#34;20.2759&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;30.478&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;40.6064&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;50.8086&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;60.9375&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;71.1392&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;81.2681&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(700.6501 204.3883)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(774.9235 204.3883)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;90&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-12);&#34;&gt;
+      &lt;text transform=&#34;translate(553.9939 229.9117)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;0&lt;/tspan&gt;&lt;tspan x=&#34;20.2759&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;30.478&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;40.6064&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;50.8086&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;60.9375&#34; y=&#34;0&#34; style=&#34;letter-spacing: .008em;&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;71.1392&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;81.2681&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(700.6501 229.9117)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+      &lt;text transform=&#34;translate(774.9235 229.9117)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18.2835px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;8&lt;/tspan&gt;&lt;tspan x=&#34;10.1289&#34; y=&#34;0&#34;&gt;0&lt;/tspan&gt;&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g style=&#34;clip-path: url(#clippath-13);&#34;&gt;
+      &lt;polyline points=&#34;530.3876 19.6573 530.3876 19.2764 530.7685 19.2764 530.7685 19.6573 530.3876 19.6573&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;664.8473 19.6573 664.8473 19.2764 665.2282 19.2764 665.2282 19.6573 664.8473 19.6573&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;745.9802 19.6573 745.9802 19.2764 746.3611 19.2764 746.3611 19.6573 745.9802 19.6573&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;824.0658 19.6573 824.0658 19.2764 824.4467 19.2764 824.4467 19.6573 824.0658 19.6573&#34; style=&#34;fill: #d4d4d4; fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;530.0067 19.2764 530.0067 234.8689 531.1494 234.8689 531.1494 19.2764 530.0067 19.2764&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;664.4664 20.4191 664.4664 234.8689 665.6091 234.8689 665.6091 20.4191 664.4664 20.4191&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;745.5993 20.4191 745.5993 234.8689 746.742 234.8689 746.742 20.4191 745.5993 20.4191&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;823.6849 20.4191 823.6849 234.8689 824.8276 234.8689 824.8276 20.4191 823.6849 20.4191&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;531.1494 19.2764 531.1494 20.4191 824.8276 20.4191 824.8276 19.2764 531.1494 19.2764&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;531.1494 92.7911 531.1494 93.9339 824.8276 93.9339 824.8276 92.7911 531.1494 92.7911&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;531.1494 122.8827 531.1494 124.0254 824.8276 124.0254 824.8276 122.8827 531.1494 122.8827&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;531.1494 152.9742 531.1494 154.1169 824.8276 154.1169 824.8276 152.9742 531.1494 152.9742&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;531.1494 183.0658 531.1494 184.2085 824.8276 184.2085 824.8276 183.0658 531.1494 183.0658&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;531.1494 212.0146 531.1494 213.1573 824.8276 213.1573 824.8276 212.0146 531.1494 212.0146&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+      &lt;polyline points=&#34;531.1494 233.7262 531.1494 234.8689 824.8276 234.8689 824.8276 233.7262 531.1494 233.7262&#34; style=&#34;fill-rule: evenodd;&#34;/&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;关系数据库管理系统执行连接操作的示意图&lt;/p&gt;
+&lt;p&gt;  如果在&lt;code&gt;SC&lt;/code&gt;表&lt;code&gt;Sno&lt;/code&gt;上建立了索引的话，就不用每次全表扫描&lt;code&gt;SC&lt;/code&gt;表了，而是根据&lt;code&gt;Sno&lt;/code&gt;值通过索引找到相应的&lt;code&gt;SC&lt;/code&gt;元组。用索引查询&lt;code&gt;SC&lt;/code&gt;中满足条件的元组一般会比全表扫描快。&lt;/p&gt;
+&lt;p&gt;  若在等值连接中把目标列中重复的属性列去掉则为&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/#20241116213553CST&#34;&gt;自然连接&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;  对&lt;a class=&#34;link&#34; href=&#34;#20241116202830CST&#34;&gt;例49&lt;/a&gt;用自然连接完成。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ssex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  本例中，由于&lt;code&gt;Sname&lt;/code&gt;、&lt;code&gt;Ssex&lt;/code&gt;、&lt;code&gt;Sage&lt;/code&gt;、&lt;code&gt;Sdept&lt;/code&gt;、&lt;code&gt;Cno&lt;/code&gt;和&lt;code&gt;Grade&lt;/code&gt;属性列在&lt;code&gt;Student&lt;/code&gt;表与&lt;code&gt;SC&lt;/code&gt;表中是唯一的，因此引用时可以去掉表名前缀；而&lt;code&gt;Sno&lt;/code&gt;在两个表都出现了，因此引用时必须加上表名前缀。&lt;br&gt;
+  一条SQL语句可以同时完成选择和连接查询，这时&lt;code&gt;WHERE&lt;/code&gt;子句是由连接谓词和选择谓词组成的复合条件。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241116213920CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例50&lt;/strong&gt;：查询选修2号课程且成绩在90分以上的所有学生的学号和姓名。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AND&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* 连接谓词 */&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;2&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AND&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* 其他限定条件 */&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  该查询的一种优化（高效）的执行过程是，先从&lt;code&gt;SC&lt;/code&gt;中挑选出&lt;code&gt;Cno=&#39;2&#39;&lt;/code&gt;并且&lt;code&gt;Grade&amp;gt;90&lt;/code&gt;的元组形成一个中间关系，再和&lt;code&gt;Student&lt;/code&gt;中满足连接条件的元组进行连接得到最终的结果关系。&lt;/p&gt;
+&lt;h4 id=&#34;自身连接&#34;&gt;自身连接
+&lt;/h4&gt;&lt;p&gt;  连接操作不仅可以在两个表之间进行，也可以是一个表与其自己进行连接，称为表的自身连接。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241116235932CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例51&lt;/strong&gt;：查询每一门课的间接先修课（即先修课的先修课）。&lt;br&gt;
+  在&lt;code&gt;Course&lt;/code&gt;表中只有每门课的直接先修课信息，而没有先修课的先修课。要得到这个信息，必须先对一门课找到其先修课，再按此先修课的课程号查找它的先修课程。这就要将&lt;code&gt;Course&lt;/code&gt;表与其自身连接。&lt;br&gt;
+  为此，要为&lt;code&gt;Course&lt;/code&gt;表取两个别名，一个是&lt;code&gt;FIRST&lt;/code&gt;，另一个是&lt;code&gt;SECOND&lt;/code&gt;。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -8348,7 +8828,7 @@ R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \
 \tag{27}
     \]
 &lt;p&gt;  其中， \(A\) 和 \(B\) 分别为 \(R\) 和 \(S\) 上列数相等且可比的属性组， \(\theta\) 是比较运算符。连接运算从 \(R\) 和 \(S\) 的Cartesian乘积 \(R\times S\) 中选取R关系在 \(A\) 属性组上的值与 \(S\) 关系在 \(B\) 属性组上的值满足比较关系 \(\theta\) 的元组。&lt;br&gt;
-  连接运算中有两种最为重要也最为常用的连接，一种是&lt;strong&gt;等值连接（equijoin）&lt;/strong&gt;，另一种是&lt;strong&gt;自然连接（natural join）&lt;/strong&gt;。&lt;br&gt;
+  连接运算中有两种最为重要也最为常用的连接，一种是&lt;strong&gt;等值连接（equijoin）&lt;/strong&gt;，另一种是&lt;span id=&#34;20241116213553CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;自然连接（natural join）&lt;/strong&gt;。&lt;br&gt;
    \(\theta\) 为“ \(=\) ”的连接运算称为等值连接。它是从关系 \(R\) 与 \(S\) 的广义Cartesian乘积中选取 \(A\) 、 \(B\) 属性值相等的那些元组，即等值连接为&lt;/p&gt;
 &lt;span id=&#34;20241026164814CST&#34;&gt;&lt;/span&gt;\[
 R \underset{A=B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]=t_s[B])}

@@ -131,7 +131,7 @@
 <meta property='og:description' content="关系数据库的标准查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_databases_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-16T19:51:16&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T01:09:09&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="关系数据库的标准查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -848,6 +848,13 @@
             <li><a href="#选择表中的若干元组">选择表中的若干元组</a></li>
             <li><a href="#order-by子句">ORDER BY子句</a></li>
             <li><a href="#聚集函数">聚集函数</a></li>
+            <li><a href="#group-by子句">GROUP BY子句</a></li>
+          </ol>
+        </li>
+        <li><a href="#连接查询">连接查询</a>
+          <ol>
+            <li><a href="#等值与非等值连接查询">等值与非等值连接查询</a></li>
+            <li><a href="#自身连接">自身连接</a></li>
           </ol>
         </li>
       </ol>
@@ -1187,7 +1194,7 @@
 </svg>
 
             <time class="article-words">
-                15306 字
+                18061 字
             </time>
         </div>
 
@@ -1202,7 +1209,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 31 分钟
+                    阅读时长: 37 分钟
                 </time>
             </div>
         
@@ -2723,7 +2730,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="o">`</span><span class="n">DB</span><span class="err">\</span><span class="n">_Design</span><span class="o">`</span><span class="w"> </span><span class="k">ESCAPE</span><span class="w"> </span><span class="s1">&#39;\&#39;</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>  <code>ESCAPE '_'</code>表示为“<em>”为换码字符。这样匹配串中紧跟在后面的字符“</em>”不再具有通配符的含义，转义为普通的字符。</p>
+</div><p>  <code>ESCAPE '_'</code>表示为“<code>_</code>”为换码字符。这样匹配串中紧跟在后面的字符“<code>_</code>”不再具有通配符的含义，转义为普通的字符。</p>
 <p>  <span id="20241115234956CST"></span><strong>例35</strong>：查询以<code>'DB_'</code>开头，且倒数第三个字符为<code>'i'</code>的课程的详细情况。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2862,6 +2869,486 @@
   </tbody>
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表15&emsp;SQL提供的聚集函数</p>
+<p>  如果指定<code>DISTINCT</code>短语，则表示在计算时要取消指定列中的重复值。如果不指定<code>DISTINCT</code>短语或指定<code>ALL</code>短语（<code>ALL</code>为默认值），则表示不取消重复值。</p>
+<p>  <span id="20241116195257CST"></span><strong>例41</strong>：查询学生总人数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241116195321CST"></span><strong>例42</strong>：查询选修了课程的学生人数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Sno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  学生每选修一门课，在SC中都有一条相应的记录。一个学生要选修多门课程，为避免重复计算学生人数，必须在<code>COUNT</code>函数中用<code>DISTINCT</code>短语。</p>
+<p>  <span id="20241116195427CST"></span><strong>例43</strong>：计算选修1号课程的学生平均成绩。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241116195439CST"></span><strong>例44</strong>：查询选修<code>1</code>号课程的学生最高分数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241116195620CST"></span><strong>例45</strong>：查询学生<code>201215012</code>选修课程的总学分数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">Ccredit</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">,</span><span class="n">Course</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;201215012&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="n">Course</span><span class="p">.</span><span class="n">Cno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  当聚集函数遇到空值时，除<code>COUNT(*)</code>外，都跳过空值而只处理非空值。<code>COUNT(*)</code>是对元组进行计数，某个元组的一个或部分列取空值不影响<code>COUNT</code>的统计结果。<br>
+  注意，<code>WHERE</code>子句中是不能用聚集函数作为条件表达式的。聚集函数只能用于<code>SELECT</code>子句和<code>GROUP BY</code>中的<code>HAVING</code>子句。</p>
+<h4 id="group-by子句">GROUP BY子句
+</h4><p>  GROUP BY子句将查询结果按某一列或多列的值分组，值相等的为一组。<br>
+  对查询结果分组的目的是为了细化聚集函数的作用对象。如果未对查询结果分组，聚集函数将作用于整个查询结果，如前面的<a class="link" href="#20241116195257CST">例41</a>〜<a class="link" href="#20241116195620CST">例45</a>。分组后聚集函数将作用于每一个组，即每一组都有一个函数值。</p>
+<p>  <span id="20241116200044CST"></span><strong>例46</strong>：求各个课程号及相应的选课人数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Cno</span><span class="p">,</span><span class="k">COUNT</span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Cno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  该语句对查询结果按<code>Cno</code>的值分组，所有具有相同<code>Cno</code>值的元组为一组，然后对每一组作用聚集函数<code>COUNT</code>进行计算，以求得该组的学生人数。</p>
+<p>  查询结果可能为</p>
+<span id="20241116200151CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Cno</th>
+          <th>COUNT(Sno)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>22</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>34</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>44</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>33</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>48</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表16</p>
+<p>  如果分组后还要求按一定的条件对这些组进行筛选，最终只输出满足指定条件的组，则可以使用<code>HAVING</code>短语指定筛选条件。</p>
+<p>  <span id="20241116200317CST"></span><strong>例47</strong>：查询选修了三门以上课程的学生学号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这里先用<code>GROUP BY</code>子句按<code>Sno</code>进行分组，再用聚集函数<code>COUNT</code>对每一组计数；<code>HAVING</code>短语给出了选择组的条件，只有满足条件（即元组个数&gt;3，表示此学生选修的课超过3门）的组才会被选出来。<br>
+  <code>WHERE</code>子句与<code>HAVING</code>短语的区别在于作用对象不同。WHERE子句作用于基本表或视图，从中选择满足条件的元组。<code>HAVING</code>短语作用于组，从中选择满足条件的组。</p>
+<p>  <span id="20241116202325CST"></span><strong>例48</strong>：查询平均成绩大于等于90分的学生学号和平均成绩。</p>
+<p>  下面的语句是不对的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">90</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  因为<code>WHERE</code>子句中是不能用聚集函数作为条件表达式的，正确的查询语句应该是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">HAVING</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">90</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="连接查询">连接查询
+</h3><p>  前面的查询都是针对一个表进行的。若一个查询同时涉及两个以上的表，则称之为连接查询。连接查询是关系数据库中最主要的查询，包括等值连接查询、自然连接查询、非等值连接查询、自身连接查询、外连接查询和复合条件连接查询等。</p>
+<h4 id="等值与非等值连接查询">等值与非等值连接查询
+</h4><p>  连接查询的<code>WHERE</code>子句中用来连接两个表的条件称为连接条件或连接谓词，其一般格式为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">.]</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">比较运算符</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">.]</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="mi">2</span><span class="o">&gt;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  其中比较运算符主要有<code>=</code>、<code>&gt;</code>、<code>&lt;</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>!=</code>（或<code>＜＞</code>）等。</p>
+<p>  此外连接谓词还可以使用下面形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="p">.]</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="p">.]</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="p">.]</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  当连接运算符为<code>=</code>时，称为<strong>等值连接</strong>。使用其他运算符称为<strong>非等值连接</strong>。<br>
+  连接谓词中的列名称为<strong>连接字段</strong>。连接条件中的各连接字段类型必须是可比的，但名字不必相同。</p>
+<p>  <span id="20241116202830CST"></span><strong>例49</strong>：查询每个学生及其选修课程的情况。<br>
+  学生情况存放在<code>Student</code>表中，学生选课情况存放在<code>SC</code>表中，所以本查询实际上涉及<code>Student</code>与<code>SC</code>两个表。这两个表之间的联系是通过公共属性<code>Sno</code>实现的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="n">SC</span><span class="p">.</span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 将Student与SC中同一学生的元组连接起来 */</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  假设Student表、SC表的数据如<a class="link" href="#20241111214851CST">表3</a>和<a class="link" href="#20241111220809CST">表5</a>所示，该查询的执行结果如下表所示。</p>
+<span id="20241116203316CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Student.Sno</th>
+          <th>Sname</th>
+          <th>Ssex</th>
+          <th>Sage</th>
+          <th>Sdept</th>
+          <th>SC.Sno</th>
+          <th>Cno</th>
+          <th>Grade</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>201215121</td>
+          <td>李勇</td>
+          <td>男</td>
+          <td>20</td>
+          <td>CS</td>
+          <td>201215121</td>
+          <td>1</td>
+          <td>92</td>
+      </tr>
+      <tr>
+          <td>201215121</td>
+          <td>李勇</td>
+          <td>男</td>
+          <td>20</td>
+          <td>CS</td>
+          <td>201215121</td>
+          <td>2</td>
+          <td>85</td>
+      </tr>
+      <tr>
+          <td>201215121</td>
+          <td>李勇</td>
+          <td>男</td>
+          <td>20</td>
+          <td>CS</td>
+          <td>201215121</td>
+          <td>3</td>
+          <td>88</td>
+      </tr>
+      <tr>
+          <td>201215122</td>
+          <td>刘晨</td>
+          <td>女</td>
+          <td>19</td>
+          <td>CS</td>
+          <td>201215122</td>
+          <td>2</td>
+          <td>90</td>
+      </tr>
+      <tr>
+          <td>201215122</td>
+          <td>刘晨</td>
+          <td>女</td>
+          <td>19</td>
+          <td>CS</td>
+          <td>201215122</td>
+          <td>3</td>
+          <td>80</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表17</p>
+<p>  本例中，<code>SELECT</code>子句与<code>WHERE</code>子句中的属性名前都加上了表名前缀，这是为了避免混淆。如果属性名在参加连接的各表中是唯一的，则可以省略表名前缀。<br>
+  关系数据库管理系统执行该连接操作的一种可能过程是：首先在表<code>Student</code>中找到第一个元组，然后从头开始扫描<code>SC</code>表，逐一查找与<code>Student</code>第一个元组的Sno相等的<code>SC</code>元组，找到后就将<code>Student</code>中的第一个元组与该元组拼接起来，形成结果表中一个元组。<code>SC</code>全部查找完后，再找<code>Student</code>中第二个元组，然后再从头开始扫描<code>SC</code>,逐一查找满足连接条件的元组，找到后就将<code>Student</code>中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到<code>Student</code>中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如图3.5所示。</p>
+<span id="20241116211750CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 863.7 236.9314">
+  <defs>
+    <clipPath id="clippath">
+      <polygon points="39.2785 20.2287 448.7519 20.2287 448.7519 93.3625 39.2785 93.3625 39.2785 20.2287 39.2785 20.2287" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <polygon points="247.2529 20.2287 310.4832 20.2287 310.4832 93.3625 247.2529 93.3625 247.2529 20.2287 247.2529 20.2287" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <polygon points="310.8641 20.2287 376.3799 20.2287 376.3799 93.3625 310.8641 93.3625 310.8641 20.2287 310.8641 20.2287" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <polygon points="376.7608 20.2287 448.371 20.2287 448.371 93.3625 376.7608 93.3625 376.7608 20.2287 376.7608 20.2287" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <polygon points="39.2785 20.2287 448.7519 20.2287 448.7519 212.9668 39.2785 212.9668 39.2785 20.2287 39.2785 20.2287" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <polygon points="38.8976 19.8477 448.7519 19.8477 448.7519 212.9668 38.8976 212.9668 38.8976 19.8477 38.8976 19.8477" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-8">
+      <polygon points="530.7685 20.0382 824.4467 20.0382 824.4467 93.172 530.7685 93.172 530.7685 20.0382 530.7685 20.0382" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-9">
+      <polygon points="665.2282 20.0382 745.9802 20.0382 745.9802 93.172 665.2282 93.172 665.2282 20.0382 665.2282 20.0382" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-10">
+      <polygon points="746.3611 20.0382 824.0658 20.0382 824.0658 93.172 746.3611 93.172 746.3611 20.0382 746.3611 20.0382" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-11">
+      <polygon points="530.7685 20.0382 824.4467 20.0382 824.4467 234.488 530.7685 234.488 530.7685 20.0382 530.7685 20.0382" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-12">
+      <polygon points="530.7685 212.7764 824.4467 212.7764 824.4467 234.1071 530.7685 234.1071 530.7685 212.7764 530.7685 212.7764" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-13">
+      <polygon points="530.3876 19.6573 824.4467 19.6573 824.4467 234.488 530.3876 234.488 530.3876 19.6573 530.3876 19.6573" style="clip-rule: evenodd; fill: none;"/>
+    </clipPath>
+  </defs>
+  <text transform="translate(38.0264 15.8399)" style="font-family: NotoSerifSC-Light, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0" style="letter-spacing: -.01em;">S</tspan><tspan x="9.8999" y="0" style="letter-spacing: -.001em;">t</tspan><tspan x="16.3979" y="0" style="letter-spacing: -.003em;">u</tspan><tspan x="28.0083" y="0">dent</tspan></text>
+  <text transform="translate(531.6144 15.8398)" style="font-family: NotoSerifSC-Light, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0" style="letter-spacing: .005em;">S</tspan><tspan x="10.1699" y="0">C</tspan></text>
+  <g>
+    <line x1="518.603" y1="93.7332" x2="518.603" y2="195.99" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="514.8999 193.1814 518.603 194.7546 522.3061 193.1814 518.603 201.9597 514.8999 193.1814"/>
+  </g>
+  <g>
+    <line x1="506.9246" y1="94.3354" x2="506.9246" y2="100.3354" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="506.9246" y1="105.9765" x2="506.9246" y2="187.7717" style="fill: none; stroke: #000; stroke-dasharray: 11.2821 5.641; stroke-miterlimit: 10;"/>
+    <line x1="506.9246" y1="190.5922" x2="506.9246" y2="196.5922" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="503.2214 193.7836 506.9246 195.3568 510.6277 193.7836 506.9246 202.5619 503.2214 193.7836"/>
+  </g>
+  <line x1="140.5936" y1="131.7885" x2="530.7685" y2="93.172" style="fill: none; stroke: #000; stroke-dasharray: 12 6; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="140.5936" y1="100.8718" x2="524.8" y2="93.2898" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="522.065 97.0477 523.5648 93.3142 521.9188 89.6428 530.7686 93.172 522.065 97.0477"/>
+  </g>
+  <g>
+    <g style="clip-path: url(#clippath);">
+      <text transform="translate(74.6983 48.4096)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">学号</tspan></text>
+      <text transform="translate(76.2217 77.7455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.004em;">S</tspan><tspan x="10.2935" y="0" style="letter-spacing: .005em;">n</tspan><tspan x="22.4702" y="0" style="letter-spacing: 0em;">o</tspan></text>
+      <text transform="translate(178.6827 48.4096)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">姓名</tspan></text>
+      <text transform="translate(166.4952 77.7455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.004em;">S</tspan><tspan x="10.2935" y="0" style="letter-spacing: .005em;">nam</tspan><tspan x="50.6445" y="0">e</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-1);">
+      <text transform="translate(260.5811 48.4096)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">性别</tspan></text>
+      <text transform="translate(259.0577 77.7455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.004em;">S</tspan><tspan x="10.293" y="0" style="letter-spacing: .006em;">s</tspan><tspan x="19.0508" y="0" style="letter-spacing: -.005em;">e</tspan><tspan x="28.9609" y="0">x</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-2);">
+      <text transform="translate(325.3311 48.4096)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">年龄</tspan></text>
+      <text transform="translate(323.0499 77.7455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.004em;">S</tspan><tspan x="10.293" y="0" style="letter-spacing: .005em;">a</tspan><tspan x="20.5684" y="0" style="letter-spacing: -.003em;">g</tspan><tspan x="30.8623" y="0">e</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-3);">
+      <text transform="translate(385.1358 48.4096)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">所在系</tspan></text>
+      <text transform="translate(387.4249 77.7455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.004em;">S</tspan><tspan x="10.293" y="0" style="letter-spacing: -.003em;">d</tspan><tspan x="21.7383" y="0" style="letter-spacing: -.005em;">e</tspan><tspan x="31.6484" y="0" style="letter-spacing: .0069em;">p</tspan><tspan x="43.4404" y="0">t</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-4);">
+      <text transform="translate(49.9405 115.0736)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0" style="letter-spacing: .005em;">0</tspan><tspan x="20.2759" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="30.478" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="40.6064" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="50.8086" y="0" style="letter-spacing: .004em;">5</tspan><tspan x="60.9375" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="71.1392" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="81.2681" y="0">1</tspan></text>
+      <text transform="translate(178.6827 115.0736)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">李勇</tspan></text>
+      <text transform="translate(269.7217 115.0736)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">男</tspan></text>
+      <text transform="translate(333.3311 115.0736)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0">0</tspan></text>
+      <text transform="translate(401.128 115.0736)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.003em;">C</tspan><tspan x="12.5791" y="0">S</tspan></text>
+      <text transform="translate(49.1749 145.1674)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0" style="letter-spacing: .005em;">0</tspan><tspan x="20.2759" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="30.478" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="40.6064" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="50.8086" y="0" style="letter-spacing: .004em;">5</tspan><tspan x="60.9375" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="71.1392" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="81.2681" y="0">2</tspan></text>
+      <text transform="translate(178.6827 145.1674)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">刘晨</tspan></text>
+      <text transform="translate(269.7217 145.1674)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">女</tspan></text>
+      <text transform="translate(334.0967 145.1674)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="10.2021" y="0">9</tspan></text>
+      <text transform="translate(401.128 145.1674)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.003em;">C</tspan><tspan x="12.5791" y="0">S</tspan></text>
+      <text transform="translate(49.1749 175.2455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0" style="letter-spacing: .005em;">0</tspan><tspan x="20.2759" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="30.478" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="40.6064" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="50.8086" y="0" style="letter-spacing: .004em;">5</tspan><tspan x="60.9375" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="71.1392" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="81.2681" y="0">3</tspan></text>
+      <text transform="translate(178.6827 175.2455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">王敏</tspan></text>
+      <text transform="translate(269.7217 175.2455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">女</tspan></text>
+      <text transform="translate(334.0967 175.2455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="10.2021" y="0">8</tspan></text>
+      <text transform="translate(397.3233 175.2455)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">M</tspan><tspan x="17.8994" y="0">A</tspan></text>
+      <text transform="translate(49.1749 204.5814)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0" style="letter-spacing: .005em;">0</tspan><tspan x="20.2759" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="30.478" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="40.6064" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="50.8086" y="0" style="letter-spacing: .004em;">5</tspan><tspan x="60.9375" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="71.1392" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="81.2681" y="0">5</tspan></text>
+      <text transform="translate(178.6827 204.5814)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">张立</tspan></text>
+      <text transform="translate(269.7217 204.5814)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">男</tspan></text>
+      <text transform="translate(334.0967 204.5814)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="10.2021" y="0">9</tspan></text>
+      <text transform="translate(403.7999 204.5814)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.009em;">I</tspan><tspan x="7.2402" y="0">S</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-5);">
+      <polyline points="38.8976 19.8477 38.8976 19.4668 39.2785 19.4668 39.2785 19.8477 38.8976 19.8477" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="146.6938 19.8477 146.6938 19.4668 147.0747 19.4668 147.0747 19.8477 146.6938 19.8477" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="246.872 19.8477 246.872 19.4668 247.2529 19.4668 247.2529 19.8477 246.872 19.8477" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="310.4832 19.8477 310.4832 19.4668 310.8641 19.4668 310.8641 19.8477 310.4832 19.8477" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="376.3799 19.8477 376.3799 19.4668 376.7608 19.4668 376.7608 19.8477 376.3799 19.8477" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="448.371 19.8477 448.371 19.4668 448.7519 19.4668 448.7519 19.8477 448.371 19.8477" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="38.5166 19.4668 38.5166 213.3478 39.6594 213.3478 39.6594 19.4668 38.5166 19.4668" style="fill-rule: evenodd;"/>
+      <polyline points="146.3129 20.6095 146.3129 213.3478 147.4556 213.3478 147.4556 20.6095 146.3129 20.6095" style="fill-rule: evenodd;"/>
+      <polyline points="246.4911 20.6095 246.4911 213.3478 247.6338 213.3478 247.6338 20.6095 246.4911 20.6095" style="fill-rule: evenodd;"/>
+      <polyline points="310.1023 20.6095 310.1023 213.3478 311.245 213.3478 311.245 20.6095 310.1023 20.6095" style="fill-rule: evenodd;"/>
+      <polyline points="375.999 20.6095 375.999 213.3478 377.1417 213.3478 377.1417 20.6095 375.999 20.6095" style="fill-rule: evenodd;"/>
+      <polyline points="447.9901 20.6095 447.9901 213.3478 449.1328 213.3478 449.1328 20.6095 447.9901 20.6095" style="fill-rule: evenodd;"/>
+      <polyline points="39.6594 19.4668 39.6594 20.6095 449.1328 20.6095 449.1328 19.4668 39.6594 19.4668" style="fill-rule: evenodd;"/>
+      <polyline points="39.6594 92.9816 39.6594 94.1243 449.1328 94.1243 449.1328 92.9816 39.6594 92.9816" style="fill-rule: evenodd;"/>
+      <polyline points="39.6594 123.0731 39.6594 124.2159 449.1328 124.2159 449.1328 123.0731 39.6594 123.0731" style="fill-rule: evenodd;"/>
+      <polyline points="39.6594 153.1647 39.6594 154.3074 449.1328 154.3074 449.1328 153.1647 39.6594 153.1647" style="fill-rule: evenodd;"/>
+      <polyline points="39.6594 183.2562 39.6594 184.3989 449.1328 184.3989 449.1328 183.2562 39.6594 183.2562" style="fill-rule: evenodd;"/>
+      <polyline points="39.6594 212.205 39.6594 213.3478 449.1328 213.3478 449.1328 212.205 39.6594 212.205" style="fill-rule: evenodd;"/>
+    </g>
+  </g>
+  <g>
+    <g style="clip-path: url(#clippath-8);">
+      <text transform="translate(579.5173 48.2164)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">学号</tspan></text>
+      <text transform="translate(581.0407 77.5524)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.004em;">S</tspan><tspan x="10.2935" y="0" style="letter-spacing: .005em;">n</tspan><tspan x="22.4702" y="0" style="letter-spacing: 0em;">o</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-9);">
+      <text transform="translate(678.1735 48.2164)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">课程号</tspan></text>
+      <text transform="translate(687.697 77.5524)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: -.003em;">C</tspan><tspan x="12.5791" y="0" style="letter-spacing: .005em;">n</tspan><tspan x="24.7559" y="0">o</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-10);">
+      <text transform="translate(766.9235 48.2164)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">成绩</tspan></text>
+      <text transform="translate(758.1579 77.5524)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .009em;">G</tspan><tspan x="13.7129" y="0" style="letter-spacing: -.003em;">r</tspan><tspan x="22.1045" y="0" style="letter-spacing: .005em;">a</tspan><tspan x="32.3799" y="0" style="letter-spacing: -.003em;">d</tspan><tspan x="43.8252" y="0">e</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-11);">
+      <text transform="translate(554.7595 114.8805)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0" style="letter-spacing: .005em;">0</tspan><tspan x="20.2759" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="30.478" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="40.6064" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="50.8086" y="0" style="letter-spacing: .004em;">5</tspan><tspan x="60.9375" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="71.1392" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="81.2681" y="0">1</tspan></text>
+      <text transform="translate(701.4079 114.8805)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">1</tspan></text>
+      <text transform="translate(774.9235 114.8805)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">92</tspan></text>
+      <text transform="translate(554.7595 144.9742)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0" style="letter-spacing: .005em;">0</tspan><tspan x="20.2759" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="30.478" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="40.6064" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="50.8086" y="0" style="letter-spacing: .004em;">5</tspan><tspan x="60.9375" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="71.1392" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="81.2681" y="0">1</tspan></text>
+      <text transform="translate(700.6501 144.9742)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">2</tspan></text>
+      <text transform="translate(774.9235 144.9742)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">8</tspan><tspan x="10.1289" y="0">5</tspan></text>
+      <text transform="translate(554.7595 175.0602)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0" style="letter-spacing: .005em;">0</tspan><tspan x="20.2759" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="30.478" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="40.6064" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="50.8086" y="0" style="letter-spacing: .004em;">5</tspan><tspan x="60.9375" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="71.1392" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="81.2681" y="0">1</tspan></text>
+      <text transform="translate(700.6501 175.0602)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">3</tspan></text>
+      <text transform="translate(774.9235 175.0602)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">8</tspan><tspan x="10.1289" y="0">8</tspan></text>
+      <text transform="translate(553.9939 204.3883)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0" style="letter-spacing: .005em;">0</tspan><tspan x="20.2759" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="30.478" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="40.6064" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="50.8086" y="0" style="letter-spacing: .004em;">5</tspan><tspan x="60.9375" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="71.1392" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="81.2681" y="0">2</tspan></text>
+      <text transform="translate(700.6501 204.3883)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">2</tspan></text>
+      <text transform="translate(774.9235 204.3883)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">90</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-12);">
+      <text transform="translate(553.9939 229.9117)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="10.1289" y="0" style="letter-spacing: .005em;">0</tspan><tspan x="20.2759" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="30.478" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="40.6064" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="50.8086" y="0" style="letter-spacing: .004em;">5</tspan><tspan x="60.9375" y="0" style="letter-spacing: .008em;">1</tspan><tspan x="71.1392" y="0" style="letter-spacing: .004em;">2</tspan><tspan x="81.2681" y="0">2</tspan></text>
+      <text transform="translate(700.6501 229.9117)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0">3</tspan></text>
+      <text transform="translate(774.9235 229.9117)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.2835px;"><tspan x="0" y="0" style="letter-spacing: .004em;">8</tspan><tspan x="10.1289" y="0">0</tspan></text>
+    </g>
+    <g style="clip-path: url(#clippath-13);">
+      <polyline points="530.3876 19.6573 530.3876 19.2764 530.7685 19.2764 530.7685 19.6573 530.3876 19.6573" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="664.8473 19.6573 664.8473 19.2764 665.2282 19.2764 665.2282 19.6573 664.8473 19.6573" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="745.9802 19.6573 745.9802 19.2764 746.3611 19.2764 746.3611 19.6573 745.9802 19.6573" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="824.0658 19.6573 824.0658 19.2764 824.4467 19.2764 824.4467 19.6573 824.0658 19.6573" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+      <polyline points="530.0067 19.2764 530.0067 234.8689 531.1494 234.8689 531.1494 19.2764 530.0067 19.2764" style="fill-rule: evenodd;"/>
+      <polyline points="664.4664 20.4191 664.4664 234.8689 665.6091 234.8689 665.6091 20.4191 664.4664 20.4191" style="fill-rule: evenodd;"/>
+      <polyline points="745.5993 20.4191 745.5993 234.8689 746.742 234.8689 746.742 20.4191 745.5993 20.4191" style="fill-rule: evenodd;"/>
+      <polyline points="823.6849 20.4191 823.6849 234.8689 824.8276 234.8689 824.8276 20.4191 823.6849 20.4191" style="fill-rule: evenodd;"/>
+      <polyline points="531.1494 19.2764 531.1494 20.4191 824.8276 20.4191 824.8276 19.2764 531.1494 19.2764" style="fill-rule: evenodd;"/>
+      <polyline points="531.1494 92.7911 531.1494 93.9339 824.8276 93.9339 824.8276 92.7911 531.1494 92.7911" style="fill-rule: evenodd;"/>
+      <polyline points="531.1494 122.8827 531.1494 124.0254 824.8276 124.0254 824.8276 122.8827 531.1494 122.8827" style="fill-rule: evenodd;"/>
+      <polyline points="531.1494 152.9742 531.1494 154.1169 824.8276 154.1169 824.8276 152.9742 531.1494 152.9742" style="fill-rule: evenodd;"/>
+      <polyline points="531.1494 183.0658 531.1494 184.2085 824.8276 184.2085 824.8276 183.0658 531.1494 183.0658" style="fill-rule: evenodd;"/>
+      <polyline points="531.1494 212.0146 531.1494 213.1573 824.8276 213.1573 824.8276 212.0146 531.1494 212.0146" style="fill-rule: evenodd;"/>
+      <polyline points="531.1494 233.7262 531.1494 234.8689 824.8276 234.8689 824.8276 233.7262 531.1494 233.7262" style="fill-rule: evenodd;"/>
+    </g>
+  </g>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;关系数据库管理系统执行连接操作的示意图</p>
+<p>  如果在<code>SC</code>表<code>Sno</code>上建立了索引的话，就不用每次全表扫描<code>SC</code>表了，而是根据<code>Sno</code>值通过索引找到相应的<code>SC</code>元组。用索引查询<code>SC</code>中满足条件的元组一般会比全表扫描快。</p>
+<p>  若在等值连接中把目标列中重复的属性列去掉则为<a class="link" href="/posts/engineering/computer_science/database_system/relational_database_system/#20241116213553CST">自然连接</a>。</p>
+<p>  对<a class="link" href="#20241116202830CST">例49</a>用自然连接完成。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Ssex</span><span class="p">,</span><span class="n">Sage</span><span class="p">,</span><span class="n">Sdept</span><span class="p">,</span><span class="n">Cno</span><span class="p">,</span><span class="n">Grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  本例中，由于<code>Sname</code>、<code>Ssex</code>、<code>Sage</code>、<code>Sdept</code>、<code>Cno</code>和<code>Grade</code>属性列在<code>Student</code>表与<code>SC</code>表中是唯一的，因此引用时可以去掉表名前缀；而<code>Sno</code>在两个表都出现了，因此引用时必须加上表名前缀。<br>
+  一条SQL语句可以同时完成选择和连接查询，这时<code>WHERE</code>子句是由连接谓词和选择谓词组成的复合条件。</p>
+<p>  <span id="20241116213920CST"></span><strong>例50</strong>：查询选修2号课程且成绩在90分以上的所有学生的学号和姓名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="cm">/* 连接谓词 */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Grade</span><span class="o">&gt;</span><span class="mi">90</span><span class="p">;</span><span class="w">  </span><span class="cm">/* 其他限定条件 */</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  该查询的一种优化（高效）的执行过程是，先从<code>SC</code>中挑选出<code>Cno='2'</code>并且<code>Grade&gt;90</code>的元组形成一个中间关系，再和<code>Student</code>中满足连接条件的元组进行连接得到最终的结果关系。</p>
+<h4 id="自身连接">自身连接
+</h4><p>  连接操作不仅可以在两个表之间进行，也可以是一个表与其自己进行连接，称为表的自身连接。</p>
+<p>  <span id="20241116235932CST"></span><strong>例51</strong>：查询每一门课的间接先修课（即先修课的先修课）。<br>
+  在<code>Course</code>表中只有每门课的直接先修课信息，而没有先修课的先修课。要得到这个信息，必须先对一门课找到其先修课，再按此先修课的课程号查找它的先修课程。这就要将<code>Course</code>表与其自身连接。<br>
+  为此，要为<code>Course</code>表取两个别名，一个是<code>FIRST</code>，另一个是<code>SECOND</code>。</p>
 
     </div>
 </section>
@@ -2909,7 +3396,7 @@
 
 
         <span>
-            最后更新于 Nov 16, 2024 19:51 CST
+            最后更新于 Nov 17, 2024 01:09 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3081,7 +3568,7 @@
             
         
         
-        <span>本图书馆累计发布了15篇文章 共24.0万字</span>
+        <span>本图书馆累计发布了15篇文章 共24.2万字</span>
         
     </section>
 
