@@ -131,7 +131,7 @@
 <meta property='og:description' content="关系数据库的标准查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_databases_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T01:09:09&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T14:11:21&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="关系数据库的标准查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -855,6 +855,7 @@
           <ol>
             <li><a href="#等值与非等值连接查询">等值与非等值连接查询</a></li>
             <li><a href="#自身连接">自身连接</a></li>
+            <li><a href="#外连接">外连接</a></li>
           </ol>
         </li>
       </ol>
@@ -1194,7 +1195,7 @@
 </svg>
 
             <time class="article-words">
-                18061 字
+                18272 字
             </time>
         </div>
 
@@ -3139,48 +3140,10 @@
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表17</p>
 <p>  本例中，<code>SELECT</code>子句与<code>WHERE</code>子句中的属性名前都加上了表名前缀，这是为了避免混淆。如果属性名在参加连接的各表中是唯一的，则可以省略表名前缀。<br>
-  关系数据库管理系统执行该连接操作的一种可能过程是：首先在表<code>Student</code>中找到第一个元组，然后从头开始扫描<code>SC</code>表，逐一查找与<code>Student</code>第一个元组的Sno相等的<code>SC</code>元组，找到后就将<code>Student</code>中的第一个元组与该元组拼接起来，形成结果表中一个元组。<code>SC</code>全部查找完后，再找<code>Student</code>中第二个元组，然后再从头开始扫描<code>SC</code>,逐一查找满足连接条件的元组，找到后就将<code>Student</code>中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到<code>Student</code>中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如图3.5所示。</p>
+  关系数据库管理系统执行该连接操作的一种可能过程是：首先在表<code>Student</code>中找到第一个元组，然后从头开始扫描<code>SC</code>表，逐一查找与<code>Student</code>第一个元组的Sno相等的<code>SC</code>元组，找到后就将<code>Student</code>中的第一个元组与该元组拼接起来，形成结果表中一个元组。<code>SC</code>全部查找完后，再找<code>Student</code>中第二个元组，然后再从头开始扫描<code>SC</code>,逐一查找满足连接条件的元组，找到后就将<code>Student</code>中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到<code>Student</code>中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如<a class="link" href="#20241116211750CST">图3</a>所示。</p>
 <span id="20241116211750CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 863.7 236.9314">
-  <defs>
-    <clipPath id="clippath">
-      <polygon points="39.2785 20.2287 448.7519 20.2287 448.7519 93.3625 39.2785 93.3625 39.2785 20.2287 39.2785 20.2287" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-1">
-      <polygon points="247.2529 20.2287 310.4832 20.2287 310.4832 93.3625 247.2529 93.3625 247.2529 20.2287 247.2529 20.2287" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-2">
-      <polygon points="310.8641 20.2287 376.3799 20.2287 376.3799 93.3625 310.8641 93.3625 310.8641 20.2287 310.8641 20.2287" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-3">
-      <polygon points="376.7608 20.2287 448.371 20.2287 448.371 93.3625 376.7608 93.3625 376.7608 20.2287 376.7608 20.2287" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-4">
-      <polygon points="39.2785 20.2287 448.7519 20.2287 448.7519 212.9668 39.2785 212.9668 39.2785 20.2287 39.2785 20.2287" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-5">
-      <polygon points="38.8976 19.8477 448.7519 19.8477 448.7519 212.9668 38.8976 212.9668 38.8976 19.8477 38.8976 19.8477" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-8">
-      <polygon points="530.7685 20.0382 824.4467 20.0382 824.4467 93.172 530.7685 93.172 530.7685 20.0382 530.7685 20.0382" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-9">
-      <polygon points="665.2282 20.0382 745.9802 20.0382 745.9802 93.172 665.2282 93.172 665.2282 20.0382 665.2282 20.0382" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-10">
-      <polygon points="746.3611 20.0382 824.0658 20.0382 824.0658 93.172 746.3611 93.172 746.3611 20.0382 746.3611 20.0382" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-11">
-      <polygon points="530.7685 20.0382 824.4467 20.0382 824.4467 234.488 530.7685 234.488 530.7685 20.0382 530.7685 20.0382" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-12">
-      <polygon points="530.7685 212.7764 824.4467 212.7764 824.4467 234.1071 530.7685 234.1071 530.7685 212.7764 530.7685 212.7764" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-    <clipPath id="clippath-13">
-      <polygon points="530.3876 19.6573 824.4467 19.6573 824.4467 234.488 530.3876 234.488 530.3876 19.6573 530.3876 19.6573" style="clip-rule: evenodd; fill: none;"/>
-    </clipPath>
-  </defs>
   <text transform="translate(38.0264 15.8399)" style="font-family: NotoSerifSC-Light, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0" style="letter-spacing: -.01em;">S</tspan><tspan x="9.8999" y="0" style="letter-spacing: -.001em;">t</tspan><tspan x="16.3979" y="0" style="letter-spacing: -.003em;">u</tspan><tspan x="28.0083" y="0">dent</tspan></text>
   <text transform="translate(531.6144 15.8398)" style="font-family: NotoSerifSC-Light, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 300;"><tspan x="0" y="0" style="letter-spacing: .005em;">S</tspan><tspan x="10.1699" y="0">C</tspan></text>
   <g>
@@ -3349,7 +3312,684 @@
 <p>  <span id="20241116235932CST"></span><strong>例51</strong>：查询每一门课的间接先修课（即先修课的先修课）。<br>
   在<code>Course</code>表中只有每门课的直接先修课信息，而没有先修课的先修课。要得到这个信息，必须先对一门课找到其先修课，再按此先修课的课程号查找它的先修课程。这就要将<code>Course</code>表与其自身连接。<br>
   为此，要为<code>Course</code>表取两个别名，一个是<code>FIRST</code>，另一个是<code>SECOND</code>。</p>
-
+<span id="20241117132302CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 863.7 268.5714">
+  <g id="_layer_1">
+    <g>
+      <g style="clip-path: url(#clippath);">
+        <g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(67.45 44.5895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">Cno</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(141.75 44.5895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">C</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(154.395 44.5895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.001em;"><tspan x="0" y="0">n</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(166.4731 44.5895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">ame</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(247.65 44.5895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.01em;"><tspan x="0" y="0">C</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(260.1124 44.5895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">pno</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(321.15 44.5895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">Cc</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(343.6402 44.5895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.019em;"><tspan x="0" y="0">r</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(351.7472 44.5895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">edit</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(80.85 74.6895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">1</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(145.95 74.6895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">数据库</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(266.35 74.6895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">5</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(348.55 74.6895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(80.05 104.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">2</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(155.05 104.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">数学</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(348.55 104.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">2</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(80.05 134.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">3</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(136.85 134.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">信息系统</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(267.05 134.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">1</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(348.55 134.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(80.05 164.8895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(136.85 164.8895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">操作系统</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(266.35 164.8895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">6</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(348.55 164.8895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">3</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(80.05 194.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">5</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(136.85 194.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">数据结构</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(266.35 194.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">7</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(348.55 194.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(80.05 225.0895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">6</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(136.85 225.0895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">数据处理</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(348.55 225.0895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">2</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(80.45 255.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">7</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(118.95 255.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.073em;"><tspan x="0" y="0">P</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(129.344 255.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">A</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(142.4832 255.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: .005em;"><tspan x="0" y="0">S</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(152.9505 255.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.001em;"><tspan x="0" y="0">C</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(165.5774 255.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.008em;"><tspan x="0" y="0">A</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(178.5706 255.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">L语言</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(266.35 255.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">6</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(348.55 255.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g style="clip-path: url(#clippath-1);">
+        <g>
+          <line x1="59.85" y1="22.8895" x2="59.85" y2="22.4895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="59.85 22.8895 59.85 22.4895 60.25 22.4895 60.25 22.8895 59.85 22.8895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <line x1="110.15" y1="22.8895" x2="110.15" y2="22.4895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="110.15 22.8895 110.15 22.4895 110.55 22.4895 110.55 22.8895 110.15 22.8895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <line x1="235.85" y1="22.8895" x2="235.85" y2="22.4895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="235.85 22.8895 235.85 22.4895 236.25 22.4895 236.25 22.8895 235.85 22.8895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <line x1="306.35" y1="22.8895" x2="306.35" y2="22.4895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="306.35 22.8895 306.35 22.4895 306.75 22.4895 306.75 22.8895 306.35 22.8895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <line x1="400.45" y1="22.8895" x2="400.45" y2="22.4895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="400.45 22.8895 400.45 22.4895 400.75 22.4895 400.75 22.8895 400.45 22.8895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <polyline points="59.45 22.4895 59.45 264.3895 60.65 264.3895 60.65 22.4895 59.45 22.4895" style="fill-rule: evenodd;"/>
+          <polyline points="109.75 23.5895 109.75 264.3895 110.95 264.3895 110.95 23.5895 109.75 23.5895" style="fill-rule: evenodd;"/>
+          <polyline points="235.45 23.5895 235.45 264.3895 236.65 264.3895 236.65 23.5895 235.45 23.5895" style="fill-rule: evenodd;"/>
+          <polyline points="305.95 23.5895 305.95 264.3895 307.05 264.3895 307.05 23.5895 305.95 23.5895" style="fill-rule: evenodd;"/>
+          <polyline points="400.05 23.5895 400.05 264.3895 401.15 264.3895 401.15 23.5895 400.05 23.5895" style="fill-rule: evenodd;"/>
+          <polyline points="60.65 22.4895 60.65 23.5895 401.15 23.5895 401.15 22.4895 60.65 22.4895" style="fill-rule: evenodd;"/>
+          <polyline points="60.65 52.5895 60.65 53.6895 401.15 53.6895 401.15 52.5895 60.65 52.5895" style="fill-rule: evenodd;"/>
+          <polyline points="60.65 82.6895 60.65 83.7895 401.15 83.7895 401.15 82.6895 60.65 82.6895" style="fill-rule: evenodd;"/>
+          <polyline points="60.65 112.7895 60.65 113.8895 401.15 113.8895 401.15 112.7895 60.65 112.7895" style="fill-rule: evenodd;"/>
+          <polyline points="60.65 142.8895 60.65 143.9895 401.15 143.9895 401.15 142.8895 60.65 142.8895" style="fill-rule: evenodd;"/>
+          <polyline points="60.65 172.8895 60.65 174.0895 401.15 174.0895 401.15 172.8895 60.65 172.8895" style="fill-rule: evenodd;"/>
+          <polyline points="60.65 202.9895 60.65 204.1895 401.15 204.1895 401.15 202.9895 60.65 202.9895" style="fill-rule: evenodd;"/>
+          <polyline points="60.65 233.0895 60.65 234.2895 401.15 234.2895 401.15 233.0895 60.65 233.0895" style="fill-rule: evenodd;"/>
+          <polyline points="60.65 263.1895 60.65 264.3895 401.15 264.3895 401.15 263.1895 60.65 263.1895" style="fill-rule: evenodd;"/>
+        </g>
+      </g>
+    </g>
+    <g>
+      <g style="clip-path: url(#clippath-2);">
+        <g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(470.55 44.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">Cno</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(544.85 44.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">C</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(557.495 44.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.001em;"><tspan x="0" y="0">n</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(569.5731 44.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">ame</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(650.75 44.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.01em;"><tspan x="0" y="0">C</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(663.2124 44.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">pno</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(724.25 44.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">Cc</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(746.7402 44.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.019em;"><tspan x="0" y="0">r</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(754.8472 44.7895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">edit</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(483.85 74.8895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">1</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(549.05 74.8895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">数据库</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(669.35 74.8895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">5</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(751.65 74.8895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(483.15 104.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">2</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(558.1501 104.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">数学</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(751.65 104.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">2</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(483.15 134.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">3</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(539.85 134.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">信息系统</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(670.15 134.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">1</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(751.65 134.9895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(483.15 165.0895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(539.85 165.0895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">操作系统</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(669.35 165.0895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">6</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(751.65 165.0895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">3</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(483.15 195.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">5</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(539.85 195.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">数据结构</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(669.35 195.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">7</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(751.65 195.1895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(483.15 225.2895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">6</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(539.85 225.2895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">数据处理</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(751.65 225.2895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">2</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(483.55 255.3895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">7</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(521.95 255.3895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.073em;"><tspan x="0" y="0">P</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(532.344 255.3895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">A</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(545.4832 255.3895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: .005em;"><tspan x="0" y="0">S</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(555.9505 255.3895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.001em;"><tspan x="0" y="0">C</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(568.5774 255.3895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate; letter-spacing: -.008em;"><tspan x="0" y="0">A</tspan></text>
+              </g>
+              <g style="isolation: isolate;">
+                <text transform="translate(581.5706 255.3895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">L语言</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(669.35 255.3895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">6</tspan></text>
+              </g>
+            </g>
+          </g>
+          <g style="isolation: isolate;">
+            <g style="isolation: isolate;">
+              <g style="isolation: isolate;">
+                <text transform="translate(751.65 255.3895)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18.3px; isolation: isolate;"><tspan x="0" y="0">4</tspan></text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g style="clip-path: url(#clippath-3);">
+        <g>
+          <line x1="462.95" y1="23.0895" x2="462.95" y2="22.6895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="462.95 23.0895 462.95 22.6895 463.35 22.6895 463.35 23.0895 462.95 23.0895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <line x1="513.25" y1="23.0895" x2="513.25" y2="22.6895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="513.25 23.0895 513.25 22.6895 513.65 22.6895 513.65 23.0895 513.25 23.0895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <line x1="638.95" y1="23.0895" x2="638.95" y2="22.6895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="638.95 23.0895 638.95 22.6895 639.25 22.6895 639.25 23.0895 638.95 23.0895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <line x1="709.35" y1="23.0895" x2="709.35" y2="22.6895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="709.35 23.0895 709.35 22.6895 709.75 22.6895 709.75 23.0895 709.35 23.0895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <line x1="803.45" y1="23.0895" x2="803.45" y2="22.6895" style="fill: none; stroke: #d4d4d4; stroke-linecap: square; stroke-miterlimit: 10;"/>
+          <polyline points="803.45 23.0895 803.45 22.6895 803.85 22.6895 803.85 23.0895 803.45 23.0895" style="fill: #d4d4d4; fill-rule: evenodd;"/>
+          <polyline points="462.55 22.6895 462.55 264.5895 463.75 264.5895 463.75 22.6895 462.55 22.6895" style="fill-rule: evenodd;"/>
+          <polyline points="512.85 23.7895 512.85 264.5895 513.95 264.5895 513.95 23.7895 512.85 23.7895" style="fill-rule: evenodd;"/>
+          <polyline points="638.55 23.7895 638.55 264.5895 639.65 264.5895 639.65 23.7895 638.55 23.7895" style="fill-rule: evenodd;"/>
+          <polyline points="709.05 23.7895 709.05 264.5895 710.15 264.5895 710.15 23.7895 709.05 23.7895" style="fill-rule: evenodd;"/>
+          <polyline points="803.05 23.7895 803.05 264.5895 804.25 264.5895 804.25 23.7895 803.05 23.7895" style="fill-rule: evenodd;"/>
+          <polyline points="463.75 22.6895 463.75 23.7895 804.25 23.7895 804.25 22.6895 463.75 22.6895" style="fill-rule: evenodd;"/>
+          <polyline points="463.75 52.7895 463.75 53.8895 804.25 53.8895 804.25 52.7895 463.75 52.7895" style="fill-rule: evenodd;"/>
+          <polyline points="463.75 82.8895 463.75 83.9895 804.25 83.9895 804.25 82.8895 463.75 82.8895" style="fill-rule: evenodd;"/>
+          <polyline points="463.75 112.9895 463.75 114.0895 804.25 114.0895 804.25 112.9895 463.75 112.9895" style="fill-rule: evenodd;"/>
+          <polyline points="463.75 142.9895 463.75 144.1895 804.25 144.1895 804.25 142.9895 463.75 142.9895" style="fill-rule: evenodd;"/>
+          <polyline points="463.75 173.0895 463.75 174.2895 804.25 174.2895 804.25 173.0895 463.75 173.0895" style="fill-rule: evenodd;"/>
+          <polyline points="463.75 203.1895 463.75 204.3895 804.25 204.3895 804.25 203.1895 463.75 203.1895" style="fill-rule: evenodd;"/>
+          <polyline points="463.75 233.2895 463.75 234.4895 804.25 234.4895 804.25 233.2895 463.75 233.2895" style="fill-rule: evenodd;"/>
+          <polyline points="463.75 263.3895 463.75 264.5895 804.25 264.5895 804.25 263.3895 463.75 263.3895" style="fill-rule: evenodd;"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(59.85 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.009em;"><tspan x="0" y="0">F</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(70.8661 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">IR</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(90.6117 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.011em;"><tspan x="0" y="0">S</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(100.4037 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">T</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(112.0136 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.477em;"><tspan x="0" y="0">表</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(120.4939 17.2962)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.069em;"><tspan x="0" y="0">（</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(139.0136 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">C</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(151.3612 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.003em;"><tspan x="0" y="0">o</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(161.8373 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">u</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(173.411 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.004em;"><tspan x="0" y="0">r</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(181.3671 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">se</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(199.349 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.023em;"><tspan x="0" y="0">表</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(216.1072 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -1.431em;"><tspan x="0" y="0">）</tspan></text>
+    </g>
+  </g>
+  <g style="isolation: isolate;">
+    <g style="isolation: isolate;">
+      <text transform="translate(461.0926 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.003em;"><tspan x="0" y="0">S</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(471.0286 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">EC</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(495.0042 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.008em;"><tspan x="0" y="0">O</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(508.5223 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.004em;"><tspan x="0" y="0">N</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(522.6341 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">D</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(536.3499 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.477em;"><tspan x="0" y="0">表</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(546.2428 17.4222)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.069em;"><tspan x="0" y="0">（</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(563.3499 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">C</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(575.6981 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.003em;"><tspan x="0" y="0">o</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(586.1737 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">u</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(597.7479 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.004em;"><tspan x="0" y="0">r</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(605.7039 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">se</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(623.6854 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -.023em;"><tspan x="0" y="0">表</tspan></text>
+    </g>
+    <g style="isolation: isolate;">
+      <text transform="translate(640.4437 17.1526)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: -1.431em;"><tspan x="0" y="0">）</tspan></text>
+    </g>
+  </g>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;Course表的两个别名FIRST和SECOND</p>
+<p>  完成该查询的SQL语句为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">FIRST</span><span class="p">.</span><span class="n">Cno</span><span class="p">,</span><span class="k">SECOND</span><span class="p">.</span><span class="n">Cpno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">FIRST</span><span class="p">,</span><span class="n">Course</span><span class="w"> </span><span class="k">SECOND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">FIRST</span><span class="p">.</span><span class="n">Cpno</span><span class="o">=</span><span class="k">SECOND</span><span class="p">.</span><span class="n">Cno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  结果为</p>
+<div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Cno</th>
+          <th>Cpno</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>7</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>5</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>6</td>
+      </tr>
+  </tbody>
+</table></div>
+</div>
+<h4 id="外连接">外连接
+</h4>
     </div>
 </section>
 
@@ -3396,7 +4036,7 @@
 
 
         <span>
-            最后更新于 Nov 17, 2024 01:09 CST
+            最后更新于 Nov 17, 2024 14:11 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
