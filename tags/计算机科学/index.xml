@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 17 Nov 2024 17:29:55 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 17 Nov 2024 20:24:12 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -2268,7 +2268,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  建表的同时通常还可以定义与该表有关的完整性约束条件，这些完整性约束条件被存入系统的数据字典中，当用户操作表中数据时由关系数据库管理系统自动检查该操作是否违背这些完整性约束条件。如果完整性约束条件涉及该表的多个属性列，则必须定义在表级上，否则既可以定义在列级也可以定义在表级。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241111233348CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例5&lt;/strong&gt;：建立一个“学生”表Student。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241111233348CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例5&lt;/strong&gt;：建立一个“学生”表&lt;code&gt;Student&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2289,7 +2289,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  系统执行该&lt;code&gt;CREATE TABLE&lt;/code&gt;语句后，就在数据库中建立一个新的空“学生”表Student，并将有关“学生”表的定义及有关约束条件存放在数据字典中。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  系统执行该&lt;code&gt;CREATE TABLE&lt;/code&gt;语句后，就在数据库中建立一个新的空“学生”表&lt;code&gt;Student&lt;/code&gt;，并将有关“学生”表的定义及有关约束条件存放在数据字典中。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241111233814CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例6&lt;/strong&gt;：建立一个课程表Course。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2424,7 +2424,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表7&amp;emsp;数据类型&lt;/p&gt;
 &lt;p&gt;  一个属性选用哪种数据类型要根据实际情况来决定，一般要从两个方面来考虑，一是取值范围，二是要做哪些运算。例如，对于年龄（Sage）属性，可以采用&lt;code&gt;CHAR(3)&lt;/code&gt;作为数据类型，但考虑到要在年龄上做算术运算（如求平均年龄），所以要采用整数作为数据类型，因为在&lt;code&gt;CHAR(n)&lt;/code&gt;数据类型上不能进行算术运算。整数又有长整数和短整数两种，因为一个人的年龄在百岁左右，所以选用短整数作为年龄的数据类型。&lt;/p&gt;
 &lt;h4 id=&#34;模式与表&#34;&gt;模式与表
-&lt;/h4&gt;&lt;p&gt;  每一个基本表都属于某一个模式，一个模式包含多个基本表。当定义基本表时一般可以有三种方法定义它所属的模式。例如在例3.1中定义了一个学生—课程模式&lt;code&gt;S-T&lt;/code&gt;。现在要在&lt;code&gt;S-T&lt;/code&gt;中定义Student、&lt;code&gt;Cource&lt;/code&gt;、SC等基本表。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  每一个基本表都属于某一个模式，一个模式包含多个基本表。当定义基本表时一般可以有三种方法定义它所属的模式。例如在例3.1中定义了一个学生—课程模式&lt;code&gt;S-T&lt;/code&gt;。现在要在&lt;code&gt;S-T&lt;/code&gt;中定义Student、&lt;code&gt;Cource&lt;/code&gt;、&lt;code&gt;SC&lt;/code&gt;等基本表。&lt;/p&gt;
 &lt;p&gt;  方法一，在表名中明显地给出模式名。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2469,7 +2469,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  实际结果是建立了&lt;code&gt;S-T.Student&lt;/code&gt;基本表。因为关系数据库管理系统发现搜索路径中第一 个模式名&lt;code&gt;S-T&lt;/code&gt;存在，就把该模式作为基本表Student所属的模式。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  实际结果是建立了&lt;code&gt;S-T.Student&lt;/code&gt;基本表。因为关系数据库管理系统发现搜索路径中第一 个模式名&lt;code&gt;S-T&lt;/code&gt;存在，就把该模式作为基本表&lt;code&gt;Student&lt;/code&gt;所属的模式。&lt;/p&gt;
 &lt;h4 id=&#34;修改基本表&#34;&gt;修改基本表
 &lt;/h4&gt;&lt;p&gt;  随着应用环境和应用需求的变化，有时需要修改已建立好的基本表。SQL语言用&lt;code&gt;ALTER TABLE&lt;/code&gt;语句修改基本表，其一般格式为&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2491,7 +2491,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  其中&lt;code&gt;&amp;lt;表名&amp;gt;&lt;/code&gt;是要修改的基本表，&lt;code&gt;ADD&lt;/code&gt;子句用于增加新列、新的列级完整性约束条件和新的表级完整性约束条件。&lt;code&gt;DROP COLUMN&lt;/code&gt;子句用于删除表中的列，如果指定了&lt;code&gt;CASCADE&lt;/code&gt;短语，则自动删除引用了该列的其他对象，比如视图；如果指定了&lt;code&gt;RESTRICT&lt;/code&gt;短语，则如果该列被其他对象引用，RDBMS将拒绝删除该列。&lt;code&gt;DROP CONSTRAINT&lt;/code&gt;子句用于删除指定的完整性约束条件。&lt;code&gt;ALTER COLUMN&lt;/code&gt;子句用于修改原有的列定义，包括修改列名和数据类型。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241112001922CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例8&lt;/strong&gt;：向Student表增加“入学时间”列，其数据类型为日期型。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241112001922CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例8&lt;/strong&gt;：向&lt;code&gt;Student&lt;/code&gt;表增加“入学时间”列，其数据类型为日期型。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2532,7 +2532,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/div&gt;&lt;p&gt;  若选择&lt;code&gt;RESTRICT&lt;/code&gt;，则该表的删除是有限制条件的。欲删除的基本表不能被其他表的约束所引用（如&lt;code&gt;CHECK&lt;/code&gt;，&lt;code&gt;FOREIGN KEY&lt;/code&gt;等约束），不能有视图，不能有触发器（trigger），不能有存储过程或函数等。如果存在这些依赖该表的对象，则此表不能被删除。&lt;br&gt;
   若选择&lt;code&gt;CASCADE&lt;/code&gt;，则该表的删除没有限制条件。在删除基本表的同时，相关的依赖对象，例如视图，都将被一起删除。&lt;br&gt;
   默认情况是&lt;code&gt;RESTRICT&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241112002245CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例11&lt;/strong&gt;：删除Student表。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241112002245CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例11&lt;/strong&gt;：删除&lt;code&gt;Student&lt;/code&gt;表。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2541,7 +2541,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;DROP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CASCADE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  基本表定义一旦被删除，不仅表中的数据和此表的定义将被删除，而且此表上建立的索引、触发器等对象一般也都将被删除。有的关系数据库管理系统还会同时删除在此表上建立的视图。如果欲删除的基本表被其他基本表所引用，则这些表也可能被删除。例如SC表通过外码&lt;code&gt;Sno&lt;/code&gt;引用Student，则执行例&lt;a class=&#34;link&#34; href=&#34;#20241112002245CST&#34;&gt;例11&lt;/a&gt;后Student表被删除，SC也被级联删除。因此执行删除基本表的操作一定要格外小心。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  基本表定义一旦被删除，不仅表中的数据和此表的定义将被删除，而且此表上建立的索引、触发器等对象一般也都将被删除。有的关系数据库管理系统还会同时删除在此表上建立的视图。如果欲删除的基本表被其他基本表所引用，则这些表也可能被删除。例如SC表通过外码&lt;code&gt;Sno&lt;/code&gt;引用&lt;code&gt;Student&lt;/code&gt;，则执行例&lt;a class=&#34;link&#34; href=&#34;#20241112002245CST&#34;&gt;例11&lt;/a&gt;后&lt;code&gt;Student&lt;/code&gt;表被删除，SC也被级联删除。因此执行删除基本表的操作一定要格外小心。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241112002606CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例12&lt;/strong&gt;：若表上建有视图，选择&lt;code&gt;RESTRICT&lt;/code&gt;时表不能删除；选择&lt;code&gt;CASCADE&lt;/code&gt;时可以删除表，视图也自动被删除。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2639,7 +2639,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/div&gt;&lt;p&gt;  其中，&lt;code&gt;&amp;lt;表名&amp;gt;&lt;/code&gt;是要建索引的基本表的名字。索引可以建立在该表的一列或多列上，各列名之间用逗号分隔。每个&lt;code&gt;&amp;lt;列名&amp;gt;&lt;/code&gt;后面还可以用&lt;code&gt;&amp;lt;次序&amp;gt;&lt;/code&gt;指定索引值的排列次序，可选&lt;code&gt;ASC&lt;/code&gt;（升序）或&lt;code&gt;DESC&lt;/code&gt;（降序），默认值为&lt;code&gt;ASC&lt;/code&gt;。&lt;br&gt;
   &lt;code&gt;UNIQUE&lt;/code&gt;表明此索引的每一个索引值只对应唯一的数据记录。&lt;br&gt;
   &lt;code&gt;CLUSTER&lt;/code&gt;表示要建立的索引是聚簇索引。有关聚簇索引的概念在&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“数据库设计”还没写到~&#39;)&#34;&gt;数据库系统（五）：数据库设计&lt;/a&gt;中介绍。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241112154107CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例13&lt;/strong&gt;：为学生—课程数据库中的Student、Course和SC三个表建立索引。其中Student表按学号升序唯一索引，Course表按课程号号升序建唯-索引，SC表按学号升序和课程号降序建唯一索引。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241112154107CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例13&lt;/strong&gt;：为学生—课程数据库中的&lt;code&gt;Student&lt;/code&gt;、&lt;code&gt;Course&lt;/code&gt;和&lt;code&gt;SC&lt;/code&gt;三个表建立索引。其中&lt;code&gt;Student&lt;/code&gt;表按学号升序唯一索引，Course表按课程号号升序建唯-索引，SC表按学号升序和课程号降序建唯一索引。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2682,7 +2682,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;DROP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INDEX&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;索引名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241112154700CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例15&lt;/strong&gt;：删除Student表的&lt;code&gt;Stusname&lt;/code&gt;索引。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241112154700CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例15&lt;/strong&gt;：删除&lt;code&gt;Student&lt;/code&gt;表的&lt;code&gt;Stusname&lt;/code&gt;索引。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2732,7 +2732,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  该语句的执行过程可以是这样的：从Student表中取出一个元组，取出该元组在属性&lt;code&gt;Sno&lt;/code&gt;和&lt;code&gt;Sname&lt;/code&gt;上的值，形成一个新的元组作为输出。对Student表中的所有元组做相同的处理，最后形成一个结果关系作为输出。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  该语句的执行过程可以是这样的：从&lt;code&gt;Student&lt;/code&gt;表中取出一个元组，取出该元组在属性&lt;code&gt;Sno&lt;/code&gt;和&lt;code&gt;Sname&lt;/code&gt;上的值，形成一个新的元组作为输出。对&lt;code&gt;Student&lt;/code&gt;表中的所有元组做相同的处理，最后形成一个结果关系作为输出。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241112161207CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例17&lt;/strong&gt;：查询全体学生的姓名、学号、所在系。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3054,8 +3054,8 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;CS&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  关系数据库管理系统执行该查询的一种可能过程是：对Student表进行全表扫描，取 出一个元组，检查该元组在&lt;code&gt;Sdept&lt;/code&gt;列的值是否等于&lt;code&gt;CS&lt;/code&gt;，如果相等，则取出&lt;code&gt;Sname&lt;/code&gt;列的值形成一个新的元组输出；否则跳过该元组，取下一个元组。重复该过程，直到处理完Student表的所有元组。&lt;br&gt;
-  如果全校有数万个学生，计算机系的学生人数是全校学生的5%左右，可以在Student表的&lt;code&gt;Sdept&lt;/code&gt;列上建立索引，系统会利用该索引找出&lt;code&gt;Sdept=&#39;CS&#39;&lt;/code&gt;的元组，从中取出&lt;code&gt;Sname&lt;/code&gt;列值形成结果关系。这就避免了对Student表的全表扫描，加快了查询速度。注意如果学生较少，索引查找不一定能提高查询效率，系统仍会使用全表扫描。这由查询优化器按照某些规则或估计执行代价来作出选择。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  关系数据库管理系统执行该查询的一种可能过程是：对&lt;code&gt;Student&lt;/code&gt;表进行全表扫描，取 出一个元组，检查该元组在&lt;code&gt;Sdept&lt;/code&gt;列的值是否等于&lt;code&gt;CS&lt;/code&gt;，如果相等，则取出&lt;code&gt;Sname&lt;/code&gt;列的值形成一个新的元组输出；否则跳过该元组，取下一个元组。重复该过程，直到处理完&lt;code&gt;Student&lt;/code&gt;表的所有元组。&lt;br&gt;
+  如果全校有数万个学生，计算机系的学生人数是全校学生的5%左右，可以在&lt;code&gt;Student&lt;/code&gt;表的&lt;code&gt;Sdept&lt;/code&gt;列上建立索引，系统会利用该索引找出&lt;code&gt;Sdept=&#39;CS&#39;&lt;/code&gt;的元组，从中取出&lt;code&gt;Sname&lt;/code&gt;列值形成结果关系。这就避免了对&lt;code&gt;Student&lt;/code&gt;表的全表扫描，加快了查询速度。注意如果学生较少，索引查找不一定能提高查询效率，系统仍会使用全表扫描。这由查询优化器按照某些规则或估计执行代价来作出选择。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241115230437CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例23&lt;/strong&gt;：查询所有年龄在20岁以下的学生姓名及其年龄。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3452,7 +3452,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/div&gt;&lt;p&gt;  当聚集函数遇到空值时，除&lt;code&gt;COUNT(*)&lt;/code&gt;外，都跳过空值而只处理非空值。&lt;code&gt;COUNT(*)&lt;/code&gt;是对元组进行计数，某个元组的一个或部分列取空值不影响&lt;code&gt;COUNT&lt;/code&gt;的统计结果。&lt;br&gt;
   注意，&lt;code&gt;WHERE&lt;/code&gt;子句中是不能用聚集函数作为条件表达式的。聚集函数只能用于&lt;code&gt;SELECT&lt;/code&gt;子句和&lt;code&gt;GROUP BY&lt;/code&gt;中的&lt;code&gt;HAVING&lt;/code&gt;子句。&lt;/p&gt;
 &lt;h4 id=&#34;group-by子句&#34;&gt;GROUP BY子句
-&lt;/h4&gt;&lt;p&gt;  GROUP BY子句将查询结果按某一列或多列的值分组，值相等的为一组。&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  &lt;code&gt;GROUP BY&lt;/code&gt;子句将查询结果按某一列或多列的值分组，值相等的为一组。&lt;br&gt;
   对查询结果分组的目的是为了细化聚集函数的作用对象。如果未对查询结果分组，聚集函数将作用于整个查询结果，如前面的&lt;a class=&#34;link&#34; href=&#34;#20241116195257CST&#34;&gt;例41&lt;/a&gt;〜&lt;a class=&#34;link&#34; href=&#34;#20241116195620CST&#34;&gt;例45&lt;/a&gt;。分组后聚集函数将作用于每一个组，即每一组都有一个函数值。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241116200044CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例46&lt;/strong&gt;：求各个课程号及相应的选课人数。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -3574,7 +3574,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/div&gt;&lt;p&gt;  当连接运算符为&lt;code&gt;=&lt;/code&gt;时，称为&lt;strong&gt;等值连接&lt;/strong&gt;。使用其他运算符称为&lt;strong&gt;非等值连接&lt;/strong&gt;。&lt;br&gt;
   连接谓词中的列名称为&lt;strong&gt;连接字段&lt;/strong&gt;。连接条件中的各连接字段类型必须是可比的，但名字不必相同。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241116202830CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例49&lt;/strong&gt;：查询每个学生及其选修课程的情况。&lt;/p&gt;
-&lt;p&gt;  学生情况存放在Student表中，学生选课情况存放在SC表中，所以本查询实际上涉及Student与SC两个表。这两个表之间的联系是通过公共属性&lt;code&gt;Sno&lt;/code&gt;实现的。&lt;/p&gt;
+&lt;p&gt;  学生情况存放在&lt;code&gt;Student&lt;/code&gt;表中，学生选课情况存放在&lt;code&gt;SC&lt;/code&gt;表中，所以本查询实际上涉及&lt;code&gt;Student&lt;/code&gt;与&lt;code&gt;SC&lt;/code&gt;两个表。这两个表之间的联系是通过公共属性&lt;code&gt;Sno&lt;/code&gt;实现的。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3587,7 +3587,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* 将Student与SC中同一学生的元组连接起来 */&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  假设Student表、SC表的数据如&lt;a class=&#34;link&#34; href=&#34;#20241111214851CST&#34;&gt;表3&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241111220809CST&#34;&gt;表5&lt;/a&gt;所示，该查询的执行结果如下表所示。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  假设&lt;code&gt;Student&lt;/code&gt;表、&lt;code&gt;SC&lt;/code&gt;表的数据如&lt;a class=&#34;link&#34; href=&#34;#20241111214851CST&#34;&gt;表3&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241111220809CST&#34;&gt;表5&lt;/a&gt;所示，该查询的执行结果如下表所示。&lt;/p&gt;
 &lt;span id=&#34;20241116203316CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -3656,7 +3656,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表17&lt;/p&gt;
 &lt;p&gt;  本例中，&lt;code&gt;SELECT&lt;/code&gt;子句与&lt;code&gt;WHERE&lt;/code&gt;子句中的属性名前都加上了表名前缀，这是为了避免混淆。如果属性名在参加连接的各表中是唯一的，则可以省略表名前缀。&lt;br&gt;
-  关系数据库管理系统执行该连接操作的一种可能过程是：首先在表Student中找到第一个元组，然后从头开始扫描SC表，逐一查找与Student第一个元组的Sno相等的SC元组，找到后就将Student中的第一个元组与该元组拼接起来，形成结果表中一个元组。SC全部查找完后，再找Student中第二个元组，然后再从头开始扫描SC,逐一查找满足连接条件的元组，找到后就将Student中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到Student中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如&lt;a class=&#34;link&#34; href=&#34;#20241116211750CST&#34;&gt;图3&lt;/a&gt;所示。&lt;/p&gt;
+  关系数据库管理系统执行该连接操作的一种可能过程是：首先在表&lt;code&gt;Student&lt;/code&gt;中找到第一个元组，然后从头开始扫描&lt;code&gt;SC&lt;/code&gt;表，逐一查找与&lt;code&gt;Student&lt;/code&gt;第一个元组的&lt;code&gt;Sno&lt;/code&gt;相等的&lt;code&gt;SC&lt;/code&gt;元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第一个元组与该元组拼接起来，形成结果表中一个元组。&lt;code&gt;SC&lt;/code&gt;全部查找完后，再找&lt;code&gt;Student&lt;/code&gt;中第二个元组，然后再从头开始扫描&lt;code&gt;SC&lt;/code&gt;，逐一查找满足连接条件的元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到&lt;code&gt;Student&lt;/code&gt;中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如&lt;a class=&#34;link&#34; href=&#34;#20241116211750CST&#34;&gt;图3&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241116211750CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 236.9314&#34;&gt;
@@ -3805,7 +3805,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  本例中，由于&lt;code&gt;Sname&lt;/code&gt;、&lt;code&gt;Ssex&lt;/code&gt;、&lt;code&gt;Sage&lt;/code&gt;、&lt;code&gt;Sdept&lt;/code&gt;、&lt;code&gt;Cno&lt;/code&gt;和&lt;code&gt;Grade&lt;/code&gt;属性列在Student表与SC表中是唯一的，因此引用时可以去掉表名前缀；而&lt;code&gt;Sno&lt;/code&gt;在两个表都出现了，因此引用时必须加上表名前缀。&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;  本例中，由于&lt;code&gt;Sname&lt;/code&gt;、&lt;code&gt;Ssex&lt;/code&gt;、&lt;code&gt;Sage&lt;/code&gt;、&lt;code&gt;Sdept&lt;/code&gt;、&lt;code&gt;Cno&lt;/code&gt;和&lt;code&gt;Grade&lt;/code&gt;属性列在&lt;code&gt;Student&lt;/code&gt;表与&lt;code&gt;SC&lt;/code&gt;表中是唯一的，因此引用时可以去掉表名前缀；而&lt;code&gt;Sno&lt;/code&gt;在两个表都出现了，因此引用时必须加上表名前缀。&lt;br&gt;
   一条SQL语句可以同时完成选择和连接查询，这时&lt;code&gt;WHERE&lt;/code&gt;子句是由连接谓词和选择谓词组成的复合条件。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241116213920CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例51&lt;/strong&gt;：查询选修2号课程且成绩在90分以上的所有学生的学号和姓名。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -3822,7 +3822,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;2&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AND&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* 其他限定条件 */&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  该查询的一种优化（高效）的执行过程是，先从SC中挑选出&lt;code&gt;Cno=&#39;2&#39;&lt;/code&gt;并且&lt;code&gt;Grade&amp;gt;90&lt;/code&gt;的元组形成一个中间关系，再和Student中满足连接条件的元组进行连接得到最终的结果关系。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  该查询的一种优化（高效）的执行过程是，先从SC中挑选出&lt;code&gt;Cno=&#39;2&#39;&lt;/code&gt;并且&lt;code&gt;Grade&amp;gt;90&lt;/code&gt;的元组形成一个中间关系，再和&lt;code&gt;Student&lt;/code&gt;中满足连接条件的元组进行连接得到最终的结果关系。&lt;/p&gt;
 &lt;h4 id=&#34;自身连接&#34;&gt;自身连接
 &lt;/h4&gt;&lt;p&gt;  连接操作不仅可以在两个表之间进行，也可以是一个表与其自己进行连接，称为表的&lt;strong&gt;自身连接&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241116235932CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例52&lt;/strong&gt;：查询每一门课的间接先修课（即先修课的先修课）。&lt;/p&gt;
@@ -4505,8 +4505,8 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表18&lt;/p&gt;
 &lt;h4 id=&#34;外连接&#34;&gt;外连接
-&lt;/h4&gt;&lt;p&gt;  在通常的连接操作中，只有满足连接条件的元组才能作为结果输出。如例&lt;a class=&#34;link&#34; href=&#34;#20241116202830CST&#34;&gt;例49&lt;/a&gt;的结果表中没有201215123和201215125两个学生的信息，原因在于他们没有选课，在SC表中没有相应的元组，导致Student中这些元组在连接时被舍弃了。&lt;br&gt;
-  有时想以Student表为主体列出每个学生的基本情况及其选课情况。若某个学生没有选课，仍把Student的悬浮元组保存在结果关系中，而在SC表的属性上填空值&lt;code&gt;NULL&lt;/code&gt;，这时就需要使用外连接。外连接的概念见&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/#20241117142036CST&#34;&gt;关系数据库-外连接&lt;/a&gt;。可以参照&lt;a class=&#34;link&#34; href=&#34;#20241117142134CST&#34;&gt;例53&lt;/a&gt;改写&lt;a class=&#34;link&#34; href=&#34;#20241116202830CST&#34;&gt;例49&lt;/a&gt;。&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  在通常的连接操作中，只有满足连接条件的元组才能作为结果输出。如例&lt;a class=&#34;link&#34; href=&#34;#20241116202830CST&#34;&gt;例49&lt;/a&gt;的结果表中没有201215123和201215125两个学生的信息，原因在于他们没有选课，在SC表中没有相应的元组，导致&lt;code&gt;Student&lt;/code&gt;中这些元组在连接时被舍弃了。&lt;br&gt;
+  有时想以&lt;code&gt;Student&lt;/code&gt;表为主体列出每个学生的基本情况及其选课情况。若某个学生没有选课，仍把&lt;code&gt;Student&lt;/code&gt;的悬浮元组保存在结果关系中，而在SC表的属性上填空值&lt;code&gt;NULL&lt;/code&gt;，这时就需要使用外连接。外连接的概念见&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/#20241117142036CST&#34;&gt;关系数据库-外连接&lt;/a&gt;。可以参照&lt;a class=&#34;link&#34; href=&#34;#20241117142134CST&#34;&gt;例53&lt;/a&gt;改写&lt;a class=&#34;link&#34; href=&#34;#20241116202830CST&#34;&gt;例49&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241117142134CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例53&lt;/strong&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4609,7 +4609,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表19&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;左外连接&lt;/strong&gt;列出左边关系（如本例Student）中所有的元组，&lt;strong&gt;右外连接&lt;/strong&gt;列出右边关系中所有的元组。&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;左外连接&lt;/strong&gt;列出左边关系（如本例&lt;code&gt;Student&lt;/code&gt;）中所有的元组，&lt;strong&gt;右外连接&lt;/strong&gt;列出右边关系中所有的元组。&lt;/p&gt;
 &lt;h4 id=&#34;多表连接&#34;&gt;多表连接
 &lt;/h4&gt;&lt;p&gt;  连接操作除了可以是&lt;strong&gt;两表连接&lt;/strong&gt;，一个表与其自身连接外，还可以是两个以上的表进行连接，后者通常称为&lt;strong&gt;多表连接&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241117143630CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例54&lt;/strong&gt;：查询每个学生的学号、姓名、选修的课程名及成绩。&lt;/p&gt;
@@ -4626,7 +4626,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AND&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Course&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  关系数据库管理系统在执行多表连接时，通常是先进行两个表的连接操作，再将其连接结果与第三个表进行连接。本例的一种可能的执行方式是，先将Student表与SC表进行连接，得到每个学生的学号、姓名、所选课程号和相应的成绩，然后再将其与Course表进行连接，得到最终结果。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  关系数据库管理系统在执行多表连接时，通常是先进行两个表的连接操作，再将其连接结果与第三个表进行连接。本例的一种可能的执行方式是，先将&lt;code&gt;Student&lt;/code&gt;表与&lt;code&gt;SC&lt;/code&gt;表进行连接，得到每个学生的学号、姓名、所选课程号和相应的成绩，然后再将其与&lt;code&gt;Course&lt;/code&gt;表进行连接，得到最终结果。&lt;/p&gt;
 &lt;h3 id=&#34;嵌套查询&#34;&gt;嵌套查询
 &lt;/h3&gt;&lt;p&gt;  在SQL语言中，一个&lt;code&gt;SELECT-FROM-WHERE&lt;/code&gt;语句称为一个查询块。将一个查询块嵌套在另一个查询块的&lt;code&gt;WHERE&lt;/code&gt;子句或&lt;code&gt;HAVING&lt;/code&gt;短语的条件中的查询称为&lt;strong&gt;嵌套查询（nested query）&lt;/strong&gt;。例如：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -4754,7 +4754,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  可见，实现同一个查询请求可以有多种方法，当然不同的方法其执行效率可能会有差别，甚至会差别很大。这就是数据库编程人员应该掌握的数据库性能调优技术。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241117151150CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例56&lt;/strong&gt;：查询选修了课程名为“信息系统”的学生学号和姓名。&lt;/p&gt;
-&lt;p&gt;  本查询涉及学号、姓名和课程名三个属性。学号和姓名存放在Student表中，课程名存放在Course表中，但Student与Course两个表之间没有直接联系，必须通过SC表建立它们二者之间的联系。所以本查询实际上涉及三个关系。&lt;/p&gt;
+&lt;p&gt;  本查询涉及学号、姓名和课程名三个属性。学号和姓名存放在&lt;code&gt;Student&lt;/code&gt;表中，课程名存放在&lt;code&gt;Course&lt;/code&gt;表中，但&lt;code&gt;Student&lt;/code&gt;与&lt;code&gt;Course&lt;/code&gt;两个表之间没有直接联系，必须通过&lt;code&gt;SC&lt;/code&gt;表建立它们二者之间的联系。所以本查询实际上涉及三个关系。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -5153,7 +5153,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  使用存在量词&lt;code&gt;EXISTS&lt;/code&gt;后，若内层查询结果非空，则外层的&lt;code&gt;WHERE&lt;/code&gt;子句返回真值，否则返回假值。&lt;br&gt;
   由&lt;code&gt;EXISTS&lt;/code&gt;引出的子查询，其目标列表达式通常都用&lt;code&gt;*&lt;/code&gt;，因为带&lt;code&gt;EXISTS&lt;/code&gt;的子查询只返回真值或假值，给出列名无实际意义。&lt;br&gt;
-  本例中子查询的查询条件依赖于外层父查询的某个属性值（Student的Sno值），因此也是相关子查询。这个相关子查询的处理过程是：首先取外层查询中Student表的第一个元组，根据它与内层查询相关的属性值（Sno值）处理内层查询，若&lt;code&gt;WHERE&lt;/code&gt;子句返回值为真，则取外层查询中该元组的Sname放入结果表:然后再取Student表的下一个元组； 重复这一过程，直至外层Student表全部检查完为止。
+  本例中子查询的查询条件依赖于外层父查询的某个属性值（&lt;code&gt;Student&lt;/code&gt;的&lt;code&gt;Sno&lt;/code&gt;值），因此也是相关子查询。这个相关子查询的处理过程是：首先取外层查询中&lt;code&gt;Student&lt;/code&gt;表的第一个元组，根据它与内层查询相关的属性值（&lt;code&gt;Sno&lt;/code&gt;值）处理内层查询，若&lt;code&gt;WHERE&lt;/code&gt;子句返回值为真，则取外层查询中该元组的&lt;code&gt;Sname&lt;/code&gt;放入结果表:然后再取&lt;code&gt;Student&lt;/code&gt;表的下一个元组； 重复这一过程，直至外层&lt;code&gt;Student&lt;/code&gt;表全部检查完为止。
 本例中的查询也可以用连接运算来实现，读者可以参照有关的例子自己给出相应的SQL语句。&lt;/p&gt;
 &lt;p&gt;  与&lt;code&gt;EXISTS&lt;/code&gt;谓词相对应的是&lt;code&gt;NOT EXISTS&lt;/code&gt;谓词。使用存在量词&lt;code&gt;NOT EXISTS&lt;/code&gt;后，若内层查询结果为空，则外层的WHERE子句返回真值，否则返回假值。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241117161418CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例61&lt;/strong&gt;：查询没有选修1号课程的学生姓名。&lt;/p&gt;
@@ -5467,7 +5467,290 @@ p \to q \equiv \lnot p \lor q
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  需要说明的是，通过&lt;code&gt;FROM&lt;/code&gt;子句生成派生表时，&lt;code&gt;AS&lt;/code&gt;关键字可以省略，但必须为派生关系指定一个别名。而对于基本表，别名是可选择项。&lt;/p&gt;
-</description>
+&lt;h3 id=&#34;select语句的一般格式&#34;&gt;SELECT语句的一般格式
+&lt;/h3&gt;&lt;p&gt;  &lt;code&gt;SELECT&lt;/code&gt;语句是SQL的核心语句，从前面的例子可以看到其语句成分丰富多样，下面总结一下它们的一般格式。&lt;br&gt;
+  &lt;code&gt;SELECT&lt;/code&gt;语句的一般格式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ALL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DISTINCT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;目标列表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;别名&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;目标列表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;别名&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名或视图名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;别名&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名或视图名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;别名&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SELECT语句&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;别名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;条件表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GROUP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;HAVING&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;条件表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ORDER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ASC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;目标列表达式的可选格式&#34;&gt;目标列表达式的可选格式
+&lt;/h4&gt;&lt;p&gt;  (1)&lt;code&gt;*&lt;/code&gt;&lt;br&gt;
+  (2)&lt;code&gt;&amp;lt;表名&amp;gt;.*&lt;/code&gt;&lt;br&gt;
+  (3)&lt;code&gt;COUNT([DISTINCT|ALL] *)&lt;/code&gt;&lt;br&gt;
+  (4)&lt;code&gt;&amp;lt;表名&amp;gt;.] &amp;lt;属性列名表达式&amp;gt; [,[&amp;lt;表名&amp;gt;.] &amp;lt;属性列名表达式&amp;gt;]···&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  其中，&lt;code&gt;&amp;lt;属性列名表达式&amp;gt;&lt;/code&gt;可以是由属性列、作用于属性列的聚集函数和常量的任意算术运算（&lt;code&gt;+&lt;/code&gt;、&lt;code&gt;-&lt;/code&gt;、&lt;code&gt;*&lt;/code&gt;、&lt;code&gt;/&lt;/code&gt;）组成的运算公式。&lt;/p&gt;
+&lt;h4 id=&#34;聚集函数的一般格式&#34;&gt;聚集函数的一般格式
+&lt;/h4&gt;&lt;div style=&#34;background-color: var(--code-background-color);&#34;&gt;
+&amp;emsp;&amp;emsp;\(\displaystyle
+\begin{Bmatrix}
+\textsf{COUNT} \\[5pt]
+\textsf{SUM} \\[5pt]
+\textsf{AVG} \\[5pt]
+\textsf{MAX} \\[5pt]
+\textsf{MIN}
+\end{Bmatrix}\space
+\textsf{[DISTINCT|ALL] }\text{&lt;列名&gt;}
+\)
+&lt;/div&gt;
+&lt;h4 id=&#34;where子句的条件表达式的可选格式&#34;&gt;WHERE子句的条件表达式的可选格式
+&lt;/h4&gt;&lt;p&gt;  (1)&lt;/p&gt;
+&lt;div style=&#34;background-color: var(--code-background-color);&#34;&gt;
+&amp;emsp;&amp;emsp;\(
+\text{&lt;属性列名&gt;}\space\theta\space
+\begin{Bmatrix}
+\text{&lt;属性列名&gt;}\\[5pt]
+\text{&lt;常量&gt;}\\[5pt]
+[\textsf{ANY}|\textsf{ALL}]\space(\textsf{SELECT}\text{子句})
+\end{Bmatrix}
+\)
+&lt;/div&gt;
+&lt;p&gt;  (2)&lt;/p&gt;
+&lt;div style=&#34;background-color: var(--code-background-color);&#34;&gt;
+&amp;emsp;&amp;emsp;\(
+\text{&lt;属性列名&gt;}\space[\textsf{NOT}]\space\textsf{BETWEEN}\space
+\begin{Bmatrix}
+\text{&lt;属性列名&gt;}\\[5pt]
+\text{&lt;常量&gt;}\\[5pt]
+(\textsf{SELECT}\text{语句})
+\end{Bmatrix}
+\space\textsf{AND}\space
+\begin{Bmatrix}
+\text{&lt;属性列名&gt;}\\[5pt]
+\text{&lt;常量&gt;}\\[5pt]
+(\textsf{SELECT}\text{语句})
+\end{Bmatrix}
+\)
+&lt;/div&gt;
+&lt;p&gt;  (3)&lt;/p&gt;
+&lt;div style=&#34;background-color: var(--code-background-color);&#34;&gt;
+&amp;emsp;&amp;emsp;\(
+\text{&lt;属性列名&gt;}\space[\textsf{NOT}]\space\textsf{IN}\space
+\begin{Bmatrix}
+(\text{&lt;值1&gt;}[,\text{&lt;值2&gt;}]\cdots)\\[5pt]
+(\textsf{SELECT}\text{语句})
+\end{Bmatrix}
+\)
+&lt;/div&gt;
+&lt;p&gt;  (4)&lt;code&gt;&amp;lt;属性列名&amp;gt; [NOT] LIKE &amp;lt;匹配串&amp;gt;&lt;/code&gt;&lt;br&gt;
+  (5)&lt;code&gt;&amp;lt;属性列名&amp;gt; IS [NOT] NULL&lt;/code&gt;&lt;br&gt;
+  (6)&lt;code&gt;[NOT] EXISTS(SELECT语句)&lt;/code&gt;&lt;br&gt;
+  (7)&lt;/p&gt;
+&lt;div style=&#34;background-color: var(--code-background-color);&#34;&gt;
+&amp;emsp;&amp;emsp;\(
+\text{&lt;条件表达式&gt;}\space
+\begin{Bmatrix}
+\textsf{AND}\\[5pt]
+\textsf{OR}
+\end{Bmatrix}
+\space\text{&lt;条件表达式&gt;}\space
+\left(
+\begin{Bmatrix}
+\textsf{AND}\\[5pt]
+\textsf{OR}
+\end{Bmatrix}
+\text{&lt;条件表达式&gt;}\cdots
+\right)
+\)
+&lt;/div&gt;
+&lt;h2 id=&#34;数据更新&#34;&gt;数据更新
+&lt;/h2&gt;&lt;p&gt;  数据更新操作有三种：向表中添加若干行数据、修改表中的数据和删除表中的若干行数据。在SQL中有相应的三类语句。&lt;/p&gt;
+&lt;h3 id=&#34;插入数据&#34;&gt;插入数据
+&lt;/h3&gt;&lt;p&gt;  SQL的数据插入语句&lt;code&gt;INSERT&lt;/code&gt;通常有两种形式，一种是插入一个元组，另一种是插入子查询结果。后者可以一次插入多个元组。&lt;/p&gt;
+&lt;h4 id=&#34;插入元组&#34;&gt;插入元组
+&lt;/h4&gt;&lt;p&gt;  插入元组的INSERT语句的格式为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;属性列&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;属性列&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VALUES&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;常量&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;常量&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  其功能是将新元组插入指定表中。其中新元组的属性列1的值为常量1，属性列2的值为常量2，···。&lt;code&gt;INTO&lt;/code&gt;子句中没有出现的属性列，新元组在这些列上将取空值。但必须注意的是，在表定义时说明了&lt;code&gt;NOT NULL&lt;/code&gt;的属性列不能取空值，否则会出错。&lt;br&gt;
+  如果&lt;code&gt;INTO&lt;/code&gt;子句中没有指明任何属性列名，则新插入的元组必须在每个属性列上均有值。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241117195831CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例69&lt;/strong&gt;：将一个新学生元组（学号：201215128；姓名：陈冬；性别：男；所在系： IS；年龄：18岁）插入到&lt;code&gt;Student&lt;/code&gt;表中。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ssex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;）&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VALUES&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;201215128&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;陈冬&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;男&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;IS&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  在&lt;code&gt;INTO&lt;/code&gt;子句中指出了表名Student,并指出了新增加的元组在哪些属性上要赋值，属性的顺序可以与&lt;code&gt;CREATE TABLE&lt;/code&gt;中的顺序不一样。&lt;code&gt;VALUES&lt;/code&gt;子句对新元组的各属性赋值，字符串常数要用单引号（英文符号）括起来。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241117200233CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例70&lt;/strong&gt;将学生张成民的信息插入到Student表中。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VALUES&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;201215126&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;张成民&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;男&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;CS&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  与&lt;a class=&#34;link&#34; href=&#34;#20241117195831CST&#34;&gt;例69&lt;/a&gt;的不同是在&lt;code&gt;INTO&lt;/code&gt;子句中只指出了表名，没有指出属性名。这表示新元组要 在表的所有属性列上都指定值，属性列的次序与&lt;code&gt;CREATE TABLE&lt;/code&gt;中的次序相同。&lt;code&gt;VALUES&lt;/code&gt; 子句对新元组的各属性列赋值，一定要注意值与属性列要一一对应，如果像&lt;a class=&#34;link&#34; href=&#34;#20241117195831CST&#34;&gt;例69&lt;/a&gt;那样，成为（201215126&amp;rsquo;,&amp;lsquo;张成民,&amp;rsquo;,男,&amp;rsquo;,CS,18），则含义是将CS赋予了列&lt;code&gt;Sage&lt;/code&gt;，而&lt;code&gt;18&lt;/code&gt;赋予了列&lt;code&gt;Sdept&lt;/code&gt;，这样则会因为数据类型不匹配出错。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241117200344CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例71&lt;/strong&gt;：&lt;span id=&#34;20241117200348CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例72&lt;/strong&gt;插入一条选课记录&lt;code&gt;(&#39;201215128&#39;,&#39;1&#39;)&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VALUES&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;201215128&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  关系数据库管理系统将在新插入记录的&lt;code&gt;Grade&lt;/code&gt;列上自动地赋空值。
+或者：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VALUES&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;201215128&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  因为没有指出&lt;code&gt;SC&lt;/code&gt;的属性名，在&lt;code&gt;Grade&lt;/code&gt;列上要明确给出空值。&lt;/p&gt;
+&lt;h4 id=&#34;插入子查询结果&#34;&gt;插入子查询结果
+&lt;/h4&gt;&lt;p&gt;  子查询不仅可以嵌套在&lt;code&gt;SELECT&lt;/code&gt;语句中用以构造父查询的条件， 也可以嵌套在&lt;code&gt;INSERT&lt;/code&gt;语句中用以生成要插入的批量数据。&lt;br&gt;
+  插入子查询结果的&lt;code&gt;INSERT&lt;/code&gt;语句格式为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;属性列&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;属性列&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;子查询&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241117201414CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例73&lt;/strong&gt;：对每一个系，求学生的平均年龄，并把结果存入数据库。&lt;/p&gt;
+&lt;p&gt;  首先在数据库中建立一个新表，其中一列存放系名，另一列存放相应的学生平均年龄。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Dept_age&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;       &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Avg_age&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;SMALLINT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  然后对&lt;code&gt;Student&lt;/code&gt;表按系分组求平均年龄，再把系名和平均年龄存入新表中。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Dept_age&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Avg_age&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AVG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GROUP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;修改数据&#34;&gt;修改数据
+&lt;/h3&gt;&lt;p&gt;  修改操作又称为更新操作，其语句的一般格式为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;UPDATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;=&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;=&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表达式&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;条件&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  其功能是修改指定表中满足&lt;code&gt;WHERE&lt;/code&gt;子句条件的元组。其中&lt;code&gt;SET&lt;/code&gt;子句给出&lt;code&gt;&amp;lt;表达式&amp;gt;&lt;/code&gt;的值 用于取代相应的属性列值。如果省略&lt;code&gt;WHERE&lt;/code&gt;子句，则表示要修改表中的所有元组。&lt;/p&gt;
+&lt;h4 id=&#34;修改某一个元组的值&#34;&gt;修改某一个元组的值
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241117202047CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例74&lt;/strong&gt;：将学生201215121的年龄改为22岁。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;UPDATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;22&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;201215121&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;修改多个元组的值&#34;&gt;修改多个元组的值
+&lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241117202127CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例75&lt;/strong&gt;：将所有学生的年龄增加1岁。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;UPDATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;带子查询的修改语句&#34;&gt;带子查询的修改语句
+&lt;/h4&gt;&lt;p&gt;  子查询也可以嵌套在&lt;code&gt;UPDATE&lt;/code&gt;语句中，用以构造修改的条件。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241117202223CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例76&lt;/strong&gt;：将计算机科学系全体学生的成绩置零。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;UPDATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;IN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SELETE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;       &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;       &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;CS&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;删除数据&#34;&gt;删除数据
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>操作系统（二）：进程的描述与控制</title>
