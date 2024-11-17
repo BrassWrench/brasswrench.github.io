@@ -131,7 +131,7 @@
 <meta property='og:description' content="结构化查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_databases_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T20:24:12&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T21:28:21&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="结构化查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -893,9 +893,28 @@
             <li><a href="#带子查询的修改语句">带子查询的修改语句</a></li>
           </ol>
         </li>
-        <li><a href="#删除数据">删除数据</a></li>
+        <li><a href="#删除数据">删除数据</a>
+          <ol>
+            <li><a href="#删除某一个元组的值">删除某一个元组的值</a></li>
+            <li><a href="#删除多个元组的值">删除多个元组的值</a></li>
+            <li><a href="#带子查询的删除语句">带子查询的删除语句</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
+    <li><a href="#空值的处理">空值的处理</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#空值的产生">空值的产生</a></li>
+            <li><a href="#空值的判断">空值的判断</a></li>
+            <li><a href="#空值的约束条件">空值的约束条件</a></li>
+            <li><a href="#空值的算术运算比较运算和逻辑运算">空值的算术运算，比较运算和逻辑运算</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#视图">视图</a></li>
   </ol>
 </nav>
         </div>
@@ -1231,7 +1250,7 @@
 </svg>
 
             <time class="article-words">
-                27416 字
+                28914 字
             </time>
         </div>
 
@@ -1246,7 +1265,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 55 分钟
+                    阅读时长: 58 分钟
                 </time>
             </div>
         
@@ -4024,9 +4043,10 @@
   </tbody>
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表18</p>
+<span id="20241117210209CST"></span>
 <h4 id="外连接">外连接
-</h4><p>  在通常的连接操作中，只有满足连接条件的元组才能作为结果输出。如例<a class="link" href="#20241116202830CST">例49</a>的结果表中没有201215123和201215125两个学生的信息，原因在于他们没有选课，在SC表中没有相应的元组，导致<code>Student</code>中这些元组在连接时被舍弃了。<br>
-  有时想以<code>Student</code>表为主体列出每个学生的基本情况及其选课情况。若某个学生没有选课，仍把<code>Student</code>的悬浮元组保存在结果关系中，而在SC表的属性上填空值<code>NULL</code>，这时就需要使用外连接。外连接的概念见<a class="link" href="/posts/engineering/computer_science/database_system/relational_database_system/#20241117142036CST">关系数据库-外连接</a>。可以参照<a class="link" href="#20241117142134CST">例53</a>改写<a class="link" href="#20241116202830CST">例49</a>。</p>
+</h4><p>  在通常的连接操作中，只有满足连接条件的元组才能作为结果输出。如例<a class="link" href="#20241116202830CST">例49</a>的结果表中没有201215123和201215125两个学生的信息，原因在于他们没有选课，在<code>SC</code>表中没有相应的元组，导致<code>Student</code>中这些元组在连接时被舍弃了。<br>
+  有时想以<code>Student</code>表为主体列出每个学生的基本情况及其选课情况。若某个学生没有选课，仍把<code>Student</code>的悬浮元组保存在结果关系中，而在<code>SC</code>表的属性上填空值<code>NULL</code>，这时就需要使用外连接。外连接的概念见<a class="link" href="/posts/engineering/computer_science/database_system/relational_database_system/#20241117142036CST">关系数据库-外连接</a>。可以参照<a class="link" href="#20241117142134CST">例53</a>改写<a class="link" href="#20241116202830CST">例49</a>。</p>
 <p>  <span id="20241117142134CST"></span><strong>例53</strong>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -5270,7 +5290,265 @@ p \to q \equiv \lnot p \lor q
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="删除数据">删除数据
-</h3>
+</h3><p>  删除语句的一般格式为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="k">WHERE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">条件</span><span class="o">&gt;</span><span class="p">];</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <code>DELETE</code>语句的功能是从指定表中删除满足<code>WHERE</code>子句条件的所有元组。如果省略<code>WHERE</code>子句则表示删除表中全部元组，但表的定义仍在字典中。也就是说，<code>DELETE</code>语句删除的是表中的数据，而不是关于表的定义。</p>
+<h4 id="删除某一个元组的值">删除某一个元组的值
+</h4><p>  <span id="20241117205441CST"></span><strong>例77</strong>：删除学号为201215128的学生记录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;201215128&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="删除多个元组的值">删除多个元组的值
+</h4><p>  删除所有的学生选课记录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这条<code>DELETE</code>语句将使<code>SC</code>成为空表，它删除了<code>SC</code>的所有元组。</p>
+<h4 id="带子查询的删除语句">带子查询的删除语句
+</h4><p>  子查询同样也可以嵌套在<code>DELETE</code>语句中，用以构造执行删除操作的条件。</p>
+<p>  <span id="20241117205629CST"></span><strong>例78</strong>删除计算机科学系所有学生的选课记录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">IN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="空值的处理">空值的处理
+</h2><p>  前面己经多处提到空值(NULL)的概念和空值的处理，这里再系统介绍一下这个问题。所谓空值就是“不知道”或“不存在”或&quot;无意义”的值。SQL语言中允许某些元组
+的某些属性在一定情况下取空值。一般有以下几种情况：<br>
+  ◦该属性应该有一个值，但目前不知道它的具体值。例如，某学生的年龄属性，因为 学生登记表漏填了，不知道该学生年龄，因此取空值。<br>
+  ◦该属性不应该有值。例如，缺考学生的成绩为空，因为他没有参加考试。<br>
+  ◦由于某种原因不便于填写。例如，一个人的电话号码不想让大家知道，则取空值。<br>
+  因此，空值是一个很特殊的值，含有不确定性，对关系运算带来特殊的问题，需要做特殊的处理。</p>
+<h4 id="空值的产生">空值的产生
+</h4><p>  <span id="20241117205910CST"></span><strong>例79</strong>：向<code>SC</code>表中插入一个元组，学生号是“201215126”，课程号是&quot;1”，成绩为空。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SC</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="p">,</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;201215126&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cm">/*在插入时该学生还没有考试成绩，取空值*/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  或</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SC</span><span class="p">(</span><span class="n">Sno</span><span class="p">.</span><span class="n">Cno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1201215126</span><span class="s1">&#39;,&#39;</span><span class="mi">1</span><span class="s1">&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="s1">/*在插入语句中没有赋值的属性，其值为空值*/
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241117210100CST"></span><strong>例80</strong>将Student表中学生号为“201215200”的学生所属的系改为空值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;201215200&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  另外，外连接也会产生空值，参见<a class="link" href="#20241117210209CST">外连接</a>。空值的关系运算也会产生空值。</p>
+<h4 id="空值的判断">空值的判断
+</h4><p>  判断一个属性的值是否为空值，用<code>IS NULL</code>或<code>IS NOT NULL</code>来表示。</p>
+<p>  <span id="20241117210326CST"></span><strong>例81</strong>：从Student表中找出漏填了数据的学生信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Ssex</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="空值的约束条件">空值的约束条件
+</h4><p>  属性定义（或者域定义）中有<code>NOT NULL</code>约束条件的不能取空值，加了 <code>UNIQUE</code>限制的属性不能取空值，码属性不能取空值。</p>
+<h4 id="空值的算术运算比较运算和逻辑运算">空值的算术运算，比较运算和逻辑运算
+</h4><p>  空值与另一个值（包括另一个空值）的算术运算的结果为空值，空值与另一个值（包括另一个空值）的比较运算的结果为<code>UNKNOWN</code>。有了<code>UNKNOWN</code>后，传统的逻辑运算中二值（TRUE, FALSE）逻辑就扩展成了三值逻辑。<br>
+  AND、OR、NOT的真值表如<a class="link" href="#20241117210715CST">表27</a>所示，其中T表示<code>TRUE</code>, F表示<code>FALSE</code>，U表示<code>UNKNOWN</code>。<br>
+  在查询语句中，只有使<code>WHERE</code>和<code>HAVING</code>子句中的选择条件为TRUE的元组才被选出作为输出结果。</p>
+<span id="20241117210715CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>x</th>
+          <th>y</th>
+          <th>x AND y</th>
+          <th>x OR y</th>
+          <th>NOT x</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>T</td>
+          <td>T</td>
+          <td>T</td>
+          <td>T</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>T</td>
+          <td>U</td>
+          <td>U</td>
+          <td>T</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>T</td>
+          <td>F</td>
+          <td>F</td>
+          <td>T</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>U</td>
+          <td>T</td>
+          <td>U</td>
+          <td>T</td>
+          <td>U</td>
+      </tr>
+      <tr>
+          <td>U</td>
+          <td>U</td>
+          <td>U</td>
+          <td>U</td>
+          <td>U</td>
+      </tr>
+      <tr>
+          <td>U</td>
+          <td>F</td>
+          <td>F</td>
+          <td>U</td>
+          <td>U</td>
+      </tr>
+      <tr>
+          <td>F</td>
+          <td>T</td>
+          <td>F</td>
+          <td>T</td>
+          <td>T</td>
+      </tr>
+      <tr>
+          <td>F</td>
+          <td>U</td>
+          <td>F</td>
+          <td>U</td>
+          <td>T</td>
+      </tr>
+      <tr>
+          <td>F</td>
+          <td>F</td>
+          <td>F</td>
+          <td>F</td>
+          <td>T</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表27&emsp;扩展后的逻辑运算符真值表</p>
+<p>  在查询语句中，只有使<code>WHERE</code>和<code>HAVING</code>子句中的选择条件为<code>TRUE</code>的元组才被选出作为输出结果。</p>
+<p>  ：找出选修1号课程的不及格的学生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  选出的学生是那些参加了考试（<code>Grade</code>属性为非空值）而不及格的学生，不包括缺考的学生。因为前者使条件<code>Grade&lt;60</code>的值为<code>TRUE</code>，后者使条件的值为<code>UNKNOWN</code>。</p>
+<p>  ：选出选修1号课程的不及格的学生以及缺考的学生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">UNION</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  或</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="n">T</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="n">Grade</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="视图">视图
+</h2>
     </div>
 </section>
 
@@ -5317,7 +5595,7 @@ p \to q \equiv \lnot p \lor q
 
 
         <span>
-            最后更新于 Nov 17, 2024 20:24 CST
+            最后更新于 Nov 17, 2024 21:28 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -5489,7 +5767,7 @@ p \to q \equiv \lnot p \lor q
             
         
         
-        <span>本图书馆累计发布了15篇文章 共25.2万字</span>
+        <span>本图书馆累计发布了15篇文章 共25.3万字</span>
         
     </section>
 

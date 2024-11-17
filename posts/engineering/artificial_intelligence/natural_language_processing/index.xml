@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 17 Nov 2024 17:29:55 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 17 Nov 2024 21:28:21 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -1542,7 +1542,7 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
 &lt;p&gt;  基于转移算法的短语结构句法分析方法过程也类似，只不过栈中存储的是短语结构句法子树序列，队列中同样存储的是未被处理的词。在此不再赘述。&lt;/p&gt;
 &lt;h3 id=&#34;序列到序列问题&#34;&gt;序列到序列问题
 &lt;/h3&gt;&lt;p&gt;  除了文本分类和结构预测问题，还有很多自然语言处理问题可以归为序列到序列（Sequence-to-Sequence，Seq2seq）问题。机器翻译问题就是典型的代表，其中，输入为源语言句子，输出为目标语言句子。将其推广到序列到序列问题，输入就是一个由若干词组成的序列，输出则是一个新的序列，其中，输入和输出的序列不要求等长，同时也不要求词表一致。&lt;br&gt;
-  使用传统的机器学习技术解决序列到序列问题是比较困难的，而基于深度学习模型，可以直接将输入序列表示为一个向量，然后，通过该向量生成输出序列。其中，对输入序列进行表示的过程又叫作编码，相应的模型则被称为&lt;strong&gt;编码器（Encoder）&lt;/strong&gt;；生成输出序列的过程又叫作解码，相应的模型则被称为&lt;strong&gt;解码器(Decoder)&lt;/strong&gt;。 因此，序列到序列模型也被称为&lt;strong&gt;编码器—解码器（Encoder-Decoder）模型&lt;/strong&gt;。图2-5以机器翻译问题为例，展示了一个编码器-解码器模型的示例。&lt;/p&gt;
+  使用传统的机器学习技术解决序列到序列问题是比较困难的，而基于深度学习模型，可以直接将输入序列表示为一个向量，然后，通过该向量生成输出序列。其中，对输入序列进行表示的过程又叫作编码，相应的模型则被称为&lt;strong&gt;编码器（Encoder）&lt;/strong&gt;；生成输出序列的过程又叫作解码，相应的模型则被称为&lt;strong&gt;解码器(Decoder)&lt;/strong&gt;。 因此，序列到序列模型也被称为&lt;strong&gt;编码器—解码器（Encoder-Decoder）模型&lt;/strong&gt;。&lt;a class=&#34;link&#34; href=&#34;#20241115213118CST&#34;&gt;图5&lt;/a&gt;以机器翻译问题为例，展示了一个编码器-解码器模型的示例。&lt;/p&gt;
 &lt;span id=&#34;20241115213118CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 358.6041&#34;&gt;
