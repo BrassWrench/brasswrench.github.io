@@ -131,7 +131,7 @@
 <meta property='og:description' content="结构化查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_databases_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T21:28:21&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T21:46:07&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="结构化查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -914,7 +914,15 @@
         </li>
       </ol>
     </li>
-    <li><a href="#视图">视图</a></li>
+    <li><a href="#视图">视图</a>
+      <ol>
+        <li><a href="#定义视图">定义视图</a>
+          <ol>
+            <li><a href="#建立视图">建立视图</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -1250,7 +1258,7 @@
 </svg>
 
             <time class="article-words">
-                28914 字
+                29588 字
             </time>
         </div>
 
@@ -1265,7 +1273,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 58 分钟
+                    阅读时长: 60 分钟
                 </time>
             </div>
         
@@ -5499,7 +5507,7 @@ p \to q \equiv \lnot p \lor q
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表27&emsp;扩展后的逻辑运算符真值表</p>
 <p>  在查询语句中，只有使<code>WHERE</code>和<code>HAVING</code>子句中的选择条件为<code>TRUE</code>的元组才被选出作为输出结果。</p>
-<p>  ：找出选修1号课程的不及格的学生。</p>
+<p>  <span id="20241117212436CST"></span><strong>例82</strong>：找出选修1号课程的不及格的学生。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -5513,7 +5521,7 @@ p \to q \equiv \lnot p \lor q
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  选出的学生是那些参加了考试（<code>Grade</code>属性为非空值）而不及格的学生，不包括缺考的学生。因为前者使条件<code>Grade&lt;60</code>的值为<code>TRUE</code>，后者使条件的值为<code>UNKNOWN</code>。</p>
-<p>  ：选出选修1号课程的不及格的学生以及缺考的学生。</p>
+<p>  <span id="20241117212529CST"></span><strong>例83</strong>：选出选修1号课程的不及格的学生以及缺考的学生。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -5548,7 +5556,45 @@ p \to q \equiv \lnot p \lor q
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="视图">视图
-</h2>
+</h2><p>  视图是从一个或几个基本表（或视图）导出的表。它与基本表不同，是一个虚表。数据库中只存放视图的定义，而不存放视图对应的数据，这些数据仍存放在原来的基本表中。所以一旦基本表中的数据发生变化，从视图中查询出的数据也就随之改变了。从这个意义上讲，视图就像一个窗口，透过它可以看到数据库中自己感兴趣的数据及其变化。<br>
+  视图一经定义，就可以和基本表一样被查询、被删除。也可以在一个视图之上再定义新的视图，但对视图的更新（增、删、改）操作则有一定的限制。<br>
+  本节专门讨论视图的定义、操作及作用。</p>
+<h3 id="定义视图">定义视图
+</h3><h4 id="建立视图">建立视图
+</h4><p>  SQL语言用<code>CREATE VIEW</code>命令建立视图，其一般格式为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="o">&lt;</span><span class="err">视图名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[(</span><span class="o">&lt;</span><span class="err">列名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">列名</span><span class="o">&gt;</span><span class="p">]</span><span class="err">···</span><span class="p">)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="o">&lt;</span><span class="err">子查询</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="k">WITH</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="k">OPTION</span><span class="p">];</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  其中，子查询可以是任意的<code>SELECT</code>语句，是否可以含有<code>ORDER BY</code>子句和<code>DISTINCT</code>短语，则取决于具体系统的实现。<br>
+  <code>WITH CHECK OPTION</code>表示对视图进行<code>UPDATE</code>、<code>INSERT</code>和<code>DELETE</code>操作时要保证更新、插入或删除的行满足视图定义中的谓词条件（即子查询中的条件表达式）。<br>
+  组成视图的属性列名或者全部省略或者全部指定，没有第三种选择。如果省略了视图的各个属性列名，则隐含该视图由子查询中<code>SELECT</code>子句目标列中的诸字段组成但在下列三种情况下必须明确指定组成视图的所有列名：<br>
+  (1)某个目标列不是单纯的属性名，而是聚集函数或列表达式。<br>
+  (2)多表连接时选出了几个同名列作为视图的字段。<br>
+  (3)需要在视图中为某个列启用新的更合适的名字。</p>
+<p>  ：建立信息系学生的视图。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  </p>
+
     </div>
 </section>
 
@@ -5595,7 +5641,7 @@ p \to q \equiv \lnot p \lor q
 
 
         <span>
-            最后更新于 Nov 17, 2024 21:28 CST
+            最后更新于 Nov 17, 2024 21:46 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -5767,7 +5813,7 @@ p \to q \equiv \lnot p \lor q
             
         
         
-        <span>本图书馆累计发布了15篇文章 共25.3万字</span>
+        <span>本图书馆累计发布了15篇文章 共25.4万字</span>
         
     </section>
 

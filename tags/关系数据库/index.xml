@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 17 Nov 2024 21:28:21 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 17 Nov 2024 21:46:07 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_databases_sql/</link>
         <pubDate>Mon, 11 Nov 2024 17:45:02 +0800</pubDate>
@@ -4232,7 +4232,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表27&amp;emsp;扩展后的逻辑运算符真值表&lt;/p&gt;
 &lt;p&gt;  在查询语句中，只有使&lt;code&gt;WHERE&lt;/code&gt;和&lt;code&gt;HAVING&lt;/code&gt;子句中的选择条件为&lt;code&gt;TRUE&lt;/code&gt;的元组才被选出作为输出结果。&lt;/p&gt;
-&lt;p&gt;  ：找出选修1号课程的不及格的学生。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241117212436CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例82&lt;/strong&gt;：找出选修1号课程的不及格的学生。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4246,7 +4246,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  选出的学生是那些参加了考试（&lt;code&gt;Grade&lt;/code&gt;属性为非空值）而不及格的学生，不包括缺考的学生。因为前者使条件&lt;code&gt;Grade&amp;lt;60&lt;/code&gt;的值为&lt;code&gt;TRUE&lt;/code&gt;，后者使条件的值为&lt;code&gt;UNKNOWN&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;  ：选出选修1号课程的不及格的学生以及缺考的学生。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241117212529CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例83&lt;/strong&gt;：选出选修1号课程的不及格的学生以及缺考的学生。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4281,7 +4281,45 @@ p \to q \equiv \lnot p \lor q
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;视图&#34;&gt;视图
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;p&gt;  视图是从一个或几个基本表（或视图）导出的表。它与基本表不同，是一个虚表。数据库中只存放视图的定义，而不存放视图对应的数据，这些数据仍存放在原来的基本表中。所以一旦基本表中的数据发生变化，从视图中查询出的数据也就随之改变了。从这个意义上讲，视图就像一个窗口，透过它可以看到数据库中自己感兴趣的数据及其变化。&lt;br&gt;
+  视图一经定义，就可以和基本表一样被查询、被删除。也可以在一个视图之上再定义新的视图，但对视图的更新（增、删、改）操作则有一定的限制。&lt;br&gt;
+  本节专门讨论视图的定义、操作及作用。&lt;/p&gt;
+&lt;h3 id=&#34;定义视图&#34;&gt;定义视图
+&lt;/h3&gt;&lt;h4 id=&#34;建立视图&#34;&gt;建立视图
+&lt;/h4&gt;&lt;p&gt;  SQL语言用&lt;code&gt;CREATE VIEW&lt;/code&gt;命令建立视图，其一般格式为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VIEW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;视图名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;列名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;子查询&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WITH&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CHECK&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;OPTION&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  其中，子查询可以是任意的&lt;code&gt;SELECT&lt;/code&gt;语句，是否可以含有&lt;code&gt;ORDER BY&lt;/code&gt;子句和&lt;code&gt;DISTINCT&lt;/code&gt;短语，则取决于具体系统的实现。&lt;br&gt;
+  &lt;code&gt;WITH CHECK OPTION&lt;/code&gt;表示对视图进行&lt;code&gt;UPDATE&lt;/code&gt;、&lt;code&gt;INSERT&lt;/code&gt;和&lt;code&gt;DELETE&lt;/code&gt;操作时要保证更新、插入或删除的行满足视图定义中的谓词条件（即子查询中的条件表达式）。&lt;br&gt;
+  组成视图的属性列名或者全部省略或者全部指定，没有第三种选择。如果省略了视图的各个属性列名，则隐含该视图由子查询中&lt;code&gt;SELECT&lt;/code&gt;子句目标列中的诸字段组成但在下列三种情况下必须明确指定组成视图的所有列名：&lt;br&gt;
+  (1)某个目标列不是单纯的属性名，而是聚集函数或列表达式。&lt;br&gt;
+  (2)多表连接时选出了几个同名列作为视图的字段。&lt;br&gt;
+  (3)需要在视图中为某个列启用新的更合适的名字。&lt;/p&gt;
+&lt;p&gt;  ：建立信息系学生的视图。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VIEW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IS_Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;/p&gt;
+</description>
         </item>
         <item>
         <title>数据库系统（二）：关系数据库</title>
