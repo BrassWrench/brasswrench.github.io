@@ -131,7 +131,7 @@
 <meta property='og:description' content="结构化查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_databases_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T15:42:45&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T17:29:55&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="结构化查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -864,8 +864,11 @@
             <li><a href="#带有in谓词的子查询">带有IN谓词的子查询</a></li>
             <li><a href="#带有比较运算符的子查询">带有比较运算符的子查询</a></li>
             <li><a href="#带有anysome或all谓词的子查询">带有ANY（SOME）或（ALL）谓词的子查询</a></li>
+            <li><a href="#带有exists谓词的子查询">带有EXISTS谓词的子查询</a></li>
           </ol>
         </li>
+        <li><a href="#集合查询">集合查询</a></li>
+        <li><a href="#基于派生表的查询">基于派生表的查询</a></li>
       </ol>
     </li>
   </ol>
@@ -1203,7 +1206,7 @@
 </svg>
 
             <time class="article-words">
-                21123 字
+                24679 字
             </time>
         </div>
 
@@ -1218,7 +1221,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 43 分钟
+                    阅读时长: 50 分钟
                 </time>
             </div>
         
@@ -4405,7 +4408,561 @@
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表22</p>
 <p>  求解相关子查询不能像求解不相关子查询那样一次将子查询求解出来，然后求解父查询。内层查询由于与外层查询有关，因此必须反复求值。</p>
 <h4 id="带有anysome或all谓词的子查询">带有ANY（SOME）或（ALL）谓词的子查询
-</h4>
+</h4><p>子查询返回单值时可以用比较运算符，但返回多值时要用ANY（有的系统用SOME）或ALL谓词修饰符。而使用ANY或ALL谓词时则必须同时使用比较运算符。其语义如下表所示：</p>
+<span id="20241117154730CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>运算符</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&gt;ANY</code></td>
+          <td>大于子查询结果中的某个值</td>
+      </tr>
+      <tr>
+          <td><code>&gt;ALL</code></td>
+          <td>大于子查询结果中的所有值</td>
+      </tr>
+      <tr>
+          <td><code>&lt;ANY</code></td>
+          <td>小于子查询结果中的某个值</td>
+      </tr>
+      <tr>
+          <td><code>&lt;ALL</code></td>
+          <td>小于子查询结果中的所有值</td>
+      </tr>
+      <tr>
+          <td><code>&gt;=ANY</code></td>
+          <td>大于等于子查询结果中的某个值</td>
+      </tr>
+      <tr>
+          <td><code>&gt;=ALL</code></td>
+          <td>大于等于子查询结果中的所有值</td>
+      </tr>
+      <tr>
+          <td><code>&lt;=ANY</code></td>
+          <td>小于等于子查询结果中的某个值</td>
+      </tr>
+      <tr>
+          <td><code>&lt;=ALL</code></td>
+          <td>小于等于子查询结果中的所有值</td>
+      </tr>
+      <tr>
+          <td><code>=ANY</code></td>
+          <td>等于子查询结果中的某个值</td>
+      </tr>
+      <tr>
+          <td><code>=ALL</code></td>
+          <td>等于子查询结果中的所有值（通常没有实际意义）</td>
+      </tr>
+      <tr>
+          <td><code>!=ANY</code></td>
+          <td>不等于子查询结果中的某个值</td>
+      </tr>
+      <tr>
+          <td><code>!=ALL</code></td>
+          <td>不等于子查询结果中的任何一个值</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表23&emsp;ANY或ALL运算符与比较运算符组合后的语义</p>
+<p>  <span id="20241117155154CST"></span><strong>例58</strong>：查询非计算机科学系中比计算机科学系任意一个学生年龄小的学生姓名和年龄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="o">&lt;</span><span class="k">ANY</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="o">&lt;&gt;</span><span class="s1">&#39;CS&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  结果如下：</p>
+<span id="20241117155312CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Sname</th>
+          <th>Sage</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>王敏</td>
+          <td>18</td>
+      </tr>
+      <tr>
+          <td>张立</td>
+          <td>19</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表24</p>
+<p>  关系数据库管理系统执行此查询时，首先处理子查询，找出CS系中所有学生的年龄，构成一个集合<code>(20,19)</code>；然后处理父查询，找所有不是CS系且年龄小于20或19的学生。<br>
+  本查询也可以用聚集函数来实现，首先用子查询找出CS系中最大年龄(20)，然后在父查询中查所有非CS系且年龄小于20岁的学生。SQL语句如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">Sage</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SdepU</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241117155541CST"></span><strong>例59</strong>：查询非计算机科学系中比计算机科学系所有学生年龄都小的学生姓名及年龄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">ALL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="o">&lt;&gt;</span><span class="s1">&#39;CS&#39;</span><span class="p">;</span><span class="s1">&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  关系数据库管理系统执行此查询时，首先处理子查询，找出CS系中所有学生的年龄，构成一个集合(20,19)。然后处理父查询，找所有不是CS系且年龄既小于20，也小于19的学生。查询结果为</p>
+<span id="20241117155644CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Sname</th>
+          <th>Sage</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>王敏</td>
+          <td>18</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表25</p>
+<p>  本查询同样也可以用聚集函数实现。SQL语句如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">Sage</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="o">&lt;&gt;</span><span class="s1">&#39;CS&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  事实上，用聚集函数实现子查询通常比直接用<code>ANY</code>或<code>ALL</code>查询效率要高。<code>ANY</code>、<code>ALL</code>与聚集函数的对应关系如<a class="link" href="#20241117155944CST">表26</a>所示。</p>
+<span id="20241117155944CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th><code>=</code></th>
+          <th><code>&lt;&gt;</code>或<code>!=</code></th>
+          <th><code>&lt;</code></th>
+          <th><code>&lt;=</code></th>
+          <th><code>&gt;</code></th>
+          <th><code>&gt;=</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>ANY</code></td>
+          <td><code>IN</code></td>
+          <td><code>--</code></td>
+          <td><code>&lt;MAX</code></td>
+          <td><code>&lt;=MAX</code></td>
+          <td><code>&gt;MIN</code></td>
+          <td><code>&gt;=MIN</code></td>
+      </tr>
+      <tr>
+          <td><code>ALL</code></td>
+          <td><code>--</code></td>
+          <td><code>NOT IN</code></td>
+          <td><code>&lt;MIN</code></td>
+          <td><code>&lt;=MIN</code></td>
+          <td><code>&gt;MAX</code></td>
+          <td><code>&gt;=MAX</code></td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表26&emsp;ANY（或SOME）、ALL谓词与聚集函数，IN谓词的等价转换关系</p>
+<p>  <a class="link" href="#20241117155944CST">表26</a>中，<code>=ANY</code>等价于<code>IN</code>谓词，<code>&lt;ANY</code>等价于<code>&lt;MAX</code>，<code>&lt;&gt;ALL</code>等价于<code>NOT IN</code>谓词，<code>&lt;ALL</code>等价于<code>&lt;MIN</code>，等等。</p>
+<h4 id="带有exists谓词的子查询">带有EXISTS谓词的子查询
+</h4><p>  <code>EXISTS</code>代表存在量词 \(\exists\) 带有<code>EXISTS</code>谓词的子查询不返回任何数据，只产生逻辑真值“<code>true</code>”或逻辑假值“<code>false</code>”。<br>
+  可以利用<code>EXISTS</code>来判断 \(x \in S\) 、 \(S \sube R\) 、 \(S = R\) 、 \(S \cap R 非空\) 等是否成立。</p>
+<p>  <span id="20241117161053CST"></span><strong>例60</strong>：查询所有选修了1号课程的学生姓名。</p>
+<p>  本查询涉及Student和SC表。可以在<code>Student</code>中依次取每个元组的<code>Sno</code>值，用此值去检查SC表。若SC中存在这样的元组，其<code>Sno</code>值等于此<code>Student.Sno</code>值，并且其<code>Cno='1'</code>，则取此<code>Student.Sname</code>送入结果表。将此想法写成SQL语句是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  使用存在量词<code>EXISTS</code>后，若内层查询结果非空，则外层的<code>WHERE</code>子句返回真值，否则返回假值。<br>
+  由<code>EXISTS</code>引出的子查询，其目标列表达式通常都用<code>*</code>，因为带<code>EXISTS</code>的子查询只返回真值或假值，给出列名无实际意义。<br>
+  本例中子查询的查询条件依赖于外层父查询的某个属性值（Student的Sno值），因此也是相关子查询。这个相关子查询的处理过程是：首先取外层查询中Student表的第一个元组，根据它与内层查询相关的属性值（Sno值）处理内层查询，若<code>WHERE</code>子句返回值为真，则取外层查询中该元组的Sname放入结果表:然后再取Student表的下一个元组； 重复这一过程，直至外层Student表全部检查完为止。
+本例中的查询也可以用连接运算来实现，读者可以参照有关的例子自己给出相应的SQL语句。</p>
+<p>  与<code>EXISTS</code>谓词相对应的是<code>NOT EXISTS</code>谓词。使用存在量词<code>NOT EXISTS</code>后，若内层查询结果为空，则外层的WHERE子句返回真值，否则返回假值。</p>
+<p>  <span id="20241117161418CST"></span><strong>例61</strong>：查询没有选修1号课程的学生姓名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  一些带<code>EXISTS</code>或<code>NOT EXISTS</code>谓词的子查询不能被其他形式的子查询等价替换，但所有带<code>IN</code>谓词、比较运算符、<code>ANY</code>和<code>ALL</code>谓词的子查询都能用带<code>EXISTS</code>谓词的子查询等价替换。例如带有<code>IN</code>谓词的<a class="link" href="#20241117144202CST">例55</a>可以用如下带<code>EXISTS</code>谓词的子查询替换：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Sdept</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="n">SI</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="n">S2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="n">S2</span><span class="p">.</span><span class="n">Sdept</span><span class="o">=</span><span class="n">S1</span><span class="p">.</span><span class="n">Sdept</span><span class="w"> </span><span class="k">AND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">S2</span><span class="p">.</span><span class="n">Sname</span><span class="o">=</span><span class="s1">&#39;刘晨&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  由于带<code>EXISTS</code>量词的相关子查询只关心内层查询是否有返回值，并不需要查具体值，因此其效率并不一定低于不相关子查询，有时是高效的方法。</p>
+<p>  <span id="20241117163239CST"></span><strong>例62</strong>：查询选修了全部课程的学生姓名。</p>
+<p>  SQL中没有全称量词（for all），但是可以把带有全称量词的谓词转换为等价的带有存在量词的谓词：</p>
+<span id="20241117163327CST"></span>\[
+(\forall x)P \equiv \lnot (\exists x( \lnot P))
+\tag{1}
+    \]
+<p>   \(\lnot (\exists x( \lnot P))\) 由于没有全称量词，可将题目的意思转换成等价的用存在量词的形式：查询这样的学生，没有一门课程是他不选修的。其SQL语句如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="n">Course</span><span class="p">.</span><span class="n">Cno</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  从而用<code>EXIST</code>/<code>NOT EXIST</code>来实现带全称量词的查询。</p>
+<p>  <span id="20241117164306CST"></span><strong>例63</strong>：查询至少选修了学生201215122选修的全部课程的学生号码。</p>
+<p>  本查询可以用逻辑蕴涵来表达：查询学号为 \(x\) 的学生，对所有的课程 \(y\) ，只要201215122学生选修了课程y，则x也选修了y。形式化表示如下：<br>
+  用 \(p\) 表示谓词“学生201215122选修了课程 \(y\) ”<br>
+  用 \(q\) 表示谓词“学生 \(x\) 选修了课程 \(y\) ”<br>
+  则上述查询为</p>
+<span id="20241117164511CST"></span>\[
+(\forall y)p \to q
+\tag{2}
+    \]
+<p>  SQL语言中没有蕴涵（implication）逻辑运算，但是可以利用谓词演算将一个逻辑蕴涵的谓词等价转换为</p>
+<span id="20241117170344CST"></span>\[
+p \to q \equiv \lnot p \lor q
+\tag{3}
+    \]
+<p>  由<a class="link" href="#20241117163327CST">式(1)</a>和<a class="link" href="#20241117170344CST">式(3)</a>该查询可以转换为如下等价形式：</p>
+<span id="20241117170434CST"></span>\[
+(\forall y)p \to q \equiv \lnot (\exists x( \lnot (p \to q))) \equiv \lnot (\exists x( \lnot (\lnot p \lor q))) \equiv \lnot \exists y(p \land \lnot q)
+\tag{4}
+    \]
+<p>  它所表达的语义为：不存在这样的课程y，学生201215122选修了y，而学生x没有选。用SQL语言表示如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">SCX</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">SCY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SCY</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;201215122&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">SCZ</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SCZ</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SCX</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="n">SCZ</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="n">SCY</span><span class="p">.</span><span class="n">Cno</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="集合查询">集合查询
+</h3><p>  <code>SELECT</code>语句的查询结果是元组的集合，所以多个<code>SELECT</code>语句的结果可进行集合操作。集合操作主要包括并操作<code>UNION</code>，交操作<code>INTERSECT</code>和差操作<code>EXCEPT</code>。<br>
+  注意，参加集合操作的各查询结果的列数必须相同；对应项的数据类型也必须相同。</p>
+<p>  <span id="20241117171514CST"></span><strong>例64</strong>：查询计算机科学系的学生及年龄不大于19岁的学生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">UNION</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="o">&lt;=</span><span class="mi">19</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  本查询实际上是求计算机科学系的所有学生与年龄不大于19岁的学生的并集。使用<code>UNION</code>将多个查询结果合并起来时，系统会自动去掉重复元组。如果要保留重复元组则用<code>UNION ALL</code>操作符。</p>
+<p>  <span id="20241117171727CST"></span><strong>例65</strong>：查询选修了课程1或者选修了课程2的学生。</p>
+<p>  本例即查询选修课程1的学生集合与选修课程2的学生集合的并集。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">UNION</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241117171815CST"></span><strong>例66</strong>：查询计算机科学系的学生与年龄不大于19岁的学生的交集。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INTERSECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="o">&lt;=</span><span class="mi">19</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这实际上就是查询计算机科学系中年龄不大于19岁的学生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">Sage</span><span class="o">&lt;=</span><span class="mi">19</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241117171917CST"></span><strong>例67</strong>：查询既选修了课程1又选修了课程2的学生。就是查询选修课程1的学生 集合与选修课程2的学生集合的交集。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INTERSECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  本例也可以表示为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">IN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241117172112CST"></span><strong>例68</strong>：查询计算机科学系的学生与年龄不大于19岁的学生的差集。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">EXCEPT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;=</span><span class="mi">19</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  也就是查询计算机科学系中年龄大于19岁的学生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;CS&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sage</span><span class="o">&gt;</span><span class="mi">19</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="基于派生表的查询">基于派生表的查询
+</h3><p>  子查询不仅可以出现在<code>WHERE</code>子句中，还可以出现在<code>FROM</code>子句中，这时子查询生成的临时派生表（derived table）成为主查询的查询对象。例如，<a class="link" href="#20241117152958CST">例57</a>找出每个学生超过他自己选修课程平均成绩的课程号，也可以用如下的查询完成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="k">Avg</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="k">AS</span><span class="w"> </span><span class="n">Avg_sc</span><span class="p">(</span><span class="n">avg_sno</span><span class="p">,</span><span class="n">avg_grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Avg_sc</span><span class="p">.</span><span class="n">avg_sno</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">Avg_sc</span><span class="p">.</span><span class="n">avg_grade</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这里<code>FROM</code>子句中的子查询将生成一个派生表<code>Avg_sc</code>。该表由<code>avg_sno</code>和<code>avg_grade</code>两个属性组成，记录了每个学生的学号及平均成绩。主查询将<code>SC</code>表与<code>Avg_sc</code>按学号相等进行连接，选出修课成绩大于其平均成绩的课程号。
+如果子查询中没有聚集函数，派生表可以不指定属性列，子查询<code>SELECT</code>子句后面的列 名为其默认属性。例如<a class="link" href="#20241117161053CST">例60</a>查询所有选修了1号课程的学生姓名，可以用如下查询完成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SC1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC1</span><span class="p">.</span><span class="n">Sno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  需要说明的是，通过<code>FROM</code>子句生成派生表时，<code>AS</code>关键字可以省略，但必须为派生关系指定一个别名。而对于基本表，别名是可选择项。</p>
+
     </div>
 </section>
 
@@ -4452,7 +5009,7 @@
 
 
         <span>
-            最后更新于 Nov 17, 2024 15:42 CST
+            最后更新于 Nov 17, 2024 17:29 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -4624,7 +5181,7 @@
             
         
         
-        <span>本图书馆累计发布了15篇文章 共24.5万字</span>
+        <span>本图书馆累计发布了15篇文章 共24.9万字</span>
         
     </section>
 
