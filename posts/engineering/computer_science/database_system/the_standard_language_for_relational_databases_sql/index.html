@@ -131,7 +131,7 @@
 <meta property='og:description' content="结构化查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_databases_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T21:46:07&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-11-17T23:36:30&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="结构化查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -919,6 +919,18 @@
         <li><a href="#定义视图">定义视图</a>
           <ol>
             <li><a href="#建立视图">建立视图</a></li>
+            <li><a href="#删除视图">删除视图</a></li>
+          </ol>
+        </li>
+        <li><a href="#查询视图">查询视图</a></li>
+        <li><a href="#更新视图">更新视图</a></li>
+        <li><a href="#视图的作用">视图的作用</a>
+          <ol>
+            <li><a href="#视图能够简化用户的操作">视图能够简化用户的操作</a></li>
+            <li><a href="#视图使用户能以多种角度看待同一数据">视图使用户能以多种角度看待同一数据</a></li>
+            <li><a href="#视图对重构数据库提供了一定程度的逻辑独立性">视图对重构数据库提供了一定程度的逻辑独立性</a></li>
+            <li><a href="#视图能够对机密数据提供安全保护">视图能够对机密数据提供安全保护</a></li>
+            <li><a href="#适当利用视图可以更清晰地表达查询">适当利用视图可以更清晰地表达查询</a></li>
           </ol>
         </li>
       </ol>
@@ -1258,7 +1270,7 @@
 </svg>
 
             <time class="article-words">
-                29588 字
+                34594 字
             </time>
         </div>
 
@@ -1273,7 +1285,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 60 分钟
+                    阅读时长: 70 分钟
                 </time>
             </div>
         
@@ -5580,7 +5592,90 @@ p \to q \equiv \lnot p \lor q
   (1)某个目标列不是单纯的属性名，而是聚集函数或列表达式。<br>
   (2)多表连接时选出了几个同名列作为视图的字段。<br>
   (3)需要在视图中为某个列启用新的更合适的名字。</p>
-<p>  ：建立信息系学生的视图。</p>
+<p>  <span id="20241117213537CST"></span><strong>例84</strong>：建立信息系学生的视图。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;IS&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  本例中省略了视图<code>IS_Student</code>的列名，隐含了由子查询中<code>SELECT</code>子句中的三个列名组成。<br>
+  关系数据库管理系统执行<code>CREATE VIEW</code>语句的结果只是把视图的定义存入数据字典，并不执行其中的<code>SELECT</code>语句。只是在对视图查询时，才按视图的定义从基本表中将数据查出。</p>
+<p>  <span id="20241117214711CST"></span><strong>例85</strong>：建立信息系学生的视图，并要求进行修改和插入操作时仍需保证该视图只有信息系的学生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;IS&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WITH</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  由于在定义<code>IS_Student</code>视图时加上了<code>WITH CHECK OPTION</code>子句，以后对该视图进行插入、修改和删除操作时，关系数据库管理系统会自动加上<code>Sdept</code>=<code>IS</code>的条件。<br>
+  若一个视图是从单个基本表导出的，并且只是去掉了基本表的某些行和某些列，但保留了主码，则称这类视图为<strong>行列子集视图</strong>。<code>IS_Student</code>视图就是一个行列子集视图。<br>
+  视图不仅可以建立在单个基本表上，也可以建立在多个基本表上。</p>
+<p>  <span id="20241117215725CST"></span><strong>例86</strong>：建立信息系选修了1号课程的学生的视图（包括学号、姓名、成绩）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_S1</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;IS&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  由于视图<code>IS_S1</code>的属性列中包含了<code>Student</code>表与<code>SC</code>表的同名列<code>Sno</code>，所以必须在视图名后面明确说明视图的各个属性列名。<br>
+  视图不仅可以建立在一个或多个基本表上，也可以建立在一个或多个己定义好的视图上，或建立在基本表与视图上。</p>
+<p>  <span id="20241117215953CST"></span><strong>例87</strong>：建立信息系选修了1号课程且成绩在90分以上的学生的视图。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_S2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">IS_S1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="o">&gt;=</span><span class="mi">90</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这里的视图<code>IS_S2</code>就是建立在视图<code>IS_S1</code>之上的。<br>
+  定义基本表时，为了减少数据库中的冗余数据，表中只存放基本数据，由基本数据经过各种计算派生出的数据一般是不存储的。由于视图中的数据并不实际存储，所以定义视图时可以根据应用的需要设置一些派生属性列。这些派生属性由于在基本表中并不实际存在，也称它们为虚拟列。带虚拟列的视图也称为带表达式的视图。</p>
+<p>  <span id="20241117220548CST"></span><strong>例88</strong>：定义一个反映学生出生年份的视图。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -5588,13 +5683,414 @@ p \to q \equiv \lnot p \lor q
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_Student</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">BT_S</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Sbirth</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="mi">2014</span><span class="o">-</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>  </p>
-
+</div><p>  这里视图<code>BT_S</code>是一个带表达式的视图。视图中的出生年份值是通过计算得到的。<br>
+  还可以用带有聚集函数和<code>GROUP BY</code>子句的查询来定义视图，这种视图称为分组视图。</p>
+<p>  <span id="20241117220233CST"></span><strong>例89</strong>：将学生的学号及平均成绩定义为一个视图。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">S_G</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Gavg</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  由于<code>AS</code>子句中<code>SELECT</code>语句的目标列平均成绩是通过作用聚集函数得到的，所以<code>CREATE VIEW</code>中必须明确定义组成<code>S_G</code>视图的各个属性列名。<code>S_G</code>是一个分组视图。</p>
+<p>  <span id="20241117220329CST"></span><strong>例90</strong>：将Student表中所有女生记录定义为一个视图。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">F_Student</span><span class="p">(</span><span class="n">F_sno</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">sex</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">dept</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Ssex</span><span class="o">=</span><span class="s1">&#39;女&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这里视图<code>F_Student</code>是由子查询“<code>SELECT *</code>”建立的。<code>F_Student</code>视图的属性列与<code>Student</code>表的属性列一一对应。如果以后修改了基本表<code>Student</code>的结构，则<code>Student</code>表与<code>F_Student</code>视图的映像关系就会被破坏，该视图就不能正常工作了。为避免出现这类问题，最好在修改基本表之后删除由该基本表导出的视图，然后重建这个视图。</p>
+<h4 id="删除视图">删除视图
+</h4><p>  该语句的格式为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="o">&lt;</span><span class="err">视图名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="k">CASCADE</span><span class="p">];</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  视图删除后视图的定义将从数据字典中删除。如果该视图上还导出了其他视图，则使用<code>CASCADE</code>级联删除语句把该视图和由它导出的所有视图一起删除。<br>
+  基本表删除后，由该基本表导出的所有视图均无法使用了，但是视图的定义没有从字典中清除。删除这些视图定义需要显式地使用<code>DROP VIEW</code>语句。</p>
+<p>  <span id="20241117222657CST"></span><strong>例91</strong>：删除视图<code>BT_S</code>和视图<code>IS_SI</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">BT_S</span><span class="p">;</span><span class="w">  </span><span class="cm">/*成功执行*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_S1</span><span class="p">;</span><span class="w"> </span><span class="cm">/*拒绝执行*/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  执行此语句时由于<code>1S_S1</code>视图上还导出了<code>IS_S2</code>视图，所以该语句被拒绝执行。如果确定要删除，则使用级联删除语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="n">DROPVIEWIS_S1</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span><span class="w"> </span><span class="cm">/*删除了视图IS_S1和由它导出的所有视图*/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="查询视图">查询视图
+</h3><p>  视图定义后，用户就可以像对基本表一样对视图进行查询了。</p>
+<p>  <span id="20241117223537CST"></span><strong>例92</strong>：在信息系学生的视图中找出年龄小于20岁的学生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">IS_Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  关系数据库管理系统执行对视图的查询时，首先进行有效性检查，检查查询中涉及的表、视图等是否存在。如果存在，则从数据字典中取出视图的定义，把定义中的子查询和用户的查询结合起来，转换成等价的对基本表的查询，然后再执行修正了的查询。这一转换过程称为<strong>视图消解（view resolution）</strong>。<br>
+  本例转换后的查询语句为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Sage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;IS&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sage</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241117223646CST"></span><strong>例93</strong>：查询选修了 1号课程的信息系学生。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">IS_Student</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">IS_Student</span><span class="p">,</span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">IS_Student</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  本查询涉及视图<code>IS_Student</code>（虚表）和基本表<code>SC</code>，通过这两个表的连接来完成用户请求。在一般情况下，视图查询的转换是直截了当的。但有些情况下，这种转换不能直接进行，查询时就会出现问题，如<a class="link" href="#20241117224721CST">例94</a>。</p>
+<p>  <span id="20241117224721CST"></span><strong>例94</strong>：在<code>S_G</code>视图（<a class="link" href="#20241117220233CST">例89</a>中定义的视图）中查询平均成绩在90分以上的学生学号和平均成绩，语句为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">S_G</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Gavg</span><span class="o">&gt;=</span><span class="mi">90</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  例3.89中定义S_G视图的子查询为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  将本例中的查询语句与定义<code>S_G</code>视图的子查询结合，形成下列查询语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">90</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  因为<code>WHERE</code>子句中是不能用聚集函数作为条件表达式的，因此执行此修正后的查询将会出现语法错误。正确转换的查询语句应该是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">HAVING</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">90</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  目前多数关系数据库系统对行列子集视图的查询均能进行正确转换。但对非行列子集视图的查询（如<a class="link" href="#20241117224721CST">例94</a>）就不一定能做转换了，因此这类查询应该直接对基本表进行。</p>
+<p>  <a class="link" href="#20241117224721CST">例94</a>也可以用如下SQL语句完成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">   </span><span class="cm">/*子查询生成一个派生表 S_G*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">S_G</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Gavg</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Gavg</span><span class="o">&gt;=</span><span class="mi">90</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  但定义视图并查询视图与基于派生表的查询是有区别的。视图一旦定义，其定义将永久保存在数据字典中，之后的所有查询都可以直接引用该视图。而派生表只是在语句执行时临时定义，语句执行后该定义即被删除。</p>
+<h3 id="更新视图">更新视图
+</h3><p>  更新视图是指通过视图来插入（<code>INSERT</code>）、删除（<code>DELETE</code>）和修改（<code>UPDATE</code>）数据。<br>
+  由于视图是不实际存储数据的虚表，因此对视图的更新最终要转换为对基本表的更新。像查询视图那样，对视图的更新操作也是通过视图消解，转换为对基本表的更新操作。为防止用户通过视图对数据进行增加、删除、修改时，有意无意地对不属于视图范围内的基本表数据进行操作，可在定义视图时加上<code>WITH CHECK OPTION</code>子句。这样在视图上增、删、改数据时，关系数据库管理系统会检查视图定义中的条件，若不满足条件则 拒绝执行该操作。</p>
+<p>  <span id="20241117225838CST"></span><strong>例95</strong>：将信息系学生视图<code>IS_Student</code>中学号为“201215122”的学生姓名改为&quot;刘辰”。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">IS_Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="n">Sname</span><span class="o">=</span><span class="s1">&#39;刘辰&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;201215122&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  转换后的更新语句为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="n">Sname</span><span class="o">=</span><span class="s1">&#39;刘辰&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;201215122&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;IS&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241117230214CST"></span><strong>例96</strong>向信息系学生视图<code>IS_Student</code>中插入一个新的学生记录，其中学号为 “201215129”，姓名为“赵新”，年龄为20岁。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INTO</span><span class="w"> </span><span class="n">IS_Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;201215129&#39;</span><span class="p">,</span><span class="s1">&#39;赵新&#39;</span><span class="p">,</span><span class="s1">&#39;20&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  转换为对基本表的更新：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Sage</span><span class="p">,</span><span class="n">Sdept</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;201215129&#39;</span><span class="p">,</span><span class="s1">&#39;赵新&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="s1">&#39;IS&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这里系统自动将系名<code>'IS'</code>放入<code>VALUES</code>子句中。</p>
+<p>  <span id="20241117230511CST"></span><strong>例97</strong>：删除信息系学生视图<code>IS_Student</code>中学号为&quot;201215129&quot;的记录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;201215129&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  转换为对基本表的更新：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;201215129&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="o">=</span><span class="s1">&#39;IS&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  在关系数据库中，并不是所有的视图都是可更新的，因为有些视图的更新不能唯一地有意义地转换成对相应基本表的更新。<br>
+  例如，<a class="link" href="#20241117220233CST">例89</a>定义的视图<code>S_G</code>是由学号和平均成绩两个属性列组成的，其中平均成绩一项是由<code>Student</code>表中对元组分组后计算平均值得来的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">S_G</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Gavg</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="k">AVG</span><span class="w"> </span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  如果想把视图<code>S_G</code>中学号为“201215121”的学生的平均成绩改成90分，SQL语句如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">S_G</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="n">Gavg</span><span class="o">=</span><span class="mi">90</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="o">=</span><span class="s1">&#39;20121512&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  但这个对视图的更新是无法转换成对基本表<code>SC</code>的更新的，因为系统无法修改各科成绩，以使平均成绩成为90。所以<code>S_G</code>视图是不可更新的。<br>
+  一般地，行列子集视图是可更新的。除行列子集视图外，有些视图理论上是可更新的，但它们的确切特征还是尚待研究的课题。还有些视图从理论上就是不可更新的。<br>
+  目前，各个关系数据库管理系统一般都只允许对行列子集视图进行更新，而且各个系统对视图的更新还有更进一步的规定。由于各系统实现方法上的差异，这些规定也不尽相同。<br>
+  例如，DB2规定：<br>
+  (1)若视图是由两个以上基本表导出的，则此视图不允许更新。<br>
+  (2)若视图的字段来自字段表达式或常数，则不允许对此视图执行<code>INSERT</code>和<code>UPDATE</code>操作，但允许执行<code>DELETE</code>操作。<br>
+  (3)若视图的字段来自聚集函数，则此视图不允许更新。<br>
+  (4)若视图定义中含有<code>GROUP BY</code>子句，则此视图不允许更新。<br>
+  (5)若视图定义中含有<code>DISTINCT</code>短语，则此视图不允许更新。<br>
+  (6)若视图定义中有嵌套查询，并且内层查询的<code>FROM</code>子句中涉及的表也是导出该视图的基本表，则此视图不允许更新。例如，将<code>SC</code>表中成绩在平均成绩之上的元组定义成一个视图<code>GOOD_SC</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">GOOD</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="p">,</span><span class="n">Grade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">             </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  导出视图<code>GOOD_SC</code>的基本表是<code>SC</code>，内层查询中涉及的表也是<code>SC</code>，所以视图<code>GOOD_SC</code>是不允许更新的。<br>
+  (7)一个不允许更新的视图上定义的视图也不允许更新。 <br>
+  应该指出的是，不可更新的视图与不允许更新的视图是两个不同的概念。前者指理论上已证明其是不可更新的视图。后者指实际系统中不支持其更新，但它本身有可能是可更新的视图。</p>
+<h3 id="视图的作用">视图的作用
+</h3><p>  视图最终是定义在基本表之上的，对视图的一切操作最终也要转换为对基本表的操作。而且对于非行列子集视图进行查询或更新时还有可能出现问题。既然如此，为什么还要定义视图呢？这是因为合理使用视图能够带来许多好处。</p>
+<h4 id="视图能够简化用户的操作">视图能够简化用户的操作
+</h4><p>  视图机制使用户可以将注意力集中在所关心的数据上。如果这些数据不是直接来自基本表，则可以通过定义视图使数据库看起来结构简单、清晰，并且可以简化用户的数据查询操作。 例如，那些定义了若干张表连接的视图就将表与表之间的连接操作对用户隐蔽起来了。换句话说，用户所做的只是对一个虚表的简单查询，而这个虚表是怎样得来的，用户无须了解。</p>
+<h4 id="视图使用户能以多种角度看待同一数据">视图使用户能以多种角度看待同一数据
+</h4><p>  视图机制能使不同的用户以不同的方式看待同一数据，当许多不同种类的用户共享同一个数据库时，这种灵活性是非常重要的。</p>
+<h4 id="视图对重构数据库提供了一定程度的逻辑独立性">视图对重构数据库提供了一定程度的逻辑独立性
+</h4><p>  在<a class="link" href="/posts/engineering/computer_science/database_system/introduction_to_database_system/">数据库系统概论</a>中已经介绍过数据的物理独立性与逻辑独立性的概念。数据的物理独立性是指 用户的应用程序不依赖于数据库的物理结构。数据的逻辑独立性是指当数据库重构造时， 如增加新的关系或对原有关系增加新的字段等，用户的应用程序不会受影响。层次数据库 和网状数据库一般能较好地支持数据的物理独立性，而对于逻辑独立性则不能完全地支持。在关系数据库中，数据库的重构往往是不可避免的。重构数据库最常见的是将一个基 本表&quot;垂直&quot;地分成多个基本表。例如：将学生关系</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Ssex</span><span class="p">,</span><span class="n">Sage</span><span class="p">,</span><span class="n">Sdept</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  分为<code>SX(Sno, Sname, Sage)</code>和<code>SY(Sno, Ssex, Sdept)</code>两个关系。这时原表<code>Student</code>为<code>SX</code>表和<code>SY</code>表自然连接的结果。如果建立一个视图Student：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Sname</span><span class="p">,</span><span class="n">Ssex</span><span class="p">,</span><span class="n">Sage</span><span class="p">,</span><span class="n">Sdept</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">SX</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="n">SX</span><span class="p">.</span><span class="n">Sname</span><span class="p">,</span><span class="n">SY</span><span class="p">.</span><span class="n">Ssex</span><span class="p">,</span><span class="n">SX</span><span class="p">.</span><span class="n">Sage</span><span class="p">,</span><span class="n">SY</span><span class="p">.</span><span class="n">Sdept</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SX</span><span class="p">.</span><span class="n">SY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SX</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">SY</span><span class="p">.</span><span class="n">Sno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这样尽管数据库的逻辑结构改变了（变为SX和SY两个表），但应用程序不必修改，因为新建立的视图定义为用户原来的关系，使用户的外模式保持不变，用户的应用程序通过视图仍然能够查找数据。<br>
+  当然，视图只能在一定程度上提供数据的逻辑独立性，比如由于对视图的更新是有条件的，因此应用程序中修改数据的语句可能仍会因基本表结构的改变而需要做相应修改。</p>
+<h4 id="视图能够对机密数据提供安全保护">视图能够对机密数据提供安全保护
+</h4><p>  有了视图机制，就可以在设计数据库应用系统时对不同的用户定义不同的视图，使机密数据不出现在不应看到这些数据的用户视图上。这样视图机制就自动提供了对机密数据的安全保护功能。例如，<code>Student</code>表涉及全校15个院系的学生数据，可以在其上定义15个视图，每个视图只包含一个院系的学生数据，并只允许每个院系的主任查询和修改本院系的学生视图。</p>
+<h4 id="适当利用视图可以更清晰地表达查询">适当利用视图可以更清晰地表达查询
+</h4><p>  例如，经常需要执行这样的查询“对每个同学找出他获得最高成绩的课程号”。可以先定义一个视图，求出每个同学获得的最高成绩：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">VMGRADE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">.</span><span class="k">MAX</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="n">Mgrade</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  然后用如下的查询语句完成查询：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">,</span><span class="w"> </span><span class="n">VMGRADE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="o">=</span><span class="n">VMGRADE</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Grade</span><span class="o">=</span><span class="n">VMGRADE</span><span class="p">.</span><span class="n">Mgrade</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
 </section>
 
@@ -5641,7 +6137,7 @@ p \to q \equiv \lnot p \lor q
 
 
         <span>
-            最后更新于 Nov 17, 2024 21:46 CST
+            最后更新于 Nov 17, 2024 23:36 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -5813,7 +6309,7 @@ p \to q \equiv \lnot p \lor q
             
         
         
-        <span>本图书馆累计发布了15篇文章 共25.4万字</span>
+        <span>本图书馆累计发布了15篇文章 共25.9万字</span>
         
     </section>
 
