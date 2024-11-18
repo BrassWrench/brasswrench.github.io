@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 18 Nov 2024 13:07:22 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 18 Nov 2024 13:14:49 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -738,7 +738,7 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;word&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,)&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  这里提供一个可运行的辞典的例子&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/attachments/lexicon.txt&#34;target=&#34;_blank&#34;&gt;lexicon.txt&lt;/a&gt;[&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/attachments/lexicon.txt&#34;target=&#34;_blank&#34;download=&#34;lexicon.txt&#34;&gt;点此下载&lt;/a&gt;]。&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;  这里提供一个可运行的辞典的例子&lt;a class=&#34;link&#34; href=&#34;./attachments/lexicon.txt&#34;target=&#34;_blank&#34;&gt;lexicon.txt&lt;/a&gt;[&lt;a class=&#34;link&#34; href=&#34;./attachments/lexicon.txt&#34;target=&#34;_blank&#34;download=&#34;lexicon.txt&#34;&gt;点此下载&lt;/a&gt;]。&lt;br&gt;
   正向最大匹配分词算法存在的明显缺点是倾向于切分出较长的词，这容易导致错误的切分结果，如“研究生命的起源”，由于“研究生”是词典中的词，所以使用正向最大匹配分词算法的分词结果为“研究生 命 的 起源”，显然分词结果不正确。&lt;br&gt;
   这种情况一般被称为切分歧义问题，即同一个句子可能存在多种分词结果，一旦分词错误，则会影响对句子的语义理解。正向最大匹配分词算法除了存在切分歧义，对中文词的定义也不明确，如“哈尔滨市”可以是一个词，也可以认为“哈尔滨”是一个词，“市”是一个词。因此，目前存在多种中文分词的规范，根据不同规范又标注了不同的数据集。&lt;br&gt;
   另外，就是未登录词问题，也就是说有一些词并没有收录在词典中，如新词、命名实体、领域相关词和拼写错误词等。由于语言的动态性，新词语的出现可谓是层出不穷，所以无法将全部的词都及时地收录到词典中，因此，一个好的分词系统必须能够较好地处理未登录词问题。相比于切分歧义问题，在真实应用环境中，由未登录词问题引起的分词错误比例更高。因此，分词任务本身也是一项富有挑战的自然语言处理基础任务。&lt;/p&gt;
