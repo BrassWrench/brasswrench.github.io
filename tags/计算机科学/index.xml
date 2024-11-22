@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 22 Nov 2024 16:06:00 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 22 Nov 2024 16:11:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（二）：自然语言处理基础</title>
         <link>https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/</link>
         <pubDate>Wed, 13 Nov 2024 01:11:04 +0800</pubDate>
@@ -149,7 +149,7 @@ P(c)=&amp;\frac{C(c)}{\sum_{c&#39;}C(c&#39;)}=\frac{\sum_{w&#39;}C(w&#39;,c)}{\s
     \]
 &lt;p&gt;  另外，当某个词与上下文之间共现次数较低时，可能会得到负的PMI值。考虑到这种情况下的PMI不太稳定（具有较大的方差），在实际应用中通常采用&lt;strong&gt;PPMI（Positive PMI）&lt;/strong&gt;‌的形式，即：&lt;/p&gt;
 &lt;span id=&#34;20241113174633CST&#34;&gt;&lt;/span&gt;\[
-PPMI(w,c)=\max\set{\text{PMI}(w,c),0}
+\text{PPMI}(w,c)=\max\set{\text{PMI}(w,c),0}
 \tag{5}
     \]
 &lt;p&gt;  接下来介绍PMI的代码实现。首先，将类似&lt;a class=&#34;link&#34; href=&#34;#20241113015119CST&#34;&gt;表1&lt;/a&gt;形式的共现频次表定义为&lt;strong&gt;共现矩阵&lt;/strong&gt;的形式，即 \(\bm{M} \in \mathbb{R}^{|\mathbb{V}|\times|\mathbb{C}|}\) ，其中 \(|\mathbb{V}|\) 为词表， \(\mathbb{C}\) 为全部的上下文， \(M_{ij}\) 为词 \(w_i\) 与上下文 \(c_j\) 在语料库中的共现频次。然后，编写如下代码计PPMI：&lt;/p&gt;
