@@ -131,7 +131,7 @@
 <meta property='og:description' content="从就绪队列中选择进程，并将处理机分配给它运行，以实现进程的并发执行">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/operating_system/processor_scheduling_and_deadlock/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='处理机调度' /><meta property='article:published_time' content='2024-11-24T16:28:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-26T18:27:01&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='处理机调度' /><meta property='article:published_time' content='2024-11-24T16:28:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-26T22:23:58&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="操作系统（三）：处理机调度与死锁">
 <meta name="twitter:description" content="从就绪队列中选择进程，并将处理机分配给它运行，以实现进程的并发执行"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -845,6 +845,24 @@
         </li>
       </ol>
     </li>
+    <li><a href="#进程调度">进程调度</a>
+      <ol>
+        <li><a href="#进程调度的任务机制和方式">进程调度的任务、机制和方式</a>
+          <ol>
+            <li><a href="#进程调度的任务">进程调度的任务</a></li>
+            <li><a href="#进程调度机制">进程调度机制</a></li>
+            <li><a href="#进程调度方式">进程调度方式</a></li>
+          </ol>
+        </li>
+        <li><a href="#轮转调度算法">轮转调度算法</a>
+          <ol>
+            <li><a href="#轮转法的基本原理">轮转法的基本原理</a></li>
+            <li><a href="#进程切换时机">进程切换时机</a></li>
+            <li><a href="#时间片大小的确定">时间片大小的确定</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -1170,7 +1188,7 @@
 </svg>
 
             <time class="article-words">
-                6656 字
+                9479 字
             </time>
         </div>
 
@@ -1185,7 +1203,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 14 分钟
+                    阅读时长: 19 分钟
                 </time>
             </div>
         
@@ -1304,16 +1322,356 @@ W=\frac{1}{n}\sum_{i=1}^{n}\frac{T_i}{T_s}
 <h4 id="高响应比优先调度算法highest-response-ratio-nexthrrn">高响应比优先调度算法(Highest Response Ratio Next,HRRN)
 </h4><p>  在批处理系统中，FCFS算法所考虑的只是作业的等待时间，而忽视了作业的运行时间。而SJF算法正好与之相反，只考虑作业的运行时间，而忽视了作业的等待时间。高响应比优先调度算法则是既考虑了作业的等待时间，又考虑作业运行时间的调度算法，因此既照顾了短作业，又不致使长作业的等待时间过长，从而改善了处理机调度的性能。<br>
   高响应比优先算法是如何实现的呢？如果我们能为每个作业引入一个动态优先级，即优先级是可以改变的，令它随等待时间延长而增加，这将使长作业的优先级在等待期间不断地增加，等到足够的时间后，必然有机会获得处理机。该优先级的变化规律可描述为：</p>
-<span id="20241126181634CST"></span>
-    \[
+<span id="20241126181634CST"></span>\[
 \text{优先权}=\frac{\text{等待时间}+\text{要求服务时间}}{\text{要求服务时间}}
-\]
+\tag{4}
+    \]
 <p>  由于等待时间与服务时间之和就是系统对该作业的响应时间，故该优先级又相当于响应比 \(R_p\) 。据此，优先又可表示为：</p>
-<span id="20241126182531CST"></span>
-    \[
+<span id="20241126182531CST"></span>\[
 R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时间}{要求服务时间}
-\]
+\tag{5}
+    \]
 <p>  由上式可以看出：①如果作业的等待时间相同，则要求服务的时间愈短，其优先权愈高，因而类似于SJF算法，有利于短作业。②当要求服务的时间相同时，作业的优先权又决定于其等待时间，因而该算法又类似于FCFS算法。③对于长作业的优先级，可以随等待时间的增加而提高，当其等待时间足够长时，也可获得处理机。因此该算法实现了较好的折中。当然在利用该算法时，每次要进行调度之前，都需要先做响应比的计算，显然会增加系统开销。</p>
+<h2 id="进程调度">进程调度
+</h2><p>  进程调度是OS中必不可少的一种调度。因此在三种类型的OS中，都无一例外地配置了进程调度。此外它也是对系统性能影响最大的一种处理机调度，相应的，有关进程调度的算法也较多。</p>
+<h3 id="进程调度的任务机制和方式">进程调度的任务、机制和方式
+</h3><h4 id="进程调度的任务">进程调度的任务
+</h4><p>  进程调度的任务主要有三：<br>
+  (1)保存处理机的现场信息。在进行调度时首先需要保存当前进程的处理机的现场信息，如程序计数器、多个通用寄存器中的内容等。<br>
+  (2)按某种算法选取进程。调度程序按某种算法从就绪队列中选取一个进程，将其状态改为运行状态，并准备把处理机分配给它。<br>
+  (3)把处理器分配给进程。由分派程序把处理器分配给该进程，此时需要将选中进程的进程控制块内有关处理机现场的信息装入处理器相应的各个寄存器中，把处理器的控制权交予该进程，让它从上次的断点处恢复运行。</p>
+<h4 id="进程调度机制">进程调度机制
+</h4><p>  为了实现进程调度，在进程调度机制中，应具有如下三个基本部分。<br>
+  (1)排队器。为了提高进程调度的效率，应事先将系统中的所有就绪进程按照一定的策略排成一个或多个队列，以便调度程序能最快地找到它。以后每当有一个进程转变为就绪状态时，排队器便将它插入到相应的就绪队列。<br>
+  (2)分派器。分派器依据进程调度程序所选定的进程，将其从就绪队列中取出，然后进行从分派器到新选出进程间的上下文切换，将处理机分配给新选出的进程。<br>
+  (3)上下文切换器。在对处理机进行切换时，会发生两对上下文的切换操作：①第一对上下文切换时，OS将保存当前进程的上下文，即把当前进程的处理机寄存器内容保存到该进程的进程控制块内的相应单元，再装入分派程序的上下文，以便分派程序运行；②第二对上下文切换是移出分派程序的上下文，而把新选进程的CPU现场信息装入到处理机的各个相应寄存器中，以便新选进程运行。</p>
+<span id="20241126193146CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 289.0646">
+  <text transform="translate(277.231 73.7818)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">就绪进程</tspan></text>
+  <ellipse cx="313.231" cy="67.1474" rx="69.1429" ry="23.1429" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(111.3775 15.8403)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">来自其他状态</tspan></text>
+  <g>
+    <polyline points="118.0073 20.6 216.7367 20.6 248.0628 51.9262" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="243.4583 52.5587 247.1892 51.0526 248.6953 47.3217 252.284 56.1474 243.4583 52.5587"/>
+  </g>
+  <rect x="244.0881" y="122.5524" width="387.4286" height="141.7143" rx="12" ry="12" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(287.3068 166.8536)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">排队器</tspan></text>
+  <rect x="277.8789" y="146.3143" width="72.8561" height="26.6667" rx="5.6693" ry="5.6693" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(394.4148 166.8536)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">就绪队列</tspan></text>
+  <rect x="386.333" y="146.3143" width="88.1639" height="26.6667" rx="5.6693" ry="5.6693" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="350.735" y1="159.6476" x2="380.3633" y2="159.6476" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="377.5547 163.3508 379.128 159.6476 377.5547 155.9445 386.3331 159.6476 377.5547 163.3508"/>
+  </g>
+  <text transform="translate(403.4151 223.5679)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">分派器</tspan></text>
+  <rect x="393.9869" y="203.0286" width="72.8561" height="26.6667" rx="5.6693" ry="5.6693" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(526.4629 210.2345)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">上下文</tspan><tspan x="0" y="21.6001">切换器</tspan></text>
+  <rect x="517.0347" y="189.6953" width="72.8561" height="49.8095" rx="5.6693" ry="5.6693" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="407.116" y1="172.981" x2="407.116" y2="197.0589" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="403.4128 194.2503 407.116 195.8235 410.8191 194.2503 407.116 203.0286 403.4128 194.2503"/>
+  </g>
+  <g>
+    <line x1="313.231" y1="90.2902" x2="313.231" y2="140.3446" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="309.5278 137.536 313.231 139.1092 316.9341 137.536 313.231 146.3143 309.5278 137.536"/>
+  </g>
+  <rect x="462.2242" y="48.2902" width="130.6667" height="37.7143" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(482.5579 73.6265)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">进程控制块</tspan></text>
+  <g>
+    <line x1="533.8461" y1="189.6953" x2="533.8461" y2="183.6953" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="533.8461" y1="177.9601" x2="533.8461" y2="94.8009" style="fill: none; stroke: #000; stroke-dasharray: 11.4702 5.7351; stroke-miterlimit: 10;"/>
+    <line x1="533.8461" y1="91.9334" x2="533.8461" y2="85.9334" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="553.4628" y1="85.9334" x2="553.4628" y2="91.9334" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="553.4628" y1="98.5328" x2="553.4628" y2="174.4258" style="fill: none; stroke: #000; stroke-dasharray: 13.1988 6.5994; stroke-miterlimit: 10;"/>
+    <line x1="553.4628" y1="177.7255" x2="553.4628" y2="183.7255" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="549.7596 180.917 553.4628 182.4902 557.1659 180.917 553.4628 189.6953 549.7596 180.917"/>
+  </g>
+  <polyline points="485.8461 85.9334 485.8461 177.3619 430.415 177.3619 430.415 203.0286" style="fill: none; stroke: #000; stroke-dasharray: 12 6; stroke-miterlimit: 10;"/>
+  <g>
+    <polyline points="509.8461 85.9334 509.8461 181.9334 450.0366 181.9334 450.0366 197.0589" style="fill: none; stroke: #000; stroke-dasharray: 12 6; stroke-miterlimit: 10;"/>
+    <polygon points="446.3335 194.2503 450.0366 195.8235 453.7397 194.2503 450.0366 203.0286 446.3335 194.2503"/>
+  </g>
+  <text transform="translate(686.8984 221.2345)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">C</tspan><tspan x="12.438" y="0" style="letter-spacing: -.019em;">P</tspan><tspan x="23.6338" y="0">U</tspan></text>
+  <ellipse cx="705.8879" cy="214.6" rx="46.4345" ry="23.1429" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="589.8908" y1="214.3942" x2="653.4836" y2="214.3942" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="650.675 218.0973 652.2483 214.3942 650.675 210.691 659.4534 214.3942 650.675 218.0973"/>
+  </g>
+  <g>
+    <polyline points="705.8879 191.4572 705.8879 20.6 386.333 20.6 362.4253 44.5078" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="361.7928 39.9033 363.2988 43.6342 367.0298 45.1403 358.2041 48.729 361.7928 39.9033"/>
+  </g>
+  <text transform="translate(485.8457 15.8404)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">移出运行进程</tspan></text>
+  <text transform="translate(281.3771 284.3253)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">调度程序</tspan></text>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;进程调度机制</p>
+<p>  在进行上下文切换时，需要执行大量的<code>load</code>和<code>store</code>等操作指令，以保存寄存器的内容。即使是现代计算机，每一次上下文切换所花费的时间大约可执行上千条指令。为此，现在已有靠硬件实现的方法来减少上下文切换时间。一般采用两组（或多组）寄存器，其中的一组寄存器供处理机在系统态时使用，而另一组寄存器供应用程序使用。在这样条件下的上下文切换，只需改变指针，使其指向当前寄存器组即可。</p>
+<h4 id="进程调度方式">进程调度方式
+</h4><p>  早期所采用的非抢占方式存在着很大的局限性，很难满足交互性作业和实时任务的需求。为此，在进程调度中又引入了抢占方式。我们先了解一下非抢占方式时的情况。</p>
+<p><strong>1. 非抢占方式(Nonpreemptive Mode)</strong></p>
+<p>  在采用这种调度方式时，一旦把处理机分配给某进程后，就一直让它运行下去，决不会因为时钟中断或任何其它原因去抢占当前正在运行进程的处理机，直至该进程完成，或发生某事件而被阻塞时，才把处理机分配给其它进程。<br>
+  在采用非抢占调度方式时，可能引起进程调度的因素可归结为：①正在执行的进程运行完毕，或因发生某事件而使其无法再继续运行；②正在执行中的进程因提出I/O请求而暂停执行；③在进程通信或同步过程中，执行了某种原语操作，如Block原语。这种调度方式的优点是实现简单，系统开销小，适用于大多数的批处理系统。但它不能用于分时系统和大多数实时系统。</p>
+<p><strong>2. 抢占方式(Preemptive Mode)</strong></p>
+<p>  这种调度方式允许调度程序根据某种原则，去暂停某个正在执行的进程，将已分配给该进程的处理机重新分配给另一进程。在现代OS中广泛采用抢占方式，这是因为：对于批处理机系统，可以防止一个长进程长时间地占用处理机，以确保处理机能为所有进程提供更为公平的服务。在分时系统中，只有采用抢占方式才有可能实现人—机交互。在实时系统中，抢占方式能满足实时任务的需求。但抢占方式比较复杂，所需付出的系统开销也较大。<br>
+  “抢占”不是一种任意性行为，必须遵循一定的原则。主要原则有：<br>
+  ①优先权原则，指允许优先级高的新到进程抢占当前进程的处理机，即当有新进程到达时，如果它的优先级比正在执行进程的优先级高，则调度程序将剥夺当前进程的运行，将处理机分配给新到的优先权高的进程。<br>
+  ②短进程优先原则，指允许新到的短进程可以抢占当前长进程的处理机，即当新到达的进程比正在执行的进程（尚须运行的时间）明显短时，将处理机分配给新到的短进程。<br>
+  ③时间片原则，即各进程按时间片轮转运行时，当正在执行的进程的一个时间片用完后，便停止该进程的执行而重新进行调度。</p>
+<h3 id="轮转调度算法">轮转调度算法
+</h3><p>  在分时系统中，最简单也是较常用的是<strong>基于时间片的轮转(round robin,RR)调度算法</strong>。该算法采取了非常公平的处理机分配方式，即让就绪队列上的每个进程每次仅运行一个时间片。如果就绪队列上有 \(n\) 个进程，则每个进程每次大约都可获得 \(\cfrac{1}{n}\) 的处理机时间。</p>
+<h4 id="轮转法的基本原理">轮转法的基本原理
+</h4><p>  在轮转(RR)法中，系统将所有的就绪进程按FCFS策略排成一个就绪队列。系统可设置每隔一定时间（如30ms）便产生一次中断，去激活进程调度程序进行调度，把CPU分配给队首进程，并令其执行一个时间片。当它运行完毕后，又把处理机分配给就绪队列中新的队首进程，也让它执行一个时间片。这样，就可以保证就绪队列中的所有进程在确定的时间段内，都能获得一个时间片的处理机时间。</p>
+<h4 id="进程切换时机">进程切换时机
+</h4><p>  在RR调度算法中，应在何时进行进程的切换，可分为两种情况：①若一个时间片尚未用完，正在运行的进程便已经完成，就立即激活调度程序，将它从就绪队列中删除，再调度就绪队列中队首的进程运行，并启动一个新的时间片。②在一个时间片用完时，计时器中断处理程序被激活。如果进程尚未运行完毕，调度程序将把它送往就绪队列的末尾。</p>
+<h4 id="时间片大小的确定">时间片大小的确定
+</h4><p>  在轮转算法中，时间片的大小对系统性能有很大的影响。若选择很小的时间片，将有利于短作业，因为它能在该时间片内完成。但时间片小，意味着会频繁地执行进程调度和进程上下文的切换，这无疑会增加系统的开销。反之，若时间片选择得太长，且为使每个进程都能在一个时间片内完成，RR算法便退化为FCFS算法，无法满足短作业和交互式用户的需求。一个较为可取的时间片大小是略大于一次典型的交互所需要的时间，使大多数交互式进程能在一个时间片内完成，从而可以获得很小的响应时间。<a class="link" href="#20241126220213CST">图2</a>示出了时间片大小对响应时间的影响，其中<a class="link" href="#20241126220213CST">图2</a>(a)是时间片略大于典型交互的时间，而<a class="link" href="#20241126220213CST">图2</a>(b)是时间片小于典型交互的时间。<a class="link" href="#20241126220833CST">表1</a>示出了时间片分别为 \(q=1\) 和 \(q=4\) 时对平均周转时间的影响。</p>
+<span id="20241126220213CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 450.1696">
+  <text transform="translate(339.339 235.6046)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.001em;">(</tspan><tspan x="6.5342" y="0" style="letter-spacing: -.005em;">a</tspan><tspan x="16.4702" y="0">)时间片大于交互时间</tspan></text>
+  <g>
+    <rect x="293.7799" y="83.8919" width="196.5714" height="16" style="fill: #040000; opacity: .2; stroke: #000; stroke-miterlimit: 10;"/>
+    <rect x="490.3513" y="83.8919" width="79.3651" height="16" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <rect x="293.7799" y="83.8919" width="196.5714" height="16" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="503.4721" y1="83.8919" x2="490.3927" y2="96.9712" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="497.0762" y1="83.7745" x2="490.3927" y2="90.458" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="516.436" y1="83.9544" x2="500.4413" y2="99.9491" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="529.525" y1="83.8919" x2="513.525" y2="99.8919" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="549.0021" y1="83.9544" x2="533.0074" y2="99.9491" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="522.9492" y1="83.9544" x2="507.3513" y2="99.5523" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="535.9757" y1="83.9544" x2="520.0382" y2="99.8919" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="542.4889" y1="83.9544" x2="526.4942" y2="99.9491" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="555.5154" y1="83.9544" x2="539.5779" y2="99.8919" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="562.2085" y1="83.7745" x2="546.0911" y2="99.8919" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="568.5418" y1="83.9544" x2="552.5471" y2="99.9491" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="509.9228" y1="83.9544" x2="493.928" y2="99.9491" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="569.9201" y1="88.9739" x2="559.1132" y2="99.7808" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="569.9201" y1="96.0202" x2="565.9912" y2="99.9491" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+  </g>
+  <g>
+    <line x1="293.6984" y1="65.5347" x2="293.6984" y2="77.4698" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="289.9953 74.6612 293.6984 76.2344 297.4016 74.6612 293.6984 83.4395 289.9953 74.6612"/>
+  </g>
+  <g>
+    <line x1="490.3112" y1="65.5347" x2="490.3112" y2="77.4698" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="486.6081 74.6612 490.3112 76.2344 494.0143 74.6612 490.3112 83.4395 486.6081 74.6612"/>
+  </g>
+  <text transform="translate(232.387 38.3987)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">分配给进程</tspan><tspan x="0" y="21.5996">的时间片</tspan></text>
+  <text transform="translate(454.3756 62.1585)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">交互结束</tspan></text>
+  <g>
+    <g>
+      <line x1="299.8515" y1="110.999" x2="484.4835" y2="110.999" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="302.6601 114.7021 301.0868 110.999 302.6601 107.2959 293.8817 110.999 302.6601 114.7021"/>
+      <polygon points="481.6749 114.7021 483.2481 110.999 481.6749 107.2959 490.4532 110.999 481.6749 114.7021"/>
+    </g>
+    <g>
+      <line x1="563.8485" y1="110.999" x2="496.4229" y2="110.999" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+      <polygon points="561.0399 107.2959 562.6132 110.999 561.0399 114.7021 569.8182 110.999 561.0399 107.2959"/>
+      <polygon points="499.2315 107.2959 497.6583 110.999 499.2315 114.7021 490.4532 110.999 499.2315 107.2959"/>
+    </g>
+  </g>
+  <text transform="translate(348.7418 132.0106)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">响应时间</tspan></text>
+  <path id="MJX-5-TEX-I-1D460" d="M383.1559,143.6167c0-.3861.0965-.7782.2896-1.1764s.5309-.7662,1.0135-1.104,1.0678-.5007,1.7555-.4886c.7481,0,1.291.1629,1.6288.4886s.5128.6877.5248,1.0859c0,.3861-.1026.6696-.3077.8506s-.4344.2775-.6877.2896c-.1568,0-.3016-.0483-.4344-.1448s-.2051-.2534-.2172-.4706c0-.193.0543-.362.1629-.5067s.2111-.2534.3077-.3258.1749-.1086.2353-.1086c.0121,0,.0181-.006.0181-.0181,0-.0362-.0422-.0905-.1267-.1629s-.2353-.1388-.4525-.1991-.4525-.0965-.7058-.1086c-.5791,0-1.0014.1568-1.2669.4706s-.4042.6334-.4163.9592c0,.3016.1146.5128.3439.6334s.561.2232.9954.3077.7481.1749.9411.2715c.7963.3499,1.1945.929,1.1945,1.7374,0,.3378-.0664.6757-.1991,1.0135s-.3318.6757-.5972,1.0135c-.2654.3378-.6455.6033-1.1402.7963-.4947.193-1.0618.2956-1.7012.3077-.929,0-1.5866-.1749-1.9727-.5248-.3861-.3499-.5852-.7601-.5972-1.2307,0-.4706.1267-.8084.3801-1.0135s.5188-.3077.7963-.3077c.181,0,.3499.0543.5067.1629s.2413.2956.2534.561c0,.3137-.1086.5791-.3258.7963s-.4042.3258-.561.3258c-.0241.0121-.0422.0181-.0543.0181s-.0181.0121-.0181.0362c.0121.0362.0603.0845.1448.1448s.2715.1388.561.2353c.2896.0965.6214.1388.9954.1267.4344,0,.8084-.0664,1.1221-.1991.3137-.1327.5429-.3016.6877-.5067.1448-.2051.2473-.3921.3077-.561s.0905-.3197.0905-.4525c0-.3378-.1267-.5912-.3801-.7601s-.5429-.2715-.8687-.3077-.6817-.1267-1.0678-.2715-.6696-.3559-.8506-.6334c-.2051-.3016-.3077-.6515-.3077-1.0497Z"/>
+  <text transform="translate(398.7686 183.3162)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">时间片</tspan></text>
+  <g>
+    <line x1="299.7496" y1="161.0942" x2="563.9504" y2="161.0942" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="302.5582 164.7974 300.985 161.0942 302.5582 157.3911 293.7799 161.0942 302.5582 164.7974"/>
+    <polygon points="561.1418 164.7974 562.715 161.0942 561.1418 157.3911 569.9201 161.0942 561.1418 164.7974"/>
+  </g>
+  <g>
+    <path id="MJX-7-TEX-I-1D45E" d="M510.233,127.8175c0-1.2188.4585-2.3772,1.3756-3.4753.9171-1.0981,1.9488-1.6532,3.0952-1.6652.724,0,1.2791.3137,1.6652.9412.0121-.0121.0422-.0483.0905-.1086s.1146-.1267.1991-.1991.181-.1448.2896-.2172c.4103-.2896.6878-.4344.8326-.4344.0483,0,.0905.0181.1267.0543s.0543.0664.0543.0905c0,.1086-.4163,1.8281-1.2489,5.1586-.8568,3.427-1.2851,5.1646-1.2851,5.2129,0,.0965.2715.1508.8145.1629h.4525c.0724.0965.1086.1508.1086.1629s-.0181.1207-.0543.3258c-.0483.1569-.1086.2715-.181.3439h-.2353c-.3741-.0241-1.0257-.0362-1.9548-.0362h-1.5928c-.1689,0-.2715.006-.3077.0181-.1689,0-.2534-.0483-.2534-.1448,0-.0362.0121-.1267.0362-.2715.0483-.1931.0905-.3077.1267-.3439s.1569-.0543.362-.0543c.5792,0,.9292-.0422,1.0498-.1267.0965-.0603.2655-.5913.5068-1.5928.2413-1.0016.368-1.5144.3801-1.5385,0-.0121-.0422.006-.1267.0543-.5792.4706-1.1826.7059-1.81.7059-.6637,0-1.2489-.2413-1.7557-.724-.5068-.4827-.7602-1.2489-.7602-2.2987ZM516.007,124.7585c-.2775-.9533-.73-1.4299-1.3575-1.4299-.4223,0-.8266.187-1.2127.5611s-.6878.8628-.905,1.4661c-.3499.9533-.5973,1.9428-.7421,2.9685v.1991c0,.0965-.006.1689-.0181.2172,0,.543.1086.9171.3258,1.1222s.4766.3137.7783.3258c.6516,0,1.3213-.4344,2.0091-1.3032l.1448-.1991.9774-3.9278Z"/>
+    <path id="MJX-7-TEX-N-2212" d="M523.5042,126.3694v-.2353c0-.1569.0845-.2775.2534-.362h10.5163c.181.0965.2715.2172.2715.362s-.0905.2655-.2715.362h-10.5163c-.1689-.0845-.2534-.2051-.2534-.362v.2353Z"/>
+    <path id="MJX-7-TEX-I-1D460" d="M542.4589,125.4282c0-.3861.0965-.7783.2896-1.1765s.5309-.7662,1.0136-1.1041,1.0679-.5008,1.7557-.4887c.7481,0,1.2912.1629,1.629.4887s.5128.6878.5249,1.086c0,.3861-.1026.6697-.3077.8507s-.4344.2775-.6878.2896c-.1569,0-.3017-.0483-.4344-.1448s-.2051-.2534-.2172-.4706c0-.1931.0543-.362.1629-.5068s.2112-.2534.3077-.3258.175-.1086.2353-.1086c.0121,0,.0181-.006.0181-.0181,0-.0362-.0422-.0905-.1267-.1629s-.2353-.1388-.4525-.1991-.4525-.0965-.7059-.1086c-.5792,0-1.0016.1569-1.267.4706s-.4042.6335-.4163.9593c0,.3017.1146.5128.3439.6335s.5611.2232.9955.3077.7481.175.9412.2715c.7964.3499,1.1946.9292,1.1946,1.7376,0,.3379-.0664.6757-.1991,1.0136s-.3318.6757-.5973,1.0136c-.2655.3379-.6456.6033-1.1403.7964-.4947.1931-1.0619.2956-1.7014.3077-.9292,0-1.5868-.175-1.9729-.5249-.3861-.3499-.5852-.7602-.5973-1.2308,0-.4706.1267-.8085.3801-1.0136s.5189-.3077.7964-.3077c.181,0,.3499.0543.5068.1629s.2413.2956.2534.5611c0,.3137-.1086.5792-.3258.7964s-.4042.3258-.5611.3258c-.0241.0121-.0422.0181-.0543.0181s-.0181.0121-.0181.0362c.0121.0362.0603.0845.1448.1448s.2715.1388.5611.2353c.2896.0965.6214.1388.9955.1267.4344,0,.8085-.0664,1.1222-.1991.3137-.1327.543-.3017.6878-.5068.1448-.2051.2474-.3922.3077-.5611s.0905-.3198.0905-.4525c0-.3379-.1267-.5913-.3801-.7602s-.543-.2715-.8688-.3077-.6818-.1267-1.0679-.2715-.6697-.356-.8507-.6335c-.2051-.3017-.3077-.6516-.3077-1.0498Z"/>
+  </g>
+  <path id="MJX-8-TEX-I-1D45E" d="M421.9041,196.7882c0-1.2188.4585-2.3772,1.3756-3.4753.9171-1.0981,1.9488-1.6532,3.0952-1.6653.724,0,1.2791.3137,1.6653.9412.0121-.0121.0422-.0483.0905-.1086s.1146-.1267.1991-.1991.181-.1448.2896-.2172c.4103-.2896.6878-.4344.8326-.4344.0483,0,.0905.0181.1267.0543s.0543.0664.0543.0905c0,.1086-.4163,1.8282-1.2489,5.1587-.8568,3.4271-1.2851,5.1647-1.2851,5.213,0,.0965.2715.1508.8145.1629h.4525c.0724.0965.1086.1508.1086.1629s-.0181.1207-.0543.3258c-.0483.1569-.1086.2715-.181.3439h-.2353c-.3741-.0241-1.0257-.0362-1.9549-.0362h-1.5929c-.1689,0-.2715.006-.3077.0181-.1689,0-.2534-.0483-.2534-.1448,0-.0362.0121-.1267.0362-.2715.0483-.1931.0905-.3077.1267-.3439s.1569-.0543.362-.0543c.5792,0,.9292-.0422,1.0498-.1267.0965-.0603.2655-.5913.5068-1.5929.2413-1.0016.368-1.5144.3801-1.5386,0-.0121-.0422.006-.1267.0543-.5792.4706-1.1826.7059-1.8101.7059-.6637,0-1.2489-.2413-1.7558-.724-.5068-.4827-.7602-1.2489-.7602-2.2988ZM427.6782,193.7292c-.2775-.9533-.7301-1.4299-1.3575-1.4299-.4223,0-.8266.187-1.2127.5611s-.6878.8628-.905,1.4662c-.3499.9533-.5973,1.9428-.7421,2.9685v.1991c0,.0965-.006.1689-.0181.2172,0,.543.1086.9171.3258,1.1222s.4766.3137.7783.3258c.6516,0,1.3213-.4344,2.0092-1.3032l.1448-.1991.9774-3.9278Z"/>
+  <g>
+    <line x1="336.8373" y1="22.5588" x2="520.8929" y2="22.5588" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="518.0844 26.262 519.6576 22.5588 518.0844 18.8557 526.8627 22.5588 518.0844 26.262"/>
+  </g>
+  <text transform="translate(413.8498 15.8398)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">时间</tspan></text>
+  <g>
+    <rect x="90.2575" y="317.1911" width="275.9365" height="16" style="fill: #040000; opacity: .2; stroke: #000; stroke-miterlimit: 10;"/>
+    <rect x="90.2575" y="317.1911" width="275.9365" height="16" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="379.5252" y1="317.2212" x2="366.4459" y2="330.3005" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="373.1294" y1="317.1038" x2="366.4459" y2="323.7873" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="392.4892" y1="317.2837" x2="376.4945" y2="333.2784" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="405.5781" y1="317.2212" x2="389.5781" y2="333.2212" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="425.0553" y1="317.2837" x2="409.0606" y2="333.2784" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="399.0024" y1="317.2837" x2="383.4045" y2="332.8816" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="412.0288" y1="317.2837" x2="396.0914" y2="333.2212" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="418.5421" y1="317.2837" x2="402.5474" y2="333.2784" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="431.5685" y1="317.2837" x2="415.6311" y2="333.2212" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="438.2616" y1="317.1038" x2="422.1443" y2="333.2212" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="444.595" y1="317.2837" x2="428.6003" y2="333.2784" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="385.9759" y1="317.2837" x2="369.9812" y2="333.2784" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <rect x="366.4459" y="317.0826" width="275.9365" height="16" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="457.8862" y1="317.1752" x2="441.8915" y2="333.1699" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="470.9752" y1="317.1127" x2="454.9752" y2="333.1127" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="490.4523" y1="317.1752" x2="474.4576" y2="333.1699" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="464.3994" y1="317.1752" x2="448.8015" y2="332.7731" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="477.4259" y1="317.1752" x2="461.4884" y2="333.1127" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="483.9391" y1="317.1752" x2="467.9444" y2="333.1699" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="496.9656" y1="317.1752" x2="481.0281" y2="333.1127" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="503.6587" y1="316.9953" x2="487.5413" y2="333.1127" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="509.992" y1="317.1752" x2="493.9973" y2="333.1699" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="451.373" y1="317.1752" x2="435.3783" y2="333.1699" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="522.9276" y1="317.1466" x2="506.9328" y2="333.1413" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="536.0165" y1="317.0841" x2="520.0165" y2="333.0841" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="555.4937" y1="317.1466" x2="539.499" y2="333.1413" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="529.4408" y1="317.1466" x2="513.8429" y2="332.7445" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="542.4672" y1="317.1466" x2="526.5298" y2="333.0841" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="548.9805" y1="317.1466" x2="532.9858" y2="333.1413" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="562.0069" y1="317.1466" x2="546.0695" y2="333.0841" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="568.7" y1="316.9667" x2="552.5827" y2="333.0841" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="575.0334" y1="317.1466" x2="559.0387" y2="333.1413" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="516.4143" y1="317.1466" x2="500.4196" y2="333.1413" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="587.5092" y1="317.0381" x2="571.5145" y2="333.0329" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="600.5982" y1="316.9756" x2="584.5982" y2="332.9756" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="620.0753" y1="317.0381" x2="604.0806" y2="333.0329" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="594.0224" y1="317.0381" x2="578.4246" y2="332.636" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="607.0489" y1="317.0381" x2="591.1114" y2="332.9756" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="613.5621" y1="317.0381" x2="597.5674" y2="333.0329" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="626.5886" y1="317.0381" x2="610.6511" y2="332.9756" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="633.2817" y1="316.8583" x2="617.1643" y2="332.9756" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="639.615" y1="317.0381" x2="623.6203" y2="333.0329" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="580.996" y1="317.0381" x2="565.0013" y2="333.0329" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="642.3824" y1="327.2166" x2="636.3677" y2="333.2313" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <line x1="642.3824" y1="320.7033" x2="629.8544" y2="333.2313" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: .5px;"/>
+    <rect x="642.3824" y="317.0826" width="131.0602" height="16" style="fill: #040000; opacity: .2; stroke: #000; stroke-miterlimit: 10;"/>
+    <rect x="642.3824" y="317.0826" width="131.0602" height="16" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <text transform="translate(338.7362 447.3983)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">(</tspan><tspan x="6.5518" y="0" style="letter-spacing: -.02em;">b</tspan><tspan x="17.6758" y="0" style="letter-spacing: 0em;">)时间片小于交互时间</tspan></text>
+  <g>
+    <line x1="96.2272" y1="385.6181" x2="767.4728" y2="385.6181" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="99.0358 389.3212 97.4626 385.6181 99.0358 381.9149 90.2575 385.6181 99.0358 389.3212"/>
+    <polygon points="764.6642 389.3212 766.2375 385.6181 764.6642 381.9149 773.4426 385.6181 764.6642 389.3212"/>
+  </g>
+  <path id="MJX-5-TEX-I-1D460-2" data-name="MJX-5-TEX-I-1D460" d="M429.9497,399.9968c0-.3861.0965-.7782.2896-1.1764s.5309-.7662,1.0135-1.104,1.0678-.5007,1.7555-.4886c.7481,0,1.291.1629,1.6288.4886s.5128.6877.5248,1.0859c0,.3861-.1026.6696-.3077.8506s-.4344.2775-.6877.2896c-.1568,0-.3016-.0483-.4344-.1448s-.2051-.2534-.2172-.4706c0-.193.0543-.362.1629-.5067s.2111-.2534.3077-.3258.1749-.1086.2353-.1086c.0121,0,.0181-.006.0181-.0181,0-.0362-.0422-.0905-.1267-.1629s-.2353-.1388-.4525-.1991-.4525-.0965-.7058-.1086c-.5791,0-1.0014.1568-1.2669.4706s-.4042.6334-.4163.9592c0,.3016.1146.5128.3439.6334s.561.2232.9954.3077.7481.1749.9411.2715c.7963.3499,1.1945.929,1.1945,1.7374,0,.3378-.0664.6757-.1991,1.0135s-.3318.6757-.5972,1.0135c-.2654.3378-.6455.6033-1.1402.7963-.4947.193-1.0618.2956-1.7012.3077-.929,0-1.5866-.1749-1.9727-.5248-.3861-.3499-.5852-.7601-.5972-1.2307,0-.4706.1267-.8084.3801-1.0135s.5188-.3077.7963-.3077c.181,0,.3499.0543.5067.1629s.2413.2956.2534.561c0,.3137-.1086.5791-.3258.7963s-.4042.3258-.561.3258c-.0241.0121-.0422.0181-.0543.0181s-.0181.0121-.0181.0362c.0121.0362.0603.0845.1448.1448s.2715.1388.561.2353c.2896.0965.6214.1388.9954.1267.4344,0,.8084-.0664,1.1221-.1991.3137-.1327.5429-.3016.6877-.5067.1448-.2051.2473-.3921.3077-.561s.0905-.3197.0905-.4525c0-.3378-.1267-.5912-.3801-.7601s-.5429-.2715-.8687-.3077-.6817-.1267-1.0678-.2715-.6696-.3559-.8506-.6334c-.2051-.3016-.3077-.6515-.3077-1.0497Z"/>
+  <g>
+    <line x1="96.2272" y1="347.3958" x2="360.2242" y2="347.3958" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="99.0358 351.099 97.4626 347.3958 99.0358 343.6927 90.2575 347.3958 99.0358 351.099"/>
+    <polygon points="357.4156 351.099 358.9889 347.3958 357.4156 343.6927 366.194 347.3958 357.4156 351.099"/>
+  </g>
+  <g>
+    <line x1="372.1637" y1="347.3958" x2="636.1607" y2="347.3958" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="374.9723 351.099 373.399 347.3958 374.9723 343.6927 366.194 347.3958 374.9723 351.099"/>
+    <polygon points="633.3521 351.099 634.9254 347.3958 633.3521 343.6927 642.1305 347.3958 633.3521 351.099"/>
+  </g>
+  <path id="MJX-8-TEX-I-1D45E-2" data-name="MJX-8-TEX-I-1D45E" d="M224.3612,363.8509c0-1.2188.4585-2.3772,1.3756-3.4753.9171-1.0981,1.9488-1.6532,3.0952-1.6653.724,0,1.2791.3137,1.6653.9412.0121-.0121.0422-.0483.0905-.1086s.1146-.1267.1991-.1991.181-.1448.2896-.2172c.4103-.2896.6878-.4344.8326-.4344.0483,0,.0905.0181.1267.0543s.0543.0664.0543.0905c0,.1086-.4163,1.8282-1.2489,5.1587-.8568,3.4271-1.2851,5.1647-1.2851,5.213,0,.0965.2715.1508.8145.1629h.4525c.0724.0965.1086.1508.1086.1629s-.0181.1207-.0543.3258c-.0483.1569-.1086.2715-.181.3439h-.2353c-.3741-.0241-1.0257-.0362-1.9549-.0362h-1.5929c-.1689,0-.2715.006-.3077.0181-.1689,0-.2534-.0483-.2534-.1448,0-.0362.0121-.1267.0362-.2715.0483-.1931.0905-.3077.1267-.3439s.1569-.0543.362-.0543c.5792,0,.9292-.0422,1.0498-.1267.0965-.0603.2655-.5913.5068-1.5929.2413-1.0016.368-1.5144.3801-1.5386,0-.0121-.0422.006-.1267.0543-.5792.4706-1.1826.7059-1.8101.7059-.6637,0-1.2489-.2413-1.7558-.724-.5068-.4827-.7602-1.2489-.7602-2.2988ZM230.1353,360.7919c-.2775-.9533-.7301-1.4299-1.3575-1.4299-.4223,0-.8266.187-1.2127.5611s-.6878.8628-.905,1.4662c-.3499.9533-.5973,1.9428-.7421,2.9685v.1991c0,.0965-.006.1689-.0181.2172,0,.543.1086.9171.3258,1.1222s.4766.3137.7783.3258c.6516,0,1.3213-.4344,2.0092-1.3032l.1448-.1991.9774-3.9278Z"/>
+  <text transform="translate(450.1625 372.3188)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">其他进程运行</tspan></text>
+  <g>
+    <line x1="90.2575" y1="299.2864" x2="90.2575" y2="311.2214" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="86.5543 308.4128 90.2575 309.986 93.9606 308.4128 90.2575 317.1911 86.5543 308.4128"/>
+  </g>
+  <g>
+    <line x1="366.194" y1="299.1779" x2="366.194" y2="311.1129" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="362.4908 308.3043 366.194 309.8776 369.8971 308.3043 366.194 317.0826 362.4908 308.3043"/>
+  </g>
+  <g>
+    <line x1="642.1305" y1="298.9535" x2="642.1305" y2="310.8885" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="638.4274 308.0799 642.1305 309.6532 645.8336 308.0799 642.1305 316.8583 638.4274 308.0799"/>
+  </g>
+  <g>
+    <line x1="773.4426" y1="298.6514" x2="773.4426" y2="310.5865" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="769.7394 307.7779 773.4426 309.3511 777.1457 307.7779 773.4426 316.5562 769.7394 307.7779"/>
+  </g>
+  <text transform="translate(596.2631 273.0448)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">分配给进程</tspan><tspan x="0" y="21.5996">的时间片</tspan></text>
+  <text transform="translate(732.7615 294.6442)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">交互完成</tspan></text>
+  <text transform="translate(45.5568 273.0445)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">分配给进程</tspan><tspan x="0" y="21.5996">的时间片</tspan></text>
+  <text transform="translate(321.1942 294.6442)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">进程被抢占</tspan></text>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;时间片大小对响应时间的影响</p>
+<span id="20241126220833CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+    <tr>
+    <th class="diagonal_th" rowspan="3" style="width: 150px;">
+        <span class="diagonal_th_right">作业情况</span>
+        <span class="diagonal_th_bottom">时间片</span>
+    </th>
+        <th>进程名</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>平均</th>
+    </tr>
+    <tr>
+        <td>到达时间</td>
+        <td>0</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>服务时间</td>
+        <td>4</td>
+        <td>3</td>
+        <td>4</td>
+        <td>2</td>
+        <td>4</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td rowspan="3">RR</br>q=1</td>
+        <td>完成时间</td>
+        <td>15</td>
+        <td>12</td>
+        <td>16</td>
+        <td>9</td>
+        <td>17</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>周转时间</td>
+        <td>15</td>
+        <td>11</td>
+        <td>14</td>
+        <td>6</td>
+        <td>13</td>
+        <td>11.8</td>
+    </tr>
+    <tr>
+        <td>带权周转时间</td>
+        <td>3.75</td>
+        <td>3.67</td>
+        <td>3.5</td>
+        <td>3</td>
+        <td>3.33</td>
+        <td>3.46</td>
+    </tr>
+    <tr>
+        <td rowspan="3">RR</br>q=4</td>
+        <td>完成时间</td>
+        <td>4</td>
+        <td>7</td>
+        <td>11</td>
+        <td>13</td>
+        <td>17</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>周转时间</td>
+        <td>4</td>
+        <td>6</td>
+        <td>9</td>
+        <td>10</td>
+        <td>13</td>
+        <td>8.4</td>
+    </tr>
+    <tr>
+        <td>带权周转时间</td>
+        <td>1</td>
+        <td>2</td>
+        <td>2.25</td>
+        <td>5</td>
+        <td>3.33</td>
+        <td>2.5</td>
+    </tr>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;q=1和q=4时进程的周转时间</p>
 
     </div>
 </section>
@@ -1359,7 +1717,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 
 
         <span>
-            最后更新于 Nov 26, 2024 18:27 CST
+            最后更新于 Nov 26, 2024 22:23 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1534,7 +1892,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
             
         
         
-        <span>本图书馆累计发布了16篇文章 共26.5万字</span>
+        <span>本图书馆累计发布了16篇文章 共26.8万字</span>
         
     </section>
 
