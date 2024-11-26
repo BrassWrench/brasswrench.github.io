@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/'>
 
-<link rel="stylesheet" href="/scss/style.min.e062d1f9aa48d7c9683ad79880d8668b7e54c5a9eecda2b08b8b4d7172a9b5c0.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.df53dc44697bf5055f5f39eef870634c1bfc87ccadb38f415954801349051b8e.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="基于关系模型的数据库系统">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='关系代数' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-18T13:38:16&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='关系代数' /><meta property='article:published_time' content='2024-10-24T15:31:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-26T18:27:01&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（二）：关系数据库">
 <meta name="twitter:description" content="基于关系模型的数据库系统"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -801,8 +801,8 @@
       <ol>
         <li><a href="#关系">关系</a>
           <ol>
-            <li><a href="#域domain">域（domain）</a></li>
-            <li><a href="#cartesian乘积cartesian-product">Cartesian乘积（cartesian product）</a></li>
+            <li><a href="#域domain">域(domain)</a></li>
+            <li><a href="#cartesian乘积cartesian-product">Cartesian乘积(cartesian product)</a></li>
             <li><a href="#关系-1">关系</a></li>
           </ol>
         </li>
@@ -828,17 +828,17 @@
       <ol>
         <li><a href="#传统的集合运算">传统的集合运算</a>
           <ol>
-            <li><a href="#并union">并（union）</a></li>
-            <li><a href="#差except">差（except）</a></li>
-            <li><a href="#交intersection">交（intersection）</a></li>
-            <li><a href="#cartesian乘积cartesian-product-1">Cartesian乘积（cartesian product）</a></li>
+            <li><a href="#并union">并(union)</a></li>
+            <li><a href="#差except">差(except)</a></li>
+            <li><a href="#交intersection">交(intersection)</a></li>
+            <li><a href="#cartesian乘积cartesian-product-1">Cartesian乘积(cartesian product)</a></li>
           </ol>
         </li>
         <li><a href="#专门的关系运算">专门的关系运算</a>
           <ol>
             <li><a href="#选择">选择</a></li>
-            <li><a href="#投影projection">投影（projection）</a></li>
-            <li><a href="#连接join">连接（join）</a></li>
+            <li><a href="#投影projection">投影(projection)</a></li>
+            <li><a href="#连接join">连接(join)</a></li>
             <li><a href="#除运算">除运算</a></li>
           </ol>
         </li>
@@ -1184,7 +1184,7 @@
 </svg>
 
             <time class="article-words">
-                21274 字
+                21260 字
             </time>
         </div>
 
@@ -1246,16 +1246,16 @@
 </h3><p>  关系模型的数据结构非常简单，只包含单一的数据结构&mdash;&mdash;关系。在用户看来，关系模型中数据的逻辑结构是一张扁平的二维表。<br>
   关系模型的数据结构虽然简单却能够表达丰富的语义，描述出现实世界的实体以及实体间的各种联系。也就是说，在关系模型中，现实世界的实体以及实体间的各种联系均用单一的结构类型，即关系来表示。<br>
   前面已经非形式化地介绍了关系模型及有关的基本概念。关系模型是建立在集合代数的基础上的，这里从集合论角度给出关系数据结构的形式化定义。</p>
-<h4 id="域domain">域（domain）
+<h4 id="域domain">域(domain)
 </h4><p>  <span id="20241024154841CST"></span><strong>定义1（域）</strong>：域是一组具有相同数据类型的值的集合。例如，自然数、整数、实数、长度小于25字节的字符串集合、 {0,1} 、 {男,女} 、大于等于0且小于等于100的正整数等，都可以是域。</p>
-<h4 id="cartesian乘积cartesian-product">Cartesian乘积（cartesian product）
+<h4 id="cartesian乘积cartesian-product">Cartesian乘积(cartesian product)
 </h4><p>  <span id="20241024155054CST"></span><strong>定义2（Cartesian乘积）</strong>：给定一组域 \(D_1,D_2,\cdots,D_n\) ，允许其中某些域是相同的， \(D_1,D_2,\cdots,D_n\)的Cartesian乘积为</p>
 <span id="20241024155332CST"></span>\[
 D_1\times D_2 \times \cdots \times D_n=\set{(d_1,d_2,\cdots,d_n)|d_i\in D_i,i=1,2,\cdots,n}
 \tag{1}
     \]
-<p>  其中，每一个元素 \((d_1,d_2,\cdots,d_n)\) 叫作一个<strong>n元组（tuple）</strong>，或简称<strong>元组（tuple）</strong>。元素中的每一个值 \(d_i\) 叫做一个<strong>分量（component）</strong>。<br>
-  一个域允许的不同取值个数称为这个域的<strong>基数（cardinal number）</strong>。若 \(D_i(i=1,2,\cdots,n)\) 为有限集，其计数为 \(m_i(i=1,2,\cdots,n)\) ，则 \((D_1,D_2,\cdots,D_n)\) 的基数 \(M\) 为</p>
+<p>  其中，每一个元素 \((d_1,d_2,\cdots,d_n)\) 叫作一个<strong>n元组(tuple)</strong>，或简称<strong>元组(tuple)</strong>。元素中的每一个值 \(d_i\) 叫做一个<strong>分量(component)</strong>。<br>
+  一个域允许的不同取值个数称为这个域的<strong>基数(cardinal number)</strong>。若 \(D_i(i=1,2,\cdots,n)\) 为有限集，其计数为 \(m_i(i=1,2,\cdots,n)\) ，则 \((D_1,D_2,\cdots,D_n)\) 的基数 \(M\) 为</p>
 <span id="20241024165258CST"></span>\[
 M=\prod_{i=1}^{n}m_i
 \tag{2}
@@ -1360,13 +1360,13 @@ D1\times D2\times D3=｛&(张清玫,计算机专业,李勇),(张清玫,目算机
 R(D_1,D_2,\times,D_n)
 \tag{5}
     \]
-<p>  这里 \(R\) 表示关系的名字， \(n\) 是关系的<strong>目</strong>或<strong>度（degree）</strong>。</p>
+<p>  这里 \(R\) 表示关系的名字， \(n\) 是关系的<strong>目</strong>或<strong>度(degree)</strong>。</p>
 <p>  关系中的每个元素是关系中的元组，通常用 \(t\) 表示。</p>
-<p>  当 \(n=1\) 时，称该关系为<strong>单元关系（unary relation）</strong>，或<strong>一元关系</strong>。<br>
-  当 \(n=2\) 时，称该关系为<strong>二元关系（binary relation）</strong>。</p>
-<p>  关系是Cartesian乘积的有限子集，所以关系也是一张二维表，表的每行对应一个元组，表的每列对应一个域。由于域可以相同，为了加以区分，必须对每列起一个名字，称为<strong>属性（attribute）</strong>。n目关系必有n个属性。</p>
-<p>  若关系中的某一属性组的值能唯一地标识一个元组，而其子集不能，则称该属性组为<strong>候选码（candidate key）</strong>。若一个关系有多个候选码，则选定其中一个为<strong>主码（primary key）</strong>。</p>
-<p>  候选码的属性称为<strong>主属性（prime attribute）</strong>。不包含在任何候选码中的属性称为<strong>非主属性（non-prime attribute）</strong>‌或‌<strong>非码属性（non-key attribute）</strong>。</p>
+<p>  当 \(n=1\) 时，称该关系为<strong>单元关系(unary relation)</strong>，或<strong>一元关系</strong>。<br>
+  当 \(n=2\) 时，称该关系为<strong>二元关系(binary relation)</strong>。</p>
+<p>  关系是Cartesian乘积的有限子集，所以关系也是一张二维表，表的每行对应一个元组，表的每列对应一个域。由于域可以相同，为了加以区分，必须对每列起一个名字，称为<strong>属性(attribute)</strong>。n目关系必有n个属性。</p>
+<p>  若关系中的某一属性组的值能唯一地标识一个元组，而其子集不能，则称该属性组为<strong>候选码(candidate key)</strong>。若一个关系有多个候选码，则选定其中一个为<strong>主码(primary key)</strong>。</p>
+<p>  候选码的属性称为<strong>主属性(prime attribute)</strong>。不包含在任何候选码中的属性称为<strong>非主属性（non-prime attribute）</strong>‌或‌<strong>非码属性（non-key attribute）</strong>。</p>
 <p>  在最简单的情况下，候选码只包含一个属性。在最极端的情况下，关系模式的所有属性是这个关系模式的候选码，称为<strong>全码（all-key）</strong>。</p>
 <p>  一般来说， \(D_1,D_2,\cdots,D_n\) 的Cartesian乘积是没有实际语义的，只有它的某个真子集才有实际含义。例如，可以发现<a class="link" href="#20241024171040CST">表1</a>的Cartesian乘积中许多元组是没有意义的。因为在学校中一个专业方向有多个导师，而一个导师只在一个专业方向带研究生；一个导师可以带多名研究生，而一名研究生只有一个导师，学习某一个专业。因此，<a class="link" href="#20241024171040CST">表1</a>中的一个子集才是有意义的，才可以表示导师与研究生的关系，把该关系取名为 \(\text{SAP}\) ，如<a class="link" href="#20241024172840CST">表2</a>所示。李勇和刘晨是计算机专业张清玫老师的研究生；王敏是信息专业刘逸老师的研究生。</p>
 <span id="20241024172840CST"></span><div class="normal-table"><div class="table-wrapper"><table>
@@ -1407,7 +1407,7 @@ R(D_1,D_2,\times,D_n)
 <p>  (1) 无限关系在数据库系统中是无意义的。因此，限定关系数据模型中的关系必须是有限集合。<br>
   (2) 通过为关系的每个列附加一个属性名的方法取消关系属性的有序性，即 \((d_1,d_2,\cdots,d_i,d_j,\cdots,d_n)=(d_1,d_2,\cdots,d_j,d_i,\cdots,d_n)\quad(i,j=1,2,\cdots,n)\)</p>
 <p>  因此，基本关系具有以下6条性质。</p>
-<p>  (1) 列是<strong>同质的（homogeneous）</strong>,即每一列中的分量是同一类型的数据，来自同一个域。<br>
+<p>  (1) 列是<strong>同质的(homogeneous)</strong>,即每一列中的分量是同一类型的数据，来自同一个域。<br>
   (2) 不同的列可出自同一个域，称其中的每一列为一个属性，不同的属性要给予不同的属性名。例如，在上面的例子中，也可以只给出两个域：
 <span id="20241024175628CST"></span>\[
 \begin{aligned}
@@ -1421,7 +1421,7 @@ R(D_1,D_2,\times,D_n)
   (4) 任意两个元组的候选码不能取相同的值。<br>
   (5) 行的顺序无所谓，即行的次序可以任意交换。<br>
   (6) 分量必须取原子值，即每一个分量都必须是不可分的数据项。</p>
-<p>  关系模型要求关系必须是<strong>规范化（normalization）</strong>‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为<strong>范式（Normal Form，NF）</strong>。范式的概念将在第6篇关系数据理论中做进一步讲解。
+<p>  关系模型要求关系必须是<strong>规范化(normalization)</strong>‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为<strong>范式（Normal Form，NF）</strong>。范式的概念将在第6篇关系数据理论中做进一步讲解。
 例如，<a class="link" href="#20241024180959CST">表3</a>虽然很好地表达了导师与研究生之间的一对多关系，但由于属性 \(\text{POSTGRADUATE}\) 中分量取了两个值，不符合规范化的要求，因此这样的关系在数据库中是不允许的。通俗地讲，关系表中不允许还有表，简言之不允许“表中有表”。直观地描述，<a class="link" href="#20241024180959CST">表3</a>中还有一个小表。</p>
 <span id="20241024180959CST"></span><div class="normal-table"><div class="table-wrapper"><table>
   <tr>
@@ -1451,7 +1451,7 @@ R(D_1,D_2,\times,D_n)
 </h3><p>  在数据库中要区分型和值。关系数据库中，关系模式是型，关系是值。关系模式是对关系的描述，那么一个关系需要描述哪些方面呢？<br>
   关系是元组的集合，因此关系模式必须指出这个元组集合的结构，即它由哪些属性构成，这些属性来自哪些域，以及属性与域之间的映像关系。<br>
   现实世界随着时间在不断地变化，因而在不同的时刻关系模式的关系也会有所变化。但是，现实世界的许多己有事实和规则限定了关系模式所有可能的关系必须满足一定的完整性约束条件。这些约束或者通过对属性取值范围的限定，例如职工年龄小于60岁（60岁以后退休），或者通过属性值间的相互关联反映出来。例如，如果2个元组的主码相等，那么元组的其他值也一定相等，因为主码唯一标识一个元组，主码相等就表示这是同一个元组。关系模式应当刻划出这些完整性约束条件。</p>
-<p>  <span id="20241024181533CST"></span><strong>定义4（关系模式）</strong>：关系的描述称为关系模式（relation schema）。它可以形式化地表示为</p>
+<p>  <span id="20241024181533CST"></span><strong>定义4（关系模式）</strong>：关系的描述称为关系模式(relation schema)。它可以形式化地表示为</p>
 <span id="20241024181603CST"></span>\[
 R(U,D,\text{DOM},F)
 \tag{8}
@@ -1483,11 +1483,11 @@ R(A_1,A_2,\cdots,A_n)
 <h2 id="关系操作">关系操作
 </h2><p>  关系模型给出了关系操作的能力的说明，但不对关系数据库管理系统语言给出具体的语法要求，也就是说不同的关系数据库管理系统可以定义和开发不同的语言来实现这些操作。</p>
 <h3 id="基本的关系操作">基本的关系操作
-</h3><p>  关系模型中常用的关系操作包括查询（query）操作和插入（insert）、删除（delete）、修改（update）操作两大部分。关系的查询表达能力很强，是关系操作中最主要的部分。查询操作又可以分为选择（select）、投影（project）、连接（join）、除（divide）、并（union）、差（except）、交（intersection）、Cartesian乘积等。其中选择、投影、并、差、Cartesian乘积是5种基本操作，其他操作可以用基本操作来定义和导出，就像乘法可以用加法来定义和导出一样。</p>
+</h3><p>  关系模型中常用的关系操作包括查询(query)操作和插入(insert)、删除(delete)、修改(update)操作两大部分。关系的查询表达能力很强，是关系操作中最主要的部分。查询操作又可以分为选择(select)、投影(project)、连接(join)、除(divide)、并(union)、差(except)、交(intersection)、Cartesian乘积等。其中选择、投影、并、差、Cartesian乘积是5种基本操作，其他操作可以用基本操作来定义和导出，就像乘法可以用加法来定义和导出一样。</p>
 <h3 id="关系数据语言的分类">关系数据语言的分类
-</h3><p>  早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为<strong>关系代数（relational algebra）</strong>‌和<strong>关系演算（relational calculus）</strong>‌关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为元组关系演算和域关系演算。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数、元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。<br>
-  关系代数、元组关系演算和域关系演算均是抽象的查询语言，这些抽象的语言与具体的关系数据库管理系统中实现的实际语言并不完全一样。但它们能用作评估实际系统中查询语言能力的标准或基础。实际的查询语言除了提供关系代数或关系演算的功能外，还提供了许多附加功能，例如聚集函数（aggregation function）。关系赋值、算术运算等，使得目前实际查询语言的功能十分强大。<br>
-  另外，还有一种介于关系代数和关系演算之间的结构化查询语言（Structured Query Language,SQL）。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言（Data Control Language,DCL）于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：</p>
+</h3><p>  早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为<strong>关系代数(relational algebra)</strong>‌和<strong>关系演算(relational calculus)</strong>‌关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为元组关系演算和域关系演算。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数、元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。<br>
+  关系代数、元组关系演算和域关系演算均是抽象的查询语言，这些抽象的语言与具体的关系数据库管理系统中实现的实际语言并不完全一样。但它们能用作评估实际系统中查询语言能力的标准或基础。实际的查询语言除了提供关系代数或关系演算的功能外，还提供了许多附加功能，例如聚集函数(aggregation function)。关系赋值、算术运算等，使得目前实际查询语言的功能十分强大。<br>
+  另外，还有一种介于关系代数和关系演算之间的结构化查询语言(Structured Query Language,SQL)。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言(Data Control Language,DCL)于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：</p>
 <span id="20241024185641CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 129.1391">
@@ -1515,11 +1515,11 @@ R(A_1,A_2,\cdots,A_n)
 <p>  特别地，SQL语言是一种高度非过程化的语言，用户不必请求数据库管理员为其建立特殊的存取路径，存取路径的选择由关系数据库管理系统的优化机制来完成。例如，在一个存储有几百万条记录的关系中查找符合条件的某一个或某一些记录，从原理上讲可以有多种查找方法。例如，可以顺序扫描这个关系，也可以通过某一种索引来查找。不同的查找路径（或者称为存取路径）的效率是不同的，有的完成某一个查询可能很快，有的可能极慢。关系数据库管理系统中研究和开发了查询优化方法，系统可以自动选择较优的存取路径，提高查询效率。</p>
 <h2 id="关系的完整性">关系的完整性
 </h2><p>  关系模型的完整性规则是对关系的某种约束条件。也就是说关系的值随着时间变化时应该满足一些约束条件。这些约束条件实际上是现实世界的要求。任何关系在任何时刻都要满足这些语义约束。<br>
-  关系模型中有三类完整性约束：实体完整性（entity integrity）、参照完整性（referential integrity）和用户定义的完整性（user-defined integrity）。其中实体完整性和参照完整性是关系模型必须满足的完整性约束条件，被称作是关系的两个不变性，应该由关系系统自动支持。用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。</p>
+  关系模型中有三类完整性约束：实体完整性(entity integrity)、参照完整性(referential integrity)和用户定义的完整性（user-defined integrity）。其中实体完整性和参照完整性是关系模型必须满足的完整性约束条件，被称作是关系的两个不变性，应该由关系系统自动支持。用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。</p>
 <h3 id="实体完整性">实体完整性
 </h3><p>  关系数据库中每个元组应该是可区分的，是唯一的。这样的约束条件用实体完整性来保证。</p>
 <p><span id="20241025155618CST"></span>
-  <strong>实体完整性规则</strong>：若属性（指一个或一组属性） \(A\) 是基本关系 \(R\) 的主属性,则 \(A\) 不能取空值（null value）。所谓空值就是&quot;不知道”或&quot;不存在”或“无意义”的值。<br>
+  <strong>实体完整性规则</strong>：若属性（指一个或一组属性） \(A\) 是基本关系 \(R\) 的主属性,则 \(A\) 不能取空值(null value)。所谓空值就是&quot;不知道”或&quot;不存在”或“无意义”的值。<br>
   按照实体完整性规则的规定，如果主码由若干属性组成，则所有这些主属性都不能取空值。例如选修（学号，课程号,成绩）关系中，“学号、课程号”为主码，则“学号”和“课程号”两个属性都不能取空值。</p>
 <p>  对于实体完整性规则说明如下：<br>
   (1) 实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。例如学生关系对应于学生的集合。<br>
@@ -1550,7 +1550,7 @@ R(A_1,A_2,\cdots,A_n)
 <p>  不仅两个或两个以上的关系间可以存在引用关系，同一关系内部属性间也可能存在引用关系。</p>
 <p>  <span id="20241025092202CST"></span><strong>例3</strong>：在 \(学生（\underline{学号}，姓名，性别，专业号，年龄，班长）\) 关系中，“学号”属性是主码，“班长”属性表示该学生所在班级的班长的学号，它引用了本关系“学号”属性, 即“班长”必须是确实存在的学生的学号。</p>
 <p>  这三个例子说明关系与关系之间存在着相互引用、相互约束的情况。下面先引入外码 的概念，然后给出表达关系之间相互引用约束的参照完整性的定义。</p>
-<p>  <span id="20241025092415CST"></span><strong>定义5（参照关系）</strong>：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的<strong>外码（foreign key）</strong>，并称基本关系 \(R\) 为<strong>参照关系（referencing relation）</strong>，基本关系 \(S\) 为被<strong>参照关系（referenced relation）</strong>‌或<strong>目标关系（target relation）</strong>，关系 \(R\) 和 \(S\) 不一定是不同的关系。</p>
+<p>  <span id="20241025092415CST"></span><strong>定义5（参照关系）</strong>：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的<strong>外码(foreign key)</strong>，并称基本关系 \(R\) 为<strong>参照关系(referencing relation)</strong>，基本关系 \(S\) 为被<strong>参照关系(referenced relation)</strong>‌或<strong>目标关系(target relation)</strong>，关系 \(R\) 和 \(S\) 不一定是不同的关系。</p>
 <span id="20241025093632CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 76.9524">
@@ -1593,9 +1593,9 @@ R(A_1,A_2,\cdots,A_n)
   </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;参照关系与被参照关系</p>
 <p>  显然，目标关系 \(S\) 的主码 \(K_s\) 和参照关系 \(S\) 的外码 \(F\) 必须定义在同一个（或同一组） 域上。</p>
-<p>  在<a class="link" href="#20241024190508CST">例1</a>中，学生关系的“专业号”属性与专业关系的主码“专业号”相对应，因此“专业号”属性是学生关系的外码。这里专业关系是被参照关系，学生关系为参照关系。如<a class="link" href="#20241025100110CST">图3</a>（a）所示。<br>
-  在<a class="link" href="#20241025091438CST">例2</a>中，选修关系的“学号”属性与学生关系的主码“学号”相对应：选修关系的“课程号”属性与课程关系的主码“课程号”相对应，因此“学号”和“课程号”属性 是选修关系的外码。这里学生关系和课程关系均为被参照关系，选修关系为参照关系。如<a class="link" href="#20241025100110CST">图3</a>（b）所示。<br>
-  在<a class="link" href="#20241025092202CST">例3</a>中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如<a class="link" href="#20241025100110CST">图3</a>（c）所示。</p>
+<p>  在<a class="link" href="#20241024190508CST">例1</a>中，学生关系的“专业号”属性与专业关系的主码“专业号”相对应，因此“专业号”属性是学生关系的外码。这里专业关系是被参照关系，学生关系为参照关系。如<a class="link" href="#20241025100110CST">图3</a>(a)所示。<br>
+  在<a class="link" href="#20241025091438CST">例2</a>中，选修关系的“学号”属性与学生关系的主码“学号”相对应：选修关系的“课程号”属性与课程关系的主码“课程号”相对应，因此“学号”和“课程号”属性 是选修关系的外码。这里学生关系和课程关系均为被参照关系，选修关系为参照关系。如<a class="link" href="#20241025100110CST">图3</a>(b)所示。<br>
+  在<a class="link" href="#20241025092202CST">例3</a>中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如<a class="link" href="#20241025100110CST">图3</a>(c)所示。</p>
 <span id="20241025100110CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 204.4159">
@@ -1706,21 +1706,21 @@ R(A_1,A_2,\cdots,A_n)
 </h3><p>  传统的集合运算是二目运算，包括并、差、交、Cartesian乘积4种运算。<br>
   设关系 \(R\) 和关系 \(S\) 具有相同的目 \(n\) （即两个关系都有 \(n\) 个属性），且相应的属性取自同一个域， \(t\) 是元组变量， \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。</p>
 <p>  可以定义并、差、交、Cartesian乘积运算如下。</p>
-<h4 id="并union">并（union）
+<h4 id="并union">并(union)
 </h4><p>  关系 \(R\) 与关系 \(S\) 的并记作</p>
 <span id="20241025172503CST"></span>\[
 R\cup S=\set{t|t \in R \lor t \in S}
 \tag{14}
     \]
 <p>  其中 \(\lor\) 是或运算符。其结果仍为 \(n\) 目关系，由属于 \(R\) 或属于 \(S\) 的元组组成。</p>
-<h4 id="差except">差（except）
+<h4 id="差except">差(except)
 </h4><p>  关系 \(R\) 与关系 \(S\) 的差记作</p>
 <span id="20241025174034CST"></span>\[
 R-S=\set{t|t \in R \land t \notin S}
 \tag{15}
     \]
 <p>  其中 \(\land\) 是与运算符。其结果关系仍为 \(n\) 目关系，由属于 \(R\) 而不属于 \(S\) 的所有元组组成。</p>
-<h4 id="交intersection">交（intersection）
+<h4 id="交intersection">交(intersection)
 </h4><p>  关系 \(R\) 与关系 \(S\) 的交记作</p>
 <span id="20241025174455CST"></span>\[
 R\cap S = \set{t|t\in R \land t \in S}
@@ -1731,8 +1731,8 @@ R\cap S = \set{t|t\in R \land t \in S}
 R \cap S = R-(R-S)
 \tag{17}
     \]
-<h4 id="cartesian乘积cartesian-product-1">Cartesian乘积（cartesian product）
-</h4><p>  这里的Cartesian乘积严格地讲应该是<strong>广义的Cartesian乘积（extended cartesian product）</strong>，因为这里Cartesian乘积的元素是元组。<br>
+<h4 id="cartesian乘积cartesian-product-1">Cartesian乘积(cartesian product)
+</h4><p>  这里的Cartesian乘积严格地讲应该是<strong>广义的Cartesian乘积(extended cartesian product)</strong>，因为这里Cartesian乘积的元素是元组。<br>
   两个分别为 \(n\) 目和 \(m\) 目的关系 \(R\) 和 \(S\) 的Cartesian乘积是一个 \((n+m)\) 列的元组的集合。元组的前 \(n\) 列是关系 \(R\) 的一个元组，后所列是关系 \(S\) 的一个元组。若 \(R\) 有 \(k_1\) 个元组，S有 \(k_2\) 个元组，则关系 \(R\) 和关系 \(S\) 的Cartesian乘积有 \(k_1\times k_2\) 个元组。记作</p>
 <span id="20241025175123CST"></span>\[
 R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
@@ -2259,8 +2259,8 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 </h3><p>  专门的关系运算包括选择、投影、连接、除运算等。为了叙述上的方便，先引入几个记号。</p>
 <p>  (1) 设关系模式为 \(R(A_1,A_2,\cdots,A_n)\)，它的一个关系设为 \(R\) 。 \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。 \(t[A_i]\) 则表示元组 \(t\) 中相应于属性 \(i\) 的一个分量。<br>
   (2) 若 \(A=\set{A_{i1},A_{i2},\cdots,A_{ik}}\) ，其 \(A_{i1},A_{i2},\cdots,A_{ik}\) 是 \(A_1,A_2,\cdots,A_n\) 中的一部分,则 \(A\) 称为属性列或属性组。 \(t[A]=(t[A_{i1}],t[A_{i2}],\cdots,t[A_{ik}])\) 表示元组 \(t\) 在属性列 \(A\) 上诸分量的集合， \(\bar{A}\) 则表示 \(\set{A_1,A_2,\cdots,A_n}\) 中去掉 \(\set{A_{i1},A_{i2},\cdots,A_{ik}}\) 后剩余的属性组。<br>
-  (3) \(R\) 为 \(n\) 目关系， \(S\) 为 \(m\) 目关系。 \(t_r\in R,t_s \in S\) ， \(\overgroup{t_rt_s}\) 称为元组的<strong>连接（concatenation）</strong>‌或元组的<strong>串接</strong>。它是一个 \(n+m\) 列的元组，前 \(n\) 个分量为 \(R\) 中的一个 \(n\) 元组，后 \(m\) 个分量为 \(S\) 中的一个 \(m\) 元组。<br>
-  (4) 给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的<span id="20241027111504CST"></span><strong>象集（images set）</strong>‌定义为
+  (3) \(R\) 为 \(n\) 目关系， \(S\) 为 \(m\) 目关系。 \(t_r\in R,t_s \in S\) ， \(\overgroup{t_rt_s}\) 称为元组的<strong>连接(concatenation)</strong>‌或元组的<strong>串接</strong>。它是一个 \(n+m\) 列的元组，前 \(n\) 个分量为 \(R\) 中的一个 \(n\) 元组，后 \(m\) 个分量为 \(S\) 中的一个 \(m\) 元组。<br>
+  (4) 给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的<span id="20241027111504CST"></span><strong>象集(images set)</strong>‌定义为
 <span id="20241026105811CST"></span>\[
 Z_x=\set{t[Z]|t \in R, t[X]=x}
 \tag{19}
@@ -2340,7 +2340,7 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;象集举例</p>
 <p>  下面给出这些专门的关系运算的定义。</p>
 <h4 id="选择">选择
-</h4><p>  选择又称为<strong>限制（restriction）</strong>。它是在关系 \(R\) 中选择满足给定条件的诸元组，记作</p>
+</h4><p>  选择又称为<strong>限制(restriction)</strong>。它是在关系 \(R\) 中选择满足给定条件的诸元组，记作</p>
 <span id="20241026115757CST"></span>\[
 \sigma_F(R)=\set{t|t \in R \land F(t)=\text{'真'}}
 \tag{20}
@@ -2646,7 +2646,7 @@ X_1\theta Y_1
   <text transform="translate(228.1717 194.1214)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.01em;">S</tspan><tspan x="9.8101" y="0">t</tspan><tspan x="16.2358" y="0" style="letter-spacing: -.003em;">u</tspan><tspan x="27.7559" y="0">dent</tspan></text>
   <text transform="translate(416.922 397.7815)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">(</tspan><tspan x="6.2998" y="0" style="letter-spacing: -.018em;">b</tspan><tspan x="17.2261" y="0">)</tspan></text>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图7&emsp;选择运算举例</p>
-<h4 id="投影projection">投影（projection）
+<h4 id="投影projection">投影(projection)
 </h4><p>  关系 \(R\) 上的投影是从 \(R\) 中选择出若干属性列组成新的关系。记作</p>
 <span id="20241026154923CST"></span>\[
 \Pi_A(R)=\set{t[A]|t \in R}
@@ -2701,14 +2701,14 @@ X_1\theta Y_1
   <text transform="translate(300.4314 266.5726)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.023em;">（a</tspan><tspan x="27" y="0" style="letter-spacing: -.477em;">）</tspan></text>
   <text transform="translate(584.2916 266.5732)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.023em;">（b</tspan><tspan x="28.4219" y="0" style="letter-spacing: -.477em;">）</tspan></text>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;投影运算举例</p>
-<h4 id="连接join">连接（join）
+<h4 id="连接join">连接(join)
 </h4><p>  连接也称为 \(\theta\) 连接。它是从两个关系的Cartesian乘积中选取属性间满足一定条件的元组。记作</p>
 <span id="20241026161052CST"></span>\[
 R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]\theta t_s[B])}
 \tag{27}
     \]
 <p>  其中， \(A\) 和 \(B\) 分别为 \(R\) 和 \(S\) 上列数相等且可比的属性组， \(\theta\) 是比较运算符。连接运算从 \(R\) 和 \(S\) 的Cartesian乘积 \(R\times S\) 中选取R关系在 \(A\) 属性组上的值与 \(S\) 关系在 \(B\) 属性组上的值满足比较关系 \(\theta\) 的元组。<br>
-  连接运算中有两种最为重要也最为常用的连接，一种是<strong>等值连接（equijoin）</strong>，另一种是<span id="20241116213553CST"></span><strong>自然连接（natural join）</strong>。<br>
+  连接运算中有两种最为重要也最为常用的连接，一种是<strong>等值连接(equijoin)</strong>，另一种是<span id="20241116213553CST"></span><strong>自然连接(natural join)</strong>。<br>
    \(\theta\) 为“ \(=\) ”的连接运算称为等值连接。它是从关系 \(R\) 与 \(S\) 的广义Cartesian乘积中选取 \(A\) 、 \(B\) 属性值相等的那些元组，即等值连接为</p>
 <span id="20241026164814CST"></span>\[
 R \underset{A=B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]=t_s[B])}
@@ -3119,8 +3119,8 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
     <text transform="translate(563.0943 557.2602)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.025em;">(</tspan><tspan x="5.8501" y="0" style="letter-spacing: -.008em;">e</tspan><tspan x="15.354" y="0">)自然连接</tspan></text>
   </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图9&emsp;连接运算举例</p>
-<p>  两个关系 \(R\) 和 \(S\) 在做自然连接时，选择两个关系在公共属性上值相等的元组构成新的关系。此时，关系 \(R\) 中某些元组有可能在 \(S\) 中不存在公共属性上值相等的元组，从而造成 \(R\) 中这些元组在操作时被舍弃了，同样， \(S\) 中某些元组也可能被舍弃。这些被舍弃的元组称为<strong>悬浮元组（dangling tuple）</strong>，例如，在<a class="link" href="#20241027101851CST">图9</a>(e)的自然连接中， \(R\) 中的第 \(4\) 个元组， \(S\) 中的第 \(5\) 个元组都是被舍弃掉的悬浮元组。<br>
-  如果把悬浮元组也保存在结果关系中，而在其他属性上填空值（NULL），那么这种连接就叫做<span id="20241117142036CST"></span><strong>外连接（outer join）</strong>，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做<strong>左外连接（left outer join或left join）</strong>，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做<strong>右外连接（right outer join或right join）</strong>，记作 \(R⟖S\) 。在<a class="link" href="#20241027105236CST">图10</a>中，(a)是<a class="link" href="#20241027101851CST">图9</a>中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。</p>
+<p>  两个关系 \(R\) 和 \(S\) 在做自然连接时，选择两个关系在公共属性上值相等的元组构成新的关系。此时，关系 \(R\) 中某些元组有可能在 \(S\) 中不存在公共属性上值相等的元组，从而造成 \(R\) 中这些元组在操作时被舍弃了，同样， \(S\) 中某些元组也可能被舍弃。这些被舍弃的元组称为<strong>悬浮元组(dangling tuple)</strong>，例如，在<a class="link" href="#20241027101851CST">图9</a>(e)的自然连接中， \(R\) 中的第 \(4\) 个元组， \(S\) 中的第 \(5\) 个元组都是被舍弃掉的悬浮元组。<br>
+  如果把悬浮元组也保存在结果关系中，而在其他属性上填空值(NULL)，那么这种连接就叫做<span id="20241117142036CST"></span><strong>外连接(outer join)</strong>，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做<strong>左外连接（left outer join或left join）</strong>，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做<strong>右外连接（right outer join或right join）</strong>，记作 \(R⟖S\) 。在<a class="link" href="#20241027105236CST">图10</a>中，(a)是<a class="link" href="#20241027101851CST">图9</a>中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。</p>
 <span id="20241027105236CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 279.7873">
@@ -3662,7 +3662,7 @@ R \div S = \set{a_1}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>2. 限定的检索（即带条件的检索）</strong></p>
-<p>  <span id="20241027152903CST"></span><strong>例16</strong>：查询信息系（IS）中年龄小于20岁的学生的学号和年龄。</p>
+<p>  <span id="20241027152903CST"></span><strong>例16</strong>：查询信息系(IS)中年龄小于20岁的学生的学号和年龄。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -3672,7 +3672,7 @@ R \div S = \set{a_1}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>3. 带排序的检索</strong></p>
-<p>  <span id="20241027153431CST"></span><strong>例17</strong>：查询计算机科学系（CS）学生的学号、年龄，结果按年龄降序排序。</p>
+<p>  <span id="20241027153431CST"></span><strong>例17</strong>：查询计算机科学系(CS)学生的学号、年龄，结果按年龄降序排序。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -3703,7 +3703,7 @@ R \div S = \set{a_1}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>5. 用元组变量的检索</strong></p>
-<p>  前面已讲到，元组关系演算是以元组变量作为谓词变元的基本对象。元组变量是在某一关系范围内变化的，所以也称为<strong>范围变量（range variable）</strong>，一个关系可以设多个元组变量。</p>
+<p>  前面已讲到，元组关系演算是以元组变量作为谓词变元的基本对象。元组变量是在某一关系范围内变化的，所以也称为<strong>范围变量(range variable)</strong>，一个关系可以设多个元组变量。</p>
 <p>  元组变量主要有两方面的用途：<br>
   (1) 简化关系名。如果关系的名字很长，使用起来就会感到不方便，这时可以设一个较短名字的元组变量来代替关系名。如<a class="link" href="#20241027154449CST">例20</a>。<br>
   (2) 操作条件中使用量词时必须用元组变量。如<a class="link" href="#20241027163733CST">例21</a>至<a class="link" href="#20241027172019CST">例23</a>。</p>
@@ -3719,7 +3719,7 @@ R \div S = \set{a_1}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>  ALPHA语言用<code>RANGE</code>来说明元组变量。本例中<code>X</code>是关系<code>Student</code>上的元组变量，用途是简化关系名，即用<code>X</code>代表<code>Student</code>。</p>
-<p><strong>6. 用存在量词（existential qualifier）检索</strong></p>
+<p><strong>6. 用存在量词(existential qualifier)检索</strong></p>
 <p>  <span id="20241027163733CST"></span><strong>例21</strong>：查询选修2号课程的学生的名字。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -3757,7 +3757,7 @@ R \div S = \set{a_1}
 </span></span><span class="line"><span class="cl">                       ∃CX(CX.Cno=SCX.Cno∧CX.Pcno=&#39;6&#39;))
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>  在本例中的元组关系演算公式可以变换为<strong>前束范式（prenex normal form）</strong>‌的形式：</p>
+</div><p>  在本例中的元组关系演算公式可以变换为<strong>前束范式(prenex normal form)</strong>‌的形式：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -3785,7 +3785,7 @@ R \div S = \set{a_1}
 </span></span><span class="line"><span class="cl">                                     SCX.Sno=Student.Sno∧Course.Cno=SCX.Cno)
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>8. 用全称量词（generality quantifier）的检索</strong></p>
+</div><p><strong>8. 用全称量词(generality quantifier)的检索</strong></p>
 <p>  <span id="20241028091702CST"></span><strong>例25</strong>：查询不选1号课程的学生名字。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -3822,7 +3822,7 @@ R \div S = \set{a_1}
 </span></span><span class="line"><span class="cl">GET W (Student.Sname): ∀CX∃SCX(SCX.Sno=Student.Sno∧SCX.Cno=CX.Cno)
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>10. 用蕴涵（implication）的检索</strong></p>
+</div><p><strong>10. 用蕴涵(implication)的检索</strong></p>
 <p>  <span id="20241028091723CST"></span><strong>例27</strong>：查询最少选修了 201215122学生所选课程的学生学号。</p>
 <p>  本例题的求解思路是，对Course中的所有课程依次检查每一门课程，看201215122是否选修了该课程，如果选修了，则再看某一个学生是否也选修了该门课。如果对于201215122所选的每门课程该学生都选修了，则该学生为满足要求的学生。把所有这样的学生全都找出来即完成了本题。</p>
 <div class="highlight"><div class="chroma">
@@ -4050,7 +4050,7 @@ R\times S=\set{t^{(n+m)}|(\exist u^{(n)})(\exist v^{(m)})(R(u)\land S(v) \land (
     \]
    \(F'\) 是公式 \(F\) 用 \(t[i]\) 代替运算对象 \(i\) 得到的等价公式。</p>
 <p>  下面用关系演算来对<a class="link" href="#20241026152329CST">图6</a>中的学生—课程数据库进行查询。</p>
-<p>  <span id="20241105202856CST"></span><strong>例35</strong>：查询信息（IS）系全体学生。
+<p>  <span id="20241105202856CST"></span><strong>例35</strong>：查询信息(IS)系全体学生。
 <span id="20241105202908CST"></span>\[
 S_{IS}=\set{t|\text{Student}(t)\land (t[5]=\text{'IS'})}
 \tag{42}
@@ -4359,7 +4359,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
         </tr>
     </table>
 </div>
-<p>  这里 \(T\) 是示例元素，即域变量。QBE要求示例元素下面一定要加下划线。IS是查询条件，不用加下划线。P.是操作符，表示打印（Print），实际上是显示。<br>
+<p>  这里 \(T\) 是示例元素，即域变量。QBE要求示例元素下面一定要加下划线。IS是查询条件，不用加下划线。P.是操作符，表示打印(Print)，实际上是显示。<br>
   查询条件中可以使用比较运算符 \(>\)，\(\ge\)，\(<\)，\(\le\)，\(=\) 和 \(\ne\) ，其中 \(=\) 可以省略。<br>
   示例元素是这个域中可能的一个值，它不必是查询结果中的元素。比如要求信息系的学生，只要给出任意的一个学生名即可，而不必真是信息系的某个学生名。<br>
   对于<a class="link" href="#20241105222703CST">例39</a>，可如下构造查询要求：</p>
@@ -4995,7 +4995,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 
 
         <span>
-            最后更新于 Nov 18, 2024 13:38 CST
+            最后更新于 Nov 26, 2024 18:27 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -5182,7 +5182,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
             
         
         
-        <span>本图书馆累计发布了16篇文章 共26.1万字</span>
+        <span>本图书馆累计发布了16篇文章 共26.5万字</span>
         
     </section>
 

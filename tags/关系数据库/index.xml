@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 18 Nov 2024 13:38:16 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 26 Nov 2024 18:27:01 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_database_sql/</link>
         <pubDate>Mon, 11 Nov 2024 17:45:02 +0800</pubDate>
@@ -92,14 +92,14 @@
 对象语言绑定等多个部分。&lt;br&gt;
   目前，没有一个数据库系统能够支持SQL标准的所有概念和特性。大部分数据库系统能支持SQL/92标准中的大部分功能以及SQL99、SQL2003中的部分新概念。同时，许多软件厂商对SQL基本命令集还进行了不同程度的扩充和修改，又可以支持标准以外的一些功能特性。本文不是介绍完整的SQL，而是介绍SQL的基本概念和基本功能。因此，在使用具体系统时要查阅各产品的用户手册。&lt;/p&gt;
 &lt;h3 id=&#34;sql的特点&#34;&gt;SQL的特点
-&lt;/h3&gt;&lt;p&gt;  SQL之所以能够为用户和业界所接受并成为国际标准，是因为它是一个综合的、功能极强同时又简洁易学的语言。SQL集数据查询（data query）、数据操纵（data manipulation）、数据定义（data definition）和数据控制（data control）功能于一体，其主要特点包括以下几部分。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  SQL之所以能够为用户和业界所接受并成为国际标准，是因为它是一个综合的、功能极强同时又简洁易学的语言。SQL集数据查询(data query)、数据操纵(data manipulation)、数据定义(data definition)和数据控制(data control)功能于一体，其主要特点包括以下几部分。&lt;/p&gt;
 &lt;h4 id=&#34;综合统一&#34;&gt;综合统一
 &lt;/h4&gt;&lt;p&gt;  数据库系统的主要功能是通过数据库支持的数据语言来实现的。&lt;br&gt;
   非关系模型（层次模型、网状模型）的数据语言一般都分为：&lt;br&gt;
   (1)模式数据定义语言（Schema Data Definition Language，模式 DDL）。&lt;br&gt;
   (2)外模式数据定义语言（Subschema Data Definition Language，外模式DDL或子模式DDL）。&lt;br&gt;
   (3)数据存储有关的描述语言(Data Storage Description Language, DSDL)。&lt;br&gt;
-  (4)数据操纵语言（Data Manipulation Language, DML）。&lt;br&gt;
+  (4)数据操纵语言(Data Manipulation Language, DML)。&lt;br&gt;
   它们分别用于定义模式、外模式、内模式和进行数据的存取与处置。当用户数据库投入运行后，如果需要修改模式，必须停止现有数据库的运行，转储数据，修改模式并编译后再重装数据库，十分麻烦。&lt;/p&gt;
 &lt;p&gt;  SQL集数据定义语言、数据操纵语言、数据控制语言的功能于一体，语言风格统一，可以独立完成数据库生命周期中的全部活动，包括以下一系列操作要求：&lt;br&gt;
   ◦定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。&lt;br&gt;
@@ -147,7 +147,7 @@
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;SQL的动词&lt;/p&gt;
 &lt;h3 id=&#34;sql的基本概念&#34;&gt;SQL的基本概念
-&lt;/h3&gt;&lt;p&gt;  支持SQL的关系数据库管理系统同样支持关系数据库三级模式结构。如&lt;a class=&#34;link&#34; href=&#34;#20241111211554CST&#34;&gt;图1&lt;/a&gt;所示，其中外模式包括若干&lt;strong&gt;视图（view）&lt;/strong&gt;‌和部分&lt;strong&gt;基本表（base table）&lt;/strong&gt;，数据库模式包括若干基本表，内模式包括若干&lt;strong&gt;存储文件（stored file）&lt;/strong&gt;。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  支持SQL的关系数据库管理系统同样支持关系数据库三级模式结构。如&lt;a class=&#34;link&#34; href=&#34;#20241111211554CST&#34;&gt;图1&lt;/a&gt;所示，其中外模式包括若干&lt;strong&gt;视图(view)&lt;/strong&gt;‌和部分&lt;strong&gt;基本表(base table)&lt;/strong&gt;，数据库模式包括若干基本表，内模式包括若干&lt;strong&gt;存储文件(stored file)&lt;/strong&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241111211554CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 329.7143&#34;&gt;
@@ -425,7 +425,7 @@
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;SQL的数据定义语句&lt;/p&gt;
 &lt;p&gt;  SQL标准不提供修改模式定义和修改视图定义的操作。用户如果想修改这些对象，只能先将它们删除然后再重建。SQL标准也没有提供索引相关的语句，但为了提高查询效率，商用关系数据库管理系统通常都提供了索引机制和相关的语句，如&lt;a class=&#34;link&#34; href=&#34;#20241111221858CST&#34;&gt;表6&lt;/a&gt;中创建、删除和修改索引等。&lt;br&gt;
-  在早期的数据库系统中，所有数据库对象都属于一个数据库，也就是说只有一个命名空间。现代的关系数据库管理系统提供了一个层次化的数据库对象命名机制，如&lt;a class=&#34;link&#34; href=&#34;#20241111231124CST&#34;&gt;图2&lt;/a&gt;所示。一个关系数据库管理系统的&lt;strong&gt;实例（instance）&lt;/strong&gt;‌中可以建立多个数据库,一个数据库中可以建立多个模式，一个模式下通常包括多个表、视图和索引等数据库对象。&lt;/p&gt;
+  在早期的数据库系统中，所有数据库对象都属于一个数据库，也就是说只有一个命名空间。现代的关系数据库管理系统提供了一个层次化的数据库对象命名机制，如&lt;a class=&#34;link&#34; href=&#34;#20241111231124CST&#34;&gt;图2&lt;/a&gt;所示。一个关系数据库管理系统的&lt;strong&gt;实例(instance)&lt;/strong&gt;‌中可以建立多个数据库,一个数据库中可以建立多个模式，一个模式下通常包括多个表、视图和索引等数据库对象。&lt;/p&gt;
 &lt;span id=&#34;20241111231124CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 193.9048&#34;&gt;
@@ -694,7 +694,7 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表7&amp;emsp;数据类型&lt;/p&gt;
-&lt;p&gt;  一个属性选用哪种数据类型要根据实际情况来决定，一般要从两个方面来考虑，一是取值范围，二是要做哪些运算。例如，对于年龄（Sage）属性，可以采用&lt;code&gt;CHAR(3)&lt;/code&gt;作为数据类型，但考虑到要在年龄上做算术运算（如求平均年龄），所以要采用整数作为数据类型，因为在&lt;code&gt;CHAR(n)&lt;/code&gt;数据类型上不能进行算术运算。整数又有长整数和短整数两种，因为一个人的年龄在百岁左右，所以选用短整数作为年龄的数据类型。&lt;/p&gt;
+&lt;p&gt;  一个属性选用哪种数据类型要根据实际情况来决定，一般要从两个方面来考虑，一是取值范围，二是要做哪些运算。例如，对于年龄(Sage)属性，可以采用&lt;code&gt;CHAR(3)&lt;/code&gt;作为数据类型，但考虑到要在年龄上做算术运算（如求平均年龄），所以要采用整数作为数据类型，因为在&lt;code&gt;CHAR(n)&lt;/code&gt;数据类型上不能进行算术运算。整数又有长整数和短整数两种，因为一个人的年龄在百岁左右，所以选用短整数作为年龄的数据类型。&lt;/p&gt;
 &lt;h4 id=&#34;模式与表&#34;&gt;模式与表
 &lt;/h4&gt;&lt;p&gt;  每一个基本表都属于某一个模式，一个模式包含多个基本表。当定义基本表时一般可以有三种方法定义它所属的模式。例如在例3.1中定义了一个学生—课程模式&lt;code&gt;S-T&lt;/code&gt;。现在要在&lt;code&gt;S-T&lt;/code&gt;中定义Student、&lt;code&gt;Cource&lt;/code&gt;、&lt;code&gt;SC&lt;/code&gt;等基本表。&lt;/p&gt;
 &lt;p&gt;  方法一，在表名中明显地给出模式名。&lt;/p&gt;
@@ -712,7 +712,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  方法二，在创建模式语句中同时创建表，如&lt;a class=&#34;link&#34; href=&#34;#20241112000926CST&#34;&gt;例3&lt;/a&gt;所示。&lt;br&gt;
   方法三，设置所属的模式，设置所属的模式，这样在创建表时表名中不必给出模式名。&lt;/p&gt;
-&lt;p&gt;  当用户创建基本表（其他数据库对象也一样）时若没有指定模式，系统根据搜索路径（search path）来确定该对象所属的模式。&lt;br&gt;
+&lt;p&gt;  当用户创建基本表（其他数据库对象也一样）时若没有指定模式，系统根据搜索路径(search path)来确定该对象所属的模式。&lt;br&gt;
   搜索路径包含一组模式列表，关系数据库管理系统会使用模式列表中第一个存在的模式作为数据库对象的模式名。若搜索路径中的模式名都不存在，系统将给出错误。使用下面的语句可以显示当前的搜索路径：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -801,7 +801,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;DROP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RESTRICT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CASCADE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  若选择&lt;code&gt;RESTRICT&lt;/code&gt;，则该表的删除是有限制条件的。欲删除的基本表不能被其他表的约束所引用（如&lt;code&gt;CHECK&lt;/code&gt;，&lt;code&gt;FOREIGN KEY&lt;/code&gt;等约束），不能有视图，不能有触发器（trigger），不能有存储过程或函数等。如果存在这些依赖该表的对象，则此表不能被删除。&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;  若选择&lt;code&gt;RESTRICT&lt;/code&gt;，则该表的删除是有限制条件的。欲删除的基本表不能被其他表的约束所引用（如&lt;code&gt;CHECK&lt;/code&gt;，&lt;code&gt;FOREIGN KEY&lt;/code&gt;等约束），不能有视图，不能有触发器(trigger)，不能有存储过程或函数等。如果存在这些依赖该表的对象，则此表不能被删除。&lt;br&gt;
   若选择&lt;code&gt;CASCADE&lt;/code&gt;，则该表的删除没有限制条件。在删除基本表的同时，相关的依赖对象，例如视图，都将被一起删除。&lt;br&gt;
   默认情况是&lt;code&gt;RESTRICT&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241112002245CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例11&lt;/strong&gt;：删除&lt;code&gt;Student&lt;/code&gt;表。&lt;/p&gt;
@@ -893,9 +893,9 @@
   (4)如果欲删除的基本表上有触发器，或者被其他基本表的约束所引用（&lt;code&gt;CHECK&lt;/code&gt;、&lt;code&gt;FOREIGN KEY&lt;/code&gt;等），读者可以从比较表中得到这三个系统的处理策略，这里就不一一说明了。同样，对于其他的SQL语句，不同的数据库产品在处理策略上会与标准有所差别。因此，如果发现本文中个别例子在某个数据库产品上不能通过时，请读者参见有关产品的用户手册，适当修改即可。&lt;/p&gt;
 &lt;h3 id=&#34;索引的建立与删除&#34;&gt;索引的建立与删除
 &lt;/h3&gt;&lt;p&gt;  当表的数据量比较大时，查询操作会比较耗时。建立索引是加快查询速度的有效手段。数据库索引类似于图书后面的索引，能快速定位到需要查询的内容。用户可以根据应用环境的需要在基本表上建立一个或多个索引，以提供多种存取路径，加快查找速度。&lt;br&gt;
-  数据库索引有多种类型，常见索引包括顺序文件上的索引、B+树索引、散列（hash）索引、位图索引等。顺序文件上的索引是针对按指定属性值升序或降序存储的关系，在该属性上建立一个顺序索引文件，索引文件由属性值和相应的元组指针组成。B+树索引是将索引属性组织成B+树形式，B+树的叶结点为属性值和相应的元组指针。B+树索引具有动态平衡的优点。散列索引是建立若干个桶，将索引属性按照其散列函数值映射到相应桶中，桶中存放索引属性值和相应的元组指针。散列索引具有查找速度快的特点。位图索引是用位向量记录索引属性中可能出现的值，每个位向量对应一个可能值。&lt;br&gt;
+  数据库索引有多种类型，常见索引包括顺序文件上的索引、B+树索引、散列(hash)索引、位图索引等。顺序文件上的索引是针对按指定属性值升序或降序存储的关系，在该属性上建立一个顺序索引文件，索引文件由属性值和相应的元组指针组成。B+树索引是将索引属性组织成B+树形式，B+树的叶结点为属性值和相应的元组指针。B+树索引具有动态平衡的优点。散列索引是建立若干个桶，将索引属性按照其散列函数值映射到相应桶中，桶中存放索引属性值和相应的元组指针。散列索引具有查找速度快的特点。位图索引是用位向量记录索引属性中可能出现的值，每个位向量对应一个可能值。&lt;br&gt;
   索引虽然能够加速数据库查询，但需要占用一定的存储空间，当基本表更新时，索引要进行相应的维护，这些都会增加数据库的负担，因此要根据实际应用的需要有选择地创建索引。目前SQL标准中没有涉及索引，但商用关系数据库管理系统一般都支持索引机制，只是不同的关系数据库管理系统支持的索引类型不尽相同。&lt;br&gt;
-  一般说来，建立与删除索引由数据库管理员或表的属主（owner），即建立表的人负责完成。关系数据库管理系统在执行查询时会自动选择合适的索引作为存取路径，用户不必也不能显式地选择索引。索引是关系数据库管理系统的内部实现技术，属于内模式的范畴。&lt;/p&gt;
+  一般说来，建立与删除索引由数据库管理员或表的属主(owner)，即建立表的人负责完成。关系数据库管理系统在执行查询时会自动选择合适的索引作为存取路径，用户不必也不能显式地选择索引。索引是关系数据库管理系统的内部实现技术，属于内模式的范畴。&lt;/p&gt;
 &lt;h4 id=&#34;建立索引&#34;&gt;建立索引
 &lt;/h4&gt;&lt;p&gt;  在SQL语言中，建立索引使用CREATE INDEX语句，其一般格式为&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2901,7 +2901,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  关系数据库管理系统在执行多表连接时，通常是先进行两个表的连接操作，再将其连接结果与第三个表进行连接。本例的一种可能的执行方式是，先将&lt;code&gt;Student&lt;/code&gt;表与&lt;code&gt;SC&lt;/code&gt;表进行连接，得到每个学生的学号、姓名、所选课程号和相应的成绩，然后再将其与&lt;code&gt;Course&lt;/code&gt;表进行连接，得到最终结果。&lt;/p&gt;
 &lt;h3 id=&#34;嵌套查询&#34;&gt;嵌套查询
-&lt;/h3&gt;&lt;p&gt;  在SQL语言中，一个&lt;code&gt;SELECT-FROM-WHERE&lt;/code&gt;语句称为一个查询块。将一个查询块嵌套在另一个查询块的&lt;code&gt;WHERE&lt;/code&gt;子句或&lt;code&gt;HAVING&lt;/code&gt;短语的条件中的查询称为&lt;strong&gt;嵌套查询（nested query）&lt;/strong&gt;。例如：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  在SQL语言中，一个&lt;code&gt;SELECT-FROM-WHERE&lt;/code&gt;语句称为一个查询块。将一个查询块嵌套在另一个查询块的&lt;code&gt;WHERE&lt;/code&gt;子句或&lt;code&gt;HAVING&lt;/code&gt;短语的条件中的查询称为&lt;strong&gt;嵌套查询(nested query)&lt;/strong&gt;。例如：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3074,7 +3074,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  有些嵌套查询可以用连接运算替代，有些是不能替代的。从&lt;a class=&#34;link&#34; href=&#34;#20241117144202CST&#34;&gt;例55&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241117151150CST&#34;&gt;例56&lt;/a&gt;可以看到，查询涉及多个关系时，用嵌套查询逐步求解层次清楚，易于构造，具有结构化程序设计的优点。但是相比于连接运算，目前商用关系数据库管理系统对嵌套查询的优化做得还不够完善，所以在实际应用中，能够用连接运算表达的查询尽可能采用连接运算。&lt;br&gt;
-  &lt;a class=&#34;link&#34; href=&#34;#20241117144202CST&#34;&gt;例55&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241117151150CST&#34;&gt;例56&lt;/a&gt;中子查询的查询条件不依赖于父查询，这类子查询称为&lt;strong&gt;不相关子查询&lt;/strong&gt;。不相关子查询是较简单的一类子查询。如果子查询的查询条件依赖于父查询，这类子查询称为&lt;strong&gt;相关子查询（correlated subquery）&lt;/strong&gt;‌整个查询语句称为&lt;strong&gt;相关嵌套查询（correlated nested query）&lt;/strong&gt;‌语句。&lt;a class=&#34;link&#34; href=&#34;#20241117152958CST&#34;&gt;例57&lt;/a&gt;就是一个相关子查询的例子。&lt;/p&gt;
+  &lt;a class=&#34;link&#34; href=&#34;#20241117144202CST&#34;&gt;例55&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241117151150CST&#34;&gt;例56&lt;/a&gt;中子查询的查询条件不依赖于父查询，这类子查询称为&lt;strong&gt;不相关子查询&lt;/strong&gt;。不相关子查询是较简单的一类子查询。如果子查询的查询条件依赖于父查询，这类子查询称为&lt;strong&gt;相关子查询(correlated subquery)&lt;/strong&gt;‌整个查询语句称为&lt;strong&gt;相关嵌套查询(correlated nested query)&lt;/strong&gt;‌语句。&lt;a class=&#34;link&#34; href=&#34;#20241117152958CST&#34;&gt;例57&lt;/a&gt;就是一个相关子查询的例子。&lt;/p&gt;
 &lt;h4 id=&#34;带有比较运算符的子查询&#34;&gt;带有比较运算符的子查询
 &lt;/h4&gt;&lt;p&gt;  带有比较运算符的子查询是指父查询与子查询之间用比较运算符进行连接。当用户能确切知道内层查询返回的是单个值时，可以用&lt;code&gt;&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;&lt;/code&gt;、&lt;code&gt;=&lt;/code&gt;、&lt;code&gt;&amp;gt;=&lt;/code&gt;、&lt;code&gt;&amp;lt;=&lt;/code&gt;、&lt;code&gt;!=&lt;/code&gt;或&lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt;等比较运算符。&lt;br&gt;
   例如在&lt;a class=&#34;link&#34; href=&#34;#20241117144202CST&#34;&gt;例55&lt;/a&gt;中，由于一个学生只可能在一个系学习，也就是说内查询的结果是一个值，因此可以用&lt;code&gt;=&lt;/code&gt;代替&lt;code&gt;IN&lt;/code&gt;：&lt;/p&gt;
@@ -3114,7 +3114,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  &lt;code&gt;x&lt;/code&gt;是表SC的别名，又称为元组变量，可以用来表示SC的一个元组。内层查询是求一个学生所有选修课程平均成绩的，至于是哪个学生的平均成绩要看参数&lt;code&gt;x.Sno&lt;/code&gt;的值，而该值是与父查询相关的，因此这类查询称为相关子查询。这个语句的一种可能的执行过程采用以下三个步骤。&lt;br&gt;
-  ①从外层查询中取出SC的一个元组&lt;code&gt;x&lt;/code&gt;，将元组&lt;code&gt;x&lt;/code&gt;的&lt;code&gt;Sno&lt;/code&gt;值（201215121）传送给内层查询。&lt;/p&gt;
+  ①从外层查询中取出SC的一个元组&lt;code&gt;x&lt;/code&gt;，将元组&lt;code&gt;x&lt;/code&gt;的&lt;code&gt;Sno&lt;/code&gt;值(201215121)传送给内层查询。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3185,7 +3185,7 @@
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表22&lt;/p&gt;
 &lt;p&gt;  求解相关子查询不能像求解不相关子查询那样一次将子查询求解出来，然后求解父查询。内层查询由于与外层查询有关，因此必须反复求值。&lt;/p&gt;
-&lt;h4 id=&#34;带有anysome或all谓词的子查询&#34;&gt;带有ANY（SOME）或（ALL）谓词的子查询
+&lt;h4 id=&#34;带有anysome或all谓词的子查询&#34;&gt;带有ANY(SOME)或(ALL)谓词的子查询
 &lt;/h4&gt;&lt;p&gt;子查询返回单值时可以用比较运算符，但返回多值时要用ANY（有的系统用SOME）或ALL谓词修饰符。而使用ANY或ALL谓词时则必须同时使用比较运算符。其语义如下表所示：&lt;/p&gt;
 &lt;span id=&#34;20241117154730CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;thead&gt;
@@ -3471,7 +3471,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  由于带&lt;code&gt;EXISTS&lt;/code&gt;量词的相关子查询只关心内层查询是否有返回值，并不需要查具体值，因此其效率并不一定低于不相关子查询，有时是高效的方法。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241117163239CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例62&lt;/strong&gt;：查询选修了全部课程的学生姓名。&lt;/p&gt;
-&lt;p&gt;  SQL中没有全称量词（for all），但是可以把带有全称量词的谓词转换为等价的带有存在量词的谓词：&lt;/p&gt;
+&lt;p&gt;  SQL中没有全称量词(for all)，但是可以把带有全称量词的谓词转换为等价的带有存在量词的谓词：&lt;/p&gt;
 &lt;span id=&#34;20241117163327CST&#34;&gt;&lt;/span&gt;\[
 (\forall x)P \equiv \lnot (\exists x( \lnot P))
 \tag{1}
@@ -3513,7 +3513,7 @@
 (\forall y)p \to q
 \tag{2}
     \]
-&lt;p&gt;  SQL语言中没有蕴涵（implication）逻辑运算，但是可以利用谓词演算将一个逻辑蕴涵的谓词等价转换为&lt;/p&gt;
+&lt;p&gt;  SQL语言中没有蕴涵(implication)逻辑运算，但是可以利用谓词演算将一个逻辑蕴涵的谓词等价转换为&lt;/p&gt;
 &lt;span id=&#34;20241117170344CST&#34;&gt;&lt;/span&gt;\[
 p \to q \equiv \lnot p \lor q
 \tag{3}
@@ -3710,7 +3710,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;基于派生表的查询&#34;&gt;基于派生表的查询
-&lt;/h3&gt;&lt;p&gt;  子查询不仅可以出现在&lt;code&gt;WHERE&lt;/code&gt;子句中，还可以出现在&lt;code&gt;FROM&lt;/code&gt;子句中，这时子查询生成的临时派生表（derived table）成为主查询的查询对象。例如，&lt;a class=&#34;link&#34; href=&#34;#20241117152958CST&#34;&gt;例57&lt;/a&gt;找出每个学生超过他自己选修课程平均成绩的课程号，也可以用如下的查询完成：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  子查询不仅可以出现在&lt;code&gt;WHERE&lt;/code&gt;子句中，还可以出现在&lt;code&gt;FROM&lt;/code&gt;子句中，这时子查询生成的临时派生表(derived table)成为主查询的查询对象。例如，&lt;a class=&#34;link&#34; href=&#34;#20241117152958CST&#34;&gt;例57&lt;/a&gt;找出每个学生超过他自己选修课程平均成绩的课程号，也可以用如下的查询完成：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -4151,7 +4151,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/div&gt;&lt;h4 id=&#34;空值的约束条件&#34;&gt;空值的约束条件
 &lt;/h4&gt;&lt;p&gt;  属性定义（或者域定义）中有&lt;code&gt;NOT NULL&lt;/code&gt;约束条件的不能取空值，加了 &lt;code&gt;UNIQUE&lt;/code&gt;限制的属性不能取空值，码属性不能取空值。&lt;/p&gt;
 &lt;h4 id=&#34;空值的算术运算比较运算和逻辑运算&#34;&gt;空值的算术运算，比较运算和逻辑运算
-&lt;/h4&gt;&lt;p&gt;  空值与另一个值（包括另一个空值）的算术运算的结果为空值，空值与另一个值（包括另一个空值）的比较运算的结果为&lt;code&gt;UNKNOWN&lt;/code&gt;。有了&lt;code&gt;UNKNOWN&lt;/code&gt;后，传统的逻辑运算中二值（TRUE, FALSE）逻辑就扩展成了三值逻辑。&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  空值与另一个值（包括另一个空值）的算术运算的结果为空值，空值与另一个值（包括另一个空值）的比较运算的结果为&lt;code&gt;UNKNOWN&lt;/code&gt;。有了&lt;code&gt;UNKNOWN&lt;/code&gt;后，传统的逻辑运算中二值(TRUE, FALSE)逻辑就扩展成了三值逻辑。&lt;br&gt;
   AND、OR、NOT的真值表如&lt;a class=&#34;link&#34; href=&#34;#20241117210715CST&#34;&gt;表27&lt;/a&gt;所示，其中T表示&lt;code&gt;TRUE&lt;/code&gt;, F表示&lt;code&gt;FALSE&lt;/code&gt;，U表示&lt;code&gt;UNKNOWN&lt;/code&gt;。&lt;br&gt;
   在查询语句中，只有使&lt;code&gt;WHERE&lt;/code&gt;和&lt;code&gt;HAVING&lt;/code&gt;子句中的选择条件为TRUE的元组才被选出作为输出结果。&lt;/p&gt;
 &lt;span id=&#34;20241117210715CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
@@ -4486,7 +4486,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  关系数据库管理系统执行对视图的查询时，首先进行有效性检查，检查查询中涉及的表、视图等是否存在。如果存在，则从数据字典中取出视图的定义，把定义中的子查询和用户的查询结合起来，转换成等价的对基本表的查询，然后再执行修正了的查询。这一转换过程称为&lt;strong&gt;视图消解（view resolution）&lt;/strong&gt;。&lt;br&gt;
+&lt;/div&gt;&lt;p&gt;  关系数据库管理系统执行对视图的查询时，首先进行有效性检查，检查查询中涉及的表、视图等是否存在。如果存在，则从数据字典中取出视图的定义，把定义中的子查询和用户的查询结合起来，转换成等价的对基本表的查询，然后再执行修正了的查询。这一转换过程称为&lt;strong&gt;视图消解(view resolution)&lt;/strong&gt;。&lt;br&gt;
   本例转换后的查询语句为&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4851,16 +4851,16 @@ p \to q \equiv \lnot p \lor q
 &lt;/h3&gt;&lt;p&gt;  关系模型的数据结构非常简单，只包含单一的数据结构&amp;mdash;&amp;mdash;关系。在用户看来，关系模型中数据的逻辑结构是一张扁平的二维表。&lt;br&gt;
   关系模型的数据结构虽然简单却能够表达丰富的语义，描述出现实世界的实体以及实体间的各种联系。也就是说，在关系模型中，现实世界的实体以及实体间的各种联系均用单一的结构类型，即关系来表示。&lt;br&gt;
   前面已经非形式化地介绍了关系模型及有关的基本概念。关系模型是建立在集合代数的基础上的，这里从集合论角度给出关系数据结构的形式化定义。&lt;/p&gt;
-&lt;h4 id=&#34;域domain&#34;&gt;域（domain）
+&lt;h4 id=&#34;域domain&#34;&gt;域(domain)
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024154841CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1（域）&lt;/strong&gt;：域是一组具有相同数据类型的值的集合。例如，自然数、整数、实数、长度小于25字节的字符串集合、 {0,1} 、 {男,女} 、大于等于0且小于等于100的正整数等，都可以是域。&lt;/p&gt;
-&lt;h4 id=&#34;cartesian乘积cartesian-product&#34;&gt;Cartesian乘积（cartesian product）
+&lt;h4 id=&#34;cartesian乘积cartesian-product&#34;&gt;Cartesian乘积(cartesian product)
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241024155054CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2（Cartesian乘积）&lt;/strong&gt;：给定一组域 \(D_1,D_2,\cdots,D_n\) ，允许其中某些域是相同的， \(D_1,D_2,\cdots,D_n\)的Cartesian乘积为&lt;/p&gt;
 &lt;span id=&#34;20241024155332CST&#34;&gt;&lt;/span&gt;\[
 D_1\times D_2 \times \cdots \times D_n=\set{(d_1,d_2,\cdots,d_n)|d_i\in D_i,i=1,2,\cdots,n}
 \tag{1}
     \]
-&lt;p&gt;  其中，每一个元素 \((d_1,d_2,\cdots,d_n)\) 叫作一个&lt;strong&gt;n元组（tuple）&lt;/strong&gt;，或简称&lt;strong&gt;元组（tuple）&lt;/strong&gt;。元素中的每一个值 \(d_i\) 叫做一个&lt;strong&gt;分量（component）&lt;/strong&gt;。&lt;br&gt;
-  一个域允许的不同取值个数称为这个域的&lt;strong&gt;基数（cardinal number）&lt;/strong&gt;。若 \(D_i(i=1,2,\cdots,n)\) 为有限集，其计数为 \(m_i(i=1,2,\cdots,n)\) ，则 \((D_1,D_2,\cdots,D_n)\) 的基数 \(M\) 为&lt;/p&gt;
+&lt;p&gt;  其中，每一个元素 \((d_1,d_2,\cdots,d_n)\) 叫作一个&lt;strong&gt;n元组(tuple)&lt;/strong&gt;，或简称&lt;strong&gt;元组(tuple)&lt;/strong&gt;。元素中的每一个值 \(d_i\) 叫做一个&lt;strong&gt;分量(component)&lt;/strong&gt;。&lt;br&gt;
+  一个域允许的不同取值个数称为这个域的&lt;strong&gt;基数(cardinal number)&lt;/strong&gt;。若 \(D_i(i=1,2,\cdots,n)\) 为有限集，其计数为 \(m_i(i=1,2,\cdots,n)\) ，则 \((D_1,D_2,\cdots,D_n)\) 的基数 \(M\) 为&lt;/p&gt;
 &lt;span id=&#34;20241024165258CST&#34;&gt;&lt;/span&gt;\[
 M=\prod_{i=1}^{n}m_i
 \tag{2}
@@ -4965,13 +4965,13 @@ D1\times D2\times D3=｛&amp;(张清玫,计算机专业,李勇),(张清玫,目�
 R(D_1,D_2,\times,D_n)
 \tag{5}
     \]
-&lt;p&gt;  这里 \(R\) 表示关系的名字， \(n\) 是关系的&lt;strong&gt;目&lt;/strong&gt;或&lt;strong&gt;度（degree）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  这里 \(R\) 表示关系的名字， \(n\) 是关系的&lt;strong&gt;目&lt;/strong&gt;或&lt;strong&gt;度(degree)&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  关系中的每个元素是关系中的元组，通常用 \(t\) 表示。&lt;/p&gt;
-&lt;p&gt;  当 \(n=1\) 时，称该关系为&lt;strong&gt;单元关系（unary relation）&lt;/strong&gt;，或&lt;strong&gt;一元关系&lt;/strong&gt;。&lt;br&gt;
-  当 \(n=2\) 时，称该关系为&lt;strong&gt;二元关系（binary relation）&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;  关系是Cartesian乘积的有限子集，所以关系也是一张二维表，表的每行对应一个元组，表的每列对应一个域。由于域可以相同，为了加以区分，必须对每列起一个名字，称为&lt;strong&gt;属性（attribute）&lt;/strong&gt;。n目关系必有n个属性。&lt;/p&gt;
-&lt;p&gt;  若关系中的某一属性组的值能唯一地标识一个元组，而其子集不能，则称该属性组为&lt;strong&gt;候选码（candidate key）&lt;/strong&gt;。若一个关系有多个候选码，则选定其中一个为&lt;strong&gt;主码（primary key）&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;  候选码的属性称为&lt;strong&gt;主属性（prime attribute）&lt;/strong&gt;。不包含在任何候选码中的属性称为&lt;strong&gt;非主属性（non-prime attribute）&lt;/strong&gt;‌或‌&lt;strong&gt;非码属性（non-key attribute）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  当 \(n=1\) 时，称该关系为&lt;strong&gt;单元关系(unary relation)&lt;/strong&gt;，或&lt;strong&gt;一元关系&lt;/strong&gt;。&lt;br&gt;
+  当 \(n=2\) 时，称该关系为&lt;strong&gt;二元关系(binary relation)&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  关系是Cartesian乘积的有限子集，所以关系也是一张二维表，表的每行对应一个元组，表的每列对应一个域。由于域可以相同，为了加以区分，必须对每列起一个名字，称为&lt;strong&gt;属性(attribute)&lt;/strong&gt;。n目关系必有n个属性。&lt;/p&gt;
+&lt;p&gt;  若关系中的某一属性组的值能唯一地标识一个元组，而其子集不能，则称该属性组为&lt;strong&gt;候选码(candidate key)&lt;/strong&gt;。若一个关系有多个候选码，则选定其中一个为&lt;strong&gt;主码(primary key)&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  候选码的属性称为&lt;strong&gt;主属性(prime attribute)&lt;/strong&gt;。不包含在任何候选码中的属性称为&lt;strong&gt;非主属性（non-prime attribute）&lt;/strong&gt;‌或‌&lt;strong&gt;非码属性（non-key attribute）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  在最简单的情况下，候选码只包含一个属性。在最极端的情况下，关系模式的所有属性是这个关系模式的候选码，称为&lt;strong&gt;全码（all-key）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  一般来说， \(D_1,D_2,\cdots,D_n\) 的Cartesian乘积是没有实际语义的，只有它的某个真子集才有实际含义。例如，可以发现&lt;a class=&#34;link&#34; href=&#34;#20241024171040CST&#34;&gt;表1&lt;/a&gt;的Cartesian乘积中许多元组是没有意义的。因为在学校中一个专业方向有多个导师，而一个导师只在一个专业方向带研究生；一个导师可以带多名研究生，而一名研究生只有一个导师，学习某一个专业。因此，&lt;a class=&#34;link&#34; href=&#34;#20241024171040CST&#34;&gt;表1&lt;/a&gt;中的一个子集才是有意义的，才可以表示导师与研究生的关系，把该关系取名为 \(\text{SAP}\) ，如&lt;a class=&#34;link&#34; href=&#34;#20241024172840CST&#34;&gt;表2&lt;/a&gt;所示。李勇和刘晨是计算机专业张清玫老师的研究生；王敏是信息专业刘逸老师的研究生。&lt;/p&gt;
 &lt;span id=&#34;20241024172840CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
@@ -5012,7 +5012,7 @@ R(D_1,D_2,\times,D_n)
 &lt;p&gt;  (1) 无限关系在数据库系统中是无意义的。因此，限定关系数据模型中的关系必须是有限集合。&lt;br&gt;
   (2) 通过为关系的每个列附加一个属性名的方法取消关系属性的有序性，即 \((d_1,d_2,\cdots,d_i,d_j,\cdots,d_n)=(d_1,d_2,\cdots,d_j,d_i,\cdots,d_n)\quad(i,j=1,2,\cdots,n)\)&lt;/p&gt;
 &lt;p&gt;  因此，基本关系具有以下6条性质。&lt;/p&gt;
-&lt;p&gt;  (1) 列是&lt;strong&gt;同质的（homogeneous）&lt;/strong&gt;,即每一列中的分量是同一类型的数据，来自同一个域。&lt;br&gt;
+&lt;p&gt;  (1) 列是&lt;strong&gt;同质的(homogeneous)&lt;/strong&gt;,即每一列中的分量是同一类型的数据，来自同一个域。&lt;br&gt;
   (2) 不同的列可出自同一个域，称其中的每一列为一个属性，不同的属性要给予不同的属性名。例如，在上面的例子中，也可以只给出两个域：
 &lt;span id=&#34;20241024175628CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
@@ -5026,7 +5026,7 @@ R(D_1,D_2,\times,D_n)
   (4) 任意两个元组的候选码不能取相同的值。&lt;br&gt;
   (5) 行的顺序无所谓，即行的次序可以任意交换。&lt;br&gt;
   (6) 分量必须取原子值，即每一个分量都必须是不可分的数据项。&lt;/p&gt;
-&lt;p&gt;  关系模型要求关系必须是&lt;strong&gt;规范化（normalization）&lt;/strong&gt;‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为&lt;strong&gt;范式（Normal Form，NF）&lt;/strong&gt;。范式的概念将在第6篇关系数据理论中做进一步讲解。
+&lt;p&gt;  关系模型要求关系必须是&lt;strong&gt;规范化(normalization)&lt;/strong&gt;‌的，即要求关系必须满足一定的规范条件。这些规范条件中最基本的一条就是，关系的每一个分量必须是一个不可分的数据项。规范化的关系简称为&lt;strong&gt;范式（Normal Form，NF）&lt;/strong&gt;。范式的概念将在第6篇关系数据理论中做进一步讲解。
 例如，&lt;a class=&#34;link&#34; href=&#34;#20241024180959CST&#34;&gt;表3&lt;/a&gt;虽然很好地表达了导师与研究生之间的一对多关系，但由于属性 \(\text{POSTGRADUATE}\) 中分量取了两个值，不符合规范化的要求，因此这样的关系在数据库中是不允许的。通俗地讲，关系表中不允许还有表，简言之不允许“表中有表”。直观地描述，&lt;a class=&#34;link&#34; href=&#34;#20241024180959CST&#34;&gt;表3&lt;/a&gt;中还有一个小表。&lt;/p&gt;
 &lt;span id=&#34;20241024180959CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;tr&gt;
@@ -5056,7 +5056,7 @@ R(D_1,D_2,\times,D_n)
 &lt;/h3&gt;&lt;p&gt;  在数据库中要区分型和值。关系数据库中，关系模式是型，关系是值。关系模式是对关系的描述，那么一个关系需要描述哪些方面呢？&lt;br&gt;
   关系是元组的集合，因此关系模式必须指出这个元组集合的结构，即它由哪些属性构成，这些属性来自哪些域，以及属性与域之间的映像关系。&lt;br&gt;
   现实世界随着时间在不断地变化，因而在不同的时刻关系模式的关系也会有所变化。但是，现实世界的许多己有事实和规则限定了关系模式所有可能的关系必须满足一定的完整性约束条件。这些约束或者通过对属性取值范围的限定，例如职工年龄小于60岁（60岁以后退休），或者通过属性值间的相互关联反映出来。例如，如果2个元组的主码相等，那么元组的其他值也一定相等，因为主码唯一标识一个元组，主码相等就表示这是同一个元组。关系模式应当刻划出这些完整性约束条件。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241024181533CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义4（关系模式）&lt;/strong&gt;：关系的描述称为关系模式（relation schema）。它可以形式化地表示为&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241024181533CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义4（关系模式）&lt;/strong&gt;：关系的描述称为关系模式(relation schema)。它可以形式化地表示为&lt;/p&gt;
 &lt;span id=&#34;20241024181603CST&#34;&gt;&lt;/span&gt;\[
 R(U,D,\text{DOM},F)
 \tag{8}
@@ -5088,11 +5088,11 @@ R(A_1,A_2,\cdots,A_n)
 &lt;h2 id=&#34;关系操作&#34;&gt;关系操作
 &lt;/h2&gt;&lt;p&gt;  关系模型给出了关系操作的能力的说明，但不对关系数据库管理系统语言给出具体的语法要求，也就是说不同的关系数据库管理系统可以定义和开发不同的语言来实现这些操作。&lt;/p&gt;
 &lt;h3 id=&#34;基本的关系操作&#34;&gt;基本的关系操作
-&lt;/h3&gt;&lt;p&gt;  关系模型中常用的关系操作包括查询（query）操作和插入（insert）、删除（delete）、修改（update）操作两大部分。关系的查询表达能力很强，是关系操作中最主要的部分。查询操作又可以分为选择（select）、投影（project）、连接（join）、除（divide）、并（union）、差（except）、交（intersection）、Cartesian乘积等。其中选择、投影、并、差、Cartesian乘积是5种基本操作，其他操作可以用基本操作来定义和导出，就像乘法可以用加法来定义和导出一样。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  关系模型中常用的关系操作包括查询(query)操作和插入(insert)、删除(delete)、修改(update)操作两大部分。关系的查询表达能力很强，是关系操作中最主要的部分。查询操作又可以分为选择(select)、投影(project)、连接(join)、除(divide)、并(union)、差(except)、交(intersection)、Cartesian乘积等。其中选择、投影、并、差、Cartesian乘积是5种基本操作，其他操作可以用基本操作来定义和导出，就像乘法可以用加法来定义和导出一样。&lt;/p&gt;
 &lt;h3 id=&#34;关系数据语言的分类&#34;&gt;关系数据语言的分类
-&lt;/h3&gt;&lt;p&gt;  早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为&lt;strong&gt;关系代数（relational algebra）&lt;/strong&gt;‌和&lt;strong&gt;关系演算（relational calculus）&lt;/strong&gt;‌关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为元组关系演算和域关系演算。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数、元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。&lt;br&gt;
-  关系代数、元组关系演算和域关系演算均是抽象的查询语言，这些抽象的语言与具体的关系数据库管理系统中实现的实际语言并不完全一样。但它们能用作评估实际系统中查询语言能力的标准或基础。实际的查询语言除了提供关系代数或关系演算的功能外，还提供了许多附加功能，例如聚集函数（aggregation function）。关系赋值、算术运算等，使得目前实际查询语言的功能十分强大。&lt;br&gt;
-  另外，还有一种介于关系代数和关系演算之间的结构化查询语言（Structured Query Language,SQL）。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言（Data Control Language,DCL）于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;  早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为&lt;strong&gt;关系代数(relational algebra)&lt;/strong&gt;‌和&lt;strong&gt;关系演算(relational calculus)&lt;/strong&gt;‌关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为元组关系演算和域关系演算。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数、元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。&lt;br&gt;
+  关系代数、元组关系演算和域关系演算均是抽象的查询语言，这些抽象的语言与具体的关系数据库管理系统中实现的实际语言并不完全一样。但它们能用作评估实际系统中查询语言能力的标准或基础。实际的查询语言除了提供关系代数或关系演算的功能外，还提供了许多附加功能，例如聚集函数(aggregation function)。关系赋值、算术运算等，使得目前实际查询语言的功能十分强大。&lt;br&gt;
+  另外，还有一种介于关系代数和关系演算之间的结构化查询语言(Structured Query Language,SQL)。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言(Data Control Language,DCL)于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：&lt;/p&gt;
 &lt;span id=&#34;20241024185641CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 129.1391&#34;&gt;
@@ -5120,11 +5120,11 @@ R(A_1,A_2,\cdots,A_n)
 &lt;p&gt;  特别地，SQL语言是一种高度非过程化的语言，用户不必请求数据库管理员为其建立特殊的存取路径，存取路径的选择由关系数据库管理系统的优化机制来完成。例如，在一个存储有几百万条记录的关系中查找符合条件的某一个或某一些记录，从原理上讲可以有多种查找方法。例如，可以顺序扫描这个关系，也可以通过某一种索引来查找。不同的查找路径（或者称为存取路径）的效率是不同的，有的完成某一个查询可能很快，有的可能极慢。关系数据库管理系统中研究和开发了查询优化方法，系统可以自动选择较优的存取路径，提高查询效率。&lt;/p&gt;
 &lt;h2 id=&#34;关系的完整性&#34;&gt;关系的完整性
 &lt;/h2&gt;&lt;p&gt;  关系模型的完整性规则是对关系的某种约束条件。也就是说关系的值随着时间变化时应该满足一些约束条件。这些约束条件实际上是现实世界的要求。任何关系在任何时刻都要满足这些语义约束。&lt;br&gt;
-  关系模型中有三类完整性约束：实体完整性（entity integrity）、参照完整性（referential integrity）和用户定义的完整性（user-defined integrity）。其中实体完整性和参照完整性是关系模型必须满足的完整性约束条件，被称作是关系的两个不变性，应该由关系系统自动支持。用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。&lt;/p&gt;
+  关系模型中有三类完整性约束：实体完整性(entity integrity)、参照完整性(referential integrity)和用户定义的完整性（user-defined integrity）。其中实体完整性和参照完整性是关系模型必须满足的完整性约束条件，被称作是关系的两个不变性，应该由关系系统自动支持。用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。&lt;/p&gt;
 &lt;h3 id=&#34;实体完整性&#34;&gt;实体完整性
 &lt;/h3&gt;&lt;p&gt;  关系数据库中每个元组应该是可区分的，是唯一的。这样的约束条件用实体完整性来保证。&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241025155618CST&#34;&gt;&lt;/span&gt;
-  &lt;strong&gt;实体完整性规则&lt;/strong&gt;：若属性（指一个或一组属性） \(A\) 是基本关系 \(R\) 的主属性,则 \(A\) 不能取空值（null value）。所谓空值就是&amp;quot;不知道”或&amp;quot;不存在”或“无意义”的值。&lt;br&gt;
+  &lt;strong&gt;实体完整性规则&lt;/strong&gt;：若属性（指一个或一组属性） \(A\) 是基本关系 \(R\) 的主属性,则 \(A\) 不能取空值(null value)。所谓空值就是&amp;quot;不知道”或&amp;quot;不存在”或“无意义”的值。&lt;br&gt;
   按照实体完整性规则的规定，如果主码由若干属性组成，则所有这些主属性都不能取空值。例如选修（学号，课程号,成绩）关系中，“学号、课程号”为主码，则“学号”和“课程号”两个属性都不能取空值。&lt;/p&gt;
 &lt;p&gt;  对于实体完整性规则说明如下：&lt;br&gt;
   (1) 实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。例如学生关系对应于学生的集合。&lt;br&gt;
@@ -5155,7 +5155,7 @@ R(A_1,A_2,\cdots,A_n)
 &lt;p&gt;  不仅两个或两个以上的关系间可以存在引用关系，同一关系内部属性间也可能存在引用关系。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241025092202CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例3&lt;/strong&gt;：在 \(学生（\underline{学号}，姓名，性别，专业号，年龄，班长）\) 关系中，“学号”属性是主码，“班长”属性表示该学生所在班级的班长的学号，它引用了本关系“学号”属性, 即“班长”必须是确实存在的学生的学号。&lt;/p&gt;
 &lt;p&gt;  这三个例子说明关系与关系之间存在着相互引用、相互约束的情况。下面先引入外码 的概念，然后给出表达关系之间相互引用约束的参照完整性的定义。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241025092415CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义5（参照关系）&lt;/strong&gt;：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的&lt;strong&gt;外码（foreign key）&lt;/strong&gt;，并称基本关系 \(R\) 为&lt;strong&gt;参照关系（referencing relation）&lt;/strong&gt;，基本关系 \(S\) 为被&lt;strong&gt;参照关系（referenced relation）&lt;/strong&gt;‌或&lt;strong&gt;目标关系（target relation）&lt;/strong&gt;，关系 \(R\) 和 \(S\) 不一定是不同的关系。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241025092415CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义5（参照关系）&lt;/strong&gt;：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的&lt;strong&gt;外码(foreign key)&lt;/strong&gt;，并称基本关系 \(R\) 为&lt;strong&gt;参照关系(referencing relation)&lt;/strong&gt;，基本关系 \(S\) 为被&lt;strong&gt;参照关系(referenced relation)&lt;/strong&gt;‌或&lt;strong&gt;目标关系(target relation)&lt;/strong&gt;，关系 \(R\) 和 \(S\) 不一定是不同的关系。&lt;/p&gt;
 &lt;span id=&#34;20241025093632CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 76.9524&#34;&gt;
@@ -5198,9 +5198,9 @@ R(A_1,A_2,\cdots,A_n)
   &lt;/g&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;参照关系与被参照关系&lt;/p&gt;
 &lt;p&gt;  显然，目标关系 \(S\) 的主码 \(K_s\) 和参照关系 \(S\) 的外码 \(F\) 必须定义在同一个（或同一组） 域上。&lt;/p&gt;
-&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;中，学生关系的“专业号”属性与专业关系的主码“专业号”相对应，因此“专业号”属性是学生关系的外码。这里专业关系是被参照关系，学生关系为参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;（a）所示。&lt;br&gt;
-  在&lt;a class=&#34;link&#34; href=&#34;#20241025091438CST&#34;&gt;例2&lt;/a&gt;中，选修关系的“学号”属性与学生关系的主码“学号”相对应：选修关系的“课程号”属性与课程关系的主码“课程号”相对应，因此“学号”和“课程号”属性 是选修关系的外码。这里学生关系和课程关系均为被参照关系，选修关系为参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;（b）所示。&lt;br&gt;
-  在&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;（c）所示。&lt;/p&gt;
+&lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;中，学生关系的“专业号”属性与专业关系的主码“专业号”相对应，因此“专业号”属性是学生关系的外码。这里专业关系是被参照关系，学生关系为参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(a)所示。&lt;br&gt;
+  在&lt;a class=&#34;link&#34; href=&#34;#20241025091438CST&#34;&gt;例2&lt;/a&gt;中，选修关系的“学号”属性与学生关系的主码“学号”相对应：选修关系的“课程号”属性与课程关系的主码“课程号”相对应，因此“学号”和“课程号”属性 是选修关系的外码。这里学生关系和课程关系均为被参照关系，选修关系为参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(b)所示。&lt;br&gt;
+  在&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(c)所示。&lt;/p&gt;
 &lt;span id=&#34;20241025100110CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 204.4159&#34;&gt;
@@ -5311,21 +5311,21 @@ R(A_1,A_2,\cdots,A_n)
 &lt;/h3&gt;&lt;p&gt;  传统的集合运算是二目运算，包括并、差、交、Cartesian乘积4种运算。&lt;br&gt;
   设关系 \(R\) 和关系 \(S\) 具有相同的目 \(n\) （即两个关系都有 \(n\) 个属性），且相应的属性取自同一个域， \(t\) 是元组变量， \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。&lt;/p&gt;
 &lt;p&gt;  可以定义并、差、交、Cartesian乘积运算如下。&lt;/p&gt;
-&lt;h4 id=&#34;并union&#34;&gt;并（union）
+&lt;h4 id=&#34;并union&#34;&gt;并(union)
 &lt;/h4&gt;&lt;p&gt;  关系 \(R\) 与关系 \(S\) 的并记作&lt;/p&gt;
 &lt;span id=&#34;20241025172503CST&#34;&gt;&lt;/span&gt;\[
 R\cup S=\set{t|t \in R \lor t \in S}
 \tag{14}
     \]
 &lt;p&gt;  其中 \(\lor\) 是或运算符。其结果仍为 \(n\) 目关系，由属于 \(R\) 或属于 \(S\) 的元组组成。&lt;/p&gt;
-&lt;h4 id=&#34;差except&#34;&gt;差（except）
+&lt;h4 id=&#34;差except&#34;&gt;差(except)
 &lt;/h4&gt;&lt;p&gt;  关系 \(R\) 与关系 \(S\) 的差记作&lt;/p&gt;
 &lt;span id=&#34;20241025174034CST&#34;&gt;&lt;/span&gt;\[
 R-S=\set{t|t \in R \land t \notin S}
 \tag{15}
     \]
 &lt;p&gt;  其中 \(\land\) 是与运算符。其结果关系仍为 \(n\) 目关系，由属于 \(R\) 而不属于 \(S\) 的所有元组组成。&lt;/p&gt;
-&lt;h4 id=&#34;交intersection&#34;&gt;交（intersection）
+&lt;h4 id=&#34;交intersection&#34;&gt;交(intersection)
 &lt;/h4&gt;&lt;p&gt;  关系 \(R\) 与关系 \(S\) 的交记作&lt;/p&gt;
 &lt;span id=&#34;20241025174455CST&#34;&gt;&lt;/span&gt;\[
 R\cap S = \set{t|t\in R \land t \in S}
@@ -5336,8 +5336,8 @@ R\cap S = \set{t|t\in R \land t \in S}
 R \cap S = R-(R-S)
 \tag{17}
     \]
-&lt;h4 id=&#34;cartesian乘积cartesian-product-1&#34;&gt;Cartesian乘积（cartesian product）
-&lt;/h4&gt;&lt;p&gt;  这里的Cartesian乘积严格地讲应该是&lt;strong&gt;广义的Cartesian乘积（extended cartesian product）&lt;/strong&gt;，因为这里Cartesian乘积的元素是元组。&lt;br&gt;
+&lt;h4 id=&#34;cartesian乘积cartesian-product-1&#34;&gt;Cartesian乘积(cartesian product)
+&lt;/h4&gt;&lt;p&gt;  这里的Cartesian乘积严格地讲应该是&lt;strong&gt;广义的Cartesian乘积(extended cartesian product)&lt;/strong&gt;，因为这里Cartesian乘积的元素是元组。&lt;br&gt;
   两个分别为 \(n\) 目和 \(m\) 目的关系 \(R\) 和 \(S\) 的Cartesian乘积是一个 \((n+m)\) 列的元组的集合。元组的前 \(n\) 列是关系 \(R\) 的一个元组，后所列是关系 \(S\) 的一个元组。若 \(R\) 有 \(k_1\) 个元组，S有 \(k_2\) 个元组，则关系 \(R\) 和关系 \(S\) 的Cartesian乘积有 \(k_1\times k_2\) 个元组。记作&lt;/p&gt;
 &lt;span id=&#34;20241025175123CST&#34;&gt;&lt;/span&gt;\[
 R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
@@ -5864,8 +5864,8 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 &lt;/h3&gt;&lt;p&gt;  专门的关系运算包括选择、投影、连接、除运算等。为了叙述上的方便，先引入几个记号。&lt;/p&gt;
 &lt;p&gt;  (1) 设关系模式为 \(R(A_1,A_2,\cdots,A_n)\)，它的一个关系设为 \(R\) 。 \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。 \(t[A_i]\) 则表示元组 \(t\) 中相应于属性 \(i\) 的一个分量。&lt;br&gt;
   (2) 若 \(A=\set{A_{i1},A_{i2},\cdots,A_{ik}}\) ，其 \(A_{i1},A_{i2},\cdots,A_{ik}\) 是 \(A_1,A_2,\cdots,A_n\) 中的一部分,则 \(A\) 称为属性列或属性组。 \(t[A]=(t[A_{i1}],t[A_{i2}],\cdots,t[A_{ik}])\) 表示元组 \(t\) 在属性列 \(A\) 上诸分量的集合， \(\bar{A}\) 则表示 \(\set{A_1,A_2,\cdots,A_n}\) 中去掉 \(\set{A_{i1},A_{i2},\cdots,A_{ik}}\) 后剩余的属性组。&lt;br&gt;
-  (3) \(R\) 为 \(n\) 目关系， \(S\) 为 \(m\) 目关系。 \(t_r\in R,t_s \in S\) ， \(\overgroup{t_rt_s}\) 称为元组的&lt;strong&gt;连接（concatenation）&lt;/strong&gt;‌或元组的&lt;strong&gt;串接&lt;/strong&gt;。它是一个 \(n+m\) 列的元组，前 \(n\) 个分量为 \(R\) 中的一个 \(n\) 元组，后 \(m\) 个分量为 \(S\) 中的一个 \(m\) 元组。&lt;br&gt;
-  (4) 给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的&lt;span id=&#34;20241027111504CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;象集（images set）&lt;/strong&gt;‌定义为
+  (3) \(R\) 为 \(n\) 目关系， \(S\) 为 \(m\) 目关系。 \(t_r\in R,t_s \in S\) ， \(\overgroup{t_rt_s}\) 称为元组的&lt;strong&gt;连接(concatenation)&lt;/strong&gt;‌或元组的&lt;strong&gt;串接&lt;/strong&gt;。它是一个 \(n+m\) 列的元组，前 \(n\) 个分量为 \(R\) 中的一个 \(n\) 元组，后 \(m\) 个分量为 \(S\) 中的一个 \(m\) 元组。&lt;br&gt;
+  (4) 给定一个关系 \(R(X,Z)\) ， \(X\) 和 \(Z\) 为属性组。当 \(t[X]=x\) 时， \(x\) 在 \(R\) 中的&lt;span id=&#34;20241027111504CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;象集(images set)&lt;/strong&gt;‌定义为
 &lt;span id=&#34;20241026105811CST&#34;&gt;&lt;/span&gt;\[
 Z_x=\set{t[Z]|t \in R, t[X]=x}
 \tag{19}
@@ -5945,7 +5945,7 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;象集举例&lt;/p&gt;
 &lt;p&gt;  下面给出这些专门的关系运算的定义。&lt;/p&gt;
 &lt;h4 id=&#34;选择&#34;&gt;选择
-&lt;/h4&gt;&lt;p&gt;  选择又称为&lt;strong&gt;限制（restriction）&lt;/strong&gt;。它是在关系 \(R\) 中选择满足给定条件的诸元组，记作&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;  选择又称为&lt;strong&gt;限制(restriction)&lt;/strong&gt;。它是在关系 \(R\) 中选择满足给定条件的诸元组，记作&lt;/p&gt;
 &lt;span id=&#34;20241026115757CST&#34;&gt;&lt;/span&gt;\[
 \sigma_F(R)=\set{t|t \in R \land F(t)=\text{&#39;真&#39;}}
 \tag{20}
@@ -6251,7 +6251,7 @@ X_1\theta Y_1
   &lt;text transform=&#34;translate(228.1717 194.1214)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.01em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;9.8101&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;tspan x=&#34;16.2358&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;u&lt;/tspan&gt;&lt;tspan x=&#34;27.7559&#34; y=&#34;0&#34;&gt;dent&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(416.922 397.7815)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.2998&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;b&lt;/tspan&gt;&lt;tspan x=&#34;17.2261&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图7&amp;emsp;选择运算举例&lt;/p&gt;
-&lt;h4 id=&#34;投影projection&#34;&gt;投影（projection）
+&lt;h4 id=&#34;投影projection&#34;&gt;投影(projection)
 &lt;/h4&gt;&lt;p&gt;  关系 \(R\) 上的投影是从 \(R\) 中选择出若干属性列组成新的关系。记作&lt;/p&gt;
 &lt;span id=&#34;20241026154923CST&#34;&gt;&lt;/span&gt;\[
 \Pi_A(R)=\set{t[A]|t \in R}
@@ -6306,14 +6306,14 @@ X_1\theta Y_1
   &lt;text transform=&#34;translate(300.4314 266.5726)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（a&lt;/tspan&gt;&lt;tspan x=&#34;27&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(584.2916 266.5732)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（b&lt;/tspan&gt;&lt;tspan x=&#34;28.4219&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;投影运算举例&lt;/p&gt;
-&lt;h4 id=&#34;连接join&#34;&gt;连接（join）
+&lt;h4 id=&#34;连接join&#34;&gt;连接(join)
 &lt;/h4&gt;&lt;p&gt;  连接也称为 \(\theta\) 连接。它是从两个关系的Cartesian乘积中选取属性间满足一定条件的元组。记作&lt;/p&gt;
 &lt;span id=&#34;20241026161052CST&#34;&gt;&lt;/span&gt;\[
 R \underset{A\theta B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]\theta t_s[B])}
 \tag{27}
     \]
 &lt;p&gt;  其中， \(A\) 和 \(B\) 分别为 \(R\) 和 \(S\) 上列数相等且可比的属性组， \(\theta\) 是比较运算符。连接运算从 \(R\) 和 \(S\) 的Cartesian乘积 \(R\times S\) 中选取R关系在 \(A\) 属性组上的值与 \(S\) 关系在 \(B\) 属性组上的值满足比较关系 \(\theta\) 的元组。&lt;br&gt;
-  连接运算中有两种最为重要也最为常用的连接，一种是&lt;strong&gt;等值连接（equijoin）&lt;/strong&gt;，另一种是&lt;span id=&#34;20241116213553CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;自然连接（natural join）&lt;/strong&gt;。&lt;br&gt;
+  连接运算中有两种最为重要也最为常用的连接，一种是&lt;strong&gt;等值连接(equijoin)&lt;/strong&gt;，另一种是&lt;span id=&#34;20241116213553CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;自然连接(natural join)&lt;/strong&gt;。&lt;br&gt;
    \(\theta\) 为“ \(=\) ”的连接运算称为等值连接。它是从关系 \(R\) 与 \(S\) 的广义Cartesian乘积中选取 \(A\) 、 \(B\) 属性值相等的那些元组，即等值连接为&lt;/p&gt;
 &lt;span id=&#34;20241026164814CST&#34;&gt;&lt;/span&gt;\[
 R \underset{A=B}{\Join} S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[A]=t_s[B])}
@@ -6724,8 +6724,8 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
     &lt;text transform=&#34;translate(563.0943 557.2602)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.025em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;5.8501&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.008em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;15.354&#34; y=&#34;0&#34;&gt;)自然连接&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图9&amp;emsp;连接运算举例&lt;/p&gt;
-&lt;p&gt;  两个关系 \(R\) 和 \(S\) 在做自然连接时，选择两个关系在公共属性上值相等的元组构成新的关系。此时，关系 \(R\) 中某些元组有可能在 \(S\) 中不存在公共属性上值相等的元组，从而造成 \(R\) 中这些元组在操作时被舍弃了，同样， \(S\) 中某些元组也可能被舍弃。这些被舍弃的元组称为&lt;strong&gt;悬浮元组（dangling tuple）&lt;/strong&gt;，例如，在&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(e)的自然连接中， \(R\) 中的第 \(4\) 个元组， \(S\) 中的第 \(5\) 个元组都是被舍弃掉的悬浮元组。&lt;br&gt;
-  如果把悬浮元组也保存在结果关系中，而在其他属性上填空值（NULL），那么这种连接就叫做&lt;span id=&#34;20241117142036CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;外连接（outer join）&lt;/strong&gt;，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做&lt;strong&gt;左外连接（left outer join或left join）&lt;/strong&gt;，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做&lt;strong&gt;右外连接（right outer join或right join）&lt;/strong&gt;，记作 \(R⟖S\) 。在&lt;a class=&#34;link&#34; href=&#34;#20241027105236CST&#34;&gt;图10&lt;/a&gt;中，(a)是&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。&lt;/p&gt;
+&lt;p&gt;  两个关系 \(R\) 和 \(S\) 在做自然连接时，选择两个关系在公共属性上值相等的元组构成新的关系。此时，关系 \(R\) 中某些元组有可能在 \(S\) 中不存在公共属性上值相等的元组，从而造成 \(R\) 中这些元组在操作时被舍弃了，同样， \(S\) 中某些元组也可能被舍弃。这些被舍弃的元组称为&lt;strong&gt;悬浮元组(dangling tuple)&lt;/strong&gt;，例如，在&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(e)的自然连接中， \(R\) 中的第 \(4\) 个元组， \(S\) 中的第 \(5\) 个元组都是被舍弃掉的悬浮元组。&lt;br&gt;
+  如果把悬浮元组也保存在结果关系中，而在其他属性上填空值(NULL)，那么这种连接就叫做&lt;span id=&#34;20241117142036CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;外连接(outer join)&lt;/strong&gt;，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做&lt;strong&gt;左外连接（left outer join或left join）&lt;/strong&gt;，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做&lt;strong&gt;右外连接（right outer join或right join）&lt;/strong&gt;，记作 \(R⟖S\) 。在&lt;a class=&#34;link&#34; href=&#34;#20241027105236CST&#34;&gt;图10&lt;/a&gt;中，(a)是&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。&lt;/p&gt;
 &lt;span id=&#34;20241027105236CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 279.7873&#34;&gt;
@@ -7267,7 +7267,7 @@ R \div S = \set{a_1}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;2. 限定的检索（即带条件的检索）&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241027152903CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例16&lt;/strong&gt;：查询信息系（IS）中年龄小于20岁的学生的学号和年龄。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241027152903CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例16&lt;/strong&gt;：查询信息系(IS)中年龄小于20岁的学生的学号和年龄。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7277,7 +7277,7 @@ R \div S = \set{a_1}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;3. 带排序的检索&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241027153431CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例17&lt;/strong&gt;：查询计算机科学系（CS）学生的学号、年龄，结果按年龄降序排序。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241027153431CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例17&lt;/strong&gt;：查询计算机科学系(CS)学生的学号、年龄，结果按年龄降序排序。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7308,7 +7308,7 @@ R \div S = \set{a_1}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;5. 用元组变量的检索&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  前面已讲到，元组关系演算是以元组变量作为谓词变元的基本对象。元组变量是在某一关系范围内变化的，所以也称为&lt;strong&gt;范围变量（range variable）&lt;/strong&gt;，一个关系可以设多个元组变量。&lt;/p&gt;
+&lt;p&gt;  前面已讲到，元组关系演算是以元组变量作为谓词变元的基本对象。元组变量是在某一关系范围内变化的，所以也称为&lt;strong&gt;范围变量(range variable)&lt;/strong&gt;，一个关系可以设多个元组变量。&lt;/p&gt;
 &lt;p&gt;  元组变量主要有两方面的用途：&lt;br&gt;
   (1) 简化关系名。如果关系的名字很长，使用起来就会感到不方便，这时可以设一个较短名字的元组变量来代替关系名。如&lt;a class=&#34;link&#34; href=&#34;#20241027154449CST&#34;&gt;例20&lt;/a&gt;。&lt;br&gt;
   (2) 操作条件中使用量词时必须用元组变量。如&lt;a class=&#34;link&#34; href=&#34;#20241027163733CST&#34;&gt;例21&lt;/a&gt;至&lt;a class=&#34;link&#34; href=&#34;#20241027172019CST&#34;&gt;例23&lt;/a&gt;。&lt;/p&gt;
@@ -7324,7 +7324,7 @@ R \div S = \set{a_1}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  ALPHA语言用&lt;code&gt;RANGE&lt;/code&gt;来说明元组变量。本例中&lt;code&gt;X&lt;/code&gt;是关系&lt;code&gt;Student&lt;/code&gt;上的元组变量，用途是简化关系名，即用&lt;code&gt;X&lt;/code&gt;代表&lt;code&gt;Student&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;6. 用存在量词（existential qualifier）检索&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6. 用存在量词(existential qualifier)检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027163733CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例21&lt;/strong&gt;：查询选修2号课程的学生的名字。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -7362,7 +7362,7 @@ R \div S = \set{a_1}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                       ∃CX(CX.Cno=SCX.Cno∧CX.Pcno=&amp;#39;6&amp;#39;))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  在本例中的元组关系演算公式可以变换为&lt;strong&gt;前束范式（prenex normal form）&lt;/strong&gt;‌的形式：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  在本例中的元组关系演算公式可以变换为&lt;strong&gt;前束范式(prenex normal form)&lt;/strong&gt;‌的形式：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7390,7 +7390,7 @@ R \div S = \set{a_1}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                     SCX.Sno=Student.Sno∧Course.Cno=SCX.Cno)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;8. 用全称量词（generality quantifier）的检索&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;8. 用全称量词(generality quantifier)的检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028091702CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例25&lt;/strong&gt;：查询不选1号课程的学生名字。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -7427,7 +7427,7 @@ R \div S = \set{a_1}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GET W (Student.Sname): ∀CX∃SCX(SCX.Sno=Student.Sno∧SCX.Cno=CX.Cno)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;10. 用蕴涵（implication）的检索&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;10. 用蕴涵(implication)的检索&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241028091723CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例27&lt;/strong&gt;：查询最少选修了 201215122学生所选课程的学生学号。&lt;/p&gt;
 &lt;p&gt;  本例题的求解思路是，对Course中的所有课程依次检查每一门课程，看201215122是否选修了该课程，如果选修了，则再看某一个学生是否也选修了该门课。如果对于201215122所选的每门课程该学生都选修了，则该学生为满足要求的学生。把所有这样的学生全都找出来即完成了本题。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -7655,7 +7655,7 @@ R\times S=\set{t^{(n+m)}|(\exist u^{(n)})(\exist v^{(m)})(R(u)\land S(v) \land (
     \]
    \(F&#39;\) 是公式 \(F\) 用 \(t[i]\) 代替运算对象 \(i\) 得到的等价公式。&lt;/p&gt;
 &lt;p&gt;  下面用关系演算来对&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;中的学生—课程数据库进行查询。&lt;/p&gt;
-&lt;p&gt;  &lt;span id=&#34;20241105202856CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例35&lt;/strong&gt;：查询信息（IS）系全体学生。
+&lt;p&gt;  &lt;span id=&#34;20241105202856CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例35&lt;/strong&gt;：查询信息(IS)系全体学生。
 &lt;span id=&#34;20241105202908CST&#34;&gt;&lt;/span&gt;\[
 S_{IS}=\set{t|\text{Student}(t)\land (t[5]=\text{&#39;IS&#39;})}
 \tag{42}
@@ -7964,7 +7964,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
         &lt;/tr&gt;
     &lt;/table&gt;
 &lt;/div&gt;
-&lt;p&gt;  这里 \(T\) 是示例元素，即域变量。QBE要求示例元素下面一定要加下划线。IS是查询条件，不用加下划线。P.是操作符，表示打印（Print），实际上是显示。&lt;br&gt;
+&lt;p&gt;  这里 \(T\) 是示例元素，即域变量。QBE要求示例元素下面一定要加下划线。IS是查询条件，不用加下划线。P.是操作符，表示打印(Print)，实际上是显示。&lt;br&gt;
   查询条件中可以使用比较运算符 \(&gt;\)，\(\ge\)，\(&lt;\)，\(\le\)，\(=\) 和 \(\ne\) ，其中 \(=\) 可以省略。&lt;br&gt;
   示例元素是这个域中可能的一个值，它不必是查询结果中的元素。比如要求信息系的学生，只要给出任意的一个学生名即可，而不必真是信息系的某个学生名。&lt;br&gt;
   对于&lt;a class=&#34;link&#34; href=&#34;#20241105222703CST&#34;&gt;例39&lt;/a&gt;，可如下构造查询要求：&lt;/p&gt;

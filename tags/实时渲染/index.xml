@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 18 Nov 2024 13:38:16 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 26 Nov 2024 18:27:01 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>三维重建（一）：3D高斯泼溅算法</title>
         <link>https://www.brasswrench.com/posts/engineering/artificial_intelligence/computer_vision/3d_gaussian_splatting/</link>
         <pubDate>Mon, 23 Sep 2024 19:43:18 +0800</pubDate>
@@ -203,7 +203,7 @@
     &lt;/g&gt;
   &lt;/g&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;3D Gaussian Splatting整体框架&lt;/p&gt;
-&lt;p&gt;  由上图可以看出，当拿到一组场景照片以后，我们需要先使用某种&lt;strong&gt;SfM（Structure from Motion）算法&lt;/strong&gt;估计出这一组照片的&lt;strong&gt;结构&lt;/strong&gt;（位置）和&lt;strong&gt;姿态&lt;/strong&gt;（摄像机方向）和一组&lt;strong&gt;稀疏点云（SfM Points）&lt;/strong&gt;。然后交给3DGS进行&lt;strong&gt;初始化（Initialization）&lt;/strong&gt;‌得到一组初始的&lt;strong&gt;3D高斯球（3D Gaussians）&lt;/strong&gt;。然后，我们借助相机外参（结构和姿态）将这一组3D高斯球&lt;strong&gt;投影&lt;/strong&gt;到相机平面上（&lt;strong&gt;Projection&lt;/strong&gt;），接着再使用&lt;strong&gt;可微分块光栅化（Differentiable Tile Rasterizer）&lt;/strong&gt;‌渲染得到图像（&lt;strong&gt;Image&lt;/strong&gt;）。得到渲染图像后将其与相机原始的图像（Ground Truth）进行loss比对，然后沿着虚线箭头进行梯度回传。虚线箭头从上回传的时候，更新3D高斯球中的参数，从下回传时会经过&lt;strong&gt;自适应密度控制（Adaptive Density Control）&lt;/strong&gt;‌的处理，而后更新3D高斯球中的点云。&lt;br&gt;
+&lt;p&gt;  由上图可以看出，当拿到一组场景照片以后，我们需要先使用某种&lt;strong&gt;SfM(Structure from Motion)算法&lt;/strong&gt;估计出这一组照片的&lt;strong&gt;结构&lt;/strong&gt;（位置）和&lt;strong&gt;姿态&lt;/strong&gt;（摄像机方向）和一组&lt;strong&gt;稀疏点云(SfM Points)&lt;/strong&gt;。然后交给3DGS进行&lt;strong&gt;初始化(Initialization)&lt;/strong&gt;‌得到一组初始的&lt;strong&gt;3D高斯球(3D Gaussians)&lt;/strong&gt;。然后，我们借助相机外参（结构和姿态）将这一组3D高斯球&lt;strong&gt;投影&lt;/strong&gt;到相机平面上（&lt;strong&gt;Projection&lt;/strong&gt;），接着再使用&lt;strong&gt;可微分块光栅化(Differentiable Tile Rasterizer)&lt;/strong&gt;‌渲染得到图像（&lt;strong&gt;Image&lt;/strong&gt;）。得到渲染图像后将其与相机原始的图像(Ground Truth)进行loss比对，然后沿着虚线箭头进行梯度回传。虚线箭头从上回传的时候，更新3D高斯球中的参数，从下回传时会经过&lt;strong&gt;自适应密度控制(Adaptive Density Control)&lt;/strong&gt;‌的处理，而后更新3D高斯球中的点云。&lt;br&gt;
   接下来，我们详细讲解算法中的每一个步骤，并给出具体的实现方式。&lt;/p&gt;
 &lt;h2 id=&#34;算法内容&#34;&gt;算法内容
 &lt;/h2&gt;&lt;h3 id=&#34;运动结构恢复&#34;&gt;运动结构恢复
@@ -248,7 +248,7 @@ s_1 &amp; 0   &amp; 0   \\[5pt]
     \]
 &lt;p&gt;  在初始化的时候，3DGS会利用&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“机器学习”还未上线~&#39;)&#34;&gt;KNN算法&lt;/a&gt;计算点云中每个点到与其最近的3个点的平均距离，然后取对数，将其同时作为 \(\bm{s}\) 中的三个分量的值。对于 \(\bm{q}\) ，3DGS将其初始化为 \(\bm{q}=\left(1,0,0,0\right)\) ，也就是不进行旋转。&lt;/p&gt;
 &lt;h4 id=&#34;颜色&#34;&gt;颜色
-&lt;/h4&gt;&lt;p&gt;  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：&lt;strong&gt;实球谐函数（Real Spherical Harmonics）&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：Legendre函数”还未写完~&#39;)&#34;&gt;球谐函数&lt;/a&gt;）。&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  对于一个3D高斯球，它的不同方向会呈现不同的颜色，那么这种各向异性的颜色该如何描述呢？这里需要运用到数学中的一个重要的展开工具：&lt;strong&gt;实球谐函数(Real Spherical Harmonics)&lt;/strong&gt;（见&lt;a class=&#34;link&#34; onclick=&#34;alert(&#39;抱歉，“特殊函数：Legendre函数”还未写完~&#39;)&#34;&gt;球谐函数&lt;/a&gt;）。&lt;br&gt;
   计算机图形学中常用的实球谐函数的定义如下：&lt;/p&gt;
 &lt;span id=&#34;20241004221955CST&#34;&gt;&lt;/span&gt;\[
 \mathcal{Y}_l^m\left(\theta,\varphi\right)=
@@ -575,7 +575,7 @@ C(x,y)=\sum_{i=1}^{N}c_i(x,y)\alpha_i(x,y)\prod_{j=1}^{i-1}(1-\alpha_j(x,y))
     \]
 &lt;p&gt;   \(\omicron_i\) 就是由&lt;a class=&#34;link&#34; href=&#34;#20241007152703CST&#34;&gt;不透明度&lt;/a&gt;定义的第 \(i\) 个3D高斯椭球的不透明度。注意，&lt;a class=&#34;link&#34; href=&#34;#20241007150621CST&#34;&gt;式(29)&lt;/a&gt;中的 \(C(x,y)\) 是三个RGB通道各自的颜色值，取值范围为 \([0,1]\) 。也就是三个RGB通道各自独立混合后，再一起作为 \((x,y)\) 点处的颜色。&lt;/p&gt;
 &lt;h4 id=&#34;分块&#34;&gt;分块
-&lt;/h4&gt;&lt;p&gt;  如果对于每个像素，相对所有高斯（2D）都进行一次光线行进，那这将耗费巨大的计算资源而且还不一定能起到很好的效果。因此，3DGS提出了一种&lt;strong&gt;分块渲染&lt;/strong&gt;的方法。其思想是将屏幕分成每个大小为 \(16\times 16\) 像素的块，在渲染每个块中的像素的时候只考虑和这个块有交叠的高斯。对于不同的块，可以采用&lt;strong&gt;并行计算&lt;/strong&gt;的方法加快渲染速度。&lt;br&gt;
+&lt;/h4&gt;&lt;p&gt;  如果对于每个像素，相对所有高斯(2D)都进行一次光线行进，那这将耗费巨大的计算资源而且还不一定能起到很好的效果。因此，3DGS提出了一种&lt;strong&gt;分块渲染&lt;/strong&gt;的方法。其思想是将屏幕分成每个大小为 \(16\times 16\) 像素的块，在渲染每个块中的像素的时候只考虑和这个块有交叠的高斯。对于不同的块，可以采用&lt;strong&gt;并行计算&lt;/strong&gt;的方法加快渲染速度。&lt;br&gt;
   那么该如何判断某个高斯与某个块是否有交叠呢？首先得确定它的边界。3DGS采用 \(99\\%\) 作为置信区间，也就是以概率为 \(99\\%\) 作为边界。即&lt;/p&gt;
 &lt;span id=&#34;20241007230616CST&#34;&gt;&lt;/span&gt;\[
 f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\left(2\pi\right)^3\left|\bm{\Sigma}^\prime\right|}}\exp\left(-\frac{1}{2}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)^{T}\left(\bm{\Sigma}^{\prime}\right)^{-1}\left(\bm{x}^{\prime}-\bm{\mu}^{\prime}\right)\right)=0.99
