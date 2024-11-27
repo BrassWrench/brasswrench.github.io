@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 27 Nov 2024 08:57:46 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/operating_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 27 Nov 2024 20:45:04 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/operating_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>操作系统（三）：处理机调度与死锁</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/operating_system/processor_scheduling_and_deadlock/</link>
         <pubDate>Sun, 24 Nov 2024 16:28:25 +0800</pubDate>
@@ -605,7 +605,262 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
   (1)终端型用户。由于终端型用户提交的作业多属于交互型作业，通常较小，系统只要能使这些作业在第一队列规定的时间片内完成，便可使终端型用户感到满意。&lt;br&gt;
   (2)短批处理作业用户。对于这类作业，如果可在第一队列中执行完成，便获得与终端型作业一样的响应时间。对于稍长的短作业，也只需在第二和第三队列各执行一时间片完成，其周转时间仍然较短。&lt;br&gt;
   (3)长批处理作业用户。对于长作业，它将依次在第1,2,···,n个队列中运行，然后再按轮转方式运行，用户不必担心其作业长期得不到处理。&lt;/p&gt;
-</description>
+&lt;h3 id=&#34;基于公平原则的调度算法&#34;&gt;基于公平原则的调度算法
+&lt;/h3&gt;&lt;p&gt;  以上介绍的几种调度算法所保证的只是优先运行，如优先级算法是优先级最高的作业优先运行，但并不保证作业占用了多少处理机时间。另外也未考虑到调度的公平性。本小节将介绍两种相对公平的调度算法。&lt;/p&gt;
+&lt;h4 id=&#34;保证调度算法&#34;&gt;保证调度算法
+&lt;/h4&gt;&lt;p&gt;  保证调度算法是另外一种类型的调度算法，它向用户所做出的保证并不是优先运行，而是明确的性能保证，该算法可以做到调度的公平性。一种比较容易实现的性能保证是处理机分配的公平性。如果在系统中有 \(n\) 个相同类型的进程同时运行，为公平起见，须保证每个进程都获得相同的处理机时间 \(\displaystyle\frac{1}{n}\) 。在实施公平调度算法时系统中必须具有这样一些功能：&lt;br&gt;
+  (1)跟踪计算每个进程自创建以来已经执行的处理时间。&lt;br&gt;
+  (2)计算每个进程应获得的处理机时间，即自创建以来的时间除以 \(n\) 。&lt;br&gt;
+  (3)计算进程获得处理机时间的比率，即进程实际执行的处理时间和应获得的处理机时间之比。&lt;br&gt;
+  (4)比较各进程获得处理机时间的比率。如进程A的比率最低，为0.5；而进程B的比率为0.8；进程C的比率为1.2等。&lt;br&gt;
+  (5)调度程序应选择比率最小的进程将处理机分配给它，并让该进程一直运行，直到超过最接近它的进程比率为止。&lt;/p&gt;
+&lt;h4 id=&#34;公平分享调度算法&#34;&gt;公平分享调度算法
+&lt;/h4&gt;&lt;p&gt;  分配给每个进程相同的处理机时间，显然，这对诸进程而言，是体现了一定程度的公平，但如果各个用户所拥有的进程数不同，就会发生对用户的不公平问题。假如系统中仅有两个用户，用户1启动了4个进程，用户2只启动1个进程，采用轮转法让每个进程轮流运行一个时间片时间，对进程而言很公平，但用户1和用户2得到的处理机时间分别为80%和20%，显然对用户2而言就有失公平。在该调度算法中，调度的公平性主要是针对
+用户而言，使所有用户能获得相同的处理机时间，或所要求的时间比例。然而调度又是以进程为基本单位，为此，必须考虑到每一个用户所拥有的进程数目。例如系统中有两个用
+户，用户1有4个进程A、B、C、D，用户2只有1个进程E。为保证两个用户能获得相
+同的处理机时间，则必须执行如下所示的强制调度序列：&lt;/p&gt;
+&lt;p&gt;  A E B E C E D E A E B E C E D E ···&lt;/p&gt;
+&lt;p&gt;  如果希望用户1所获得的处理机时间是用户2的两倍，则必须执行如下所示的强制调度序列：&lt;/p&gt;
+&lt;p&gt;  A B E C D E A B E C D E A B E C D E ···&lt;/p&gt;
+&lt;h2 id=&#34;实时调度&#34;&gt;实时调度
+&lt;/h2&gt;&lt;p&gt;  在实时系统中，可能存在着两类不同性质的实时任务，即&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/operating_system/introduction_to_operating_system/#20241126165221CST&#34;&gt;HRT任务&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/operating_system/introduction_to_operating_system/#20241126165233CST&#34;&gt;SRT任务&lt;/a&gt;，它们都联系着一个截止时间。为保证系统能正常工作，实时调度必须能满足实时任务对截止时间的要求。为此，实现实时调度应具备一定的条件。&lt;/p&gt;
+&lt;h3 id=&#34;实现实时调度的基本条件&#34;&gt;实现实时调度的基本条件
+&lt;/h3&gt;&lt;h4 id=&#34;提供必要的信息&#34;&gt;提供必要的信息
+&lt;/h4&gt;&lt;p&gt;  为了实现实时调度，系统应向调度程序提供有关任务的信息：&lt;br&gt;
+  (1)就绪时间，是指某任务成为就绪状态的起始时间，在周期任务的情况下，它是事先预知的一串时间序列。&lt;br&gt;
+  (2)开始截止时间和完成截止时间，对于典型的实时应用，只须知道开始截止时间，或者完成截止时间。&lt;br&gt;
+  (3)处理时间，一个任务从开始执行，直至完成时所需的时间。&lt;br&gt;
+  (4)资源要求，任务执行时所需的一组资源。&lt;br&gt;
+  (5)优先级，如果某任务的开始截止时间错过，势必引起故障，则应为该任务赋予“绝对”优先级；如果其开始截止时间的错过，对任务的继续运行无重大影响，则可为其赋予“相对”优先级，供调度程序参考。&lt;/p&gt;
+&lt;h4 id=&#34;系统处理能力强&#34;&gt;系统处理能力强
+&lt;/h4&gt;&lt;p&gt;  在实时系统中，若处理机的处理能力不够强，则有可能因处理机忙不过，而致使某些实时任务不能得到及时处理，从而导致发生难以预料的后果。假定系统中有 \(m\) 个周期性的硬实时任务HRT，它们的处理时间可表示为 \(C_i\) ，周期时间表示为 \(P_i\) ，则在单处理机情况下，必须满足下面的限制条件系统才是可调度的：&lt;/p&gt;
+&lt;span id=&#34;20241127093658CST&#34;&gt;&lt;/span&gt;\[
+\sum_{i=1}^{m}\frac{C_i}{P_i} \le 1
+\tag{6}
+    \]
+&lt;p&gt;  顺便说明一下，上述的限制条件并未考虑到任务切换所花费的时间，因此，当利用上述限制条件时，还应适当地留有余地。&lt;br&gt;
+  提高系统处理能力的途径有二：一是采用单处理机系统，但须增强其处理能力，以显著地减少对每一个任务的处理时间；二是采用多处理机系统。假定系统中的处理机数为 \(N\) ，则应将上述的限制条件改为：&lt;/p&gt;
+&lt;span id=&#34;20241127101829CST&#34;&gt;&lt;/span&gt;\[
+\sum_{i=1}^{m}\frac{C_i}{P_i} \le N
+\tag{7}
+    \]
+&lt;h4 id=&#34;采用抢占式调度机制&#34;&gt;采用抢占式调度机制
+&lt;/h4&gt;&lt;p&gt;  在含有HRT任务的实时系统中，广泛采用抢占机制。这样便可满足HRT任务对截止时间的要求。但这种调度机制比较复杂。对于一些小的实时系统，如果能预知任务的开始截止时间，则对实时任务的调度可采用非抢占调度机制，以简化调度程序和在任务调度时所花费的系统开销。在设计这种调度机制时，应使所有的实时任务都比较小，并在执行完关键性程序和临界区后，能及时地将自己阻塞起来，以便释放出处理机，供调度程序去调度那个开始截止时间即将到达的任务。&lt;/p&gt;
+&lt;h4 id=&#34;具有快速切换机制&#34;&gt;具有快速切换机制
+&lt;/h4&gt;&lt;p&gt;  为保证硬实时任务能及时运行，在系统中还应具有快速切换机制，使之能进行任务的快速切换。该机制应具有加下两方面的能力：&lt;br&gt;
+  (1)对中断的快速响应能力。对紧迫的外部事件请求中断能及时响应，要求系统具有快速硬件中断机构，还应使禁止中断的时间间隔尽量短，以免耽误时机（其它紧迫任务）。&lt;br&gt;
+  (2)快速的任务分派能力。为了提高分派程序进行任务切换时的速度，应使系统中的每个运行功能单位适当的小，以减少任务切换的时间开销。&lt;/p&gt;
+&lt;h3 id=&#34;实时调度算法的分类&#34;&gt;实时调度算法的分类
+&lt;/h3&gt;&lt;p&gt;  可以按不同方式对实时调度算法加以分类：①根据实时任务性质，可将实时调度的算法分为硬实时调度算法和软实时调度算法；②按调度方式，则可分为非抢占调度算法和抢占调度算法。&lt;/p&gt;
+&lt;h4 id=&#34;非抢占式调度算法&#34;&gt;非抢占式调度算法
+&lt;/h4&gt;&lt;p&gt;  (1)非抢占式轮转调度算法。由一台计算机控制若干个相同的（或类似的）对象，为每一个被控对象建立一个实时任务，并将它们排成一个轮转队列。调度程序每次选择队列中的第一个任务投入运行。当该任务完成后，便把它挂在轮转队列的末尾等待，调度程序再选择下一个队首任务运行。这种调度算法可获得数秒至数十秒的响应时间，可用于要求不太严格的实时控制系统中。&lt;br&gt;
+  (2)非抢占式优先调度算法。如果在系统中还含有少数具有一定要求的实时任务，则可采用非抢占式优先调度算法，系统为这些任务赋予了较高的优先级。当这些实时任务到达时，把它们安排在就绪队列的队首，等待当前任务自我终止或运行完成后，便可去调度执行队首的高优先进程。这种调度算法在做了精心的处理后有可能使其响应时间减少到数秒至数百毫秒，因而可用于有一定要求的实时控制系统中。&lt;/p&gt;
+&lt;h4 id=&#34;抢占式调度算法&#34;&gt;抢占式调度算法
+&lt;/h4&gt;&lt;p&gt;  可根据抢占发生时间的不同而进一步分成以下两种调度算法：&lt;br&gt;
+  (1)基于时钟中断的抢占式优先级调度算法。在某实时任务到达后，如果它的优先级高于当前任务的优先级，这时并不立即抢占当前任务的处理机，而是等到时钟中断发生时，调度程序才剥夺当前任务的执行，将处理机分配给新到的高优先级任务。该算法能获得较好的响应效果，其调度延迟可降为几十至几毫秒，可用于大多数的实时系统中。&lt;br&gt;
+  (2)立即抢占(Immediate Preemption)的优先级调度算法。在这种调度策略中，要求操作系统具有快速响应外部事件中断的能力。一旦出现外部中断，只要当前任务未处于临界区，便能立即剥夺当前任务的执行，把处理机分配给请求中断的紧迫任务。这种算法能获得非常快的响应，可把调度延迟降低到几毫秒至100微秒，甚至更低。&lt;a class=&#34;link&#34; href=&#34;#20241127194407CST&#34;&gt;图4&lt;/a&gt;中的(a)、(b)、(c)、(d)分别示出了四种情况的调度时间。&lt;/p&gt;
+&lt;span id=&#34;20241127194407CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 321.222&#34;&gt;
+  &lt;text transform=&#34;translate(47.1146 76.2563)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;进程1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;29.3492&#34; y=&#34;56.9403&#34; width=&#34;81.1429&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(128.2575 76.2563)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;进程2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;110.4921&#34; y=&#34;56.9403&#34; width=&#34;81.1429&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(237.8237 76.2563)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;进程n&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;221.1111&#34; y=&#34;56.9403&#34; width=&#34;81.1429&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(197.7487 76.2563)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;···&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(306.8251 76.2563)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;实时进程&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;302.254&#34; y=&#34;56.9403&#34; width=&#34;81.1429&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;69.9206&#34; y1=&#34;23.119&#34; x2=&#34;69.9206&#34; y2=&#34;29.119&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;69.9206&#34; y1=&#34;33.0819&#34; x2=&#34;69.9206&#34; y2=&#34;42.9891&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;69.9206&#34; y1=&#34;44.9706&#34; x2=&#34;69.9206&#34; y2=&#34;50.9706&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;66.2175 48.162 69.9206 49.7352 73.6238 48.162 69.9206 56.9403 66.2175 48.162&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(25.4675 18.2985)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;实时进程请求调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;302.254&#34; y1=&#34;23.119&#34; x2=&#34;302.254&#34; y2=&#34;29.119&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;302.254&#34; y1=&#34;33.0819&#34; x2=&#34;302.254&#34; y2=&#34;42.9891&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;302.254&#34; y1=&#34;44.9706&#34; x2=&#34;302.254&#34; y2=&#34;50.9706&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;298.5508 48.162 302.254 49.7352 305.9571 48.162 302.254 56.9403 298.5508 48.162&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(230.6877 18.2985)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度实时进程运行&lt;/tspan&gt;&lt;/text&gt;
+  &lt;line x1=&#34;191.6349&#34; y1=&#34;81.3413&#34; x2=&#34;191.6349&#34; y2=&#34;99.1825&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(129.8014 122.2928)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度时间&lt;/tspan&gt;&lt;/text&gt;
+  &lt;line x1=&#34;29.3492&#34; y1=&#34;81.3413&#34; x2=&#34;29.3492&#34; y2=&#34;116.8968&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;302.254&#34; y1=&#34;81.3413&#34; x2=&#34;302.254&#34; y2=&#34;116.9921&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;126.6032&#34; y1=&#34;115.452&#34; x2=&#34;38.2086&#34; y2=&#34;115.452&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;40.19 112.5467 29.3492 115.452 40.19 118.3573 40.19 112.5467&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;203.9921&#34; y1=&#34;115.452&#34; x2=&#34;292.3867&#34; y2=&#34;115.452&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;290.4052 118.3573 301.246 115.452 290.4052 112.5467 290.4052 118.3573&#34;/&gt;
+  &lt;/g&gt;
+  &lt;line x1=&#34;110.4921&#34; y1=&#34;81.3413&#34; x2=&#34;110.4921&#34; y2=&#34;94.1349&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(118.9327 154.8449)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（a&lt;/tspan&gt;&lt;tspan x=&#34;27&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;tspan x=&#34;36.4136&#34; y=&#34;0&#34;&gt;非抢占轮转调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(531.984 75.9377)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;当前进程&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;433.3968&#34; y=&#34;56.6217&#34; width=&#34;269.1746&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(707.1426 75.9377)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;实时进程&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;702.5714&#34; y=&#34;56.6217&#34; width=&#34;81.1429&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;567.0278&#34; y1=&#34;22.8004&#34; x2=&#34;567.0278&#34; y2=&#34;28.8004&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;567.0278&#34; y1=&#34;32.7633&#34; x2=&#34;567.0278&#34; y2=&#34;42.6705&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;567.0278&#34; y1=&#34;44.652&#34; x2=&#34;567.0278&#34; y2=&#34;50.652&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;563.3247 47.8434 567.0278 49.4166 570.731 47.8434 567.0278 56.6217 563.3247 47.8434&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(496.0422 18.2982)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;实时进程请求调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;702.5714&#34; y1=&#34;22.8004&#34; x2=&#34;702.5714&#34; y2=&#34;28.8004&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;702.5714&#34; y1=&#34;32.7633&#34; x2=&#34;702.5714&#34; y2=&#34;42.6705&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;702.5714&#34; y1=&#34;44.652&#34; x2=&#34;702.5714&#34; y2=&#34;50.652&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;698.8683 47.8434 702.5714 49.4166 706.2745 47.8434 702.5714 56.6217 698.8683 47.8434&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(667.2216 18.2985)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;时钟中断到来时&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(598.7999 109.4515)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度时间&lt;/tspan&gt;&lt;/text&gt;
+  &lt;line x1=&#34;567.0278&#34; y1=&#34;81.0227&#34; x2=&#34;567.0278&#34; y2=&#34;111.7857&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;line x1=&#34;702.5714&#34; y1=&#34;81.0227&#34; x2=&#34;702.5714&#34; y2=&#34;111.7857&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;598.5079&#34; y1=&#34;102.6117&#34; x2=&#34;575.8872&#34; y2=&#34;102.6117&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;577.8687 99.7064 567.0278 102.6117 577.8687 105.517 577.8687 99.7064&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;670.5397&#34; y1=&#34;102.6113&#34; x2=&#34;693.7121&#34; y2=&#34;102.6113&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;691.7307 105.5166 702.5715 102.6113 691.7307 99.706 691.7307 105.5166&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(446.9802 154.845)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（c&lt;/tspan&gt;&lt;tspan x=&#34;26.6577&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;tspan x=&#34;36.0718&#34; y=&#34;0&#34;&gt;基于时钟中断抢占的优先权抢占调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;line x1=&#34;433.3968&#34; y1=&#34;81.0227&#34; x2=&#34;433.3968&#34; y2=&#34;111.7857&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(131.3814 253.4769)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;当前进程&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;32.7942&#34; y=&#34;234.1608&#34; width=&#34;269.1746&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(306.5399 253.4769)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;实时进程&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;301.9688&#34; y=&#34;234.1608&#34; width=&#34;81.1429&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;122.4252&#34; y1=&#34;200.3396&#34; x2=&#34;122.4252&#34; y2=&#34;206.3396&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;122.4252&#34; y1=&#34;210.3025&#34; x2=&#34;122.4252&#34; y2=&#34;220.2097&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;122.4252&#34; y1=&#34;222.1911&#34; x2=&#34;122.4252&#34; y2=&#34;228.1911&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;118.722 225.3825 122.4252 226.9558 126.1283 225.3825 122.4252 234.1608 118.722 225.3825&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(51.4396 195.8373)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;实时进程请求调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;301.9688&#34; y1=&#34;200.3396&#34; x2=&#34;301.9688&#34; y2=&#34;206.3396&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;301.9688&#34; y1=&#34;210.3025&#34; x2=&#34;301.9688&#34; y2=&#34;220.2097&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;301.9688&#34; y1=&#34;222.1911&#34; x2=&#34;301.9688&#34; y2=&#34;228.1911&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;298.2657 225.3825 301.9688 226.9558 305.6719 225.3825 301.9688 234.1608 298.2657 225.3825&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(230.6189 195.8376)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;当前进程运行完成&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(176.197 286.9907)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度时间&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;122.4252&#34; y1=&#34;258.5618&#34; x2=&#34;122.4252&#34; y2=&#34;289.3249&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;301.9688&#34; y1=&#34;258.5618&#34; x2=&#34;301.9688&#34; y2=&#34;289.3249&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;174.937&#34; y1=&#34;280.1508&#34; x2=&#34;131.2845&#34; y2=&#34;280.1508&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;133.266 277.2456 122.4252 280.1508 133.266 283.0561 133.266 277.2456&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;249.1811&#34; y1=&#34;280.1504&#34; x2=&#34;293.1094&#34; y2=&#34;280.1504&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;291.1279 283.0557 301.9688 280.1504 291.1279 277.2451 291.1279 283.0557&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(530.4372 253.4767)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;当前进程&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;431.85&#34; y=&#34;234.1606&#34; width=&#34;269.1746&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(705.5958 253.4767)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;实时进程&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;701.0246&#34; y=&#34;234.1606&#34; width=&#34;81.1429&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;521.481&#34; y1=&#34;200.3394&#34; x2=&#34;521.481&#34; y2=&#34;206.3394&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;521.481&#34; y1=&#34;210.3023&#34; x2=&#34;521.481&#34; y2=&#34;220.2095&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;521.481&#34; y1=&#34;222.1909&#34; x2=&#34;521.481&#34; y2=&#34;228.1909&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;517.7779 225.3823 521.481 226.9556 525.1841 225.3823 521.481 234.1606 517.7779 225.3823&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(450.4954 195.8372)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;实时进程请求调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;701.0246&#34; y1=&#34;200.3394&#34; x2=&#34;701.0246&#34; y2=&#34;206.3394&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;701.0246&#34; y1=&#34;210.3023&#34; x2=&#34;701.0246&#34; y2=&#34;220.2095&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;701.0246&#34; y1=&#34;222.1909&#34; x2=&#34;701.0246&#34; y2=&#34;228.1909&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;697.3215 225.3823 701.0246 226.9556 704.7277 225.3823 701.0246 234.1606 697.3215 225.3823&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(706.3878 195.8374)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;实时进程抢占当前&lt;/tspan&gt;&lt;tspan x=&#34;0&#34; y=&#34;21.6001&#34;&gt;进&lt;/tspan&gt;&lt;tspan x=&#34;18&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.02em;&#34;&gt;程&lt;/tspan&gt;&lt;tspan x=&#34;35.6401&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.48em;&#34;&gt;，&lt;/tspan&gt;&lt;tspan x=&#34;45&#34; y=&#34;21.6001&#34;&gt;并立即执行&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(575.2528 286.9905)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;调度时间&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;521.481&#34; y1=&#34;258.5616&#34; x2=&#34;521.481&#34; y2=&#34;289.3247&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;701.0246&#34; y1=&#34;258.5616&#34; x2=&#34;701.0246&#34; y2=&#34;289.3247&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;573.9929&#34; y1=&#34;280.1506&#34; x2=&#34;530.3404&#34; y2=&#34;280.1506&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;532.3218 277.2454 521.481 280.1506 532.3218 283.0559 532.3218 277.2454&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;648.2369&#34; y1=&#34;280.1502&#34; x2=&#34;692.1652&#34; y2=&#34;280.1502&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;690.1838 283.0555 701.0246 280.1502 690.1838 277.2449 690.1838 283.0555&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(109.2214 319.6741)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（b&lt;/tspan&gt;&lt;tspan x=&#34;28.4219&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;tspan x=&#34;37.8359&#34; y=&#34;0&#34;&gt;非抢占优先权调度&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(511.7437 319.6744)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.025em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;5.8501&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.007em;&#34;&gt;d&lt;/tspan&gt;&lt;tspan x=&#34;16.8301&#34; y=&#34;0&#34;&gt;)立即抢占的优先权调度&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;实时进程调度&lt;/p&gt;
+&lt;h3 id=&#34;最早截止时间优先edfearliest-deadline-first算法&#34;&gt;最早截止时间优先EDF(Earliest Deadline First)算法
+&lt;/h3&gt;&lt;p&gt;  该算法是根据任务的截止时间确定任务的优先级，任务的截止时间愈早，其优先级愈高，具有最早截止时间的任务排在队列的队首。调度程序在选择任务时，总是选择就绪队列中的第一个任务，为之分配处理机。最早截止时间优先算法既可用于抢占式调度方式中，也可用于非抢占式调度方式中。&lt;/p&gt;
+&lt;h4 id=&#34;非抢占式调度方式用于非周期实时任务&#34;&gt;非抢占式调度方式用于非周期实时任务
+&lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241127203504CST&#34;&gt;图5&lt;/a&gt;示出了将该算法用于非抢占调度方式之例。该例中具有四个非周期任务，它们先后到达。系统先调度任务1执行，在任务1执行期间，任务2、3又先后到达。由于任务3的开始截止时间早于任务2的，故系统在任务1后将先调度任务3执行。在此期间又到达作业4,其开始截止时间仍是早于任务2的，故在任务3执行完后，系统又先调度任务4执行，最后才调度任务2执行。&lt;/p&gt;
+&lt;span id=&#34;20241127203504CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 145.8382&#34;&gt;
+  &lt;text transform=&#34;translate(354.0709 77.2829)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;296.1336&#34; y=&#34;58.9493&#34; width=&#34;124.1905&#34; height=&#34;25.0159&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(457.3593 77.5348)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;420.3241&#34; y=&#34;58.9493&#34; width=&#34;83.6825&#34; height=&#34;25.0159&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(541.0418 77.5348)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;4&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;504.0067&#34; y=&#34;58.9493&#34; width=&#34;83.6825&#34; height=&#34;25.0159&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(608.8513 77.5348)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;587.6892&#34; y=&#34;58.9493&#34; width=&#34;51.9365&#34; height=&#34;25.0159&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;270.8003&#34; y1=&#34;83.9652&#34; x2=&#34;702.0679&#34; y2=&#34;83.9652&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;700.0865 86.8705 710.9273 83.9652 700.0865 81.0599 700.0865 86.8705&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;296.1336&#34; y1=&#34;123.1557&#34; x2=&#34;296.1336&#34; y2=&#34;92.9039&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;299.0389 94.8854 296.1336 84.0446 293.2284 94.8854 299.0389 94.8854&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;373.6257&#34; y1=&#34;123.1557&#34; x2=&#34;373.6257&#34; y2=&#34;92.9039&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;376.531 94.8854 373.6257 84.0446 370.7204 94.8854 376.531 94.8854&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;398.7686&#34; y1=&#34;123.1557&#34; x2=&#34;398.7686&#34; y2=&#34;92.9039&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;401.6738 94.8854 398.7686 84.0446 395.8633 94.8854 401.6738 94.8854&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(291.107 143.2585)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(368.633 143.2587)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(394.7283 143.2585)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;483.1812&#34; y1=&#34;123.271&#34; x2=&#34;483.1812&#34; y2=&#34;93.0193&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;486.0865 95.0007 483.1812 84.1599 480.276 95.0007 486.0865 95.0007&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(479.141 143.3738)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;4&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;358.2289&#34; y1=&#34;58.9493&#34; x2=&#34;358.2289&#34; y2=&#34;28.6976&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;361.1342 30.679 358.2289 19.8382 355.3236 30.679 361.1342 30.679&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;462.1654&#34; y1=&#34;58.9493&#34; x2=&#34;462.1654&#34; y2=&#34;28.6976&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;465.0706 30.679 462.1654 19.8382 459.2601 30.679 465.0706 30.679&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;545.8479&#34; y1=&#34;58.9493&#34; x2=&#34;545.8479&#34; y2=&#34;28.6976&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;548.7532 30.679 545.8479 19.8382 542.9426 30.679 548.7532 30.679&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;613.6575&#34; y1=&#34;58.9493&#34; x2=&#34;613.6575&#34; y2=&#34;28.6976&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;616.5627 30.679 613.6575 19.8382 610.7522 30.679 616.5627 30.679&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(353.5232 15.8405)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(456.8115 16.0924)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(540.494 16.0924)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;4&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(608.3036 16.0924)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(140.2092 15.8403)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;开始截止时间&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(176.2092 86.23)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;任务执行&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(176.2093 143.2588)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;任务到达&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(717.0646 88.6416)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;EDF算法用于非抢占调度方式&lt;/p&gt;
+&lt;h4 id=&#34;抢占式调度方式用于周期实时任务&#34;&gt;抢占式调度方式用于周期实时任务
+&lt;/h4&gt;</description>
         </item>
         <item>
         <title>操作系统（二）：进程的描述与控制</title>

@@ -131,7 +131,7 @@
 <meta property='og:description' content="从就绪队列中选择进程，并将处理机分配给它运行，以实现进程的并发执行">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/operating_system/processor_scheduling_and_deadlock/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='处理机调度' /><meta property='article:published_time' content='2024-11-24T16:28:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-27T08:57:46&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='处理机调度' /><meta property='article:published_time' content='2024-11-24T16:28:25&#43;08:00'/><meta property='article:modified_time' content='2024-11-27T20:45:04&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="操作系统（三）：处理机调度与死锁">
 <meta name="twitter:description" content="从就绪队列中选择进程，并将处理机分配给它运行，以实现进程的并发执行"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -874,6 +874,36 @@
             <li><a href="#调度算法的性能">调度算法的性能</a></li>
           </ol>
         </li>
+        <li><a href="#基于公平原则的调度算法">基于公平原则的调度算法</a>
+          <ol>
+            <li><a href="#保证调度算法">保证调度算法</a></li>
+            <li><a href="#公平分享调度算法">公平分享调度算法</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#实时调度">实时调度</a>
+      <ol>
+        <li><a href="#实现实时调度的基本条件">实现实时调度的基本条件</a>
+          <ol>
+            <li><a href="#提供必要的信息">提供必要的信息</a></li>
+            <li><a href="#系统处理能力强">系统处理能力强</a></li>
+            <li><a href="#采用抢占式调度机制">采用抢占式调度机制</a></li>
+            <li><a href="#具有快速切换机制">具有快速切换机制</a></li>
+          </ol>
+        </li>
+        <li><a href="#实时调度算法的分类">实时调度算法的分类</a>
+          <ol>
+            <li><a href="#非抢占式调度算法">非抢占式调度算法</a></li>
+            <li><a href="#抢占式调度算法">抢占式调度算法</a></li>
+          </ol>
+        </li>
+        <li><a href="#最早截止时间优先edfearliest-deadline-first算法">最早截止时间优先EDF(Earliest Deadline First)算法</a>
+          <ol>
+            <li><a href="#非抢占式调度方式用于非周期实时任务">非抢占式调度方式用于非周期实时任务</a></li>
+            <li><a href="#抢占式调度方式用于周期实时任务">抢占式调度方式用于周期实时任务</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -1201,7 +1231,7 @@
 </svg>
 
             <time class="article-words">
-                12153 字
+                15609 字
             </time>
         </div>
 
@@ -1216,7 +1246,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 25 分钟
+                    阅读时长: 32 分钟
                 </time>
             </div>
         
@@ -1823,7 +1853,262 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
   (1)终端型用户。由于终端型用户提交的作业多属于交互型作业，通常较小，系统只要能使这些作业在第一队列规定的时间片内完成，便可使终端型用户感到满意。<br>
   (2)短批处理作业用户。对于这类作业，如果可在第一队列中执行完成，便获得与终端型作业一样的响应时间。对于稍长的短作业，也只需在第二和第三队列各执行一时间片完成，其周转时间仍然较短。<br>
   (3)长批处理作业用户。对于长作业，它将依次在第1,2,···,n个队列中运行，然后再按轮转方式运行，用户不必担心其作业长期得不到处理。</p>
-
+<h3 id="基于公平原则的调度算法">基于公平原则的调度算法
+</h3><p>  以上介绍的几种调度算法所保证的只是优先运行，如优先级算法是优先级最高的作业优先运行，但并不保证作业占用了多少处理机时间。另外也未考虑到调度的公平性。本小节将介绍两种相对公平的调度算法。</p>
+<h4 id="保证调度算法">保证调度算法
+</h4><p>  保证调度算法是另外一种类型的调度算法，它向用户所做出的保证并不是优先运行，而是明确的性能保证，该算法可以做到调度的公平性。一种比较容易实现的性能保证是处理机分配的公平性。如果在系统中有 \(n\) 个相同类型的进程同时运行，为公平起见，须保证每个进程都获得相同的处理机时间 \(\displaystyle\frac{1}{n}\) 。在实施公平调度算法时系统中必须具有这样一些功能：<br>
+  (1)跟踪计算每个进程自创建以来已经执行的处理时间。<br>
+  (2)计算每个进程应获得的处理机时间，即自创建以来的时间除以 \(n\) 。<br>
+  (3)计算进程获得处理机时间的比率，即进程实际执行的处理时间和应获得的处理机时间之比。<br>
+  (4)比较各进程获得处理机时间的比率。如进程A的比率最低，为0.5；而进程B的比率为0.8；进程C的比率为1.2等。<br>
+  (5)调度程序应选择比率最小的进程将处理机分配给它，并让该进程一直运行，直到超过最接近它的进程比率为止。</p>
+<h4 id="公平分享调度算法">公平分享调度算法
+</h4><p>  分配给每个进程相同的处理机时间，显然，这对诸进程而言，是体现了一定程度的公平，但如果各个用户所拥有的进程数不同，就会发生对用户的不公平问题。假如系统中仅有两个用户，用户1启动了4个进程，用户2只启动1个进程，采用轮转法让每个进程轮流运行一个时间片时间，对进程而言很公平，但用户1和用户2得到的处理机时间分别为80%和20%，显然对用户2而言就有失公平。在该调度算法中，调度的公平性主要是针对
+用户而言，使所有用户能获得相同的处理机时间，或所要求的时间比例。然而调度又是以进程为基本单位，为此，必须考虑到每一个用户所拥有的进程数目。例如系统中有两个用
+户，用户1有4个进程A、B、C、D，用户2只有1个进程E。为保证两个用户能获得相
+同的处理机时间，则必须执行如下所示的强制调度序列：</p>
+<p>  A E B E C E D E A E B E C E D E ···</p>
+<p>  如果希望用户1所获得的处理机时间是用户2的两倍，则必须执行如下所示的强制调度序列：</p>
+<p>  A B E C D E A B E C D E A B E C D E ···</p>
+<h2 id="实时调度">实时调度
+</h2><p>  在实时系统中，可能存在着两类不同性质的实时任务，即<a class="link" href="/posts/engineering/computer_science/operating_system/introduction_to_operating_system/#20241126165221CST">HRT任务</a>和<a class="link" href="/posts/engineering/computer_science/operating_system/introduction_to_operating_system/#20241126165233CST">SRT任务</a>，它们都联系着一个截止时间。为保证系统能正常工作，实时调度必须能满足实时任务对截止时间的要求。为此，实现实时调度应具备一定的条件。</p>
+<h3 id="实现实时调度的基本条件">实现实时调度的基本条件
+</h3><h4 id="提供必要的信息">提供必要的信息
+</h4><p>  为了实现实时调度，系统应向调度程序提供有关任务的信息：<br>
+  (1)就绪时间，是指某任务成为就绪状态的起始时间，在周期任务的情况下，它是事先预知的一串时间序列。<br>
+  (2)开始截止时间和完成截止时间，对于典型的实时应用，只须知道开始截止时间，或者完成截止时间。<br>
+  (3)处理时间，一个任务从开始执行，直至完成时所需的时间。<br>
+  (4)资源要求，任务执行时所需的一组资源。<br>
+  (5)优先级，如果某任务的开始截止时间错过，势必引起故障，则应为该任务赋予“绝对”优先级；如果其开始截止时间的错过，对任务的继续运行无重大影响，则可为其赋予“相对”优先级，供调度程序参考。</p>
+<h4 id="系统处理能力强">系统处理能力强
+</h4><p>  在实时系统中，若处理机的处理能力不够强，则有可能因处理机忙不过，而致使某些实时任务不能得到及时处理，从而导致发生难以预料的后果。假定系统中有 \(m\) 个周期性的硬实时任务HRT，它们的处理时间可表示为 \(C_i\) ，周期时间表示为 \(P_i\) ，则在单处理机情况下，必须满足下面的限制条件系统才是可调度的：</p>
+<span id="20241127093658CST"></span>\[
+\sum_{i=1}^{m}\frac{C_i}{P_i} \le 1
+\tag{6}
+    \]
+<p>  顺便说明一下，上述的限制条件并未考虑到任务切换所花费的时间，因此，当利用上述限制条件时，还应适当地留有余地。<br>
+  提高系统处理能力的途径有二：一是采用单处理机系统，但须增强其处理能力，以显著地减少对每一个任务的处理时间；二是采用多处理机系统。假定系统中的处理机数为 \(N\) ，则应将上述的限制条件改为：</p>
+<span id="20241127101829CST"></span>\[
+\sum_{i=1}^{m}\frac{C_i}{P_i} \le N
+\tag{7}
+    \]
+<h4 id="采用抢占式调度机制">采用抢占式调度机制
+</h4><p>  在含有HRT任务的实时系统中，广泛采用抢占机制。这样便可满足HRT任务对截止时间的要求。但这种调度机制比较复杂。对于一些小的实时系统，如果能预知任务的开始截止时间，则对实时任务的调度可采用非抢占调度机制，以简化调度程序和在任务调度时所花费的系统开销。在设计这种调度机制时，应使所有的实时任务都比较小，并在执行完关键性程序和临界区后，能及时地将自己阻塞起来，以便释放出处理机，供调度程序去调度那个开始截止时间即将到达的任务。</p>
+<h4 id="具有快速切换机制">具有快速切换机制
+</h4><p>  为保证硬实时任务能及时运行，在系统中还应具有快速切换机制，使之能进行任务的快速切换。该机制应具有加下两方面的能力：<br>
+  (1)对中断的快速响应能力。对紧迫的外部事件请求中断能及时响应，要求系统具有快速硬件中断机构，还应使禁止中断的时间间隔尽量短，以免耽误时机（其它紧迫任务）。<br>
+  (2)快速的任务分派能力。为了提高分派程序进行任务切换时的速度，应使系统中的每个运行功能单位适当的小，以减少任务切换的时间开销。</p>
+<h3 id="实时调度算法的分类">实时调度算法的分类
+</h3><p>  可以按不同方式对实时调度算法加以分类：①根据实时任务性质，可将实时调度的算法分为硬实时调度算法和软实时调度算法；②按调度方式，则可分为非抢占调度算法和抢占调度算法。</p>
+<h4 id="非抢占式调度算法">非抢占式调度算法
+</h4><p>  (1)非抢占式轮转调度算法。由一台计算机控制若干个相同的（或类似的）对象，为每一个被控对象建立一个实时任务，并将它们排成一个轮转队列。调度程序每次选择队列中的第一个任务投入运行。当该任务完成后，便把它挂在轮转队列的末尾等待，调度程序再选择下一个队首任务运行。这种调度算法可获得数秒至数十秒的响应时间，可用于要求不太严格的实时控制系统中。<br>
+  (2)非抢占式优先调度算法。如果在系统中还含有少数具有一定要求的实时任务，则可采用非抢占式优先调度算法，系统为这些任务赋予了较高的优先级。当这些实时任务到达时，把它们安排在就绪队列的队首，等待当前任务自我终止或运行完成后，便可去调度执行队首的高优先进程。这种调度算法在做了精心的处理后有可能使其响应时间减少到数秒至数百毫秒，因而可用于有一定要求的实时控制系统中。</p>
+<h4 id="抢占式调度算法">抢占式调度算法
+</h4><p>  可根据抢占发生时间的不同而进一步分成以下两种调度算法：<br>
+  (1)基于时钟中断的抢占式优先级调度算法。在某实时任务到达后，如果它的优先级高于当前任务的优先级，这时并不立即抢占当前任务的处理机，而是等到时钟中断发生时，调度程序才剥夺当前任务的执行，将处理机分配给新到的高优先级任务。该算法能获得较好的响应效果，其调度延迟可降为几十至几毫秒，可用于大多数的实时系统中。<br>
+  (2)立即抢占(Immediate Preemption)的优先级调度算法。在这种调度策略中，要求操作系统具有快速响应外部事件中断的能力。一旦出现外部中断，只要当前任务未处于临界区，便能立即剥夺当前任务的执行，把处理机分配给请求中断的紧迫任务。这种算法能获得非常快的响应，可把调度延迟降低到几毫秒至100微秒，甚至更低。<a class="link" href="#20241127194407CST">图4</a>中的(a)、(b)、(c)、(d)分别示出了四种情况的调度时间。</p>
+<span id="20241127194407CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 321.222">
+  <text transform="translate(47.1146 76.2563)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程1</tspan></text>
+  <rect x="29.3492" y="56.9403" width="81.1429" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(128.2575 76.2563)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程2</tspan></text>
+  <rect x="110.4921" y="56.9403" width="81.1429" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(237.8237 76.2563)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">进程n</tspan></text>
+  <rect x="221.1111" y="56.9403" width="81.1429" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(197.7487 76.2563)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">···</tspan></text>
+  <text transform="translate(306.8251 76.2563)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">实时进程</tspan></text>
+  <rect x="302.254" y="56.9403" width="81.1429" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="69.9206" y1="23.119" x2="69.9206" y2="29.119" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="69.9206" y1="33.0819" x2="69.9206" y2="42.9891" style="fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;"/>
+    <line x1="69.9206" y1="44.9706" x2="69.9206" y2="50.9706" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="66.2175 48.162 69.9206 49.7352 73.6238 48.162 69.9206 56.9403 66.2175 48.162"/>
+  </g>
+  <text transform="translate(25.4675 18.2985)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">实时进程请求调度</tspan></text>
+  <g>
+    <line x1="302.254" y1="23.119" x2="302.254" y2="29.119" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="302.254" y1="33.0819" x2="302.254" y2="42.9891" style="fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;"/>
+    <line x1="302.254" y1="44.9706" x2="302.254" y2="50.9706" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="298.5508 48.162 302.254 49.7352 305.9571 48.162 302.254 56.9403 298.5508 48.162"/>
+  </g>
+  <text transform="translate(230.6877 18.2985)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">调度实时进程运行</tspan></text>
+  <line x1="191.6349" y1="81.3413" x2="191.6349" y2="99.1825" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(129.8014 122.2928)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">调度时间</tspan></text>
+  <line x1="29.3492" y1="81.3413" x2="29.3492" y2="116.8968" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <line x1="302.254" y1="81.3413" x2="302.254" y2="116.9921" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="126.6032" y1="115.452" x2="38.2086" y2="115.452" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="40.19 112.5467 29.3492 115.452 40.19 118.3573 40.19 112.5467"/>
+  </g>
+  <g>
+    <line x1="203.9921" y1="115.452" x2="292.3867" y2="115.452" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="290.4052 118.3573 301.246 115.452 290.4052 112.5467 290.4052 118.3573"/>
+  </g>
+  <line x1="110.4921" y1="81.3413" x2="110.4921" y2="94.1349" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(118.9327 154.8449)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.023em;">（a</tspan><tspan x="27" y="0" style="letter-spacing: -.477em;">）</tspan><tspan x="36.4136" y="0">非抢占轮转调度</tspan></text>
+  <text transform="translate(531.984 75.9377)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">当前进程</tspan></text>
+  <rect x="433.3968" y="56.6217" width="269.1746" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(707.1426 75.9377)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">实时进程</tspan></text>
+  <rect x="702.5714" y="56.6217" width="81.1429" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="567.0278" y1="22.8004" x2="567.0278" y2="28.8004" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="567.0278" y1="32.7633" x2="567.0278" y2="42.6705" style="fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;"/>
+    <line x1="567.0278" y1="44.652" x2="567.0278" y2="50.652" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="563.3247 47.8434 567.0278 49.4166 570.731 47.8434 567.0278 56.6217 563.3247 47.8434"/>
+  </g>
+  <text transform="translate(496.0422 18.2982)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">实时进程请求调度</tspan></text>
+  <g>
+    <line x1="702.5714" y1="22.8004" x2="702.5714" y2="28.8004" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="702.5714" y1="32.7633" x2="702.5714" y2="42.6705" style="fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;"/>
+    <line x1="702.5714" y1="44.652" x2="702.5714" y2="50.652" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="698.8683 47.8434 702.5714 49.4166 706.2745 47.8434 702.5714 56.6217 698.8683 47.8434"/>
+  </g>
+  <text transform="translate(667.2216 18.2985)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">时钟中断到来时</tspan></text>
+  <text transform="translate(598.7999 109.4515)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">调度时间</tspan></text>
+  <line x1="567.0278" y1="81.0227" x2="567.0278" y2="111.7857" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <line x1="702.5714" y1="81.0227" x2="702.5714" y2="111.7857" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="598.5079" y1="102.6117" x2="575.8872" y2="102.6117" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="577.8687 99.7064 567.0278 102.6117 577.8687 105.517 577.8687 99.7064"/>
+  </g>
+  <g>
+    <line x1="670.5397" y1="102.6113" x2="693.7121" y2="102.6113" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="691.7307 105.5166 702.5715 102.6113 691.7307 99.706 691.7307 105.5166"/>
+  </g>
+  <text transform="translate(446.9802 154.845)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.023em;">（c</tspan><tspan x="26.6577" y="0" style="letter-spacing: -.477em;">）</tspan><tspan x="36.0718" y="0">基于时钟中断抢占的优先权抢占调度</tspan></text>
+  <line x1="433.3968" y1="81.0227" x2="433.3968" y2="111.7857" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(131.3814 253.4769)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">当前进程</tspan></text>
+  <rect x="32.7942" y="234.1608" width="269.1746" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(306.5399 253.4769)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">实时进程</tspan></text>
+  <rect x="301.9688" y="234.1608" width="81.1429" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="122.4252" y1="200.3396" x2="122.4252" y2="206.3396" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="122.4252" y1="210.3025" x2="122.4252" y2="220.2097" style="fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;"/>
+    <line x1="122.4252" y1="222.1911" x2="122.4252" y2="228.1911" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="118.722 225.3825 122.4252 226.9558 126.1283 225.3825 122.4252 234.1608 118.722 225.3825"/>
+  </g>
+  <text transform="translate(51.4396 195.8373)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">实时进程请求调度</tspan></text>
+  <g>
+    <line x1="301.9688" y1="200.3396" x2="301.9688" y2="206.3396" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="301.9688" y1="210.3025" x2="301.9688" y2="220.2097" style="fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;"/>
+    <line x1="301.9688" y1="222.1911" x2="301.9688" y2="228.1911" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="298.2657 225.3825 301.9688 226.9558 305.6719 225.3825 301.9688 234.1608 298.2657 225.3825"/>
+  </g>
+  <text transform="translate(230.6189 195.8376)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">当前进程运行完成</tspan></text>
+  <text transform="translate(176.197 286.9907)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">调度时间</tspan></text>
+  <g>
+    <line x1="122.4252" y1="258.5618" x2="122.4252" y2="289.3249" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="301.9688" y1="258.5618" x2="301.9688" y2="289.3249" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="174.937" y1="280.1508" x2="131.2845" y2="280.1508" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="133.266 277.2456 122.4252 280.1508 133.266 283.0561 133.266 277.2456"/>
+  </g>
+  <g>
+    <line x1="249.1811" y1="280.1504" x2="293.1094" y2="280.1504" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="291.1279 283.0557 301.9688 280.1504 291.1279 277.2451 291.1279 283.0557"/>
+  </g>
+  <text transform="translate(530.4372 253.4767)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">当前进程</tspan></text>
+  <rect x="431.85" y="234.1606" width="269.1746" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(705.5958 253.4767)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">实时进程</tspan></text>
+  <rect x="701.0246" y="234.1606" width="81.1429" height="24.401" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="521.481" y1="200.3394" x2="521.481" y2="206.3394" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="521.481" y1="210.3023" x2="521.481" y2="220.2095" style="fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;"/>
+    <line x1="521.481" y1="222.1909" x2="521.481" y2="228.1909" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="517.7779 225.3823 521.481 226.9556 525.1841 225.3823 521.481 234.1606 517.7779 225.3823"/>
+  </g>
+  <text transform="translate(450.4954 195.8372)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">实时进程请求调度</tspan></text>
+  <g>
+    <line x1="701.0246" y1="200.3394" x2="701.0246" y2="206.3394" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="701.0246" y1="210.3023" x2="701.0246" y2="220.2095" style="fill: none; stroke: #000; stroke-dasharray: 7.9258 3.9629; stroke-miterlimit: 10;"/>
+    <line x1="701.0246" y1="222.1909" x2="701.0246" y2="228.1909" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="697.3215 225.3823 701.0246 226.9556 704.7277 225.3823 701.0246 234.1606 697.3215 225.3823"/>
+  </g>
+  <text transform="translate(706.3878 195.8374)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">实时进程抢占当前</tspan><tspan x="0" y="21.6001">进</tspan><tspan x="18" y="21.6001" style="letter-spacing: -.02em;">程</tspan><tspan x="35.6401" y="21.6001" style="letter-spacing: -.48em;">，</tspan><tspan x="45" y="21.6001">并立即执行</tspan></text>
+  <text transform="translate(575.2528 286.9905)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">调度时间</tspan></text>
+  <g>
+    <line x1="521.481" y1="258.5616" x2="521.481" y2="289.3247" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <line x1="701.0246" y1="258.5616" x2="701.0246" y2="289.3247" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="573.9929" y1="280.1506" x2="530.3404" y2="280.1506" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="532.3218 277.2454 521.481 280.1506 532.3218 283.0559 532.3218 277.2454"/>
+  </g>
+  <g>
+    <line x1="648.2369" y1="280.1502" x2="692.1652" y2="280.1502" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="690.1838 283.0555 701.0246 280.1502 690.1838 277.2449 690.1838 283.0555"/>
+  </g>
+  <text transform="translate(109.2214 319.6741)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.023em;">（b</tspan><tspan x="28.4219" y="0" style="letter-spacing: -.477em;">）</tspan><tspan x="37.8359" y="0">非抢占优先权调度</tspan></text>
+  <text transform="translate(511.7437 319.6744)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.025em;">(</tspan><tspan x="5.8501" y="0" style="letter-spacing: -.007em;">d</tspan><tspan x="16.8301" y="0">)立即抢占的优先权调度</tspan></text>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;实时进程调度</p>
+<h3 id="最早截止时间优先edfearliest-deadline-first算法">最早截止时间优先EDF(Earliest Deadline First)算法
+</h3><p>  该算法是根据任务的截止时间确定任务的优先级，任务的截止时间愈早，其优先级愈高，具有最早截止时间的任务排在队列的队首。调度程序在选择任务时，总是选择就绪队列中的第一个任务，为之分配处理机。最早截止时间优先算法既可用于抢占式调度方式中，也可用于非抢占式调度方式中。</p>
+<h4 id="非抢占式调度方式用于非周期实时任务">非抢占式调度方式用于非周期实时任务
+</h4><p>  <a class="link" href="#20241127203504CST">图5</a>示出了将该算法用于非抢占调度方式之例。该例中具有四个非周期任务，它们先后到达。系统先调度任务1执行，在任务1执行期间，任务2、3又先后到达。由于任务3的开始截止时间早于任务2的，故系统在任务1后将先调度任务3执行。在此期间又到达作业4,其开始截止时间仍是早于任务2的，故在任务3执行完后，系统又先调度任务4执行，最后才调度任务2执行。</p>
+<span id="20241127203504CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 145.8382">
+  <text transform="translate(354.0709 77.2829)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">1</tspan></text>
+  <rect x="296.1336" y="58.9493" width="124.1905" height="25.0159" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(457.3593 77.5348)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">3</tspan></text>
+  <rect x="420.3241" y="58.9493" width="83.6825" height="25.0159" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(541.0418 77.5348)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">4</tspan></text>
+  <rect x="504.0067" y="58.9493" width="83.6825" height="25.0159" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(608.8513 77.5348)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">2</tspan></text>
+  <rect x="587.6892" y="58.9493" width="51.9365" height="25.0159" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="270.8003" y1="83.9652" x2="702.0679" y2="83.9652" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="700.0865 86.8705 710.9273 83.9652 700.0865 81.0599 700.0865 86.8705"/>
+  </g>
+  <g>
+    <line x1="296.1336" y1="123.1557" x2="296.1336" y2="92.9039" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="299.0389 94.8854 296.1336 84.0446 293.2284 94.8854 299.0389 94.8854"/>
+  </g>
+  <g>
+    <line x1="373.6257" y1="123.1557" x2="373.6257" y2="92.9039" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="376.531 94.8854 373.6257 84.0446 370.7204 94.8854 376.531 94.8854"/>
+  </g>
+  <g>
+    <line x1="398.7686" y1="123.1557" x2="398.7686" y2="92.9039" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="401.6738 94.8854 398.7686 84.0446 395.8633 94.8854 401.6738 94.8854"/>
+  </g>
+  <text transform="translate(291.107 143.2585)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">1</tspan></text>
+  <text transform="translate(368.633 143.2587)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">2</tspan></text>
+  <text transform="translate(394.7283 143.2585)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">3</tspan></text>
+  <g>
+    <line x1="483.1812" y1="123.271" x2="483.1812" y2="93.0193" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="486.0865 95.0007 483.1812 84.1599 480.276 95.0007 486.0865 95.0007"/>
+  </g>
+  <text transform="translate(479.141 143.3738)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">4</tspan></text>
+  <g>
+    <line x1="358.2289" y1="58.9493" x2="358.2289" y2="28.6976" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="361.1342 30.679 358.2289 19.8382 355.3236 30.679 361.1342 30.679"/>
+  </g>
+  <g>
+    <line x1="462.1654" y1="58.9493" x2="462.1654" y2="28.6976" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="465.0706 30.679 462.1654 19.8382 459.2601 30.679 465.0706 30.679"/>
+  </g>
+  <g>
+    <line x1="545.8479" y1="58.9493" x2="545.8479" y2="28.6976" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="548.7532 30.679 545.8479 19.8382 542.9426 30.679 548.7532 30.679"/>
+  </g>
+  <g>
+    <line x1="613.6575" y1="58.9493" x2="613.6575" y2="28.6976" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="616.5627 30.679 613.6575 19.8382 610.7522 30.679 616.5627 30.679"/>
+  </g>
+  <text transform="translate(353.5232 15.8405)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">1</tspan></text>
+  <text transform="translate(456.8115 16.0924)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">3</tspan></text>
+  <text transform="translate(540.494 16.0924)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">4</tspan></text>
+  <text transform="translate(608.3036 16.0924)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">2</tspan></text>
+  <text transform="translate(140.2092 15.8403)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">开始截止时间</tspan></text>
+  <text transform="translate(176.2092 86.23)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">任务执行</tspan></text>
+  <text transform="translate(176.2093 143.2588)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">任务到达</tspan></text>
+  <text transform="translate(717.0646 88.6416)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">t</tspan></text>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;EDF算法用于非抢占调度方式</p>
+<h4 id="抢占式调度方式用于周期实时任务">抢占式调度方式用于周期实时任务
+</h4>
     </div>
 </section>
 
@@ -1868,7 +2153,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 
 
         <span>
-            最后更新于 Nov 27, 2024 08:57 CST
+            最后更新于 Nov 27, 2024 20:45 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2043,7 +2328,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
             
         
         
-        <span>本图书馆累计发布了16篇文章 共27.1万字</span>
+        <span>本图书馆累计发布了16篇文章 共27.4万字</span>
         
     </section>
 
