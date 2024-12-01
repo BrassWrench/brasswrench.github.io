@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库管理系统提供的统一的数据保护功能">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-01T21:15:07&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-01T21:42:19&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（四）：数据库安全性">
 <meta name="twitter:description" content="数据库管理系统提供的统一的数据保护功能"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -825,6 +825,7 @@
           <ol>
             <li><a href="#grant">GRANT</a></li>
             <li><a href="#revoke">REVOKE</a></li>
+            <li><a href="#创建数据库模式的权限">创建数据库模式的权限</a></li>
           </ol>
         </li>
       </ol>
@@ -1152,7 +1153,7 @@
 </svg>
 
             <time class="article-words">
-                8455 字
+                9776 字
             </time>
         </div>
 
@@ -1167,7 +1168,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 17 分钟
+                    阅读时长: 20 分钟
                 </time>
             </div>
         
@@ -1840,7 +1841,7 @@
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表4&emsp;学生—课程数据库中的用户权限定义</p>
 <h4 id="revoke">REVOKE
-</h4><p>  授予用户的权限可以由数据库管理员或其他授权者用REVOKE语句收回，<code>REVOKE</code>语句的一般格式为</p>
+</h4><p>  授予用户的权限可以由数据库管理员或其他授权者用<code>REVOKE</code>语句收回，<code>REVOKE</code>语句的一般格式为</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1853,7 +1854,160 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="p">]</span><span class="err">···</span><span class="p">[</span><span class="k">CASCADE</span><span class="o">|</span><span class="k">RESTRICT</span><span class="p">];</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
+</div><p>  <span id="20241201212459CST"></span><strong>例8</strong>：把用户<code>U4</code>修改学生学号的权限收回。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">U4</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
+</div><p>  <span id="20241201212522CST"></span><strong>例9</strong>：收回所有用户对表<code>SC</code>的查询权限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="k">PUBLIC</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241201212541CST"></span><strong>例10</strong>：把用户<code>U5</code>对<code>SC</code>表的<code>INSERT</code>权限收回。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="k">INSERT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">U5</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  将用户<code>U5</code>的<code>INSERT</code>权限收回的同时，级联（<code>CASCADE</code>）收回了<code>U6</code>和<code>U7</code>的<code>INSERT</code>权限，否则系统将拒绝执行该命令。因为在<a class="link" href="#20241201204854CST">例6</a>中，<code>U5</code>将对<code>SC</code>表的<code>INSERT</code>权限授予了<code>U6</code>，而<code>U6</code>又将其授予了<code>U7</code>（<a class="link" href="#20241201205019CST">例7</a>）。<br>
+  注意：这里默认值为<code>CASCADE</code>，有的数据库管理系统默认值为<code>RESTRICT</code>，将自动执行级联操作。如果<code>U6</code>或<code>U7</code>还从其他用户处获得对<code>SC</code>表的<code>INSERT</code>权限，则 他们仍具有此权限，系统只收回直接或间接从U5处获得的权限。
+<a class="link" href="#20241201213023CST">表5</a>是执行了<a class="link" href="#20241201212459CST">例8</a>~<a class="link" href="#20241201212541CST">例10</a>的语句后学生-课程数据库的用户权限定义。</p>
+<span id="20241201213023CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">授权用户名</th>
+          <th style="text-align: left">被授权用户名</th>
+          <th style="text-align: left">数据库对象名</th>
+          <th style="text-align: left">允许的操作类型</th>
+          <th style="text-align: left">能否转授权</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>DBA</code></td>
+          <td style="text-align: left"><code>U1</code></td>
+          <td style="text-align: left">关系<code>Student</code></td>
+          <td style="text-align: left"><code>SELECT</code></td>
+          <td style="text-align: left">不能</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>DBA</code></td>
+          <td style="text-align: left"><code>U2</code></td>
+          <td style="text-align: left">关系<code>Student</code></td>
+          <td style="text-align: left"><code>ALL</code></td>
+          <td style="text-align: left">不能</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>DBA</code></td>
+          <td style="text-align: left"><code>U2</code></td>
+          <td style="text-align: left">关系<code>Course</code></td>
+          <td style="text-align: left"><code>ALL</code></td>
+          <td style="text-align: left">不能</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>DBA</code></td>
+          <td style="text-align: left"><code>U3</code></td>
+          <td style="text-align: left">关系<code>Student</code></td>
+          <td style="text-align: left"><code>ALL</code></td>
+          <td style="text-align: left">不能</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>DBA</code></td>
+          <td style="text-align: left"><code>U3</code></td>
+          <td style="text-align: left">关系<code>Course</code></td>
+          <td style="text-align: left"><code>ALL</code></td>
+          <td style="text-align: left">不能</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>DBA</code></td>
+          <td style="text-align: left"><code>U4</code></td>
+          <td style="text-align: left">关系<code>Student</code></td>
+          <td style="text-align: left"><code>SELECT</code></td>
+          <td style="text-align: left">不能</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表5&emsp;学生—课程数据库中的用户权限定义</p>
+<p>  SQL提供了非常灵活的授权机制。数据库管理员拥有对数据库中所有对象的所有权限，并可以根据实际情况将不同的权限授予不同的用户。<br>
+  用户对自己建立的基本表和视图拥有全部的操作权限，并且可以用<code>GRANT</code>语句把其中某些权限授予其他用户。被授权的用户如果有“继续授权”的许可，还可以把获得的权限再授予其他用户。<br>
+  所有授予出去的权力在必要时又都可以用<code>REVOKE</code>语句收回。<br>
+  可见，用户可以“自主”地决定将数据的存取权限授予何人、决定是否也将“授权” 的权限授予别人。因此称这样的存取控制是自主存取控制。</p>
+<h4 id="创建数据库模式的权限">创建数据库模式的权限
+</h4><p>  <code>GRANT</code>和<code>REVOKE</code>语句向用户授予或收回对数据的操作权限。对创建数据库模式一类的数据库对象的授权则由数据库管理员在创建用户时实现。<br>
+  <code>CREATE USER</code>语句一般格式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="o">&lt;</span><span class="n">usemame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="k">WITH</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">DBA</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RESOURCE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">CONNECT</span><span class="p">];</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  对<code>CREATE USER</code>语句说明如下：<br>
+  ◦只有系统的超级用户才有权创建一个新的数据库用户。<br>
+  ◦新创建的数据库用户有三种权限：<code>CONNECT</code>、<code>RESOURCE</code>和<code>DBA</code>。<br>
+  ◦<code>CREATE USER</code>命令中如果没有指定创建的新用户的权限，默认该用户拥有CONNECT权限。拥有<code>CONNECT</code>权限的用户不能创建新用户，不能创建模式，也不能创建基本表，只能登录数据库。由数据库管理员或其他用户授予他应有的权限，根据获得的授权情况他可以对数据库对象进行权限范围内的操作。<br>
+  ◦拥有<code>RESOURCE</code>权限的用户能创建基本表和视图，成为所创建对象的属主，但不能创建模式，不能创建新的用户。数据库对象的属主可以使用<code>GRANT</code>语句把该对象上的存取权限授予其他用户。<br>
+  ◦拥有<code>DBA</code>权限的用户是系统中的超级用户，可以创建新的用户、创建模式、创建基 本表和视图等；<code>DBA</code>拥有对所有数据库对象的存取权限，还可以把这些权限授予一般用户。以上说明可以用表4.6来总结。</p>
+<span id="20241201213846CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <tr>
+    <th rowspan="2">拥有的权限</th>
+    <th colspan="4">可否执行的操作</th>
+  </tr>
+  <tr>
+    <th><code>CREATE USER</code></th>
+    <th><code>CREATE SCHEMA</code></th>
+    <th><code>CREATE TABLE</code></th>
+    <th>登录数据库，执行数据查询和操纵</th>
+  </tr>
+  <tr>
+    <td><code>DBA</code></td>
+    <td>可以</td>
+    <td>可以</td>
+    <td>可以</td>
+    <td>可以</td>
+  </tr>
+  <tr>
+    <td><code>RESOURCE</code></td>
+    <td>不可以</td>
+    <td>不可以</td>
+    <td>可以</td>
+    <td>可以</td>
+  </tr>
+  <tr>
+    <td><code>CONNECT</code></td>
+    <td>不可以</td>
+    <td>不可以</td>
+    <td>不可以</td>
+    <td>可以，但必须拥有相应权限</td>
+  </tr>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表6&emsp;权限与可执行的操作对照表</p>
+
     </div>
 </section>
 
@@ -1898,7 +2052,7 @@
 
 
         <span>
-            最后更新于 Dec 01, 2024 21:15 CST
+            最后更新于 Dec 01, 2024 21:42 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2076,7 +2230,7 @@
             
         
         
-        <span>本图书馆累计发布了17篇文章 共29.5万字</span>
+        <span>本图书馆累计发布了17篇文章 共29.6万字</span>
         
     </section>
 
