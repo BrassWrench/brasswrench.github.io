@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 01 Dec 2024 15:46:37 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/sql/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 02 Dec 2024 07:22:17 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/sql/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（三）：关系数据库标准语言SQL</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_database_sql/</link>
         <pubDate>Mon, 11 Nov 2024 17:45:02 +0800</pubDate>
@@ -102,11 +102,11 @@
   (4)数据操纵语言(Data Manipulation Language, DML)。&lt;br&gt;
   它们分别用于定义模式、外模式、内模式和进行数据的存取与处置。当用户数据库投入运行后，如果需要修改模式，必须停止现有数据库的运行，转储数据，修改模式并编译后再重装数据库，十分麻烦。&lt;/p&gt;
 &lt;p&gt;  SQL集数据定义语言、数据操纵语言、数据控制语言的功能于一体，语言风格统一，可以独立完成数据库生命周期中的全部活动，包括以下一系列操作要求：&lt;br&gt;
-  ◦定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。&lt;br&gt;
-  ◦对数据库中的数据进行查询和更新。&lt;br&gt;
-  ◦数据库重构和维护。&lt;br&gt;
-  ◦数据库安全性、完整性控制，以及事务控制。&lt;br&gt;
-  ◦嵌入式SQL和动态SQL定义。&lt;br&gt;
+ ◦定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。&lt;br&gt;
+ ◦对数据库中的数据进行查询和更新。&lt;br&gt;
+ ◦数据库重构和维护。&lt;br&gt;
+ ◦数据库安全性、完整性控制，以及事务控制。&lt;br&gt;
+ ◦嵌入式SQL和动态SQL定义。&lt;br&gt;
   这就为数据库应用系统的开发提供了良好的环境。特别是用户在数据库系统投入运行后还可根据需要随时地、逐步地修改模式，并不影响数据库的运行，从而使系统具有良好的可扩展性。&lt;br&gt;
   另外，在关系模型中实体和实体间的联系均用关系表示，这种数据结构的单一性带来了数据操作符的统一性，查找、插入、删除、更新等每一种操作都只需一种操作符，
 从而克服了非关系系统由于信息表示方式的多样性带来的操作复杂性。例如，在DBTG网状数据库系统中，需要两种插入操作符：&lt;code&gt;STORE&lt;/code&gt;用来把记录存入数据库，&lt;code&gt;CONNECT&lt;/code&gt;用来把记录插入系值（系值是网状数据库中记录之间的一种联系方式）以建立数据之间的联系。&lt;/p&gt;
@@ -245,9 +245,9 @@
 &lt;h2 id=&#34;学生课程数据库&#34;&gt;学生—课程数据库
 &lt;/h2&gt;&lt;p&gt;  本章以学生—课程数据库为例来讲解SQL的数据定义、数据操纵、数据查询和数据控制语句。&lt;br&gt;
   为此，首先要定义一个学生—课程模式&lt;code&gt;S-T&lt;/code&gt;（见&lt;a class=&#34;link&#34; href=&#34;#20241111223104CST&#34;&gt;例1&lt;/a&gt;）。学生-课程数据库中包括以下三个表，它们的定义见&lt;a class=&#34;link&#34; href=&#34;#20241111233348CST&#34;&gt;例5&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111233814CST&#34;&gt;例6&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241111234007CST&#34;&gt;例7&lt;/a&gt;。&lt;br&gt;
-  ◦学生表：Student(&lt;u&gt;Sno&lt;/u&gt;,Sname,Ssex,Sage,Sdept)&lt;br&gt;
-  ◦课程表：Course(&lt;u&gt;Cno&lt;/u&gt;,Cnme,Cpno,Ccredit)&lt;br&gt;
-  ◦学生选课表：SC(&lt;u&gt;Sno&lt;/u&gt;,&lt;u&gt;Cno&lt;/u&gt;,Grade)&lt;br&gt;
+ ◦学生表：Student(&lt;u&gt;Sno&lt;/u&gt;,Sname,Ssex,Sage,Sdept)&lt;br&gt;
+ ◦课程表：Course(&lt;u&gt;Cno&lt;/u&gt;,Cnme,Cpno,Ccredit)&lt;br&gt;
+ ◦学生选课表：SC(&lt;u&gt;Sno&lt;/u&gt;,&lt;u&gt;Cno&lt;/u&gt;,Grade)&lt;br&gt;
   关系的主码加下划线表示。各个表中的数据示例如&lt;a class=&#34;link&#34; href=&#34;#20241111214851CST&#34;&gt;表3&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111215950CST&#34;&gt;表4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111220809CST&#34;&gt;表5&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241111214851CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;p style=&#34;margin-bottom: 0;&#34;&gt;&amp;emsp;&amp;emsp;Student&lt;/p&gt;
 &lt;table&gt;
@@ -1423,8 +1423,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  其含义是查找指定的属性列值与&lt;code&gt;&amp;lt;匹配串&amp;gt;&lt;/code&gt; 相匹配的元组。&lt;code&gt;&amp;lt;匹配串&amp;gt;&lt;/code&gt;可以是一个完整的字符串，也可以含有通配符&lt;code&gt;%&lt;/code&gt;和&lt;code&gt;_&lt;/code&gt;。其中：&lt;br&gt;
-  ◦&lt;code&gt;%&lt;/code&gt;（百分号）代表任意长度（长度可以为&lt;code&gt;0&lt;/code&gt;）的字符串。例如&lt;code&gt;a%b&lt;/code&gt;表示以&lt;code&gt;a&lt;/code&gt;开头，以&lt;code&gt;b&lt;/code&gt;结尾的任意长度的字符串。如&lt;code&gt;acb&lt;/code&gt;、&lt;code&gt;addgb&lt;/code&gt;、&lt;code&gt;ab&lt;/code&gt;等都满足该匹配串。&lt;br&gt;
-  ◦&lt;code&gt;_&lt;/code&gt;（下横线）代表任意单个字符。例如&lt;code&gt;a_b&lt;/code&gt;表示以&lt;code&gt;a&lt;/code&gt;开头，以&lt;code&gt;b&lt;/code&gt;结尾的长度为&lt;code&gt;3&lt;/code&gt;的任意字符串。如&lt;code&gt;acb&lt;/code&gt;、&lt;code&gt;afb&lt;/code&gt;等都满足该匹配串。&lt;/p&gt;
+ ◦&lt;code&gt;%&lt;/code&gt;（百分号）代表任意长度（长度可以为&lt;code&gt;0&lt;/code&gt;）的字符串。例如&lt;code&gt;a%b&lt;/code&gt;表示以&lt;code&gt;a&lt;/code&gt;开头，以&lt;code&gt;b&lt;/code&gt;结尾的任意长度的字符串。如&lt;code&gt;acb&lt;/code&gt;、&lt;code&gt;addgb&lt;/code&gt;、&lt;code&gt;ab&lt;/code&gt;等都满足该匹配串。&lt;br&gt;
+ ◦&lt;code&gt;_&lt;/code&gt;（下横线）代表任意单个字符。例如&lt;code&gt;a_b&lt;/code&gt;表示以&lt;code&gt;a&lt;/code&gt;开头，以&lt;code&gt;b&lt;/code&gt;结尾的长度为&lt;code&gt;3&lt;/code&gt;的任意字符串。如&lt;code&gt;acb&lt;/code&gt;、&lt;code&gt;afb&lt;/code&gt;等都满足该匹配串。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241115231437CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例29&lt;/strong&gt;：查询学号为&lt;code&gt;201215121&lt;/code&gt;的学生的详细情况。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4088,9 +4088,9 @@ p \to q \equiv \lnot p \lor q
 &lt;/div&gt;&lt;h2 id=&#34;空值的处理&#34;&gt;空值的处理
 &lt;/h2&gt;&lt;p&gt;  前面己经多处提到空值(NULL)的概念和空值的处理，这里再系统介绍一下这个问题。所谓空值就是“不知道”或“不存在”或&amp;quot;无意义”的值。SQL语言中允许某些元组
 的某些属性在一定情况下取空值。一般有以下几种情况：&lt;br&gt;
-  ◦该属性应该有一个值，但目前不知道它的具体值。例如，某学生的年龄属性，因为 学生登记表漏填了，不知道该学生年龄，因此取空值。&lt;br&gt;
-  ◦该属性不应该有值。例如，缺考学生的成绩为空，因为他没有参加考试。&lt;br&gt;
-  ◦由于某种原因不便于填写。例如，一个人的电话号码不想让大家知道，则取空值。&lt;br&gt;
+ ◦该属性应该有一个值，但目前不知道它的具体值。例如，某学生的年龄属性，因为 学生登记表漏填了，不知道该学生年龄，因此取空值。&lt;br&gt;
+ ◦该属性不应该有值。例如，缺考学生的成绩为空，因为他没有参加考试。&lt;br&gt;
+ ◦由于某种原因不便于填写。例如，一个人的电话号码不想让大家知道，则取空值。&lt;br&gt;
   因此，空值是一个很特殊的值，含有不确定性，对关系运算带来特殊的问题，需要做特殊的处理。&lt;/p&gt;
 &lt;h4 id=&#34;空值的产生&#34;&gt;空值的产生
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241117205910CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例79&lt;/strong&gt;：向&lt;code&gt;SC&lt;/code&gt;表中插入一个元组，学生号是“201215126”，课程号是&amp;quot;1”，成绩为空。&lt;/p&gt;

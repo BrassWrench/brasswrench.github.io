@@ -131,7 +131,7 @@
 <meta property='og:description' content="文本的表示、自然语言处理的任务、基本问题和评价指标">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='人工智能' /><meta property='article:tag' content='自然语言处理' /><meta property='article:published_time' content='2024-11-13T01:11:04&#43;08:00'/><meta property='article:modified_time' content='2024-11-26T18:27:01&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='人工智能' /><meta property='article:tag' content='自然语言处理' /><meta property='article:published_time' content='2024-11-13T01:11:04&#43;08:00'/><meta property='article:modified_time' content='2024-12-02T07:22:17&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="自然语言处理（二）：自然语言处理基础">
 <meta name="twitter:description" content="文本的表示、自然语言处理的任务、基本问题和评价指标"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1313,9 +1313,9 @@
 <p>  表中的每一行代表一个词的向量。通过计算两个向量之间的余弦函数，就可 以计算两个词的相似度。如“喜欢”和“爱”，由于有共同的上下文“我”和“学习”，使得它们之间具有了一定的相似性，而不是如独热表示一样，没有任何关系。<br>
   除了词，上下文的选择有很多种方式，而选择不同的上下文得到的词向量表示性质会有所不同。例如，可以使用词在句子中的一个固定窗口内的词作为其上下文，也可以使用所在的文档本身作为上下文。前者得到的词表示将更多地反映词的局部性质：具有相似词法、句法属性的词将会具有相似的向量表示。而后者 将更多地反映词代表的主题信息。
 不过，直接使用与上下文的共现频次作为词的向量表示，至少存在以下三个问题：<br>
-  ◦高频词误导计算结果。如上例中，“我”“。”与其他词的共现频次很高，导致实际上可能没有关系的两个词由于都和这些词共现过，从而产生了较高的 相似度。<br>
-  ◦共现频次无法反映词之间的高阶关系。例如，假设词“A”与”B”共现过，“B”与&quot;C”共现过，“C”与“D&quot;共现过，通过共现频次，只能获知“A”与“C”都与“B”共现过，它们之间存在一定的关系，而“A”与“D”这种高阶的关系则无法知晓。<br>
-  ◦仍然存在稀疏性的问题。即向量中仍有大量的值为0，这一点从<a class="link" href="#20241113015119CST">表1</a>中也可以看出。<br>
+ ◦高频词误导计算结果。如上例中，“我”“。”与其他词的共现频次很高，导致实际上可能没有关系的两个词由于都和这些词共现过，从而产生了较高的 相似度。<br>
+ ◦共现频次无法反映词之间的高阶关系。例如，假设词“A”与”B”共现过，“B”与&quot;C”共现过，“C”与“D&quot;共现过，通过共现频次，只能获知“A”与“C”都与“B”共现过，它们之间存在一定的关系，而“A”与“D”这种高阶的关系则无法知晓。<br>
+ ◦仍然存在稀疏性的问题。即向量中仍有大量的值为0，这一点从<a class="link" href="#20241113015119CST">表1</a>中也可以看出。<br>
   下面分别介绍如何通过点互信息和奇异值分解两种技术来解决这些问题。</p>
 <h4 id="点互信息">点互信息
 </h4><p>  首先看如何解决高频词误导计算结果的问题。最直接的想法是：如果一个词与很多词共现，则降低其权重；反之，如果一个词只与个别词共现，则提高其权重。信息论中的<strong>点互信息（Pointwise Mutual Information，PMI）</strong>‌恰好能够做到这一点。对于词 \(w\) 和上下文 \(c\) ，其PMI为：</p>
@@ -2494,9 +2494,9 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
 状态向前前进一步的方式，体现了状态变化的策略，转移动作的选择本质上就是一个分类问题，其分类器的特征从当前的状态中加以提取。<br>
   首先，来看如何使用基于转移的算法解决依存句法分析问题。在此，以一种非常简单的标准弧（Arc-standard）转移算法为例，转移状态由一个栈(Stack)和一个队列(Queue)构成，栈中存储的是依存结构子树序列 \(S_m \cdots S_1S_0\) ，队列中存储的是未处理的词 \(Q_0Q_1 \cdots Q_n\) 在初始转移状态中，栈为空，句子当中的所有词有序地填入队列中；在结束转移状态中，栈中存储着一棵完整的依存结构句法分析树，队列为空。<br>
   另外，算法定义了以下三种转移动作，分别为移进（Shift，SH）、左弧归约（Reduce-Left，RL）和右弧归约（Reduce-Right，RR），具体含义如下：<br>
-  ◦SH，将队列中的第一个元素移入栈顶，形成一个仅包含一个节点的依存子树；<br>
-  ◦RL，将栈顶的两棵依存子树采用一个左弧 \(S_1 \curvearrowleft S_0\) 进行合并，然后 \(S_1\) 下栈；<br>
-  ◦RR，将栈顶的两棵依存子树采用一个右弧 \(S_1 \curvearrowright S_0\) 进行合并，然后 \(S_0\) 下栈。<br>
+ ◦SH，将队列中的第一个元素移入栈顶，形成一个仅包含一个节点的依存子树；<br>
+ ◦RL，将栈顶的两棵依存子树采用一个左弧 \(S_1 \curvearrowleft S_0\) 进行合并，然后 \(S_1\) 下栈；<br>
+ ◦RR，将栈顶的两棵依存子树采用一个右弧 \(S_1 \curvearrowright S_0\) 进行合并，然后 \(S_0\) 下栈。<br>
   <a class="link" href="#20241114235423CST">图4</a>展示了面向依存句法分析的标准弧转移算法中的三种动作。除了以上三个动作，还定义了一个特殊的完成动作（Finish，FIN）。根据上述的定义，可以使用<a class="link" href="#20241115000931CST">表9</a>中的动作序列逐步生成<a class="link" href="#20241114184735CST">图2</a>(b)所示的依存结构句法树。弧上的句法关系可以在生成弧的时候（采用RL或RR动作），使用额外的句法关系分类器加以预测。</p>
 <span id="20241114235423CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
@@ -2973,7 +2973,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 
 
         <span>
-            最后更新于 Nov 26, 2024 18:27 CST
+            最后更新于 Dec 02, 2024 07:22 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 01 Dec 2024 21:42:19 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 02 Dec 2024 07:22:17 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（四）：数据库安全性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/</link>
         <pubDate>Sun, 01 Dec 2024 15:18:44 +0800</pubDate>
@@ -798,11 +798,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  对&lt;code&gt;CREATE USER&lt;/code&gt;语句说明如下：&lt;br&gt;
-  ◦只有系统的超级用户才有权创建一个新的数据库用户。&lt;br&gt;
-  ◦新创建的数据库用户有三种权限：&lt;code&gt;CONNECT&lt;/code&gt;、&lt;code&gt;RESOURCE&lt;/code&gt;和&lt;code&gt;DBA&lt;/code&gt;。&lt;br&gt;
-  ◦&lt;code&gt;CREATE USER&lt;/code&gt;命令中如果没有指定创建的新用户的权限，默认该用户拥有CONNECT权限。拥有&lt;code&gt;CONNECT&lt;/code&gt;权限的用户不能创建新用户，不能创建模式，也不能创建基本表，只能登录数据库。由数据库管理员或其他用户授予他应有的权限，根据获得的授权情况他可以对数据库对象进行权限范围内的操作。&lt;br&gt;
-  ◦拥有&lt;code&gt;RESOURCE&lt;/code&gt;权限的用户能创建基本表和视图，成为所创建对象的属主，但不能创建模式，不能创建新的用户。数据库对象的属主可以使用&lt;code&gt;GRANT&lt;/code&gt;语句把该对象上的存取权限授予其他用户。&lt;br&gt;
-  ◦拥有&lt;code&gt;DBA&lt;/code&gt;权限的用户是系统中的超级用户，可以创建新的用户、创建模式、创建基 本表和视图等；&lt;code&gt;DBA&lt;/code&gt;拥有对所有数据库对象的存取权限，还可以把这些权限授予一般用户。以上说明可以用表4.6来总结。&lt;/p&gt;
+ ◦只有系统的超级用户才有权创建一个新的数据库用户。&lt;br&gt;
+ ◦新创建的数据库用户有三种权限：&lt;code&gt;CONNECT&lt;/code&gt;、&lt;code&gt;RESOURCE&lt;/code&gt;和&lt;code&gt;DBA&lt;/code&gt;。&lt;br&gt;
+ ◦&lt;code&gt;CREATE USER&lt;/code&gt;命令中如果没有指定创建的新用户的权限，默认该用户拥有CONNECT权限。拥有&lt;code&gt;CONNECT&lt;/code&gt;权限的用户不能创建新用户，不能创建模式，也不能创建基本表，只能登录数据库。由数据库管理员或其他用户授予他应有的权限，根据获得的授权情况他可以对数据库对象进行权限范围内的操作。&lt;br&gt;
+ ◦拥有&lt;code&gt;RESOURCE&lt;/code&gt;权限的用户能创建基本表和视图，成为所创建对象的属主，但不能创建模式，不能创建新的用户。数据库对象的属主可以使用&lt;code&gt;GRANT&lt;/code&gt;语句把该对象上的存取权限授予其他用户。&lt;br&gt;
+ ◦拥有&lt;code&gt;DBA&lt;/code&gt;权限的用户是系统中的超级用户，可以创建新的用户、创建模式、创建基 本表和视图等；&lt;code&gt;DBA&lt;/code&gt;拥有对所有数据库对象的存取权限，还可以把这些权限授予一般用户。以上说明可以用&lt;a class=&#34;link&#34; href=&#34;#20241201213846CST&#34;&gt;表6&lt;/a&gt;来总结。&lt;/p&gt;
 &lt;span id=&#34;20241201213846CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;tr&gt;
     &lt;th rowspan=&#34;2&#34;&gt;拥有的权限&lt;/th&gt;
@@ -934,11 +934,11 @@
   (4)数据操纵语言(Data Manipulation Language, DML)。&lt;br&gt;
   它们分别用于定义模式、外模式、内模式和进行数据的存取与处置。当用户数据库投入运行后，如果需要修改模式，必须停止现有数据库的运行，转储数据，修改模式并编译后再重装数据库，十分麻烦。&lt;/p&gt;
 &lt;p&gt;  SQL集数据定义语言、数据操纵语言、数据控制语言的功能于一体，语言风格统一，可以独立完成数据库生命周期中的全部活动，包括以下一系列操作要求：&lt;br&gt;
-  ◦定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。&lt;br&gt;
-  ◦对数据库中的数据进行查询和更新。&lt;br&gt;
-  ◦数据库重构和维护。&lt;br&gt;
-  ◦数据库安全性、完整性控制，以及事务控制。&lt;br&gt;
-  ◦嵌入式SQL和动态SQL定义。&lt;br&gt;
+ ◦定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。&lt;br&gt;
+ ◦对数据库中的数据进行查询和更新。&lt;br&gt;
+ ◦数据库重构和维护。&lt;br&gt;
+ ◦数据库安全性、完整性控制，以及事务控制。&lt;br&gt;
+ ◦嵌入式SQL和动态SQL定义。&lt;br&gt;
   这就为数据库应用系统的开发提供了良好的环境。特别是用户在数据库系统投入运行后还可根据需要随时地、逐步地修改模式，并不影响数据库的运行，从而使系统具有良好的可扩展性。&lt;br&gt;
   另外，在关系模型中实体和实体间的联系均用关系表示，这种数据结构的单一性带来了数据操作符的统一性，查找、插入、删除、更新等每一种操作都只需一种操作符，
 从而克服了非关系系统由于信息表示方式的多样性带来的操作复杂性。例如，在DBTG网状数据库系统中，需要两种插入操作符：&lt;code&gt;STORE&lt;/code&gt;用来把记录存入数据库，&lt;code&gt;CONNECT&lt;/code&gt;用来把记录插入系值（系值是网状数据库中记录之间的一种联系方式）以建立数据之间的联系。&lt;/p&gt;
@@ -1077,9 +1077,9 @@
 &lt;h2 id=&#34;学生课程数据库&#34;&gt;学生—课程数据库
 &lt;/h2&gt;&lt;p&gt;  本章以学生—课程数据库为例来讲解SQL的数据定义、数据操纵、数据查询和数据控制语句。&lt;br&gt;
   为此，首先要定义一个学生—课程模式&lt;code&gt;S-T&lt;/code&gt;（见&lt;a class=&#34;link&#34; href=&#34;#20241111223104CST&#34;&gt;例1&lt;/a&gt;）。学生-课程数据库中包括以下三个表，它们的定义见&lt;a class=&#34;link&#34; href=&#34;#20241111233348CST&#34;&gt;例5&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111233814CST&#34;&gt;例6&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;#20241111234007CST&#34;&gt;例7&lt;/a&gt;。&lt;br&gt;
-  ◦学生表：Student(&lt;u&gt;Sno&lt;/u&gt;,Sname,Ssex,Sage,Sdept)&lt;br&gt;
-  ◦课程表：Course(&lt;u&gt;Cno&lt;/u&gt;,Cnme,Cpno,Ccredit)&lt;br&gt;
-  ◦学生选课表：SC(&lt;u&gt;Sno&lt;/u&gt;,&lt;u&gt;Cno&lt;/u&gt;,Grade)&lt;br&gt;
+ ◦学生表：Student(&lt;u&gt;Sno&lt;/u&gt;,Sname,Ssex,Sage,Sdept)&lt;br&gt;
+ ◦课程表：Course(&lt;u&gt;Cno&lt;/u&gt;,Cnme,Cpno,Ccredit)&lt;br&gt;
+ ◦学生选课表：SC(&lt;u&gt;Sno&lt;/u&gt;,&lt;u&gt;Cno&lt;/u&gt;,Grade)&lt;br&gt;
   关系的主码加下划线表示。各个表中的数据示例如&lt;a class=&#34;link&#34; href=&#34;#20241111214851CST&#34;&gt;表3&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111215950CST&#34;&gt;表4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241111220809CST&#34;&gt;表5&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241111214851CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;p style=&#34;margin-bottom: 0;&#34;&gt;&amp;emsp;&amp;emsp;Student&lt;/p&gt;
 &lt;table&gt;
@@ -2255,8 +2255,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  其含义是查找指定的属性列值与&lt;code&gt;&amp;lt;匹配串&amp;gt;&lt;/code&gt; 相匹配的元组。&lt;code&gt;&amp;lt;匹配串&amp;gt;&lt;/code&gt;可以是一个完整的字符串，也可以含有通配符&lt;code&gt;%&lt;/code&gt;和&lt;code&gt;_&lt;/code&gt;。其中：&lt;br&gt;
-  ◦&lt;code&gt;%&lt;/code&gt;（百分号）代表任意长度（长度可以为&lt;code&gt;0&lt;/code&gt;）的字符串。例如&lt;code&gt;a%b&lt;/code&gt;表示以&lt;code&gt;a&lt;/code&gt;开头，以&lt;code&gt;b&lt;/code&gt;结尾的任意长度的字符串。如&lt;code&gt;acb&lt;/code&gt;、&lt;code&gt;addgb&lt;/code&gt;、&lt;code&gt;ab&lt;/code&gt;等都满足该匹配串。&lt;br&gt;
-  ◦&lt;code&gt;_&lt;/code&gt;（下横线）代表任意单个字符。例如&lt;code&gt;a_b&lt;/code&gt;表示以&lt;code&gt;a&lt;/code&gt;开头，以&lt;code&gt;b&lt;/code&gt;结尾的长度为&lt;code&gt;3&lt;/code&gt;的任意字符串。如&lt;code&gt;acb&lt;/code&gt;、&lt;code&gt;afb&lt;/code&gt;等都满足该匹配串。&lt;/p&gt;
+ ◦&lt;code&gt;%&lt;/code&gt;（百分号）代表任意长度（长度可以为&lt;code&gt;0&lt;/code&gt;）的字符串。例如&lt;code&gt;a%b&lt;/code&gt;表示以&lt;code&gt;a&lt;/code&gt;开头，以&lt;code&gt;b&lt;/code&gt;结尾的任意长度的字符串。如&lt;code&gt;acb&lt;/code&gt;、&lt;code&gt;addgb&lt;/code&gt;、&lt;code&gt;ab&lt;/code&gt;等都满足该匹配串。&lt;br&gt;
+ ◦&lt;code&gt;_&lt;/code&gt;（下横线）代表任意单个字符。例如&lt;code&gt;a_b&lt;/code&gt;表示以&lt;code&gt;a&lt;/code&gt;开头，以&lt;code&gt;b&lt;/code&gt;结尾的长度为&lt;code&gt;3&lt;/code&gt;的任意字符串。如&lt;code&gt;acb&lt;/code&gt;、&lt;code&gt;afb&lt;/code&gt;等都满足该匹配串。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241115231437CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例29&lt;/strong&gt;：查询学号为&lt;code&gt;201215121&lt;/code&gt;的学生的详细情况。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4920,9 +4920,9 @@ p \to q \equiv \lnot p \lor q
 &lt;/div&gt;&lt;h2 id=&#34;空值的处理&#34;&gt;空值的处理
 &lt;/h2&gt;&lt;p&gt;  前面己经多处提到空值(NULL)的概念和空值的处理，这里再系统介绍一下这个问题。所谓空值就是“不知道”或“不存在”或&amp;quot;无意义”的值。SQL语言中允许某些元组
 的某些属性在一定情况下取空值。一般有以下几种情况：&lt;br&gt;
-  ◦该属性应该有一个值，但目前不知道它的具体值。例如，某学生的年龄属性，因为 学生登记表漏填了，不知道该学生年龄，因此取空值。&lt;br&gt;
-  ◦该属性不应该有值。例如，缺考学生的成绩为空，因为他没有参加考试。&lt;br&gt;
-  ◦由于某种原因不便于填写。例如，一个人的电话号码不想让大家知道，则取空值。&lt;br&gt;
+ ◦该属性应该有一个值，但目前不知道它的具体值。例如，某学生的年龄属性，因为 学生登记表漏填了，不知道该学生年龄，因此取空值。&lt;br&gt;
+ ◦该属性不应该有值。例如，缺考学生的成绩为空，因为他没有参加考试。&lt;br&gt;
+ ◦由于某种原因不便于填写。例如，一个人的电话号码不想让大家知道，则取空值。&lt;br&gt;
   因此，空值是一个很特殊的值，含有不确定性，对关系运算带来特殊的问题，需要做特殊的处理。&lt;/p&gt;
 &lt;h4 id=&#34;空值的产生&#34;&gt;空值的产生
 &lt;/h4&gt;&lt;p&gt;  &lt;span id=&#34;20241117205910CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例79&lt;/strong&gt;：向&lt;code&gt;SC&lt;/code&gt;表中插入一个元组，学生号是“201215126”，课程号是&amp;quot;1”，成绩为空。&lt;/p&gt;
@@ -6083,15 +6083,15 @@ R(A_1,A_2,\cdots,A_n)
 &lt;p&gt;  需要指出的是，外码并不一定要与相应的主码同名，如例2.3中学生关系的主码为学号，外码为班长。不过，在实际应用中为了便于识别，当外码与相应的主码属于不同关系时，往往给它们取相同的名字。&lt;/p&gt;
 &lt;p&gt;  参照完整性规则就是定义外码与主码之间的引用规则。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;参照完整性规则&lt;/strong&gt;：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须： &lt;br&gt;
-  ◦或者取空值（ \(F\) 的每个属性值均为空值）。&lt;br&gt;
-  ◦或者等于 \(S\) 中某个元组的主码值。&lt;/p&gt;
+ ◦或者取空值（ \(F\) 的每个属性值均为空值）。&lt;br&gt;
+ ◦或者等于 \(S\) 中某个元组的主码值。&lt;/p&gt;
 &lt;p&gt;  例如，对于&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;，学生关系中每个元组的“专业号”属性只能取下面两类值：&lt;br&gt;
-  ◦空值，表示尚未给该学生分配专业。&lt;br&gt;
-  ◦非空值，这时该值必须是专业关系中某个元组的“专业号”值，表示该学生不可能分配到一个不存在的专业中。即被参照关系“专业”中一定存在一个元组，它的主码值等于该参照关系&amp;quot;学生&amp;quot;中的外码值。&lt;/p&gt;
+ ◦空值，表示尚未给该学生分配专业。&lt;br&gt;
+ ◦非空值，这时该值必须是专业关系中某个元组的“专业号”值，表示该学生不可能分配到一个不存在的专业中。即被参照关系“专业”中一定存在一个元组，它的主码值等于该参照关系&amp;quot;学生&amp;quot;中的外码值。&lt;/p&gt;
 &lt;p&gt;  对于&lt;a class=&#34;link&#34; href=&#34;#20241025091438CST&#34;&gt;例2&lt;/a&gt;，按照参照完整性规则，“学号”和“课程号”属性也可以取两类值：空值或目标关系中已经存在的值。但由于“学号&amp;quot;和&amp;quot;课程号”是选修关系中的主属性，按照&lt;a class=&#34;link&#34; href=&#34;#20241025155618CST&#34;&gt;实体完整性规则&lt;/a&gt;，它们均不能取空值，所以选修关系中的&amp;quot;学号”和“课程号”属性实际上只能取相应被参照关系中已经存在的主码值。&lt;br&gt;
   参照完整性规则中， \(R\) 与 \(S\) 可以是同一个关系。例如对于&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;按照参照完整性规则，“班长”属性值可以取两类值：&lt;br&gt;
-  ◦空值，表示该学生所在班级尚未选出班长。&lt;br&gt;
-  ◦非空值，这时该值必须是本关系中某个元组的学号值。&lt;/p&gt;
+ ◦空值，表示该学生所在班级尚未选出班长。&lt;br&gt;
+ ◦非空值，这时该值必须是本关系中某个元组的学号值。&lt;/p&gt;
 &lt;h3 id=&#34;用户定义的完整性&#34;&gt;用户定义的完整性
 &lt;/h3&gt;&lt;p&gt;  任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反映某一具体应用所涉及的数据必须满足的语义要求。例如某个属性必须取唯一值、某个非主属性不能取空值等。例如，在&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;的学生关系中，若按照应用的要求学生不能没有姓名，则可以定义学生姓名不能取空值；某个属性（如学生的成绩），的取值范围可以定义在0〜100之间等。&lt;br&gt;
   关系模型应提供定义和检验这类完整性的机制，以便用统一的系统的方法处理它们，而不需由应用程序承担这一功能。&lt;br&gt;
@@ -10340,12 +10340,12 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   此外，数据模型还应该提供定义完整性约束条件的机制，以反映具体应用所涉及的数据必须遵守的特定的语义约束条件。例如，在某大学的数据库中规定学生成绩如果有6门以上不及格将不能授予学士学位，教授的退休年龄是65周岁，男职工的退休年龄是60周岁，女职工的退休年龄是55周岁等。&lt;/p&gt;
 &lt;h3 id=&#34;常用数据模型&#34;&gt;常用数据模型
 &lt;/h3&gt;&lt;p&gt;  数据库领域中主要的逻辑数据模型有：&lt;br&gt;
-  ◦层次模型(hierarchical model)&lt;br&gt;
-  ◦网状模型(network model)&lt;br&gt;
-  ◦关系模型(relational model)&lt;br&gt;
-  ◦面向对象数据模型(object oriented data model)&lt;br&gt;
-  ◦对象关系数据模型(object relational data model)&lt;br&gt;
-  ◦半结构化数据模型(semistructure data model)&lt;/p&gt;
+ ◦层次模型(hierarchical model)&lt;br&gt;
+ ◦网状模型(network model)&lt;br&gt;
+ ◦关系模型(relational model)&lt;br&gt;
+ ◦面向对象数据模型(object oriented data model)&lt;br&gt;
+ ◦对象关系数据模型(object relational data model)&lt;br&gt;
+ ◦半结构化数据模型(semistructure data model)&lt;/p&gt;
 &lt;p&gt;  其中层次模型和网状模型统称为&lt;strong&gt;格式化模型&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;  格式化模型的数据库系统在20世纪70年代至80年代初非常流行，在数据库系统产品中占据了主导地位。层次数据库系统和网状数据库系统在使用和实现上都要涉及数据库物理层的复杂结构，现在已逐渐被关系模型的数据库系统取代。但在美国及欧洲的一些国家里，由于早期开发的应用系统都是基于层次数据库或网状数据库系统的，因此目前仍有一些层次数据库系统或网状数据库系统在继续使用。&lt;br&gt;
   20世纪80年代以来，面向对象的方法和技术在计算机各个领域，包括程序设计语言、软件工程、信息系统设计、计算机硬件设计等方面都产生了深远的影响，也促进数据库中面向对象数据模型的研究和发展。许多关系数据库厂商为了支持面向对象模型，对关系模型做了扩展，从而产生了对象关系数据模型。&lt;br&gt;
@@ -11077,13 +11077,13 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表5&amp;emsp;关系模型的数据结构&lt;/p&gt;
-&lt;p&gt;  ◦ &lt;strong&gt;关系(relation)&lt;/strong&gt;： 一个关系对应通常说的一张表，例如&lt;a class=&#34;link&#34; href=&#34;#20241023191948CST&#34;&gt;表5&lt;/a&gt;中的这张学生登记表。&lt;br&gt;
-  ◦ &lt;strong&gt;元组(tuple)&lt;/strong&gt;：表中的一行即为一个元组。&lt;br&gt;
-  ◦&lt;strong&gt;属性(attribute)&lt;/strong&gt;：表中的一列即为一个属性，给每一个属性起一个名称即属性名。 如&lt;a class=&#34;link&#34; href=&#34;#20241023191948CST&#34;&gt;表5&lt;/a&gt;所示的表有6列，对应6个属性（学号，姓名，年龄，性别，系名和年级）。&lt;br&gt;
-  ◦&lt;strong&gt;码(key)&lt;/strong&gt;：也称为码键。表中的某个属性组，它可以唯一确定一个元组，如&lt;a class=&#34;link&#34; href=&#34;#20241023191948CST&#34;&gt;表5&lt;/a&gt;中的学号可以唯一确定一个学生，也就成为本关系的码。&lt;br&gt;
-  ◦&lt;strong&gt;域(domain)&lt;/strong&gt;：域是一组具有相同数据类型的值的集合。属性的取值范围来自某个域。 如人的年龄一般在1〜120岁之间，大学生年龄属性的域是（15〜45岁），性别的域是（男，女），系名的域是一个学校所有系名的集合。&lt;br&gt;
-  ◦&lt;strong&gt;分量&lt;/strong&gt;：元组中的一个属性值。&lt;br&gt;
-  ◦&lt;strong&gt;关系模式&lt;/strong&gt;：对关系的描述，一般表示为&lt;br&gt;
+&lt;p&gt; ◦ &lt;strong&gt;关系(relation)&lt;/strong&gt;： 一个关系对应通常说的一张表，例如&lt;a class=&#34;link&#34; href=&#34;#20241023191948CST&#34;&gt;表5&lt;/a&gt;中的这张学生登记表。&lt;br&gt;
+ ◦ &lt;strong&gt;元组(tuple)&lt;/strong&gt;：表中的一行即为一个元组。&lt;br&gt;
+ ◦&lt;strong&gt;属性(attribute)&lt;/strong&gt;：表中的一列即为一个属性，给每一个属性起一个名称即属性名。 如&lt;a class=&#34;link&#34; href=&#34;#20241023191948CST&#34;&gt;表5&lt;/a&gt;所示的表有6列，对应6个属性（学号，姓名，年龄，性别，系名和年级）。&lt;br&gt;
+ ◦&lt;strong&gt;码(key)&lt;/strong&gt;：也称为码键。表中的某个属性组，它可以唯一确定一个元组，如&lt;a class=&#34;link&#34; href=&#34;#20241023191948CST&#34;&gt;表5&lt;/a&gt;中的学号可以唯一确定一个学生，也就成为本关系的码。&lt;br&gt;
+ ◦&lt;strong&gt;域(domain)&lt;/strong&gt;：域是一组具有相同数据类型的值的集合。属性的取值范围来自某个域。 如人的年龄一般在1〜120岁之间，大学生年龄属性的域是（15〜45岁），性别的域是（男，女），系名的域是一个学校所有系名的集合。&lt;br&gt;
+ ◦&lt;strong&gt;分量&lt;/strong&gt;：元组中的一个属性值。&lt;br&gt;
+ ◦&lt;strong&gt;关系模式&lt;/strong&gt;：对关系的描述，一般表示为&lt;br&gt;
 &lt;span id=&#34;20241024103147CST&#34;&gt;&lt;/span&gt;\[
 关系名（属性1、属性2、···、属性n）  
 \tag{1}

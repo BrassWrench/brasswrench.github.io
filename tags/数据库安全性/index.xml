@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Sun, 01 Dec 2024 21:42:19 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 02 Dec 2024 07:22:17 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（四）：数据库安全性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/</link>
         <pubDate>Sun, 01 Dec 2024 15:18:44 +0800</pubDate>
@@ -798,11 +798,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  对&lt;code&gt;CREATE USER&lt;/code&gt;语句说明如下：&lt;br&gt;
-  ◦只有系统的超级用户才有权创建一个新的数据库用户。&lt;br&gt;
-  ◦新创建的数据库用户有三种权限：&lt;code&gt;CONNECT&lt;/code&gt;、&lt;code&gt;RESOURCE&lt;/code&gt;和&lt;code&gt;DBA&lt;/code&gt;。&lt;br&gt;
-  ◦&lt;code&gt;CREATE USER&lt;/code&gt;命令中如果没有指定创建的新用户的权限，默认该用户拥有CONNECT权限。拥有&lt;code&gt;CONNECT&lt;/code&gt;权限的用户不能创建新用户，不能创建模式，也不能创建基本表，只能登录数据库。由数据库管理员或其他用户授予他应有的权限，根据获得的授权情况他可以对数据库对象进行权限范围内的操作。&lt;br&gt;
-  ◦拥有&lt;code&gt;RESOURCE&lt;/code&gt;权限的用户能创建基本表和视图，成为所创建对象的属主，但不能创建模式，不能创建新的用户。数据库对象的属主可以使用&lt;code&gt;GRANT&lt;/code&gt;语句把该对象上的存取权限授予其他用户。&lt;br&gt;
-  ◦拥有&lt;code&gt;DBA&lt;/code&gt;权限的用户是系统中的超级用户，可以创建新的用户、创建模式、创建基 本表和视图等；&lt;code&gt;DBA&lt;/code&gt;拥有对所有数据库对象的存取权限，还可以把这些权限授予一般用户。以上说明可以用表4.6来总结。&lt;/p&gt;
+ ◦只有系统的超级用户才有权创建一个新的数据库用户。&lt;br&gt;
+ ◦新创建的数据库用户有三种权限：&lt;code&gt;CONNECT&lt;/code&gt;、&lt;code&gt;RESOURCE&lt;/code&gt;和&lt;code&gt;DBA&lt;/code&gt;。&lt;br&gt;
+ ◦&lt;code&gt;CREATE USER&lt;/code&gt;命令中如果没有指定创建的新用户的权限，默认该用户拥有CONNECT权限。拥有&lt;code&gt;CONNECT&lt;/code&gt;权限的用户不能创建新用户，不能创建模式，也不能创建基本表，只能登录数据库。由数据库管理员或其他用户授予他应有的权限，根据获得的授权情况他可以对数据库对象进行权限范围内的操作。&lt;br&gt;
+ ◦拥有&lt;code&gt;RESOURCE&lt;/code&gt;权限的用户能创建基本表和视图，成为所创建对象的属主，但不能创建模式，不能创建新的用户。数据库对象的属主可以使用&lt;code&gt;GRANT&lt;/code&gt;语句把该对象上的存取权限授予其他用户。&lt;br&gt;
+ ◦拥有&lt;code&gt;DBA&lt;/code&gt;权限的用户是系统中的超级用户，可以创建新的用户、创建模式、创建基 本表和视图等；&lt;code&gt;DBA&lt;/code&gt;拥有对所有数据库对象的存取权限，还可以把这些权限授予一般用户。以上说明可以用&lt;a class=&#34;link&#34; href=&#34;#20241201213846CST&#34;&gt;表6&lt;/a&gt;来总结。&lt;/p&gt;
 &lt;span id=&#34;20241201213846CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;tr&gt;
     &lt;th rowspan=&#34;2&#34;&gt;拥有的权限&lt;/th&gt;
