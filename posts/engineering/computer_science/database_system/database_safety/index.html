@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库管理系统提供的统一的数据保护功能">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-01T15:46:37&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-01T17:20:35&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（四）：数据库安全性">
 <meta name="twitter:description" content="数据库管理系统提供的统一的数据保护功能"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -799,7 +799,14 @@
   <ol>
     <li><a href="#数据库安全性概述">数据库安全性概述</a>
       <ol>
-        <li><a href="#数据库的不安全因素">数据库的不安全因素</a></li>
+        <li><a href="#数据库的不安全因素">数据库的不安全因素</a>
+          <ol>
+            <li><a href="#非授权用户对数据库的恶意存取和破坏">非授权用户对数据库的恶意存取和破坏</a></li>
+            <li><a href="#数据库中重要或敏感的数据被泄露">数据库中重要或敏感的数据被泄露</a></li>
+            <li><a href="#安全环境的脆弱性">安全环境的脆弱性</a></li>
+          </ol>
+        </li>
+        <li><a href="#安全标准简介">安全标准简介</a></li>
       </ol>
     </li>
   </ol>
@@ -1125,7 +1132,7 @@
 </svg>
 
             <time class="article-words">
-                895 字
+                3460 字
             </time>
         </div>
 
@@ -1140,7 +1147,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -1183,13 +1190,184 @@
 </h2><p>  数据库的安全性是指保护数据库以防止不合法使用所造成的数据泄露、更改或破坏。安全性问题不是数据库系统所独有的，所有计算机系统都存在不安全因素，只是在数据库系统中由于大量数据集中存放，而且为众多最终用户直接共享，从而使安全性问题更为突出。系统安全保护措施是否有效是数据库系统的主要技术指标之一。</p>
 <h3 id="数据库的不安全因素">数据库的不安全因素
 </h3><p>  对数据库安全性产生威胁的因素主要有以下几方面。</p>
-<p><strong>1. 非授权用户对数据库的恶意存取和破坏</strong></p>
-<p>  一些黑客(hacker)和犯罪分子在用户存取数据库时猎取用户名和用户口令，然后假冒合法用户偷取、修改甚至破坏用户数据。因此，必须阻止有损数据库安全的非法操作，以保证数据免受未经授权的访问和破坏，数据库管理系统提供的安全措施主要包括用户身份鉴别、存取控制和视图等技术。</p>
-<p><strong>2. 数据库中重要或敏感的数据被泄露</strong></p>
-<p>  黑客和敌对分子千方百计盗窃数据库中的重要数据，一些机密信息被暴露。为防止数据泄露，数据库管理系统提供的主要技术有强制存取控制、数据加密存储和加密传输等。此外，在安全性要求较高的部门提供审计功能，通过分析审计日志，可以对潜在的威胁提前采取措施加以防范，对非授权用户的入侵行为及信息破坏情况能够进行跟踪，防止对数据库安全责任的否认。</p>
-<p><strong>3. 安全环境的脆弱性</strong></p>
-<p>  数据库的安全性与计算机系统的安全性，包括计算机硬件、操作系统、网络系统等的安全性是紧密联系的。操作系统安全的脆弱，网络协议安全保障的不足等都会造成数据库安全性的破坏。因此，必须加强计算机系统的安全性保证。随着Internet技术的发展，计算机安全性问题越来越突出，对各种计算机及其相关产品、信息系统的安全性要求越来越高。为此，在计算机安全技术方面逐步发展建立了一套可信(trusted)计算机系统的概念
+<h4 id="非授权用户对数据库的恶意存取和破坏">非授权用户对数据库的恶意存取和破坏
+</h4><p>  一些黑客(hacker)和犯罪分子在用户存取数据库时猎取用户名和用户口令，然后假冒合法用户偷取、修改甚至破坏用户数据。因此，必须阻止有损数据库安全的非法操作，以保证数据免受未经授权的访问和破坏，数据库管理系统提供的安全措施主要包括用户身份鉴别、存取控制和视图等技术。</p>
+<h4 id="数据库中重要或敏感的数据被泄露">数据库中重要或敏感的数据被泄露
+</h4><p>  黑客和敌对分子千方百计盗窃数据库中的重要数据，一些机密信息被暴露。为防止数据泄露，数据库管理系统提供的主要技术有强制存取控制、数据加密存储和加密传输等。此外，在安全性要求较高的部门提供审计功能，通过分析审计日志，可以对潜在的威胁提前采取措施加以防范，对非授权用户的入侵行为及信息破坏情况能够进行跟踪，防止对数据库安全责任的否认。</p>
+<h4 id="安全环境的脆弱性">安全环境的脆弱性
+</h4><p>  数据库的安全性与计算机系统的安全性，包括计算机硬件、操作系统、网络系统等的安全性是紧密联系的。操作系统安全的脆弱，网络协议安全保障的不足等都会造成数据库安全性的破坏。因此，必须加强计算机系统的安全性保证。随着Internet技术的发展，计算机安全性问题越来越突出，对各种计算机及其相关产品、信息系统的安全性要求越来越高。为此，在计算机安全技术方面逐步发展建立了一套可信(trusted)计算机系统的概念
 和标准。只有建立了完善的可信标准即安全标准，才能规范和指导安全计算机系统部件的生产，较为准确地测定产品的安全性能指标，满足民用和军用的不同需要。</p>
+<h3 id="安全标准简介">安全标准简介
+</h3><p>  计算机以及信息安全技术方面有一系列的安全标准，最有影响的当推TCSEC和CC这两个标准。<br>
+  TCSEC是指1985年美国国防部(Department of Defense, DoD)正式颁布的《DoD可信计算机系统评估准则》(Trusted Computer System Evaluation Criteria, TCSEC 或DoD85)。<br>
+  在TCSEC推出后的10年里，不同的国家都开始启动开发建立在TCSEC概念上的评估准则，如欧洲的信息技术安全评估准则(Information Technology Security Evaluation Criteria,ITSEC)、加拿大的可信计算机产品评估准则(Canadian Trusted Computer Product Evaluation Criteria,CTCPEC)、美国的信息技术安全联邦标准(Federal Criteria,FC)草案等。这些准则比TCSEC更加灵活，适应了IT技术的发展。<br>
+  为满足全球IT市场上互认标准化安全评估结果的需要，CTCPEC、FC、TCSEC和ITSEC的发起组织于1993年起开始联合行动，解决原标准中概念和技术上的差异，将各自独立的准则集合成一组单一的、能被广泛使用的IT安全准则，这一行动被称为通用准则(Common Criteria,CC)项目。项目发起组织的代表建立了专门的委员会来开发通用准则，历经多次讨论和修订，CC V2.1版于1999年被ISO采用为国际标准，2001年被我国采用为国家标准。<br>
+  目前CC已经基本取代了TCSEC，成为评估信息产品安全性的主要标准。<br>
+  上述一系列标准的发展历史如<a class="link" href="#20241201164427CST">图1</a>所示。本节简要介绍TCSEC和CC V2.1的基本内容。</p>
+<span id="20241201164427CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 428.1905">
+  <g>
+    <text transform="translate(41.5814 187.9709)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">1985年美国国防部</tspan><tspan x="19.7993" y="21.6001">可信计算机系</tspan><tspan x="28.7993" y="43.1997">统评估准则</tspan><tspan x="37.9434" y="64.8003">(</tspan><tspan x="44.4951" y="64.8003" style="letter-spacing: -.007em;">T</tspan><tspan x="56.2314" y="64.8003">C</tspan><tspan x="68.6694" y="64.8003" style="letter-spacing: -.002em;">S</tspan><tspan x="78.8394" y="64.8003" style="letter-spacing: -.003em;">E</tspan><tspan x="90.521" y="64.8003" style="letter-spacing: .008em;">C</tspan><tspan x="103.103" y="64.8003">)</tspan></text>
+    <rect x="23" y="160.285" width="184.7619" height="105.1429" rx="12" ry="12" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(315.4023 187.9709)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">1991年</tspan><tspan x="-34.2007" y="21.6001">欧洲信息技术安</tspan><tspan x="-16.2007" y="43.1997">全评估准则</tspan><tspan x="-4.5366" y="64.8003">(I</tspan><tspan x="9.3052" y="64.8003" style="letter-spacing: -.001em;">T</tspan><tspan x="21.1494" y="64.8003" style="letter-spacing: -.002em;">S</tspan><tspan x="31.3193" y="64.8003" style="letter-spacing: -.003em;">E</tspan><tspan x="43.001" y="64.8003" style="letter-spacing: .008em;">C</tspan><tspan x="55.583" y="64.8003">)</tspan></text>
+    <rect x="269.2682" y="160.2849" width="150.2857" height="105.1429" rx="12" ry="12" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(506.4405 177.1714)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">通用准则</tspan><tspan x="17.1362" y="21.6001" style="letter-spacing: -.021em;">(</tspan><tspan x="23.3101" y="21.6001" style="letter-spacing: -.001em;">C</tspan><tspan x="35.7305" y="21.6001" style="letter-spacing: .008em;">C</tspan><tspan x="48.312" y="21.6001" style="letter-spacing: 0em;">)</tspan><tspan x="-14.3721" y="43.1997">V1.0 1996年</tspan><tspan x="-14.3721" y="64.8003">V2.0 1998年</tspan><tspan x="-14.3721" y="86.3999">V2.1 1999年</tspan></text>
+    <rect x="478.8697" y="149.4855" width="129.1429" height="131.5734" rx="12" ry="12" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(676.4606 198.7712)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">1999年</tspan><tspan x="57.5991" y="0" style="letter-spacing: -.001em;">C</tspan><tspan x="70.019" y="0">C V2.1</tspan><tspan x="8.8013" y="21.6001">成为国际标准</tspan><tspan x="13.5" y="43.1997">(I</tspan><tspan x="27.3418" y="43.1997" style="letter-spacing: .005em;">S</tspan><tspan x="37.6377" y="43.1997" style="letter-spacing: 0em;">O 15408)</tspan></text>
+    <rect x="664.3284" y="171.0853" width="150.2857" height="85.6462" rx="12" ry="12" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(279.4023 31.5716)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">1993年加拿大可</tspan><tspan x="10.7993" y="21.6001">信计算机产品</tspan><tspan x="28.7993" y="43.1997">评估准则</tspan><tspan x="22.3193" y="64.8003" style="letter-spacing: -.021em;">(</tspan><tspan x="28.4932" y="64.8003">C</tspan><tspan x="40.9312" y="64.8003" style="letter-spacing: -.007em;">T</tspan><tspan x="52.6675" y="64.8003">C</tspan><tspan x="65.1055" y="64.8003" style="letter-spacing: -.01em;">P</tspan><tspan x="76.4634" y="64.8003" style="letter-spacing: -.003em;">E</tspan><tspan x="88.1455" y="64.8003" style="letter-spacing: .008em;">C</tspan><tspan x="100.7271" y="64.8003" style="letter-spacing: 0em;">)</tspan></text>
+    <rect x="269.2682" y="3.8856" width="150.2857" height="105.1429" rx="12" ry="12" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <text transform="translate(315.4023 344.3703)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">1993年</tspan><tspan x="-25.2007" y="21.6001">美国信息技术</tspan><tspan x="-25.2007" y="43.1997">安全联邦标准</tspan><tspan x="-7.6328" y="64.8003">(</tspan><tspan x="-1.0811" y="64.8003" style="letter-spacing: -.008em;">F</tspan><tspan x="10.0972" y="64.8003" style="letter-spacing: .008em;">C</tspan><tspan x="22.6792" y="64.8003">)草案</tspan></text>
+    <rect x="269.2682" y="316.6844" width="150.2857" height="105.1429" rx="12" ry="12" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="207.7619" y1="215.925" x2="263.2985" y2="215.925" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="260.4899 219.6282 262.0631 215.925 260.4899 212.2219 269.2682 215.925 260.4899 219.6282"/>
+  </g>
+  <g>
+    <path d="M419.5539,215.925c6.0304.5105,39.5251.2147,53.348.0677" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="470.1252 219.7074 471.6649 215.9902 470.0582 212.3015 478.8697 215.925 470.1252 219.7074"/>
+  </g>
+  <g>
+    <line x1="608.0126" y1="218.2857" x2="658.3586" y2="218.2857" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="655.55 221.9888 657.1233 218.2857 655.55 214.5826 664.3284 218.2857 655.55 221.9888"/>
+  </g>
+  <g>
+    <line x1="344.411" y1="161.3311" x2="344.411" y2="114.9982" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="348.1142 117.8068 344.411 116.2336 340.7079 117.8068 344.411 109.0285 348.1142 117.8068"/>
+  </g>
+  <g>
+    <line x1="344.411" y1="264.9571" x2="344.411" y2="310.7146" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="340.7079 307.906 344.411 309.4793 348.1142 307.906 344.411 316.6844 340.7079 307.906"/>
+  </g>
+  <g>
+    <polyline points="115.381 160.2849 115.381 56.4571 263.2985 56.4571" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="260.4899 60.1602 262.0631 56.4571 260.4899 52.7539 269.2682 56.4571 260.4899 60.1602"/>
+  </g>
+  <g>
+    <polyline points="419.5539 56.4571 543.4411 56.4571 543.4411 143.5158" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="539.738 140.7072 543.4411 142.2804 547.1443 140.7072 543.4411 149.4855 539.738 140.7072"/>
+  </g>
+  <g>
+    <polyline points="115.381 264.9571 115.381 369.2558 263.2985 369.2558" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="260.4899 372.9589 262.0631 369.2558 260.4899 365.5527 269.2682 369.2558 260.4899 372.9589"/>
+  </g>
+  <g>
+    <polyline points="419.5539 369.2558 543.4411 369.2558 543.4411 287.0286" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="547.1443 289.8372 543.4411 288.264 539.738 289.8372 543.4411 281.0589 547.1443 289.8372"/>
+  </g>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;信息安全标准的发展简史</p>
+<p>  TCSEC又称桔皮书。1991年4月，美国国家计算机安全中心(National Computer Security Center,NCSC)颁布了《可信计算机系统评估准则关于可信数据库系统的解释》(TCSEC/Trusted Database Interpretation, TCSEC/TDI)，即紫皮书)，将TCSEC扩展到数据库管理系统。TCSEC/TDI中定义了数据库管理系统的设计与实现中需满足和用以进行安全性级别评估的标准，从4个方面来描述安全性级别划分的指标，即安全策略、责任、保证和文档。每个方面又细分为若干项。<br>
+  根据计算机系统对各项指标的支持情况，TCSEC/TDI将系统划分为4组(division)7个等级，依次是D、C(Cl, C2)、B(Bl, B2, B3)、A(Al)，按系统可靠或可信程度逐渐增高，如<a class="link" href="#20241201170807CST">表1</a>所示。</p>
+<span id="20241201170807CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">安全级别</th>
+          <th style="text-align: left">定义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">A1</td>
+          <td style="text-align: left">验证设计 (verified design)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">B3</td>
+          <td style="text-align: left">安全域 (security domains)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">B2</td>
+          <td style="text-align: left">结构化保护 (structural protection)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">B1</td>
+          <td style="text-align: left">标记安全保护 (labeled security protection)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">C2</td>
+          <td style="text-align: left">受控的存取保护 (controlled access protection)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">自主安全保护 (discretionary security protection)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">D</td>
+          <td style="text-align: left">最小保护 (minimal protection)</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;TCSEC/TDI安全级别划分</p>
+<p>  <strong>D级</strong>：该级是最低级别。保留D级的目的是为了将一切不符合更高标准的系统统统归于D组。如DOS就是操作系统中安全标准为D级的典型例子，它具有操作系统的基本功能，如文件系统、进程调度等，但在安全性方面几乎没有什么专门的机制来保障。<br>
+  <strong>C1级</strong>：该级只提供了非常初级的自主安全保护，能够实现对用户和数据的分离，进行自主存取控制(DAC)，保护或限制用户权限的传播。现有的商业系统往往稍作改进即可满足要求。<br>
+  <strong>C2级</strong>：该级实际上是安全产品的最低档，提供受控的存取保护，即将C1级的DAC进一步细化，以个人身份注册负责，并实施审计和资源隔离。达到C2级的产品在其名称中往往不突出“安全”（security）这一特色，如操作系统中的Windows 2000、数据库产品中的Oracle 7等。<br>
+  <strong>B1级</strong>：标记安全保护。对系统的数据加以标记，并对标记的主体和客体实施强制存取控制(MAC)以及审计等安全机制。B1级别的产品才被认为是真正意义上的安全产品，满足此级别的产品前一般多冠以“安全”（security）或&quot;可信的”（trusted）字样，作为区别于普通产品的安全产品出售。<br>
+  <strong>B2级</strong>：结构化保护。建立形式化的安全策略模型，并对系统内的所有主体和客体实施DAC和MAC。<br>
+  <strong>B3级</strong>：安全域。该级的TCB(Trusted Computing Base)必须满足访问监控器的要求，审计跟踪能力更强，并提供系统恢复过程。<br>
+  <strong>A1级</strong>：验证设计，即提供B3级保护的同时给出系统的形式化设计说明和验证，以确信各安全保护真正实现。<br>
+  CC是在上述各评估准则及具体实践的基础上通过相互总结和互补发展而来的。和早期的评估准则相比，CC具有结构开放、表达方式通用等特点。CC提出了目前国际上公认的表述信息技术安全性的结构，即把对信息产品的安全要求分为安全功能要求和安全保证要求。安全功能要求用以规范产品和系统的安全行为，安全保证要求解决如何正确有效地实施这些功能。安全功能要求和安全保证要求都以“类-子类-组件”的结构表述，组件是安全要求的最小构件块。<br>
+  CC的文本由三部分组成，三个部分相互依存，缺一不可。<br>
+  第一部分是简介和一般模型，介绍CC中的有关术语、基本概念和一般模型以及与评估有关的一些框架。<br>
+  第二部分是安全功能要求，列出了一系列类、子类和组件。由11大类、66个子类和135个组件构成。<br>
+  第三部分是安全保证要求，列出了一系列保证类、子类和组件，包括7大类、26个子类和74个组件。根据系统对安全保证要求的支持情况提出了评估保证级(Evaluation Assurance Level,EAL)，从EAL1至EAL7共分为7级，按保证程度逐渐增高。如表4.2所示。</p>
+<span id="20241201171843CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">评估保证级</th>
+          <th style="text-align: left">定义</th>
+          <th style="text-align: left">TCSEC安全级别 (近似相当)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">EAL0</td>
+          <td style="text-align: left">功能测试（functionally tested）</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">EAL1</td>
+          <td style="text-align: left">结构测试（structurally tested）</td>
+          <td style="text-align: left">C1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">EAL2</td>
+          <td style="text-align: left">系统地测试和检查（methodically tested and checked）</td>
+          <td style="text-align: left">C2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">EAL3</td>
+          <td style="text-align: left">系统地设计、测试和复查（methodically designed, tested and reviewed）</td>
+          <td style="text-align: left">B1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">EAL4</td>
+          <td style="text-align: left">半形式化设计和测试（semiformally designed and tested）</td>
+          <td style="text-align: left">B2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">EAL5</td>
+          <td style="text-align: left">半形式化验证的设计和测试（semiformally verified design and tested）</td>
+          <td style="text-align: left">B3</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">EAL6</td>
+          <td style="text-align: left">形式化验证的设计和测试（formally verified design and tested）</td>
+          <td style="text-align: left">A1</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表2&emsp;CC评估保证级(EAL)的划分</p>
 
     </div>
 </section>
@@ -1235,7 +1413,7 @@
 
 
         <span>
-            最后更新于 Dec 01, 2024 15:46 CST
+            最后更新于 Dec 01, 2024 17:20 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1413,7 +1591,7 @@
             
         
         
-        <span>本图书馆累计发布了17篇文章 共28.7万字</span>
+        <span>本图书馆累计发布了17篇文章 共29.0万字</span>
         
     </section>
 
