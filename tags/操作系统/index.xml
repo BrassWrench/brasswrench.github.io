@@ -2289,10 +2289,10 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   (3)分配矩阵 \(\text{Allocation}\) 。这也是一个 \(n \times m\) 的矩阵，它定义了系统中每一类资源当前已分配给每一进程的资源数。如果 \(\text{Allocation}[i,j]=K\) ，则表示进程 \(i\) 当前已分得 \(R_j\) 类资源的数目为 \(K\) 。&lt;br&gt;
   (4)需求矩阵 \(\text{Need}\) 。这也是一个 \(n \times m\) 的矩阵，用以表示每一个进程尚需的各类资源数。如果 \(\text{Need}[i,j]=K\) ，则表示进程 \(i\) 还需要 \(R_j\) 类资源 \(K\) 个方能完成其任务。&lt;br&gt;
   上述三个矩阵间存在下述关系：&lt;/p&gt;
-&lt;span id=&#34;20241129083715CST&#34;&gt;&lt;/span&gt;
-    \[
+&lt;span id=&#34;20241129083715CST&#34;&gt;&lt;/span&gt;\[
 \text{Need}[i,j] = \text{Max}[i,j] - \text{Allocation}[i,j]
-\]
+\tag{9}
+    \]
 &lt;h4 id=&#34;银行家算法&#34;&gt;银行家算法
 &lt;/h4&gt;&lt;p&gt;  设 \(\text{Request}_i\) 是进程 \(P_i\) 的请求向量，如果 \(\text{Request}_i[j]=K\) ，表示进程 \(P_i\) 需要 \(K\) 个 \(R_j\) 类型的资源。当 \(P_i\) 发出资源请求后，系统按下述步骤进行检查：&lt;br&gt;
   (1)如果 \(\text{Request}_i[j] \le \text{Need}[i,j]\) ，便转向步骤(2)；否则认为出错，因为它所需要的资源数已超过它所宣布的最大值。&lt;br&gt;
