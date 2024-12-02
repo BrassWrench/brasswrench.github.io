@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 02 Dec 2024 07:22:17 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 02 Dec 2024 08:54:15 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（四）：数据库安全性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/</link>
         <pubDate>Sun, 01 Dec 2024 15:18:44 +0800</pubDate>
@@ -57,7 +57,7 @@
   上述一系列标准的发展历史如&lt;a class=&#34;link&#34; href=&#34;#20241201164427CST&#34;&gt;图1&lt;/a&gt;所示。本节简要介绍TCSEC和CC V2.1的基本内容。&lt;/p&gt;
 &lt;span id=&#34;20241201164427CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 428.1905&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 428.1905&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(41.5814 187.9709)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1985年美国国防部&lt;/tspan&gt;&lt;tspan x=&#34;19.7993&#34; y=&#34;21.6001&#34;&gt;可信计算机系&lt;/tspan&gt;&lt;tspan x=&#34;28.7993&#34; y=&#34;43.1997&#34;&gt;统评估准则&lt;/tspan&gt;&lt;tspan x=&#34;37.9434&#34; y=&#34;64.8003&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;44.4951&#34; y=&#34;64.8003&#34; style=&#34;letter-spacing: -.007em;&#34;&gt;T&lt;/tspan&gt;&lt;tspan x=&#34;56.2314&#34; y=&#34;64.8003&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;68.6694&#34; y=&#34;64.8003&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;78.8394&#34; y=&#34;64.8003&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;E&lt;/tspan&gt;&lt;tspan x=&#34;90.521&#34; y=&#34;64.8003&#34; style=&#34;letter-spacing: .008em;&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;103.103&#34; y=&#34;64.8003&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
     &lt;rect x=&#34;23&#34; y=&#34;160.285&#34; width=&#34;184.7619&#34; height=&#34;105.1429&#34; rx=&#34;12&#34; ry=&#34;12&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -226,7 +226,7 @@
 &lt;/h2&gt;&lt;p&gt;  在一般计算机系统中，安全措施是一级一级层层设置的。例如，在&lt;a class=&#34;link&#34; href=&#34;#20241201181759CST&#34;&gt;图2&lt;/a&gt;所示的安全模型中，用户要求进入计算机系统时，系统首先根据输入的用户标识进行用户身份鉴定，只有合法的用户才准许进入计算机系统；对已进入系统的用户，数据库管理系统还要进行存取控制，只允许用户执行合法操作；操作系统也会有自己的保护措施；数据最后还可以以密码形式存储到数据库中。操作系统的安全保护措施可参考操作系统的有关书籍，这里不再详述。另外，对于强力逼迫透露口令、盗窃物理存储设备等行为而采取的保安措施，例如出入机房登记、加锁等，也不在这里讨论之列。&lt;/p&gt;
 &lt;span id=&#34;20241201181759CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 68.9524&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 68.9524&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;131.6367&#34; y=&#34;4.3465&#34; width=&#34;70.0952&#34; height=&#34;32.0494&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;text transform=&#34;translate(148.6841 26.8229)&#34; style=&#34;font-family: SimSun, SimSun; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
@@ -275,7 +275,7 @@
 &lt;p&gt;  下面讨论与数据库有关的安全性，主要包括用户身份鉴别、多层存取控制、审计、视图和数据加密等安全技术。&lt;/p&gt;
 &lt;span id=&#34;20241201190210CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 460.1905&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 460.1905&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g id=&#34;SVGRepo_iconCarrier&#34;&gt;
     &lt;path d=&#34;M89.0391,115.8762l-10.814,5.5665c-1.3321.6857-2.1693,2.0583-2.1693,3.5565v2.0802c0,2.2092,1.7909,4,4.0002,4,.7364,0,1.3333.597,1.3333,1.3333s-.597,1.3333-1.3333,1.3333c-3.6821,0-6.6669-2.9847-6.6669-6.6667v-2.0802c0-2.497,1.3954-4.7847,3.6155-5.9275l8.954-4.6091c-2.8578-2.4918-4.5695-6.1238-4.5695-10.0499,0-7.3638,5.9695-13.3333,13.3333-13.3333,4.4709,0,8.5686,2.2185,11.0345,5.8468.4139.609.2558,1.4383-.3533,1.8522-.609.4139-1.4383.2558-1.8522-.3533-1.9746-2.9054-5.2507-4.6791-8.829-4.6791-5.891,0-10.6667,4.7756-10.6667,10.6667,0,3.7646,1.9648,7.1885,5.1207,9.1136.6286.3835.8274,1.204.4439,1.8326-.1436.2353-.3483.4104-.5814.5173h0ZM99.9525,127.2576l-10.8853,4.9478c-1.428.6491-2.3448,2.0729-2.3448,3.6415v1.8991c0,2.2091,1.7909,4,4,4h29.3333c2.2091,0,4-1.7909,4-4v-1.8991c0-1.5686-.9168-2.9924-2.3448-3.6415l-10.8853-4.9478c-1.6603.7423-3.5003,1.1551-5.4366,1.1551s-3.7763-.4128-5.4366-1.1551h0ZM97.1816,125.5879c-3.1202-2.4404-5.1258-6.2403-5.1258-10.5085,0-7.3638,5.9695-13.3333,13.3333-13.3333s13.3333,5.9695,13.3333,13.3333c0,4.2683-2.0056,8.0681-5.1258,10.5085l9.2178,4.1899c2.38,1.0818,3.908,3.4548,3.908,6.0691v1.8991c0,3.6819-2.9848,6.6667-6.6667,6.6667h-29.3333c-3.6819,0-6.6667-2.9848-6.6667-6.6667v-1.8991c0-2.6143,1.528-4.9873,3.908-6.0691l9.2178-4.1899h0ZM105.3891,125.746c5.891,0,10.6667-4.7756,10.6667-10.6667s-4.7756-10.6667-10.6667-10.6667-10.6667,4.7756-10.6667,10.6667,4.7756,10.6667,10.6667,10.6667Z&#34;/&gt;
   &lt;/g&gt;
@@ -455,7 +455,7 @@
   SQL标准允许具有&lt;code&gt;WITH GRANT OPTION&lt;/code&gt;的用户把相应权限或其子集传递授予其他用户，但不允许循环授权，即被授权者不能把权限再授回给授权者或其祖先，如&lt;a class=&#34;link&#34; href=&#34;#20241201201816CST&#34;&gt;图4&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241201201816CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 88.1766&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 88.1766&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(268.3408 18.6285)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;U1&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(369.265 18.6286)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;U2&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(470.1892 18.6283)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;U3&lt;/tspan&gt;&lt;/text&gt;
@@ -679,9 +679,9 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CASCADE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RESTRICT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CASCADE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RESTRICT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241201212459CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例8&lt;/strong&gt;：把用户&lt;code&gt;U4&lt;/code&gt;修改学生学号的权限收回。&lt;/p&gt;
@@ -837,6 +837,152 @@
   &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;权限与可执行的操作对照表&lt;/p&gt;
+&lt;p&gt;  注意：&lt;code&gt;CREATE USER&lt;/code&gt;语句不是SQL标准，因此不同的关系数据库管理系统的语法和内容相差甚远。这里介绍该语句的目的是说明对于数据库模式这一类数据对象也有安全控制的需要，也是要授权的。&lt;/p&gt;
+&lt;h3 id=&#34;数据库角色&#34;&gt;数据库角色
+&lt;/h3&gt;&lt;p&gt;  数据库角色是被命名的一组与数据库操作相关的权限，角色是权限的集合。因此，可以为一组具有相同权限的用户创建一个角色，使用角色来管理数据库权限可以简化授权的过程。&lt;br&gt;
+  在SQL中首先用&lt;code&gt;CREATE ROLE&lt;/code&gt;语句创建角色，然后用&lt;code&gt;GRANT&lt;/code&gt;语句给角色授权，用&lt;code&gt;REVOKE&lt;/code&gt;语句收回授予角色的权限。&lt;/p&gt;
+&lt;h4 id=&#34;角色的创建&#34;&gt;角色的创建
+&lt;/h4&gt;&lt;p&gt;  创建角色的SQL语句格式是&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ROLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  刚刚创建的角色是空的，没有任何内容。可以用&lt;code&gt;GRANT&lt;/code&gt;为角色授权。&lt;/p&gt;
+&lt;h4 id=&#34;给角色授权&#34;&gt;给角色授权
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  数据库管理员和用户可以利用&lt;code&gt;GRANT&lt;/code&gt;语句将权限授予某一个或几个角色。&lt;/p&gt;
+&lt;h4 id=&#34;将一个角色授予其他的角色或用户&#34;&gt;将一个角色授予其他的角色或用户
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WITH&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ADMIN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;OPTION&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  该语句把角色授予某用户，或授予另一个角色。这样，一个角色（例如角色3）所拥有的权限就是授予它的全部角色（例如角色1和角色2）所包含的权限的总和。&lt;br&gt;
+  授予者或者是角色的创建者，或者拥有在这个角色上的&lt;code&gt;ADMIN OPTION&lt;/code&gt;。&lt;br&gt;
+  如果指定了&lt;code&gt;WITH ADMIN OPTION&lt;/code&gt;子句，则获得某种权限的角色或用户还可以把这种权限再授予其他的角色。&lt;br&gt;
+  一个角色包含的权限包括直接授予这个角色的全部权限加上其他角色授予这个角色的全部权限。&lt;/p&gt;
+&lt;h4 id=&#34;角色权限的收回&#34;&gt;角色权限的收回
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  用户可以收回角色的权限，从而修改角色拥有的权限。&lt;br&gt;
+  &lt;code&gt;REVOKE&lt;/code&gt;动作的执行者或者是角色的创建者，或者拥有在这个（些）角色上的&lt;code&gt;ADMIN OPTION&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241202073656CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例11&lt;/strong&gt;：通过角色来实现将一组权限授予一个用户。&lt;br&gt;
+  步骤如下：
+  ①首先创建一个角色&lt;code&gt;R1&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ROLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  ②然后使用&lt;code&gt;GRANT&lt;/code&gt;语句，使角色&lt;code&gt;R1&lt;/code&gt;拥有&lt;code&gt;Student&lt;/code&gt;表的&lt;code&gt;SELECT&lt;/code&gt;、&lt;code&gt;UPDATE&lt;/code&gt;、&lt;code&gt;INSERT&lt;/code&gt;权限。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;UPDATE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  ③将这个角色授予王平、张明、赵玲，使他们具有角色&lt;code&gt;R1&lt;/code&gt;所包含的全部权限。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;王平，张明，赵玲&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  ④当然，也可以一次性地通过&lt;code&gt;R1&lt;/code&gt;来收回王平的这三个权限。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;FROM王平&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241202074309CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例12&lt;/strong&gt;：角色的权限修改。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DELETE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  使角色R1在原来的基础上增加了&lt;code&gt;Student&lt;/code&gt;表的&lt;code&gt;DELETE&lt;/code&gt;权限。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241202074343CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例13&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  使&lt;code&gt;R1&lt;/code&gt;减少了&lt;code&gt;SELECT&lt;/code&gt;权限。&lt;br&gt;
+  可以看出，数据库角色是一组权限的集合。使用角色来管理数据库权限可以简化授权的过程，使自主授权的执行更加灵活、方便。&lt;/p&gt;
+&lt;h3 id=&#34;强制存取控制方法&#34;&gt;强制存取控制方法
+&lt;/h3&gt;&lt;p&gt;  自主存取控制（MAC）能够通过授权机制有效地控制对敏感数据的存取。但是由于用户对数据的存取权限是“自主”的，用户可以自由地决定将数据的存取权限授予何人，以及决定是否也将“授权”的权限授予别人。在这种授权机制下，仍可能存在数据的“无意泄露”。比如，甲将自己权限范围内的某些数据存取权限授权给乙，甲的意图是仅允许乙本人操纵这些数据。但甲的这种安全性要求并不能得到保证，因为乙一旦获得了对数据的权限，就可以将数据备份，获得自身权限内的副本，并在不征得甲同意的前提下传播副本。造成这一问题的根本原因就在于，这种机制仅仅通过对数据的存取权限来进行安全控制，而数据本身并无安全性标记。要解决这一问题，就需要对系统控制下的所有主客体实施强制存取控制策略。&lt;br&gt;
+  所谓强制存取控制是指系统为保证更高程度的安全性，按照TDI/TCSEC标准中安全策略的要求所采取的强制存取检查手段。它不是用户能直接感知或进行控制的。强制存取控制适用于那些对数据有严格而固定密级分类的部门，例如军事部门或政府部门。&lt;br&gt;
+  在强制存取控制中，数据库管理系统所管理的全部实体被分为主体和客体两大类。&lt;br&gt;
+  &lt;strong&gt;主体&lt;/strong&gt;是系统中的活动实体，既包括数据库管理系统所管理的实际用户，也包括代表用户的各进程。&lt;strong&gt;客体&lt;/strong&gt;是系统中的被动实体，是受主体操纵的，包括文件、基本表、索引、视图等。对于主体和客体，数据库管理系统为它们每个实例（值）指派一个敏感度标记(label)。敏感度标记被分成若干级别，例如绝密(Top Secret,TS)、机密(Secret,S)、可信(Confidential,C)、公开(Public,P)等。密级的次序是TS&amp;gt;=S&amp;gt;=C&amp;gt;=P。主体的敏感度标记称为许可证级别(clearance level)，客体的敏感度标记称为密级(classification level)。强制存取控制机制就是通过对比主体的敏感度标记和客体的敏感度标记，最终确定主体是否能够存取客体。&lt;br&gt;
+  当某一用户（或某一主体）以标记label注册入系统时，系统要求他对任何客体的存取必须遵循如下规则：&lt;br&gt;
+  (1)仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。&lt;br&gt;
+  (2)仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体。&lt;br&gt;
+  规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，制造成TS密级数据的泄露。&lt;br&gt;
+  强制存取控制是对数据本身进行密级标记，无论数据如何复制，标记与数据是一个不可分的整体，只有符合密级标记要求的用户才可以操纵数据，从而提供了更高级别的安全性。前面已经提到，较高安全性级别提供的安全保护要包含较低级别的所有保护，因此在实现强制存取控制时要首先实现自主存取控制(DAC)，即自主存取控制与强制存取控制共同构成数据库管理系统的安全机制，如图4.5所示。系统首先进行自主存取控制检查，对通过自主存取控制检查的允许存取的数据库对象再由系统自动进行强制存取控制检查，只有通过强制存取控制检查的数据库对象方可存取。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -974,7 +1120,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
   (3)上下文切换器。在对处理机进行切换时，会发生两对上下文的切换操作：①第一对上下文切换时，OS将保存当前进程的上下文，即把当前进程的处理机寄存器内容保存到该进程的进程控制块内的相应单元，再装入分派程序的上下文，以便分派程序运行；②第二对上下文切换是移出分派程序的上下文，而把新选进程的CPU现场信息装入到处理机的各个相应寄存器中，以便新选进程运行。&lt;/p&gt;
 &lt;span id=&#34;20241126193146CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 289.0646&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 289.0646&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(277.231 73.7818)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;就绪进程&lt;/tspan&gt;&lt;/text&gt;
   &lt;ellipse cx=&#34;313.231&#34; cy=&#34;67.1474&#34; rx=&#34;69.1429&#34; ry=&#34;23.1429&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(111.3775 15.8403)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;来自其他状态&lt;/tspan&gt;&lt;/text&gt;
@@ -1056,7 +1202,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 &lt;/h4&gt;&lt;p&gt;  在轮转算法中，时间片的大小对系统性能有很大的影响。若选择很小的时间片，将有利于短作业，因为它能在该时间片内完成。但时间片小，意味着会频繁地执行进程调度和进程上下文的切换，这无疑会增加系统的开销。反之，若时间片选择得太长，且为使每个进程都能在一个时间片内完成，RR算法便退化为FCFS算法，无法满足短作业和交互式用户的需求。一个较为可取的时间片大小是略大于一次典型的交互所需要的时间，使大多数交互式进程能在一个时间片内完成，从而可以获得很小的响应时间。&lt;a class=&#34;link&#34; href=&#34;#20241126220213CST&#34;&gt;图2&lt;/a&gt;示出了时间片大小对响应时间的影响，其中&lt;a class=&#34;link&#34; href=&#34;#20241126220213CST&#34;&gt;图2&lt;/a&gt;(a)是时间片略大于典型交互的时间，而&lt;a class=&#34;link&#34; href=&#34;#20241126220213CST&#34;&gt;图2&lt;/a&gt;(b)是时间片小于典型交互的时间。&lt;a class=&#34;link&#34; href=&#34;#20241126220833CST&#34;&gt;表1&lt;/a&gt;示出了时间片分别为 \(q=1\) 和 \(q=4\) 时对平均周转时间的影响。&lt;/p&gt;
 &lt;span id=&#34;20241126220213CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 450.1696&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 450.1696&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(339.339 235.6046)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.001em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.5342&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;a&lt;/tspan&gt;&lt;tspan x=&#34;16.4702&#34; y=&#34;0&#34;&gt;)时间片大于交互时间&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
     &lt;rect x=&#34;293.7799&#34; y=&#34;83.8919&#34; width=&#34;196.5714&#34; height=&#34;16&#34; style=&#34;fill: #040000; opacity: .2; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -1328,7 +1474,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
   (1)设置多个就绪队列。在系统中设置多个就绪队列，并为每个队列赋予不同的优先级。第一个队列的优先级最高，第二个次之，其余队列的优先级逐个降低。该算法为不同队列中的进程所赋予的执行时间片的大小也各不相同，在优先级愈高的队列中，其时间片就愈小。例如第二个队列的时间片要比第一个的时间片长一倍，···，第i+1个队列的时间片要比第i个的时间片长一倍。&lt;a class=&#34;link&#34; href=&#34;#20241127085141CST&#34;&gt;图3&lt;/a&gt;是多级反馈队列算法的示意图。&lt;/p&gt;
 &lt;span id=&#34;20241127085141CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 260&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 260&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(314.2351 27.2591)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;就绪队列1&lt;/tspan&gt;&lt;/text&gt;
     &lt;rect x=&#34;269.517&#34; y=&#34;6.162&#34; width=&#34;171.0476&#34; height=&#34;28.9524&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -1493,7 +1639,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
   (2)立即抢占(Immediate Preemption)的优先级调度算法。在这种调度策略中，要求操作系统具有快速响应外部事件中断的能力。一旦出现外部中断，只要当前任务未处于临界区，便能立即剥夺当前任务的执行，把处理机分配给请求中断的紧迫任务。这种算法能获得非常快的响应，可把调度延迟降低到几毫秒至100微秒，甚至更低。&lt;a class=&#34;link&#34; href=&#34;#20241127194407CST&#34;&gt;图4&lt;/a&gt;中的(a)、(b)、(c)、(d)分别示出了四种情况的调度时间。&lt;/p&gt;
 &lt;span id=&#34;20241127194407CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 321.222&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 321.222&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(47.1146 76.2563)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;进程1&lt;/tspan&gt;&lt;/text&gt;
   &lt;rect x=&#34;29.3492&#34; y=&#34;56.9403&#34; width=&#34;81.1429&#34; height=&#34;24.401&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(128.2575 76.2563)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;进程2&lt;/tspan&gt;&lt;/text&gt;
@@ -1633,7 +1779,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 &lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241127203504CST&#34;&gt;图5&lt;/a&gt;示出了将该算法用于非抢占调度方式之例。该例中具有四个非周期任务，它们先后到达。系统先调度任务1执行，在任务1执行期间，任务2、3又先后到达。由于任务3的开始截止时间早于任务2的，故系统在任务1后将先调度任务3执行。在此期间又到达作业4,其开始截止时间仍是早于任务2的，故在任务3执行完后，系统又先调度任务4执行，最后才调度任务2执行。&lt;/p&gt;
 &lt;span id=&#34;20241127203504CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 145.8382&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 145.8382&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(354.0709 77.2829)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;/text&gt;
   &lt;rect x=&#34;296.1336&#34; y=&#34;58.9493&#34; width=&#34;124.1905&#34; height=&#34;25.0159&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(457.3593 77.5348)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;/text&gt;
@@ -1696,7 +1842,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
   &lt;a class=&#34;link&#34; href=&#34;#20241128084411CST&#34;&gt;图6&lt;/a&gt;示出了将最早截止时间（最后期限）优先算法用于抢占调度的示意图。图中的第一行示出了两个任务的到达时间、截止时间和执行时间图。其中任务A的到达时间为 \(0\) 、 \(20 \text{ms}\) 、 \(40 \text{ms}\) ···，任务A的最后期限为 \(20 \text{ms}\) 、 \(40 \text{ms}\) 、 \(60 \text{ms}\) ···，任务B的到达时间为 \(0\) 、 \(50 \text{ms}\) 、 \(100 \text{ms}\) ···，任务B的最后期限为 \(50 \text{ms}\) 、 \(100 \text{ms}\) ···。&lt;/p&gt;
 &lt;span id=&#34;20241128084411CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 534.6828&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 534.6828&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;229.8331&#34; y=&#34;155.4771&#34; width=&#34;47.7&#34; height=&#34;25.1&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;rect x=&#34;229.8331&#34; y=&#34;155.4771&#34; width=&#34;47.7&#34; height=&#34;25.1&#34; style=&#34;isolation: isolate; opacity: .2; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -2233,7 +2379,7 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
   该算法主要用于可抢占调度方式中。假如在一个实时系统中有两个周期性实时任务A和B,任务A要求每 \(20 \text{ms}\) 执行一次，执行时间为 \(10 \text{ms}\) ，任务B要求每 \(50 \text{ms}\) 执行一次，执行时间为 \(25 \text{ms}\) 。由此可知，任务A和B每次必须完成的时间分别为： \(A_1\) 、 \(A_2\) 、 \(A_3\) 、···和 \(B_1\) 、 \(B_2\) 、 \(B_3\) 、···，见&lt;a class=&#34;link&#34; href=&#34;#20241128101517CST&#34;&gt;图7&lt;/a&gt;。为保证不遗漏任何一次截止时间，应采用最低松弛度优先的抢占调度策略。&lt;/p&gt;
 &lt;span id=&#34;20241128101517CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 169.5238&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 169.5238&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;line x1=&#34;118.453&#34; y1=&#34;84.1587&#34; x2=&#34;740.1968&#34; y2=&#34;84.1587&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;738.2154 87.064 749.0562 84.1587 738.2154 81.2535 738.2154 87.064&#34;/&gt;
@@ -2343,7 +2489,7 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;p&gt;  类似地，可算出 \(B_1\) 的松弛度为 \(15 \text{ms}\) ,故调度程序应选择 \(B_1\) 运行。在 \(t_3 = 30 \text{ms}\) 时， \(A_2\) 的松弛度已减为 \(0\) （即 \(40-10-30\) ），而 \(B_1\) 的松弛度为 \(15 \text{ms}\) （即 \(50-5-30\) ），于是调度程序应抢占 \(B_1\) 的处理机而调度 \(A_2\) 运行。在 \(Q = 40 \text{ms}\) 时， \(A_3\) 的松弛度为 \(10 \text{ms}\) （即 \(60-10-40\) ），而 \(B_1\) 的松弛度仅为 \(5 \text{ms}\) （即 \(50-5-40\) ），故又应重新调度为执行。在\(t_5 = 45 \text{ms}\) 时， \(B_1\) 执行完成，而此时 \(A_3\) 的松弛度已减为 \(5 \text{ms}\) （即 \(60-10-45\) ），而 \(B_2\) 的松弛度为 \(30 \text{ms}\) （即 \(100-25-45\) ），于是又应调度 \(A_3\) 执行。在\(t_6 = 55 \text{ms}\) 时，任务A尚未进入第4周期，而任务B已进入第2周期，故再调度 \(B_2\) 执行。在 \(t_7 = 70 \text{ms}\) 时， \(A_4\) 的松弛度已减至 \(0 \text{ms}\) （即 \(80-10-70\) ），而 \(B_2\) 的松弛度为 \(20 \text{ms}\) （即 \(100-10-70\) ），故此时调度程序又应抢占 \(B_2\) 的处理机而调度 \(A_4\) 执行。&lt;a class=&#34;link&#34; href=&#34;#20241128111519CST&#34;&gt;图8&lt;/a&gt;示出了具有两个周期性实时任务的调度情况。&lt;/p&gt;
 &lt;span id=&#34;20241128111519CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 169.5238&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 169.5238&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;line x1=&#34;118.453&#34; y1=&#34;84.1587&#34; x2=&#34;740.1968&#34; y2=&#34;84.1587&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;738.2154 87.064 749.0562 84.1587 738.2154 81.2535 738.2154 87.064&#34;/&gt;
@@ -2530,7 +2676,7 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   根据优先级原则，高优先级进程应当能优先执行，但在此例中， \(P_1\) 和 \(P_3\) 共享着“临界资源”，而出现了不合常理的现象，高优先级进程 \(P_1\) 因 \(P_3\) 进程被阻塞了，又因为 \(P_2\) 进程的存在而延长了 \(P_1\) 被阻塞的时间，而且被延长的时间是不可预知和无法限定的。由此所产生的“优先级倒置”的现象是非常有害的，它不应出现在实时系统中。&lt;/p&gt;
 &lt;span id=&#34;20241128173049CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 282.1621&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 282.1621&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;line x1=&#34;102.381&#34; y1=&#34;57.442&#34; x2=&#34;757.8095&#34; y2=&#34;57.442&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;line x1=&#34;102.381&#34; y1=&#34;137.1563&#34; x2=&#34;757.8095&#34; y2=&#34;137.1563&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;line x1=&#34;102.381&#34; y1=&#34;216.8706&#34; x2=&#34;757.8095&#34; y2=&#34;216.8706&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -2672,7 +2818,7 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   一个比较实用的方法是建立在动态优先级继承基础上的。该方法规定，当高优先级进程 \(P_1\) 要进入临界区，去使用临界资源 \(R\) ，如果已有一个低优先级进程 \(P_3\) 正在使用该资源，此时一方面 \(P_1\) 被阻塞，另一方面由 \(P_3\) 继承 \(P_1\) 的优先级，并一直保持到 \(P_3\) 退出临界区。这样做的目的在于不让比 \(P_3\) 优先级稍高，但比 \(P_1\) 优先级低的进程如 \(P_2\) 进程插进来，导致延缓 \(P_3\) 退出临界区。&lt;a class=&#34;link&#34; href=&#34;#20241128175339CST&#34;&gt;图10&lt;/a&gt;示出了采用动态优先级继承方法后， \(P_1\) 、 \(P_2\) 、 \(P_3\) 三个进程的运行情况。由图可以看出，在时刻 \(c\) ， \(P_1\) 被阻塞，但由于 \(P_3\) 已继承了 \(P_1\) 的优先级，它比 \(P_2\) 优先级高，这样就避免了 \(P_2\) 的插入，使 \(P_1\) 在时刻 \(d\) 进入临界区。该方法已在一些操作系统中得到应用，而在实时操作系统中是必须的。&lt;/p&gt;
 &lt;span id=&#34;20241128175339CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 282.1621&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 282.1621&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;line x1=&#34;102.381&#34; y1=&#34;57.442&#34; x2=&#34;757.8095&#34; y2=&#34;57.442&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;line x1=&#34;102.381&#34; y1=&#34;137.1563&#34; x2=&#34;757.8095&#34; y2=&#34;137.1563&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;line x1=&#34;102.381&#34; y1=&#34;216.8706&#34; x2=&#34;757.8095&#34; y2=&#34;216.8706&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -2851,7 +2997,7 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   我们可将上面的问题利用资源分配图进行描述，用方块代表可重用的资源（文件），用圆圈代表进程，见&lt;a class=&#34;link&#34; href=&#34;#20241128211052CST&#34;&gt;图11&lt;/a&gt;所示。当箭头从进程指向文件时，表示进程请求资源（打开文件）；当箭头从资源指向进程时，表示该资源已被分配给该进程（已被进程打开）。从中可以看出，这时在 \(P_1\) 、 \(P_2\) 及 \(F_1\) 和 \(F_2\) 之间，已经形成了一个环路，说明已进入死锁状态。&lt;/p&gt;
 &lt;span id=&#34;20241128211052CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 267.0476&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 267.0476&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;path d=&#34;M318.6017,120.4076c5.5898-47.9925,40.9824-86.8887,87.1821-97.6931&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;404.4142 25.9874 414.4859 21.0351 403.2875 20.2871 404.4142 25.9874&#34;/&gt;
@@ -2901,7 +3047,7 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   则这三个进程就会永远阻塞在它们的&lt;code&gt;receive&lt;/code&gt;操作上，等待一条永远不会发出的消息，于是发生了死锁。&lt;/p&gt;
 &lt;span id=&#34;20241128215701CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 267.0476&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 267.0476&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;circle cx=&#34;431.85&#34; cy=&#34;19.6932&#34; r=&#34;17.2987&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;g&gt;
     &lt;path id=&#34;MJX-8-TEX-I-1D443&#34; d=&#34;M427.9057,13.1509c0-.0845-.3439-.1387-1.0316-.1629-.2896,0-.4766-.006-.561-.0181s-.1267-.0724-.1267-.181c0-.0121.0121-.0784.0362-.1991.0724-.2413.1267-.374.1629-.3981s1.2065-.0362,3.5109-.0362c2.2924.0121,3.517.0302,3.6738.0543.7722.1327,1.4176.4283,1.9364.8868s.7842,1.0678.7963,1.8279c0,.929-.3981,1.7796-1.1944,2.5518-.8325.8204-1.9063,1.3392-3.2214,1.5564-.0845.0121-.7179.0241-1.9002.0362h-1.7193l-.5429,2.1536c-.362,1.3995-.5429,2.1415-.5429,2.226,0,.0483.006.0784.0181.0905s.0543.0362.1267.0724.1749.0483.3077.0362.3318,0,.5972.0362h.561c.0724.1086.1086.1749.1086.1991,0,.193-.0422.374-.1267.5429-.0603.0603-.1568.0905-.2896.0905-.0362,0-.2594-.006-.6696-.0181s-1.0135-.0181-1.8098-.0181h-1.7193c-.3981,0-.6153.006-.6515.0181-.2172,0-.3258-.0603-.3258-.181,0-.0241.0181-.1086.0543-.2534.0483-.193.0965-.3016.1448-.3258s.187-.0422.4162-.0543c.3258,0,.6877-.0181,1.0859-.0543.1689-.0362.2835-.1086.3439-.2172.0362-.0483.4705-1.7253,1.303-5.0311.8325-3.3058,1.2487-5.0492,1.2487-5.2302h.0001ZM434.3847,14.4902c0-.1568-.0121-.2835-.0362-.38s-.0784-.2292-.1629-.3981-.2353-.3016-.4524-.3981-.5128-.193-.8868-.2896c-.0845-.0121-.5671-.0241-1.4478-.0362h-.6334c-.2172,0-.3921.006-.5248.0181s-.2051.0121-.2172,0c-.1568.0121-.2654.0664-.3258.1629-.0241.0724-.1387.5369-.3439,1.3935-.2051.8566-.4162,1.6891-.6334,2.4975s-.3258,1.2186-.3258,1.2306c0,.0241.4886.0362,1.4659.0362h.6334c1.3513,0,2.3165-.3016,2.8956-.9049.3258-.3258.5731-.8023.742-1.4297s.2534-1.1281.2534-1.5021h.0001Z&#34;/&gt;
@@ -2967,7 +3113,7 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;p&gt;  若并发进程 \(P_1\) 和 \(P_2\) 按&lt;a class=&#34;link&#34; href=&#34;#20241128224056CST&#34;&gt;图13&lt;/a&gt;中曲线④所示的顺序推进，它们将进入不安全区 \(D\) 内。此时 \(P_1\) 保持了资源 \(R_1\) ， \(P_2\) 保持了资源 \(R_2\) ，系统处于不安全状态。此刻，如果两个进程继续向前推进，就可能发生死锁。例如，当 \(P_1\) 运行到&lt;code&gt;P1:Request(R2)&lt;/code&gt;时，将因 \(R_2\) 已被 \(P_2\) 占用而阻塞：当 \(P_2\) 运行到&lt;code&gt;P2:Request(R1)&lt;/code&gt;时，也将因 \(R_1\) 已被 \(P_1\) 占用而阻塞，于是发生了进程死锁，这样的进程推进顺序就是非法的。&lt;/p&gt;
 &lt;span id=&#34;20241128224056CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 382.2857&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 382.2857&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;line x1=&#34;244.8226&#34; y1=&#34;330.0238&#34; x2=&#34;244.8226&#34; y2=&#34;13.3594&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;247.7279 15.3408 244.8226 4.5 241.9174 15.3408 247.7279 15.3408&#34;/&gt;
@@ -3449,7 +3595,7 @@ P(c)=&amp;\frac{C(c)}{\sum_{c&#39;}C(c&#39;)}=\frac{\sum_{w&#39;}C(w&#39;,c)}{\s
 &lt;/div&gt;&lt;p&gt;  截断奇异值分解结果如&lt;a class=&#34;link&#34; href=&#34;#20241113224958CST&#34;&gt;图1&lt;/a&gt;所示，可见：上下文比较相近的词在空间上的距离比较近，如“深度”“学习”等；而“我”和等高频词则与其他词语距离比较远。&lt;/p&gt;
 &lt;span id=&#34;20241113224958CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 460.8 345.6&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 460.8 345.6&#34; style=&#34;max-width:460.8;&#34;&gt;
   &lt;g id=&#34;axes_1&#34;&gt;
     &lt;g id=&#34;matplotlib.axis_1&#34;&gt;
       &lt;g id=&#34;xtick_1&#34;&gt;
@@ -4016,7 +4162,7 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
   &lt;a class=&#34;link&#34; href=&#34;#20241114184735CST&#34;&gt;图2&lt;/a&gt;对比了两种句法结构表示方法。在短语结构句法表示中，&lt;code&gt;S&lt;/code&gt;代表起始符号，&lt;code&gt;NP&lt;/code&gt;和&lt;code&gt;VP&lt;/code&gt;分别代表名词短语和动词短语。在依存结构句法表示中，&lt;code&gt;sub&lt;/code&gt;和&lt;code&gt;obj&lt;/code&gt;分别表示主语和宾语，&lt;code&gt;root&lt;/code&gt;表示虚拟根节点，其指向整个句子的核心谓词。&lt;/p&gt;
 &lt;span id=&#34;20241114184735CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 273.7143&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 273.7143&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(216.5534 19.0488)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
     &lt;text transform=&#34;translate(271.2055 114.2951)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;V&lt;/tspan&gt;&lt;tspan x=&#34;12.6001&#34; y=&#34;0&#34;&gt;P&lt;/tspan&gt;&lt;/text&gt;
@@ -4109,7 +4255,7 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
 &lt;p&gt;  语义依存分析则利用通用图表示更丰富的语义信息。根据图中节点类型的不同，又可分为两种表示——&lt;strong&gt;语义依存图(Semantic Dependency Graph)&lt;/strong&gt;‌表示和&lt;strong&gt;概念语义图(Conceptual Graph)&lt;/strong&gt;‌表示。其中，语义依存图中的节点是句子中实际存在的词语，在词与词之间创建语义关系边。而概念语义图首先将句子转化为虚拟的概念节点，然后在概念节点之间创建语义关系边。&lt;a class=&#34;link&#34; href=&#34;#20241114192135CST&#34;&gt;图3&lt;/a&gt;展示了一个语义依存图分析结果示例。&lt;/p&gt;
 &lt;span id=&#34;20241114192135CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 273.7143&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 273.7143&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(216.5534 19.0488)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
     &lt;text transform=&#34;translate(271.2055 114.2951)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;V&lt;/tspan&gt;&lt;tspan x=&#34;12.6001&#34; y=&#34;0&#34;&gt;P&lt;/tspan&gt;&lt;/text&gt;
@@ -4446,7 +4592,7 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
   &lt;a class=&#34;link&#34; href=&#34;#20241114235423CST&#34;&gt;图4&lt;/a&gt;展示了面向依存句法分析的标准弧转移算法中的三种动作。除了以上三个动作，还定义了一个特殊的完成动作（Finish，FIN）。根据上述的定义，可以使用&lt;a class=&#34;link&#34; href=&#34;#20241115000931CST&#34;&gt;表9&lt;/a&gt;中的动作序列逐步生成&lt;a class=&#34;link&#34; href=&#34;#20241114184735CST&#34;&gt;图2&lt;/a&gt;(b)所示的依存结构句法树。弧上的句法关系可以在生成弧的时候（采用RL或RR动作），使用额外的句法关系分类器加以预测。&lt;/p&gt;
 &lt;span id=&#34;20241114235423CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 160.1855&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 160.1855&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;path id=&#34;MJX-6-TEX-I-1D446&#34; d=&#34;M343.8148,96.8429c.7,0,1.4-.3,2-1,.6-.6.9-1.4.9-2.2s-.3-1.3-1-1.6c-1.3-.3-2.1-.6-2.5-.7s-.6-.2-.8-.4c-.7-.5-1.1-1.3-1.1-2.2s.2-1.4.6-2,.8-1.1,1.2-1.4c.4-.3.8-.5,1.3-.7s.9-.3,1.2-.3h.3c1.2,0,2,.4,2.5,1.2l.2-.2c.2-.2.3-.3.5-.5s.3-.3.4-.4h0q.2,0,.2.1c0,.1-.2.8-.5,2.2s-.5,2.1-.6,2.2-.1,0-.3,0-.4,0-.4-.2v-1c0-.4,0-.8-.2-1.1s-.2-.5-.3-.7-.3-.3-.5-.5c-.4-.3-.9-.4-1.5-.4s-1.3.3-1.9.8-.9,1.2-.9,1.9c0,.4,0,.7.3,1s.4.5.8.6c0,0,.5.1,1.3.3s1.2.3,1.2.3c.4.1.8.4,1.2.9.4.5.6,1.1.6,1.8s0,.7-.1,1c0,.3-.2.6-.3.9s-.4.7-.7,1.1c-.3.4-.7.8-1.2,1.1-.5.3-1.1.6-1.7.7h-.6c-1.2,0-2.1-.3-2.8-1l-.2-.2-.5.6c-.3.3-.5.5-.5.6h-.2q-.2,0-.2-.1c0-.1.4-1.5,1.1-4.3,0,0,.1-.1.4-.1h.2s.1.1.1.2v1.2c0,.5.1.9.3,1.2s.5.6.8.7.6.3,1,.3h1l-.1.3Z&#34;/&gt;
     &lt;path id=&#34;MJX-6-TEX-N-30&#34; d=&#34;M351.2148,92.4429c.5-.7,1.1-1,2-1s.8.1,1.2.3.8.6,1,1.2c.3.7.5,1.7.5,3s-.2,2.4-.6,3.1c-.2.4-.4.7-.7.9-.3.2-.6.3-.8.4s-.4,0-.7,0h-.7c-.3,0-.5-.2-.8-.4s-.5-.5-.7-.9c-.4-.7-.6-1.7-.6-3.1s.2-2.6.7-3.4l.2-.1ZM354.1148,92.3429c-.3-.3-.6-.4-.9-.4s-.7.1-.9.4c-.2.2-.4.5-.4.9s-.1,1.2-.1,2.5,0,2.3.1,2.7c0,.4.2.8.5,1,.2.3.5.4.9.4s.6-.1.9-.4c.3-.3.4-.6.5-1.1s0-1.3.1-2.6c0-1.3,0-2.1-.1-2.5,0-.4-.2-.7-.4-.9h-.2Z&#34;/&gt;
@@ -4686,7 +4832,7 @@ P(\mathbb{D}^{\text{test}})=&amp;P(w_1w_2 \cdots w_N)\\[5pt]
   使用传统的机器学习技术解决序列到序列问题是比较困难的，而基于深度学习模型，可以直接将输入序列表示为一个向量，然后，通过该向量生成输出序列。其中，对输入序列进行表示的过程又叫作编码，相应的模型则被称为&lt;strong&gt;编码器(Encoder)&lt;/strong&gt;；生成输出序列的过程又叫作解码，相应的模型则被称为&lt;strong&gt;解码器(Decoder)&lt;/strong&gt;。 因此，序列到序列模型也被称为&lt;strong&gt;编码器—解码器（Encoder-Decoder）模型&lt;/strong&gt;。&lt;a class=&#34;link&#34; href=&#34;#20241115213118CST&#34;&gt;图5&lt;/a&gt;以机器翻译问题为例，展示了一个编码器-解码器模型的示例。&lt;/p&gt;
 &lt;span id=&#34;20241115213118CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 358.6041&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 358.6041&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;rect x=&#34;103.6595&#34; y=&#34;252.4444&#34; width=&#34;45.9048&#34; height=&#34;45.9048&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(123.0481 280.8665)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;I&lt;/tspan&gt;&lt;/text&gt;
@@ -5019,7 +5165,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
 &lt;/h3&gt;&lt;p&gt;  支持SQL的关系数据库管理系统同样支持关系数据库三级模式结构。如&lt;a class=&#34;link&#34; href=&#34;#20241111211554CST&#34;&gt;图1&lt;/a&gt;所示，其中外模式包括若干&lt;strong&gt;视图(view)&lt;/strong&gt;‌和部分&lt;strong&gt;基本表(base table)&lt;/strong&gt;，数据库模式包括若干基本表，内模式包括若干&lt;strong&gt;存储文件(stored file)&lt;/strong&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241111211554CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 329.7143&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 329.7143&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;308.3165&#34; y=&#34;7.3651&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;text transform=&#34;translate(340.1887 32.27)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .006em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.0977&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.019em;&#34;&gt;Q&lt;/tspan&gt;&lt;tspan x=&#34;23.4175&#34; y=&#34;0&#34;&gt;L&lt;/tspan&gt;&lt;/text&gt;
@@ -5297,7 +5443,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
   在早期的数据库系统中，所有数据库对象都属于一个数据库，也就是说只有一个命名空间。现代的关系数据库管理系统提供了一个层次化的数据库对象命名机制，如&lt;a class=&#34;link&#34; href=&#34;#20241111231124CST&#34;&gt;图2&lt;/a&gt;所示。一个关系数据库管理系统的&lt;strong&gt;实例(instance)&lt;/strong&gt;‌中可以建立多个数据库,一个数据库中可以建立多个模式，一个模式下通常包括多个表、视图和索引等数据库对象。&lt;/p&gt;
 &lt;span id=&#34;20241111231124CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 193.9048&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 193.9048&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(323.8505 42.5875)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据&lt;/tspan&gt;&lt;tspan x=&#34;36&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;库&lt;/tspan&gt;&lt;tspan x=&#34;45.4141&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（&lt;/tspan&gt;&lt;tspan x=&#34;63&#34; y=&#34;0&#34;&gt;有的系统称为目&lt;/tspan&gt;&lt;tspan x=&#34;189&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;录&lt;/tspan&gt;&lt;tspan x=&#34;206.5864&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.4771em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(413.8498 104.0048)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;模式&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(355.3502 165.4228)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;表以及视&lt;/tspan&gt;&lt;tspan x=&#34;72&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.019em;&#34;&gt;图&lt;/tspan&gt;&lt;tspan x=&#34;89.6582&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.481em;&#34;&gt;、&lt;/tspan&gt;&lt;tspan x=&#34;99&#34; y=&#34;0&#34;&gt;索引等&lt;/tspan&gt;&lt;/text&gt;
@@ -6800,7 +6946,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
   关系数据库管理系统执行该连接操作的一种可能过程是：首先在表&lt;code&gt;Student&lt;/code&gt;中找到第一个元组，然后从头开始扫描&lt;code&gt;SC&lt;/code&gt;表，逐一查找与&lt;code&gt;Student&lt;/code&gt;第一个元组的&lt;code&gt;Sno&lt;/code&gt;相等的&lt;code&gt;SC&lt;/code&gt;元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第一个元组与该元组拼接起来，形成结果表中一个元组。&lt;code&gt;SC&lt;/code&gt;全部查找完后，再找&lt;code&gt;Student&lt;/code&gt;中第二个元组，然后再从头开始扫描&lt;code&gt;SC&lt;/code&gt;，逐一查找满足连接条件的元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到&lt;code&gt;Student&lt;/code&gt;中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如&lt;a class=&#34;link&#34; href=&#34;#20241116211750CST&#34;&gt;图3&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241116211750CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 236.9314&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 236.9314&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(38.0264 15.8399)&#34; style=&#34;font-family: NotoSerifSC-Light, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.01em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;9.8999&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.001em;&#34;&gt;t&lt;/tspan&gt;&lt;tspan x=&#34;16.3979&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;u&lt;/tspan&gt;&lt;tspan x=&#34;28.0083&#34; y=&#34;0&#34;&gt;dent&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(531.6144 15.8398)&#34; style=&#34;font-family: NotoSerifSC-Light, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.1699&#34; y=&#34;0&#34;&gt;C&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
@@ -6971,7 +7117,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
   为此，要为Course表取两个别名，一个是&lt;code&gt;FIRST&lt;/code&gt;，另一个是&lt;code&gt;SECOND&lt;/code&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241117132302CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 268.5714&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 268.5714&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g id=&#34;_layer_1&#34;&gt;
     &lt;g&gt;
       &lt;g style=&#34;clip-path: url(#clippath);&#34;&gt;
@@ -9724,7 +9870,7 @@ p \to q \equiv \lnot p \lor q
   \(S_2\to S_3,S_3\to S_2\)&lt;/p&gt;
 &lt;span id=&#34;20241106181930CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 322.2857&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 322.2857&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;g&gt;
@@ -9877,7 +10023,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/h4&gt;&lt;p&gt;  通常，一个应用程序由若干个程序段组成，每一个程序段完成特定的功能，它们在执行时，都需要按照某种先后次序顺序执行，仅当前一程序段执行完后，才运行后一程序段。例如，在进行计算时，应先运行输入程序，用于输入用户的程序和数据；然后运行计算程序，对所输入的数据进行计算；最后才是运行打印程序，打印计算结果。我们用&lt;strong&gt;结点(Node)&lt;/strong&gt;‌代表各程序段的操作（在&lt;a class=&#34;link&#34; href=&#34;#20241106181930CST&#34;&gt;图1&lt;/a&gt;中用圆圈表示），其中 \(I\) 代表输入操作， \(C\) 代表计算操作， \(P\) 为打印操作，用箭头指示操作的先后次序。这样，上述的三个程序段间就存在着这样的前趋关系： \(I_i\to C_i \to P_i\) ，其执行的顺序可用前趋图&lt;a class=&#34;link&#34; href=&#34;#20241106190822CST&#34;&gt;图2&lt;/a&gt;(a)描述。&lt;/p&gt;
 &lt;span id=&#34;20241106190822CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 104.7761&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 104.7761&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(231.9902 100.8165)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.3716&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;a)程序的顺序执行&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(569.3856 100.8162)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.2998&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;b&lt;/tspan&gt;&lt;tspan x=&#34;17.2261&#34; y=&#34;0&#34;&gt;)三条语句的顺序执行&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
@@ -9974,7 +10120,7 @@ p \to q \equiv \lnot p \lor q
   由&lt;a class=&#34;link&#34; href=&#34;#20241106194040CST&#34;&gt;图3&lt;/a&gt;可以看出，存在前趋关系 \(I_i \to C_i,I_i \to I_{i+1},C_i \to P_i, C_i \to C_{i+1},P_i\to P_{i+1}\) 而 \(I_{i+1}\) 和 \(C_i\) 及 \(P_{i-1}\) 是重叠的，即在 \(P_{i-1}\) 和 \(C_i\) 以及 \(I_{i+1}\) 之间，不存在前趋关系，可以并发执行。&lt;/p&gt;
 &lt;span id=&#34;20241106194040CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 261.7143&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 261.7143&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;circle cx=&#34;138.3359&#34; cy=&#34;22.9763&#34; r=&#34;18.7937&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;g&gt;
@@ -10148,7 +10294,7 @@ p \to q \equiv \lnot p \lor q
   可画出&lt;a class=&#34;link&#34; href=&#34;#20241106194815CST&#34;&gt;图4&lt;/a&gt;所示的前趋关系。可以看出： \(S_3\) 必须在a和b被赋值后方能执行； \(S_4\) 必须在 \(S_3\) 之后执行；但 \(S_1\) 和 \(S_2\) 则可以并发执行，因为它们彼此互不依赖。&lt;/p&gt;
 &lt;span id=&#34;20241106194815CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 261.7143&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 261.7143&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;circle cx=&#34;259.0145&#34; cy=&#34;60.4944&#34; r=&#34;18.7937&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -10231,7 +10377,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/h4&gt;&lt;p&gt;  进程在运行过程中会经常发生状态的转换。例如，处于就绪状态的进程，在调度程序为之分配了处理机之后便可执行，相应地，其状态就由就绪态转变为执行态；正在执行的进程（当前进程）如果因分配给它的时间片己完而被剥夺处理机暂停执行时，其状态便由执行转为就绪：如果因发生某事件，致使当前进程的执行受阻（例如进程访问某临界资源，而该资源正被其它进程访问时），使之无法继续执行，则该进程状态将由执行转变为阻塞。&lt;a class=&#34;link&#34; href=&#34;#20241106211555CST&#34;&gt;图5&lt;/a&gt;示出了进程的三种基本状态，以及各状态之间的转换关系。&lt;/p&gt;
 &lt;span id=&#34;20241106211555CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 222.6533&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 222.6533&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(269.9534 201.4224)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;阻塞&lt;/tspan&gt;&lt;/text&gt;
     &lt;circle cx=&#34;287.9533&#34; cy=&#34;193.7009&#34; r=&#34;28.9524&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -10279,7 +10425,7 @@ p \to q \equiv \lnot p \lor q
 &lt;p&gt;  进程的终止也要通过两个步骤：首先，是等待操作系统进行善后处理，最后将其PCB清零，并将PCB空间返还系统。当一个进程到达了自然结束点，或是出现了无法克服的错误，或是被操作系统所终结，或是被其他有终止权的进程所终结，它将进入终止状态。进入终止态的进程以后不能再执行，但在操作系统中依然保留一个记录，其中保存状态码和一些计时统计数据，供其他进程收集。一旦其他进程完成了对其信息的提取之后，操作系统将删除该进程，即将其PCB清零，并将该空白PCB返还系统。&lt;a class=&#34;link&#34; href=&#34;#20241106212101CST&#34;&gt;图6&lt;/a&gt;示出了增加了创建状态和终止状态后进程的五种状态及转换关系图。&lt;/p&gt;
 &lt;span id=&#34;20241106212101CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 222.6533&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 222.6533&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
       &lt;text transform=&#34;translate(273.7752 201.4224)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;阻塞&lt;/tspan&gt;&lt;/text&gt;
@@ -10366,7 +10512,7 @@ p \to q \equiv \lnot p \lor q
   (4) 静止阻塞🠖活动阻塞。处于&lt;code&gt;Blockeds&lt;/code&gt;状态的进程若用激活原语&lt;code&gt;Active&lt;/code&gt;激活后，进程将转变为&lt;code&gt;Blockeda&lt;/code&gt;状态。&lt;a class=&#34;link&#34; href=&#34;#20241106215410CST&#34;&gt;图7&lt;/a&gt;示出了具有挂起状态的进程状态图。&lt;/p&gt;
 &lt;span id=&#34;20241106215410CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 337.8303&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 337.8303&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
       &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -10528,7 +10674,7 @@ p \to q \equiv \lnot p \lor q
   (4) 执行🠖终止：当一个进程已完成任务时，或是出现了无法克服的错误，或是被OS，或是被其他进程所终结，此时将进程的状态转换为终止状态。&lt;/p&gt;
 &lt;span id=&#34;20241106221112CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 337.8&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 337.8&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
       &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -10729,7 +10875,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/h4&gt;&lt;p&gt;  在计算机系统中，对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为&lt;strong&gt;资源信息表&lt;/strong&gt;或&lt;strong&gt;进程信息表&lt;/strong&gt;，其中包含了资源或进程的标识、描述、状态等信息以及一批指针。通过这些指针，可以将同类资源或进程的信息表，或者同一进程所占用的资源信息表分类链接成不同的队列，便于操作系统进行查找。如&lt;a class=&#34;link&#34; href=&#34;#20241106223515CST&#34;&gt;图9&lt;/a&gt;所示，OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。本节着重介绍PCB，其它的表将在后面的篇章中陆续介绍。&lt;/p&gt;
 &lt;span id=&#34;20241106223515CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 343.619&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 343.619&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(128.1422 55.4633)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;内存&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
     &lt;rect x=&#34;96.1419&#34; y=&#34;35.3997&#34; width=&#34;100&#34; height=&#34;100&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -10824,7 +10970,7 @@ p \to q \equiv \lnot p \lor q
   (1) 线性方式，即将系统中所有的PCB都组织在一张线性表中，将该表的首址存放在内存的一个专用区域中。该方式实现简单、开销小，但每次查找时都需要扫描整张表，因此适合进程数目不多的系统。&lt;a class=&#34;link&#34; href=&#34;#20241106225847CST&#34;&gt;图10&lt;/a&gt;示出了线性表的PCB组织方式。&lt;/p&gt;
 &lt;span id=&#34;20241106225847CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 182.8571&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 182.8571&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;381.85&#34; y=&#34;4.0794&#34; width=&#34;100&#34; height=&#34;175&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;381.85&#34; y1=&#34;154.0794&#34; x2=&#34;481.85&#34; y2=&#34;154.0794&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -10845,7 +10991,7 @@ p \to q \equiv \lnot p \lor q
 &lt;p&gt;  (2) 链接方式，即把具有相同状态进程的PCB分别通过PCB中的链接字链接成一个队列。这样，可以形成就绪队列、若干个阻塞队列和空白队列等。对就绪队列而言，往往按进程的优先级将PCB从高到低进行排列，将优先级高的进程PCB排在队列的前面。同样，也可把处于阻塞状态进程的PCB根据其阻塞原因的不同，排成多个阻塞队列，如等待I/O操作完成的队列和等待分配内存的队列等。&lt;a class=&#34;link&#34; href=&#34;#20241106232851CST&#34;&gt;图11&lt;/a&gt;示出了一种链接队列的组织方式。&lt;/p&gt;
 &lt;span id=&#34;20241106232851CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 257.9048&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 257.9048&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(232.773 95.1697)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;就绪队列指针&lt;/tspan&gt;&lt;/text&gt;
     &lt;rect x=&#34;186.773&#34; y=&#34;75.2174&#34; width=&#34;200&#34; height=&#34;25&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -10943,7 +11089,7 @@ p \to q \equiv \lnot p \lor q
 &lt;p&gt;  (3) 索引方式，即系统根据所有进程状态的不同，建立几张索引表，例如，就绪索引表、阻塞索引表等，并把各索引表在内存的首地址记录在内存的一些专用单元中。在每个索引表的表目中，记录具有相应状态的某个PCB在PCB表中的地址。&lt;a class=&#34;link&#34; href=&#34;#20241107110135CST&#34;&gt;图12&lt;/a&gt;示出了索引方式的PCB组织。&lt;/p&gt;
 &lt;span id=&#34;20241107110135CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 283.9143&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 283.9143&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(203.2068 28.0545)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;执行指针&lt;/tspan&gt;&lt;/text&gt;
     &lt;rect x=&#34;164.2226&#34; y=&#34;3.9143&#34; width=&#34;149.9683&#34; height=&#34;35.0476&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -11062,7 +11208,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/h4&gt;&lt;p&gt;  为了形象地描述一个进程的家族关系而引入了&lt;strong&gt;进程图(Process Graph)&lt;/strong&gt;。所谓进程图就是用于描述进程间关系的一棵有向树，如&lt;a class=&#34;link&#34; href=&#34;#20241107125722CST&#34;&gt;图13&lt;/a&gt;所示。图中的结点代表进程。在进程 \(P_i\) 创建了进程 \(P_j\) 之后，称 \(P_i\) 是 \(P_j\) 的&lt;strong&gt;父进程(Parent Process)&lt;/strong&gt;， \(P_j\) 是 \(P_i\) 的&lt;strong&gt;子进程(Progeny Process)&lt;/strong&gt;。这里可用一条由进程 \(P_i\) 指向进程 \(P_j\) 的有向边来描述它们之间的父子关系。创建父进程的进程称为&lt;strong&gt;祖先进程&lt;/strong&gt;，这样便形成了一棵进程树，把树的根结点作为进程家族的&lt;strong&gt;祖先(Ancestor)&lt;/strong&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241107125722CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 329.7143&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 329.7143&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;circle cx=&#34;431.85&#34; cy=&#34;22.5589&#34; r=&#34;18.7937&#34; transform=&#34;translate(320.1341 440.3183) rotate(-78.0188)&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;path id=&#34;MJX-8-TEX-I-1D434&#34; d=&#34;M428.6911,27.7598c0,.293.2808.4639.8424.5128.2198,0,.3296.0671.3296.2014,0,.0122-.0122.0916-.0366.2381-.0366.1709-.0733.2808-.1099.3296-.0366.0488-.116.0733-.2381.0733h-.2198c-.1221,0-.3296-.0061-.6226-.0183-.293-.0122-.6837-.0183-1.172-.0183-.8668,0-1.4223.0122-1.6665.0366h-.1465c-.0855-.0855-.1282-.1526-.1282-.2014.0244-.3296.1038-.5433.2381-.6409h.2564c.8546-.0366,1.4772-.3418,1.8679-.9156.0733-.0733,1.1781-1.9351,3.3146-5.5854,2.1365-3.6504,3.2231-5.5,3.2597-5.5488.0855-.1465.232-.2198.4395-.2198h.4578c.0733.1099.1099.1709.1099.1831l.5128,5.9151c.3418,3.9434.525,5.9334.5494,5.97.061.1343.4578.2014,1.1903.2014.3052,0,.4578.061.4578.1831,0,.0244-.0183.1099-.0549.2564-.0366.1831-.0671.293-.0916.3296s-.1099.061-.2564.0733h-.2564c-.1343,0-.3724-.0061-.7142-.0183-.3418-.0122-.7875-.0183-1.3368-.0183-1.1476,0-1.8984.0122-2.2525.0366h-.2198c-.0733-.0733-.1099-.1282-.1099-.1648s.0122-.1465.0366-.3296c.0488-.1587.0855-.2564.1099-.293l.0733-.0549h.3663c.6593-.0366,1.0499-.1404,1.172-.3113l-.2198-2.7469h-4.3585l-.6226,1.0621c-.5006.8424-.7508,1.3368-.7508,1.4833ZM434.3314,24.3536c0-.1343-.0733-1.0866-.2198-2.8568-.1465-1.7702-.232-2.6615-.2564-2.6737l-.4944.7875c-.1953.3296-.5799.9828-1.1537,1.9595l-1.6482,2.7836,1.8862.0183c1.2575,0,1.8862-.0061,1.8862-.0183Z&#34;/&gt;
@@ -11785,7 +11931,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/div&gt;&lt;p&gt;‌&lt;/p&gt;
 &lt;span id=&#34;20241110145609CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 331.4286&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 331.4286&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;circle cx=&#34;512.9574&#34; cy=&#34;23.6556&#34; r=&#34;18.7937&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;g&gt;
@@ -11911,7 +12057,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/div&gt;&lt;p&gt;‌&lt;/p&gt;
 &lt;span id=&#34;20241110163451CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 367.4286&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 367.4286&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(400.8324 85.287)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;共享数据&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(382.832 263.2583)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;一组操作过程&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
@@ -12498,7 +12644,7 @@ p \to q \equiv \lnot p \lor q
   在消息传递方式上，最简单的情况是单向传递。消息的传递也可以是双向的。&lt;a class=&#34;link&#34; href=&#34;#20241111000058CST&#34;&gt;图16&lt;/a&gt;示出了双向通信链路的通信方式。&lt;/p&gt;
 &lt;span id=&#34;20241111000058CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 170.2857&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 170.2857&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(183.7256 99.4047)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;进程A&lt;/tspan&gt;&lt;/text&gt;
     &lt;circle cx=&#34;207.8816&#34; cy=&#34;93.7709&#34; r=&#34;34.2857&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -12598,7 +12744,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/h4&gt;&lt;p&gt;  发送进程在利用发送原语发送消息之前，应先在自己的内存空间设置一发送区&lt;code&gt;a&lt;/code&gt;，如&lt;a class=&#34;link&#34; href=&#34;#20241111134540CST&#34;&gt;图17&lt;/a&gt;所示，把待发送的消息正文、发送进程标识符、消息长度等信息填入其中，然后调用发送原语，把消息发送给目标（接收）进程。发送原语首先根据发送区&lt;code&gt;a&lt;/code&gt;中所设置的消息长度&lt;code&gt;a.size&lt;/code&gt;来申请一缓冲区&lt;code&gt;i&lt;/code&gt;，接着，把发送区&lt;code&gt;a&lt;/code&gt;中的信息复制到缓冲区&lt;code&gt;i&lt;/code&gt;中。为了能将&lt;code&gt;i&lt;/code&gt;挂在接收进程的消息队列&lt;code&gt;mq&lt;/code&gt;上，应先获得接收进程的内部标识符&lt;code&gt;j&lt;/code&gt;，然后将&lt;code&gt;i&lt;/code&gt;挂在&lt;code&gt;j.mq&lt;/code&gt;上。由于该队列属于临界资源，故在执行&lt;code&gt;insert&lt;/code&gt;操作的前后都要执行&lt;code&gt;wait&lt;/code&gt;和&lt;code&gt;signal&lt;/code&gt;操作。最后，释放信号量&lt;code&gt;sm&lt;/code&gt;表示消息发送完毕。&lt;/p&gt;
 &lt;span id=&#34;20241111134540CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 409.1429&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 409.1429&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;rect x=&#34;90.0421&#34; y=&#34;32.676&#34; width=&#34;125&#34; height=&#34;370.6274&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(120.526 19.6157)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;进程A&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(112.5286 93.0442)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;send(&lt;/tspan&gt;&lt;tspan x=&#34;47.1055&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.024em;&#34;&gt;B&lt;/tspan&gt;&lt;tspan x=&#34;58.4634&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.021em;&#34;&gt;,&lt;/tspan&gt;&lt;tspan x=&#34;63.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;a)&lt;/tspan&gt;&lt;/text&gt;
@@ -12831,7 +12977,7 @@ p \to q \equiv \lnot p \lor q
   (3)多对多模型，即将许多用户线程映射到同样数量或更少数量的内核线程上。如&lt;a class=&#34;link&#34; href=&#34;#20241111151915CST&#34;&gt;图18&lt;/a&gt;(c)所示，内核控制线程的数目可以根据应用进程和系统的不同而变化，可以比用户线程少，也可以与之相同。该模型结合上述两种模型的优点，它可以像一对一模型那样，使一个进程的多个线程并行地运行在多处理机系统上，也可像多对一模型那样，减少线程的管理开销和提高效率。&lt;/p&gt;
 &lt;span id=&#34;20241111151915CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 307.9564&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 307.9564&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;28.1429&#34; y=&#34;39.7183&#34; width=&#34;170.8571&#34; height=&#34;182.2857&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;28.1429&#34; y1=&#34;130.8612&#34; x2=&#34;199&#34; y2=&#34;130.8612&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -13029,7 +13175,7 @@ p \to q \equiv \lnot p \lor q
 &lt;/h4&gt;&lt;p&gt;  在仅设置了内核支持线程的OS中，一种可能的线程控制方法是，系统在建一个新进程时，便为它分配一个&lt;strong&gt;任务数据区PTDA(Per Task Data Area)&lt;/strong&gt;，其中包括若干个线程控制块TCB空间，如&lt;a class=&#34;link&#34; href=&#34;#20241111152443CST&#34;&gt;图19&lt;/a&gt;所示。在每一个TCB中可保存线程标识符、优先级、线程运行的CPU状态等信息。虽然这些信息与用户级线程TCB中的信息相同，但现在却是被保存在内核空间中。&lt;/p&gt;
 &lt;span id=&#34;20241111152443CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 125.1429&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 125.1429&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;rect x=&#34;288.1357&#34; y=&#34;8.127&#34; width=&#34;287.4286&#34; height=&#34;114.2857&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(293.5372 29.1439)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .009em;&#34;&gt;P&lt;/tspan&gt;&lt;tspan x=&#34;11.4658&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;T&lt;/tspan&gt;&lt;tspan x=&#34;23.0752&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.045em;&#34;&gt;D&lt;/tspan&gt;&lt;tspan x=&#34;35.9814&#34; y=&#34;0&#34;&gt;A&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(362.1362 29.1436)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;进程资源&lt;/tspan&gt;&lt;/text&gt;
@@ -13051,7 +13197,7 @@ p \to q \equiv \lnot p \lor q
 间系统时用户级线程的实现方法。&lt;/p&gt;
 &lt;span id=&#34;20241111155236CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 394.8186&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 394.8186&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;polyline points=&#34;719.9878 327.4139 719.9878 333.4139 713.9878 333.4139&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;707.9307&#34; y1=&#34;333.4139&#34; x2=&#34;202.1592&#34; y2=&#34;333.4139&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.1143 6.0571; stroke-miterlimit: 10;&#34;/&gt;
@@ -13425,7 +13571,7 @@ R(A_1,A_2,\cdots,A_n)
   另外，还有一种介于关系代数和关系演算之间的结构化查询语言(Structured Query Language,SQL)。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言(Data Control Language,DCL)于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：&lt;/p&gt;
 &lt;span id=&#34;20241024185641CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 129.1391&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 129.1391&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(175.7935 72.8902)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;关系数据语言&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
     &lt;path id=&#34;MJX-19-TEX-S4-23A7&#34; d=&#34;M295.4998,12.9533l.1099.1099v.5127c0,.1343-.0854.2502-.2563.3479-.9399.6469-1.715,1.477-2.3253,2.4901s-1.0192,2.1422-1.2267,3.3872c0,.0122-.0061.0366-.0183.0732-.0488.3418-.0793,1.3915-.0915,3.1492v1.9957c0,2.9539-.0061,4.4431-.0183,4.4675-.0122.0488-.0671.0793-.1648.0915s-.4028.0183-.9155.0183c-.6347,0-.9643-.0061-.9887-.0183-.0366-.0122-.061-.0366-.0732-.0732-.0244-.1221-.0366-1.5563-.0366-4.3027v-1.5014c0-.6103-.0061-1.0375-.0183-1.2817,0-1.2084.0549-2.1422.1648-2.8013s.3662-1.3976.769-2.2154c.9277-1.8309,2.3314-3.2713,4.2111-4.321l.238-.1282h.6408Z&#34;/&gt;
@@ -13488,7 +13634,7 @@ R(A_1,A_2,\cdots,A_n)
 &lt;p&gt;  &lt;span id=&#34;20241025092415CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义5（参照关系）&lt;/strong&gt;：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的&lt;strong&gt;外码(foreign key)&lt;/strong&gt;，并称基本关系 \(R\) 为&lt;strong&gt;参照关系(referencing relation)&lt;/strong&gt;，基本关系 \(S\) 为被&lt;strong&gt;参照关系(referenced relation)&lt;/strong&gt;‌或&lt;strong&gt;目标关系(target relation)&lt;/strong&gt;，关系 \(R\) 和 \(S\) 不一定是不同的关系。&lt;/p&gt;
 &lt;span id=&#34;20241025093632CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 76.9524&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 76.9524&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;path id=&#34;MJX-11-TEX-I-1D445&#34; d=&#34;M307.1173,31.8092c-.3295,0-.5248-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3295.0671-.5309.2014-.6042.0244-.0122,1.0863-.0183,3.1856-.0183,2.0993.0122,3.2344.0305,3.4053.0549.6835.0976,1.2571.2685,1.721.5126s.7933.5248.9886.8422.3234.5798.3845.7872.0976.415.1098.6225c0,.5492-.177,1.0619-.5309,1.5379s-.7628.8422-1.2266,1.0985-.8727.4638-1.2266.6225-.5859.238-.6957.238l.1282.0915c.8178.4638,1.2266,1.1351,1.2266,2.0139,0,.1343-.0305.5065-.0915,1.1168s-.0915,1.1107-.0915,1.5013v.1648c0,.2197.0061.3906.0183.5126s.0793.2319.2014.3295.2807.1526.476.1648c.3417,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5553.476-.8605.061-.1709.1098-.2746.1465-.3112s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5675-.4394,1.0436-.4638.6957-1.013,1.0436-1.6477,1.0436h-.1648c-.7445,0-1.3609-.1526-1.8491-.4577-.4882-.3051-.7567-.7811-.8056-1.428,0-.3295.0915-.8422.2746-1.5379s.2746-1.1412.2746-1.3365c0-.6225-.2624-1.0741-.7872-1.3548-.1831-.0854-.3356-.1343-.4577-.1465s-.5553-.0244-1.2999-.0366h-1.2633l-.5859,2.38c-.4028,1.6111-.6042,2.4289-.6042,2.4533,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3112.0366.3356,0,.6042.0366h.5675c.0732.0976.1098.1526.1098.1648s-.0183.1221-.0549.3295c-.0488.1587-.1098.2746-.1831.3479h-.2746c-.4394-.0244-1.2388-.0366-2.3983-.0366h-1.9956c-.2075,0-.3356.0061-.3845.0183-.2075,0-.3112-.0549-.3112-.1648,0-.0244.0183-.1098.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1098c.3295,0,.6957-.0183,1.0985-.0549.1709-.0366.2868-.1098.3479-.2197.0366-.0488.476-1.7454,1.3182-5.0896.8422-3.3443,1.2633-5.1079,1.2633-5.291,0-.0854-.3479-.1404-1.0436-.1648ZM314.4405,33.3288c0-.3906-.1282-.7201-.3845-.9886s-.7811-.4394-1.5745-.5126h-.4211c-.2563,0-.4882-.0061-.6957-.0183h-.4028c-.5737,0-.9032.061-.9886.1831-.0122.0366-.2197.8483-.6225,2.435-.4028,1.5867-.6042,2.3983-.6042,2.435,0,.0122.4211.0183,1.2633.0183.952-.0122,1.5867-.0549,1.904-.1282.7811-.1221,1.3914-.4821,1.8308-1.0802.1953-.2807.3601-.6469.4943-1.0985s.2014-.8666.2014-1.2449Z&#34;/&gt;
@@ -13533,7 +13679,7 @@ R(A_1,A_2,\cdots,A_n)
   在&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(c)所示。&lt;/p&gt;
 &lt;span id=&#34;20241025100110CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 204.4159&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 204.4159&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;g&gt;
@@ -13676,7 +13822,7 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(a)、&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(b)分别为具有三个属性列的关系 \(R\) 、 \(S\) 。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(c)为关系 \(R\) 与 \(S\) 的并。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(d)为关系 \(R\) 与 \(S\) 的交。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(e)为关系 \(R\) 和 \(S\) 的差。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(f)为关系 \(R\) 和 \(S\) 的Cartesian乘积。&lt;/p&gt;
 &lt;span id=&#34;20241026102728CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 643.2851&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 643.2851&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;path id=&#34;MJX-8-TEX-I-1D44E&#34; d=&#34;M92.7112,70.7092c0-1.2.5-2.4,1.4-3.5s2-1.7,3.1-1.7c.6,0,1.2.3,1.6.9.2-.4.5-.5.8-.5s.3,0,.4.1.2.2.2.4-.2,1.1-.7,2.9-.7,2.8-.7,3c0,.3,0,.5.1.6,0,0,.2.2.4.2.1,0,.2,0,.4-.2.3-.2.5-.8.8-1.8,0-.2.1-.4.2-.4h.2c.2,0,.3,0,.3.2v.5c0,.3-.2.6-.4,1s-.4.7-.6.9c-.2.2-.4.3-.6.4h-.4c-.4,0-.8,0-1-.3s-.5-.4-.5-.6v-.3h-.2c-.7.7-1.5,1-2.2,1s-1.3-.2-1.8-.7-.8-1.3-.8-2.3v.2ZM98.6112,67.6092v-.4c0-.2-.2-.4-.4-.6s-.5-.4-.8-.4c-.4,0-.8.2-1.2.6s-.7.9-.9,1.5c-.4,1-.6,2-.8,3v.4c0,.5.1.9.3,1.1s.5.3.8.3c.5,0,.9-.2,1.4-.6s.7-.7.8-.9c0,0,.2-.7.5-2s.5-1.9.5-2h-.2Z&#34;/&gt;
@@ -14204,7 +14350,7 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
   例如，&lt;a class=&#34;link&#34; href=&#34;#20241026115500CST&#34;&gt;图5&lt;/a&gt;中， \(x_1\) 在 \(R\) 中的象集为 \(Z_{x_1}=\set{{Z_1,Z_2,Z_3}}\) ， \(x_2\) 在 \(R\) 中的象集为 \(Z_{x_2}=\set{Z_2,Z_3}\) ， \(x_3\) 在 \(R\) 中的象集为 \(Z_{x_3}=\set{Z_1,Z_3}\) 。&lt;/p&gt;
 &lt;span id=&#34;20241026115500CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 325.9518&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 325.9518&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;path id=&#34;MJX-8-TEX-I-1D445&#34; d=&#34;M337.1869,4.5802c-.3296,0-.5249-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3296.0671-.531.2014-.6042.0244-.0122,1.0864-.0183,3.1859-.0183,2.0995.0122,3.2347.0305,3.4056.0549.6836.0977,1.2573.2685,1.7211.5127s.7934.5249.9887.8422.3235.5798.3845.7873.0977.415.1099.6225c0,.5493-.177,1.062-.531,1.538s-.7629.8422-1.2267,1.0986-.8728.4638-1.2267.6225-.5859.238-.6958.238l.1282.0915c.8178.4638,1.2267,1.1352,1.2267,2.0141,0,.1343-.0305.5066-.0915,1.1169s-.0915,1.1108-.0915,1.5014v.1648c0,.2197.0061.3906.0183.5127s.0793.2319.2014.3296.2807.1526.4761.1648c.3418,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5554.4761-.8606.061-.1709.1099-.2746.1465-.3113s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5676-.4394,1.0436-.4638.6958-1.0131,1.0436-1.6479,1.0436h-.1648c-.7446,0-1.361-.1526-1.8493-.4577-.4883-.3052-.7568-.7812-.8056-1.4282,0-.3296.0915-.8422.2746-1.538s.2746-1.1413.2746-1.3366c0-.6225-.2624-1.0742-.7873-1.3549-.1831-.0854-.3357-.1343-.4577-.1465s-.5554-.0244-1.3-.0366h-1.2634l-.5859,2.3803c-.4028,1.6112-.6042,2.4291-.6042,2.4535,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3113.0366.3357,0,.6042.0366h.5676c.0732.0977.1099.1526.1099.1648s-.0183.1221-.0549.3296c-.0488.1587-.1099.2746-.1831.3479h-.2746c-.4394-.0244-1.239-.0366-2.3986-.0366h-1.9957c-.2075,0-.3357.0061-.3845.0183-.2075,0-.3113-.0549-.3113-.1648,0-.0244.0183-.1099.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1099c.3296,0,.6958-.0183,1.0986-.0549.1709-.0366.2869-.1099.3479-.2197.0366-.0488.4761-1.7455,1.3183-5.0901.8422-3.3446,1.2634-5.1084,1.2634-5.2915,0-.0854-.3479-.1404-1.0436-.1648ZM344.5108,6.0999c0-.3906-.1282-.7202-.3845-.9887s-.7812-.4394-1.5746-.5127h-.4211c-.2563,0-.4883-.0061-.6958-.0183h-.4028c-.5737,0-.9033.061-.9887.1831-.0122.0366-.2197.8483-.6225,2.4352-.4028,1.5868-.6042,2.3986-.6042,2.4352,0,.0122.4211.0183,1.2634.0183.9521-.0122,1.5868-.0549,1.9042-.1282.7812-.1221,1.3915-.4822,1.831-1.0803.1953-.2807.3601-.6469.4944-1.0986s.2014-.8667.2014-1.2451Z&#34;/&gt;
   &lt;g&gt;
     &lt;path id=&#34;MJX-9-TEX-I-1D465&#34; d=&#34;M373.7474,39.6494c.0854-.5126.415-1.1045.9886-1.7758.5736-.6713,1.2815-1.013,2.1237-1.0252.4272,0,.8177.1098,1.1717.3295s.6164.4943.7872.8238c.5126-.7689,1.129-1.1534,1.8491-1.1534.4516,0,.8421.1343,1.1717.4028s.5004.6286.5126,1.0801c0,.3539-.0854.6408-.2563.8604-.1709.2197-.3356.3539-.4943.4028s-.299.0732-.4211.0732c-.2319,0-.4211-.0671-.5675-.2014s-.2197-.3112-.2197-.5309c0-.5614.3051-.9459.9154-1.1534-.1343-.1587-.3784-.238-.7323-.238-.1587,0-.2746.0122-.3478.0366-.4638.1953-.8055.598-1.0252,1.2083-.7323,2.6973-1.0984,4.2717-1.0984,4.7233,0,.3417.0976.5858.2929.7323s.4089.2197.6408.2197c.4516,0,.8971-.2014,1.3364-.6041s.7384-.8971.8971-1.4829c.0366-.122.0732-.1892.1098-.2014s.1343-.0244.2929-.0366h.0732c.1831,0,.2746.0488.2746.1465,0,.0122-.0122.0793-.0366.2014-.1953.6957-.5736,1.312-1.1351,1.8491-.5614.537-1.2144.8055-1.9589.8055-.8543,0-1.5012-.3845-1.9406-1.1534-.5004.7567-1.074,1.1351-1.7209,1.1351h-.1098c-.598,0-1.0252-.1587-1.2815-.476-.2563-.3173-.3906-.653-.4028-1.0069,0-.3906.1159-.7079.3478-.952.2319-.2441.5065-.3661.8238-.3661.5248,0,.7872.2563.7872.7689,0,.2441-.0732.4577-.2197.6408s-.2868.3051-.4211.3661-.2136.0915-.238.0915l-.0549.0183c0,.0122.0366.0366.1098.0732s.1709.0793.2929.1282.238.0671.3478.0549c.4394,0,.8177-.2746,1.1351-.8238.1098-.1953.2502-.6102.4211-1.2449.1709-.6347.3417-1.2937.5126-1.9772.1709-.6835.2685-1.0862.2929-1.2083.061-.3295.0915-.5675.0915-.714,0-.3417-.0915-.5858-.2746-.7323s-.3906-.2197-.6225-.2197c-.4882,0-.9459.1953-1.3731.5858-.4272.3906-.7262.891-.8971,1.5012-.0244.1098-.0549.1709-.0915.1831s-.1343.0244-.2929.0366h-.2563c-.0732-.0732-.1098-.1404-.1098-.2014Z&#34;/&gt;
@@ -14336,7 +14482,7 @@ X_1\theta Y_1
 &lt;p&gt;  设有一个学生—课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;所示。下面的多个例子将对这三个关系进行运算。&lt;/p&gt;
 &lt;span id=&#34;20241026152329CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 643.2851&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 643.2851&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;231.85&#34; y=&#34;33.5202&#34; width=&#34;400&#34; height=&#34;210.5397&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;231.85&#34; y1=&#34;103.2598&#34; x2=&#34;631.85&#34; y2=&#34;103.2598&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -14481,7 +14627,7 @@ X_1\theta Y_1
 &lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026154508CST&#34;&gt;图7&lt;/a&gt;(b)所示。&lt;/p&gt;
 &lt;span id=&#34;20241026154508CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 403&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 403&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;rect x=&#34;231.9&#34; y=&#34;33.5&#34; width=&#34;400&#34; height=&#34;99.7381&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -14604,7 +14750,7 @@ X_1\theta Y_1
 &lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026160858CST&#34;&gt;图8&lt;/a&gt;(b)所示。Student关系原来有4个元组，而投影结果取消了重复的CS元组，因此只有三个元组。&lt;/p&gt;
 &lt;span id=&#34;20241026160858CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 276&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 276&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;197.2071&#34; y=&#34;4.9683&#34; width=&#34;250.8571&#34; height=&#34;240&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;197.2071&#34; y1=&#34;52.9683&#34; x2=&#34;448.0643&#34; y2=&#34;52.9683&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -14658,7 +14804,7 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
 &lt;p&gt;  &lt;span id=&#34;20241027090331CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例8&lt;/strong&gt;：设&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(a)和(b)分别为关系 \(R\) 和关系 \(S\) ，图&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(c)为非等值连接及 \( R \underset{C\lt E}{\Join} S \) 的结果，&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(d)为等值连接 \( R \underset{R.B=S.B}{\Join} S \) 的结果，&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(e)为自然连接 \( R \Join S \) 的结果。&lt;/p&gt;
 &lt;span id=&#34;20241027101851CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 561.2196&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 561.2196&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;g&gt;
@@ -15058,7 +15204,7 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
   如果把悬浮元组也保存在结果关系中，而在其他属性上填空值(NULL)，那么这种连接就叫做&lt;span id=&#34;20241117142036CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;外连接(outer join)&lt;/strong&gt;，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做&lt;strong&gt;左外连接（left outer join或left join）&lt;/strong&gt;，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做&lt;strong&gt;右外连接（right outer join或right join）&lt;/strong&gt;，记作 \(R⟖S\) 。在&lt;a class=&#34;link&#34; href=&#34;#20241027105236CST&#34;&gt;图10&lt;/a&gt;中，(a)是&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。&lt;/p&gt;
 &lt;span id=&#34;20241027105236CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 279.7873&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 279.7873&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(132.4257 278.5637)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.3716&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;a)外连接&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(384.0872 278.5637)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.2998&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;b&lt;/tspan&gt;&lt;tspan x=&#34;17.2261&#34; y=&#34;0&#34;&gt;)左外连接&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
@@ -15339,7 +15485,7 @@ R \div S = \set{a_1}
     \]
 &lt;span id=&#34;20241027135213CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 328.5714&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 328.5714&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;rect x=&#34;254.0325&#34; y=&#34;18.6825&#34; width=&#34;150&#34; height=&#34;280&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -15521,7 +15667,7 @@ R \div S = \set{a_1}
   首先建立一个临时关系 \(K\) ：&lt;/p&gt;
 &lt;span id=&#34;20241027141922CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 134.6705&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 134.6705&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;371.5642&#34; y=&#34;23.3055&#34; width=&#34;120.5714&#34; height=&#34;105&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;371.5642&#34; y1=&#34;58.3055&#34; x2=&#34;492.1357&#34; y2=&#34;58.3055&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -16013,7 +16159,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  则 \(S\) 是 \(\text{dom}(\phi)\) 中各阈值中元素的Cartesian积与 \(R\) 的差集。结果如&lt;a class=&#34;link&#34; href=&#34;#20241105214507CST&#34;&gt;图13&lt;/a&gt;(b)所示。注意，在做Cartesian积时各个域中的元素不能搞混。&lt;/p&gt;
 &lt;span id=&#34;20241105214507CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 303.2381&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 303.2381&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;path id=&#34;MJX-36-TEX-I-1D445&#34; d=&#34;M268.8431,145.4126c-.3296,0-.5249-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3296.0671-.531.2014-.6042.0244-.0122,1.0864-.0183,3.1859-.0183,2.0995.0122,3.2347.0305,3.4056.0549.6836.0977,1.2573.2685,1.7211.5127s.7934.5249.9887.8422.3235.5798.3845.7873.0977.415.1099.6225c0,.5493-.177,1.062-.531,1.538s-.7629.8422-1.2267,1.0986-.8728.4638-1.2267.6225-.5859.238-.6958.238l.1282.0915c.8178.4638,1.2267,1.1352,1.2267,2.0141,0,.1343-.0305.5066-.0915,1.1169s-.0915,1.1108-.0915,1.5014v.1648c0,.2197.0061.3906.0183.5127s.0793.2319.2014.3296.2807.1526.4761.1648c.3418,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5554.4761-.8606.061-.1709.1099-.2746.1465-.3113s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5676-.4394,1.0436-.4638.6958-1.0131,1.0436-1.6479,1.0436h-.1648c-.7446,0-1.361-.1526-1.8493-.4577-.4883-.3052-.7568-.7812-.8056-1.4282,0-.3296.0915-.8422.2746-1.538s.2746-1.1413.2746-1.3366c0-.6225-.2624-1.0742-.7873-1.3549-.1831-.0854-.3357-.1343-.4577-.1465s-.5554-.0244-1.3-.0366h-1.2634l-.5859,2.3803c-.4028,1.6112-.6042,2.4291-.6042,2.4535,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3113.0366.3357,0,.6042.0366h.5676c.0732.0977.1099.1526.1099.1648s-.0183.1221-.0549.3296c-.0488.1587-.1099.2746-.1831.3479h-.2746c-.4394-.0244-1.239-.0366-2.3986-.0366h-1.9957c-.2075,0-.3357.0061-.3845.0183-.2075,0-.3113-.0549-.3113-.1648,0-.0244.0183-.1099.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1099c.3296,0,.6958-.0183,1.0986-.0549.1709-.0366.2869-.1099.3479-.2197.0366-.0488.4761-1.7455,1.3183-5.0901s1.2634-5.1084,1.2634-5.2915c0-.0854-.3479-.1404-1.0436-.1648h-.0005ZM276.167,146.9323c0-.3906-.1282-.7202-.3845-.9887s-.7812-.4394-1.5746-.5127h-.4211c-.2563,0-.4883-.0061-.6958-.0183h-.4028c-.5737,0-.9033.061-.9887.1831-.0122.0366-.2197.8483-.6225,2.4352-.4028,1.5868-.6042,2.3986-.6042,2.4352,0,.0122.4211.0183,1.2634.0183.9521-.0122,1.5868-.0549,1.9042-.1282.7812-.1221,1.3915-.4822,1.831-1.0803.1953-.2807.3601-.6469.4944-1.0986s.2014-.8667.2014-1.2451h-.0002Z&#34;/&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(328.9871 297.0054)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: .004em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;/text&gt;
@@ -16158,7 +16304,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   QBE中用示例元素来表示查询结果可能的情况，示例元素实质上就是域变量。QBE操作框架如&lt;a class=&#34;link&#34; href=&#34;#20241105222505CST&#34;&gt;图14&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241105222505CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 303.2381&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 303.2381&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;line x1=&#34;191.5643&#34; y1=&#34;69.0952&#34; x2=&#34;672.1357&#34; y2=&#34;69.0952&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;191.5643&#34; y1=&#34;113.3492&#34; x2=&#34;672.1357&#34; y2=&#34;113.3492&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -16942,7 +17088,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   &lt;strong&gt;应用系统&lt;/strong&gt;特指自然语言处理技术在某一领域的综合应用，又被称为NLP+，即自然语言处理技术加上特定的应用领域。如在智能教育领域，可以使用文本分类、回归等技术，实现主观试题的智能评阅，帮助教师减轻工作量，提高工作效率；在智慧医疗领域，自然语言处理技术可以帮助医生跟踪最新的医疗文献，帮助患者进行简单的自我诊断等；在智能司法领域，可以使用阅读理解、文本匹配等技术，实现自动量刑、类案检索和法条推荐等。总之，凡是涉及文本理解和生成的领域，自然语言处理技术都可以发挥巨大的作用。&lt;/p&gt;
 &lt;span id=&#34;20241015201555CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 437.1&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 437.1&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -17058,7 +17204,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h3&gt;&lt;p&gt;  此外此外，也可以通过对研究对象的区分，将自然语言处理研究分成多个层次的任务。自然语言处理主要涉及“名”“实”“知”“境”之间的关系，如&lt;a class=&#34;link&#34; href=&#34;#20241113002341CST&#34;&gt;图2&lt;/a&gt;所示。其中&amp;quot;名&amp;quot;指的是语言符号；“实”表示客观世界中存在的事实或人的主观世界中的概念；&amp;ldquo;知”是指知识，包括常识知识、世界知识和领域知识等；“境”则是指语言所处的环境。&lt;/p&gt;
 &lt;span id=&#34;20241113002341CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 378.1544&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 378.1544&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;rect x=&#34;359.85&#34; y=&#34;3.6984&#34; width=&#34;144&#34; height=&#34;69.931&#34; style=&#34;opacity: .2; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -17120,7 +17266,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h2&gt;&lt;p&gt;  自然语言处理自诞生之日起经历了两大研究范式的转换，即理性主义和经验主义，如&lt;a class=&#34;link&#34; href=&#34;#20241113004321CST&#34;&gt;图3&lt;/a&gt;所示。受到语料规模以及计算能力的限制，早期的自然语言处理主要采用基于理性主义的规则方法，通过专家总结的符号逻辑知识处理通用的自然语言现象。然而，由于自然语言的复杂性，基于理性主义的规则方法在面对实际应用场景中的问题时显得力不从心。&lt;/p&gt;
 &lt;span id=&#34;20241113004321CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 216.3853&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 216.3853&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(113.9812 15.8398)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;小规模专家知识&lt;/tspan&gt;&lt;tspan x=&#34;9.4141&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（&lt;/tspan&gt;&lt;tspan x=&#34;27&#34; y=&#34;21.6001&#34;&gt;理性主&lt;/tspan&gt;&lt;tspan x=&#34;81&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;义&lt;/tspan&gt;&lt;tspan x=&#34;98.5859&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;tspan x=&#34;-55.3135&#34; y=&#34;43.2002&#34;&gt;20世纪50年代—20世纪90年代&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(326.5991 171.0249)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;大规模语料库统计模型&lt;/tspan&gt;&lt;tspan x=&#34;36.4141&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（&lt;/tspan&gt;&lt;tspan x=&#34;54&#34; y=&#34;21.6001&#34;&gt;经验主&lt;/tspan&gt;&lt;tspan x=&#34;108&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;义&lt;/tspan&gt;&lt;tspan x=&#34;125.5859&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;tspan x=&#34;-9.7017&#34; y=&#34;43.2002&#34;&gt;20世纪50年代—21世纪初&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(510.5938 15.8401)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;大规模语料库深度学习&lt;/tspan&gt;&lt;tspan x=&#34;36.4141&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（&lt;/tspan&gt;&lt;tspan x=&#34;54&#34; y=&#34;21.6001&#34;&gt;经验主&lt;/tspan&gt;&lt;tspan x=&#34;108&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;义&lt;/tspan&gt;&lt;tspan x=&#34;125.5859&#34; y=&#34;21.6001&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;tspan x=&#34;30.5283&#34; y=&#34;43.2002&#34;&gt;2010年-2017年&lt;/tspan&gt;&lt;/text&gt;
@@ -17239,7 +17385,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   在一般不引起混淆的情况下，人们常常把数据库系统简称为&lt;strong&gt;数据库&lt;/strong&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241016225051CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 507.4&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 507.4&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -17354,7 +17500,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;‌&lt;/p&gt;
 &lt;span id=&#34;20241016231208CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 330.8571&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 330.8571&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(386.8169 124.8063)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操&lt;/tspan&gt;&lt;tspan x=&#34;24.3369&#34; y=&#34;-12.5889&#34;&gt;作&lt;/tspan&gt;&lt;tspan x=&#34;51.6899&#34; y=&#34;-11.5469&#34;&gt;系&lt;/tspan&gt;&lt;tspan x=&#34;74.9624&#34; y=&#34;2.8149&#34;&gt;统&lt;/tspan&gt;&lt;/text&gt;
   &lt;path d=&#34;M431.8502,240.5527c-41.7816,0-75.7738-33.9917-75.7738-75.7729s33.9922-75.7738,75.7738-75.7738,75.7733,33.9922,75.7733,75.7738-33.9917,75.7729-75.7733,75.7729Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;circle cx=&#34;431.85&#34; cy=&#34;164.7794&#34; r=&#34;42.6667&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -17453,7 +17599,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   在人工管理阶段，应用程序与数据之间的一一对应关系可用下图表示。&lt;/p&gt;
 &lt;span id=&#34;20241017124034CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 309.4&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 309.4&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -17522,7 +17668,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  文件系统阶段应用程序与数据之间的关系如下图所示。&lt;/p&gt;
 &lt;span id=&#34;20241017130053CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 361.1&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 361.1&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1, .cls-2 {
@@ -17792,7 +17938,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   所谓“整体”结构化是指数据库中的数据不再仅仅针对某一个应用，而是面向整个组织或企业：不仅数据内部是结构化的，而且整体是结构化的，数据之间是具有联系的。也就是说，不仅要考虑某个应用的数据结构，还要考虑整个组织的数据结构。例如，一个学校的信息系统中不仅要考虑教务处的课程管理、学生选课管理、成绩管理，还要考虑学生处的学生学籍管理，同时还要考虑研究生院的研究生管理、人事处的教员人事管理、科研处的科研管理等。因此，学校信息系统中的学生数据就要面向各个处室的应用，而不仅仅是教务处的一个学生选课应用。可以参照下图为该校的信息系统组织其中的学生数据。&lt;/p&gt;
 &lt;span id=&#34;20241017145652CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 258.9&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 258.9&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -17932,7 +18078,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  数据库系统阶段应用程序与数据之间的对应关系可用&lt;a class=&#34;link&#34; href=&#34;#20241017164256CST&#34;&gt;图6&lt;/a&gt;表示。&lt;/p&gt;
 &lt;span id=&#34;20241017164256CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 243&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 243&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -18032,7 +18178,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   为了把现实世界中的具体事物抽象、组织为某一数据库管理系统支持的数据模型，人们常常首先将现实世界抽象为信息世界，然后将信息世界转换为机器世界。也就是说，首先把现实世界中的客观对象抽象为某一种信息结构，这种信息结构并不依赖于具体的计算机系统，不是某一个数据库管理系统支持的数据模型，而是概念级的模型；然后再把概念模型转换为计算机上某一数据库管理系统支持的数据模型，这一过程如&lt;a class=&#34;link&#34; href=&#34;#20241017170805CST&#34;&gt;图7&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241017170805CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 346.9&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 346.9&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -18141,7 +18287,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  在格式化模型中实体用记录表示，实体的属性对应记录的数据项（或字段）。实体之间的联系在格式化模型中转换成记录之间的两两联系。在格式化模型中数据结构的单位是基本层次联系。所谓基本层次联系是指两个记录以及它们之间的一对多（包括一对一）的联系，如&lt;a class=&#34;link&#34; href=&#34;#20241017192017CST&#34;&gt;图8&lt;/a&gt;所示。图中 \(R_i\) 位于联系 \(L_{ij}\) 的始点，称为&lt;strong&gt;双亲结点(parent)&lt;/strong&gt;， \(R_j\) 位于联系 \(L_{ij}\) 的终点，称为&lt;strong&gt;子女结点(child)&lt;/strong&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241017192017CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 112.8095&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 112.8095&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;275.8287&#34; y=&#34;3.2875&#34; width=&#34;72.127&#34; height=&#34;28.0152&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;rect x=&#34;275.8287&#34; y=&#34;82.9133&#34; width=&#34;72.127&#34; height=&#34;28.0152&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -18182,7 +18328,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   在层次模型中，同一双亲的子女结点称为&lt;strong&gt;兄弟结点（twin或sibling）&lt;/strong&gt;，没有子女结点的结点称为叶结点。&lt;a class=&#34;link&#34; href=&#34;#20241017200708CST&#34;&gt;图9&lt;/a&gt;给出了一个层次模型的例子。其中， \(R_1\) 为根结点； \(R_2\) 和 \(R_3\) 为兄弟结点，是 \(R_1\) 的子女结点； \(R_4\) 和 \(R_5\) 为兄弟结点，是 \(R_2\) 的子女结点； \(R_3\) 、 \(R_4\) 和 \(R_5\) 为叶结点。&lt;/p&gt;
 &lt;span id=&#34;20241017200708CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 200.9756&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 200.9756&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
       &lt;text transform=&#34;translate(513.1897 21.6234)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;根结点&lt;/tspan&gt;&lt;/text&gt;
@@ -18264,7 +18410,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241021222552CST&#34;&gt;图10&lt;/a&gt;是一个教员学生层次模型。该层次模型有4个记录类型。记录类型系是根结点,由系编号、系名、办公地点三个字段组成。它有两个子女结点教研室和学生。记录类型教研室是系的子女结点，同时又是教员的双亲结点，它由教研室编号、教研室名两个字段组成。记录类型学生由学号、姓名、成绩三个字段组成。记录类型教员由职工号、姓名、研究方向三个字段组成。学生与教员是叶结点，它们没有子女结点。由系到教研室、由教研室到教员、由系到学生均是一对多的联系。&lt;/p&gt;
 &lt;span id=&#34;20241021222552CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 238.2&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 238.2&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  --&gt;
   &lt;defs&gt;
     &lt;style&gt;
@@ -18333,7 +18479,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241021225153CST&#34;&gt;图11&lt;/a&gt;是&lt;a class=&#34;link&#34; href=&#34;#20241021222552CST&#34;&gt;图10&lt;/a&gt;数据模型对应的一个值。该值是D02系（计算机科学系）记录值及其所有后代记录值组成的一棵树。D02系有三个教研室子女记录值R01、R02、R03和三个学生记录值S63871、S63874,S63876。教研室R01有三个教员记录值E2101、E1709,E3501；教研室R03有两个教员记录值E1101、E3102。&lt;/p&gt;
 &lt;span id=&#34;20241021225153CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 398.2&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 398.2&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  --&gt;
   &lt;defs&gt;
     &lt;style&gt;
@@ -18616,7 +18762,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   从定义可以看出，层次模型中子女结点与双亲结点的联系是唯一的，而在网状模型中这种联系可以不唯一。因此要为每个联系命名，并指出与该联系有关的双亲记录和子女记录。例如&lt;a class=&#34;link&#34; href=&#34;#20241023184414CST&#34;&gt;图12&lt;/a&gt;(a)中 \(R_3\) 有两个双亲记录 \(R_1\) 和 \(R_2\) ，因此把 \(R_1\) 与 \(R_3\) 之间的联系命名为 \(L_1\) ， \(R_2\) 与 \(R_3\) 之间的联系命名为 \(L_2\) 。&lt;a class=&#34;link&#34; href=&#34;#20241023184414CST&#34;&gt;图12&lt;/a&gt;(a)、(b)、(c)都是网状模型的例子。&lt;/p&gt;
 &lt;span id=&#34;20241023184414CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 181.0159&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 181.0159&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;rect x=&#34;138.2681&#34; y=&#34;16.9671&#34; width=&#34;56.2382&#34; height=&#34;27.5873&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -18761,7 +18907,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   每个学生可以选修多门课程，显然对学生记录中的一个值，选课记录中可以有多个值与之联系，而选课记录中的一个值，只能与学生记录中的一个值联系。学生与选课之间的联系是一对多的联系，联系名为S-SC。同样，课程与选课之间的联系也是一对多的联系，联系名为C-SC。&lt;a class=&#34;link&#34; href=&#34;#20241023190234CST&#34;&gt;图13&lt;/a&gt;所示为学生选课数据库的网状数据模型。&lt;/p&gt;
 &lt;span id=&#34;20241023190234CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 166.2857&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 166.2857&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;rect x=&#34;228.3743&#34; y=&#34;3.9683&#34; width=&#34;165.7778&#34; height=&#34;32.5714&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(236.4379 27.5929)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学号&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(292.2351 27.5927)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;姓名&lt;/tspan&gt;&lt;/text&gt;
@@ -18979,7 +19125,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h3&gt;&lt;p&gt;  数据库系统的三级模式结构是指数据库系统是由外模式、模式和内模式三级构成，如&lt;a class=&#34;link&#34; href=&#34;#20241024141816CST&#34;&gt;图14&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241024141816CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 355.8095&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 355.8095&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;rect x=&#34;243.5756&#34; y=&#34;3.2143&#34; width=&#34;66.0737&#34; height=&#34;24.9206&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -19111,7 +19257,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h4&gt;&lt;p&gt;  开发、管理和使用数据库系统的人员主要包括数据库管理员、系统分析员和数据库设计人员、应用程序员和最终用户。不同的人员涉及不同的数据抽象级别，具有不同的数据视图，如&lt;a class=&#34;link&#34; href=&#34;#20241024150835CST&#34;&gt;图15&lt;/a&gt;所示。这些人员分别包括如下职责。&lt;/p&gt;
 &lt;span id=&#34;20241024150835CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 271.2381&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 271.2381&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(391.1008 92.2333)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;外模式&lt;/tspan&gt;&lt;/text&gt;
     &lt;rect x=&#34;385.0057&#34; y=&#34;69.6359&#34; width=&#34;68.0635&#34; height=&#34;32.254&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -19263,7 +19409,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h2&gt;&lt;p&gt;  3DGS的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。&lt;/p&gt;
 &lt;span id=&#34;20241001163933CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 212.2&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 212.2&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;radialGradient id=&#34;_未命名的渐变&#34; data-name=&#34;未命名的渐变&#34; cx=&#34;489.86&#34; cy=&#34;2044.53&#34; fx=&#34;489.86&#34; fy=&#34;2044.53&#34; r=&#34;13.9&#34; gradientTransform=&#34;translate(912.53 -394.06) rotate(90) scale(1 .3)&#34; gradientUnits=&#34;userSpaceOnUse&#34;&gt;
       &lt;stop offset=&#34;0&#34; stop-color=&#34;#fff&#34;/&gt;
@@ -19856,7 +20002,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;/h4&gt;&lt;p&gt;  OS作为用户与计算机硬件系统之间的接口的含义是：OS处于用户与计算机硬件系统之间，用户通过OS来使用计算机系统。或者说，用户在OS帮助下能够方便、快捷、可靠地操纵计算机硬件和运行自己的程序。&lt;a class=&#34;link&#34; href=&#34;#20240929215340CST&#34;&gt;图1&lt;/a&gt;是OS作为接口的示意图。由图可看出，用户可通过三种方式使用计算机，即通过命令方式、系统调用方式和图标&amp;mdash;窗口方式来实现与操作系统的通信，并取得它的服务。&lt;/p&gt;
 &lt;span id=&#34;20240929215340CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 200.5&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 200.5&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;text transform=&#34;translate(413.89 34)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(276.1 77)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;应用程序&lt;/tspan&gt;&lt;/text&gt;
   &lt;g id=&#34;arrow&#34;&gt;
@@ -19887,7 +20033,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;/h4&gt;&lt;p&gt;  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如&lt;a class=&#34;link&#34; href=&#34;#20240929215356CST&#34;&gt;图2&lt;/a&gt;所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。&lt;/p&gt;
 &lt;span id=&#34;20240929215356CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 345.5&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 345.5&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g id=&#34;_layer_1-2&#34; data-name=&#34; layer 1&#34;&gt;
     &lt;circle cx=&#34;269.2374&#34; cy=&#34;91.4107&#34; r=&#34;37&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 1px;&#34;/&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -20013,7 +20159,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
   类似地，当CPU需要输出时，可先由CPU把数据直接从内存高速地输送到磁带上，然后在另一台外围机的控制下，再将此大地上的结果通过相应地输出设备输出。&lt;a class=&#34;link&#34; href=&#34;#20240929215418CST&#34;&gt;图3&lt;/a&gt;示出了脱机输入/输出的过程。&lt;/p&gt;
 &lt;span id=&#34;20240929215418CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 238.54&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 238.54&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;text transform=&#34;translate(275.7 45.3)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;输入设备&lt;/tspan&gt;&lt;/text&gt;
   &lt;polygon points=&#34;269.03 53.5 355.03 53.5 355.03 22.5 291.03 22.5 269.03 30.92 269.03 53.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(406.43 44.8)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;外围机&lt;/tspan&gt;&lt;/text&gt;
@@ -20049,7 +20195,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;/h4&gt;&lt;p&gt;  为了实现对作业的连续处理，需要先把一批作业以脱机方式输入到磁带上，并在系统中配上&lt;strong&gt;监督程序(Monitor)&lt;/strong&gt;，在它的控制下，使这批作业能一个接一个连续处理。其处理过程是：首先由监督程序将磁带上的第一个作业装入内存，并把运行控制权交给该作业；当该作业处理完成时，又把控制权交给监督程序，再由监督程序把磁带上的第二个作业调入内存。计算机系统就这样自动地一个作业紧接着一个作业地进行处理，直至磁带上的所有作业全部完成，这样便形成了早期的批处理系统。虽然系统对作业的处理是成批进行的，但在内存中时终止保持一道作业，故称为&lt;strong&gt;单道批处理系统&lt;/strong&gt;。&lt;a class=&#34;link&#34; href=&#34;#20240929215439CST&#34;&gt;图4&lt;/a&gt;示出了单道批处理系统的处理流程。&lt;/p&gt;
 &lt;span id=&#34;20240929215439CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 319.54&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 319.54&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;path d=&#34;M371.07,2.72c-5.82,2.99-67.97,34.96-72.57,37.32.06.03.1.05.1.05l73.28,37.69s67.66-35.06,72.46-37.55l-.1-.05L371.5,2.5l-.44.22Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(344.41 33.63)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;还有下&lt;/tspan&gt;&lt;tspan x=&#34;-13.5&#34; y=&#34;21.6&#34;&gt;一个作业&lt;/tspan&gt;&lt;tspan x=&#34;58.5&#34; y=&#34;21.6&#34; style=&#34;letter-spacing: -.5em;&#34;&gt;？&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(535 26.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;把下一个作业&lt;/tspan&gt;&lt;tspan x=&#34;0&#34; y=&#34;21.6&#34;&gt;的源程序转换&lt;/tspan&gt;&lt;tspan x=&#34;9&#34; y=&#34;43.2&#34;&gt;为目标程序&lt;/tspan&gt;&lt;/text&gt;
@@ -20131,7 +20277,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;/h4&gt;&lt;p&gt;  单道批处理系统最主要的缺点是，系统中的资源得不到充分的利用。这是因为在内存中仅有一道程序，每逢该程序在运行中发出I/O请求后，CPU便处于等待状态，必须在其I/O完成后才继续运行。又因I/O设备的低速性，更使CPU的利用率显著降低。&lt;a class=&#34;link&#34; href=&#34;#20240929215455CST&#34;&gt;图5&lt;/a&gt;示出了单道程序的运行情况，从图可以看出：在 $t_2$ ~ $t_3$ 、 $t_6$ ~ $t_7$ 时间间隔内CPU空闲。&lt;/p&gt;
 &lt;span id=&#34;20240929215455CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 277.54&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 277.54&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(60.42 32.25)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户程序&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
@@ -20214,7 +20360,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;/h4&gt;&lt;p&gt;  为了进一步提高资源的利用率和系统吞吐量，在20世纪60年代中期引入了&lt;strong&gt;多道程序设计技术&lt;/strong&gt;，由此形成了&lt;strong&gt;多道批处理系统&lt;/strong&gt;。在该系统中，用户所提交的作业先存放在外存上，并排成一个队列，称为“后备队列”。然后由&lt;strong&gt;作业调度程序&lt;/strong&gt;按一定的算法，从后备队列中选择若干个作业调入内存，使它们共享CPU和系统中的各种资源。由于同时在内存中装有若干道程序，这样便可以在运行程序A时，利用其因I/O操作而暂停执行时的CPU空挡时间，再调度另一道程序B运行，同样可以利用程序B在I/O操作时的空档时间，再调度程序C运行，使多道程序交替地运行，这样便可以保持CPU处于忙碌状态。&lt;a class=&#34;link&#34; href=&#34;#20240929215511CST&#34;&gt;图6&lt;/a&gt;示出了四道程序时的运行情况。&lt;/p&gt;
 &lt;span id=&#34;20240929215511CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 506.54&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 506.54&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;text transform=&#34;translate(34.79 111.79)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序A&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(34.79 189.9)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序B&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(34.79 268.01)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;程序C&lt;/tspan&gt;&lt;/text&gt;
@@ -20547,7 +20693,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;p&gt;  &lt;strong&gt;模块化程序设计技术&lt;/strong&gt;是20世纪60年代出现的一种结构化程序设计技术。该技术基于&amp;quot;分解&amp;quot;和“模块化”的原则来控制大型软件的复杂度。为使OS具有较清晰的结构，OS不再是由众多的过程直接构成的，而是按其功能精心地划分为若干个具有一定独立性和大小的模块。每个模块具有某方面的管理功能，如进程管理模块、存储器管理模块、I/O设备管理模块等，并仔细地规定好各模块间的接口，使各模块之间能通过接口实现交互。然后再进一步将各模块细分为若干个具有一定功能的子模块，如把进程管理模块又分为进程控制、进程同步等子模块，同样也规定好各子模块之间的接口。若子模块较大，可再进一步将它细分。我们把这种设计方法称为&lt;strong&gt;模块-接口法&lt;/strong&gt;，由此构成的操作系统就是&lt;strong&gt;具有模块化结构的操作系统&lt;/strong&gt;。&lt;a class=&#34;link&#34; href=&#34;#20241014103700CST&#34;&gt;图7&lt;/a&gt;示出了由模块、子模块等组成的模块化OS结构。&lt;/p&gt;
 &lt;span id=&#34;20241014103700CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 283.5&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 283.5&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -20690,7 +20836,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;p&gt;  在面向对象的技术中，是利用被封装的数据结构（变量）和一组对它进行操作的过程（方法）来表示系统中的某个对象的，如&lt;a class=&#34;link&#34; href=&#34;#20241014132525CST&#34;&gt;图8&lt;/a&gt;所示。对象中的变量（数据）也称为属性，它可以是单个标量或一张表。面向对象中的方法是用于执行某种功能的过程，它可以改变对象的状态，更新对象中的某些数据值或作用于对象所要访问的外部资源。如果把一个文件作为一个对象&lt;a class=&#34;link&#34; href=&#34;#20241014132606CST&#34;&gt;图9&lt;/a&gt;,该对象的变量便是文件类型、文件大小、文件的创建者等。对象中的方法包含对文件的操作，如创建文件、打开文件、读文件、写文件、关闭文件等。&lt;/p&gt;
 &lt;span id=&#34;20241014132525CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 156.6&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 156.6&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -20725,7 +20871,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;p&gt;  对象中的变量（数据）对外是隐蔽的，因而外界不能对它直接进行访问，必须通过该对象中的一组方法（操作函数）对它进行访问。例如要想对&lt;a class=&#34;link&#34; href=&#34;#20241014132606CST&#34;&gt;图9&lt;/a&gt;所示的文件A执行打开操作，必须用该对象中的打开过程去打开它。同样地，对象中的一组方法的实现细节也是隐蔽的，因此对象中的变量可以得到很好的保护，而不会允许未经受权者使用和对它进行不正确的操作。&lt;/p&gt;
 &lt;span id=&#34;20241014132606CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 246.1&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 246.1&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -20799,7 +20945,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;p&gt;  在面向对象的技术中，可以根据已有类来定义一个新的类，新类被称为子类(B),原来的类被称为父类(A),见&lt;a class=&#34;link&#34; href=&#34;#20241014153331CST&#34;&gt;图10&lt;/a&gt;所示。&lt;strong&gt;继承&lt;/strong&gt;是父类和子类之间共享变量和方法的机制，该机制规定子类自动继承父类中定义的变量和方法，并允许子类再增加新的内容。继承特性可使定义子类变得更容易。一个父类可以定义多个子类，它们分别是父类的某种特例，父类描述了这些子类的公共变量和方法。类似地，这些子类又可以定义自己的子类，通过此途经可以生成一个继承的层次。另外，也允许一个子类有两个父类或多个父类，它可以从多个父类获得继承，此时称为&amp;quot;多重继承”。&lt;/p&gt;
 &lt;span id=&#34;20241014153331CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 181.7&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 181.7&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -20852,7 +20998,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
 &lt;p&gt;  由于客户/服务器模式具有非常多的优点，故在单机微内核操作系统中几乎无一例外地都采用客户/服务器模式，将操作系统中最基本的部分放入内核中，而把操作系统的绝大部分功能都放在微内核外面的一组服务器（进程）中实现，如用于提供对进程（线程）进行管理的进程（线程）服务器、提供虚拟存储器管理功能的虚拟存储器服务器、提供I/O设备管理的I/O设备管理服务器等，它们都是被作为进程来实现的，运行在用户态，客户与服务器之间是借助微内核提供的消息传递机制来实现信息交互的。&lt;a class=&#34;link&#34; href=&#34;#20241014160927CST&#34;&gt;图11&lt;/a&gt;示出了在单机环境下的客户/服务器模式。&lt;/p&gt;
 &lt;span id=&#34;20241014160927CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 145.5&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 145.5&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -20941,7 +21087,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
   实际情况是往往还会引起更多的上下文切换。例如，当某个服务器自身尚无能力完成客户请求而需要其它服务器的帮助时，如&lt;a class=&#34;link&#34; href=&#34;#20241014164813CST&#34;&gt;图12&lt;/a&gt;所示，其中的文件服务器还需要磁盘服务器的帮助，这时就需要进行8次上下文的切换。&lt;/p&gt;
 &lt;span id=&#34;20241014164813CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 445&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 445&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1, .cls-2, .cls-3 {

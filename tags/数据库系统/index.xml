@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 02 Dec 2024 07:22:17 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 02 Dec 2024 08:54:15 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（四）：数据库安全性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/</link>
         <pubDate>Sun, 01 Dec 2024 15:18:44 +0800</pubDate>
@@ -57,7 +57,7 @@
   上述一系列标准的发展历史如&lt;a class=&#34;link&#34; href=&#34;#20241201164427CST&#34;&gt;图1&lt;/a&gt;所示。本节简要介绍TCSEC和CC V2.1的基本内容。&lt;/p&gt;
 &lt;span id=&#34;20241201164427CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 428.1905&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 428.1905&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(41.5814 187.9709)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1985年美国国防部&lt;/tspan&gt;&lt;tspan x=&#34;19.7993&#34; y=&#34;21.6001&#34;&gt;可信计算机系&lt;/tspan&gt;&lt;tspan x=&#34;28.7993&#34; y=&#34;43.1997&#34;&gt;统评估准则&lt;/tspan&gt;&lt;tspan x=&#34;37.9434&#34; y=&#34;64.8003&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;44.4951&#34; y=&#34;64.8003&#34; style=&#34;letter-spacing: -.007em;&#34;&gt;T&lt;/tspan&gt;&lt;tspan x=&#34;56.2314&#34; y=&#34;64.8003&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;68.6694&#34; y=&#34;64.8003&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;78.8394&#34; y=&#34;64.8003&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;E&lt;/tspan&gt;&lt;tspan x=&#34;90.521&#34; y=&#34;64.8003&#34; style=&#34;letter-spacing: .008em;&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;103.103&#34; y=&#34;64.8003&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
     &lt;rect x=&#34;23&#34; y=&#34;160.285&#34; width=&#34;184.7619&#34; height=&#34;105.1429&#34; rx=&#34;12&#34; ry=&#34;12&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -226,7 +226,7 @@
 &lt;/h2&gt;&lt;p&gt;  在一般计算机系统中，安全措施是一级一级层层设置的。例如，在&lt;a class=&#34;link&#34; href=&#34;#20241201181759CST&#34;&gt;图2&lt;/a&gt;所示的安全模型中，用户要求进入计算机系统时，系统首先根据输入的用户标识进行用户身份鉴定，只有合法的用户才准许进入计算机系统；对已进入系统的用户，数据库管理系统还要进行存取控制，只允许用户执行合法操作；操作系统也会有自己的保护措施；数据最后还可以以密码形式存储到数据库中。操作系统的安全保护措施可参考操作系统的有关书籍，这里不再详述。另外，对于强力逼迫透露口令、盗窃物理存储设备等行为而采取的保安措施，例如出入机房登记、加锁等，也不在这里讨论之列。&lt;/p&gt;
 &lt;span id=&#34;20241201181759CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 68.9524&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 68.9524&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;131.6367&#34; y=&#34;4.3465&#34; width=&#34;70.0952&#34; height=&#34;32.0494&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;text transform=&#34;translate(148.6841 26.8229)&#34; style=&#34;font-family: SimSun, SimSun; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;用户&lt;/tspan&gt;&lt;/text&gt;
@@ -275,7 +275,7 @@
 &lt;p&gt;  下面讨论与数据库有关的安全性，主要包括用户身份鉴别、多层存取控制、审计、视图和数据加密等安全技术。&lt;/p&gt;
 &lt;span id=&#34;20241201190210CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 460.1905&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 460.1905&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g id=&#34;SVGRepo_iconCarrier&#34;&gt;
     &lt;path d=&#34;M89.0391,115.8762l-10.814,5.5665c-1.3321.6857-2.1693,2.0583-2.1693,3.5565v2.0802c0,2.2092,1.7909,4,4.0002,4,.7364,0,1.3333.597,1.3333,1.3333s-.597,1.3333-1.3333,1.3333c-3.6821,0-6.6669-2.9847-6.6669-6.6667v-2.0802c0-2.497,1.3954-4.7847,3.6155-5.9275l8.954-4.6091c-2.8578-2.4918-4.5695-6.1238-4.5695-10.0499,0-7.3638,5.9695-13.3333,13.3333-13.3333,4.4709,0,8.5686,2.2185,11.0345,5.8468.4139.609.2558,1.4383-.3533,1.8522-.609.4139-1.4383.2558-1.8522-.3533-1.9746-2.9054-5.2507-4.6791-8.829-4.6791-5.891,0-10.6667,4.7756-10.6667,10.6667,0,3.7646,1.9648,7.1885,5.1207,9.1136.6286.3835.8274,1.204.4439,1.8326-.1436.2353-.3483.4104-.5814.5173h0ZM99.9525,127.2576l-10.8853,4.9478c-1.428.6491-2.3448,2.0729-2.3448,3.6415v1.8991c0,2.2091,1.7909,4,4,4h29.3333c2.2091,0,4-1.7909,4-4v-1.8991c0-1.5686-.9168-2.9924-2.3448-3.6415l-10.8853-4.9478c-1.6603.7423-3.5003,1.1551-5.4366,1.1551s-3.7763-.4128-5.4366-1.1551h0ZM97.1816,125.5879c-3.1202-2.4404-5.1258-6.2403-5.1258-10.5085,0-7.3638,5.9695-13.3333,13.3333-13.3333s13.3333,5.9695,13.3333,13.3333c0,4.2683-2.0056,8.0681-5.1258,10.5085l9.2178,4.1899c2.38,1.0818,3.908,3.4548,3.908,6.0691v1.8991c0,3.6819-2.9848,6.6667-6.6667,6.6667h-29.3333c-3.6819,0-6.6667-2.9848-6.6667-6.6667v-1.8991c0-2.6143,1.528-4.9873,3.908-6.0691l9.2178-4.1899h0ZM105.3891,125.746c5.891,0,10.6667-4.7756,10.6667-10.6667s-4.7756-10.6667-10.6667-10.6667-10.6667,4.7756-10.6667,10.6667,4.7756,10.6667,10.6667,10.6667Z&#34;/&gt;
   &lt;/g&gt;
@@ -455,7 +455,7 @@
   SQL标准允许具有&lt;code&gt;WITH GRANT OPTION&lt;/code&gt;的用户把相应权限或其子集传递授予其他用户，但不允许循环授权，即被授权者不能把权限再授回给授权者或其祖先，如&lt;a class=&#34;link&#34; href=&#34;#20241201201816CST&#34;&gt;图4&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241201201816CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 88.1766&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 88.1766&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(268.3408 18.6285)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;U1&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(369.265 18.6286)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;U2&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(470.1892 18.6283)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;U3&lt;/tspan&gt;&lt;/text&gt;
@@ -679,9 +679,9 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CASCADE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RESTRICT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CASCADE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RESTRICT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241201212459CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例8&lt;/strong&gt;：把用户&lt;code&gt;U4&lt;/code&gt;修改学生学号的权限收回。&lt;/p&gt;
@@ -837,6 +837,152 @@
   &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;权限与可执行的操作对照表&lt;/p&gt;
+&lt;p&gt;  注意：&lt;code&gt;CREATE USER&lt;/code&gt;语句不是SQL标准，因此不同的关系数据库管理系统的语法和内容相差甚远。这里介绍该语句的目的是说明对于数据库模式这一类数据对象也有安全控制的需要，也是要授权的。&lt;/p&gt;
+&lt;h3 id=&#34;数据库角色&#34;&gt;数据库角色
+&lt;/h3&gt;&lt;p&gt;  数据库角色是被命名的一组与数据库操作相关的权限，角色是权限的集合。因此，可以为一组具有相同权限的用户创建一个角色，使用角色来管理数据库权限可以简化授权的过程。&lt;br&gt;
+  在SQL中首先用&lt;code&gt;CREATE ROLE&lt;/code&gt;语句创建角色，然后用&lt;code&gt;GRANT&lt;/code&gt;语句给角色授权，用&lt;code&gt;REVOKE&lt;/code&gt;语句收回授予角色的权限。&lt;/p&gt;
+&lt;h4 id=&#34;角色的创建&#34;&gt;角色的创建
+&lt;/h4&gt;&lt;p&gt;  创建角色的SQL语句格式是&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ROLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  刚刚创建的角色是空的，没有任何内容。可以用&lt;code&gt;GRANT&lt;/code&gt;为角色授权。&lt;/p&gt;
+&lt;h4 id=&#34;给角色授权&#34;&gt;给角色授权
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  数据库管理员和用户可以利用&lt;code&gt;GRANT&lt;/code&gt;语句将权限授予某一个或几个角色。&lt;/p&gt;
+&lt;h4 id=&#34;将一个角色授予其他的角色或用户&#34;&gt;将一个角色授予其他的角色或用户
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;用户&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WITH&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ADMIN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;OPTION&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  该语句把角色授予某用户，或授予另一个角色。这样，一个角色（例如角色3）所拥有的权限就是授予它的全部角色（例如角色1和角色2）所包含的权限的总和。&lt;br&gt;
+  授予者或者是角色的创建者，或者拥有在这个角色上的&lt;code&gt;ADMIN OPTION&lt;/code&gt;。&lt;br&gt;
+  如果指定了&lt;code&gt;WITH ADMIN OPTION&lt;/code&gt;子句，则获得某种权限的角色或用户还可以把这种权限再授予其他的角色。&lt;br&gt;
+  一个角色包含的权限包括直接授予这个角色的全部权限加上其他角色授予这个角色的全部权限。&lt;/p&gt;
+&lt;h4 id=&#34;角色权限的收回&#34;&gt;角色权限的收回
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;权限&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象类型&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;对象名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;角色&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;···&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  用户可以收回角色的权限，从而修改角色拥有的权限。&lt;br&gt;
+  &lt;code&gt;REVOKE&lt;/code&gt;动作的执行者或者是角色的创建者，或者拥有在这个（些）角色上的&lt;code&gt;ADMIN OPTION&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241202073656CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例11&lt;/strong&gt;：通过角色来实现将一组权限授予一个用户。&lt;br&gt;
+  步骤如下：
+  ①首先创建一个角色&lt;code&gt;R1&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ROLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  ②然后使用&lt;code&gt;GRANT&lt;/code&gt;语句，使角色&lt;code&gt;R1&lt;/code&gt;拥有&lt;code&gt;Student&lt;/code&gt;表的&lt;code&gt;SELECT&lt;/code&gt;、&lt;code&gt;UPDATE&lt;/code&gt;、&lt;code&gt;INSERT&lt;/code&gt;权限。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;UPDATE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  ③将这个角色授予王平、张明、赵玲，使他们具有角色&lt;code&gt;R1&lt;/code&gt;所包含的全部权限。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;王平，张明，赵玲&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  ④当然，也可以一次性地通过&lt;code&gt;R1&lt;/code&gt;来收回王平的这三个权限。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;FROM王平&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241202074309CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例12&lt;/strong&gt;：角色的权限修改。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DELETE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  使角色R1在原来的基础上增加了&lt;code&gt;Student&lt;/code&gt;表的&lt;code&gt;DELETE&lt;/code&gt;权限。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241202074343CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例13&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;R1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  使&lt;code&gt;R1&lt;/code&gt;减少了&lt;code&gt;SELECT&lt;/code&gt;权限。&lt;br&gt;
+  可以看出，数据库角色是一组权限的集合。使用角色来管理数据库权限可以简化授权的过程，使自主授权的执行更加灵活、方便。&lt;/p&gt;
+&lt;h3 id=&#34;强制存取控制方法&#34;&gt;强制存取控制方法
+&lt;/h3&gt;&lt;p&gt;  自主存取控制（MAC）能够通过授权机制有效地控制对敏感数据的存取。但是由于用户对数据的存取权限是“自主”的，用户可以自由地决定将数据的存取权限授予何人，以及决定是否也将“授权”的权限授予别人。在这种授权机制下，仍可能存在数据的“无意泄露”。比如，甲将自己权限范围内的某些数据存取权限授权给乙，甲的意图是仅允许乙本人操纵这些数据。但甲的这种安全性要求并不能得到保证，因为乙一旦获得了对数据的权限，就可以将数据备份，获得自身权限内的副本，并在不征得甲同意的前提下传播副本。造成这一问题的根本原因就在于，这种机制仅仅通过对数据的存取权限来进行安全控制，而数据本身并无安全性标记。要解决这一问题，就需要对系统控制下的所有主客体实施强制存取控制策略。&lt;br&gt;
+  所谓强制存取控制是指系统为保证更高程度的安全性，按照TDI/TCSEC标准中安全策略的要求所采取的强制存取检查手段。它不是用户能直接感知或进行控制的。强制存取控制适用于那些对数据有严格而固定密级分类的部门，例如军事部门或政府部门。&lt;br&gt;
+  在强制存取控制中，数据库管理系统所管理的全部实体被分为主体和客体两大类。&lt;br&gt;
+  &lt;strong&gt;主体&lt;/strong&gt;是系统中的活动实体，既包括数据库管理系统所管理的实际用户，也包括代表用户的各进程。&lt;strong&gt;客体&lt;/strong&gt;是系统中的被动实体，是受主体操纵的，包括文件、基本表、索引、视图等。对于主体和客体，数据库管理系统为它们每个实例（值）指派一个敏感度标记(label)。敏感度标记被分成若干级别，例如绝密(Top Secret,TS)、机密(Secret,S)、可信(Confidential,C)、公开(Public,P)等。密级的次序是TS&amp;gt;=S&amp;gt;=C&amp;gt;=P。主体的敏感度标记称为许可证级别(clearance level)，客体的敏感度标记称为密级(classification level)。强制存取控制机制就是通过对比主体的敏感度标记和客体的敏感度标记，最终确定主体是否能够存取客体。&lt;br&gt;
+  当某一用户（或某一主体）以标记label注册入系统时，系统要求他对任何客体的存取必须遵循如下规则：&lt;br&gt;
+  (1)仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。&lt;br&gt;
+  (2)仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体。&lt;br&gt;
+  规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，制造成TS密级数据的泄露。&lt;br&gt;
+  强制存取控制是对数据本身进行密级标记，无论数据如何复制，标记与数据是一个不可分的整体，只有符合密级标记要求的用户才可以操纵数据，从而提供了更高级别的安全性。前面已经提到，较高安全性级别提供的安全保护要包含较低级别的所有保护，因此在实现强制存取控制时要首先实现自主存取控制(DAC)，即自主存取控制与强制存取控制共同构成数据库管理系统的安全机制，如图4.5所示。系统首先进行自主存取控制检查，对通过自主存取控制检查的允许存取的数据库对象再由系统自动进行强制存取控制检查，只有通过强制存取控制检查的数据库对象方可存取。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -982,7 +1128,7 @@
 &lt;/h3&gt;&lt;p&gt;  支持SQL的关系数据库管理系统同样支持关系数据库三级模式结构。如&lt;a class=&#34;link&#34; href=&#34;#20241111211554CST&#34;&gt;图1&lt;/a&gt;所示，其中外模式包括若干&lt;strong&gt;视图(view)&lt;/strong&gt;‌和部分&lt;strong&gt;基本表(base table)&lt;/strong&gt;，数据库模式包括若干基本表，内模式包括若干&lt;strong&gt;存储文件(stored file)&lt;/strong&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241111211554CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 329.7143&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 329.7143&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;308.3165&#34; y=&#34;7.3651&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;text transform=&#34;translate(340.1887 32.27)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .006em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.0977&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.019em;&#34;&gt;Q&lt;/tspan&gt;&lt;tspan x=&#34;23.4175&#34; y=&#34;0&#34;&gt;L&lt;/tspan&gt;&lt;/text&gt;
@@ -1260,7 +1406,7 @@
   在早期的数据库系统中，所有数据库对象都属于一个数据库，也就是说只有一个命名空间。现代的关系数据库管理系统提供了一个层次化的数据库对象命名机制，如&lt;a class=&#34;link&#34; href=&#34;#20241111231124CST&#34;&gt;图2&lt;/a&gt;所示。一个关系数据库管理系统的&lt;strong&gt;实例(instance)&lt;/strong&gt;‌中可以建立多个数据库,一个数据库中可以建立多个模式，一个模式下通常包括多个表、视图和索引等数据库对象。&lt;/p&gt;
 &lt;span id=&#34;20241111231124CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 193.9048&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 193.9048&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(323.8505 42.5875)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据&lt;/tspan&gt;&lt;tspan x=&#34;36&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;库&lt;/tspan&gt;&lt;tspan x=&#34;45.4141&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（&lt;/tspan&gt;&lt;tspan x=&#34;63&#34; y=&#34;0&#34;&gt;有的系统称为目&lt;/tspan&gt;&lt;tspan x=&#34;189&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;录&lt;/tspan&gt;&lt;tspan x=&#34;206.5864&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.4771em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(413.8498 104.0048)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;模式&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(355.3502 165.4228)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;表以及视&lt;/tspan&gt;&lt;tspan x=&#34;72&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.019em;&#34;&gt;图&lt;/tspan&gt;&lt;tspan x=&#34;89.6582&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.481em;&#34;&gt;、&lt;/tspan&gt;&lt;tspan x=&#34;99&#34; y=&#34;0&#34;&gt;索引等&lt;/tspan&gt;&lt;/text&gt;
@@ -2763,7 +2909,7 @@
   关系数据库管理系统执行该连接操作的一种可能过程是：首先在表&lt;code&gt;Student&lt;/code&gt;中找到第一个元组，然后从头开始扫描&lt;code&gt;SC&lt;/code&gt;表，逐一查找与&lt;code&gt;Student&lt;/code&gt;第一个元组的&lt;code&gt;Sno&lt;/code&gt;相等的&lt;code&gt;SC&lt;/code&gt;元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第一个元组与该元组拼接起来，形成结果表中一个元组。&lt;code&gt;SC&lt;/code&gt;全部查找完后，再找&lt;code&gt;Student&lt;/code&gt;中第二个元组，然后再从头开始扫描&lt;code&gt;SC&lt;/code&gt;，逐一查找满足连接条件的元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到&lt;code&gt;Student&lt;/code&gt;中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如&lt;a class=&#34;link&#34; href=&#34;#20241116211750CST&#34;&gt;图3&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241116211750CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 236.9314&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 236.9314&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(38.0264 15.8399)&#34; style=&#34;font-family: NotoSerifSC-Light, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.01em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;9.8999&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.001em;&#34;&gt;t&lt;/tspan&gt;&lt;tspan x=&#34;16.3979&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.003em;&#34;&gt;u&lt;/tspan&gt;&lt;tspan x=&#34;28.0083&#34; y=&#34;0&#34;&gt;dent&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(531.6144 15.8398)&#34; style=&#34;font-family: NotoSerifSC-Light, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .005em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.1699&#34; y=&#34;0&#34;&gt;C&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
@@ -2934,7 +3080,7 @@
   为此，要为Course表取两个别名，一个是&lt;code&gt;FIRST&lt;/code&gt;，另一个是&lt;code&gt;SECOND&lt;/code&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241117132302CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 268.5714&#34;&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 268.5714&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g id=&#34;_layer_1&#34;&gt;
     &lt;g&gt;
       &lt;g style=&#34;clip-path: url(#clippath);&#34;&gt;
@@ -5927,7 +6073,7 @@ R(A_1,A_2,\cdots,A_n)
   另外，还有一种介于关系代数和关系演算之间的结构化查询语言(Structured Query Language,SQL)。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言(Data Control Language,DCL)于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：&lt;/p&gt;
 &lt;span id=&#34;20241024185641CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 129.1391&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 129.1391&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(175.7935 72.8902)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;关系数据语言&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
     &lt;path id=&#34;MJX-19-TEX-S4-23A7&#34; d=&#34;M295.4998,12.9533l.1099.1099v.5127c0,.1343-.0854.2502-.2563.3479-.9399.6469-1.715,1.477-2.3253,2.4901s-1.0192,2.1422-1.2267,3.3872c0,.0122-.0061.0366-.0183.0732-.0488.3418-.0793,1.3915-.0915,3.1492v1.9957c0,2.9539-.0061,4.4431-.0183,4.4675-.0122.0488-.0671.0793-.1648.0915s-.4028.0183-.9155.0183c-.6347,0-.9643-.0061-.9887-.0183-.0366-.0122-.061-.0366-.0732-.0732-.0244-.1221-.0366-1.5563-.0366-4.3027v-1.5014c0-.6103-.0061-1.0375-.0183-1.2817,0-1.2084.0549-2.1422.1648-2.8013s.3662-1.3976.769-2.2154c.9277-1.8309,2.3314-3.2713,4.2111-4.321l.238-.1282h.6408Z&#34;/&gt;
@@ -5990,7 +6136,7 @@ R(A_1,A_2,\cdots,A_n)
 &lt;p&gt;  &lt;span id=&#34;20241025092415CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义5（参照关系）&lt;/strong&gt;：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的&lt;strong&gt;外码(foreign key)&lt;/strong&gt;，并称基本关系 \(R\) 为&lt;strong&gt;参照关系(referencing relation)&lt;/strong&gt;，基本关系 \(S\) 为被&lt;strong&gt;参照关系(referenced relation)&lt;/strong&gt;‌或&lt;strong&gt;目标关系(target relation)&lt;/strong&gt;，关系 \(R\) 和 \(S\) 不一定是不同的关系。&lt;/p&gt;
 &lt;span id=&#34;20241025093632CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 76.9524&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 76.9524&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;path id=&#34;MJX-11-TEX-I-1D445&#34; d=&#34;M307.1173,31.8092c-.3295,0-.5248-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3295.0671-.5309.2014-.6042.0244-.0122,1.0863-.0183,3.1856-.0183,2.0993.0122,3.2344.0305,3.4053.0549.6835.0976,1.2571.2685,1.721.5126s.7933.5248.9886.8422.3234.5798.3845.7872.0976.415.1098.6225c0,.5492-.177,1.0619-.5309,1.5379s-.7628.8422-1.2266,1.0985-.8727.4638-1.2266.6225-.5859.238-.6957.238l.1282.0915c.8178.4638,1.2266,1.1351,1.2266,2.0139,0,.1343-.0305.5065-.0915,1.1168s-.0915,1.1107-.0915,1.5013v.1648c0,.2197.0061.3906.0183.5126s.0793.2319.2014.3295.2807.1526.476.1648c.3417,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5553.476-.8605.061-.1709.1098-.2746.1465-.3112s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5675-.4394,1.0436-.4638.6957-1.013,1.0436-1.6477,1.0436h-.1648c-.7445,0-1.3609-.1526-1.8491-.4577-.4882-.3051-.7567-.7811-.8056-1.428,0-.3295.0915-.8422.2746-1.5379s.2746-1.1412.2746-1.3365c0-.6225-.2624-1.0741-.7872-1.3548-.1831-.0854-.3356-.1343-.4577-.1465s-.5553-.0244-1.2999-.0366h-1.2633l-.5859,2.38c-.4028,1.6111-.6042,2.4289-.6042,2.4533,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3112.0366.3356,0,.6042.0366h.5675c.0732.0976.1098.1526.1098.1648s-.0183.1221-.0549.3295c-.0488.1587-.1098.2746-.1831.3479h-.2746c-.4394-.0244-1.2388-.0366-2.3983-.0366h-1.9956c-.2075,0-.3356.0061-.3845.0183-.2075,0-.3112-.0549-.3112-.1648,0-.0244.0183-.1098.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1098c.3295,0,.6957-.0183,1.0985-.0549.1709-.0366.2868-.1098.3479-.2197.0366-.0488.476-1.7454,1.3182-5.0896.8422-3.3443,1.2633-5.1079,1.2633-5.291,0-.0854-.3479-.1404-1.0436-.1648ZM314.4405,33.3288c0-.3906-.1282-.7201-.3845-.9886s-.7811-.4394-1.5745-.5126h-.4211c-.2563,0-.4882-.0061-.6957-.0183h-.4028c-.5737,0-.9032.061-.9886.1831-.0122.0366-.2197.8483-.6225,2.435-.4028,1.5867-.6042,2.3983-.6042,2.435,0,.0122.4211.0183,1.2633.0183.952-.0122,1.5867-.0549,1.904-.1282.7811-.1221,1.3914-.4821,1.8308-1.0802.1953-.2807.3601-.6469.4943-1.0985s.2014-.8666.2014-1.2449Z&#34;/&gt;
@@ -6035,7 +6181,7 @@ R(A_1,A_2,\cdots,A_n)
   在&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(c)所示。&lt;/p&gt;
 &lt;span id=&#34;20241025100110CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 204.4159&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 204.4159&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;g&gt;
@@ -6178,7 +6324,7 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(a)、&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(b)分别为具有三个属性列的关系 \(R\) 、 \(S\) 。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(c)为关系 \(R\) 与 \(S\) 的并。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(d)为关系 \(R\) 与 \(S\) 的交。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(e)为关系 \(R\) 和 \(S\) 的差。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(f)为关系 \(R\) 和 \(S\) 的Cartesian乘积。&lt;/p&gt;
 &lt;span id=&#34;20241026102728CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 643.2851&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 643.2851&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;path id=&#34;MJX-8-TEX-I-1D44E&#34; d=&#34;M92.7112,70.7092c0-1.2.5-2.4,1.4-3.5s2-1.7,3.1-1.7c.6,0,1.2.3,1.6.9.2-.4.5-.5.8-.5s.3,0,.4.1.2.2.2.4-.2,1.1-.7,2.9-.7,2.8-.7,3c0,.3,0,.5.1.6,0,0,.2.2.4.2.1,0,.2,0,.4-.2.3-.2.5-.8.8-1.8,0-.2.1-.4.2-.4h.2c.2,0,.3,0,.3.2v.5c0,.3-.2.6-.4,1s-.4.7-.6.9c-.2.2-.4.3-.6.4h-.4c-.4,0-.8,0-1-.3s-.5-.4-.5-.6v-.3h-.2c-.7.7-1.5,1-2.2,1s-1.3-.2-1.8-.7-.8-1.3-.8-2.3v.2ZM98.6112,67.6092v-.4c0-.2-.2-.4-.4-.6s-.5-.4-.8-.4c-.4,0-.8.2-1.2.6s-.7.9-.9,1.5c-.4,1-.6,2-.8,3v.4c0,.5.1.9.3,1.1s.5.3.8.3c.5,0,.9-.2,1.4-.6s.7-.7.8-.9c0,0,.2-.7.5-2s.5-1.9.5-2h-.2Z&#34;/&gt;
@@ -6706,7 +6852,7 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
   例如，&lt;a class=&#34;link&#34; href=&#34;#20241026115500CST&#34;&gt;图5&lt;/a&gt;中， \(x_1\) 在 \(R\) 中的象集为 \(Z_{x_1}=\set{{Z_1,Z_2,Z_3}}\) ， \(x_2\) 在 \(R\) 中的象集为 \(Z_{x_2}=\set{Z_2,Z_3}\) ， \(x_3\) 在 \(R\) 中的象集为 \(Z_{x_3}=\set{Z_1,Z_3}\) 。&lt;/p&gt;
 &lt;span id=&#34;20241026115500CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 325.9518&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 325.9518&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;path id=&#34;MJX-8-TEX-I-1D445&#34; d=&#34;M337.1869,4.5802c-.3296,0-.5249-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3296.0671-.531.2014-.6042.0244-.0122,1.0864-.0183,3.1859-.0183,2.0995.0122,3.2347.0305,3.4056.0549.6836.0977,1.2573.2685,1.7211.5127s.7934.5249.9887.8422.3235.5798.3845.7873.0977.415.1099.6225c0,.5493-.177,1.062-.531,1.538s-.7629.8422-1.2267,1.0986-.8728.4638-1.2267.6225-.5859.238-.6958.238l.1282.0915c.8178.4638,1.2267,1.1352,1.2267,2.0141,0,.1343-.0305.5066-.0915,1.1169s-.0915,1.1108-.0915,1.5014v.1648c0,.2197.0061.3906.0183.5127s.0793.2319.2014.3296.2807.1526.4761.1648c.3418,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5554.4761-.8606.061-.1709.1099-.2746.1465-.3113s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5676-.4394,1.0436-.4638.6958-1.0131,1.0436-1.6479,1.0436h-.1648c-.7446,0-1.361-.1526-1.8493-.4577-.4883-.3052-.7568-.7812-.8056-1.4282,0-.3296.0915-.8422.2746-1.538s.2746-1.1413.2746-1.3366c0-.6225-.2624-1.0742-.7873-1.3549-.1831-.0854-.3357-.1343-.4577-.1465s-.5554-.0244-1.3-.0366h-1.2634l-.5859,2.3803c-.4028,1.6112-.6042,2.4291-.6042,2.4535,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3113.0366.3357,0,.6042.0366h.5676c.0732.0977.1099.1526.1099.1648s-.0183.1221-.0549.3296c-.0488.1587-.1099.2746-.1831.3479h-.2746c-.4394-.0244-1.239-.0366-2.3986-.0366h-1.9957c-.2075,0-.3357.0061-.3845.0183-.2075,0-.3113-.0549-.3113-.1648,0-.0244.0183-.1099.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1099c.3296,0,.6958-.0183,1.0986-.0549.1709-.0366.2869-.1099.3479-.2197.0366-.0488.4761-1.7455,1.3183-5.0901.8422-3.3446,1.2634-5.1084,1.2634-5.2915,0-.0854-.3479-.1404-1.0436-.1648ZM344.5108,6.0999c0-.3906-.1282-.7202-.3845-.9887s-.7812-.4394-1.5746-.5127h-.4211c-.2563,0-.4883-.0061-.6958-.0183h-.4028c-.5737,0-.9033.061-.9887.1831-.0122.0366-.2197.8483-.6225,2.4352-.4028,1.5868-.6042,2.3986-.6042,2.4352,0,.0122.4211.0183,1.2634.0183.9521-.0122,1.5868-.0549,1.9042-.1282.7812-.1221,1.3915-.4822,1.831-1.0803.1953-.2807.3601-.6469.4944-1.0986s.2014-.8667.2014-1.2451Z&#34;/&gt;
   &lt;g&gt;
     &lt;path id=&#34;MJX-9-TEX-I-1D465&#34; d=&#34;M373.7474,39.6494c.0854-.5126.415-1.1045.9886-1.7758.5736-.6713,1.2815-1.013,2.1237-1.0252.4272,0,.8177.1098,1.1717.3295s.6164.4943.7872.8238c.5126-.7689,1.129-1.1534,1.8491-1.1534.4516,0,.8421.1343,1.1717.4028s.5004.6286.5126,1.0801c0,.3539-.0854.6408-.2563.8604-.1709.2197-.3356.3539-.4943.4028s-.299.0732-.4211.0732c-.2319,0-.4211-.0671-.5675-.2014s-.2197-.3112-.2197-.5309c0-.5614.3051-.9459.9154-1.1534-.1343-.1587-.3784-.238-.7323-.238-.1587,0-.2746.0122-.3478.0366-.4638.1953-.8055.598-1.0252,1.2083-.7323,2.6973-1.0984,4.2717-1.0984,4.7233,0,.3417.0976.5858.2929.7323s.4089.2197.6408.2197c.4516,0,.8971-.2014,1.3364-.6041s.7384-.8971.8971-1.4829c.0366-.122.0732-.1892.1098-.2014s.1343-.0244.2929-.0366h.0732c.1831,0,.2746.0488.2746.1465,0,.0122-.0122.0793-.0366.2014-.1953.6957-.5736,1.312-1.1351,1.8491-.5614.537-1.2144.8055-1.9589.8055-.8543,0-1.5012-.3845-1.9406-1.1534-.5004.7567-1.074,1.1351-1.7209,1.1351h-.1098c-.598,0-1.0252-.1587-1.2815-.476-.2563-.3173-.3906-.653-.4028-1.0069,0-.3906.1159-.7079.3478-.952.2319-.2441.5065-.3661.8238-.3661.5248,0,.7872.2563.7872.7689,0,.2441-.0732.4577-.2197.6408s-.2868.3051-.4211.3661-.2136.0915-.238.0915l-.0549.0183c0,.0122.0366.0366.1098.0732s.1709.0793.2929.1282.238.0671.3478.0549c.4394,0,.8177-.2746,1.1351-.8238.1098-.1953.2502-.6102.4211-1.2449.1709-.6347.3417-1.2937.5126-1.9772.1709-.6835.2685-1.0862.2929-1.2083.061-.3295.0915-.5675.0915-.714,0-.3417-.0915-.5858-.2746-.7323s-.3906-.2197-.6225-.2197c-.4882,0-.9459.1953-1.3731.5858-.4272.3906-.7262.891-.8971,1.5012-.0244.1098-.0549.1709-.0915.1831s-.1343.0244-.2929.0366h-.2563c-.0732-.0732-.1098-.1404-.1098-.2014Z&#34;/&gt;
@@ -6838,7 +6984,7 @@ X_1\theta Y_1
 &lt;p&gt;  设有一个学生—课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;所示。下面的多个例子将对这三个关系进行运算。&lt;/p&gt;
 &lt;span id=&#34;20241026152329CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 643.2851&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 643.2851&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;231.85&#34; y=&#34;33.5202&#34; width=&#34;400&#34; height=&#34;210.5397&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;231.85&#34; y1=&#34;103.2598&#34; x2=&#34;631.85&#34; y2=&#34;103.2598&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -6983,7 +7129,7 @@ X_1\theta Y_1
 &lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026154508CST&#34;&gt;图7&lt;/a&gt;(b)所示。&lt;/p&gt;
 &lt;span id=&#34;20241026154508CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 403&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 403&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;rect x=&#34;231.9&#34; y=&#34;33.5&#34; width=&#34;400&#34; height=&#34;99.7381&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -7106,7 +7252,7 @@ X_1\theta Y_1
 &lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026160858CST&#34;&gt;图8&lt;/a&gt;(b)所示。Student关系原来有4个元组，而投影结果取消了重复的CS元组，因此只有三个元组。&lt;/p&gt;
 &lt;span id=&#34;20241026160858CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 276&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 276&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;197.2071&#34; y=&#34;4.9683&#34; width=&#34;250.8571&#34; height=&#34;240&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;197.2071&#34; y1=&#34;52.9683&#34; x2=&#34;448.0643&#34; y2=&#34;52.9683&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -7160,7 +7306,7 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
 &lt;p&gt;  &lt;span id=&#34;20241027090331CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例8&lt;/strong&gt;：设&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(a)和(b)分别为关系 \(R\) 和关系 \(S\) ，图&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(c)为非等值连接及 \( R \underset{C\lt E}{\Join} S \) 的结果，&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(d)为等值连接 \( R \underset{R.B=S.B}{\Join} S \) 的结果，&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(e)为自然连接 \( R \Join S \) 的结果。&lt;/p&gt;
 &lt;span id=&#34;20241027101851CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 561.2196&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 561.2196&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;g&gt;
@@ -7560,7 +7706,7 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
   如果把悬浮元组也保存在结果关系中，而在其他属性上填空值(NULL)，那么这种连接就叫做&lt;span id=&#34;20241117142036CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;外连接(outer join)&lt;/strong&gt;，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做&lt;strong&gt;左外连接（left outer join或left join）&lt;/strong&gt;，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做&lt;strong&gt;右外连接（right outer join或right join）&lt;/strong&gt;，记作 \(R⟖S\) 。在&lt;a class=&#34;link&#34; href=&#34;#20241027105236CST&#34;&gt;图10&lt;/a&gt;中，(a)是&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。&lt;/p&gt;
 &lt;span id=&#34;20241027105236CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 279.7873&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 279.7873&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(132.4257 278.5637)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: .004em;&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.3716&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;a)外连接&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(384.0872 278.5637)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;tspan x=&#34;6.2998&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.018em;&#34;&gt;b&lt;/tspan&gt;&lt;tspan x=&#34;17.2261&#34; y=&#34;0&#34;&gt;)左外连接&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
@@ -7841,7 +7987,7 @@ R \div S = \set{a_1}
     \]
 &lt;span id=&#34;20241027135213CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 328.5714&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 328.5714&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;rect x=&#34;254.0325&#34; y=&#34;18.6825&#34; width=&#34;150&#34; height=&#34;280&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -8023,7 +8169,7 @@ R \div S = \set{a_1}
   首先建立一个临时关系 \(K\) ：&lt;/p&gt;
 &lt;span id=&#34;20241027141922CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 134.6705&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 134.6705&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;371.5642&#34; y=&#34;23.3055&#34; width=&#34;120.5714&#34; height=&#34;105&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;371.5642&#34; y1=&#34;58.3055&#34; x2=&#34;492.1357&#34; y2=&#34;58.3055&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -8515,7 +8661,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  则 \(S\) 是 \(\text{dom}(\phi)\) 中各阈值中元素的Cartesian积与 \(R\) 的差集。结果如&lt;a class=&#34;link&#34; href=&#34;#20241105214507CST&#34;&gt;图13&lt;/a&gt;(b)所示。注意，在做Cartesian积时各个域中的元素不能搞混。&lt;/p&gt;
 &lt;span id=&#34;20241105214507CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 303.2381&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 303.2381&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;path id=&#34;MJX-36-TEX-I-1D445&#34; d=&#34;M268.8431,145.4126c-.3296,0-.5249-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3296.0671-.531.2014-.6042.0244-.0122,1.0864-.0183,3.1859-.0183,2.0995.0122,3.2347.0305,3.4056.0549.6836.0977,1.2573.2685,1.7211.5127s.7934.5249.9887.8422.3235.5798.3845.7873.0977.415.1099.6225c0,.5493-.177,1.062-.531,1.538s-.7629.8422-1.2267,1.0986-.8728.4638-1.2267.6225-.5859.238-.6958.238l.1282.0915c.8178.4638,1.2267,1.1352,1.2267,2.0141,0,.1343-.0305.5066-.0915,1.1169s-.0915,1.1108-.0915,1.5014v.1648c0,.2197.0061.3906.0183.5127s.0793.2319.2014.3296.2807.1526.4761.1648c.3418,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5554.4761-.8606.061-.1709.1099-.2746.1465-.3113s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5676-.4394,1.0436-.4638.6958-1.0131,1.0436-1.6479,1.0436h-.1648c-.7446,0-1.361-.1526-1.8493-.4577-.4883-.3052-.7568-.7812-.8056-1.4282,0-.3296.0915-.8422.2746-1.538s.2746-1.1413.2746-1.3366c0-.6225-.2624-1.0742-.7873-1.3549-.1831-.0854-.3357-.1343-.4577-.1465s-.5554-.0244-1.3-.0366h-1.2634l-.5859,2.3803c-.4028,1.6112-.6042,2.4291-.6042,2.4535,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3113.0366.3357,0,.6042.0366h.5676c.0732.0977.1099.1526.1099.1648s-.0183.1221-.0549.3296c-.0488.1587-.1099.2746-.1831.3479h-.2746c-.4394-.0244-1.239-.0366-2.3986-.0366h-1.9957c-.2075,0-.3357.0061-.3845.0183-.2075,0-.3113-.0549-.3113-.1648,0-.0244.0183-.1099.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1099c.3296,0,.6958-.0183,1.0986-.0549.1709-.0366.2869-.1099.3479-.2197.0366-.0488.4761-1.7455,1.3183-5.0901s1.2634-5.1084,1.2634-5.2915c0-.0854-.3479-.1404-1.0436-.1648h-.0005ZM276.167,146.9323c0-.3906-.1282-.7202-.3845-.9887s-.7812-.4394-1.5746-.5127h-.4211c-.2563,0-.4883-.0061-.6958-.0183h-.4028c-.5737,0-.9033.061-.9887.1831-.0122.0366-.2197.8483-.6225,2.4352-.4028,1.5868-.6042,2.3986-.6042,2.4352,0,.0122.4211.0183,1.2634.0183.9521-.0122,1.5868-.0549,1.9042-.1282.7812-.1221,1.3915-.4822,1.831-1.0803.1953-.2807.3601-.6469.4944-1.0986s.2014-.8667.2014-1.2451h-.0002Z&#34;/&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(328.9871 297.0054)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate; letter-spacing: .004em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;/text&gt;
@@ -8660,7 +8806,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   QBE中用示例元素来表示查询结果可能的情况，示例元素实质上就是域变量。QBE操作框架如&lt;a class=&#34;link&#34; href=&#34;#20241105222505CST&#34;&gt;图14&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241105222505CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 303.2381&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 303.2381&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;line x1=&#34;191.5643&#34; y1=&#34;69.0952&#34; x2=&#34;672.1357&#34; y2=&#34;69.0952&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;line x1=&#34;191.5643&#34; y1=&#34;113.3492&#34; x2=&#34;672.1357&#34; y2=&#34;113.3492&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -9454,7 +9600,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   在一般不引起混淆的情况下，人们常常把数据库系统简称为&lt;strong&gt;数据库&lt;/strong&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241016225051CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 507.4&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 507.4&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -9569,7 +9715,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;‌&lt;/p&gt;
 &lt;span id=&#34;20241016231208CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 330.8571&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34;layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 330.8571&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;text transform=&#34;translate(386.8169 124.8063)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操&lt;/tspan&gt;&lt;tspan x=&#34;24.3369&#34; y=&#34;-12.5889&#34;&gt;作&lt;/tspan&gt;&lt;tspan x=&#34;51.6899&#34; y=&#34;-11.5469&#34;&gt;系&lt;/tspan&gt;&lt;tspan x=&#34;74.9624&#34; y=&#34;2.8149&#34;&gt;统&lt;/tspan&gt;&lt;/text&gt;
   &lt;path d=&#34;M431.8502,240.5527c-41.7816,0-75.7738-33.9917-75.7738-75.7729s33.9922-75.7738,75.7738-75.7738,75.7733,33.9922,75.7733,75.7738-33.9917,75.7729-75.7733,75.7729Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;circle cx=&#34;431.85&#34; cy=&#34;164.7794&#34; r=&#34;42.6667&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -9668,7 +9814,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   在人工管理阶段，应用程序与数据之间的一一对应关系可用下图表示。&lt;/p&gt;
 &lt;span id=&#34;20241017124034CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 309.4&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 309.4&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -9737,7 +9883,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  文件系统阶段应用程序与数据之间的关系如下图所示。&lt;/p&gt;
 &lt;span id=&#34;20241017130053CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 361.1&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 361.1&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1, .cls-2 {
@@ -10007,7 +10153,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   所谓“整体”结构化是指数据库中的数据不再仅仅针对某一个应用，而是面向整个组织或企业：不仅数据内部是结构化的，而且整体是结构化的，数据之间是具有联系的。也就是说，不仅要考虑某个应用的数据结构，还要考虑整个组织的数据结构。例如，一个学校的信息系统中不仅要考虑教务处的课程管理、学生选课管理、成绩管理，还要考虑学生处的学生学籍管理，同时还要考虑研究生院的研究生管理、人事处的教员人事管理、科研处的科研管理等。因此，学校信息系统中的学生数据就要面向各个处室的应用，而不仅仅是教务处的一个学生选课应用。可以参照下图为该校的信息系统组织其中的学生数据。&lt;/p&gt;
 &lt;span id=&#34;20241017145652CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 258.9&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 258.9&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -10147,7 +10293,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  数据库系统阶段应用程序与数据之间的对应关系可用&lt;a class=&#34;link&#34; href=&#34;#20241017164256CST&#34;&gt;图6&lt;/a&gt;表示。&lt;/p&gt;
 &lt;span id=&#34;20241017164256CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 243&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 243&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -10247,7 +10393,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   为了把现实世界中的具体事物抽象、组织为某一数据库管理系统支持的数据模型，人们常常首先将现实世界抽象为信息世界，然后将信息世界转换为机器世界。也就是说，首先把现实世界中的客观对象抽象为某一种信息结构，这种信息结构并不依赖于具体的计算机系统，不是某一个数据库管理系统支持的数据模型，而是概念级的模型；然后再把概念模型转换为计算机上某一数据库管理系统支持的数据模型，这一过程如&lt;a class=&#34;link&#34; href=&#34;#20241017170805CST&#34;&gt;图7&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241017170805CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 346.9&#34;&gt;
+&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 346.9&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;defs&gt;
     &lt;style&gt;
       .cls-1 {
@@ -10356,7 +10502,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  在格式化模型中实体用记录表示，实体的属性对应记录的数据项（或字段）。实体之间的联系在格式化模型中转换成记录之间的两两联系。在格式化模型中数据结构的单位是基本层次联系。所谓基本层次联系是指两个记录以及它们之间的一对多（包括一对一）的联系，如&lt;a class=&#34;link&#34; href=&#34;#20241017192017CST&#34;&gt;图8&lt;/a&gt;所示。图中 \(R_i\) 位于联系 \(L_{ij}\) 的始点，称为&lt;strong&gt;双亲结点(parent)&lt;/strong&gt;， \(R_j\) 位于联系 \(L_{ij}\) 的终点，称为&lt;strong&gt;子女结点(child)&lt;/strong&gt;。&lt;/p&gt;
 &lt;span id=&#34;20241017192017CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 112.8095&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.7 112.8095&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;275.8287&#34; y=&#34;3.2875&#34; width=&#34;72.127&#34; height=&#34;28.0152&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;rect x=&#34;275.8287&#34; y=&#34;82.9133&#34; width=&#34;72.127&#34; height=&#34;28.0152&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -10397,7 +10543,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   在层次模型中，同一双亲的子女结点称为&lt;strong&gt;兄弟结点（twin或sibling）&lt;/strong&gt;，没有子女结点的结点称为叶结点。&lt;a class=&#34;link&#34; href=&#34;#20241017200708CST&#34;&gt;图9&lt;/a&gt;给出了一个层次模型的例子。其中， \(R_1\) 为根结点； \(R_2\) 和 \(R_3\) 为兄弟结点，是 \(R_1\) 的子女结点； \(R_4\) 和 \(R_5\) 为兄弟结点，是 \(R_2\) 的子女结点； \(R_3\) 、 \(R_4\) 和 \(R_5\) 为叶结点。&lt;/p&gt;
 &lt;span id=&#34;20241017200708CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 200.9756&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 200.9756&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
       &lt;text transform=&#34;translate(513.1897 21.6234)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;根结点&lt;/tspan&gt;&lt;/text&gt;
@@ -10479,7 +10625,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241021222552CST&#34;&gt;图10&lt;/a&gt;是一个教员学生层次模型。该层次模型有4个记录类型。记录类型系是根结点,由系编号、系名、办公地点三个字段组成。它有两个子女结点教研室和学生。记录类型教研室是系的子女结点，同时又是教员的双亲结点，它由教研室编号、教研室名两个字段组成。记录类型学生由学号、姓名、成绩三个字段组成。记录类型教员由职工号、姓名、研究方向三个字段组成。学生与教员是叶结点，它们没有子女结点。由系到教研室、由教研室到教员、由系到学生均是一对多的联系。&lt;/p&gt;
 &lt;span id=&#34;20241021222552CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 238.2&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 238.2&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  --&gt;
   &lt;defs&gt;
     &lt;style&gt;
@@ -10548,7 +10694,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241021225153CST&#34;&gt;图11&lt;/a&gt;是&lt;a class=&#34;link&#34; href=&#34;#20241021222552CST&#34;&gt;图10&lt;/a&gt;数据模型对应的一个值。该值是D02系（计算机科学系）记录值及其所有后代记录值组成的一棵树。D02系有三个教研室子女记录值R01、R02、R03和三个学生记录值S63871、S63874,S63876。教研室R01有三个教员记录值E2101、E1709,E3501；教研室R03有两个教员记录值E1101、E3102。&lt;/p&gt;
 &lt;span id=&#34;20241021225153CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 398.2&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 863.7 398.2&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  --&gt;
   &lt;defs&gt;
     &lt;style&gt;
@@ -10831,7 +10977,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   从定义可以看出，层次模型中子女结点与双亲结点的联系是唯一的，而在网状模型中这种联系可以不唯一。因此要为每个联系命名，并指出与该联系有关的双亲记录和子女记录。例如&lt;a class=&#34;link&#34; href=&#34;#20241023184414CST&#34;&gt;图12&lt;/a&gt;(a)中 \(R_3\) 有两个双亲记录 \(R_1\) 和 \(R_2\) ，因此把 \(R_1\) 与 \(R_3\) 之间的联系命名为 \(L_1\) ， \(R_2\) 与 \(R_3\) 之间的联系命名为 \(L_2\) 。&lt;a class=&#34;link&#34; href=&#34;#20241023184414CST&#34;&gt;图12&lt;/a&gt;(a)、(b)、(c)都是网状模型的例子。&lt;/p&gt;
 &lt;span id=&#34;20241023184414CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 181.0159&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 181.0159&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;rect x=&#34;138.2681&#34; y=&#34;16.9671&#34; width=&#34;56.2382&#34; height=&#34;27.5873&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -10976,7 +11122,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   每个学生可以选修多门课程，显然对学生记录中的一个值，选课记录中可以有多个值与之联系，而选课记录中的一个值，只能与学生记录中的一个值联系。学生与选课之间的联系是一对多的联系，联系名为S-SC。同样，课程与选课之间的联系也是一对多的联系，联系名为C-SC。&lt;a class=&#34;link&#34; href=&#34;#20241023190234CST&#34;&gt;图13&lt;/a&gt;所示为学生选课数据库的网状数据模型。&lt;/p&gt;
 &lt;span id=&#34;20241023190234CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 166.2857&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 166.2857&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;rect x=&#34;228.3743&#34; y=&#34;3.9683&#34; width=&#34;165.7778&#34; height=&#34;32.5714&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;text transform=&#34;translate(236.4379 27.5929)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;学号&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(292.2351 27.5927)&#34; style=&#34;font-family: AdobeSongStd-Light-GBpc-EUC-H, &amp;apos;Adobe Song Std&amp;apos;; font-size: 18px; font-weight: 300;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;姓名&lt;/tspan&gt;&lt;/text&gt;
@@ -11194,7 +11340,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h3&gt;&lt;p&gt;  数据库系统的三级模式结构是指数据库系统是由外模式、模式和内模式三级构成，如&lt;a class=&#34;link&#34; href=&#34;#20241024141816CST&#34;&gt;图14&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241024141816CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 355.8095&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 355.8095&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
       &lt;rect x=&#34;243.5756&#34; y=&#34;3.2143&#34; width=&#34;66.0737&#34; height=&#34;24.9206&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -11326,7 +11472,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h4&gt;&lt;p&gt;  开发、管理和使用数据库系统的人员主要包括数据库管理员、系统分析员和数据库设计人员、应用程序员和最终用户。不同的人员涉及不同的数据抽象级别，具有不同的数据视图，如&lt;a class=&#34;link&#34; href=&#34;#20241024150835CST&#34;&gt;图15&lt;/a&gt;所示。这些人员分别包括如下职责。&lt;/p&gt;
 &lt;span id=&#34;20241024150835CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
-&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 271.2381&#34;&gt;
+&lt;svg id=&#34;_layer_1&#34; data-name=&#34; layer 1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 863.69 271.2381&#34; style=&#34;max-width:863.69;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(391.1008 92.2333)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;外模式&lt;/tspan&gt;&lt;/text&gt;
     &lt;rect x=&#34;385.0057&#34; y=&#34;69.6359&#34; width=&#34;68.0635&#34; height=&#34;32.254&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;

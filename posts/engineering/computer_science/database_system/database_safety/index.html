@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/'>
 
-<link rel="stylesheet" href="/scss/style.min.f258d5cbdf72e0270f78e2196485245d5afe0f75a5c5bf4162f41100a7186e7d.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.d061ce62e1a79e115c3472bd1ec4322e89ef9f025d5b4b995edff963d50c4a0b.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库管理系统提供的统一的数据保护功能">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-02T07:22:17&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-02T08:54:15&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（四）：数据库安全性">
 <meta name="twitter:description" content="数据库管理系统提供的统一的数据保护功能"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -828,6 +828,15 @@
             <li><a href="#创建数据库模式的权限">创建数据库模式的权限</a></li>
           </ol>
         </li>
+        <li><a href="#数据库角色">数据库角色</a>
+          <ol>
+            <li><a href="#角色的创建">角色的创建</a></li>
+            <li><a href="#给角色授权">给角色授权</a></li>
+            <li><a href="#将一个角色授予其他的角色或用户">将一个角色授予其他的角色或用户</a></li>
+            <li><a href="#角色权限的收回">角色权限的收回</a></li>
+          </ol>
+        </li>
+        <li><a href="#强制存取控制方法">强制存取控制方法</a></li>
       </ol>
     </li>
   </ol>
@@ -1153,7 +1162,7 @@
 </svg>
 
             <time class="article-words">
-                9774 字
+                12335 字
             </time>
         </div>
 
@@ -1168,7 +1177,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 20 分钟
+                    阅读时长: 25 分钟
                 </time>
             </div>
         
@@ -1227,7 +1236,7 @@
   上述一系列标准的发展历史如<a class="link" href="#20241201164427CST">图1</a>所示。本节简要介绍TCSEC和CC V2.1的基本内容。</p>
 <span id="20241201164427CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 428.1905">
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 428.1905" style="max-width:863.7;">
   <g>
     <text transform="translate(41.5814 187.9709)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">1985年美国国防部</tspan><tspan x="19.7993" y="21.6001">可信计算机系</tspan><tspan x="28.7993" y="43.1997">统评估准则</tspan><tspan x="37.9434" y="64.8003">(</tspan><tspan x="44.4951" y="64.8003" style="letter-spacing: -.007em;">T</tspan><tspan x="56.2314" y="64.8003">C</tspan><tspan x="68.6694" y="64.8003" style="letter-spacing: -.002em;">S</tspan><tspan x="78.8394" y="64.8003" style="letter-spacing: -.003em;">E</tspan><tspan x="90.521" y="64.8003" style="letter-spacing: .008em;">C</tspan><tspan x="103.103" y="64.8003">)</tspan></text>
     <rect x="23" y="160.285" width="184.7619" height="105.1429" rx="12" ry="12" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -1396,7 +1405,7 @@
 </h2><p>  在一般计算机系统中，安全措施是一级一级层层设置的。例如，在<a class="link" href="#20241201181759CST">图2</a>所示的安全模型中，用户要求进入计算机系统时，系统首先根据输入的用户标识进行用户身份鉴定，只有合法的用户才准许进入计算机系统；对已进入系统的用户，数据库管理系统还要进行存取控制，只允许用户执行合法操作；操作系统也会有自己的保护措施；数据最后还可以以密码形式存储到数据库中。操作系统的安全保护措施可参考操作系统的有关书籍，这里不再详述。另外，对于强力逼迫透露口令、盗窃物理存储设备等行为而采取的保安措施，例如出入机房登记、加锁等，也不在这里讨论之列。</p>
 <span id="20241201181759CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 68.9524">
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 68.9524" style="max-width:863.7;">
   <g>
     <rect x="131.6367" y="4.3465" width="70.0952" height="32.0494" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <text transform="translate(148.6841 26.8229)" style="font-family: SimSun, SimSun; font-size: 18px;"><tspan x="0" y="0">用户</tspan></text>
@@ -1445,7 +1454,7 @@
 <p>  下面讨论与数据库有关的安全性，主要包括用户身份鉴别、多层存取控制、审计、视图和数据加密等安全技术。</p>
 <span id="20241201190210CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 460.1905">
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 460.1905" style="max-width:863.7;">
   <g id="SVGRepo_iconCarrier">
     <path d="M89.0391,115.8762l-10.814,5.5665c-1.3321.6857-2.1693,2.0583-2.1693,3.5565v2.0802c0,2.2092,1.7909,4,4.0002,4,.7364,0,1.3333.597,1.3333,1.3333s-.597,1.3333-1.3333,1.3333c-3.6821,0-6.6669-2.9847-6.6669-6.6667v-2.0802c0-2.497,1.3954-4.7847,3.6155-5.9275l8.954-4.6091c-2.8578-2.4918-4.5695-6.1238-4.5695-10.0499,0-7.3638,5.9695-13.3333,13.3333-13.3333,4.4709,0,8.5686,2.2185,11.0345,5.8468.4139.609.2558,1.4383-.3533,1.8522-.609.4139-1.4383.2558-1.8522-.3533-1.9746-2.9054-5.2507-4.6791-8.829-4.6791-5.891,0-10.6667,4.7756-10.6667,10.6667,0,3.7646,1.9648,7.1885,5.1207,9.1136.6286.3835.8274,1.204.4439,1.8326-.1436.2353-.3483.4104-.5814.5173h0ZM99.9525,127.2576l-10.8853,4.9478c-1.428.6491-2.3448,2.0729-2.3448,3.6415v1.8991c0,2.2091,1.7909,4,4,4h29.3333c2.2091,0,4-1.7909,4-4v-1.8991c0-1.5686-.9168-2.9924-2.3448-3.6415l-10.8853-4.9478c-1.6603.7423-3.5003,1.1551-5.4366,1.1551s-3.7763-.4128-5.4366-1.1551h0ZM97.1816,125.5879c-3.1202-2.4404-5.1258-6.2403-5.1258-10.5085,0-7.3638,5.9695-13.3333,13.3333-13.3333s13.3333,5.9695,13.3333,13.3333c0,4.2683-2.0056,8.0681-5.1258,10.5085l9.2178,4.1899c2.38,1.0818,3.908,3.4548,3.908,6.0691v1.8991c0,3.6819-2.9848,6.6667-6.6667,6.6667h-29.3333c-3.6819,0-6.6667-2.9848-6.6667-6.6667v-1.8991c0-2.6143,1.528-4.9873,3.908-6.0691l9.2178-4.1899h0ZM105.3891,125.746c5.891,0,10.6667-4.7756,10.6667-10.6667s-4.7756-10.6667-10.6667-10.6667-10.6667,4.7756-10.6667,10.6667,4.7756,10.6667,10.6667,10.6667Z"/>
   </g>
@@ -1625,7 +1634,7 @@
   SQL标准允许具有<code>WITH GRANT OPTION</code>的用户把相应权限或其子集传递授予其他用户，但不允许循环授权，即被授权者不能把权限再授回给授权者或其祖先，如<a class="link" href="#20241201201816CST">图4</a>所示。</p>
 <span id="20241201201816CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 88.1766">
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 88.1766" style="max-width:863.7;">
   <text transform="translate(268.3408 18.6285)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">U1</tspan></text>
   <text transform="translate(369.265 18.6286)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">U2</tspan></text>
   <text transform="translate(470.1892 18.6283)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">U3</tspan></text>
@@ -1849,9 +1858,9 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="p">]</span><span class="err">···</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="p">]</span><span class="err">···</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="p">]</span><span class="err">···</span><span class="p">[</span><span class="k">CASCADE</span><span class="o">|</span><span class="k">RESTRICT</span><span class="p">];</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">···</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">···</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">···</span><span class="w"> </span><span class="p">[</span><span class="k">CASCADE</span><span class="o">|</span><span class="k">RESTRICT</span><span class="p">];</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  <span id="20241201212459CST"></span><strong>例8</strong>：把用户<code>U4</code>修改学生学号的权限收回。</p>
@@ -2007,6 +2016,152 @@
   </tr>
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表6&emsp;权限与可执行的操作对照表</p>
+<p>  注意：<code>CREATE USER</code>语句不是SQL标准，因此不同的关系数据库管理系统的语法和内容相差甚远。这里介绍该语句的目的是说明对于数据库模式这一类数据对象也有安全控制的需要，也是要授权的。</p>
+<h3 id="数据库角色">数据库角色
+</h3><p>  数据库角色是被命名的一组与数据库操作相关的权限，角色是权限的集合。因此，可以为一组具有相同权限的用户创建一个角色，使用角色来管理数据库权限可以简化授权的过程。<br>
+  在SQL中首先用<code>CREATE ROLE</code>语句创建角色，然后用<code>GRANT</code>语句给角色授权，用<code>REVOKE</code>语句收回授予角色的权限。</p>
+<h4 id="角色的创建">角色的创建
+</h4><p>  创建角色的SQL语句格式是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色名</span><span class="o">&gt;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  刚刚创建的角色是空的，没有任何内容。可以用<code>GRANT</code>为角色授权。</p>
+<h4 id="给角色授权">给角色授权
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">···</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;</span><span class="w"> </span><span class="err">对象名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">TO</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">···</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  数据库管理员和用户可以利用<code>GRANT</code>语句将权限授予某一个或几个角色。</p>
+<h4 id="将一个角色授予其他的角色或用户">将一个角色授予其他的角色或用户
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">角色</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">···</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">TO</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="mi">3</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">用户</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">···</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="k">WITH</span><span class="w"> </span><span class="k">ADMIN</span><span class="w"> </span><span class="k">OPTION</span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  该语句把角色授予某用户，或授予另一个角色。这样，一个角色（例如角色3）所拥有的权限就是授予它的全部角色（例如角色1和角色2）所包含的权限的总和。<br>
+  授予者或者是角色的创建者，或者拥有在这个角色上的<code>ADMIN OPTION</code>。<br>
+  如果指定了<code>WITH ADMIN OPTION</code>子句，则获得某种权限的角色或用户还可以把这种权限再授予其他的角色。<br>
+  一个角色包含的权限包括直接授予这个角色的全部权限加上其他角色授予这个角色的全部权限。</p>
+<h4 id="角色权限的收回">角色权限的收回
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="p">[,</span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">···</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">···</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  用户可以收回角色的权限，从而修改角色拥有的权限。<br>
+  <code>REVOKE</code>动作的执行者或者是角色的创建者，或者拥有在这个（些）角色上的<code>ADMIN OPTION</code>。</p>
+<p>  <span id="20241202073656CST"></span><strong>例11</strong>：通过角色来实现将一组权限授予一个用户。<br>
+  步骤如下：
+  ①首先创建一个角色<code>R1</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">R1</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  ②然后使用<code>GRANT</code>语句，使角色<code>R1</code>拥有<code>Student</code>表的<code>SELECT</code>、<code>UPDATE</code>、<code>INSERT</code>权限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="k">UPDATE</span><span class="p">,</span><span class="k">INSERT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">TO</span><span class="w"> </span><span class="n">R1</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  ③将这个角色授予王平、张明、赵玲，使他们具有角色<code>R1</code>所包含的全部权限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="n">R1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">TO</span><span class="w"> </span><span class="err">王平，张明，赵玲</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  ④当然，也可以一次性地通过<code>R1</code>来收回王平的这三个权限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="n">R1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">FROM王平</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241202074309CST"></span><strong>例12</strong>：角色的权限修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">TO</span><span class="w"> </span><span class="n">R1</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  使角色R1在原来的基础上增加了<code>Student</code>表的<code>DELETE</code>权限。</p>
+<p>  <span id="20241202074343CST"></span><strong>例13</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">R1</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  使<code>R1</code>减少了<code>SELECT</code>权限。<br>
+  可以看出，数据库角色是一组权限的集合。使用角色来管理数据库权限可以简化授权的过程，使自主授权的执行更加灵活、方便。</p>
+<h3 id="强制存取控制方法">强制存取控制方法
+</h3><p>  自主存取控制（MAC）能够通过授权机制有效地控制对敏感数据的存取。但是由于用户对数据的存取权限是“自主”的，用户可以自由地决定将数据的存取权限授予何人，以及决定是否也将“授权”的权限授予别人。在这种授权机制下，仍可能存在数据的“无意泄露”。比如，甲将自己权限范围内的某些数据存取权限授权给乙，甲的意图是仅允许乙本人操纵这些数据。但甲的这种安全性要求并不能得到保证，因为乙一旦获得了对数据的权限，就可以将数据备份，获得自身权限内的副本，并在不征得甲同意的前提下传播副本。造成这一问题的根本原因就在于，这种机制仅仅通过对数据的存取权限来进行安全控制，而数据本身并无安全性标记。要解决这一问题，就需要对系统控制下的所有主客体实施强制存取控制策略。<br>
+  所谓强制存取控制是指系统为保证更高程度的安全性，按照TDI/TCSEC标准中安全策略的要求所采取的强制存取检查手段。它不是用户能直接感知或进行控制的。强制存取控制适用于那些对数据有严格而固定密级分类的部门，例如军事部门或政府部门。<br>
+  在强制存取控制中，数据库管理系统所管理的全部实体被分为主体和客体两大类。<br>
+  <strong>主体</strong>是系统中的活动实体，既包括数据库管理系统所管理的实际用户，也包括代表用户的各进程。<strong>客体</strong>是系统中的被动实体，是受主体操纵的，包括文件、基本表、索引、视图等。对于主体和客体，数据库管理系统为它们每个实例（值）指派一个敏感度标记(label)。敏感度标记被分成若干级别，例如绝密(Top Secret,TS)、机密(Secret,S)、可信(Confidential,C)、公开(Public,P)等。密级的次序是TS&gt;=S&gt;=C&gt;=P。主体的敏感度标记称为许可证级别(clearance level)，客体的敏感度标记称为密级(classification level)。强制存取控制机制就是通过对比主体的敏感度标记和客体的敏感度标记，最终确定主体是否能够存取客体。<br>
+  当某一用户（或某一主体）以标记label注册入系统时，系统要求他对任何客体的存取必须遵循如下规则：<br>
+  (1)仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。<br>
+  (2)仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体。<br>
+  规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，制造成TS密级数据的泄露。<br>
+  强制存取控制是对数据本身进行密级标记，无论数据如何复制，标记与数据是一个不可分的整体，只有符合密级标记要求的用户才可以操纵数据，从而提供了更高级别的安全性。前面已经提到，较高安全性级别提供的安全保护要包含较低级别的所有保护，因此在实现强制存取控制时要首先实现自主存取控制(DAC)，即自主存取控制与强制存取控制共同构成数据库管理系统的安全机制，如图4.5所示。系统首先进行自主存取控制检查，对通过自主存取控制检查的允许存取的数据库对象再由系统自动进行强制存取控制检查，只有通过强制存取控制检查的数据库对象方可存取。</p>
 
     </div>
 </section>
@@ -2052,7 +2207,7 @@
 
 
         <span>
-            最后更新于 Dec 02, 2024 07:22 CST
+            最后更新于 Dec 02, 2024 08:54 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2230,7 +2385,7 @@
             
         
         
-        <span>本图书馆累计发布了17篇文章 共29.6万字</span>
+        <span>本图书馆累计发布了17篇文章 共29.9万字</span>
         
     </section>
 

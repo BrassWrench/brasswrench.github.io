@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/operating_system/introduction_to_operating_system/'>
 
-<link rel="stylesheet" href="/scss/style.min.f258d5cbdf72e0270f78e2196485245d5afe0f75a5c5bf4162f41100a7186e7d.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.d061ce62e1a79e115c3472bd1ec4322e89ef9f025d5b4b995edff963d50c4a0b.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -1368,7 +1368,7 @@
 </h4><p>  OS作为用户与计算机硬件系统之间的接口的含义是：OS处于用户与计算机硬件系统之间，用户通过OS来使用计算机系统。或者说，用户在OS帮助下能够方便、快捷、可靠地操纵计算机硬件和运行自己的程序。<a class="link" href="#20240929215340CST">图1</a>是OS作为接口的示意图。由图可看出，用户可通过三种方式使用计算机，即通过命令方式、系统调用方式和图标&mdash;窗口方式来实现与操作系统的通信，并取得它的服务。</p>
 <span id="20240929215340CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 200.5">
+<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 200.5" style="max-width:863.69;">
   <text transform="translate(413.89 34)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">用户</tspan></text>
   <text transform="translate(276.1 77)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">应用程序</tspan></text>
   <g id="arrow">
@@ -1399,7 +1399,7 @@
 </h4><p>  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如<a class="link" href="#20240929215356CST">图2</a>所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。</p>
 <span id="20240929215356CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" data-name="layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 345.5">
+<svg id="_layer_1" data-name="layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 345.5" style="max-width:863.69;">
   <g id="_layer_1-2" data-name=" layer 1">
     <circle cx="269.2374" cy="91.4107" r="37" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 1px;"/>
     <g style="isolation: isolate;">
@@ -1525,7 +1525,7 @@
   类似地，当CPU需要输出时，可先由CPU把数据直接从内存高速地输送到磁带上，然后在另一台外围机的控制下，再将此大地上的结果通过相应地输出设备输出。<a class="link" href="#20240929215418CST">图3</a>示出了脱机输入/输出的过程。</p>
 <span id="20240929215418CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 238.54">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 238.54" style="max-width:863.69;">
   <text transform="translate(275.7 45.3)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">输入设备</tspan></text>
   <polygon points="269.03 53.5 355.03 53.5 355.03 22.5 291.03 22.5 269.03 30.92 269.03 53.5" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <text transform="translate(406.43 44.8)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">外围机</tspan></text>
@@ -1561,7 +1561,7 @@
 </h4><p>  为了实现对作业的连续处理，需要先把一批作业以脱机方式输入到磁带上，并在系统中配上<strong>监督程序(Monitor)</strong>，在它的控制下，使这批作业能一个接一个连续处理。其处理过程是：首先由监督程序将磁带上的第一个作业装入内存，并把运行控制权交给该作业；当该作业处理完成时，又把控制权交给监督程序，再由监督程序把磁带上的第二个作业调入内存。计算机系统就这样自动地一个作业紧接着一个作业地进行处理，直至磁带上的所有作业全部完成，这样便形成了早期的批处理系统。虽然系统对作业的处理是成批进行的，但在内存中时终止保持一道作业，故称为<strong>单道批处理系统</strong>。<a class="link" href="#20240929215439CST">图4</a>示出了单道批处理系统的处理流程。</p>
 <span id="20240929215439CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 319.54">
+<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 319.54" style="max-width:863.69;">
   <path d="M371.07,2.72c-5.82,2.99-67.97,34.96-72.57,37.32.06.03.1.05.1.05l73.28,37.69s67.66-35.06,72.46-37.55l-.1-.05L371.5,2.5l-.44.22Z" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <text transform="translate(344.41 33.63)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">还有下</tspan><tspan x="-13.5" y="21.6">一个作业</tspan><tspan x="58.5" y="21.6" style="letter-spacing: -.5em;">？</tspan></text>
   <text transform="translate(535 26.25)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">把下一个作业</tspan><tspan x="0" y="21.6">的源程序转换</tspan><tspan x="9" y="43.2">为目标程序</tspan></text>
@@ -1643,7 +1643,7 @@
 </h4><p>  单道批处理系统最主要的缺点是，系统中的资源得不到充分的利用。这是因为在内存中仅有一道程序，每逢该程序在运行中发出I/O请求后，CPU便处于等待状态，必须在其I/O完成后才继续运行。又因I/O设备的低速性，更使CPU的利用率显著降低。<a class="link" href="#20240929215455CST">图5</a>示出了单道程序的运行情况，从图可以看出：在 $t_2$ ~ $t_3$ 、 $t_6$ ~ $t_7$ 时间间隔内CPU空闲。</p>
 <span id="20240929215455CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 277.54">
+<svg id="_layer_1" data-name=" layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 277.54" style="max-width:863.69;">
   <g style="isolation: isolate;">
     <text transform="translate(60.42 32.25)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">用户程序</tspan></text>
   </g>
@@ -1726,7 +1726,7 @@
 </h4><p>  为了进一步提高资源的利用率和系统吞吐量，在20世纪60年代中期引入了<strong>多道程序设计技术</strong>，由此形成了<strong>多道批处理系统</strong>。在该系统中，用户所提交的作业先存放在外存上，并排成一个队列，称为“后备队列”。然后由<strong>作业调度程序</strong>按一定的算法，从后备队列中选择若干个作业调入内存，使它们共享CPU和系统中的各种资源。由于同时在内存中装有若干道程序，这样便可以在运行程序A时，利用其因I/O操作而暂停执行时的CPU空挡时间，再调度另一道程序B运行，同样可以利用程序B在I/O操作时的空档时间，再调度程序C运行，使多道程序交替地运行，这样便可以保持CPU处于忙碌状态。<a class="link" href="#20240929215511CST">图6</a>示出了四道程序时的运行情况。</p>
 <span id="20240929215511CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 506.54">
+<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.69 506.54" style="max-width:863.69;">
   <text transform="translate(34.79 111.79)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序A</tspan></text>
   <text transform="translate(34.79 189.9)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序B</tspan></text>
   <text transform="translate(34.79 268.01)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">程序C</tspan></text>
@@ -2059,7 +2059,7 @@
 <p>  <strong>模块化程序设计技术</strong>是20世纪60年代出现的一种结构化程序设计技术。该技术基于&quot;分解&quot;和“模块化”的原则来控制大型软件的复杂度。为使OS具有较清晰的结构，OS不再是由众多的过程直接构成的，而是按其功能精心地划分为若干个具有一定独立性和大小的模块。每个模块具有某方面的管理功能，如进程管理模块、存储器管理模块、I/O设备管理模块等，并仔细地规定好各模块间的接口，使各模块之间能通过接口实现交互。然后再进一步将各模块细分为若干个具有一定功能的子模块，如把进程管理模块又分为进程控制、进程同步等子模块，同样也规定好各子模块之间的接口。若子模块较大，可再进一步将它细分。我们把这种设计方法称为<strong>模块-接口法</strong>，由此构成的操作系统就是<strong>具有模块化结构的操作系统</strong>。<a class="link" href="#20241014103700CST">图7</a>示出了由模块、子模块等组成的模块化OS结构。</p>
 <span id="20241014103700CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 283.5">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 283.5" style="max-width:863.7;">
   <defs>
     <style>
       .cls-1 {
@@ -2202,7 +2202,7 @@
 <p>  在面向对象的技术中，是利用被封装的数据结构（变量）和一组对它进行操作的过程（方法）来表示系统中的某个对象的，如<a class="link" href="#20241014132525CST">图8</a>所示。对象中的变量（数据）也称为属性，它可以是单个标量或一张表。面向对象中的方法是用于执行某种功能的过程，它可以改变对象的状态，更新对象中的某些数据值或作用于对象所要访问的外部资源。如果把一个文件作为一个对象<a class="link" href="#20241014132606CST">图9</a>,该对象的变量便是文件类型、文件大小、文件的创建者等。对象中的方法包含对文件的操作，如创建文件、打开文件、读文件、写文件、关闭文件等。</p>
 <span id="20241014132525CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 156.6">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 156.6" style="max-width:863.7;">
   <defs>
     <style>
       .cls-1 {
@@ -2237,7 +2237,7 @@
 <p>  对象中的变量（数据）对外是隐蔽的，因而外界不能对它直接进行访问，必须通过该对象中的一组方法（操作函数）对它进行访问。例如要想对<a class="link" href="#20241014132606CST">图9</a>所示的文件A执行打开操作，必须用该对象中的打开过程去打开它。同样地，对象中的一组方法的实现细节也是隐蔽的，因此对象中的变量可以得到很好的保护，而不会允许未经受权者使用和对它进行不正确的操作。</p>
 <span id="20241014132606CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 246.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 246.1" style="max-width:863.7;">
   <defs>
     <style>
       .cls-1 {
@@ -2311,7 +2311,7 @@
 <p>  在面向对象的技术中，可以根据已有类来定义一个新的类，新类被称为子类(B),原来的类被称为父类(A),见<a class="link" href="#20241014153331CST">图10</a>所示。<strong>继承</strong>是父类和子类之间共享变量和方法的机制，该机制规定子类自动继承父类中定义的变量和方法，并允许子类再增加新的内容。继承特性可使定义子类变得更容易。一个父类可以定义多个子类，它们分别是父类的某种特例，父类描述了这些子类的公共变量和方法。类似地，这些子类又可以定义自己的子类，通过此途经可以生成一个继承的层次。另外，也允许一个子类有两个父类或多个父类，它可以从多个父类获得继承，此时称为&quot;多重继承”。</p>
 <span id="20241014153331CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 181.7">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 181.7" style="max-width:863.7;">
   <defs>
     <style>
       .cls-1 {
@@ -2364,7 +2364,7 @@
 <p>  由于客户/服务器模式具有非常多的优点，故在单机微内核操作系统中几乎无一例外地都采用客户/服务器模式，将操作系统中最基本的部分放入内核中，而把操作系统的绝大部分功能都放在微内核外面的一组服务器（进程）中实现，如用于提供对进程（线程）进行管理的进程（线程）服务器、提供虚拟存储器管理功能的虚拟存储器服务器、提供I/O设备管理的I/O设备管理服务器等，它们都是被作为进程来实现的，运行在用户态，客户与服务器之间是借助微内核提供的消息传递机制来实现信息交互的。<a class="link" href="#20241014160927CST">图11</a>示出了在单机环境下的客户/服务器模式。</p>
 <span id="20241014160927CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 145.5">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 145.5" style="max-width:863.7;">
   <defs>
     <style>
       .cls-1 {
@@ -2453,7 +2453,7 @@
   实际情况是往往还会引起更多的上下文切换。例如，当某个服务器自身尚无能力完成客户请求而需要其它服务器的帮助时，如<a class="link" href="#20241014164813CST">图12</a>所示，其中的文件服务器还需要磁盘服务器的帮助，这时就需要进行8次上下文的切换。</p>
 <span id="20241014164813CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 445">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 863.7 445" style="max-width:863.7;">
   <defs>
     <style>
       .cls-1, .cls-2, .cls-3 {
@@ -2822,7 +2822,7 @@
             
         
         
-        <span>本图书馆累计发布了17篇文章 共29.6万字</span>
+        <span>本图书馆累计发布了17篇文章 共29.9万字</span>
         
     </section>
 

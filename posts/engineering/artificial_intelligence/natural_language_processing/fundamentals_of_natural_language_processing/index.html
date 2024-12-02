@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/'>
 
-<link rel="stylesheet" href="/scss/style.min.f258d5cbdf72e0270f78e2196485245d5afe0f75a5c5bf4162f41100a7186e7d.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.d061ce62e1a79e115c3472bd1ec4322e89ef9f025d5b4b995edff963d50c4a0b.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -1503,7 +1503,7 @@ P(c)=&\frac{C(c)}{\sum_{c'}C(c')}=\frac{\sum_{w'}C(w',c)}{\sum_{w'}\sum_{c'}C(w'
 </div><p>  截断奇异值分解结果如<a class="link" href="#20241113224958CST">图1</a>所示，可见：上下文比较相近的词在空间上的距离比较近，如“深度”“学习”等；而“我”和等高频词则与其他词语距离比较远。</p>
 <span id="20241113224958CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.8 345.6">
+<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.8 345.6" style="max-width:460.8;">
   <g id="axes_1">
     <g id="matplotlib.axis_1">
       <g id="xtick_1">
@@ -2070,7 +2070,7 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
   <a class="link" href="#20241114184735CST">图2</a>对比了两种句法结构表示方法。在短语结构句法表示中，<code>S</code>代表起始符号，<code>NP</code>和<code>VP</code>分别代表名词短语和动词短语。在依存结构句法表示中，<code>sub</code>和<code>obj</code>分别表示主语和宾语，<code>root</code>表示虚拟根节点，其指向整个句子的核心谓词。</p>
 <span id="20241114184735CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 273.7143">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 273.7143" style="max-width:863.7;">
   <g>
     <text transform="translate(216.5534 19.0488)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">S</tspan></text>
     <text transform="translate(271.2055 114.2951)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.006em;">V</tspan><tspan x="12.6001" y="0">P</tspan></text>
@@ -2163,7 +2163,7 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
 <p>  语义依存分析则利用通用图表示更丰富的语义信息。根据图中节点类型的不同，又可分为两种表示——<strong>语义依存图(Semantic Dependency Graph)</strong>‌表示和<strong>概念语义图(Conceptual Graph)</strong>‌表示。其中，语义依存图中的节点是句子中实际存在的词语，在词与词之间创建语义关系边。而概念语义图首先将句子转化为虚拟的概念节点，然后在概念节点之间创建语义关系边。<a class="link" href="#20241114192135CST">图3</a>展示了一个语义依存图分析结果示例。</p>
 <span id="20241114192135CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 273.7143">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 273.7143" style="max-width:863.7;">
   <g>
     <text transform="translate(216.5534 19.0488)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0">S</tspan></text>
     <text transform="translate(271.2055 114.2951)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200;"><tspan x="0" y="0" style="letter-spacing: -.006em;">V</tspan><tspan x="12.6001" y="0">P</tspan></text>
@@ -2500,7 +2500,7 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
   <a class="link" href="#20241114235423CST">图4</a>展示了面向依存句法分析的标准弧转移算法中的三种动作。除了以上三个动作，还定义了一个特殊的完成动作（Finish，FIN）。根据上述的定义，可以使用<a class="link" href="#20241115000931CST">表9</a>中的动作序列逐步生成<a class="link" href="#20241114184735CST">图2</a>(b)所示的依存结构句法树。弧上的句法关系可以在生成弧的时候（采用RL或RR动作），使用额外的句法关系分类器加以预测。</p>
 <span id="20241114235423CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 160.1855">
+<svg id="_layer_1" data-name="layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 160.1855" style="max-width:863.7;">
   <g>
     <path id="MJX-6-TEX-I-1D446" d="M343.8148,96.8429c.7,0,1.4-.3,2-1,.6-.6.9-1.4.9-2.2s-.3-1.3-1-1.6c-1.3-.3-2.1-.6-2.5-.7s-.6-.2-.8-.4c-.7-.5-1.1-1.3-1.1-2.2s.2-1.4.6-2,.8-1.1,1.2-1.4c.4-.3.8-.5,1.3-.7s.9-.3,1.2-.3h.3c1.2,0,2,.4,2.5,1.2l.2-.2c.2-.2.3-.3.5-.5s.3-.3.4-.4h0q.2,0,.2.1c0,.1-.2.8-.5,2.2s-.5,2.1-.6,2.2-.1,0-.3,0-.4,0-.4-.2v-1c0-.4,0-.8-.2-1.1s-.2-.5-.3-.7-.3-.3-.5-.5c-.4-.3-.9-.4-1.5-.4s-1.3.3-1.9.8-.9,1.2-.9,1.9c0,.4,0,.7.3,1s.4.5.8.6c0,0,.5.1,1.3.3s1.2.3,1.2.3c.4.1.8.4,1.2.9.4.5.6,1.1.6,1.8s0,.7-.1,1c0,.3-.2.6-.3.9s-.4.7-.7,1.1c-.3.4-.7.8-1.2,1.1-.5.3-1.1.6-1.7.7h-.6c-1.2,0-2.1-.3-2.8-1l-.2-.2-.5.6c-.3.3-.5.5-.5.6h-.2q-.2,0-.2-.1c0-.1.4-1.5,1.1-4.3,0,0,.1-.1.4-.1h.2s.1.1.1.2v1.2c0,.5.1.9.3,1.2s.5.6.8.7.6.3,1,.3h1l-.1.3Z"/>
     <path id="MJX-6-TEX-N-30" d="M351.2148,92.4429c.5-.7,1.1-1,2-1s.8.1,1.2.3.8.6,1,1.2c.3.7.5,1.7.5,3s-.2,2.4-.6,3.1c-.2.4-.4.7-.7.9-.3.2-.6.3-.8.4s-.4,0-.7,0h-.7c-.3,0-.5-.2-.8-.4s-.5-.5-.7-.9c-.4-.7-.6-1.7-.6-3.1s.2-2.6.7-3.4l.2-.1ZM354.1148,92.3429c-.3-.3-.6-.4-.9-.4s-.7.1-.9.4c-.2.2-.4.5-.4.9s-.1,1.2-.1,2.5,0,2.3.1,2.7c0,.4.2.8.5,1,.2.3.5.4.9.4s.6-.1.9-.4c.3-.3.4-.6.5-1.1s0-1.3.1-2.6c0-1.3,0-2.1-.1-2.5,0-.4-.2-.7-.4-.9h-.2Z"/>
@@ -2740,7 +2740,7 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
   使用传统的机器学习技术解决序列到序列问题是比较困难的，而基于深度学习模型，可以直接将输入序列表示为一个向量，然后，通过该向量生成输出序列。其中，对输入序列进行表示的过程又叫作编码，相应的模型则被称为<strong>编码器(Encoder)</strong>；生成输出序列的过程又叫作解码，相应的模型则被称为<strong>解码器(Decoder)</strong>。 因此，序列到序列模型也被称为<strong>编码器—解码器（Encoder-Decoder）模型</strong>。<a class="link" href="#20241115213118CST">图5</a>以机器翻译问题为例，展示了一个编码器-解码器模型的示例。</p>
 <span id="20241115213118CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 358.6041">
+<svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 863.7 358.6041" style="max-width:863.7;">
   <rect x="103.6595" y="252.4444" width="45.9048" height="45.9048" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <g style="isolation: isolate;">
     <text transform="translate(123.0481 280.8665)" style="font-family: NotoSerifSC-ExtraLight, &apos;Noto Serif SC&apos;; font-size: 18px; font-weight: 200; isolation: isolate;"><tspan x="0" y="0">I</tspan></text>
@@ -3151,7 +3151,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
             
         
         
-        <span>本图书馆累计发布了17篇文章 共29.6万字</span>
+        <span>本图书馆累计发布了17篇文章 共29.9万字</span>
         
     </section>
 
