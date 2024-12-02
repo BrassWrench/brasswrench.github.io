@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库管理系统提供的统一的数据保护功能">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-02T10:20:56&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-02T10:27:04&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（四）：数据库安全性">
 <meta name="twitter:description" content="数据库管理系统提供的统一的数据保护功能"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1176,7 +1176,7 @@
 </svg>
 
             <time class="article-words">
-                15293 字
+                15292 字
             </time>
         </div>
 
@@ -2294,7 +2294,7 @@
   当某一用户（或某一主体）以标记label注册入系统时，系统要求他对任何客体的存取必须遵循如下规则：<br>
   (1)仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。<br>
   (2)仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体。<br>
-  规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，制造成TS密级数据的泄露。<br>
+  规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，造成TS密级数据的泄露。<br>
   强制存取控制是对数据本身进行密级标记，无论数据如何复制，标记与数据是一个不可分的整体，只有符合密级标记要求的用户才可以操纵数据，从而提供了更高级别的安全性。前面已经提到，较高安全性级别提供的安全保护要包含较低级别的所有保护，因此在实现强制存取控制时要首先实现自主存取控制(DAC)，即自主存取控制与强制存取控制共同构成数据库管理系统的安全机制，如<a class="link" href="#20241202091438CST">图5</a>所示。系统首先进行自主存取控制检查，对通过自主存取控制检查的允许存取的数据库对象再由系统自动进行强制存取控制检查，只有通过强制存取控制检查的数据库对象方可存取。</p>
 <span id="20241202091438CST"></span><div class="svg-figure">
             <?xml version="1.0" encoding="UTF-8"?>
@@ -2533,7 +2533,7 @@
 
 
         <span>
-            最后更新于 Dec 02, 2024 10:20 CST
+            最后更新于 Dec 02, 2024 10:27 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

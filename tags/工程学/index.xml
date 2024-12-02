@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 02 Dec 2024 10:20:56 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%B7%A5%E7%A8%8B%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 02 Dec 2024 10:27:04 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%B7%A5%E7%A8%8B%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（四）：数据库安全性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/</link>
         <pubDate>Sun, 01 Dec 2024 15:18:44 +0800</pubDate>
@@ -1101,7 +1101,7 @@
   当某一用户（或某一主体）以标记label注册入系统时，系统要求他对任何客体的存取必须遵循如下规则：&lt;br&gt;
   (1)仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。&lt;br&gt;
   (2)仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体。&lt;br&gt;
-  规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，制造成TS密级数据的泄露。&lt;br&gt;
+  规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，造成TS密级数据的泄露。&lt;br&gt;
   强制存取控制是对数据本身进行密级标记，无论数据如何复制，标记与数据是一个不可分的整体，只有符合密级标记要求的用户才可以操纵数据，从而提供了更高级别的安全性。前面已经提到，较高安全性级别提供的安全保护要包含较低级别的所有保护，因此在实现强制存取控制时要首先实现自主存取控制(DAC)，即自主存取控制与强制存取控制共同构成数据库管理系统的安全机制，如&lt;a class=&#34;link&#34; href=&#34;#20241202091438CST&#34;&gt;图5&lt;/a&gt;所示。系统首先进行自主存取控制检查，对通过自主存取控制检查的允许存取的数据库对象再由系统自动进行强制存取控制检查，只有通过强制存取控制检查的数据库对象方可存取。&lt;/p&gt;
 &lt;span id=&#34;20241202091438CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
