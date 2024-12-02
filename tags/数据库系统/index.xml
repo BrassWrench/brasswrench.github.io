@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 02 Dec 2024 17:51:58 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 02 Dec 2024 20:10:14 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（五）：数据库完整性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/</link>
         <pubDate>Mon, 02 Dec 2024 17:46:49 +0800</pubDate>
@@ -23,7 +23,7 @@
 
 &lt;iframe
   class=&#34;netease-cloud-music-frame&#34;
-  title=&#34;song&amp;#39;s 2010805520&#34;
+  title=&#34;song&amp;#39;s 27532964&#34;
   frameborder=&#34;no&#34;
   border=&#34;0&#34;
   marginwidth=&#34;0&#34;
@@ -31,10 +31,256 @@
   width=&#34;100%&#34;
   height=&#34;86&#34;
   loading=&#34;lazy&#34;
-  src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=2010805520&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
+  src=&#34;https://music.163.com/outchain/player?type=2&amp;amp;id=27532964&amp;amp;auto=0&amp;amp;height=66&#34;&gt;
 &lt;/iframe&gt;
 
-</description>
+&lt;h1 id=&#34;数据库完整性&#34;&gt;数据库完整性
+&lt;/h1&gt;&lt;p&gt;  数据库的完整性(integrity)是指数据的正确性(correctness)和相容性(compat-ability)。数据的正确性是指数据是符合现实世界语义、反映当前实际状况的；数据的相容性是指数据库同一对象在不同关系表中的数据是符合逻辑的。&lt;br&gt;
+  例如，学生的学号必须唯一，性别只能是男或女，本科学生年龄的取值范围为14—50的整数，学生所选的课程必须是学校开设的课程，学生所在的院系必须是学校已成立的
+院系等。&lt;br&gt;
+  数据的完整性和安全性是两个既有联系又不尽相同的概念。数据的完整性是为了防止数据库中存在不符合语义的数据，也就是防止数据库中存在不正确的数据。数据的安全性是保护数据库防止恶意破坏和非法存取。因此，完整性检查和控制的防范对象是不合语义的、不正确的数据，防止它们进入数据库。安全性控制的防范对象是非法用户和非法操作，防止他们对数据库数据的非法存取。&lt;br&gt;
+  为维护数据库的完整性，数据库管理系统必须能够实现如下功能。&lt;br&gt;
+  &lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/#20241202180721CST&#34;&gt;关系数据库-关系的完整性&lt;/a&gt;中己经讲解了关系数据库三类完整性约束的基本概念，下面 将介绍SQL语言中实现这些完整性控制功能的方法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 提供定义完整性约束条件的机制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  完整性约束条件也称为完整性规则，是数据库中的数据必须满足的语义约束条件。它表达了给定的数据模型中数据及其联系所具有的制约和依存规则，用以限定符合数据模型的数据库状态以及状态的变化，以保证数据的正确、有效和相容。SQL标准使用了一系列概念来描述完整性，包括关系模型的实体完整性、参照完整性和用户定义完整性。这些完整性一般由SQL的数据定义语言语句来实现，它们作为数据库模式的一部分存入数据字典中。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 提供完整性检查的方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据库管理系统中检查数据是否满足完整性约束条件的机制称为完整性检查。一般在&lt;code&gt;INSERT&lt;/code&gt;、&lt;code&gt;UPDATE&lt;/code&gt;、&lt;code&gt;DELETE&lt;/code&gt;语句执行后开始检查，也可以在事务提交时检查。检查这些操作执行后数据库中的数据是否违背了完整性约束条件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 进行违约处理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  数据库管理系统若发现用户的操作违背了完整性约束条件将采取一定的动作，如拒绝(NO ACTION)执行该操作或级联(CASCADE)执行其他操作，进行违约处理以保证数据 的完整性。&lt;br&gt;
+  早期的数据库管理系统不支持完整性检查，因为完整性检查费时费资源。现在商用的关系数据库管理系统产品都支持完整性控制，即完整性定义和检查控制由关系数据库管理系统实现，不必由应用程序来完成，从而减轻了应用程序员的负担。更重要的是，关系数据库管理系统使得完整性控制成为其核心支持的功能，从而能够为所有用户和应用提供一致的数据库完整性。因为由应用程序来实现完整性控制是有漏洞的，有的应用程序定义的完整性约束条件可能被其他应用程序破坏，数据库数据的正确性仍然无法保障。&lt;/p&gt;
+&lt;h2 id=&#34;实体完整性&#34;&gt;实体完整性
+&lt;/h2&gt;&lt;h3 id=&#34;定义实体完整性&#34;&gt;定义实体完整性
+&lt;/h3&gt;&lt;p&gt;  关系模型的实体完整性在&lt;code&gt;CREATE TABLE&lt;/code&gt;中用&lt;code&gt;PRIMARY KEY&lt;/code&gt;定义。对单属性构成的码有两种说明方法，一种是定义为列级约束条件，另一种是定义为表级约束条件。对多个属性构成的码只有一种说明方法，即定义为表级约束条件。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241202180206CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例1&lt;/strong&gt;：将&lt;code&gt;Student&lt;/code&gt;表中的&lt;code&gt;Sno&lt;/code&gt;属性定义为码。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIMARY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*在列级定义主码*/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ssex&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;SMALLINT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  或者&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Student&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sname&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ssex&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sage&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SMALL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;INT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sdept&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIMARY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*在表级定义主码*/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;span id=&#34;20241202180414CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例2&lt;/strong&gt;：将&lt;code&gt;SC&lt;/code&gt;表中的&lt;code&gt;Sno&lt;/code&gt;、&lt;code&gt;Cno&lt;/code&gt;属性组定义为码。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;CHAR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Grade&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;SMALLINT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIMARY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Cno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/*只能在表级定义主码*/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;     &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;实体完整性检查和违约处理&#34;&gt;实体完整性检查和违约处理
+&lt;/h3&gt;&lt;p&gt;  用&lt;code&gt;PRIMARY KEY&lt;/code&gt;短语定义了关系的主码后，每当用户程序对基本表插入一条记录或对主码列进行更新操作时，关系数据库管理系统将按照&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/#20241202180847CST&#34;&gt;关系数据库-实体完整性&lt;/a&gt;中讲解的实体完整性规则自动进行检查。包括：&lt;br&gt;
+  (1)检查主码值是否唯一，如果不唯一则拒绝插入或修改。&lt;br&gt;
+  (2)检查主码的各个属性是否为空，只要有一个为空就拒绝插入或修改。从而保证了实体完整性。&lt;br&gt;
+  检查记录中主码值是否唯一的一种方法是进行全表扫描，依次判断表中每一条记录的主码值与将插入记录的主码值（或者修改的新主码值）是否相同，如&lt;a class=&#34;link&#34; href=&#34;#20241202193308CST&#34;&gt;图1&lt;/a&gt;所示。&lt;/p&gt;
+&lt;span id=&#34;20241202193308CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 469.7386 264.4653&#34; style=&#34;max-width:469.7386;&#34;&gt;
+  &lt;text transform=&#34;translate(94.268 119.7855)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.024em;&#34;&gt;K&lt;/tspan&gt;&lt;tspan x=&#34;12.7261&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;22.5361&#34; y=&#34;0&#34;&gt;y1&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;77.4608&#34; y=&#34;99.247&#34; width=&#34;391.7778&#34; height=&#34;164.7183&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;77.4608&#34; y1=&#34;128.998&#34; x2=&#34;469.2386&#34; y2=&#34;128.998&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;77.4608&#34; y1=&#34;158.749&#34; x2=&#34;469.2386&#34; y2=&#34;158.749&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;77.4608&#34; y1=&#34;188.5&#34; x2=&#34;469.2386&#34; y2=&#34;188.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;390.883&#34; y1=&#34;263.9653&#34; x2=&#34;390.883&#34; y2=&#34;99.247&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;312.5274&#34; y1=&#34;263.9653&#34; x2=&#34;312.5274&#34; y2=&#34;99.247&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;234.1719&#34; y1=&#34;263.9653&#34; x2=&#34;234.1719&#34; y2=&#34;99.247&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;155.8163&#34; y1=&#34;263.9653&#34; x2=&#34;155.8163&#34; y2=&#34;99.247&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(180.0073 119.7855)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F21&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(258.3237 119.7855)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F31&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(336.6622 119.7855)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F41&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(415.3798 119.7855)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F51&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(94.268 150.2802)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.024em;&#34;&gt;K&lt;/tspan&gt;&lt;tspan x=&#34;12.7261&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;22.5361&#34; y=&#34;0&#34;&gt;y2&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(94.268 179.7254)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.024em;&#34;&gt;K&lt;/tspan&gt;&lt;tspan x=&#34;12.7261&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;22.5361&#34; y=&#34;0&#34;&gt;y3&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(180.0073 150.2802)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F22&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(180.0073 179.7254)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F23&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(258.3237 150.2802)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F32&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(258.3237 179.7254)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F33&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(336.6622 150.2802)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F42&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(336.6622 179.7254)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F43&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(415.3798 179.7254)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F53&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(415.3798 150.2802)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F52&lt;/tspan&gt;&lt;/text&gt;
+  &lt;circle cx=&#34;116.6883&#34; cy=&#34;217.1875&#34; r=&#34;1.7778&#34;/&gt;
+  &lt;circle cx=&#34;116.6883&#34; cy=&#34;227.8145&#34; r=&#34;1.7778&#34;/&gt;
+  &lt;circle cx=&#34;116.6883&#34; cy=&#34;238.4415&#34; r=&#34;1.7778&#34;/&gt;
+  &lt;g&gt;
+    &lt;rect x=&#34;.5&#34; y=&#34;.5&#34; width=&#34;391.7778&#34; height=&#34;29.751&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;311.7&#34; y1=&#34;30.251&#34; x2=&#34;311.7&#34; y2=&#34;.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;233.3444&#34; y1=&#34;30.251&#34; x2=&#34;233.3444&#34; y2=&#34;.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;154.9889&#34; y1=&#34;30.251&#34; x2=&#34;154.9889&#34; y2=&#34;.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;76.6333&#34; y1=&#34;30.251&#34; x2=&#34;76.6333&#34; y2=&#34;.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(17.5606 20.9869)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.024em;&#34;&gt;K&lt;/tspan&gt;&lt;tspan x=&#34;12.7261&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;22.5361&#34; y=&#34;0&#34;&gt;yi&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(103.2999 20.9869)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F2i&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(181.6162 20.9869)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F3i&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(259.9548 20.9869)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F4i&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(338.6724 20.9869)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;F5i&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(216.6916 92.6299)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;基本表&lt;/tspan&gt;&lt;/text&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;38.7464&#34; y1=&#34;30.251&#34; x2=&#34;110.4862&#34; y2=&#34;95.2391&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;105.9185 96.098 109.5707 94.4097 110.8909 90.6091 114.9105 99.247 105.9185 96.098&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;48.3814&#34; y1=&#34;99.247&#34; x2=&#34;48.3814&#34; y2=&#34;214.9479&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;44.6783 212.1393 48.3814 213.7126 52.0845 212.1393 48.3814 220.9177 44.6783 212.1393&#34;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;用全表扫描方法检查主码唯一性&lt;/p&gt;
+&lt;p&gt;  全表扫描是十分耗时的。为了避免对基本表进行全表扫描，关系数据库管理系统一般都 在主码上自动建立一个索引，如&lt;a class=&#34;link&#34; href=&#34;#20241202200809CST&#34;&gt;图2&lt;/a&gt;的B+树索引，通过索引查找基本表中是否已经存在新的主码值将大大提高效率。例如，如果新插入记录的主码值是25，通过主码索引，从B+树的根结点开始查找，只要读取三个结点就可以知道该主码值已经存在，所以不能插入这条记录。这三个结点是根结点(51)、中间结点(12 30)和叶结点(15 20 25)。如果新插入记录的主码值是86，也只要查找三个结点就可以知道该主码值不存在，所以可以插入该记录。&lt;/p&gt;
+&lt;span id=&#34;20241202200809CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 734.9186 349.5059&#34; style=&#34;max-width:734.9186;&#34;&gt;
+  &lt;text transform=&#34;translate(121.1542 15.8402)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;新记录的主码值&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(174.2542 52.8809)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;25&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;150.1541&#34; y=&#34;27.9731&#34; width=&#34;68&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(345.115 138.4061)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;51&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;321.0149&#34; y=&#34;113.4982&#34; width=&#34;68&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;rect x=&#34;321.0149&#34; y=&#34;114.1372&#34; width=&#34;68&#34; height=&#34;34.8571&#34; style=&#34;opacity: .2;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(52.2092 337.7062)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; xml:space=&#34;preserve&#34;&gt;3  7&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;32.717&#34; y=&#34;312.7984&#34; width=&#34;68&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(142.3423 337.7062)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; xml:space=&#34;preserve&#34;&gt;15  20  25&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;133.1723&#34; y=&#34;312.7984&#34; width=&#34;96.17&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;rect x=&#34;133.1723&#34; y=&#34;312.7984&#34; width=&#34;96.17&#34; height=&#34;34.8571&#34; style=&#34;opacity: .2;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(271.3902 337.7062)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; xml:space=&#34;preserve&#34;&gt;30  41&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;261.7977&#34; y=&#34;312.7984&#34; width=&#34;68&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(371.4229 338.3462)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; xml:space=&#34;preserve&#34;&gt;51  54  65&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;362.253&#34; y=&#34;313.4383&#34; width=&#34;96.17&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(500.0483 338.3462)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; xml:space=&#34;preserve&#34;&gt;68  69  71  76&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;490.8783&#34; y=&#34;313.4383&#34; width=&#34;124.0799&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(656.5368 338.3462)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;79 84 93&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;647.3668&#34; y=&#34;313.4383&#34; width=&#34;87.0518&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(202.7466 239.6981)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; xml:space=&#34;preserve&#34;&gt;12  30&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;193.1541&#34; y=&#34;214.7903&#34; width=&#34;68&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;rect x=&#34;193.1541&#34; y=&#34;215.4302&#34; width=&#34;68&#34; height=&#34;34.8571&#34; style=&#34;opacity: .2;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(491.7166 230.364)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; xml:space=&#34;preserve&#34;&gt;66  78&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;482.1241&#34; y=&#34;205.4562&#34; width=&#34;68&#34; height=&#34;34.8571&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;100.717&#34; y1=&#34;330.8669&#34; x2=&#34;127.2026&#34; y2=&#34;330.8669&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;124.394 334.57 125.9672 330.8669 124.394 327.1637 133.1723 330.8669 124.394 334.57&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;229.3424&#34; y1=&#34;330.227&#34; x2=&#34;255.8279&#34; y2=&#34;330.227&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;253.0194 333.9301 254.5926 330.227 253.0194 326.5238 261.7977 330.227 253.0194 333.9301&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;330.0594&#34; y1=&#34;330.227&#34; x2=&#34;356.545&#34; y2=&#34;330.227&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;353.7364 333.9301 355.3096 330.227 353.7364 326.5238 362.5147 330.227 353.7364 333.9301&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;458.1613&#34; y1=&#34;330.227&#34; x2=&#34;484.6469&#34; y2=&#34;330.227&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;481.8383 333.9301 483.4115 330.227 481.8383 326.5238 490.6166 330.227 481.8383 333.9301&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;614.9583&#34; y1=&#34;330.227&#34; x2=&#34;641.4438&#34; y2=&#34;330.227&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;638.6352 333.9301 640.2085 330.227 638.6352 326.5238 647.4136 330.227 638.6352 333.9301&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line y1=&#34;330.8669&#34; x2=&#34;26.4856&#34; y2=&#34;330.8669&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;23.677 334.57 25.2502 330.8669 23.677 327.1637 32.4553 330.8669 23.677 334.57&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;193.1541&#34; y1=&#34;250.2874&#34; x2=&#34;72.0684&#34; y2=&#34;310.1526&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;72.9449 305.5883 73.1758 309.6051 76.2273 312.2274 66.717 312.7984 72.9449 305.5883&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;227.1541&#34; y1=&#34;249.6474&#34; x2=&#34;184.767&#34; y2=&#34;307.9693&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;183.4227 303.5203 185.4933 306.97 189.4138 307.8745 181.2574 312.7984 183.4227 303.5203&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;261.1541&#34; y1=&#34;250.2874&#34; x2=&#34;292.9039&#34; y2=&#34;307.5769&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;288.3035 306.9154 292.3051 306.4964 294.7815 303.3253 295.7977 312.7984 288.3035 306.9154&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;482.124&#34; y1=&#34;240.3133&#34; x2=&#34;414.5387&#34; y2=&#34;308.5567&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;413.8839 303.9554 415.408 307.679 419.1462 309.167 410.338 312.7984 413.8839 303.9554&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;516.124&#34; y1=&#34;239.9682&#34; x2=&#34;550.2451&#34; y2=&#34;308.1005&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;545.6763 307.2475 549.692 306.996 552.2986 303.9311 552.9183 313.4383 545.6763 307.2475&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;550.124&#34; y1=&#34;240.3133&#34; x2=&#34;685.5952&#34; y2=&#34;310.6864&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;681.3957 312.6779 684.4989 310.1169 684.8099 306.1055 690.8928 313.4383 681.3957 312.6779&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;321.0149&#34; y1=&#34;148.9943&#34; x2=&#34;232.049&#34; y2=&#34;211.1064&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;232.232 206.4622 233.0619 210.3992 236.4717 212.5349 227.1541 214.5237 232.232 206.4622&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;path d=&#34;M389.0149,148.9943c2.8098-.2742,97.7704,43.0455,121.685,53.9798&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;506.6002 205.1939 509.5651 202.474 509.6657 198.4518 516.1241 205.4562 506.6002 205.1939&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;218.1541&#34; y1=&#34;62.8302&#34; x2=&#34;349.4165&#34; y2=&#34;111.4256&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;345.4969 113.9233 348.258 110.9967 348.0683 106.9778 355.0149 113.4983 345.4969 113.9233&#34;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;使用索引检查主码唯一&lt;/p&gt;
+&lt;h2 id=&#34;参照完整性&#34;&gt;参照完整性
+&lt;/h2&gt;</description>
         </item>
         <item>
         <title>数据库系统（四）：数据库安全性</title>
@@ -690,7 +936,7 @@
 &lt;/h3&gt;&lt;p&gt;  数据库安全最重要的一点就是确保只授权给有资格的用户访问数据库的权限，同时令所有未被授权的人员无法接近数据，这主要通过数据库系统的存取控制机制实现。
 存取控制机制主要包括定义用户权限和合法权限检查两部分。&lt;br&gt;
   (1)定义用户权限，并将用户权限登记到数据字典中。用户对某一数据对象的操作权力称为&lt;strong&gt;权限&lt;/strong&gt;。某个用户应该具有何种权限是个管理问题和政策问题，而不是技术问题。数据库管理系统的功能是保证这些决定的执行。为此，数据库管理系统必须提供适当的语言来定义用户权限，这些定义经过编译后存储在数据字典中，被称做安全规则或授权规则。&lt;br&gt;
-  (2)合法权限检查。每当用户发出存取数据库的操作请求后（请求一般应包括操作类型、操作对象和操作用户等信息），数据库管理系统查找数据字典，根据安全规则进行合法权限检查，若用户的操作请求超出了定义的权限，系统将拒绝执行此操作。定义用户权限和合法权限检查机制一起组成了数据库管理系统的存取控制子系统。C2级的数据库管理系统支持&lt;strong&gt;自主存取控制(DiscretionaryAccessControl,DAC)&lt;/strong&gt;。B1级的数据库管理系统支持&lt;strong&gt;强制存取控制(MandatoryAccessControl,MAC)&lt;/strong&gt;。&lt;br&gt;
+  (2)合法权限检查。每当用户发出存取数据库的操作请求后（请求一般应包括操作类型、操作对象和操作用户等信息），数据库管理系统查找数据字典，根据安全规则进行合法权限检查，若用户的操作请求超出了定义的权限，系统将拒绝执行此操作。定义用户权限和合法权限检查机制一起组成了数据库管理系统的存取控制子系统。C2级的数据库管理系统支持&lt;strong&gt;自主存取控制(Discretionary Access Control,DAC)&lt;/strong&gt;。B1级的数据库管理系统支持&lt;strong&gt;强制存取控制(Mandatory Access Control,MAC)&lt;/strong&gt;。&lt;br&gt;
   这两类方法的简单定义是：&lt;br&gt;
   (1)在自主存取控制方法中，用户对于不同的数据库对象有不同的存取权限，不同的用户对同一对象也有不同的权限，而且用户还可将其拥有的存取权限转授给其他用户，因此自主存取控制非常灵活。&lt;br&gt;
   (2)在强制存取控制方法中，每一个数据库对象被标以一定的密级，每一个用户也被授予某一个级别的许可证。对于任意一个对象，只有具有合法许可证的用户才可以存取。强制存取控制因此相对比较严格。&lt;br&gt;
@@ -1601,9 +1847,9 @@
   &lt;strong&gt;推理控制(inference control)&lt;/strong&gt;‌处理的是强制存取控制未解决的问题。例如，利用列的函数依赖关系，用户能从低安全等级信息推导出其无权访问的高安全等级信息，进而导致信息泄露。&lt;br&gt;
   数据库推理控制机制用来避免用户利用其能够访问的数据推知更高密级的数据，即用户利用其被允许的多次查询的结果，结合相关的领域背景知识以及数据之间的约束，推导出其不能访问的数据。在推理控制方面，常用的方法如基于函数依赖的推理控制和基于敏感关联的推理控制等。例如，某个公司信息系统中假设姓名和职务属于低安全等级（如公开）信息，而工资属于高安全等级（如机密）信息。用户A的安全等级较低，他通过授权可以查询自己的工资、姓名、职务，及其他用户的姓名和职务。由于工资是机密信息，因此用户A不应知道其他用户的工资。但是，若用户B的职务和用户A相同，则利用函数依赖关系职务—＞工资，用户A可通过自己的工资信息（假设3000元），推出B的工资也是3000元，从而导致高安全等级的敏感信息泄露。&lt;br&gt;
   隐蔽信道(covert channa)处理内容也是强制存取控制未解决的问题。下面的例子就是利用未被强制存取控制的SQL执行后反馈的信息进行间接信息传递。&lt;br&gt;
-  通常，如果&lt;code&gt;insert&lt;/code&gt;语句对&lt;code&gt;unique&lt;/code&gt;属性列写入重复值，则系统会报错且操作失败。那么，针对&lt;code&gt;unique&lt;/code&gt;约束列，高安全等级用户(发送者)可先向该列插入(或者不插入)数据，而低安全等级用户(接收者)向该列插入相同数据。&lt;br&gt;
+  通常，如果&lt;code&gt;INSERT&lt;/code&gt;语句对&lt;code&gt;UNIQUE&lt;/code&gt;属性列写入重复值，则系统会报错且操作失败。那么，针对&lt;code&gt;UNIQUE&lt;/code&gt;约束列，高安全等级用户(发送者)可先向该列插入(或者不插入)数据，而低安全等级用户(接收者)向该列插入相同数据。&lt;br&gt;
   如果插入失败，则表明发送者已向该列插入数据，此时二者约定发送者传输信息位为0；如果插入成功，则表明发送者未向该列插入数据，此时二者约定发送者传输信息位为1。通过这种方式，高安全等级用户按事先约定方式主动向低安全等级用户传输信息，使得信息流从高安全等级向低安全等级流动，从而导致高安全等级敏感信息泄露。&lt;br&gt;
-  随着人们对隐私的重视，数据隐私(dataprivacy)成为数据库应用中新的数据保护模式。&lt;br&gt;
+  随着人们对隐私的重视，数据隐私(data privacy)成为数据库应用中新的数据保护模式。&lt;br&gt;
   所谓数据隐私是控制不愿被他人知道或他人不便知道的个人数据的能力。数据隐私范围很广，涉及数据管理中的数据收集、数据存储、数据处理和数据发布等各个阶段。例如，在数据存储阶段应避免非授权的用户访问个人的隐私数据。通常可以使用数据库安全技术实现这一阶段的隐私保护。如使用自主访问控制、强制访问控制和基于角色的访问控制以及数据加密等。在数据处理阶段，需要考虑数据推理带来的隐私数据泄露。非授权用户可能通过分析多次查询的结果，或者基于完整性约束信息，推导出其他用户的隐私数据。在数据发布阶段，应使包含隐私的数据发布结果满足特定的安全性标准。如发布的关系数据表首先不能包含原有表的候选码，同时还要考虑准标识符的影响。&lt;br&gt;
   准标识符是能够唯一确定大部分记录的属性集合。在现有安全性标准中，k-匿名化(k-anonymization)标准要求每个具有相同准标识符的记录组中至少包括k条记录，从而控制攻击者判别隐私数据所属个体的概率。还有1-多样化标准(1-diversity)、t-临近标准(t-closeness)等，从而使攻击者不能从发布数据中推导出额外的隐私数据。数据隐私保护也是当前研究的热点。&lt;br&gt;
   要想万无一失地保证数据库安全，使之免于遭到任何蓄意的破坏几乎是不可能的。但高度的安全措施将使蓄意的攻击者付出高昂的代价，从而迫使攻击者不得不放弃他们的破坏企图。&lt;/p&gt;
@@ -7260,9 +7506,11 @@ R(A_1,A_2,\cdots,A_n)
   &lt;/g&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;关系数据语言&lt;/p&gt;
 &lt;p&gt;  特别地，SQL语言是一种高度非过程化的语言，用户不必请求数据库管理员为其建立特殊的存取路径，存取路径的选择由关系数据库管理系统的优化机制来完成。例如，在一个存储有几百万条记录的关系中查找符合条件的某一个或某一些记录，从原理上讲可以有多种查找方法。例如，可以顺序扫描这个关系，也可以通过某一种索引来查找。不同的查找路径（或者称为存取路径）的效率是不同的，有的完成某一个查询可能很快，有的可能极慢。关系数据库管理系统中研究和开发了查询优化方法，系统可以自动选择较优的存取路径，提高查询效率。&lt;/p&gt;
+&lt;span id=&#34;20241202180721CST&#34;&gt;&lt;/span&gt;
 &lt;h2 id=&#34;关系的完整性&#34;&gt;关系的完整性
 &lt;/h2&gt;&lt;p&gt;  关系模型的完整性规则是对关系的某种约束条件。也就是说关系的值随着时间变化时应该满足一些约束条件。这些约束条件实际上是现实世界的要求。任何关系在任何时刻都要满足这些语义约束。&lt;br&gt;
   关系模型中有三类完整性约束：实体完整性(entity integrity)、参照完整性(referential integrity)和用户定义的完整性（user-defined integrity）。其中实体完整性和参照完整性是关系模型必须满足的完整性约束条件，被称作是关系的两个不变性，应该由关系系统自动支持。用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。&lt;/p&gt;
+&lt;span id=&#34;20241202180847CST&#34;&gt;&lt;/span&gt;
 &lt;h3 id=&#34;实体完整性&#34;&gt;实体完整性
 &lt;/h3&gt;&lt;p&gt;  关系数据库中每个元组应该是可区分的，是唯一的。这样的约束条件用实体完整性来保证。&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;20241025155618CST&#34;&gt;&lt;/span&gt;
