@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据的准确性、一致性和有效性，确保数据符合预定规则和约束">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库完整性' /><meta property='article:published_time' content='2024-12-02T17:46:49&#43;08:00'/><meta property='article:modified_time' content='2024-12-02T20:40:02&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库完整性' /><meta property='article:published_time' content='2024-12-02T17:46:49&#43;08:00'/><meta property='article:modified_time' content='2024-12-02T22:00:39&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（五）：数据库完整性">
 <meta name="twitter:description" content="数据的准确性、一致性和有效性，确保数据符合预定规则和约束"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -809,6 +809,22 @@
         <li><a href="#参照完整性检查和违约处理">参照完整性检查和违约处理</a></li>
       </ol>
     </li>
+    <li><a href="#用户定义的完整性">用户定义的完整性</a>
+      <ol>
+        <li><a href="#属性上的约束条件">属性上的约束条件</a>
+          <ol>
+            <li><a href="#属性上约束条件的定义">属性上约束条件的定义</a></li>
+            <li><a href="#属性上约束条件的检查和违约处理">属性上约束条件的检查和违约处理</a></li>
+          </ol>
+        </li>
+        <li><a href="#元组上的约束条件">元组上的约束条件</a>
+          <ol>
+            <li><a href="#元组上约束条件的定义">元组上约束条件的定义</a></li>
+            <li><a href="#元组上约束条件的检查和违约处理">元组上约束条件的检查和违约处理</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -1134,7 +1150,7 @@
 </svg>
 
             <time class="article-words">
-                2338 字
+                5217 字
             </time>
         </div>
 
@@ -1149,7 +1165,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 11 分钟
                 </time>
             </div>
         
@@ -1434,7 +1450,7 @@
 </h2><h3 id="定义参照完整性">定义参照完整性
 </h3><p>  关系模型的参照完整性在<code>CREATE TABLE</code>中用<code>FOREIGN KEY</code>短语定义哪些列为外码，用<code>REFERENCES</code>短语指明这些外码参照哪些表的主码。<br>
   例如，关系<code>SC</code>中一个元组表示一个学生选修的某门课程的成绩，<code>(Sno, Cno)</code>是主码。<code>Sno</code>、<code>Cno</code>分别参照引用<code>Student</code>表的主码和<code>Course</code>表的主码。</p>
-<p>  ：定义SC中的参照完整性。</p>
+<p>  <span id="20241202203750CST"></span><strong>例3</strong>：定义SC中的参照完整性。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1458,7 +1474,221 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="参照完整性检查和违约处理">参照完整性检查和违约处理
-</h3><p>  参照完整性将两个表中的相应元组联系起来了。因此，对被参照表和参照表进行增、删、改操作时有可能破坏参照完整性，必须进行检查以保证这两个表的相容性。</p>
+</h3><p>  参照完整性将两个表中的相应元组联系起来了。因此，对被参照表和参照表进行增、删、改操作时有可能破坏参照完整性，必须进行检查以保证这两个表的相容性。<br>
+  例如，对表<code>SC</code>和<code>Student</code>有4种可能破坏参照完整性的情况，如<a class="link" href="#20241202211318CST">表1</a>所示。</p>
+<span id="20241202211318CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">被参照表（例如Student）</th>
+          <th style="text-align: center">参照表（例如SC）</th>
+          <th style="text-align: center">违约处理</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">插入元组</td>
+          <td style="text-align: center">拒绝</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">修改外码值</td>
+          <td style="text-align: center">拒绝</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">删除元组</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">拒绝/级联删除/设置为空值</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">修改主码值</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">拒绝/级联修改/设置为空值</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;可能破坏参照完整性的情况及违约处理</p>
+<p>  (1)<code>SC</code>表中增加一个元组，该元组的<code>Sno</code>属性值在表<code>Student</code>中找不到一个元组，其<code>Sno</code>属性值与之相等。<br>
+  (2)修改<code>SC</code>表中的一个元组，修改后该元组的<code>Sno</code>属性值在表<code>Student</code>中找不到一个 元组，其<code>Sno</code>属性值与之相等。<br>
+  (3)从<code>Student</code>表中删除一个元组，造成<code>SC</code>表中某些元组的<code>Sno</code>属性值在表<code>Student</code>中找不到一个元组，其<code>Sno</code>属性值与之相等。<br>
+  (4)修改<code>Student</code>表中一个元组的<code>Sno</code>属性，造成<code>SC</code>表中某些元组的<code>Sno</code>属性值在表<code>Student</code>中找不到一个元组，其<code>Sno</code>属性值与之相等。<br>
+  当上述的不一致发生时，系统可以采用以下策略加以处理。<br>
+  (1)拒绝(<code>NO ACTION</code>)执行。不允许该操作执行。该策略一般设置为默认策略。
+  (2)级联(<code>CASCADE</code>)操作。当删除或修改被参照表(<code>Student</code>)的一个元组导致与参照表(<code>SC</code>)的不一致时，删除或修改参照表中的所有导致不一致的元组。例如，删除<code>Student</code>表中<code>Sno</code>值为<code>'201215121'</code>的元组，则从要<code>SC</code>表中级联删除
+<code>SC.Sno='201215121'</code>的所有元组。<br>
+  (3)设置为空值。当删除或修改被参照表的一个元组时造成了不一致，则将参照表中的所有造成不一致的元组的对应属性设置为空值。例如，有下面两个关系：</p>
+\[
+\begin{aligned}
+&学生(\underline{学号},姓名,性别,专业号,年龄)\\[5pt]
+&专业(\underline{专业号},专业名)
+\end{aligned}
+\]<p>  其中学生关系的“专业号”是外码，因为专业号是专业关系的主码。<br>
+  假设专业表中某个元组被删除，专业号为12，按照设置为空值的策略，就要把学生表 中<code>专业号=12</code>的所有元组的专业号设置为空值。这对应了这样的语义：某个专业删除了，该专业的所有学生专业未定，等待重新分配专业。<br>
+  这里讲解一下外码能否接受空值的问题。<br>
+  例如，学生表中“专业号”是外码，按照应用的实际情况可以取空值，表示这个学生的专业尚未确定。但在学生一选课数据库中，关系<code>Student</code>为被参照关系，其主码为<code>Sno</code>；<code>SC</code>为参照关系，<code>Sno</code>为外码，它能否取空值呢？答案是否定的。因为<code>Sno</code>为<code>SC</code>的主属性，按照实体完整性<code>Sno</code>不能为空值。若<code>SC</code>的<code>Sno</code>为空值，则表明尚不存在的某个学生，或者某个不知学号的学生，选修了某门课程，其成绩记录在<code>Grade</code>列中。这与学校的应用环境是不相符的，因此<code>SC</code>的<code>Sno</code>列不能取空值。同样，<code>SC</code>的<code>Cno</code>是外码，也是<code>SC</code>的主属性，也不能取空值。<br>
+  因此对于参照完整性，除了应该定义外码，还应定义外码列是否允许空值。<br>
+  一般地，当对参照表和被参照表的操作违反了参照完整性时，系统选用默认策略，即拒绝执行。如果想让系统采用其他策略则必须在创建参照表时显式地加以说明。</p>
+<p>  <span id="20241202212347CST"></span><strong>例4</strong>：显式说明参照完整性的违约处理示例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">(</span><span class="n">Sno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Cno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Grade</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">PRIMARYKEY</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="p">),</span><span class="w"> </span><span class="cm">/*在表级定义实体完整性，Sno、Cno都不能取空值*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="cm">/*在表级定义参照完整性*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="w"> </span><span class="cm">/*当删除Student表中的元组时，级联删除SC表中相应的元组*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span><span class="w"> </span><span class="cm">/*当更新Student表中的sno时，级联更新SC表中相应的元组*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">Cno</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Course</span><span class="p">(</span><span class="n">Cno</span><span class="p">)</span><span class="w"> </span><span class="cm">/*在表级定义参照完整性*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">ACTION</span><span class="w"> </span><span class="cm">/*当删除Couree表中的元组造成与SC表不一致时，拒绝删除*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="w"> </span><span class="cm">/*当更新Course表中的cno时，级联更新SC表中相应的元组*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  可以对<code>DELETE</code>和<code>UPDATE</code>采用不同的策略。例如，<a class="link" href="#20241202212347CST">例4</a>中当删除被参照表<code>Course</code>表中的元组，造成与参照表(<code>SC</code>表)不一致时，拒绝删除被参照表的元组；对更新操作则采取级联更新的策略。<br>
+  从上面的讨论可以看到，关系数据库管理系统在实现参照完整性时，除了要提供定义主码、外码的机制外，还需要提供不同的策略供用户选择。具体选择哪种策略，要根据应用环境的要求确定。</p>
+<h2 id="用户定义的完整性">用户定义的完整性
+</h2><p>  用户定义的完整性就是针对某一具体应用的数据必须满足的语义要求。目前的关系数据库管理系统都提供了定义和检验这类完整性的机制，使用了和实体完整性、参照完整性相同的技术和方法来处理它们，而不必由应用程序承担这一功能。</p>
+<h3 id="属性上的约束条件">属性上的约束条件
+</h3><h4 id="属性上约束条件的定义">属性上约束条件的定义
+</h4><p>  在<code>CREATE TABLE</code>中定义属性的同时，可以根据应用要求定义属性上的约束条件，即属性值限制，包括：<br>
+ ◦列值非空（<code>NOT NULL</code>）。<br>
+ ◦列值唯一（<code>UNIQUE</code>）。<br>
+ ◦检查列值是否满足一个条件表达式（<code>CHECK</code>短语）。</p>
+<p>  (1)不允许取空值</p>
+<p>  <span id="20241202213812CST"></span><strong>例5</strong>：在定义<code>SC</code>表时，说明<code>Sno</code>、<code>Cno</code>、<code>Grade</code>属性不允许取空值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">Sno</span><span class="w">   </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="cm">/*Sno属性不允许取空值*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Cno</span><span class="w">   </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="cm">/* Cno属性不允许取空值*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Grade</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="cm">/* Grade属性不允许取空值*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span><span class="p">),</span><span class="w"> </span><span class="cm">/*在表级定义实体完整性，隐含了 Sno、Cno不允
+</span></span></span><span class="line"><span class="cl"><span class="cm">                              许取空值，在列级不允许取空值的定义可不写*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  (2)列值唯一</p>
+<p>  <span id="20241202213936CST"></span><strong>例6</strong>：建立部门表<code>DEPT</code>，要求部门名称<code>Dname</code>列取值唯一，部门编号<code>Deptno</code>列为主码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">DEPT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">Deptno</span><span class="w">   </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Dname</span><span class="w">    </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="cm">/*要求Dname列值唯一，且不能取空值*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="k">Location</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">Deptno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  (3)用<code>CHECK</code>短语指定列值应该满足的条件</p>
+<p>  <span id="20241202214635CST"></span><strong>例7</strong>：<code>Student</code>表的<code>Ssex</code>只允许取“男”或“女”</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">Sno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="cm">/*在列级定义主码*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Sname</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="cm">/*Sname属性不允许取空值*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Ssex</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">Ssex</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;男女&#39;</span><span class="p">)),</span><span class="w"> </span><span class="cm">/*性别属性Ssex只允许取&#39;男&#39;或女*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Sage</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Sdept</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241202214747CST"></span><strong>例8</strong>：<code>SC</code>表的<code>Grade</code>的值应该在0和100之间。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">Sno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Cno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Grade</span><span class="w"> </span><span class="n">SMALL1NT</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">Grade</span><span class="o">&gt;=</span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&lt;=</span><span class="mi">100</span><span class="p">),</span><span class="w"> </span><span class="cm">/*Grade取值范围是 0到100*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">Cno</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Course</span><span class="p">(</span><span class="n">Cno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="属性上约束条件的检查和违约处理">属性上约束条件的检查和违约处理
+</h4><p>  当往表中插入元组或修改属性的值时，关系数据库管理系统将检查属性上的约束条件是否被满足，如果不满足则操作被拒绝执行。</p>
+<h3 id="元组上的约束条件">元组上的约束条件
+</h3><h4 id="元组上约束条件的定义">元组上约束条件的定义
+</h4><p>  与属性上约束条件的定义类似，在<code>CREATE TABLE</code>语句中可以用<code>CHECK</code>短语定义元组上的约束条件，即元组级的限制。同属性值限制相比，元组级的限制可以设置不同属性之间的取值的相互约束条件。</p>
+<p>  <span id="20241202215328CST"></span><strong>例9</strong>：当学生的性别是男时，其名字不能以<code>Ms.</code>打头。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">Sno</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Sname</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Ssex</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Sage</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Sdept</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">Ssex</span><span class="o">=</span><span class="s1">&#39;女&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;Ms.%&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w"> </span><span class="cm">/*定义了元组中Sname和Ssex两个属性值之间的约束条件*/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  性别是女性的元组都能通过该项<code>CHECK</code>检查，因为<code>Ssex='女'</code>成立；当性别是男性时，要通过检查则名字一定不能以<code>Ms.</code>打头，因为<code>Ssex='男'</code>时，条件要想为真值，<code>Sname NOT LIKE 'Ms.%'</code>必须为真值。</p>
+<h4 id="元组上约束条件的检查和违约处理">元组上约束条件的检查和违约处理
+</h4><p>  当往表中插入元组或修改属性的值时，关系数据库管理系统将检查元组上的约束条件是否被满足，如果不满足则操作被拒绝执行。</p>
 
     </div>
 </section>
@@ -1504,7 +1734,7 @@
 
 
         <span>
-            最后更新于 Dec 02, 2024 20:40 CST
+            最后更新于 Dec 02, 2024 22:00 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1685,7 +1915,7 @@
             
         
         
-        <span>本图书馆累计发布了18篇文章 共30.7万字</span>
+        <span>本图书馆累计发布了18篇文章 共31.0万字</span>
         
     </section>
 
