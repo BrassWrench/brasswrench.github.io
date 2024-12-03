@@ -131,7 +131,7 @@
 <meta property='og:description' content="为关系数据库设计的结构化查询语言SQL">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_database_sql/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-12-02T07:22:17&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据库' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2024-11-11T17:45:02&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T12:46:25&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（三）：关系数据库标准语言SQL">
 <meta name="twitter:description" content="为关系数据库设计的结构化查询语言SQL"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1387,11 +1387,11 @@
   (4)数据操纵语言(Data Manipulation Language, DML)。<br>
   它们分别用于定义模式、外模式、内模式和进行数据的存取与处置。当用户数据库投入运行后，如果需要修改模式，必须停止现有数据库的运行，转储数据，修改模式并编译后再重装数据库，十分麻烦。</p>
 <p>  SQL集数据定义语言、数据操纵语言、数据控制语言的功能于一体，语言风格统一，可以独立完成数据库生命周期中的全部活动，包括以下一系列操作要求：<br>
- ◦定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。<br>
- ◦对数据库中的数据进行查询和更新。<br>
- ◦数据库重构和维护。<br>
- ◦数据库安全性、完整性控制，以及事务控制。<br>
- ◦嵌入式SQL和动态SQL定义。<br>
+  ◦定义和修改、删除关系模式，定义和删除视图，插入数据，建立数据库。<br>
+  ◦对数据库中的数据进行查询和更新。<br>
+  ◦数据库重构和维护。<br>
+  ◦数据库安全性、完整性控制，以及事务控制。<br>
+  ◦嵌入式SQL和动态SQL定义。<br>
   这就为数据库应用系统的开发提供了良好的环境。特别是用户在数据库系统投入运行后还可根据需要随时地、逐步地修改模式，并不影响数据库的运行，从而使系统具有良好的可扩展性。<br>
   另外，在关系模型中实体和实体间的联系均用关系表示，这种数据结构的单一性带来了数据操作符的统一性，查找、插入、删除、更新等每一种操作都只需一种操作符，
 从而克服了非关系系统由于信息表示方式的多样性带来的操作复杂性。例如，在DBTG网状数据库系统中，需要两种插入操作符：<code>STORE</code>用来把记录存入数据库，<code>CONNECT</code>用来把记录插入系值（系值是网状数据库中记录之间的一种联系方式）以建立数据之间的联系。</p>
@@ -1550,9 +1550,9 @@
 <h2 id="学生课程数据库">学生—课程数据库
 </h2><p>  本章以学生—课程数据库为例来讲解SQL的数据定义、数据操纵、数据查询和数据控制语句。<br>
   为此，首先要定义一个学生—课程模式<code>S-T</code>（见<a class="link" href="#20241111223104CST">例1</a>）。学生-课程数据库中包括以下三个表，它们的定义见<a class="link" href="#20241111233348CST">例5</a>、<a class="link" href="#20241111233814CST">例6</a>和<a class="link" href="#20241111234007CST">例7</a>。<br>
- ◦学生表：Student(<u>Sno</u>,Sname,Ssex,Sage,Sdept)<br>
- ◦课程表：Course(<u>Cno</u>,Cnme,Cpno,Ccredit)<br>
- ◦学生选课表：SC(<u>Sno</u>,<u>Cno</u>,Grade)<br>
+  ◦学生表：Student(<u>Sno</u>,Sname,Ssex,Sage,Sdept)<br>
+  ◦课程表：Course(<u>Cno</u>,Cnme,Cpno,Ccredit)<br>
+  ◦学生选课表：SC(<u>Sno</u>,<u>Cno</u>,Grade)<br>
   关系的主码加下划线表示。各个表中的数据示例如<a class="link" href="#20241111214851CST">表3</a>、<a class="link" href="#20241111215950CST">表4</a>、<a class="link" href="#20241111220809CST">表5</a>所示。</p>
 <span id="20241111214851CST"></span><div class="normal-table"><p style="margin-bottom: 0;">&emsp;&emsp;Student</p>
 <div class="table-wrapper"><table>
@@ -2742,8 +2742,8 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  其含义是查找指定的属性列值与<code>&lt;匹配串&gt;</code> 相匹配的元组。<code>&lt;匹配串&gt;</code>可以是一个完整的字符串，也可以含有通配符<code>%</code>和<code>_</code>。其中：<br>
- ◦<code>%</code>（百分号）代表任意长度（长度可以为<code>0</code>）的字符串。例如<code>a%b</code>表示以<code>a</code>开头，以<code>b</code>结尾的任意长度的字符串。如<code>acb</code>、<code>addgb</code>、<code>ab</code>等都满足该匹配串。<br>
- ◦<code>_</code>（下横线）代表任意单个字符。例如<code>a_b</code>表示以<code>a</code>开头，以<code>b</code>结尾的长度为<code>3</code>的任意字符串。如<code>acb</code>、<code>afb</code>等都满足该匹配串。</p>
+  ◦<code>%</code>（百分号）代表任意长度（长度可以为<code>0</code>）的字符串。例如<code>a%b</code>表示以<code>a</code>开头，以<code>b</code>结尾的任意长度的字符串。如<code>acb</code>、<code>addgb</code>、<code>ab</code>等都满足该匹配串。<br>
+  ◦<code>_</code>（下横线）代表任意单个字符。例如<code>a_b</code>表示以<code>a</code>开头，以<code>b</code>结尾的长度为<code>3</code>的任意字符串。如<code>acb</code>、<code>afb</code>等都满足该匹配串。</p>
 <p>  <span id="20241115231437CST"></span><strong>例29</strong>：查询学号为<code>201215121</code>的学生的详细情况。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -5860,9 +5860,9 @@ p \to q \equiv \lnot p \lor q
 </div><h2 id="空值的处理">空值的处理
 </h2><p>  前面己经多处提到空值(NULL)的概念和空值的处理，这里再系统介绍一下这个问题。所谓空值就是“不知道”或“不存在”或&quot;无意义”的值。SQL语言中允许某些元组
 的某些属性在一定情况下取空值。一般有以下几种情况：<br>
- ◦该属性应该有一个值，但目前不知道它的具体值。例如，某学生的年龄属性，因为 学生登记表漏填了，不知道该学生年龄，因此取空值。<br>
- ◦该属性不应该有值。例如，缺考学生的成绩为空，因为他没有参加考试。<br>
- ◦由于某种原因不便于填写。例如，一个人的电话号码不想让大家知道，则取空值。<br>
+  ◦该属性应该有一个值，但目前不知道它的具体值。例如，某学生的年龄属性，因为 学生登记表漏填了，不知道该学生年龄，因此取空值。<br>
+  ◦该属性不应该有值。例如，缺考学生的成绩为空，因为他没有参加考试。<br>
+  ◦由于某种原因不便于填写。例如，一个人的电话号码不想让大家知道，则取空值。<br>
   因此，空值是一个很特殊的值，含有不确定性，对关系运算带来特殊的问题，需要做特殊的处理。</p>
 <h4 id="空值的产生">空值的产生
 </h4><p>  <span id="20241117205910CST"></span><strong>例79</strong>：向<code>SC</code>表中插入一个元组，学生号是“201215126”，课程号是&quot;1”，成绩为空。</p>
@@ -6630,7 +6630,7 @@ p \to q \equiv \lnot p \lor q
 
 
         <span>
-            最后更新于 Dec 02, 2024 07:22 CST
+            最后更新于 Dec 03, 2024 12:46 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -6826,7 +6826,7 @@ p \to q \equiv \lnot p \lor q
             
         
         
-        <span>本图书馆累计发布了19篇文章 共31.5万字</span>
+        <span>本图书馆累计发布了19篇文章 共31.6万字</span>
         
     </section>
 

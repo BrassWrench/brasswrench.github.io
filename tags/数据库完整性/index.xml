@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 11:04:06 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Dec 2024 12:46:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（五）：数据库完整性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/</link>
         <pubDate>Mon, 02 Dec 2024 17:46:49 +0800</pubDate>
@@ -341,11 +341,11 @@
 &lt;/table&gt;
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp;可能破坏参照完整性的情况及违约处理&lt;/p&gt;
 &lt;p&gt;  (1)&lt;code&gt;SC&lt;/code&gt;表中增加一个元组，该元组的&lt;code&gt;Sno&lt;/code&gt;属性值在表&lt;code&gt;Student&lt;/code&gt;中找不到一个元组，其&lt;code&gt;Sno&lt;/code&gt;属性值与之相等。&lt;br&gt;
-  (2)修改&lt;code&gt;SC&lt;/code&gt;表中的一个元组，修改后该元组的&lt;code&gt;Sno&lt;/code&gt;属性值在表&lt;code&gt;Student&lt;/code&gt;中找不到一个 元组，其&lt;code&gt;Sno&lt;/code&gt;属性值与之相等。&lt;br&gt;
+  (2)修改&lt;code&gt;SC&lt;/code&gt;表中的一个元组，修改后该元组的&lt;code&gt;Sno&lt;/code&gt;属性值在表&lt;code&gt;Student&lt;/code&gt;中找不到一个 元组，其&lt;code&gt;Sno&lt;/code&gt;属性值与之相等。 &lt;br&gt;
   (3)从&lt;code&gt;Student&lt;/code&gt;表中删除一个元组，造成&lt;code&gt;SC&lt;/code&gt;表中某些元组的&lt;code&gt;Sno&lt;/code&gt;属性值在表&lt;code&gt;Student&lt;/code&gt;中找不到一个元组，其&lt;code&gt;Sno&lt;/code&gt;属性值与之相等。&lt;br&gt;
   (4)修改&lt;code&gt;Student&lt;/code&gt;表中一个元组的&lt;code&gt;Sno&lt;/code&gt;属性，造成&lt;code&gt;SC&lt;/code&gt;表中某些元组的&lt;code&gt;Sno&lt;/code&gt;属性值在表&lt;code&gt;Student&lt;/code&gt;中找不到一个元组，其&lt;code&gt;Sno&lt;/code&gt;属性值与之相等。&lt;br&gt;
   当上述的不一致发生时，系统可以采用以下策略加以处理。&lt;br&gt;
-  (1)拒绝(&lt;code&gt;NO ACTION&lt;/code&gt;)执行。不允许该操作执行。该策略一般设置为默认策略。
+  (1)拒绝(&lt;code&gt;NO ACTION&lt;/code&gt;)执行。不允许该操作执行。该策略一般设置为默认策略。&lt;br&gt;
   (2)级联(&lt;code&gt;CASCADE&lt;/code&gt;)操作。当删除或修改被参照表(&lt;code&gt;Student&lt;/code&gt;)的一个元组导致与参照表(&lt;code&gt;SC&lt;/code&gt;)的不一致时，删除或修改参照表中的所有导致不一致的元组。例如，删除&lt;code&gt;Student&lt;/code&gt;表中&lt;code&gt;Sno&lt;/code&gt;值为&lt;code&gt;&#39;201215121&#39;&lt;/code&gt;的元组，则从要&lt;code&gt;SC&lt;/code&gt;表中级联删除
 &lt;code&gt;SC.Sno=&#39;201215121&#39;&lt;/code&gt;的所有元组。&lt;br&gt;
   (3)设置为空值。当删除或修改被参照表的一个元组时造成了不一致，则将参照表中的所有造成不一致的元组的对应属性设置为空值。例如，有下面两个关系：&lt;/p&gt;
@@ -398,9 +398,9 @@
 &lt;h3 id=&#34;属性上的约束条件&#34;&gt;属性上的约束条件
 &lt;/h3&gt;&lt;h4 id=&#34;属性上约束条件的定义&#34;&gt;属性上约束条件的定义
 &lt;/h4&gt;&lt;p&gt;  在&lt;code&gt;CREATE TABLE&lt;/code&gt;中定义属性的同时，可以根据应用要求定义属性上的约束条件，即属性值限制，包括：&lt;br&gt;
- ◦列值非空（&lt;code&gt;NOT NULL&lt;/code&gt;）。&lt;br&gt;
- ◦列值唯一（&lt;code&gt;UNIQUE&lt;/code&gt;）。&lt;br&gt;
- ◦检查列值是否满足一个条件表达式（&lt;code&gt;CHECK&lt;/code&gt;短语）。&lt;/p&gt;
+  ◦列值非空（&lt;code&gt;NOT NULL&lt;/code&gt;）。&lt;br&gt;
+  ◦列值唯一（&lt;code&gt;UNIQUE&lt;/code&gt;）。&lt;br&gt;
+  ◦检查列值是否满足一个条件表达式（&lt;code&gt;CHECK&lt;/code&gt;短语）。&lt;/p&gt;
 &lt;p&gt;  (1)不允许取空值&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241202213812CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例5&lt;/strong&gt;：在定义&lt;code&gt;SC&lt;/code&gt;表时，说明&lt;code&gt;Sno&lt;/code&gt;、&lt;code&gt;Cno&lt;/code&gt;、&lt;code&gt;Grade&lt;/code&gt;属性不允许取空值。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

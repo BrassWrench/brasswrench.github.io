@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Mon, 02 Dec 2024 20:10:14 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Dec 2024 12:46:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（四）：数据库安全性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/</link>
         <pubDate>Sun, 01 Dec 2024 15:18:44 +0800</pubDate>
@@ -1101,11 +1101,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  对&lt;code&gt;CREATE USER&lt;/code&gt;语句说明如下：&lt;br&gt;
- ◦只有系统的超级用户才有权创建一个新的数据库用户。&lt;br&gt;
- ◦新创建的数据库用户有三种权限：&lt;code&gt;CONNECT&lt;/code&gt;、&lt;code&gt;RESOURCE&lt;/code&gt;和&lt;code&gt;DBA&lt;/code&gt;。&lt;br&gt;
- ◦&lt;code&gt;CREATE USER&lt;/code&gt;命令中如果没有指定创建的新用户的权限，默认该用户拥有CONNECT权限。拥有&lt;code&gt;CONNECT&lt;/code&gt;权限的用户不能创建新用户，不能创建模式，也不能创建基本表，只能登录数据库。由数据库管理员或其他用户授予他应有的权限，根据获得的授权情况他可以对数据库对象进行权限范围内的操作。&lt;br&gt;
- ◦拥有&lt;code&gt;RESOURCE&lt;/code&gt;权限的用户能创建基本表和视图，成为所创建对象的属主，但不能创建模式，不能创建新的用户。数据库对象的属主可以使用&lt;code&gt;GRANT&lt;/code&gt;语句把该对象上的存取权限授予其他用户。&lt;br&gt;
- ◦拥有&lt;code&gt;DBA&lt;/code&gt;权限的用户是系统中的超级用户，可以创建新的用户、创建模式、创建基 本表和视图等；&lt;code&gt;DBA&lt;/code&gt;拥有对所有数据库对象的存取权限，还可以把这些权限授予一般用户。以上说明可以用&lt;a class=&#34;link&#34; href=&#34;#20241201213846CST&#34;&gt;表6&lt;/a&gt;来总结。&lt;/p&gt;
+  ◦只有系统的超级用户才有权创建一个新的数据库用户。&lt;br&gt;
+  ◦新创建的数据库用户有三种权限：&lt;code&gt;CONNECT&lt;/code&gt;、&lt;code&gt;RESOURCE&lt;/code&gt;和&lt;code&gt;DBA&lt;/code&gt;。&lt;br&gt;
+  ◦&lt;code&gt;CREATE USER&lt;/code&gt;命令中如果没有指定创建的新用户的权限，默认该用户拥有CONNECT权限。拥有&lt;code&gt;CONNECT&lt;/code&gt;权限的用户不能创建新用户，不能创建模式，也不能创建基本表，只能登录数据库。由数据库管理员或其他用户授予他应有的权限，根据获得的授权情况他可以对数据库对象进行权限范围内的操作。&lt;br&gt;
+  ◦拥有&lt;code&gt;RESOURCE&lt;/code&gt;权限的用户能创建基本表和视图，成为所创建对象的属主，但不能创建模式，不能创建新的用户。数据库对象的属主可以使用&lt;code&gt;GRANT&lt;/code&gt;语句把该对象上的存取权限授予其他用户。&lt;br&gt;
+  ◦拥有&lt;code&gt;DBA&lt;/code&gt;权限的用户是系统中的超级用户，可以创建新的用户、创建模式、创建基 本表和视图等；&lt;code&gt;DBA&lt;/code&gt;拥有对所有数据库对象的存取权限，还可以把这些权限授予一般用户。以上说明可以用&lt;a class=&#34;link&#34; href=&#34;#20241201213846CST&#34;&gt;表6&lt;/a&gt;来总结。&lt;/p&gt;
 &lt;span id=&#34;20241201213846CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;tr&gt;
     &lt;th rowspan=&#34;2&#34;&gt;拥有的权限&lt;/th&gt;
@@ -1407,18 +1407,18 @@
   可审计事件有服务器事件、系统权限、语句事件及模式对象事件，还包括用户鉴别、自主访问控制和强制访问控事件。换句话说，它能对普通和特权用户行为、各种表操作、身份鉴别、自主和强制访问控制等操作进行审计。它既能审计成功操作，也能审计失败操作。&lt;/p&gt;
 &lt;h3 id=&#34;审计事件&#34;&gt;审计事件
 &lt;/h3&gt;&lt;p&gt;  审计事件一般有多个类别，例如，&lt;br&gt;
- ◦服务器事件：审计数据库服务器发生的事件，包含数据库服务器的启动、停止、数 据库服务器配置文件的重新加载。&lt;br&gt;
- ◦系统权限：对系统拥有的结构或模式对象进行操作的审计，要求该操作的权限是通 过系统权限获得的。&lt;br&gt;
- ◦语句事件：对SQL语句，如DDL、DML、DQL(Data Query Language,数据查询 语言)及DCL语句的审计。&lt;br&gt;
- ◦模式对象事件：对特定模式对象上进行的SELECT或DML操作的审计。模式对象
+  ◦服务器事件：审计数据库服务器发生的事件，包含数据库服务器的启动、停止、数 据库服务器配置文件的重新加载。&lt;br&gt;
+  ◦系统权限：对系统拥有的结构或模式对象进行操作的审计，要求该操作的权限是通 过系统权限获得的。&lt;br&gt;
+  ◦语句事件：对SQL语句，如DDL、DML、DQL(Data Query Language,数据查询 语言)及DCL语句的审计。&lt;br&gt;
+  ◦模式对象事件：对特定模式对象上进行的SELECT或DML操作的审计。模式对象
 包括表、视图、存储过程、函数等。模式对象不包括依附于表的索引、约束、触发器、分 区表等。&lt;/p&gt;
 &lt;h3 id=&#34;审计功能&#34;&gt;审计功能
 &lt;/h3&gt;&lt;p&gt;  审计功能主要包括以下几方面内容：&lt;br&gt;
- ◦基本功能，提供多种审计查阅方式：基本的、可选的、有限的，等等。&lt;br&gt;
- ◦提供多套审计规则，审计规则一般在数据库初始化时设定，以方便审计员管理。&lt;br&gt;
- ◦提供审计分析和报表功能。&lt;br&gt;
- ◦审计日志管理功能，包括为防止审计员误删审计记录，审计日志必须先转储后删除；对转储的审计记录文件提供完整性和保密性保护；只允许审计员查阅和转储审计记录，不允许任何用户新增和修改审计记录；等等。&lt;br&gt;
- ◦系统提供查询审计设置及审计记录信息的专门视图。对于系统权限级别、语句级别 及模式对象级别的审计记录也可通过相关的系统表直接查看。&lt;/p&gt;
+  ◦基本功能，提供多种审计查阅方式：基本的、可选的、有限的，等等。&lt;br&gt;
+  ◦提供多套审计规则，审计规则一般在数据库初始化时设定，以方便审计员管理。&lt;br&gt;
+  ◦提供审计分析和报表功能。&lt;br&gt;
+  ◦审计日志管理功能，包括为防止审计员误删审计记录，审计日志必须先转储后删除；对转储的审计记录文件提供完整性和保密性保护；只允许审计员查阅和转储审计记录，不允许任何用户新增和修改审计记录；等等。&lt;br&gt;
+  ◦系统提供查询审计设置及审计记录信息的专门视图。对于系统权限级别、语句级别 及模式对象级别的审计记录也可通过相关的系统表直接查看。&lt;/p&gt;
 &lt;h3 id=&#34;audit语句和noaudit语句&#34;&gt;AUDIT语句和NOAUDIT语句
 &lt;/h3&gt;&lt;p&gt;  &lt;code&gt;AUDIT&lt;/code&gt;语句用来设置审计功能，&lt;code&gt;NOAUDIT&lt;/code&gt;语句则取消审计功能。&lt;br&gt;
   审计一般可以分为用户级审计和系统级审计。用户级审计是任何用户可设置的审计， 主要是用户针对自己创建的数据库表或视图进行审计，记录所有用户对这些表或视图的一切成功和(或)不成功的访问要求以及各种类型的SQL操作。&lt;br&gt;
