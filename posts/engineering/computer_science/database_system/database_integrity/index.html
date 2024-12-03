@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据的准确性、一致性和有效性，确保数据符合预定规则和约束">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库完整性' /><meta property='article:published_time' content='2024-12-02T17:46:49&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T10:01:33&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库完整性' /><meta property='article:published_time' content='2024-12-02T17:46:49&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T10:15:12&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（五）：数据库完整性">
 <meta name="twitter:description" content="数据的准确性、一致性和有效性，确保数据符合预定规则和约束"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -844,8 +844,11 @@
     <li><a href="#触发器">触发器</a>
       <ol>
         <li><a href="#定义触发器">定义触发器</a></li>
+        <li><a href="#激活触发器">激活触发器</a></li>
+        <li><a href="#删除触发器">删除触发器</a></li>
       </ol>
     </li>
+    <li><a href="#小结">小结</a></li>
   </ol>
 </nav>
         </div>
@@ -1099,8 +1102,6 @@
                 
             
             
-                <a id="draft-tag" href="/draft/">草稿</a>
-            
         </header>
     
 
@@ -1171,7 +1172,7 @@
 </svg>
 
             <time class="article-words">
-                9716 字
+                10953 字
             </time>
         </div>
 
@@ -1186,7 +1187,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 20 分钟
+                    阅读时长: 22 分钟
                 </time>
             </div>
         
@@ -2067,6 +2068,37 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  因为定义的是<code>BEFORE</code>触发器，在插入和更新教师记录前就可以按照触发器的规则 调整教授的工资，不必等插入后再检查再调整。</p>
+<h3 id="激活触发器">激活触发器
+</h3><p>  触发器的执行是由触发事件激活，并由数据库服务器自动执行的。一个数据表上可能定义了多个触发器，如多个<code>BEFORE</code>触发器、多个<code>AFTER</code>触发器等，同一个表上的多个触发器激活时遵循如下的执行顺序：<br>
+  (1)执行该表上的<code>BEFORE</code>触发器。<br>
+  (2)激活触发器的SQL语句。<br>
+  (3)执行该表上的<code>AFTER</code>触发器。<br>
+  对于同一个表上的多个<code>BEFORE</code>(<code>AFTER</code>)触发器，遵循“谁先创建谁先执行”的原则，即按照触发器创建的时间先后顺序执行。有些关系数据库管理系统是按照触发器名称的字母排序顺序执行触发器。</p>
+<h3 id="删除触发器">删除触发器
+</h3><p>  删除触发器的SQL语法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="o">&lt;</span><span class="err">触发器名</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  触发器必须是一个已经创建的触发器，并且只能由具有相应权限的用户删除。<br>
+  触发器是一种功能强大的工具，但在使用时要慎重，因为在每次访问一个表时都可能触发一个触发器，这样会影响系统的性能。</p>
+<h2 id="小结">小结
+</h2><p>  数据库的完整性是为了保证数据库中存储的数据是正确的。所谓正确是指符合现实世界语义的。本章讲解了关系数据库管理系统完整性实现的机制，包括完整性约束定义机制、完整性检查机制和违背完整性约束条件时关系数据库管理系统应采取的动作等。
+在关系系统中，最重要的完整性约束是实体完整性和参照完整性，其他完整性约束条件则可以归入用户定义的完整性。<br>
+  数据库完整性的定义一般由SQL的数据定义语言来实现。它们作为数据库模式的一部分存入数据字典中，在数据库数据修改时关系数据库管理系统的完整性检查机制将按照数据字典中定义的这些约束进行检查。<br>
+  完整性机制的实施会影响系统性能。因此，许多数据库管理系统对完整性机制的支持比对安全性的支持要晚得多，也弱得多。随着硬件性能的提高以及数据库技术的发展，目前的关系数据库管理系统都提供了定义和检查实体完整性、参照完整性和用户定义的完整性的功能。<br>
+  对于违反完整性的操作一般的处理是采用默认方式，如拒绝执行。对于违反参照完整性的操作，本书讲解了不同的处理策略.用户要根据应用语义来定义合适的处理策略，以保证数据库的正确性。<br>
+  实现数据库完整性的一个重要方法是触发器。触发器和前面介绍的各种完整性约束不同之处是，完整性控制是当被限制的对象发生变化时系统就去检查该对象变化后能否满足完整性约束条件，如果不能满足就进行违约处理，违约处理通常比较简单。而触发器功能就要强得多，因为触发器规则中的动作体可以很复杂，通常是一段SQL存储过程。触发器不仅可以用于数据库完整性检查，也可以用来实现数据库系统的其他功能，包括数据库安全性，以及更加广泛的应用系统的一些业务流程和控制流程、基于规则的数据和业务控制功能等。不过也要特别注意，一个触发器的动作可能激活另一个触发器，最坏的情况是导致一个触发链，从而造成难以预见的错误。</p>
+<blockquote>
+    <p>
+
+&emsp;&emsp;你并非爱的目的，而是让我去爱的动力。我将这份爱送走，送给路上的花儿，送给酒杯里的一抹日光，送给教堂塔楼的红色洋葱顶。是你让我爱恋这个世界。
+
+</p><span class="cite"><span>― </span><span>赫尔曼·黑塞, </span><cite>《克林索尔的最后夏天》</cite></span></blockquote>
 
     </div>
 </section>
@@ -2112,7 +2144,7 @@
 
 
         <span>
-            最后更新于 Dec 03, 2024 10:01 CST
+            最后更新于 Dec 03, 2024 10:15 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2293,7 +2325,7 @@
             
         
         
-        <span>本图书馆累计发布了18篇文章 共31.4万字</span>
+        <span>本图书馆累计发布了18篇文章 共31.5万字</span>
         
     </section>
 

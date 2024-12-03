@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 10:01:33 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Dec 2024 10:15:12 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（五）：数据库完整性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/</link>
         <pubDate>Mon, 02 Dec 2024 17:46:49 +0800</pubDate>
@@ -879,6 +879,37 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  因为定义的是&lt;code&gt;BEFORE&lt;/code&gt;触发器，在插入和更新教师记录前就可以按照触发器的规则 调整教授的工资，不必等插入后再检查再调整。&lt;/p&gt;
+&lt;h3 id=&#34;激活触发器&#34;&gt;激活触发器
+&lt;/h3&gt;&lt;p&gt;  触发器的执行是由触发事件激活，并由数据库服务器自动执行的。一个数据表上可能定义了多个触发器，如多个&lt;code&gt;BEFORE&lt;/code&gt;触发器、多个&lt;code&gt;AFTER&lt;/code&gt;触发器等，同一个表上的多个触发器激活时遵循如下的执行顺序：&lt;br&gt;
+  (1)执行该表上的&lt;code&gt;BEFORE&lt;/code&gt;触发器。&lt;br&gt;
+  (2)激活触发器的SQL语句。&lt;br&gt;
+  (3)执行该表上的&lt;code&gt;AFTER&lt;/code&gt;触发器。&lt;br&gt;
+  对于同一个表上的多个&lt;code&gt;BEFORE&lt;/code&gt;(&lt;code&gt;AFTER&lt;/code&gt;)触发器，遵循“谁先创建谁先执行”的原则，即按照触发器创建的时间先后顺序执行。有些关系数据库管理系统是按照触发器名称的字母排序顺序执行触发器。&lt;/p&gt;
+&lt;h3 id=&#34;删除触发器&#34;&gt;删除触发器
+&lt;/h3&gt;&lt;p&gt;  删除触发器的SQL语法如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;DROP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TRIGGER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;触发器名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;表名&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  触发器必须是一个已经创建的触发器，并且只能由具有相应权限的用户删除。&lt;br&gt;
+  触发器是一种功能强大的工具，但在使用时要慎重，因为在每次访问一个表时都可能触发一个触发器，这样会影响系统的性能。&lt;/p&gt;
+&lt;h2 id=&#34;小结&#34;&gt;小结
+&lt;/h2&gt;&lt;p&gt;  数据库的完整性是为了保证数据库中存储的数据是正确的。所谓正确是指符合现实世界语义的。本章讲解了关系数据库管理系统完整性实现的机制，包括完整性约束定义机制、完整性检查机制和违背完整性约束条件时关系数据库管理系统应采取的动作等。
+在关系系统中，最重要的完整性约束是实体完整性和参照完整性，其他完整性约束条件则可以归入用户定义的完整性。&lt;br&gt;
+  数据库完整性的定义一般由SQL的数据定义语言来实现。它们作为数据库模式的一部分存入数据字典中，在数据库数据修改时关系数据库管理系统的完整性检查机制将按照数据字典中定义的这些约束进行检查。&lt;br&gt;
+  完整性机制的实施会影响系统性能。因此，许多数据库管理系统对完整性机制的支持比对安全性的支持要晚得多，也弱得多。随着硬件性能的提高以及数据库技术的发展，目前的关系数据库管理系统都提供了定义和检查实体完整性、参照完整性和用户定义的完整性的功能。&lt;br&gt;
+  对于违反完整性的操作一般的处理是采用默认方式，如拒绝执行。对于违反参照完整性的操作，本书讲解了不同的处理策略.用户要根据应用语义来定义合适的处理策略，以保证数据库的正确性。&lt;br&gt;
+  实现数据库完整性的一个重要方法是触发器。触发器和前面介绍的各种完整性约束不同之处是，完整性控制是当被限制的对象发生变化时系统就去检查该对象变化后能否满足完整性约束条件，如果不能满足就进行违约处理，违约处理通常比较简单。而触发器功能就要强得多，因为触发器规则中的动作体可以很复杂，通常是一段SQL存储过程。触发器不仅可以用于数据库完整性检查，也可以用来实现数据库系统的其他功能，包括数据库安全性，以及更加广泛的应用系统的一些业务流程和控制流程、基于规则的数据和业务控制功能等。不过也要特别注意，一个触发器的动作可能激活另一个触发器，最坏的情况是导致一个触发链，从而造成难以预见的错误。&lt;/p&gt;
+&lt;blockquote&gt;
+    &lt;p&gt;
+
+&amp;emsp;&amp;emsp;你并非爱的目的，而是让我去爱的动力。我将这份爱送走，送给路上的花儿，送给酒杯里的一抹日光，送给教堂塔楼的红色洋葱顶。是你让我爱恋这个世界。
+
+&lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;赫尔曼·黑塞, &lt;/span&gt;&lt;cite&gt;《克林索尔的最后夏天》&lt;/cite&gt;&lt;/span&gt;&lt;/blockquote&gt;
 </description>
         </item>
         <item>
