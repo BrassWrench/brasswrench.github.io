@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 16:20:09 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Dec 2024 16:24:56 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（六）：关系数据理论</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/</link>
         <pubDate>Tue, 03 Dec 2024 10:38:46 +0800</pubDate>
@@ -73,7 +73,7 @@ U = \set{ \text{Sno}, \text{Sdept}, \text{Mname}, \text{Cno}, \text{Grade}}
   ②一个系只有一名（正职）负责人。&lt;br&gt;
   ③一个学生可以选修多门课程，每门课程有若干学生选修。&lt;br&gt;
   ④每个学生学习每一门课程有一个成绩。&lt;br&gt;
-  于是得到属性组U上的一组函数依赖 \(F\) （如图6.1所示）。&lt;/p&gt;
+  于是得到属性组U上的一组函数依赖 \(F\) （如&lt;a class=&#34;link&#34; href=&#34;#20241203151705CST&#34;&gt;图1&lt;/a&gt;所示）。&lt;/p&gt;
 &lt;span id=&#34;20241203150727CST&#34;&gt;&lt;/span&gt;\[
 F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\text{Sno},\text{Cno})\rightarrow\text{Grade}}
 \tag{4}
@@ -161,7 +161,7 @@ F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\t
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&lt;/p&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&amp;emsp;Student表&lt;/p&gt;
 &lt;p&gt;  但是，这个关系模式存在以下问题：&lt;br&gt;
   (1)&lt;strong&gt;数据冗余&lt;/strong&gt;。比如，每一个系的系主任姓名重复出现，重复次数与该系所有学生的所有课程成绩出 现次数相同，如&lt;a class=&#34;link&#34; href=&#34;#20241203160635CST&#34;&gt;表1&lt;/a&gt;所示。这将浪费大量的存储空间。&lt;br&gt;
   (2)&lt;strong&gt;更新异常&lt;/strong&gt;(update anomalies)。由于数据冗余，当更新数据库中的数据时，系统要付出很大的代价来维护数据库的完整性，否则会面临数据不一致的危险。比如，某系更换系主任后，必须修改与该系学生有关的每一个元组。&lt;br&gt;
