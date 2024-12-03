@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 10:15:12 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Dec 2024 10:15:54 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（五）：数据库完整性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/</link>
         <pubDate>Mon, 02 Dec 2024 17:46:49 +0800</pubDate>
@@ -36,11 +36,10 @@
 
 &lt;h1 id=&#34;数据库完整性&#34;&gt;数据库完整性
 &lt;/h1&gt;&lt;p&gt;  数据库的完整性(integrity)是指数据的正确性(correctness)和相容性(compat-ability)。数据的正确性是指数据是符合现实世界语义、反映当前实际状况的；数据的相容性是指数据库同一对象在不同关系表中的数据是符合逻辑的。&lt;br&gt;
-  例如，学生的学号必须唯一，性别只能是男或女，本科学生年龄的取值范围为14—50的整数，学生所选的课程必须是学校开设的课程，学生所在的院系必须是学校已成立的
-院系等。&lt;br&gt;
+  例如，学生的学号必须唯一，性别只能是男或女，本科学生年龄的取值范围为14—50的整数，学生所选的课程必须是学校开设的课程，学生所在的院系必须是学校已成立的院系等。&lt;br&gt;
   数据的完整性和安全性是两个既有联系又不尽相同的概念。数据的完整性是为了防止数据库中存在不符合语义的数据，也就是防止数据库中存在不正确的数据。数据的安全性是保护数据库防止恶意破坏和非法存取。因此，完整性检查和控制的防范对象是不合语义的、不正确的数据，防止它们进入数据库。安全性控制的防范对象是非法用户和非法操作，防止他们对数据库数据的非法存取。&lt;br&gt;
   为维护数据库的完整性，数据库管理系统必须能够实现如下功能。&lt;br&gt;
-  &lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/#20241202180721CST&#34;&gt;关系数据库-关系的完整性&lt;/a&gt;中己经讲解了关系数据库三类完整性约束的基本概念，下面 将介绍SQL语言中实现这些完整性控制功能的方法。&lt;/p&gt;
+  &lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/#20241202180721CST&#34;&gt;关系数据库-关系的完整性&lt;/a&gt;中己经讲解了关系数据库三类完整性约束的基本概念，下面将介绍SQL语言中实现这些完整性控制功能的方法。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 提供定义完整性约束条件的机制&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  完整性约束条件也称为完整性规则，是数据库中的数据必须满足的语义约束条件。它表达了给定的数据模型中数据及其联系所具有的制约和依存规则，用以限定符合数据模型的数据库状态以及状态的变化，以保证数据的正确、有效和相容。SQL标准使用了一系列概念来描述完整性，包括关系模型的实体完整性、参照完整性和用户定义完整性。这些完整性一般由SQL的数据定义语言语句来实现，它们作为数据库模式的一部分存入数据字典中。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. 提供完整性检查的方法&lt;/strong&gt;&lt;/p&gt;
