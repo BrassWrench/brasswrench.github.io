@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 13:12:07 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Dec 2024 16:20:09 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（六）：关系数据理论</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/</link>
         <pubDate>Tue, 03 Dec 2024 10:38:46 +0800</pubDate>
@@ -51,10 +51,10 @@ R(U,D,\text{DOM},F)
   ◦ \(\text{DOM}\) 为属性到域的映射。&lt;br&gt;
   ◦ \(F\) 为属性组 \(U\) 上的一组数据依赖。&lt;br&gt;
   由于 \(D\) 、 \(\text{DOM}\) 与模式设计关系不大，因此在本章中把关系模式看作一个三元组：&lt;/p&gt;
-&lt;span id=&#34;20241203125646CST&#34;&gt;&lt;/span&gt;
-    \[
+&lt;span id=&#34;20241203125646CST&#34;&gt;&lt;/span&gt;\[
 R\text{&lt;}U,F\text{&gt;}
-\]
+\tag{2}
+    \]
 &lt;p&gt;  当且仅当 \(U\) 上的一个关系 \(r\) 满足 \(F\) 时， \(r\) 称为关系模式 \(R\text{&lt;}U,F\text{&gt;}\) 的一个关系。&lt;br&gt;
   作为一个二维表，关系要符合一个最基本的条件：每一个分量必须是不可分的数据项。满足了这个条件的关系模式就属于&lt;strong&gt;第一范式(1NF)&lt;/strong&gt;。&lt;br&gt;
   在模式设计中，假设己知一个模式 \(S\phi\) ，它仅由单个关系模式组成，问题是要设计一个模式 \(SD\) ，它与 \(S\phi\) 等价，但在某些指定的方面更好一些。这里通过一个例子来说明一个不好的模式会有些什么问题，分析它们产生的原因，并从中找出设计一个好的关系模式的办法。&lt;br&gt;
@@ -63,7 +63,120 @@ R\text{&lt;}U,F\text{&gt;}
   人们已经提出了许多种类型的数据依赖，其中最重要的是&lt;strong&gt;函数依赖(Functional Dependency, FD)&lt;/strong&gt;‌和&lt;strong&gt;多值依赖(Multi-Valued Dependency, MVD)&lt;/strong&gt;。&lt;br&gt;
   函数依赖极为普遍地存在于现实生活中。比如描述一个学生的关系，可以有学号( \(\text{Sno}\) )、姓名( \(\text{Sname}\) )、系名( \(\text{Sdept}\) )等几个属性。由于一个学号只对应一个学生，一个学生只在一个系学习。因而当“学号”值确定之后，学生的姓名及所在系的值也就被唯一 地确定了。属性间的这种依赖关系类似于数学中的函数 \(y=f(x)\) ，自变量 \(x\) 确定之后，相应的函数值 \(y\) 也就唯一地确定了。&lt;br&gt;
   类似的有 \(\text{Sname}=f(\text{Sno})\) ， \(\text{Sdept}=f(\text{Sno})\) ，即 \(\text{Sno}\) 函数决定 \(\text{Sname}\) ， \(\text{Sno}\) 函数决定 \(\text{Sdept}\) ，或者说 \(\text{Sname}\) 和 \(\text{Sdept}\) 函数依赖于 \(\text{Sno}\) ，记作 \(\text{Sno}\rightarrow \text{Sname}\) ， \(\text{Sno} \rightarrow \text{Sdept}\) 。&lt;/p&gt;
-</description>
+&lt;p&gt;  &lt;span id=&#34;20241203143746CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例1&lt;/strong&gt;：建立一个描述学校教务的数据库，该数据库涉及的对象包括学生的学号( \(\text{Sno}\) )、所在系( \(\text{Sdept}\) )、系主任姓名( \(\text{Mname}\) )、课程号( \(\text{Cno}\) )和成绩( \(\text{Grade}\) )。假设用一个单一的关系模式 \(\text{Student}\) 来表示，则该关系模式的属性集合为&lt;/p&gt;
+&lt;span id=&#34;20241203150217CST&#34;&gt;&lt;/span&gt;\[
+U = \set{ \text{Sno}, \text{Sdept}, \text{Mname}, \text{Cno}, \text{Grade}}
+\tag{3}
+    \]
+&lt;p&gt;  现实世界的己知事实（语义）告诉我们：&lt;br&gt;
+  ①一个系有若干学生，但一个学生只属于一个系。&lt;br&gt;
+  ②一个系只有一名（正职）负责人。&lt;br&gt;
+  ③一个学生可以选修多门课程，每门课程有若干学生选修。&lt;br&gt;
+  ④每个学生学习每一门课程有一个成绩。&lt;br&gt;
+  于是得到属性组U上的一组函数依赖 \(F\) （如图6.1所示）。&lt;/p&gt;
+&lt;span id=&#34;20241203150727CST&#34;&gt;&lt;/span&gt;\[
+F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\text{Sno},\text{Cno})\rightarrow\text{Grade}}
+\tag{4}
+    \]
+&lt;span id=&#34;20241203151705CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 298.1429 130.3702&#34; style=&#34;max-width:298.1429;&#34;&gt;
+  &lt;text transform=&#34;translate(29.0365 45.0588)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sno&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(112.6347 45.0588)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Cno&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(233.6992 45.0588)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;G&lt;/tspan&gt;&lt;tspan x=&#34;13.3379&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.014em;&#34;&gt;r&lt;/tspan&gt;&lt;tspan x=&#34;21.4019&#34; y=&#34;0&#34;&gt;ade&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;17.2619&#34; y=&#34;23.759&#34; width=&#34;56.381&#34; height=&#34;28.8154&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;101.9762&#34; y=&#34;23.759&#34; width=&#34;56.381&#34; height=&#34;28.8154&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;.5&#34; y=&#34;.5&#34; width=&#34;174.2857&#34; height=&#34;73.3333&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;222.352&#34; y=&#34;23.811&#34; width=&#34;75.2908&#34; height=&#34;28.8154&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;174.7857&#34; y1=&#34;37.1667&#34; x2=&#34;216.3823&#34; y2=&#34;37.1667&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;213.5737 40.8698 215.147 37.1667 213.5737 33.4635 222.352 37.1667 213.5737 40.8698&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;45.4524&#34; y1=&#34;52.5744&#34; x2=&#34;45.4524&#34; y2=&#34;94.3052&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;41.7492 91.4966 45.4524 93.0699 49.1555 91.4966 45.4524 100.275 41.7492 91.4966&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(19.1542 121.5228)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sd&lt;/tspan&gt;&lt;tspan x=&#34;21.5278&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;31.2837&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;p&lt;/tspan&gt;&lt;tspan x=&#34;42.7314&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;7.807&#34; y=&#34;100.275&#34; width=&#34;75.2908&#34; height=&#34;28.8154&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(139.1541 121.5228)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;M&lt;/tspan&gt;&lt;tspan x=&#34;17.5498&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.001em;&#34;&gt;n&lt;/tspan&gt;&lt;tspan x=&#34;29.4297&#34; y=&#34;0&#34;&gt;ame&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;127.807&#34; y=&#34;100.275&#34; width=&#34;90.0264&#34; height=&#34;28.8154&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;83.0978&#34; y1=&#34;114.6826&#34; x2=&#34;121.8372&#34; y2=&#34;114.6826&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;119.0287 118.3858 120.6019 114.6826 119.0287 110.9795 127.807 114.6826 119.0287 118.3858&#34;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;Student上的一组函数依赖&lt;/p&gt;
+&lt;p&gt;  如果只考虑函数依赖这一种数据依赖，可以得到一个描述学生的关系模式 \(\text{Student}\text{&lt;}U,F \text{&gt;} \) 。&lt;a class=&#34;link&#34; href=&#34;#20241203160635CST&#34;&gt;表1&lt;/a&gt;是某一时刻关系模式Student的一个实例，即数据表。&lt;/p&gt;
+&lt;span id=&#34;20241203160635CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Sno&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Sdept&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Mname&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Cno&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Grade&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;计算机系&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;95&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S2&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;计算机系&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;90&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;计算机系&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;88&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;计算机系&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;70&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S5&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;计算机系&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;78&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表1&lt;/p&gt;
+&lt;p&gt;  但是，这个关系模式存在以下问题：&lt;br&gt;
+  (1)&lt;strong&gt;数据冗余&lt;/strong&gt;。比如，每一个系的系主任姓名重复出现，重复次数与该系所有学生的所有课程成绩出 现次数相同，如&lt;a class=&#34;link&#34; href=&#34;#20241203160635CST&#34;&gt;表1&lt;/a&gt;所示。这将浪费大量的存储空间。&lt;br&gt;
+  (2)&lt;strong&gt;更新异常&lt;/strong&gt;(update anomalies)。由于数据冗余，当更新数据库中的数据时，系统要付出很大的代价来维护数据库的完整性，否则会面临数据不一致的危险。比如，某系更换系主任后，必须修改与该系学生有关的每一个元组。&lt;br&gt;
+  (3)&lt;strong&gt;插入异常&lt;/strong&gt;(insertion anomalies)。如果一个系刚成立，尚无学生，则无法把这个系及其系主任的信息存入数据库。&lt;br&gt;
+  (4)&lt;strong&gt;删除异常&lt;/strong&gt;(deletion anomalies)。如果某个系的学生全部毕业了，则在删除该系学生信息的同时，这个系及其系主任的信息也丢掉了。&lt;br&gt;
+  鉴于存在以上种种问题，可以得出这样的结论：\(\text{Student}\) 关系模式不是一个好的模式。一个好的模式应当不会发生插入异常、删除异常和更新异常，数据冗余应尽可能少。&lt;br&gt;
+  为什么会发生这些问题呢？&lt;br&gt;
+  这是因为这个模式中的函数依赖存在某些不好的性质。这正是本章要讨论的问题。假如把这个单一的模式改造一下，分成三个关系模式：&lt;br&gt;
+   \(\text{S}(\text{Sno},\text{Sdept},\text{Sno}\rightarrow\text{Sdept});\)&lt;br&gt;
+   \(\text{SC}(\text{Sno},\text{Cno},\text{Grade},(\text{Sno},\text{Cno})\rightarrow \text{Grade});\)&lt;br&gt;
+   \(\text{DEPT}(\text{Sdept},\text{Mname}, \text{Sdept}\rightarrow \text{Mname})\)&lt;br&gt;
+  这三个模式都不会发生插入异常、删除异常的问题，数据的冗余也得到了控制。&lt;br&gt;
+  一个模式的数据依赖会有哪些不好的性质，如何改造一个不好的模式，这就是下一节规范化要讨论的内容。&lt;/p&gt;
+&lt;h2 id=&#34;规范化&#34;&gt;规范化
+&lt;/h2&gt;</description>
         </item>
         <item>
         <title>数据库系统（五）：数据库完整性</title>

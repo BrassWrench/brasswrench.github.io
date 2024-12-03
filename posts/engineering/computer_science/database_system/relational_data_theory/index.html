@@ -131,7 +131,7 @@
 <meta property='og:description' content="关系数据库的数据组织、存储、管理和操作的理论基础">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据理论' /><meta property='article:published_time' content='2024-12-03T10:38:46&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T13:12:07&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据理论' /><meta property='article:published_time' content='2024-12-03T10:38:46&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T16:20:09&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（六）：关系数据理论">
 <meta name="twitter:description" content="关系数据库的数据组织、存储、管理和操作的理论基础"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -798,6 +798,7 @@
             <nav id="TableOfContents">
   <ol>
     <li><a href="#问题的提出">问题的提出</a></li>
+    <li><a href="#规范化">规范化</a></li>
   </ol>
 </nav>
         </div>
@@ -1123,7 +1124,7 @@
 </svg>
 
             <time class="article-words">
-                1106 字
+                2078 字
             </time>
         </div>
 
@@ -1138,7 +1139,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -1191,10 +1192,10 @@ R(U,D,\text{DOM},F)
   ◦ \(\text{DOM}\) 为属性到域的映射。<br>
   ◦ \(F\) 为属性组 \(U\) 上的一组数据依赖。<br>
   由于 \(D\) 、 \(\text{DOM}\) 与模式设计关系不大，因此在本章中把关系模式看作一个三元组：</p>
-<span id="20241203125646CST"></span>
-    \[
+<span id="20241203125646CST"></span>\[
 R\text{<}U,F\text{>}
-\]
+\tag{2}
+    \]
 <p>  当且仅当 \(U\) 上的一个关系 \(r\) 满足 \(F\) 时， \(r\) 称为关系模式 \(R\text{<}U,F\text{>}\) 的一个关系。<br>
   作为一个二维表，关系要符合一个最基本的条件：每一个分量必须是不可分的数据项。满足了这个条件的关系模式就属于<strong>第一范式(1NF)</strong>。<br>
   在模式设计中，假设己知一个模式 \(S\phi\) ，它仅由单个关系模式组成，问题是要设计一个模式 \(SD\) ，它与 \(S\phi\) 等价，但在某些指定的方面更好一些。这里通过一个例子来说明一个不好的模式会有些什么问题，分析它们产生的原因，并从中找出设计一个好的关系模式的办法。<br>
@@ -1203,7 +1204,120 @@ R\text{<}U,F\text{>}
   人们已经提出了许多种类型的数据依赖，其中最重要的是<strong>函数依赖(Functional Dependency, FD)</strong>‌和<strong>多值依赖(Multi-Valued Dependency, MVD)</strong>。<br>
   函数依赖极为普遍地存在于现实生活中。比如描述一个学生的关系，可以有学号( \(\text{Sno}\) )、姓名( \(\text{Sname}\) )、系名( \(\text{Sdept}\) )等几个属性。由于一个学号只对应一个学生，一个学生只在一个系学习。因而当“学号”值确定之后，学生的姓名及所在系的值也就被唯一 地确定了。属性间的这种依赖关系类似于数学中的函数 \(y=f(x)\) ，自变量 \(x\) 确定之后，相应的函数值 \(y\) 也就唯一地确定了。<br>
   类似的有 \(\text{Sname}=f(\text{Sno})\) ， \(\text{Sdept}=f(\text{Sno})\) ，即 \(\text{Sno}\) 函数决定 \(\text{Sname}\) ， \(\text{Sno}\) 函数决定 \(\text{Sdept}\) ，或者说 \(\text{Sname}\) 和 \(\text{Sdept}\) 函数依赖于 \(\text{Sno}\) ，记作 \(\text{Sno}\rightarrow \text{Sname}\) ， \(\text{Sno} \rightarrow \text{Sdept}\) 。</p>
-
+<p>  <span id="20241203143746CST"></span><strong>例1</strong>：建立一个描述学校教务的数据库，该数据库涉及的对象包括学生的学号( \(\text{Sno}\) )、所在系( \(\text{Sdept}\) )、系主任姓名( \(\text{Mname}\) )、课程号( \(\text{Cno}\) )和成绩( \(\text{Grade}\) )。假设用一个单一的关系模式 \(\text{Student}\) 来表示，则该关系模式的属性集合为</p>
+<span id="20241203150217CST"></span>\[
+U = \set{ \text{Sno}, \text{Sdept}, \text{Mname}, \text{Cno}, \text{Grade}}
+\tag{3}
+    \]
+<p>  现实世界的己知事实（语义）告诉我们：<br>
+  ①一个系有若干学生，但一个学生只属于一个系。<br>
+  ②一个系只有一名（正职）负责人。<br>
+  ③一个学生可以选修多门课程，每门课程有若干学生选修。<br>
+  ④每个学生学习每一门课程有一个成绩。<br>
+  于是得到属性组U上的一组函数依赖 \(F\) （如图6.1所示）。</p>
+<span id="20241203150727CST"></span>\[
+F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\text{Sno},\text{Cno})\rightarrow\text{Grade}}
+\tag{4}
+    \]
+<span id="20241203151705CST"></span><div class="svg-figure">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298.1429 130.3702" style="max-width:298.1429;">
+  <text transform="translate(29.0365 45.0588)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">Sno</tspan></text>
+  <text transform="translate(112.6347 45.0588)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">Cno</tspan></text>
+  <text transform="translate(233.6992 45.0588)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">G</tspan><tspan x="13.3379" y="0" style="letter-spacing: -.014em;">r</tspan><tspan x="21.4019" y="0">ade</tspan></text>
+  <rect x="17.2619" y="23.759" width="56.381" height="28.8154" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <rect x="101.9762" y="23.759" width="56.381" height="28.8154" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <rect x=".5" y=".5" width="174.2857" height="73.3333" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <rect x="222.352" y="23.811" width="75.2908" height="28.8154" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="174.7857" y1="37.1667" x2="216.3823" y2="37.1667" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="213.5737 40.8698 215.147 37.1667 213.5737 33.4635 222.352 37.1667 213.5737 40.8698"/>
+  </g>
+  <g>
+    <line x1="45.4524" y1="52.5744" x2="45.4524" y2="94.3052" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="41.7492 91.4966 45.4524 93.0699 49.1555 91.4966 45.4524 100.275 41.7492 91.4966"/>
+  </g>
+  <text transform="translate(19.1542 121.5228)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">Sd</tspan><tspan x="21.5278" y="0" style="letter-spacing: -.005em;">e</tspan><tspan x="31.2837" y="0" style="letter-spacing: -.002em;">p</tspan><tspan x="42.7314" y="0">t</tspan></text>
+  <rect x="7.807" y="100.275" width="75.2908" height="28.8154" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(139.1541 121.5228)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">M</tspan><tspan x="17.5498" y="0" style="letter-spacing: -.001em;">n</tspan><tspan x="29.4297" y="0">ame</tspan></text>
+  <rect x="127.807" y="100.275" width="90.0264" height="28.8154" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="83.0978" y1="114.6826" x2="121.8372" y2="114.6826" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="119.0287 118.3858 120.6019 114.6826 119.0287 110.9795 127.807 114.6826 119.0287 118.3858"/>
+  </g>
+</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;Student上的一组函数依赖</p>
+<p>  如果只考虑函数依赖这一种数据依赖，可以得到一个描述学生的关系模式 \(\text{Student}\text{<}U,F \text{>} \) 。<a class="link" href="#20241203160635CST">表1</a>是某一时刻关系模式Student的一个实例，即数据表。</p>
+<span id="20241203160635CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Sno</th>
+          <th style="text-align: left">Sdept</th>
+          <th style="text-align: left">Mname</th>
+          <th style="text-align: left">Cno</th>
+          <th style="text-align: left">Grade</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">S1</td>
+          <td style="text-align: left">计算机系</td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">95</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">S2</td>
+          <td style="text-align: left">计算机系</td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">90</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">S3</td>
+          <td style="text-align: left">计算机系</td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">88</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">S4</td>
+          <td style="text-align: left">计算机系</td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">70</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">S5</td>
+          <td style="text-align: left">计算机系</td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">78</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">⋮</td>
+          <td style="text-align: left">⋮</td>
+          <td style="text-align: left">⋮</td>
+          <td style="text-align: left">⋮</td>
+          <td style="text-align: left">⋮</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1</p>
+<p>  但是，这个关系模式存在以下问题：<br>
+  (1)<strong>数据冗余</strong>。比如，每一个系的系主任姓名重复出现，重复次数与该系所有学生的所有课程成绩出 现次数相同，如<a class="link" href="#20241203160635CST">表1</a>所示。这将浪费大量的存储空间。<br>
+  (2)<strong>更新异常</strong>(update anomalies)。由于数据冗余，当更新数据库中的数据时，系统要付出很大的代价来维护数据库的完整性，否则会面临数据不一致的危险。比如，某系更换系主任后，必须修改与该系学生有关的每一个元组。<br>
+  (3)<strong>插入异常</strong>(insertion anomalies)。如果一个系刚成立，尚无学生，则无法把这个系及其系主任的信息存入数据库。<br>
+  (4)<strong>删除异常</strong>(deletion anomalies)。如果某个系的学生全部毕业了，则在删除该系学生信息的同时，这个系及其系主任的信息也丢掉了。<br>
+  鉴于存在以上种种问题，可以得出这样的结论：\(\text{Student}\) 关系模式不是一个好的模式。一个好的模式应当不会发生插入异常、删除异常和更新异常，数据冗余应尽可能少。<br>
+  为什么会发生这些问题呢？<br>
+  这是因为这个模式中的函数依赖存在某些不好的性质。这正是本章要讨论的问题。假如把这个单一的模式改造一下，分成三个关系模式：<br>
+   \(\text{S}(\text{Sno},\text{Sdept},\text{Sno}\rightarrow\text{Sdept});\)<br>
+   \(\text{SC}(\text{Sno},\text{Cno},\text{Grade},(\text{Sno},\text{Cno})\rightarrow \text{Grade});\)<br>
+   \(\text{DEPT}(\text{Sdept},\text{Mname}, \text{Sdept}\rightarrow \text{Mname})\)<br>
+  这三个模式都不会发生插入异常、删除异常的问题，数据的冗余也得到了控制。<br>
+  一个模式的数据依赖会有哪些不好的性质，如何改造一个不好的模式，这就是下一节规范化要讨论的内容。</p>
+<h2 id="规范化">规范化
+</h2>
     </div>
 </section>
 
@@ -1248,7 +1362,7 @@ R\text{<}U,F\text{>}
 
 
         <span>
-            最后更新于 Dec 03, 2024 13:12 CST
+            最后更新于 Dec 03, 2024 16:20 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1432,7 +1546,7 @@ R\text{<}U,F\text{>}
             
         
         
-        <span>本图书馆累计发布了19篇文章 共31.6万字</span>
+        <span>本图书馆累计发布了19篇文章 共31.7万字</span>
         
     </section>
 
