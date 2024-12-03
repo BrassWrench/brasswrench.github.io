@@ -131,7 +131,7 @@
 <meta property='og:description' content="关系数据库的数据组织、存储、管理和操作的理论基础">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据理论' /><meta property='article:published_time' content='2024-12-03T10:38:46&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T12:46:25&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据理论' /><meta property='article:published_time' content='2024-12-03T10:38:46&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T13:12:07&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（六）：关系数据理论">
 <meta name="twitter:description" content="关系数据库的数据组织、存储、管理和操作的理论基础"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1123,7 +1123,7 @@
 </svg>
 
             <time class="article-words">
-                470 字
+                1106 字
             </time>
         </div>
 
@@ -1138,7 +1138,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -1190,7 +1190,19 @@ R(U,D,\text{DOM},F)
   ◦ \(D\) 为属性组 \(U\) 中的属性所来自的域。<br>
   ◦ \(\text{DOM}\) 为属性到域的映射。<br>
   ◦ \(F\) 为属性组 \(U\) 上的一组数据依赖。<br>
-  </p>
+  由于 \(D\) 、 \(\text{DOM}\) 与模式设计关系不大，因此在本章中把关系模式看作一个三元组：</p>
+<span id="20241203125646CST"></span>
+    \[
+R\text{<}U,F\text{>}
+\]
+<p>  当且仅当 \(U\) 上的一个关系 \(r\) 满足 \(F\) 时， \(r\) 称为关系模式 \(R\text{<}U,F\text{>}\) 的一个关系。<br>
+  作为一个二维表，关系要符合一个最基本的条件：每一个分量必须是不可分的数据项。满足了这个条件的关系模式就属于<strong>第一范式(1NF)</strong>。<br>
+  在模式设计中，假设己知一个模式 \(S\phi\) ，它仅由单个关系模式组成，问题是要设计一个模式 \(SD\) ，它与 \(S\phi\) 等价，但在某些指定的方面更好一些。这里通过一个例子来说明一个不好的模式会有些什么问题，分析它们产生的原因，并从中找出设计一个好的关系模式的办法。<br>
+  在举例之前，先非形式地讨论一下数据依赖的概念。<br>
+  <strong>数据依赖</strong>是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间相关联系。它是现实世界属性间相互联系的抽象，是数据内在的性质，是语义的体现。<br>
+  人们已经提出了许多种类型的数据依赖，其中最重要的是<strong>函数依赖(Functional Dependency, FD)</strong>‌和<strong>多值依赖(Multi-Valued Dependency, MVD)</strong>。<br>
+  函数依赖极为普遍地存在于现实生活中。比如描述一个学生的关系，可以有学号( \(\text{Sno}\) )、姓名( \(\text{Sname}\) )、系名( \(\text{Sdept}\) )等几个属性。由于一个学号只对应一个学生，一个学生只在一个系学习。因而当“学号”值确定之后，学生的姓名及所在系的值也就被唯一 地确定了。属性间的这种依赖关系类似于数学中的函数 \(y=f(x)\) ，自变量 \(x\) 确定之后，相应的函数值 \(y\) 也就唯一地确定了。<br>
+  类似的有 \(\text{Sname}=f(\text{Sno})\) ， \(\text{Sdept}=f(\text{Sno})\) ，即 \(\text{Sno}\) 函数决定 \(\text{Sname}\) ， \(\text{Sno}\) 函数决定 \(\text{Sdept}\) ，或者说 \(\text{Sname}\) 和 \(\text{Sdept}\) 函数依赖于 \(\text{Sno}\) ，记作 \(\text{Sno}\rightarrow \text{Sname}\) ， \(\text{Sno} \rightarrow \text{Sdept}\) 。</p>
 
     </div>
 </section>
@@ -1236,7 +1248,7 @@ R(U,D,\text{DOM},F)
 
 
         <span>
-            最后更新于 Dec 03, 2024 12:46 CST
+            最后更新于 Dec 03, 2024 13:12 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

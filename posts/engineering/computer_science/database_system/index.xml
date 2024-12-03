@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 12:46:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Dec 2024 13:12:07 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（六）：关系数据理论</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/</link>
         <pubDate>Tue, 03 Dec 2024 10:38:46 +0800</pubDate>
@@ -50,7 +50,19 @@ R(U,D,\text{DOM},F)
   ◦ \(D\) 为属性组 \(U\) 中的属性所来自的域。&lt;br&gt;
   ◦ \(\text{DOM}\) 为属性到域的映射。&lt;br&gt;
   ◦ \(F\) 为属性组 \(U\) 上的一组数据依赖。&lt;br&gt;
-  &lt;/p&gt;
+  由于 \(D\) 、 \(\text{DOM}\) 与模式设计关系不大，因此在本章中把关系模式看作一个三元组：&lt;/p&gt;
+&lt;span id=&#34;20241203125646CST&#34;&gt;&lt;/span&gt;
+    \[
+R\text{&lt;}U,F\text{&gt;}
+\]
+&lt;p&gt;  当且仅当 \(U\) 上的一个关系 \(r\) 满足 \(F\) 时， \(r\) 称为关系模式 \(R\text{&lt;}U,F\text{&gt;}\) 的一个关系。&lt;br&gt;
+  作为一个二维表，关系要符合一个最基本的条件：每一个分量必须是不可分的数据项。满足了这个条件的关系模式就属于&lt;strong&gt;第一范式(1NF)&lt;/strong&gt;。&lt;br&gt;
+  在模式设计中，假设己知一个模式 \(S\phi\) ，它仅由单个关系模式组成，问题是要设计一个模式 \(SD\) ，它与 \(S\phi\) 等价，但在某些指定的方面更好一些。这里通过一个例子来说明一个不好的模式会有些什么问题，分析它们产生的原因，并从中找出设计一个好的关系模式的办法。&lt;br&gt;
+  在举例之前，先非形式地讨论一下数据依赖的概念。&lt;br&gt;
+  &lt;strong&gt;数据依赖&lt;/strong&gt;是一个关系内部属性与属性之间的一种约束关系。这种约束关系是通过属性间值的相等与否体现出来的数据间相关联系。它是现实世界属性间相互联系的抽象，是数据内在的性质，是语义的体现。&lt;br&gt;
+  人们已经提出了许多种类型的数据依赖，其中最重要的是&lt;strong&gt;函数依赖(Functional Dependency, FD)&lt;/strong&gt;‌和&lt;strong&gt;多值依赖(Multi-Valued Dependency, MVD)&lt;/strong&gt;。&lt;br&gt;
+  函数依赖极为普遍地存在于现实生活中。比如描述一个学生的关系，可以有学号( \(\text{Sno}\) )、姓名( \(\text{Sname}\) )、系名( \(\text{Sdept}\) )等几个属性。由于一个学号只对应一个学生，一个学生只在一个系学习。因而当“学号”值确定之后，学生的姓名及所在系的值也就被唯一 地确定了。属性间的这种依赖关系类似于数学中的函数 \(y=f(x)\) ，自变量 \(x\) 确定之后，相应的函数值 \(y\) 也就唯一地确定了。&lt;br&gt;
+  类似的有 \(\text{Sname}=f(\text{Sno})\) ， \(\text{Sdept}=f(\text{Sno})\) ，即 \(\text{Sno}\) 函数决定 \(\text{Sname}\) ， \(\text{Sno}\) 函数决定 \(\text{Sdept}\) ，或者说 \(\text{Sname}\) 和 \(\text{Sdept}\) 函数依赖于 \(\text{Sno}\) ，记作 \(\text{Sno}\rightarrow \text{Sname}\) ， \(\text{Sno} \rightarrow \text{Sdept}\) 。&lt;/p&gt;
 </description>
         </item>
         <item>
