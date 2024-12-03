@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据的准确性、一致性和有效性，确保数据符合预定规则和约束">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库完整性' /><meta property='article:published_time' content='2024-12-02T17:46:49&#43;08:00'/><meta property='article:modified_time' content='2024-12-02T22:23:27&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库完整性' /><meta property='article:published_time' content='2024-12-02T17:46:49&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T10:01:33&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（五）：数据库完整性">
 <meta name="twitter:description" content="数据的准确性、一致性和有效性，确保数据符合预定规则和约束"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -772,7 +772,7 @@
     });
 
     
-    document.querySelector('button[title="搜索当前页面"]').addEventListener('click', searchContent);
+    document.querySelector('button[title="搜索图书馆文章内容"]').addEventListener('click', searchContent);
 
 </script>
             
@@ -835,6 +835,17 @@
       </ol>
     </li>
     <li><a href="#域中的完整性限制">域中的完整性限制</a></li>
+    <li><a href="#断言">断言</a>
+      <ol>
+        <li><a href="#创建断言的语句格式">创建断言的语句格式</a></li>
+        <li><a href="#删除断言的语句格式">删除断言的语句格式</a></li>
+      </ol>
+    </li>
+    <li><a href="#触发器">触发器</a>
+      <ol>
+        <li><a href="#定义触发器">定义触发器</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -1160,7 +1171,7 @@
 </svg>
 
             <time class="article-words">
-                6420 字
+                9716 字
             </time>
         </div>
 
@@ -1175,7 +1186,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 13 分钟
+                    阅读时长: 20 分钟
                 </time>
             </div>
         
@@ -1861,6 +1872,201 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  这样，通过<a class="link" href="#20241202222051CST">例16</a>和<a class="link" href="#20241202222110CST">例17</a>，就把性别的取值范围由<code>('男','女')</code>改为<code>(1,0)</code>。</p>
+<h2 id="断言">断言
+</h2><p>  在SQL中可以使用数据定义语言中的<code>CREATE ASSERTION</code>语句，通过<strong>声明性断言(declarative assertions)</strong>‌来指定更具一般性的约束。可以定义涉及多个表或聚集操作的比较复杂的完整性约束。断言创建以后，任何对断言中所涉及关系的操作都会触发关系数据库管理系统对断言的检查，任何使断言不为真值的操作都会被拒绝执行。</p>
+<h3 id="创建断言的语句格式">创建断言的语句格式
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">ASSERTION</span><span class="w"> </span><span class="o">&lt;</span><span class="err">断言名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="k">CHECK</span><span class="w"> </span><span class="err">子句</span><span class="o">&gt;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  每个断言都被赋予一个名字，<code>&lt;CHECK子句&gt;</code>中的约束条件与<code>WHERE</code>子句的条件表达式类似。</p>
+<p>  <span id="20241203082016CST"></span><strong>例18</strong>：限制数据库课程最多60名学生选修。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">ASSERTION</span><span class="w"> </span><span class="n">ASSE_SC_DB_NUM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">CHECK</span><span class="p">(</span><span class="mi">60</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="cm">/*此断言的谓词涉及聚集操作count的SQL语句*/</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span><span class="p">,</span><span class="n">SC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">CNO</span><span class="o">=</span><span class="n">COURSE</span><span class="p">.</span><span class="n">CNO</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">COURSE</span><span class="p">.</span><span class="n">CNAME</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;数据库&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  每当学生选修课程时，将在<code>SC</code>表中插入一条元组<code>(Sno, Cno, NULL)</code>，<code>ASSE_SC_DB_NUM</code>断言被触发检查。如果选修数据库课程的人数已经超过60人，<code>CHECK</code>子句返回值为“假”，对SC表的插入操作被拒绝。</p>
+<p>  <span id="20241203082645CST"></span><strong>例19</strong>：限制每一门课程最多60名学生选修。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">ASSERTION</span><span class="w"> </span><span class="n">ASSE_SC_CNUM1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">CHECK</span><span class="p">(</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="cm">/*此断言的谓词，涉及聚集操作 count */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="cm">/*和分组函数group by的SQL语句*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">cno</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  <span id="20241203084109CST"></span><strong>例20</strong>：限制每个学期每一门课程最多60名学生选修。</p>
+<p>  首先修改<code>SC</code>表的模式，增加一个“学期(<code>TERM</code>)”的属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">TERM</span><span class="w"> </span><span class="nb">DATE</span><span class="p">;</span><span class="cm">/* 先修改SC表，增加TERM属性，它的类型是 DATE*/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  然后定义断言：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">ASSERTION</span><span class="w"> </span><span class="n">ASSE_SC_CNUM2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="mi">60</span><span class="o">&gt;=</span><span class="k">ALL</span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">cno</span><span class="p">,</span><span class="n">TERM</span><span class="p">));</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="删除断言的语句格式">删除断言的语句格式
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">ASSERTION</span><span class="w"> </span><span class="o">&lt;</span><span class="err">断言名</span><span class="o">&gt;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  如果断言很复杂，则系统在检测和维护断言上的开销较高，这是在使用断言时应该注意的。</p>
+<h2 id="触发器">触发器
+</h2><p>  <strong>触发器(trigger)</strong>‌是用户定义在关系表上的一类由事件驱动的特殊过程。一旦定义，触发器将被保存在数据库服务器中。任何用户对表的增、删、改操作均由服务器自动激活相应的触发器，在关系数据库管理系统核心层进行集中的完整性控制。触发器类似于约束，但是比约束更加灵活，可以实施更为复杂的检查和操作，具有更精细和更强大的数据控制能力。<br>
+  触发器在SQL 99之后才写入SQL标准，但是很多关系数据库管理系统很早就支持触发器，因此不同的关系数据库管理系统实现的触发器语法各不相同、互不兼容。请读者在上机实验时注意阅读所用系统的使用说明。</p>
+<h3 id="定义触发器">定义触发器
+</h3><p>  触发器又叫做事件-条件-动作(event-condition-action)规则。当特定的系统事件（如对一个表的增、删、改操作，事务的结束等）发生时，对规则的条件进行检查，如果条件成立则执行规则中的动作，否则不执行该动作。规则中的动作体可以很复杂，可以涉及其他表和其他数据库对象，通常是一段SQL存储过程。<br>
+  SQL使用<code>CREATE TRIGGER</code>命令建立触发器，其一般格式为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="o">&lt;</span><span class="err">触发器名</span><span class="o">&gt;</span><span class="w"> </span><span class="cm">/*每当触发事件发生时，该触发器被激活*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">{</span><span class="k">BEFORE</span><span class="o">|</span><span class="k">AFTER</span><span class="err">}</span><span class="w"> </span><span class="o">&lt;</span><span class="err">触发事件</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span><span class="w"> </span><span class="cm">/*指明触发器激活的时间是在执行触发事件前或后*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">REFERENCING</span><span class="w"> </span><span class="k">NEW</span><span class="o">|</span><span class="k">OLD</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="o">&lt;</span><span class="err">变量</span><span class="o">&gt;</span><span class="w"> </span><span class="cm">/*REFERENCING指出引用的变量*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="err">{</span><span class="k">ROW</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">STATEMENT</span><span class="err">}</span><span class="w"> </span><span class="cm">/*定义触发器的类型，指明动作体执行的频率*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="k">WHEN</span><span class="w"> </span><span class="o">&lt;</span><span class="err">触发条件</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="err">触发动作体</span><span class="o">&gt;</span><span class="w"> </span><span class="cm">/*仅当触发条件为真时才执行触发动作体*/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  下面对定义触发器的各部分语法进行详细说明。<br>
+  (1) 只有表的拥有者，即创建表的用户才可以在表上创建触发器，并且一个表上只能 创建一定数量的触发器。触发器的具体数量由具体的关系数据库管理系统在设计时确定。<br>
+  (2)触发器名。触发器名可以包含模式名，也可以不包含模式名。同一模式下，触发器名必须是唯一的，并且触发器名和表名必须在同一模式下。<br>
+  (3)表名。触发器只能定义在基本表上，不能定义在视图上。当基本表的数据发生变化时，将激活定义在该表上相应触发事件的触发器，因此该表也称为触发器的目标表。<br>
+  (4)触发事件。触发事件可以是<code>INSERT</code>、<code>DELETE</code>或<code>UPDATE</code>，也可以是这几个事件的组合，如<code>INSERT OR DELETE</code>等，还可以是<code>UPDATE OF &lt;触发列,···&gt;</code>，即进一步指明修改哪些列时激活触发器。<code>AFTER</code>/<code>BEFORE</code>是触发的时机。<code>AFTER</code>表示在触发事件的操作执行之后 激活触发器；<code>BEFORE</code>表示在触发事件的操作执行之前激活触发器。<br>
+  (5)触发器类型。触发器按照所触发动作的间隔尺寸可以分为<strong>行级触发器</strong>(<code>FOR EACH ROW</code>)‌和<strong>语句级触发器</strong>(<code>FOR EACH STATEMENT</code>)。
+例如，假设在<a class="link" href="#20241202221115CST">例11</a>的<code>TEACHER</code>表上创建了一个<code>AFTER UPDATE</code>触发器，触发事件是<code>UPDATE</code>语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">TEACHER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">Deptno</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  假设表<code>TEACHER</code>有1000行，如果定义的触发器为语句级触发器，那么执行完<code>UPDATE</code>语句后触发动作体执行一次；如果是行级触发器，触发动作体将执行1000次。<br>
+  (6)触发条件。触发器被激活时，只有当触发条件为真时触发动作体才执行，否则触发动作体不执行。如果省略<code>WHEN</code>触发条件，则触发动作体在触发器激活后立即执行。<br>
+  (7)触发动作体。触发动作体既可以是一个匿名PL/SQL过程块，也可以是对已创建存储过程的调用。如果是行级触发器，用户可以在过程体中使用<code>NEW</code>和<code>OLD</code>引用<code>UPDATE</code>/<code>INSERT</code>事件之 后的新值和<code>UPDATE</code>/<code>DELETE</code>事件之前的旧值；如果是语句级触发器，则不能在触发动作 体中使用<code>NEW</code>或<code>OLD</code>进行引用。<br>
+  如果触发动作体执行失败，激活触发器的事件（即对数据库的增、删、改操作）就会终止执行，触发器的目标表或触发器可能影响的其他对象不发生任何变化。</p>
+<p>  <span id="20241203091142CST"></span><strong>例21</strong>：当对表<code>SC</code>的<code>Grade</code>属性进行修改时，若分数增加了10%，则将此次操作记录到另一个表<code>SC_U(Sno,Cno,Oldgrade,Newgrade)</code>中，其中<code>Oldgrade</code>是修改前的分数，<code>Newgrade</code>是修改后的分数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">SC_T</span><span class="w"> </span><span class="cm">/*SC_T 是触发器的名字*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AFTER</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="cm">/*UPDATE OF Grade ON SC 是触发事件，*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cm">/* AFTER是触发的时机，表示当对SC的Grade属性修改完后再触发下面的规则*/</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">REFERENCING</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">OLD</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OldTuple</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">NEW</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NewTuple</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="cm">/*行级触发器，即每执行一次Grade的更新，下面的规则就执行一次*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">NewTuple</span><span class="p">.</span><span class="n">Grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OldTuple</span><span class="p">.</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="cm">/*触发条件，只有该条件为真时才执行*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SC_U</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="n">Cno</span><span class="p">,</span><span class="n">OldGrade</span><span class="p">,</span><span class="n">NewGrade</span><span class="p">)</span><span class="w"> </span><span class="cm">/*下面的 insert 操作*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">VALUES</span><span class="p">(</span><span class="n">OldTuple</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="n">OldTuple</span><span class="p">.</span><span class="n">Cno</span><span class="p">,</span><span class="n">OldTuple</span><span class="p">.</span><span class="n">Grade</span><span class="p">,</span><span class="n">NewTuple</span><span class="p">.</span><span class="n">Grade</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  在本例中<code>REFERENCING</code>指出引用的变量，如果触发事件是<code>UPDATE</code>操作并且有<code>FOR EACH ROW</code>子句，则可以引用的变量有<code>OLD ROW</code>和<code>NEW ROW</code>，分别表示修改之前的元组和修改之后的元组。若没有<code>FOR EACH ROW</code>子句，则可以引用的变量有<code>OLD TABLE</code>和<code>NEW TABLE</code>，<code>OLD TABLE</code>表示表中原来的内容，<code>NEW TABLE</code>表示表中变化后的部分。</p>
+<p>  <span id="20241203094132CST"></span><strong>例22</strong>：每次对表<code>Student</code>的插入操作所增加的学生个数记录到表<code>Student-InsertLog</code>中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">Student_Count</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AFTER</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="cm">/*指明触发器激活的时间是在执行INSERT后*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">REFERENCING</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">NEW</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">DELTA</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">STATEMENT</span><span class="w"> </span><span class="cm">/*语句级触发器，即执行完INSERT语句后下面的触发动作体才执行一次*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">StudentInsertLog</span><span class="p">(</span><span class="n">Numbers</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">DELTA</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  在本例中出现的<code>FOR EACH STATEMENT</code>，表示触发事件<code>INSERT</code>语句执行完成后才执行一次触发器中的动作，这种触发器叫做语句级触发器。而<a class="link" href="#20241203091142CST">例21</a>中的触发器是行级触发器。默认的触发器是语句级触发器。<code>DELTA</code>是一个关系名，其模式与<code>Student</code>相同，包含的元组是<code>INSERT</code>语句增加的元组。</p>
+<p>  <span id="20241203094824CST"></span><strong>例23</strong>：定义一个<code>BEFORE</code>行级触发器，为教师表<code>Teacher</code>定义完整性规则“教授的工资不得低于4000元，如果低于4000元，自动改为4000元”。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">Insert_Or_Update_Sal</span><span class="w"> </span><span class="cm">/*对教师表插入或更新时激活触发器*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEFORE</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Teacher</span><span class="w"> </span><span class="cm">/*BEFORE触发事件*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">REFERENCING</span><span class="w"> </span><span class="k">NEW</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">newTuple</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="cm">/*这是行级触发器*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">newtuple</span><span class="p">.</span><span class="n">Job</span><span class="o">=</span><span class="s1">&#39;教授&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="n">newtuple</span><span class="p">.</span><span class="n">Sal</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4000</span><span class="p">)</span><span class="w"> </span><span class="cm">/*定义触发动作体，这是一个PL/SQL过程块*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">THEN</span><span class="w"> </span><span class="n">newtuple</span><span class="p">.</span><span class="n">Sal</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">4000</span><span class="p">;</span><span class="w"> </span><span class="cm">/*使用插入或更新操作后的新值*/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w"> </span><span class="cm">/*触发动作体结束*/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  因为定义的是<code>BEFORE</code>触发器，在插入和更新教师记录前就可以按照触发器的规则 调整教授的工资，不必等插入后再检查再调整。</p>
 
     </div>
 </section>
@@ -1906,7 +2112,7 @@
 
 
         <span>
-            最后更新于 Dec 02, 2024 22:23 CST
+            最后更新于 Dec 03, 2024 10:01 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2087,7 +2293,7 @@
             
         
         
-        <span>本图书馆累计发布了18篇文章 共31.1万字</span>
+        <span>本图书馆累计发布了18篇文章 共31.4万字</span>
         
     </section>
 
