@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 16:24:56 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 03 Dec 2024 22:54:37 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（六）：关系数据理论</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/</link>
         <pubDate>Tue, 03 Dec 2024 10:38:46 +0800</pubDate>
@@ -176,7 +176,87 @@ F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\t
   这三个模式都不会发生插入异常、删除异常的问题，数据的冗余也得到了控制。&lt;br&gt;
   一个模式的数据依赖会有哪些不好的性质，如何改造一个不好的模式，这就是下一节规范化要讨论的内容。&lt;/p&gt;
 &lt;h2 id=&#34;规范化&#34;&gt;规范化
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;p&gt;  本节首先讨论一个关系属性间不同的依赖情况，讨论如何根据属性间依赖情况来判定关系是否具有某些不合适的性质，通常按属性间依赖情况来区分关系规范化程度为第一范式、第二范式、第三范式和第四范式等；然后直观地描述如何将具有不合适性质的关系转换为更合适的形式。&lt;br&gt;
+  第一节关系模式 \(\text{Student}\text{&lt;}U,F \text{&gt;} \) 中有 \(\text{Sno}\rightarrow \text{Sdept}\) 成立，也就是说在任何时刻 \(\text{Student}\) 的关系实例（即 \(\text{Student}\) 数据表）中，不可能存在两个元组在 \(\text{Sno}\) 上的值相等，而在 \(\text{Sdept}\) 上的值不等。因此，表6.2的 \(\text{Student}\) 表是错误的。因为表中有两个元组在 \(\text{Sno}\) 上都等于 \(\text{S}_1\) ，而 \(\text{Sdept}\) 一个为计算机系，一个为自动化系。&lt;/p&gt;
+&lt;span id=&#34;20241203164608CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Sno&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Sdept&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Mname&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Cno&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Grade&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;span style=&#34;border: 1px solid var(--article-font-color);&#34;&gt;S1&lt;/span&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;span style=&#34;border: 1px solid var(--article-font-color);&#34;&gt;计算机系&lt;/span&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;95&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;span style=&#34;border: 1px solid var(--article-font-color);&#34;&gt;S1&lt;/span&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;span style=&#34;border: 1px solid var(--article-font-color);&#34;&gt;自动化系&lt;/span&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;90&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;计算机系&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;88&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;计算机系&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;70&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;S5&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;计算机系&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;张明&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;78&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;⋮&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;一个错误的Student表&lt;/p&gt;
+&lt;h3 id=&#34;函数依赖&#34;&gt;函数依赖
+&lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241203204551CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义1&lt;/strong&gt;：设 \(R(U)\) 是属性集 \(U\) 上的关系模式， \(X,Y\) 是 \(U\) 的子集。若对于 \(R(U)\) 的任意 一个可能的关系 \(r\) ， \(r\) 中不可能存在两个元组在 \(X\) 上的属性值相等，而在 \(Y\) 上的属性值不等，则称&lt;strong&gt; \(X\) 函数确定 \(Y\) &lt;/strong&gt;或&lt;strong&gt; \(Y\) 函数依赖于 \(X\) &lt;/strong&gt;，记作 \(X \rightarrow Y\) 。&lt;br&gt;
+  函数依赖和别的数据依赖一样是语义范畴的概念，只能根据语义来确定一个函数依赖。例如，姓名一年龄这个函数依赖只有在该部门没有同名人的条件下成立。如果允许有同名人，则年龄就不再函数依赖于姓名了。&lt;br&gt;
+  设计者也可以对现实世界作强制性规定，例如规定不允许同名人出现，因而使姓名—年龄函数依赖成立。这样当插入某个元组时这个元组上的属性值必须满足规定的函数依赖, 若发现有同名人存在，则拒绝插入该元组。&lt;br&gt;
+  注意，函数依赖不是指关系模式 \(R\) 的某个或某些关系满足的约束条件，而是指 \(R\) 的一切关系均要满足的约束条件。&lt;br&gt;
+  下面介绍一些术语和记号。&lt;br&gt;
+  ◦ \(X \rightarrow Y\) ，但 \(Y \nsubseteq X\) ，则称 \(X \rightarrow Y\) 是&lt;strong&gt;非平凡的函数依赖&lt;/strong&gt;。&lt;br&gt;
+  ◦ \(X \rightarrow Y\) ，但 \(Y \subseteq X\) ，则称 \(X \rightarrow Y\) 是&lt;strong&gt;平凡的函数依赖&lt;/strong&gt;。对于任一关系模式，平凡函数依赖都是必然成立的，它不反映新的语义。若不特别声明，总是讨论非平凡的函数依赖。&lt;br&gt;
+  ◦若 \(X \rightarrow Y\) ，则 \(X\) 称为这个函数依赖的决定属性组，也称为决定因素(determinant)。&lt;br&gt;
+  ◦若 \(X \rightarrow Y\) ， \(Y \rightarrow X\) ，则记作 \(X \leftarrow \rightarrow Y\) 。&lt;br&gt;
+  ◦若 \(Y\) 不函数依赖于 \(X\) ，则记作 \(X \nrightarrow Y\) 。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241203215706CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2&lt;/strong&gt;：在 \(R(U)\) 中，如果 \(X \rightarrow Y\) ，并且对于 \(X\) 的任何一个真子集 \(X&#39;\) ，都有 \(X&#39; \nrightarrow Y\) ，则称 \(Y\) 对 \(X\) &lt;strong&gt;完全函数依赖&lt;/strong&gt;，记作&lt;/p&gt;
+&lt;span id=&#34;20241203222841CST&#34;&gt;&lt;/span&gt;\[
+X \xrightarrow{F} Y
+\tag{5}
+    \]
+&lt;p&gt;  若 \(X \rightarrow Y\) ，但 \(Y\) 不完全函数依赖于 \(X\) ，则称 \(Y\) 对 \(X\) &lt;strong&gt;部分函数依赖&lt;/strong&gt;(partial functional dependency)，记作&lt;/p&gt;
+&lt;span id=&#34;20241203223507CST&#34;&gt;&lt;/span&gt;\[
+X \xrightarrow{P} Y
+\tag{6}
+    \]
+&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241203143746CST&#34;&gt;例1&lt;/a&gt;中 \((\text{Sno},\text{Cno})\xrightarrow{F} \text{Grade}\) 是完全函数依赖， \((\text{Sno},\text{Cno})\xrightarrow{P} \text{Sdept}\) 是部分函数依赖，因为 \(\text{Sno}\rightarrow \text{Sdept}\) 成立，而 \(\text{Sno}\) 是 \((\text{Sno},\text{Cno})\) 的真子集。&lt;/p&gt;
+</description>
         </item>
         
     </channel>

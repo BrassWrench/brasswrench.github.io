@@ -131,7 +131,7 @@
 <meta property='og:description' content="关系数据库的数据组织、存储、管理和操作的理论基础">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据理论' /><meta property='article:published_time' content='2024-12-03T10:38:46&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T16:24:56&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据理论' /><meta property='article:published_time' content='2024-12-03T10:38:46&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T22:54:37&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（六）：关系数据理论">
 <meta name="twitter:description" content="关系数据库的数据组织、存储、管理和操作的理论基础"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -798,7 +798,11 @@
             <nav id="TableOfContents">
   <ol>
     <li><a href="#问题的提出">问题的提出</a></li>
-    <li><a href="#规范化">规范化</a></li>
+    <li><a href="#规范化">规范化</a>
+      <ol>
+        <li><a href="#函数依赖">函数依赖</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -1124,7 +1128,7 @@
 </svg>
 
             <time class="article-words">
-                2090 字
+                3091 字
             </time>
         </div>
 
@@ -1139,7 +1143,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -1317,7 +1321,87 @@ F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\t
   这三个模式都不会发生插入异常、删除异常的问题，数据的冗余也得到了控制。<br>
   一个模式的数据依赖会有哪些不好的性质，如何改造一个不好的模式，这就是下一节规范化要讨论的内容。</p>
 <h2 id="规范化">规范化
-</h2>
+</h2><p>  本节首先讨论一个关系属性间不同的依赖情况，讨论如何根据属性间依赖情况来判定关系是否具有某些不合适的性质，通常按属性间依赖情况来区分关系规范化程度为第一范式、第二范式、第三范式和第四范式等；然后直观地描述如何将具有不合适性质的关系转换为更合适的形式。<br>
+  第一节关系模式 \(\text{Student}\text{<}U,F \text{>} \) 中有 \(\text{Sno}\rightarrow \text{Sdept}\) 成立，也就是说在任何时刻 \(\text{Student}\) 的关系实例（即 \(\text{Student}\) 数据表）中，不可能存在两个元组在 \(\text{Sno}\) 上的值相等，而在 \(\text{Sdept}\) 上的值不等。因此，表6.2的 \(\text{Student}\) 表是错误的。因为表中有两个元组在 \(\text{Sno}\) 上都等于 \(\text{S}_1\) ，而 \(\text{Sdept}\) 一个为计算机系，一个为自动化系。</p>
+<span id="20241203164608CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Sno</th>
+          <th style="text-align: left">Sdept</th>
+          <th style="text-align: left">Mname</th>
+          <th style="text-align: left">Cno</th>
+          <th style="text-align: left">Grade</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><span style="border: 1px solid var(--article-font-color);">S1</span></td>
+          <td style="text-align: left"><span style="border: 1px solid var(--article-font-color);">计算机系</span></td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">95</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><span style="border: 1px solid var(--article-font-color);">S1</span></td>
+          <td style="text-align: left"><span style="border: 1px solid var(--article-font-color);">自动化系</span></td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">90</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">S3</td>
+          <td style="text-align: left">计算机系</td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">88</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">S4</td>
+          <td style="text-align: left">计算机系</td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">70</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">S5</td>
+          <td style="text-align: left">计算机系</td>
+          <td style="text-align: left">张明</td>
+          <td style="text-align: left">C1</td>
+          <td style="text-align: left">78</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">⋮</td>
+          <td style="text-align: left">⋮</td>
+          <td style="text-align: left">⋮</td>
+          <td style="text-align: left">⋮</td>
+          <td style="text-align: left">⋮</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表2&emsp;一个错误的Student表</p>
+<h3 id="函数依赖">函数依赖
+</h3><p>  <span id="20241203204551CST"></span><strong>定义1</strong>：设 \(R(U)\) 是属性集 \(U\) 上的关系模式， \(X,Y\) 是 \(U\) 的子集。若对于 \(R(U)\) 的任意 一个可能的关系 \(r\) ， \(r\) 中不可能存在两个元组在 \(X\) 上的属性值相等，而在 \(Y\) 上的属性值不等，则称<strong> \(X\) 函数确定 \(Y\) </strong>或<strong> \(Y\) 函数依赖于 \(X\) </strong>，记作 \(X \rightarrow Y\) 。<br>
+  函数依赖和别的数据依赖一样是语义范畴的概念，只能根据语义来确定一个函数依赖。例如，姓名一年龄这个函数依赖只有在该部门没有同名人的条件下成立。如果允许有同名人，则年龄就不再函数依赖于姓名了。<br>
+  设计者也可以对现实世界作强制性规定，例如规定不允许同名人出现，因而使姓名—年龄函数依赖成立。这样当插入某个元组时这个元组上的属性值必须满足规定的函数依赖, 若发现有同名人存在，则拒绝插入该元组。<br>
+  注意，函数依赖不是指关系模式 \(R\) 的某个或某些关系满足的约束条件，而是指 \(R\) 的一切关系均要满足的约束条件。<br>
+  下面介绍一些术语和记号。<br>
+  ◦ \(X \rightarrow Y\) ，但 \(Y \nsubseteq X\) ，则称 \(X \rightarrow Y\) 是<strong>非平凡的函数依赖</strong>。<br>
+  ◦ \(X \rightarrow Y\) ，但 \(Y \subseteq X\) ，则称 \(X \rightarrow Y\) 是<strong>平凡的函数依赖</strong>。对于任一关系模式，平凡函数依赖都是必然成立的，它不反映新的语义。若不特别声明，总是讨论非平凡的函数依赖。<br>
+  ◦若 \(X \rightarrow Y\) ，则 \(X\) 称为这个函数依赖的决定属性组，也称为决定因素(determinant)。<br>
+  ◦若 \(X \rightarrow Y\) ， \(Y \rightarrow X\) ，则记作 \(X \leftarrow \rightarrow Y\) 。<br>
+  ◦若 \(Y\) 不函数依赖于 \(X\) ，则记作 \(X \nrightarrow Y\) 。</p>
+<p>  <span id="20241203215706CST"></span><strong>定义2</strong>：在 \(R(U)\) 中，如果 \(X \rightarrow Y\) ，并且对于 \(X\) 的任何一个真子集 \(X'\) ，都有 \(X' \nrightarrow Y\) ，则称 \(Y\) 对 \(X\) <strong>完全函数依赖</strong>，记作</p>
+<span id="20241203222841CST"></span>\[
+X \xrightarrow{F} Y
+\tag{5}
+    \]
+<p>  若 \(X \rightarrow Y\) ，但 \(Y\) 不完全函数依赖于 \(X\) ，则称 \(Y\) 对 \(X\) <strong>部分函数依赖</strong>(partial functional dependency)，记作</p>
+<span id="20241203223507CST"></span>\[
+X \xrightarrow{P} Y
+\tag{6}
+    \]
+<p>  <a class="link" href="#20241203143746CST">例1</a>中 \((\text{Sno},\text{Cno})\xrightarrow{F} \text{Grade}\) 是完全函数依赖， \((\text{Sno},\text{Cno})\xrightarrow{P} \text{Sdept}\) 是部分函数依赖，因为 \(\text{Sno}\rightarrow \text{Sdept}\) 成立，而 \(\text{Sno}\) 是 \((\text{Sno},\text{Cno})\) 的真子集。</p>
+
     </div>
 </section>
 
@@ -1362,7 +1446,7 @@ F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\t
 
 
         <span>
-            最后更新于 Dec 03, 2024 16:24 CST
+            最后更新于 Dec 03, 2024 22:54 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1546,7 +1630,7 @@ F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\t
             
         
         
-        <span>本图书馆累计发布了19篇文章 共31.7万字</span>
+        <span>本图书馆累计发布了19篇文章 共31.8万字</span>
         
     </section>
 
