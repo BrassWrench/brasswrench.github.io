@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 12:46:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 04 Dec 2024 19:34:10 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（五）：数据库完整性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/</link>
         <pubDate>Mon, 02 Dec 2024 17:46:49 +0800</pubDate>
@@ -118,7 +118,8 @@
   (1)检查主码值是否唯一，如果不唯一则拒绝插入或修改。&lt;br&gt;
   (2)检查主码的各个属性是否为空，只要有一个为空就拒绝插入或修改。从而保证了实体完整性。&lt;br&gt;
   检查记录中主码值是否唯一的一种方法是进行全表扫描，依次判断表中每一条记录的主码值与将插入记录的主码值（或者修改的新主码值）是否相同，如&lt;a class=&#34;link&#34; href=&#34;#20241202193308CST&#34;&gt;图1&lt;/a&gt;所示。&lt;/p&gt;
-&lt;span id=&#34;20241202193308CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241202193308CST&#34;&gt;&lt;/span&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 472.183 264.4653&#34; style=&#34;max-width:472.183;&#34;&gt;
   &lt;text transform=&#34;translate(94.268 119.7855)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.024em;&#34;&gt;K&lt;/tspan&gt;&lt;tspan x=&#34;12.7261&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;22.5361&#34; y=&#34;0&#34;&gt;y1&lt;/tspan&gt;&lt;/text&gt;
@@ -172,7 +173,8 @@
   &lt;/g&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;用全表扫描方法检查主码唯一性&lt;/p&gt;
 &lt;p&gt;  全表扫描是十分耗时的。为了避免对基本表进行全表扫描，关系数据库管理系统一般都 在主码上自动建立一个索引，如&lt;a class=&#34;link&#34; href=&#34;#20241202200809CST&#34;&gt;图2&lt;/a&gt;的B+树索引，通过索引查找基本表中是否已经存在新的主码值将大大提高效率。例如，如果新插入记录的主码值是25，通过主码索引，从B+树的根结点开始查找，只要读取三个结点就可以知道该主码值已经存在，所以不能插入这条记录。这三个结点是根结点(51)、中间结点(12 30)和叶结点(15 20 25)。如果新插入记录的主码值是86，也只要查找三个结点就可以知道该主码值不存在，所以可以插入该记录。&lt;/p&gt;
-&lt;span id=&#34;20241202200809CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241202200809CST&#34;&gt;&lt;/span&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 734.9186 349.5059&#34; style=&#34;max-width:734.9186;&#34;&gt;
   &lt;text transform=&#34;translate(121.1542 15.8402)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;新记录的主码值&lt;/tspan&gt;&lt;/text&gt;

@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 22:54:37 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 04 Dec 2024 19:34:10 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（六）：关系数据理论</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/</link>
         <pubDate>Tue, 03 Dec 2024 10:38:46 +0800</pubDate>
@@ -78,7 +78,8 @@ U = \set{ \text{Sno}, \text{Sdept}, \text{Mname}, \text{Cno}, \text{Grade}}
 F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\text{Sno},\text{Cno})\rightarrow\text{Grade}}
 \tag{4}
     \]
-&lt;span id=&#34;20241203151705CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241203151705CST&#34;&gt;&lt;/span&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 298.1429 130.3702&#34; style=&#34;max-width:298.1429;&#34;&gt;
   &lt;text transform=&#34;translate(29.0365 45.0588)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sno&lt;/tspan&gt;&lt;/text&gt;
@@ -256,6 +257,171 @@ X \xrightarrow{P} Y
 \tag{6}
     \]
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241203143746CST&#34;&gt;例1&lt;/a&gt;中 \((\text{Sno},\text{Cno})\xrightarrow{F} \text{Grade}\) 是完全函数依赖， \((\text{Sno},\text{Cno})\xrightarrow{P} \text{Sdept}\) 是部分函数依赖，因为 \(\text{Sno}\rightarrow \text{Sdept}\) 成立，而 \(\text{Sno}\) 是 \((\text{Sno},\text{Cno})\) 的真子集。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204065834CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义3&lt;/strong&gt;：在 \(R(U)\) 中，如果 \(X \rightarrow Y(Y \nsubseteq X),Y \nrightarrow X,Y \rightarrow Z, Z \nsubseteq Y\) 则称 \(Z\) 对 \(X\) &lt;strong&gt;传递函数依赖&lt;/strong&gt;(transitive functional dependency)。记为 \(X \xrightarrow{传递} Z\) 。这里加上条件 \(Y \nrightarrow X\) 是因为如果 \(Y \rightarrow X\) ，则 \(X \leftarrow \rightarrow Y\) ，实际上是 \(X \xrightarrow{直接} Z\) ，是直接函数依赖而不是传递函数依赖。&lt;/p&gt;
+&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241203143746CST&#34;&gt;例1&lt;/a&gt;中 \(\text{Sno}\rightarrow \text{Sdept},\text{Sdept} \rightarrow \text{Mname}\) 成立，所以 \(\text{Sno} \xrightarrow{传递} \text{Mname}\) 。&lt;/p&gt;
+&lt;h3 id=&#34;码&#34;&gt;码
+&lt;/h3&gt;&lt;p&gt;  码是关系模式中的一个重要概念。在&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/#20241204071151CST&#34;&gt;关系数据库-关系&lt;/a&gt;中已给出了有关码的若干定义，这里用函数依赖的概念来定义码。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204072216CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义4&lt;/strong&gt;：设 \(K\) 为 \(R \text{&lt;} U,F \text{&gt;}\) 中的属性或属性组合，若 \(K \xrightarrow{F} U\) ，则 \(K\) 为 \(R\) 的&lt;strong&gt;候选码&lt;/strong&gt;(candidate key)。&lt;/p&gt;
+&lt;p&gt;  注意 \(U\) 是完全函数依赖于 \(K\) ，而不是部分函数依赖于 \(K\) 。如果 \(U\) 部分函数依赖于 \(K\) ，即 \(K \xrightarrow{P} U\) ,则 \(K\) 称为&lt;strong&gt;超码&lt;/strong&gt;(Surpkey)。候选码是最小的超码，即 \(K\) 的任意一个真子集都不是候选码。&lt;br&gt;
+  若候选码多于一个，则选定其中的一个为&lt;strong&gt;主码&lt;/strong&gt;(primary key)。&lt;br&gt;
+  包含在任何一个候选码中的属性称为&lt;strong&gt;主属性&lt;/strong&gt;(prime attribute)；不包含在任何候选码中的属性称为&lt;strong&gt;非主属性&lt;/strong&gt;(nonprime attribute)或&lt;strong&gt;非码属性&lt;/strong&gt;(non-key attribute)。最简单的情况，单个属性是码；最极端的情况，整个属性组是码，称为&lt;strong&gt;全码&lt;/strong&gt;(all-key)。&lt;br&gt;
+  在后面的章节中主码或候选码都简称为码。读者可以根据上下文加以识别。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204090414CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例2&lt;/strong&gt;：关系模式 \(\text{S}(\underline{\text{Sno}},\text{Sdept},\text{Sage})\) 中单个属性 \(\text{Sno}\) 是码，用下划线显示出来。 \(\text{SC}(\underline{\text{Sno},\text{Cno}},\text{Grade})\) 中属性组合 \((\text{Sno},\text{Cno})\) 是码。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204090751CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例3&lt;/strong&gt;：关系模式 \(R(\underline{P,W,A})\) 中，属性 \(P\) 表示演奏者， \(W\) 表示作品， \(A\) 表示听众。假设一个演奏者可以演奏多个作品，某一作品可被多个演奏者演奏，听众也可以欣赏不同演奏者的不同作品，这个关系模式的码为 \((P,W,A)\) ，即全码。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204091325CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义5&lt;/strong&gt;：关系模式 \(R\) 中属性或属性组 \(X\) 并非 \(R\) 的码，但 \(X\) 是另一个关模式的码，则称 \(X\) 是 \(R\) 的&lt;strong&gt;外部码&lt;/strong&gt;(foreignkey)，也称&lt;strong&gt;外码&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;  如在 \(\text{SC}(\underline{\text{Sno},\text{Cno}},\text{Grade})\) ， \(\text{Sno}\) 不是码，但 \(\text{Sno}\) 是关系模式 \(\text{S}(\underline{\text{Sno}},\text{Sdept},\text{Sage})\) 的码，则 \(\text{Sno}\) 是关系模式 \(\text{SC}\) 的外码。&lt;/p&gt;
+&lt;p&gt;  主码与外码提供了一个表示关系间联系的手段，如&lt;a class=&#34;link&#34; href=&#34;#20241204090414CST&#34;&gt;例2&lt;/a&gt;中关系模式 \(\text{S}\) 与 \(\text{SC}\) 的联系就是通过 \(\text{Sno}\) 来体现的。&lt;/p&gt;
+&lt;h3 id=&#34;范式&#34;&gt;范式
+&lt;/h3&gt;&lt;p&gt;  关系数据库中的关系是要满足一定要求的，满足不同程度要求的为不同范式。满足最低要求的叫第一范式，简称1NF；在第一范式中满足进一步要求的为第二范式，其余以此类推。有关范式理论的研究主要是E. F. Codd做的工作。1971—1972年Codd系统地提出了1NF、2NF、3NF的概念，讨论了规范化的问题。1974年，Codd和Boyce共同提出了一个新范式，即BCNF。1976年Fagin提出了4NF。后来又有研究人员提出了5NF。&lt;br&gt;
+  所谓“第几范式”原本是表示关系的某一种级别，所以常称某一关系模式 \(K\) 为第几范式。现在则把范式这个概念理解成符合某一种级别的关系模式的集合，即 \(R\) 为第几范式就可以写成 \(R \in x \text{NF}\) 。&lt;br&gt;
+  对于各种范式之间的关系有&lt;/p&gt;
+&lt;span id=&#34;20241204093419CST&#34;&gt;&lt;/span&gt;\[
+5 \text{NF} \sub 4 \text{NF} \sub \text{BCNF} \sub 3 \text{NF} \sub 2 \text{NF} \sub 1 \text{NF}
+\tag{7}
+    \]
+&lt;p&gt;  成立，如&lt;a class=&#34;link&#34; href=&#34;#20241204095857CST&#34;&gt;图2&lt;/a&gt;所示。&lt;/p&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241204095857CST&#34;&gt;&lt;/span&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 347.958 347.959&#34; style=&#34;max-width:347.958;&#34;&gt;
+  &lt;text transform=&#34;translate(156.2484 180.4584)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;9.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;24.1377&#34; y=&#34;0&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
+  &lt;path d=&#34;M173.9785,347.459C78.3223,347.459.5,269.6367.5,173.9795S78.3223.5,173.9785.5s173.4795,77.8223,173.4795,173.4795-77.8223,173.4795-173.4795,173.4795Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;path d=&#34;M173.9785,319.1123c-80.0264,0-145.1323-65.1064-145.1323-145.1328S93.9521,28.8467,173.9785,28.8467s145.1328,65.1064,145.1328,145.1328-65.1064,145.1328-145.1328,145.1328Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;path d=&#34;M173.9785,290.7656c-64.3955,0-116.7861-52.3906-116.7861-116.7861s52.3906-116.7861,116.7861-116.7861,116.7861,52.3906,116.7861,116.7861-52.3906,116.7861-116.7861,116.7861Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;path d=&#34;M173.9785,262.4189c-48.7656,0-88.4395-39.6738-88.4395-88.4395s39.6738-88.4395,88.4395-88.4395,88.4395,39.6738,88.4395,88.4395-39.6738,88.4395-88.4395,88.4395Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;path d=&#34;M173.9782,234.0723c-33.1348,0-60.0928-26.958-60.0928-60.0928s26.958-60.0928,60.0928-60.0928,60.0928,26.958,60.0928,60.0928-26.958,60.0928-60.0928,60.0928Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;circle cx=&#34;173.9782&#34; cy=&#34;173.9791&#34; r=&#34;31.746&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(156.2487 136.6084)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;4&lt;/tspan&gt;&lt;tspan x=&#34;9.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;24.1377&#34; y=&#34;0&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(148.9683 107.7438)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;B&lt;/tspan&gt;&lt;tspan x=&#34;12.0244&#34; y=&#34;0&#34;&gt;C&lt;/tspan&gt;&lt;tspan x=&#34;24.4619&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;38.7002&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(156.2486 76.5848)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;tspan x=&#34;9.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;24.1377&#34; y=&#34;0&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(156.2487 51.0294)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;9.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;24.1377&#34; y=&#34;0&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
+  &lt;text transform=&#34;translate(156.2495 19.8607)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;9.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;24.1377&#34; y=&#34;0&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;各种范式之间的关系&lt;/p&gt;
+&lt;p&gt;  一个低一级范式的关系模式通过模式分解(schema decomposition)可以转换为若干个高一级范式的关系模式的集合，这种过程就叫&lt;strong&gt;规范化&lt;/strong&gt;(normalization)。&lt;/p&gt;
+&lt;h3 id=&#34;1nf&#34;&gt;1NF
+&lt;/h3&gt;&lt;p&gt;  满足了每一个分量必须是不可分的数据项的关系模式就属于&lt;strong&gt;第一范式(1NF)&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;2nf&#34;&gt;2NF
+&lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241204100714CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义6&lt;/strong&gt;：若 \(R \in 1 \text{NF}\) ，且每一个非主属性完全函数依赖于任何一个候选码，则 \(R \in 2 \text{NF}\) 。下面举一个不是 \(2 \text{NF}\) 的例子。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204100956CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例4&lt;/strong&gt;：有关系模式 \(\text{S-L-C}(\text{Sno},\text{Sdept},\text{Sloc},\text{Cno},\text{Grade})\) ，其中 \(\text{Sloc}\) 为学生的住处， 并且每个系的学生住在同一个地方。 \(\text{S-L-C}\) 的码为 \((\text{Sno},\text{Cno})\) 。则函数依赖有&lt;br&gt;
+   \((\text{Sno},\text{Cno})\xrightarrow{F} \text{Grade}\)&lt;br&gt;
+   \(\text{Sno}\rightarrow \text{Sdept},(\text{Sno},\text{Cno})\xrightarrow{P} \text{Grade}\)&lt;br&gt;
+   \(\text{Sno}\rightarrow \text{Sloc},(\text{Sno},\text{Cno})\xrightarrow{P} \text{Sloc}\)&lt;br&gt;
+   \( \text{Sdept} \rightarrow \text{Sloc}\) （每个系的学生只住一个地方）&lt;br&gt;
+  函数依赖关系如&lt;a class=&#34;link&#34; href=&#34;#20241204135645CST&#34;&gt;图3&lt;/a&gt;所示。&lt;/p&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241204135645CST&#34;&gt;&lt;/span&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 334.8549 140.4286&#34; style=&#34;max-width:334.8549;&#34;&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(145.9232 35.8679)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sno&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;133.4501&#34; y=&#34;16.5&#34; width=&#34;57.7778&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(144.8073 118.4479)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Cno&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;133.4501&#34; y=&#34;98.8492&#34; width=&#34;57.7778&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(274.0243 35.8679)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sd&lt;/tspan&gt;&lt;tspan x=&#34;21.5278&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;31.2837&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;p&lt;/tspan&gt;&lt;tspan x=&#34;42.7314&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;261.5512&#34; y=&#34;16.5&#34; width=&#34;72.8036&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(280.6909 118.3326)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.1699&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;l&lt;/tspan&gt;&lt;tspan x=&#34;16.1816&#34; y=&#34;0&#34; style=&#34;letter-spacing: .001em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;26.9272&#34; y=&#34;0&#34;&gt;c&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;268.2179&#34; y=&#34;98.9647&#34; width=&#34;59.4703&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(9.973 76.4572)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;G&lt;/tspan&gt;&lt;tspan x=&#34;13.3379&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.014em;&#34;&gt;r&lt;/tspan&gt;&lt;tspan x=&#34;21.4019&#34; y=&#34;0&#34;&gt;ade&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;.5&#34; y=&#34;57.0893&#34; width=&#34;72.8036&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;rect x=&#34;119.7993&#34; y=&#34;.5&#34; width=&#34;85.0794&#34; height=&#34;139.4286&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;191.2279&#34; y1=&#34;29.3889&#34; x2=&#34;263.7888&#34; y2=&#34;94.9621&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;259.2222 95.8265 262.8723 94.1338 264.1879 90.3316 268.2179 98.9647 259.2222 95.8265&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;255.5815&#34; y1=&#34;29.3889&#34; x2=&#34;191.2279&#34; y2=&#34;29.3889&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;252.7729 25.6858 254.3462 29.3889 252.7729 33.092 261.5513 29.3889 252.7729 25.6858&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;191.2279&#34; y1=&#34;111.8536&#34; x2=&#34;197.2279&#34; y2=&#34;111.8536&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;203.1299&#34; y1=&#34;111.8536&#34; x2=&#34;253.2972&#34; y2=&#34;111.8536&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 11.8041 5.902; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;256.2482&#34; y1=&#34;111.8536&#34; x2=&#34;262.2482&#34; y2=&#34;111.8536&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;259.4396 115.5567 261.0128 111.8536 259.4396 108.1505 268.2179 111.8536 259.4396 115.5567&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;257.3075&#34; y1=&#34;46.4764&#34; x2=&#34;253.0423&#34; y2=&#34;50.6963&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;248.6154&#34; y1=&#34;55.0761&#34; x2=&#34;197.7066&#34; y2=&#34;105.4438&#34; style=&#34;fill: none; stroke: #000; stroke-dasharray: 12.4547 6.2273; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;line x1=&#34;195.4932&#34; y1=&#34;107.6337&#34; x2=&#34;191.2279&#34; y2=&#34;111.8536&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;252.7065 45.8193 256.4293 47.3452 257.9155 51.0842 261.5513 42.2778 252.7065 45.8193&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;297.9531&#34; y1=&#34;42.2778&#34; x2=&#34;297.9531&#34; y2=&#34;92.995&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;294.25 90.1864 297.9531 91.7596 301.6562 90.1864 297.9531 98.9647 294.25 90.1864&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;119.7993&#34; y1=&#34;70.2143&#34; x2=&#34;79.2734&#34; y2=&#34;70.2143&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;82.082 66.5112 80.5087 70.2143 82.082 73.9174 73.3037 70.2143 82.082 66.5112&#34;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;函数依赖示例&lt;/p&gt;
+&lt;p&gt;  图中用虚线表示部分函数依赖。另外 \(\text{Sdept}\) 还函数确定 \(\text{Sloc}\) ，这一点在讨论第二范式时暂不考虑。&lt;br&gt;
+  可以看到非主属性 \(\text{Sdept}、\text{Sloc}\) 并不完全函数依赖于码。因此 \(\text{S-L-C}(\text{Sno},\text{Sdept},\text{Sloc},\text{Cno},\text{Grade})\) 不符合 \(2\text{NF}\) 定义，即  \(\text{S-L-C} \notin 2 \text{NF}\) 。&lt;br&gt;
+  一个关系模式 \(R\) 不属于 \(2 \text{NF}\) ，就会产生以下几个问题：&lt;br&gt;
+  (1)插入异常。假若要插入一个学生 \(\text{Sno}=\text{S7},\text{Sdept}=\text{PHY},\text{Sloc}=\text{BLD2}\) ，但该生还未选课，即这个学生无 \(\text{Cno}\) ，这样的元组就插不进 \(\text{S-L-C}\) 中。因为插入元组时必须给定码值，而这时码值的一部分为空，因而学生的固有信息无法插入。&lt;br&gt;
+  (2)删除异常。假定某个学生只选一门课，如 \(\text{S4}\) 就选了一门课 \(\text{C3}\) ，现在 \(\text{C3}\) 这门课他也不选了，那么 \(\text{C3}\) 这个数据项就要删除。而 \(\text{C3}\) 是主属性，删除了 \(\text{C3}\) ，整个元组就必须一起删除，使得 \(\text{S4}\) 的其他信息也被删除了，从而造成删除异常，即不应删除的信息也删除了。&lt;br&gt;
+  (3)修改复杂。某个学生从数学系(\(\text{MA}\))转到计算机科学系(\(\text{CS}\))，这本来只需修改此学生元组中的 \(\text{Sdept}\) 分量即可，但因为关系模式 \(\text{S-L-C}\) 中还含有系的住处 \(\text{Sloc}\) 属性，学 生转系将同时改变住处，因而还必须修改元组中的 \(\text{Sloc}\) 分量。另外，如果这个学生选修了 \(k\) 门课， \(\text{Sdept}、\text{Sloc}\) 重复存储了 \(4\) 次，不仅存储冗余度大，而且必须无遗漏地修改后个元组中全部 \(\text{Sdept}、\text{Sloc}\) 信息，造成修改的复杂化。&lt;br&gt;
+  分析上面的例子可以发现问题在于有两类非主属性，一类如 \(\text{Grade}\) ，它对码是完全函数依赖；另一类如 \(\text{Sdept}\) 、 \(\text{Sloc}\) ，它们对码不是完全函数依赖。解决的办法是用投影分解把关系模式  \(\text{S-L-C}\) 分解为两个关系模式：\(\text{SC(Sno,Cno,Grade)}\) 和 \(\text{S-L(Sno,Sdept,Sloc)}\) 。&lt;br&gt;
+  关系模式 \(\text{SC}\) 与 \(\text{S-L}\) 中属性间的函数依赖可以用图6.4、图6.5表示如下。&lt;/p&gt;
+&lt;div class=&#34;figures-container&#34;&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241204142005CST&#34;&gt;&lt;/span&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 205.3787 140.4286&#34; style=&#34;max-width:205.3787;&#34;&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(145.9232 35.8679)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sno&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;133.4501&#34; y=&#34;16.5&#34; width=&#34;57.7778&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(144.8073 118.4479)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Cno&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;133.4501&#34; y=&#34;98.8492&#34; width=&#34;57.7778&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(9.973 76.4572)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;G&lt;/tspan&gt;&lt;tspan x=&#34;13.3379&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.014em;&#34;&gt;r&lt;/tspan&gt;&lt;tspan x=&#34;21.4019&#34; y=&#34;0&#34;&gt;ade&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;.5&#34; y=&#34;57.0893&#34; width=&#34;72.8036&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;rect x=&#34;119.7993&#34; y=&#34;.5&#34; width=&#34;85.0794&#34; height=&#34;139.4286&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;119.7993&#34; y1=&#34;70.2143&#34; x2=&#34;79.2734&#34; y2=&#34;70.2143&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;82.082 66.5112 80.5087 70.2143 82.082 73.9174 73.3037 70.2143 82.082 66.5112&#34;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;SC中的函数依赖&lt;/p&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241204142008CST&#34;&gt;&lt;/span&gt;
+            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 172.9048 109.6154&#34; style=&#34;max-width:172.9048;&#34;&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(12.973 62.8642)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sno&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;.5&#34; y=&#34;43.4963&#34; width=&#34;57.7778&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(112.0741 19.8679)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sd&lt;/tspan&gt;&lt;tspan x=&#34;21.5278&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;31.2837&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;p&lt;/tspan&gt;&lt;tspan x=&#34;42.7314&#34; y=&#34;0&#34;&gt;t&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;99.6011&#34; y=&#34;.5&#34; width=&#34;72.8036&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;text transform=&#34;translate(118.7408 102.3326)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;S&lt;/tspan&gt;&lt;tspan x=&#34;10.1699&#34; y=&#34;0&#34; style=&#34;letter-spacing: 0em;&#34;&gt;l&lt;/tspan&gt;&lt;tspan x=&#34;16.1816&#34; y=&#34;0&#34; style=&#34;letter-spacing: .001em;&#34;&gt;o&lt;/tspan&gt;&lt;tspan x=&#34;26.9272&#34; y=&#34;0&#34;&gt;c&lt;/tspan&gt;&lt;/text&gt;
+    &lt;rect x=&#34;106.2678&#34; y=&#34;82.9647&#34; width=&#34;59.4703&#34; height=&#34;25.7778&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;136.0029&#34; y1=&#34;26.2778&#34; x2=&#34;136.0029&#34; y2=&#34;76.995&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;132.2998 74.1864 136.0029 75.7596 139.7061 74.1864 136.0029 82.9647 132.2998 74.1864&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;29.3889&#34; y1=&#34;43.4963&#34; x2=&#34;94.1145&#34; y2=&#34;15.7416&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;92.9927 20.2519 92.9792 16.2284 90.0738 13.445 99.6011 13.3889 92.9927 20.2519&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;29.3889&#34; y1=&#34;69.2741&#34; x2=&#34;100.6695&#34; y2=&#34;95.6693&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;96.7498 98.1667 99.5111 95.2404 99.3217 91.2214 106.2678 97.7424 96.7498 98.1667&#34;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;S-L中的函数依赖&lt;/p&gt;
+&lt;/div&gt;
 </description>
         </item>
         

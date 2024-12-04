@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/'>
 
-<link rel="stylesheet" href="/scss/style.min.68fecfe87b0299213e08a23f734c9ede07902a34f211db0fe7cbb0423fe2f3ec.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.e6d37722a692aec993f7d315fc851ed2e7132deba5f78e32e565ff1df5401399.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据库管理系统提供的统一的数据保护功能">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T12:46:25&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库安全性' /><meta property='article:published_time' content='2024-12-01T15:18:44&#43;08:00'/><meta property='article:modified_time' content='2024-12-04T19:34:10&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（四）：数据库安全性">
 <meta name="twitter:description" content="数据库管理系统提供的统一的数据保护功能"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1249,7 +1249,8 @@
   为满足全球IT市场上互认标准化安全评估结果的需要，CTCPEC、FC、TCSEC和ITSEC的发起组织于1993年起开始联合行动，解决原标准中概念和技术上的差异，将各自独立的准则集合成一组单一的、能被广泛使用的IT安全准则，这一行动被称为通用准则(Common Criteria,CC)项目。项目发起组织的代表建立了专门的委员会来开发通用准则，历经多次讨论和修订，CC V2.1版于1999年被ISO采用为国际标准，2001年被我国采用为国家标准。<br>
   目前CC已经基本取代了TCSEC，成为评估信息产品安全性的主要标准。<br>
   上述一系列标准的发展历史如<a class="link" href="#20241201164427CST">图1</a>所示。本节简要介绍TCSEC和CC V2.1的基本内容。</p>
-<span id="20241201164427CST"></span><div class="svg-figure">
+<div class="svg-figure">
+            <span id="20241201164427CST"></span>
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 792.6141 424.6663" style="max-width:792.6141;">
   <g>
@@ -1580,7 +1581,8 @@
   粗略而言，TCSEC的C1和C2级分别相当于EAL2和EAL3；Bl、B2和B3分别相当于EAL4、EAL5和EAL6；A1对应于EAL7。</p>
 <h2 id="数据库安全性控制">数据库安全性控制
 </h2><p>  在一般计算机系统中，安全措施是一级一级层层设置的。例如，在<a class="link" href="#20241201181759CST">图2</a>所示的安全模型中，用户要求进入计算机系统时，系统首先根据输入的用户标识进行用户身份鉴定，只有合法的用户才准许进入计算机系统；对已进入系统的用户，数据库管理系统还要进行存取控制，只允许用户执行合法操作；操作系统也会有自己的保护措施；数据最后还可以以密码形式存储到数据库中。操作系统的安全保护措施可参考操作系统的有关书籍，这里不再详述。另外，对于强力逼迫透露口令、盗窃物理存储设备等行为而采取的保安措施，例如出入机房登记、加锁等，也不在这里讨论之列。</p>
-<span id="20241201181759CST"></span><div class="svg-figure">
+<div class="svg-figure">
+            <span id="20241201181759CST"></span>
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 644 68.9524" style="max-width:644;">
   <g>
@@ -1661,7 +1663,8 @@
   </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;计算机系统的安全模型</p>
 <p>  下面讨论与数据库有关的安全性，主要包括用户身份鉴别、多层存取控制、审计、视图和数据加密等安全技术。</p>
-<span id="20241201190210CST"></span><div class="svg-figure">
+<div class="svg-figure">
+            <span id="20241201190210CST"></span>
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 777.2234 443.8629" style="max-width:777.2234;">
   <g id="SVGRepo_iconCarrier">
@@ -1921,7 +1924,8 @@
 </div><p>  其语义为：将对指定操作对象的指定操作权限授予指定的用户。发出该<code>GRANT</code>语句的可以是数据库管理员，也可以是该数据库对象创建者（即属主<code>owner</code>），还可以是已经拥有该权限的用户。接受权限的用户可以是一个或多个具体用户，也可以是<code>PUBLIC</code>，即全体用户。<br>
   如果指定了<code>WITH GRANT OPTION</code>子句，则获得某种权限的用户还可以把这种权限再授予其他的用户。如果没有指定<code>WITH GRANT OPTION</code>子句，则获得某种权限的用户只能使用该权限，不能传播该权限。<br>
   SQL标准允许具有<code>WITH GRANT OPTION</code>的用户把相应权限或其子集传递授予其他用户，但不允许循环授权，即被授权者不能把权限再授回给授权者或其祖先，如<a class="link" href="#20241201201816CST">图4</a>所示。</p>
-<span id="20241201201816CST"></span><div class="svg-figure">
+<div class="svg-figure">
+            <span id="20241201201816CST"></span>
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 327.0181 82.6994" style="max-width:327.0181;">
   <g style="isolation: isolate;">
@@ -2481,7 +2485,8 @@
   (2)仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体。<br>
   规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，造成TS密级数据的泄露。<br>
   强制存取控制是对数据本身进行密级标记，无论数据如何复制，标记与数据是一个不可分的整体，只有符合密级标记要求的用户才可以操纵数据，从而提供了更高级别的安全性。前面已经提到，较高安全性级别提供的安全保护要包含较低级别的所有保护，因此在实现强制存取控制时要首先实现自主存取控制(DAC)，即自主存取控制与强制存取控制共同构成数据库管理系统的安全机制，如<a class="link" href="#20241202091438CST">图5</a>所示。系统首先进行自主存取控制检查，对通过自主存取控制检查的允许存取的数据库对象再由系统自动进行强制存取控制检查，只有通过强制存取控制检查的数据库对象方可存取。</p>
-<span id="20241202091438CST"></span><div class="svg-figure">
+<div class="svg-figure">
+            <span id="20241202091438CST"></span>
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 263.5361 198.549" style="max-width:263.5361;">
   <g style="isolation: isolate;">
@@ -2652,7 +2657,8 @@
 </h4><p>  在客户/服务器结构中，数据库用户与服务器之间若采用明文方式传输数据，容易被网 络恶意用户截获或篡改，存在安全隐患。因此，为保证二者之间的安全数据交换，数据库管理系统提供了传输加密功能。<br>
   常用的传输加密方式如链路加密和端到端加密。其中，链路加密对传输数据在链路层进行加密，它的传输信息由报头和报文两部分组成，前者是路由选择信息，而后者是传送的数据信息。这种方式对报文和报头均加密。相对地，端到端加密对传输数据在发送端加密，接收端解密。它只加密报文，不加密报头。与链路加密相比，它只在发送端和接收端需要密码设备，而中间节点不需要密码设备，因此它所需密码设备数量相对较少。但这种方式不加密报头，从而容易被非法监听者发现并从中获取敏感信息。<br>
   <a class="link" href="#20241202101333CST">图6</a>是一种基于基于安全套接层协议(Security Socket Layer, SSL)的数据库管理系统可信传输方案。它采用的是一种端到端的传输加密方式。在这个方案中，通信双方协商建立可信连接，一次会话采用一个密钥，传输数据在发送端加密，接收端解密，有效降低了重放攻击和恶意篡改的风险。此外，出于易用性考虑，这个方案的通信加密还对应用程序透明。它的实现思路包含以下三点。</p>
-<span id="20241202101333CST"></span><div class="svg-figure">
+<div class="svg-figure">
+            <span id="20241202101333CST"></span>
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 602.9287 254.3343" style="max-width:602.9287;">
   <g id="SVGRepo_iconCarrier">
@@ -2827,7 +2833,7 @@
 
 
         <span>
-            最后更新于 Dec 03, 2024 12:46 CST
+            最后更新于 Dec 04, 2024 19:34 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -3023,7 +3029,7 @@
             
         
         
-        <span>本图书馆累计发布了19篇文章 共31.8万字</span>
+        <span>本图书馆累计发布了19篇文章 共32.1万字</span>
         
     </section>
 

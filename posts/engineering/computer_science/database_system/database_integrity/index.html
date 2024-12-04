@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/'>
 
-<link rel="stylesheet" href="/scss/style.min.68fecfe87b0299213e08a23f734c9ede07902a34f211db0fe7cbb0423fe2f3ec.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.e6d37722a692aec993f7d315fc851ed2e7132deba5f78e32e565ff1df5401399.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +131,7 @@
 <meta property='og:description' content="数据的准确性、一致性和有效性，确保数据符合预定规则和约束">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_integrity/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库完整性' /><meta property='article:published_time' content='2024-12-02T17:46:49&#43;08:00'/><meta property='article:modified_time' content='2024-12-03T12:46:25&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='数据库完整性' /><meta property='article:published_time' content='2024-12-02T17:46:49&#43;08:00'/><meta property='article:modified_time' content='2024-12-04T19:34:10&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（五）：数据库完整性">
 <meta name="twitter:description" content="数据的准确性、一致性和有效性，确保数据符合预定规则和约束"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1307,7 +1307,8 @@
   (1)检查主码值是否唯一，如果不唯一则拒绝插入或修改。<br>
   (2)检查主码的各个属性是否为空，只要有一个为空就拒绝插入或修改。从而保证了实体完整性。<br>
   检查记录中主码值是否唯一的一种方法是进行全表扫描，依次判断表中每一条记录的主码值与将插入记录的主码值（或者修改的新主码值）是否相同，如<a class="link" href="#20241202193308CST">图1</a>所示。</p>
-<span id="20241202193308CST"></span><div class="svg-figure">
+<div class="svg-figure">
+            <span id="20241202193308CST"></span>
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 472.183 264.4653" style="max-width:472.183;">
   <text transform="translate(94.268 119.7855)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0" style="letter-spacing: -.024em;">K</tspan><tspan x="12.7261" y="0" style="letter-spacing: -.002em;">e</tspan><tspan x="22.5361" y="0">y1</tspan></text>
@@ -1361,7 +1362,8 @@
   </g>
 </svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;用全表扫描方法检查主码唯一性</p>
 <p>  全表扫描是十分耗时的。为了避免对基本表进行全表扫描，关系数据库管理系统一般都 在主码上自动建立一个索引，如<a class="link" href="#20241202200809CST">图2</a>的B+树索引，通过索引查找基本表中是否已经存在新的主码值将大大提高效率。例如，如果新插入记录的主码值是25，通过主码索引，从B+树的根结点开始查找，只要读取三个结点就可以知道该主码值已经存在，所以不能插入这条记录。这三个结点是根结点(51)、中间结点(12 30)和叶结点(15 20 25)。如果新插入记录的主码值是86，也只要查找三个结点就可以知道该主码值不存在，所以可以插入该记录。</p>
-<span id="20241202200809CST"></span><div class="svg-figure">
+<div class="svg-figure">
+            <span id="20241202200809CST"></span>
             <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 734.9186 349.5059" style="max-width:734.9186;">
   <text transform="translate(121.1542 15.8402)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">新记录的主码值</tspan></text>
@@ -2143,7 +2145,7 @@
 
 
         <span>
-            最后更新于 Dec 03, 2024 12:46 CST
+            最后更新于 Dec 04, 2024 19:34 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2339,7 +2341,7 @@
             
         
         
-        <span>本图书馆累计发布了19篇文章 共31.8万字</span>
+        <span>本图书馆累计发布了19篇文章 共32.1万字</span>
         
     </section>
 

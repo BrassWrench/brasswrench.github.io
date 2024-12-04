@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Tue, 03 Dec 2024 12:46:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 04 Dec 2024 19:34:10 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（四）：数据库安全性</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/database_safety/</link>
         <pubDate>Sun, 01 Dec 2024 15:18:44 +0800</pubDate>
@@ -54,7 +54,8 @@
   为满足全球IT市场上互认标准化安全评估结果的需要，CTCPEC、FC、TCSEC和ITSEC的发起组织于1993年起开始联合行动，解决原标准中概念和技术上的差异，将各自独立的准则集合成一组单一的、能被广泛使用的IT安全准则，这一行动被称为通用准则(Common Criteria,CC)项目。项目发起组织的代表建立了专门的委员会来开发通用准则，历经多次讨论和修订，CC V2.1版于1999年被ISO采用为国际标准，2001年被我国采用为国家标准。&lt;br&gt;
   目前CC已经基本取代了TCSEC，成为评估信息产品安全性的主要标准。&lt;br&gt;
   上述一系列标准的发展历史如&lt;a class=&#34;link&#34; href=&#34;#20241201164427CST&#34;&gt;图1&lt;/a&gt;所示。本节简要介绍TCSEC和CC V2.1的基本内容。&lt;/p&gt;
-&lt;span id=&#34;20241201164427CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241201164427CST&#34;&gt;&lt;/span&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 792.6141 424.6663&#34; style=&#34;max-width:792.6141;&#34;&gt;
   &lt;g&gt;
@@ -385,7 +386,8 @@
   粗略而言，TCSEC的C1和C2级分别相当于EAL2和EAL3；Bl、B2和B3分别相当于EAL4、EAL5和EAL6；A1对应于EAL7。&lt;/p&gt;
 &lt;h2 id=&#34;数据库安全性控制&#34;&gt;数据库安全性控制
 &lt;/h2&gt;&lt;p&gt;  在一般计算机系统中，安全措施是一级一级层层设置的。例如，在&lt;a class=&#34;link&#34; href=&#34;#20241201181759CST&#34;&gt;图2&lt;/a&gt;所示的安全模型中，用户要求进入计算机系统时，系统首先根据输入的用户标识进行用户身份鉴定，只有合法的用户才准许进入计算机系统；对已进入系统的用户，数据库管理系统还要进行存取控制，只允许用户执行合法操作；操作系统也会有自己的保护措施；数据最后还可以以密码形式存储到数据库中。操作系统的安全保护措施可参考操作系统的有关书籍，这里不再详述。另外，对于强力逼迫透露口令、盗窃物理存储设备等行为而采取的保安措施，例如出入机房登记、加锁等，也不在这里讨论之列。&lt;/p&gt;
-&lt;span id=&#34;20241201181759CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241201181759CST&#34;&gt;&lt;/span&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 644 68.9524&#34; style=&#34;max-width:644;&#34;&gt;
   &lt;g&gt;
@@ -466,7 +468,8 @@
   &lt;/g&gt;
 &lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;计算机系统的安全模型&lt;/p&gt;
 &lt;p&gt;  下面讨论与数据库有关的安全性，主要包括用户身份鉴别、多层存取控制、审计、视图和数据加密等安全技术。&lt;/p&gt;
-&lt;span id=&#34;20241201190210CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241201190210CST&#34;&gt;&lt;/span&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 777.2234 443.8629&#34; style=&#34;max-width:777.2234;&#34;&gt;
   &lt;g id=&#34;SVGRepo_iconCarrier&#34;&gt;
@@ -726,7 +729,8 @@
 &lt;/div&gt;&lt;p&gt;  其语义为：将对指定操作对象的指定操作权限授予指定的用户。发出该&lt;code&gt;GRANT&lt;/code&gt;语句的可以是数据库管理员，也可以是该数据库对象创建者（即属主&lt;code&gt;owner&lt;/code&gt;），还可以是已经拥有该权限的用户。接受权限的用户可以是一个或多个具体用户，也可以是&lt;code&gt;PUBLIC&lt;/code&gt;，即全体用户。&lt;br&gt;
   如果指定了&lt;code&gt;WITH GRANT OPTION&lt;/code&gt;子句，则获得某种权限的用户还可以把这种权限再授予其他的用户。如果没有指定&lt;code&gt;WITH GRANT OPTION&lt;/code&gt;子句，则获得某种权限的用户只能使用该权限，不能传播该权限。&lt;br&gt;
   SQL标准允许具有&lt;code&gt;WITH GRANT OPTION&lt;/code&gt;的用户把相应权限或其子集传递授予其他用户，但不允许循环授权，即被授权者不能把权限再授回给授权者或其祖先，如&lt;a class=&#34;link&#34; href=&#34;#20241201201816CST&#34;&gt;图4&lt;/a&gt;所示。&lt;/p&gt;
-&lt;span id=&#34;20241201201816CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241201201816CST&#34;&gt;&lt;/span&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 327.0181 82.6994&#34; style=&#34;max-width:327.0181;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -1286,7 +1290,8 @@
   (2)仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体。&lt;br&gt;
   规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，造成TS密级数据的泄露。&lt;br&gt;
   强制存取控制是对数据本身进行密级标记，无论数据如何复制，标记与数据是一个不可分的整体，只有符合密级标记要求的用户才可以操纵数据，从而提供了更高级别的安全性。前面已经提到，较高安全性级别提供的安全保护要包含较低级别的所有保护，因此在实现强制存取控制时要首先实现自主存取控制(DAC)，即自主存取控制与强制存取控制共同构成数据库管理系统的安全机制，如&lt;a class=&#34;link&#34; href=&#34;#20241202091438CST&#34;&gt;图5&lt;/a&gt;所示。系统首先进行自主存取控制检查，对通过自主存取控制检查的允许存取的数据库对象再由系统自动进行强制存取控制检查，只有通过强制存取控制检查的数据库对象方可存取。&lt;/p&gt;
-&lt;span id=&#34;20241202091438CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241202091438CST&#34;&gt;&lt;/span&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 263.5361 198.549&#34; style=&#34;max-width:263.5361;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -1457,7 +1462,8 @@
 &lt;/h4&gt;&lt;p&gt;  在客户/服务器结构中，数据库用户与服务器之间若采用明文方式传输数据，容易被网 络恶意用户截获或篡改，存在安全隐患。因此，为保证二者之间的安全数据交换，数据库管理系统提供了传输加密功能。&lt;br&gt;
   常用的传输加密方式如链路加密和端到端加密。其中，链路加密对传输数据在链路层进行加密，它的传输信息由报头和报文两部分组成，前者是路由选择信息，而后者是传送的数据信息。这种方式对报文和报头均加密。相对地，端到端加密对传输数据在发送端加密，接收端解密。它只加密报文，不加密报头。与链路加密相比，它只在发送端和接收端需要密码设备，而中间节点不需要密码设备，因此它所需密码设备数量相对较少。但这种方式不加密报头，从而容易被非法监听者发现并从中获取敏感信息。&lt;br&gt;
   &lt;a class=&#34;link&#34; href=&#34;#20241202101333CST&#34;&gt;图6&lt;/a&gt;是一种基于基于安全套接层协议(Security Socket Layer, SSL)的数据库管理系统可信传输方案。它采用的是一种端到端的传输加密方式。在这个方案中，通信双方协商建立可信连接，一次会话采用一个密钥，传输数据在发送端加密，接收端解密，有效降低了重放攻击和恶意篡改的风险。此外，出于易用性考虑，这个方案的通信加密还对应用程序透明。它的实现思路包含以下三点。&lt;/p&gt;
-&lt;span id=&#34;20241202101333CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div class=&#34;svg-figure&#34;&gt;
+            &lt;span id=&#34;20241202101333CST&#34;&gt;&lt;/span&gt;
             &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 602.9287 254.3343&#34; style=&#34;max-width:602.9287;&#34;&gt;
   &lt;g id=&#34;SVGRepo_iconCarrier&#34;&gt;
