@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 04 Dec 2024 19:34:10 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 04 Dec 2024 22:07:25 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/posts/engineering/computer_science/database_system/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>数据库系统（六）：关系数据理论</title>
         <link>https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/</link>
         <pubDate>Tue, 03 Dec 2024 10:38:46 +0800</pubDate>
@@ -78,9 +78,10 @@ U = \set{ \text{Sno}, \text{Sdept}, \text{Mname}, \text{Cno}, \text{Grade}}
 F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\text{Sno},\text{Cno})\rightarrow\text{Grade}}
 \tag{4}
     \]
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241203151705CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 298.1429 130.3702&#34; style=&#34;max-width:298.1429;&#34;&gt;
   &lt;text transform=&#34;translate(29.0365 45.0588)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sno&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(112.6347 45.0588)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Cno&lt;/tspan&gt;&lt;/text&gt;
@@ -105,7 +106,8 @@ F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\t
     &lt;line x1=&#34;83.0978&#34; y1=&#34;114.6826&#34; x2=&#34;121.8372&#34; y2=&#34;114.6826&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;119.0287 118.3858 120.6019 114.6826 119.0287 110.9795 127.807 114.6826 119.0287 118.3858&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;Student上的一组函数依赖&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;Student上的一组函数依赖&lt;/p&gt;
 &lt;p&gt;  如果只考虑函数依赖这一种数据依赖，可以得到一个描述学生的关系模式 \(\text{Student}\text{&lt;}U,F \text{&gt;} \) 。&lt;a class=&#34;link&#34; href=&#34;#20241203160635CST&#34;&gt;表1&lt;/a&gt;是某一时刻关系模式Student的一个实例，即数据表。&lt;/p&gt;
 &lt;span id=&#34;20241203160635CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
   &lt;thead&gt;
@@ -243,7 +245,7 @@ F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\t
   下面介绍一些术语和记号。&lt;br&gt;
   ◦ \(X \rightarrow Y\) ，但 \(Y \nsubseteq X\) ，则称 \(X \rightarrow Y\) 是&lt;strong&gt;非平凡的函数依赖&lt;/strong&gt;。&lt;br&gt;
   ◦ \(X \rightarrow Y\) ，但 \(Y \subseteq X\) ，则称 \(X \rightarrow Y\) 是&lt;strong&gt;平凡的函数依赖&lt;/strong&gt;。对于任一关系模式，平凡函数依赖都是必然成立的，它不反映新的语义。若不特别声明，总是讨论非平凡的函数依赖。&lt;br&gt;
-  ◦若 \(X \rightarrow Y\) ，则 \(X\) 称为这个函数依赖的决定属性组，也称为决定因素(determinant)。&lt;br&gt;
+  ◦若 \(X \rightarrow Y\) ，则 \(X\) 称为这个函数依赖的决定属性组，也称为&lt;strong&gt;决定因素&lt;/strong&gt;(determinant)。&lt;br&gt;
   ◦若 \(X \rightarrow Y\) ， \(Y \rightarrow X\) ，则记作 \(X \leftarrow \rightarrow Y\) 。&lt;br&gt;
   ◦若 \(Y\) 不函数依赖于 \(X\) ，则记作 \(X \nrightarrow Y\) 。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241203215706CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义2&lt;/strong&gt;：在 \(R(U)\) 中，如果 \(X \rightarrow Y\) ，并且对于 \(X\) 的任何一个真子集 \(X&#39;\) ，都有 \(X&#39; \nrightarrow Y\) ，则称 \(Y\) 对 \(X\) &lt;strong&gt;完全函数依赖&lt;/strong&gt;，记作&lt;/p&gt;
@@ -280,9 +282,10 @@ X \xrightarrow{P} Y
 \tag{7}
     \]
 &lt;p&gt;  成立，如&lt;a class=&#34;link&#34; href=&#34;#20241204095857CST&#34;&gt;图2&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241204095857CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 347.958 347.959&#34; style=&#34;max-width:347.958;&#34;&gt;
   &lt;text transform=&#34;translate(156.2484 180.4584)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;5&lt;/tspan&gt;&lt;tspan x=&#34;9.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;24.1377&#34; y=&#34;0&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
   &lt;path d=&#34;M173.9785,347.459C78.3223,347.459.5,269.6367.5,173.9795S78.3223.5,173.9785.5s173.4795,77.8223,173.4795,173.4795-77.8223,173.4795-173.4795,173.4795Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -296,7 +299,8 @@ X \xrightarrow{P} Y
   &lt;text transform=&#34;translate(156.2486 76.5848)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;3&lt;/tspan&gt;&lt;tspan x=&#34;9.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;24.1377&#34; y=&#34;0&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(156.2487 51.0294)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;2&lt;/tspan&gt;&lt;tspan x=&#34;9.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;24.1377&#34; y=&#34;0&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(156.2495 19.8607)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;1&lt;/tspan&gt;&lt;tspan x=&#34;9.8994&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.005em;&#34;&gt;N&lt;/tspan&gt;&lt;tspan x=&#34;24.1377&#34; y=&#34;0&#34;&gt;F&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;各种范式之间的关系&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;各种范式之间的关系&lt;/p&gt;
 &lt;p&gt;  一个低一级范式的关系模式通过模式分解(schema decomposition)可以转换为若干个高一级范式的关系模式的集合，这种过程就叫&lt;strong&gt;规范化&lt;/strong&gt;(normalization)。&lt;/p&gt;
 &lt;h3 id=&#34;1nf&#34;&gt;1NF
 &lt;/h3&gt;&lt;p&gt;  满足了每一个分量必须是不可分的数据项的关系模式就属于&lt;strong&gt;第一范式(1NF)&lt;/strong&gt;。&lt;/p&gt;
@@ -308,9 +312,10 @@ X \xrightarrow{P} Y
    \(\text{Sno}\rightarrow \text{Sloc},(\text{Sno},\text{Cno})\xrightarrow{P} \text{Sloc}\)&lt;br&gt;
    \( \text{Sdept} \rightarrow \text{Sloc}\) （每个系的学生只住一个地方）&lt;br&gt;
   函数依赖关系如&lt;a class=&#34;link&#34; href=&#34;#20241204135645CST&#34;&gt;图3&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241204135645CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 334.8549 140.4286&#34; style=&#34;max-width:334.8549;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(145.9232 35.8679)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sno&lt;/tspan&gt;&lt;/text&gt;
@@ -361,18 +366,20 @@ X \xrightarrow{P} Y
     &lt;line x1=&#34;119.7993&#34; y1=&#34;70.2143&#34; x2=&#34;79.2734&#34; y2=&#34;70.2143&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;82.082 66.5112 80.5087 70.2143 82.082 73.9174 73.3037 70.2143 82.082 66.5112&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;函数依赖示例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;函数依赖示例&lt;/p&gt;
 &lt;p&gt;  图中用虚线表示部分函数依赖。另外 \(\text{Sdept}\) 还函数确定 \(\text{Sloc}\) ，这一点在讨论第二范式时暂不考虑。&lt;br&gt;
   可以看到非主属性 \(\text{Sdept}、\text{Sloc}\) 并不完全函数依赖于码。因此 \(\text{S-L-C}(\text{Sno},\text{Sdept},\text{Sloc},\text{Cno},\text{Grade})\) 不符合 \(2\text{NF}\) 定义，即  \(\text{S-L-C} \notin 2 \text{NF}\) 。&lt;br&gt;
   一个关系模式 \(R\) 不属于 \(2 \text{NF}\) ，就会产生以下几个问题：&lt;br&gt;
   (1)插入异常。假若要插入一个学生 \(\text{Sno}=\text{S7},\text{Sdept}=\text{PHY},\text{Sloc}=\text{BLD2}\) ，但该生还未选课，即这个学生无 \(\text{Cno}\) ，这样的元组就插不进 \(\text{S-L-C}\) 中。因为插入元组时必须给定码值，而这时码值的一部分为空，因而学生的固有信息无法插入。&lt;br&gt;
   (2)删除异常。假定某个学生只选一门课，如 \(\text{S4}\) 就选了一门课 \(\text{C3}\) ，现在 \(\text{C3}\) 这门课他也不选了，那么 \(\text{C3}\) 这个数据项就要删除。而 \(\text{C3}\) 是主属性，删除了 \(\text{C3}\) ，整个元组就必须一起删除，使得 \(\text{S4}\) 的其他信息也被删除了，从而造成删除异常，即不应删除的信息也删除了。&lt;br&gt;
   (3)修改复杂。某个学生从数学系(\(\text{MA}\))转到计算机科学系(\(\text{CS}\))，这本来只需修改此学生元组中的 \(\text{Sdept}\) 分量即可，但因为关系模式 \(\text{S-L-C}\) 中还含有系的住处 \(\text{Sloc}\) 属性，学 生转系将同时改变住处，因而还必须修改元组中的 \(\text{Sloc}\) 分量。另外，如果这个学生选修了 \(k\) 门课， \(\text{Sdept}、\text{Sloc}\) 重复存储了 \(4\) 次，不仅存储冗余度大，而且必须无遗漏地修改后个元组中全部 \(\text{Sdept}、\text{Sloc}\) 信息，造成修改的复杂化。&lt;br&gt;
-  分析上面的例子可以发现问题在于有两类非主属性，一类如 \(\text{Grade}\) ，它对码是完全函数依赖；另一类如 \(\text{Sdept}\) 、 \(\text{Sloc}\) ，它们对码不是完全函数依赖。解决的办法是用投影分解把关系模式  \(\text{S-L-C}\) 分解为两个关系模式：\(\text{SC(Sno,Cno,Grade)}\) 和 \(\text{S-L(Sno,Sdept,Sloc)}\) 。&lt;br&gt;
-  关系模式 \(\text{SC}\) 与 \(\text{S-L}\) 中属性间的函数依赖可以用图6.4、图6.5表示如下。&lt;/p&gt;
-&lt;div class=&#34;figures-container&#34;&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+  分析上面的例子可以发现问题在于有两类非主属性，一类如 \(\text{Grade}\) ，它对码是完全函数依赖；另一类如 \(\text{Sdept}、\text{Sloc}\) ，它们对码不是完全函数依赖。解决的办法是用投影分解把关系模式  \(\text{S-L-C}\) 分解为两个关系模式：\(\text{SC(Sno,Cno,Grade)}\) 和 \(\text{S-L(Sno,Sdept,Sloc)}\) 。&lt;br&gt;
+  关系模式 \(\text{SC}\) 与 \(\text{S-L}\) 中属性间的函数依赖可以用&lt;a class=&#34;link&#34; href=&#34;#20241204142005CST&#34;&gt;图4&lt;/a&gt;、&lt;a class=&#34;link&#34; href=&#34;#20241204142008CST&#34;&gt;图5&lt;/a&gt;表示如下。&lt;/p&gt;
+&lt;div class=&#34;figures-container&#34;&gt;&lt;div&gt;
             &lt;span id=&#34;20241204142005CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 205.3787 140.4286&#34; style=&#34;max-width:205.3787;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(145.9232 35.8679)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sno&lt;/tspan&gt;&lt;/text&gt;
@@ -391,10 +398,12 @@ X \xrightarrow{P} Y
     &lt;line x1=&#34;119.7993&#34; y1=&#34;70.2143&#34; x2=&#34;79.2734&#34; y2=&#34;70.2143&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;82.082 66.5112 80.5087 70.2143 82.082 73.9174 73.3037 70.2143 82.082 66.5112&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;SC中的函数依赖&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;SC中的函数依赖&lt;/p&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241204142008CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 172.9048 109.6154&#34; style=&#34;max-width:172.9048;&#34;&gt;
   &lt;g&gt;
     &lt;text transform=&#34;translate(12.973 62.8642)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;Sno&lt;/tspan&gt;&lt;/text&gt;
@@ -420,9 +429,82 @@ X \xrightarrow{P} Y
     &lt;line x1=&#34;29.3889&#34; y1=&#34;69.2741&#34; x2=&#34;100.6695&#34; y2=&#34;95.6693&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;96.7498 98.1667 99.5111 95.2404 99.3217 91.2214 106.2678 97.7424 96.7498 98.1667&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;S-L中的函数依赖&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;S-L中的函数依赖&lt;/p&gt;
 &lt;/div&gt;
-</description>
+&lt;p&gt;  关系模式 \(\text{SC}\) 的码为 \((\text{Sno},\text{Cno})\) ，关系模式 \(\text{S-L}\) 的码为 \(\text{Sno}\) ，这样就使得非主属性对码都是完全函数依赖了。&lt;/p&gt;
+&lt;h3 id=&#34;3nf&#34;&gt;3NF
+&lt;/h3&gt;&lt;p&gt;  &lt;span id=&#34;20241204194628CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义7&lt;/strong&gt;：设关系模式 \(R \text{&lt;} U,F \text{&gt;} \in 1 \text{NF}\) ，若 \(R\) 中不存在这样的码 \(X\) ，属性组 \(Y\) 及非主属性 \(Z(Z \nsupseteq Y)\)使得 \(X \rightarrow Y, Y \rightarrow Z\) 成立， \(Y \nrightarrow X\) ，则称 \(R \text{&lt;} U,F \text{&gt;} \in 3 \text{NF}\) 。&lt;br&gt;
+  由&lt;a class=&#34;link&#34; href=&#34;#20241204194628CST&#34;&gt;定义7&lt;/a&gt;可以证明，若 \(R \in 3 \text{NF}\) ，则每一个非主属性既不传递依赖于码，也不部分依赖于码。也就是说，可以证明如果 \(R\) 属于 \(3 \text{NF}\) ，则必有 \(R\) 属于 \(2 \text{NF}\) 。&lt;br&gt;
+  在&lt;a class=&#34;link&#34; href=&#34;#20241204142005CST&#34;&gt;图4&lt;/a&gt;中关系模式 \(\text{SC}\) 没有传递依赖，而&lt;a class=&#34;link&#34; href=&#34;#20241204142008CST&#34;&gt;图5&lt;/a&gt;中关系模式 \(\text{S-L}\) 存在非主属性对码的传递依赖。在 \(\text{S-L}\) 中，由 \(\text{Sno} \rightarrow \text{Sdept}(\text{Sdept} \nrightarrow \text{Sno})\) ， \(\text{Sdept} \rightarrow \text{Sloc}\) ，可得 \(\text{Sno}\rightarrow \text{Sloc}\) 。因此 \(\text{SC} \in 3 \text{NF}\) ，而 \( \text{S-L} \notin 3 \text{NF}\) 。&lt;br&gt;
+  一个关系模式 \(R\) 若不是 \(3 \text{NF}\) ，就会产生2NF相类似的问题。解决的办法同样是将 \(\text{S-L}\) 分解为：\(\text{S-D(Sno,Sdept)}\) 和 \(\text{D-L(Sdept,Sloc)}\) 。分解后的关系模式 \(\text{S-D}\) 与 \(\text{D-L}\) 中不再存在传递依赖。&lt;/p&gt;
+&lt;h3 id=&#34;bcnf&#34;&gt;BCNF
+&lt;/h3&gt;&lt;p&gt;   \(\text{BCNF}\) (Boyce Codd Normal Form)是由Boyce与Codd提出的，比上述的 \(\text{3NF}\) 又进了一步，通常认为 \(\text{BCNF}\) 是修正的第三范式，有时也称为扩充的第三范式。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204204622CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义8&lt;/strong&gt;：关系模式 \(R \text{&lt;} U,F \text{&gt;} \in 1 \text{NF}\) ，若 \(X \rightarrow Y\) 且 \(Y \nsubseteq X\) 时 \(X\) 必含有码，则 \(R \text{&lt;} U,F \text{&gt;} \in \text{BCNF}\) 。&lt;/p&gt;
+&lt;p&gt;  也就是说，关系模式 \(R \text{&lt;} U,F \text{&gt;}\) 中，若每一个决定因素都包含码，则 \(R \text{&lt;} U,F \text{&gt;} \in \text{BCNF}\) 。&lt;br&gt;
+  由 \(\text{BCNF}\) 的定义可以得到结论，一个满足 \(\text{BCNF}\) 的关系模式有：&lt;br&gt;
+  ◦所有非主属性对每一个码都是完全函数依赖。&lt;br&gt;
+  ◦所有主属性对每一个不包含它的码也是完全函数依赖。&lt;br&gt;
+  ◦没有任何属性完全函数依赖于非码的任何一组属性。&lt;br&gt;
+  由于 \(R \in \text{BCNF}\) ，按定义排除了任何属性对码的传递依赖与部分依赖，所以 \(R \in \text{3NF}\) 。 但是若 \(R \in \text{3NF}\) ， \(R\) 未必属于 \(\text{BCNF}\) 。&lt;br&gt;
+  下面用几个例子说明属于 \(\text{3NF}\) 的关系模式有的属于 \(\text{BCNF}\) ，但有的不属于 \(\text{BCNF}\) 。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204211140CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例5&lt;/strong&gt;：考察关系模式 \(\text{C(Cno, Cname, Pcno)}\) ，它只有一个码 \(\text{Cno}\) ，这里没有任何属性对 \(\text{Cno}\) 部分依赖或传递依赖，所以 \(\text{C} \in \text{3NF}\) 。同时 \(\text{C}\) 中 \(\text{Cno}\) 是唯一的决定因素，所以 \(\text{C} \in \text{BCNF}\) 。对于关系模式 \(\text{C(Sno, Cno, Grade)}\) 可作同样分析。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204211945CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例6&lt;/strong&gt;：关系模式 \(\text{S(Sno, Sname, Sdept, Sage)}\) ，假定 \(\text{Sname}\) 也具有唯一性，那么 \(\text{S}\) 就有两个码，这两个码都由单个属性组成，彼此不相交。其他属性不存在对码的传递依赖与部分依赖，所以 \(\text{S} \in \text{3NF}\) 。同时 \(\text{S}\) 中除 \(\text{Sno}、\text{Sname}\) 外没有其他决定因素，所以 \(\text{S}\) 也属于 \(\text{BCNF}\) 。&lt;/p&gt;
+&lt;p&gt;  以下再举几个例子。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204212155CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例7&lt;/strong&gt;：关系模式 \(\text{SJP(S, J, P)}\) 中，\(\text{S}\) 是学生， \(\text{J}\) 表示课程， \(\text{P}\) 表示名次。每一个学生选修每门课程的成绩有一定的名次，每门课程中每一名次只有一个学生（即没有并列名次）。由语义可得到下面的函数依赖：&lt;/p&gt;
+&lt;span id=&#34;20241204212354CST&#34;&gt;&lt;/span&gt;\[
+\text{(S,J)} \rightarrow \text{P}\quad (\text{J},\text{P}) \rightarrow S
+\tag{8}
+    \]
+&lt;p&gt;  所以 \(\text{(S,J)}\) 与 \(\text{(J,P)}\) 都可以作为候选码。这两个码各由两个属性组成，而且它们是相交的。这个关系模式中显然没有属性对码传递依赖或部分依赖。所以 \(\text{SJP} \in \text{3NF}\) ，而且除 \(\text{(S,J)}\) 与 \(\text{(J,P)}\) 以外没有其他决定因素，所以 \(\text{SJP} \in \text{BCNF}\) 。&lt;/p&gt;
+&lt;p&gt;  &lt;span id=&#34;20241204213227CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例8&lt;/strong&gt;：关系模式 \(\text{STJ(S, T, J)}\) 中， \(\text{S}\) 表示学生， \(\text{T}\) 表示教师， \(\text{J}\) 表示课程。每一教师只教一门课，每门课有若干教师，某一学生选定某门课，就对应一个固定的教师。由语义可得到如下的函数依赖。&lt;/p&gt;
+&lt;span id=&#34;20241204213304CST&#34;&gt;&lt;/span&gt;\[
+\text{(S,J)} \rightarrow \text{T}, \text{(S,T)} \rightarrow \text{J}, \text{T} \rightarrow \text{J}
+\tag{9}
+    \]
+&lt;p&gt;  函数依赖关系可以用图6.6表示，这里 \(\text{(S,J)}、\text{(S,T)}\) 都是候选码。&lt;/p&gt;
+&lt;div&gt;
+            &lt;span id=&#34;20241204215138CST&#34;&gt;&lt;/span&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 284.4683 109.9524&#34; style=&#34;max-width:284.4683;&#34;&gt;
+  &lt;text transform=&#34;translate(18.1468 32.4028)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;13.0079&#34; y=&#34;15.8333&#34; width=&#34;20.4444&#34; height=&#34;20.4444&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(20.1468 90.0144)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;J&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;13.0079&#34; y=&#34;74.4449&#34; width=&#34;20.4444&#34; height=&#34;20.4444&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(109.1941 31.9098)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;T&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;105.0552&#34; y=&#34;15.3403&#34; width=&#34;20.4444&#34; height=&#34;20.4444&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;.5&#34; y=&#34;.5&#34; width=&#34;45.8413&#34; height=&#34;108.9524&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;46.3413&#34; y1=&#34;25.5625&#34; x2=&#34;99.0854&#34; y2=&#34;25.5625&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;96.2768 29.2656 97.8501 25.5625 96.2768 21.8594 105.0552 25.5625 96.2768 29.2656&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;115.2774&#34; y1=&#34;35.7847&#34; x2=&#34;38.5772&#34; y2=&#34;81.6055&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;39.0892 76.9861 39.6378 80.972 42.8875 83.3442 33.4524 84.6671 39.0892 76.9861&#34;/&gt;
+  &lt;/g&gt;
+  &lt;text transform=&#34;translate(172.638 32.4028)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;167.4991&#34; y=&#34;15.8333&#34; width=&#34;20.4444&#34; height=&#34;20.4444&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(266.6852 31.132)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;J&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;259.5463&#34; y=&#34;15.5625&#34; width=&#34;20.4444&#34; height=&#34;20.4444&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;text transform=&#34;translate(171.6379 91.0144)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;T&lt;/tspan&gt;&lt;/text&gt;
+  &lt;rect x=&#34;167.4991&#34; y=&#34;74.4449&#34; width=&#34;20.4444&#34; height=&#34;20.4444&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;rect x=&#34;154.9911&#34; y=&#34;.5&#34; width=&#34;45.8413&#34; height=&#34;108.9524&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;200.8324&#34; y1=&#34;25.5625&#34; x2=&#34;253.5766&#34; y2=&#34;25.5625&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;250.768 29.2656 252.3412 25.5625 250.768 21.8594 259.5463 25.5625 250.768 29.2656&#34;/&gt;
+  &lt;/g&gt;
+  &lt;g&gt;
+    &lt;line x1=&#34;265.0292&#34; y1=&#34;39.0473&#34; x2=&#34;187.9435&#34; y2=&#34;84.6671&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
+    &lt;polygon points=&#34;260.7261 37.2909 263.9661 39.6765 264.4981 43.6646 270.1667 36.007 260.7261 37.2909&#34;/&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6&amp;emsp;STJ中的函数依赖&lt;/p&gt;
+&lt;p&gt;   \(\text{STJ}\) 是 \(\text{3NF}\) ，因为没有任何非主属性对码传递依赖或部分依赖，但 \(\text{STJ}\) 不是 \(\text{BCNF}\) 关系，因为 \(\text{T}\) 是决定因素，而 \(\text{T}\) 不包含码。&lt;/p&gt;
+&lt;p&gt;  对于不是 \(\text{BCNF}\) 的关系模式，仍然存在不合适的地方。非 \(\text{BCNF}\) 的关系模式也可以通过分解成为 \(\text{BCNF}\) 。例如 \(\text{STJ}\) 可分解为 \(\text{ST(S,T)}\) 与 \(\text{TJ(T,J)}\) ，它们都是 \(\text{BCNF}\) 。&lt;/p&gt;
+&lt;p&gt;   \(\text{3NF}\) 和 \(\text{BCNF}\) 是在函数依赖的条件下对模式分解所能达到的分离程度的测度。一个模式中的关系模式如果都属于 \(\text{BCNF}\) ，那么在函数依赖范畴内它已实现了彻底的分离，己消除了插入和删除的异常。 \(\text{3NF}\) 的“不彻底”性表现在可能存在主属性对码的部分依赖和传递依赖。&lt;/p&gt;
+&lt;h3 id=&#34;多值依赖&#34;&gt;多值依赖
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>数据库系统（五）：数据库完整性</title>
@@ -535,9 +617,10 @@ X \xrightarrow{P} Y
   (1)检查主码值是否唯一，如果不唯一则拒绝插入或修改。&lt;br&gt;
   (2)检查主码的各个属性是否为空，只要有一个为空就拒绝插入或修改。从而保证了实体完整性。&lt;br&gt;
   检查记录中主码值是否唯一的一种方法是进行全表扫描，依次判断表中每一条记录的主码值与将插入记录的主码值（或者修改的新主码值）是否相同，如&lt;a class=&#34;link&#34; href=&#34;#20241202193308CST&#34;&gt;图1&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241202193308CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 472.183 264.4653&#34; style=&#34;max-width:472.183;&#34;&gt;
   &lt;text transform=&#34;translate(94.268 119.7855)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.024em;&#34;&gt;K&lt;/tspan&gt;&lt;tspan x=&#34;12.7261&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.002em;&#34;&gt;e&lt;/tspan&gt;&lt;tspan x=&#34;22.5361&#34; y=&#34;0&#34;&gt;y1&lt;/tspan&gt;&lt;/text&gt;
   &lt;g&gt;
@@ -588,11 +671,13 @@ X \xrightarrow{P} Y
     &lt;line x1=&#34;48.3814&#34; y1=&#34;99.247&#34; x2=&#34;48.3814&#34; y2=&#34;214.9479&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;44.6783 212.1393 48.3814 213.7126 52.0845 212.1393 48.3814 220.9177 44.6783 212.1393&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;用全表扫描方法检查主码唯一性&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;用全表扫描方法检查主码唯一性&lt;/p&gt;
 &lt;p&gt;  全表扫描是十分耗时的。为了避免对基本表进行全表扫描，关系数据库管理系统一般都 在主码上自动建立一个索引，如&lt;a class=&#34;link&#34; href=&#34;#20241202200809CST&#34;&gt;图2&lt;/a&gt;的B+树索引，通过索引查找基本表中是否已经存在新的主码值将大大提高效率。例如，如果新插入记录的主码值是25，通过主码索引，从B+树的根结点开始查找，只要读取三个结点就可以知道该主码值已经存在，所以不能插入这条记录。这三个结点是根结点(51)、中间结点(12 30)和叶结点(15 20 25)。如果新插入记录的主码值是86，也只要查找三个结点就可以知道该主码值不存在，所以可以插入该记录。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241202200809CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 734.9186 349.5059&#34; style=&#34;max-width:734.9186;&#34;&gt;
   &lt;text transform=&#34;translate(121.1542 15.8402)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;新记录的主码值&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(174.2542 52.8809)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;25&lt;/tspan&gt;&lt;/text&gt;
@@ -696,7 +781,8 @@ X \xrightarrow{P} Y
     &lt;line x1=&#34;218.1541&#34; y1=&#34;62.8302&#34; x2=&#34;349.4165&#34; y2=&#34;111.4256&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;345.4969 113.9233 348.258 110.9967 348.0683 106.9778 355.0149 113.4983 345.4969 113.9233&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;使用索引检查主码唯一&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;使用索引检查主码唯一&lt;/p&gt;
 &lt;h2 id=&#34;参照完整性&#34;&gt;参照完整性
 &lt;/h2&gt;&lt;h3 id=&#34;定义参照完整性&#34;&gt;定义参照完整性
 &lt;/h3&gt;&lt;p&gt;  关系模型的参照完整性在&lt;code&gt;CREATE TABLE&lt;/code&gt;中用&lt;code&gt;FOREIGN KEY&lt;/code&gt;短语定义哪些列为外码，用&lt;code&gt;REFERENCES&lt;/code&gt;短语指明这些外码参照哪些表的主码。&lt;br&gt;
@@ -1377,9 +1463,10 @@ X \xrightarrow{P} Y
   为满足全球IT市场上互认标准化安全评估结果的需要，CTCPEC、FC、TCSEC和ITSEC的发起组织于1993年起开始联合行动，解决原标准中概念和技术上的差异，将各自独立的准则集合成一组单一的、能被广泛使用的IT安全准则，这一行动被称为通用准则(Common Criteria,CC)项目。项目发起组织的代表建立了专门的委员会来开发通用准则，历经多次讨论和修订，CC V2.1版于1999年被ISO采用为国际标准，2001年被我国采用为国家标准。&lt;br&gt;
   目前CC已经基本取代了TCSEC，成为评估信息产品安全性的主要标准。&lt;br&gt;
   上述一系列标准的发展历史如&lt;a class=&#34;link&#34; href=&#34;#20241201164427CST&#34;&gt;图1&lt;/a&gt;所示。本节简要介绍TCSEC和CC V2.1的基本内容。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241201164427CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 792.6141 424.6663&#34; style=&#34;max-width:792.6141;&#34;&gt;
   &lt;g&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -1603,7 +1690,8 @@ X \xrightarrow{P} Y
     &lt;polyline points=&#34;397.0539 365.8702 520.9411 365.8702 520.9411 283.643&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;524.6443 286.4516 520.9411 284.8784 517.238 286.4516 520.9411 277.6733 524.6443 286.4516&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;信息安全标准的发展简史&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;信息安全标准的发展简史&lt;/p&gt;
 &lt;p&gt;  TCSEC又称桔皮书。1991年4月，美国国家计算机安全中心(National Computer Security Center,NCSC)颁布了《可信计算机系统评估准则关于可信数据库系统的解释》(TCSEC/Trusted Database Interpretation, TCSEC/TDI)，即紫皮书)，将TCSEC扩展到数据库管理系统。TCSEC/TDI中定义了数据库管理系统的设计与实现中需满足和用以进行安全性级别评估的标准，从4个方面来描述安全性级别划分的指标，即安全策略、责任、保证和文档。每个方面又细分为若干项。&lt;br&gt;
   根据计算机系统对各项指标的支持情况，TCSEC/TDI将系统划分为4组(division)7个等级，依次是D、C(Cl, C2)、B(Bl, B2, B3)、A(Al)，按系统可靠或可信程度逐渐增高，如&lt;a class=&#34;link&#34; href=&#34;#20241201170807CST&#34;&gt;表1&lt;/a&gt;所示。&lt;/p&gt;
 &lt;span id=&#34;20241201170807CST&#34;&gt;&lt;/span&gt;&lt;div class=&#34;normal-table&#34;&gt;&lt;table&gt;
@@ -1709,9 +1797,10 @@ X \xrightarrow{P} Y
   粗略而言，TCSEC的C1和C2级分别相当于EAL2和EAL3；Bl、B2和B3分别相当于EAL4、EAL5和EAL6；A1对应于EAL7。&lt;/p&gt;
 &lt;h2 id=&#34;数据库安全性控制&#34;&gt;数据库安全性控制
 &lt;/h2&gt;&lt;p&gt;  在一般计算机系统中，安全措施是一级一级层层设置的。例如，在&lt;a class=&#34;link&#34; href=&#34;#20241201181759CST&#34;&gt;图2&lt;/a&gt;所示的安全模型中，用户要求进入计算机系统时，系统首先根据输入的用户标识进行用户身份鉴定，只有合法的用户才准许进入计算机系统；对已进入系统的用户，数据库管理系统还要进行存取控制，只允许用户执行合法操作；操作系统也会有自己的保护措施；数据最后还可以以密码形式存储到数据库中。操作系统的安全保护措施可参考操作系统的有关书籍，这里不再详述。另外，对于强力逼迫透露口令、盗窃物理存储设备等行为而采取的保安措施，例如出入机房登记、加锁等，也不在这里讨论之列。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241201181759CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 644 68.9524&#34; style=&#34;max-width:644;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;30.0177&#34; y=&#34;4.3465&#34; width=&#34;70.0952&#34; height=&#34;32.0494&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -1789,11 +1878,13 @@ X \xrightarrow{P} Y
       &lt;text transform=&#34;translate(534.122 65.4161)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据密码存储&lt;/tspan&gt;&lt;/text&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;计算机系统的安全模型&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;计算机系统的安全模型&lt;/p&gt;
 &lt;p&gt;  下面讨论与数据库有关的安全性，主要包括用户身份鉴别、多层存取控制、审计、视图和数据加密等安全技术。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241201190210CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 777.2234 443.8629&#34; style=&#34;max-width:777.2234;&#34;&gt;
   &lt;g id=&#34;SVGRepo_iconCarrier&#34;&gt;
     &lt;path d=&#34;M45.8008,107.3343l-10.814,5.5665c-1.3321.6857-2.1693,2.0583-2.1693,3.5565v2.0802c0,2.2092,1.7909,4,4.0002,4,.7364,0,1.3333.597,1.3333,1.3333s-.597,1.3333-1.3333,1.3333c-3.6821,0-6.6669-2.9847-6.6669-6.6667v-2.0802c0-2.497,1.3954-4.7847,3.6155-5.9275l8.954-4.6091c-2.8578-2.4918-4.5695-6.1238-4.5695-10.0499,0-7.3638,5.9695-13.3333,13.3333-13.3333,4.4709,0,8.5686,2.2185,11.0345,5.8468.4139.609.2558,1.4383-.3533,1.8522-.609.4139-1.4383.2558-1.8522-.3533-1.9746-2.9054-5.2507-4.6791-8.829-4.6791-5.891,0-10.6667,4.7756-10.6667,10.6667,0,3.7646,1.9648,7.1885,5.1207,9.1136.6286.3835.8274,1.204.4439,1.8326-.1436.2353-.3483.4104-.5814.5173h.0002ZM56.7142,118.7157l-10.8853,4.9478c-1.428.6491-2.3448,2.0729-2.3448,3.6415v1.8991c0,2.2091,1.7909,4,4,4h29.3333c2.2091,0,4-1.7909,4-4v-1.8991c0-1.5686-.9168-2.9924-2.3448-3.6415l-10.8853-4.9478c-1.6603.7423-3.5003,1.1551-5.4366,1.1551s-3.7763-.4128-5.4366-1.1551c0,0,0,0,0,0ZM53.9433,117.046c-3.1202-2.4404-5.1258-6.2403-5.1258-10.5085,0-7.3638,5.9695-13.3333,13.3333-13.3333s13.3333,5.9695,13.3333,13.3333c0,4.2683-2.0056,8.0681-5.1258,10.5085l9.2178,4.1899c2.38,1.0818,3.908,3.4548,3.908,6.0691v1.8991c0,3.6819-2.9848,6.6667-6.6667,6.6667h-29.3333c-3.6819,0-6.6667-2.9848-6.6667-6.6667v-1.8991c0-2.6143,1.528-4.9873,3.908-6.0691l9.2178-4.1899h0ZM62.1508,117.2041c5.891,0,10.6667-4.7756,10.6667-10.6667s-4.7756-10.6667-10.6667-10.6667-10.6667,4.7756-10.6667,10.6667,4.7756,10.6667,10.6667,10.6667Z&#34;/&gt;
@@ -1970,7 +2061,8 @@ X \xrightarrow{P} Y
       &lt;text transform=&#34;translate(668.3953 60.2308)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据层&lt;/tspan&gt;&lt;/text&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;数据库管理系统安全性控制模型&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;数据库管理系统安全性控制模型&lt;/p&gt;
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241201190210CST&#34;&gt;图3&lt;/a&gt;是数据库安全保护的一个存取控制流程。首先，数据库管理系统对提出SQL访问请求的数据库用户进行身份鉴别，防止不可信用户使用系统；然后，在SQL处理层进行自主存取控制和强制存取控制，进一步还可以进行推理控制。为监控恶意访问，可根据具体安全需求配置审计规则，对用户访问行为和系统关键操作进行审计。通过设置简单入侵检测规则，对异常用户行为进行检测和处理。在数据存储层，数据库管理系统不仅存放用户数据，还存储与安全有关的标记和信息（称为安全数据），提供存储加密功能等。&lt;/p&gt;
 &lt;h3 id=&#34;用户身份鉴别&#34;&gt;用户身份鉴别
 &lt;/h3&gt;&lt;p&gt;  用户身份鉴别是数据库管理系统提供的最外层安全保护措施。每个用户在系统中都有一个用户标识。每个用户标识由用户名（user name）和用户标识号（UID）两部分组成。UID在系统的整个生命周期内是唯一的。系统内部记录着所有合法用户的标识，系统鉴别是指由系统提供一定的方式让用户标识自己的名字或身份。每次用户要求进入系统时，由系统进行核对，通过鉴定后才提供使用数据库管理系统的权限。用户身份鉴别的方法有很多种，而且在一个系统中往往是多种方法结合，以获得更强的安全性。常用的用户身份鉴别方法有以下几种。&lt;/p&gt;
@@ -2052,9 +2144,10 @@ X \xrightarrow{P} Y
 &lt;/div&gt;&lt;p&gt;  其语义为：将对指定操作对象的指定操作权限授予指定的用户。发出该&lt;code&gt;GRANT&lt;/code&gt;语句的可以是数据库管理员，也可以是该数据库对象创建者（即属主&lt;code&gt;owner&lt;/code&gt;），还可以是已经拥有该权限的用户。接受权限的用户可以是一个或多个具体用户，也可以是&lt;code&gt;PUBLIC&lt;/code&gt;，即全体用户。&lt;br&gt;
   如果指定了&lt;code&gt;WITH GRANT OPTION&lt;/code&gt;子句，则获得某种权限的用户还可以把这种权限再授予其他的用户。如果没有指定&lt;code&gt;WITH GRANT OPTION&lt;/code&gt;子句，则获得某种权限的用户只能使用该权限，不能传播该权限。&lt;br&gt;
   SQL标准允许具有&lt;code&gt;WITH GRANT OPTION&lt;/code&gt;的用户把相应权限或其子集传递授予其他用户，但不允许循环授权，即被授权者不能把权限再授回给授权者或其祖先，如&lt;a class=&#34;link&#34; href=&#34;#20241201201816CST&#34;&gt;图4&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241201201816CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 327.0181 82.6994&#34; style=&#34;max-width:327.0181;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -2108,7 +2201,8 @@ X \xrightarrow{P} Y
       &lt;/g&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;不允许循环授权&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;不允许循环授权&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241201201849CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例1&lt;/strong&gt;：把查询&lt;code&gt;Student&lt;/code&gt;表的权限给用户&lt;code&gt;U1&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2613,9 +2707,10 @@ X \xrightarrow{P} Y
   (2)仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体。&lt;br&gt;
   规则(1)的意义是明显的，而规则(2)需要解释一下。按照规则(2)，用户可以为写入的数据对象赋予高于自己的许可证级别的密级。这样一旦数据被写入，该用户自己也不能再读该数据对象了。如果违反了规则(2)，就有可能把数据的密级从高流向低，造成数据的泄漏。例如，某个TS密级的主体把一个密级为TS的数据恶意地降低为P，然后把它写回。这样原来是TS密级的数据大家都可以读到了，造成TS密级数据的泄露。&lt;br&gt;
   强制存取控制是对数据本身进行密级标记，无论数据如何复制，标记与数据是一个不可分的整体，只有符合密级标记要求的用户才可以操纵数据，从而提供了更高级别的安全性。前面已经提到，较高安全性级别提供的安全保护要包含较低级别的所有保护，因此在实现强制存取控制时要首先实现自主存取控制(DAC)，即自主存取控制与强制存取控制共同构成数据库管理系统的安全机制，如&lt;a class=&#34;link&#34; href=&#34;#20241202091438CST&#34;&gt;图5&lt;/a&gt;所示。系统首先进行自主存取控制检查，对通过自主存取控制检查的允许存取的数据库对象再由系统自动进行强制存取控制检查，只有通过强制存取控制检查的数据库对象方可存取。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241202091438CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 263.5361 198.549&#34; style=&#34;max-width:263.5361;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -2695,7 +2790,8 @@ X \xrightarrow{P} Y
       &lt;/g&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;DAC+MAC安全检查示意图&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;DAC+MAC安全检查示意图&lt;/p&gt;
 &lt;h2 id=&#34;视图机制&#34;&gt;视图机制
 &lt;/h2&gt;&lt;p&gt;  还可以为不同的用户定义不同的视图，把数据对象限制在一定的范围内。也就是说，通过视图机制把要保密的数据对无权存取的用户隐藏起来，从而自动对数据提供一定程度的安全保护。&lt;br&gt;
   视图机制间接地实现支持存取谓词的用户权限定义。例如，在某大学中假定王平老师只能检索计算机系学生的信息，系主任张明具有检索和增删改计算机系学生信息 的所有权限。这就要求系统能支持“存取谓词”的用户权限定义。在不直接支持存取谓词的系统中，可以先建立计算机系学生的视图&lt;code&gt;CS_Student&lt;/code&gt;，然后在视图上进一步定义存取权限。&lt;/p&gt;
@@ -2785,9 +2881,10 @@ X \xrightarrow{P} Y
 &lt;/h4&gt;&lt;p&gt;  在客户/服务器结构中，数据库用户与服务器之间若采用明文方式传输数据，容易被网 络恶意用户截获或篡改，存在安全隐患。因此，为保证二者之间的安全数据交换，数据库管理系统提供了传输加密功能。&lt;br&gt;
   常用的传输加密方式如链路加密和端到端加密。其中，链路加密对传输数据在链路层进行加密，它的传输信息由报头和报文两部分组成，前者是路由选择信息，而后者是传送的数据信息。这种方式对报文和报头均加密。相对地，端到端加密对传输数据在发送端加密，接收端解密。它只加密报文，不加密报头。与链路加密相比，它只在发送端和接收端需要密码设备，而中间节点不需要密码设备，因此它所需密码设备数量相对较少。但这种方式不加密报头，从而容易被非法监听者发现并从中获取敏感信息。&lt;br&gt;
   &lt;a class=&#34;link&#34; href=&#34;#20241202101333CST&#34;&gt;图6&lt;/a&gt;是一种基于基于安全套接层协议(Security Socket Layer, SSL)的数据库管理系统可信传输方案。它采用的是一种端到端的传输加密方式。在这个方案中，通信双方协商建立可信连接，一次会话采用一个密钥，传输数据在发送端加密，接收端解密，有效降低了重放攻击和恶意篡改的风险。此外，出于易用性考虑，这个方案的通信加密还对应用程序透明。它的实现思路包含以下三点。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241202101333CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 602.9287 254.3343&#34; style=&#34;max-width:602.9287;&#34;&gt;
   &lt;g id=&#34;SVGRepo_iconCarrier&#34;&gt;
     &lt;path d=&#34;M15.65,106.1119l-10.814,5.5665c-1.3321.6857-2.1693,2.0583-2.1693,3.5565v2.0802c0,2.2092,1.7909,4,4.0002,4,.7364,0,1.3333.597,1.3333,1.3333s-.597,1.3333-1.3333,1.3333c-3.6821,0-6.6669-2.9847-6.6669-6.6667v-2.0802c0-2.497,1.3954-4.7847,3.6155-5.9275l8.954-4.6091c-2.8578-2.4918-4.5695-6.1238-4.5695-10.0499,0-7.3638,5.9695-13.3333,13.3333-13.3333,4.4709,0,8.5686,2.2185,11.0345,5.8468.4139.609.2558,1.4383-.3533,1.8522-.609.4139-1.4383.2558-1.8522-.3533-1.9746-2.9054-5.2507-4.6791-8.829-4.6791-5.891,0-10.6667,4.7756-10.6667,10.6667,0,3.7646,1.9648,7.1885,5.1207,9.1136.6286.3835.8274,1.204.4439,1.8326-.1436.2353-.3483.4104-.5814.5173h.0002,0ZM26.5634,117.4933l-10.8853,4.9478c-1.428.6491-2.3448,2.0729-2.3448,3.6415v1.8991c0,2.2091,1.7909,4,4,4h29.3333c2.2091,0,4-1.7909,4-4v-1.8991c0-1.5686-.9168-2.9924-2.3448-3.6415l-10.8853-4.9478c-1.6603.7423-3.5003,1.1551-5.4366,1.1551s-3.7763-.4128-5.4366-1.1551h0ZM23.7925,115.8236c-3.1202-2.4404-5.1258-6.2403-5.1258-10.5085,0-7.3638,5.9695-13.3333,13.3333-13.3333s13.3333,5.9695,13.3333,13.3333c0,4.2683-2.0056,8.0681-5.1258,10.5085l9.2178,4.1899c2.38,1.0818,3.908,3.4548,3.908,6.0691v1.8991c0,3.6819-2.9848,6.6667-6.6667,6.6667h-29.3333c-3.6819,0-6.6667-2.9848-6.6667-6.6667v-1.8991c0-2.6143,1.528-4.9873,3.908-6.0691l9.2178-4.1899s0,0,0,0ZM32,115.9817c5.891,0,10.6667-4.7756,10.6667-10.6667s-4.7756-10.6667-10.6667-10.6667-10.6667,4.7756-10.6667,10.6667,4.7756,10.6667,10.6667,10.6667Z&#34;/&gt;
@@ -2888,7 +2985,8 @@ X \xrightarrow{P} Y
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(494.9284 163.9556)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据库服务器&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6&amp;emsp;数据库管理系统可信传输示意图&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6&amp;emsp;数据库管理系统可信传输示意图&lt;/p&gt;
 &lt;p&gt;  (1)确认通信双方端点的可靠性&lt;br&gt;
   数据库管理系统采用基于数字证书的服务器和客户端认证方式实现通信双方的可靠性确认。用户和服务器各自持有由知名数字证书认证(Certificate Authority, CA)中心或企业内建CA颁发的数字证书，双方在进行通信时均首先向对方提供己方证书，然后使用本地的CA信任列表和证书撤销列表(Certificate Revocation List, CRL)对接收到的对方证书进行验证，以确保证书的合法性和有效性，进而保证对方确系通信的目的端。&lt;br&gt;
   (2)协商加密算法和密钥&lt;br&gt;
@@ -3059,9 +3157,10 @@ X \xrightarrow{P} Y
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;SQL的动词&lt;/p&gt;
 &lt;h3 id=&#34;sql的基本概念&#34;&gt;SQL的基本概念
 &lt;/h3&gt;&lt;p&gt;  支持SQL的关系数据库管理系统同样支持关系数据库三级模式结构。如&lt;a class=&#34;link&#34; href=&#34;#20241111211554CST&#34;&gt;图1&lt;/a&gt;所示，其中外模式包括若干&lt;strong&gt;视图(view)&lt;/strong&gt;‌和部分&lt;strong&gt;基本表(base table)&lt;/strong&gt;，数据库模式包括若干基本表，内模式包括若干&lt;strong&gt;存储文件(stored file)&lt;/strong&gt;。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241111211554CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 545.6296 318.5327&#34; style=&#34;max-width:545.6296;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;149.2813&#34; y=&#34;.5&#34; width=&#34;98.2857&#34; height=&#34;35.3651&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -3169,7 +3268,8 @@ X \xrightarrow{P} Y
     &lt;polygon points=&#34;55.3938 231.6515 55.8828 227.6578 59.0967 225.2373 49.6428 224.0555 55.3938 231.6515&#34;/&gt;
     &lt;polygon points=&#34;139.8274 280.3942 143.0413 277.9737 143.5303 273.9801 149.2813 281.576 139.8274 280.3942&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;SQL对关系数据库模式的支持&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;SQL对关系数据库模式的支持&lt;/p&gt;
 &lt;p&gt;  用户可以用SQL对基本表和视图进行查询或其他操作，基本表和视图一样，都是关系。&lt;br&gt;
   基本表是本身独立存在的表，在关系数据库管理系统中一个关系就对应一个基本表。一个或多个基本表对应一个存储文件，一个表可以带若干索引，索引也存放在存储文件中。存储文件的逻辑结构组成了关系数据库的内模式。存储文件的物理结构对最终用户是隐蔽的。&lt;br&gt;
   视图是从一个或几个基本表导出的表。它本身不独立存储在数据库中，即数据库中只存放视图的定义而不存放视图对应的数据。这些数据仍存放在导出视图的基本表中，因此视图是一个虚表。视图在概念上与基本表等同，用户可以在视图上再定义视图。&lt;br&gt;
@@ -3358,9 +3458,10 @@ X \xrightarrow{P} Y
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;SQL的数据定义语句&lt;/p&gt;
 &lt;p&gt;  SQL标准不提供修改模式定义和修改视图定义的操作。用户如果想修改这些对象，只能先将它们删除然后再重建。SQL标准也没有提供索引相关的语句，但为了提高查询效率，商用关系数据库管理系统通常都提供了索引机制和相关的语句，如&lt;a class=&#34;link&#34; href=&#34;#20241111221858CST&#34;&gt;表6&lt;/a&gt;中创建、删除和修改索引等。&lt;br&gt;
   在早期的数据库系统中，所有数据库对象都属于一个数据库，也就是说只有一个命名空间。现代的关系数据库管理系统提供了一个层次化的数据库对象命名机制，如&lt;a class=&#34;link&#34; href=&#34;#20241111231124CST&#34;&gt;图2&lt;/a&gt;所示。一个关系数据库管理系统的&lt;strong&gt;实例(instance)&lt;/strong&gt;‌中可以建立多个数据库,一个数据库中可以建立多个模式，一个模式下通常包括多个表、视图和索引等数据库对象。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241111231124CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 340.8095 184.1746&#34; style=&#34;max-width:340.8095;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(62.4053 37.6907)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;数据&lt;/tspan&gt;&lt;/text&gt;
@@ -3382,7 +3483,8 @@ X \xrightarrow{P} Y
   &lt;polygon points=&#34;170.4048 80.1197 159.6429 69.3578 163.2619 69.3578 163.2619 45.7388 170.4048 45.7388 177.5477 45.7388 177.5477 69.3578 181.1667 69.3578 170.4048 80.1197&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;polygon points=&#34;170.4048 141.5372 159.6429 130.7753 163.2619 130.7753 163.2619 107.1562 170.4048 107.1562 177.5477 107.1562 177.5477 130.7753 181.1667 130.7753 170.4048 141.5372&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;rect x=&#34;.5&#34; y=&#34;.5&#34; width=&#34;339.8095&#34; height=&#34;183.1746&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;数据库对象命名机制的层次结构&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;数据库对象命名机制的层次结构&lt;/p&gt;
 &lt;h3 id=&#34;模式的定义与删除&#34;&gt;模式的定义与删除
 &lt;/h3&gt;&lt;h4 id=&#34;定义模式&#34;&gt;定义模式
 &lt;/h4&gt;&lt;p&gt;  在SQL中，模式定义语句如下：&lt;/p&gt;
@@ -4876,9 +4978,10 @@ X \xrightarrow{P} Y
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表17&lt;/p&gt;
 &lt;p&gt;  本例中，&lt;code&gt;SELECT&lt;/code&gt;子句与&lt;code&gt;WHERE&lt;/code&gt;子句中的属性名前都加上了表名前缀，这是为了避免混淆。如果属性名在参加连接的各表中是唯一的，则可以省略表名前缀。&lt;br&gt;
   关系数据库管理系统执行该连接操作的一种可能过程是：首先在表&lt;code&gt;Student&lt;/code&gt;中找到第一个元组，然后从头开始扫描&lt;code&gt;SC&lt;/code&gt;表，逐一查找与&lt;code&gt;Student&lt;/code&gt;第一个元组的&lt;code&gt;Sno&lt;/code&gt;相等的&lt;code&gt;SC&lt;/code&gt;元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第一个元组与该元组拼接起来，形成结果表中一个元组。&lt;code&gt;SC&lt;/code&gt;全部查找完后，再找&lt;code&gt;Student&lt;/code&gt;中第二个元组，然后再从头开始扫描&lt;code&gt;SC&lt;/code&gt;，逐一查找满足连接条件的元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到&lt;code&gt;Student&lt;/code&gt;中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如&lt;a class=&#34;link&#34; href=&#34;#20241116211750CST&#34;&gt;图3&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241116211750CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 236.9314&#34; style=&#34;max-width:863.7;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(38.0264 15.8399)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate; letter-spacing: -.009em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;S&lt;/tspan&gt;&lt;/text&gt;
@@ -5248,7 +5351,8 @@ X \xrightarrow{P} Y
       &lt;/g&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;关系数据库管理系统执行连接操作的示意图&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;关系数据库管理系统执行连接操作的示意图&lt;/p&gt;
 &lt;p&gt;  如果在SC表&lt;code&gt;Sno&lt;/code&gt;上建立了索引的话，就不用每次全表扫描SC表了，而是根据&lt;code&gt;Sno&lt;/code&gt;值通过索引找到相应的SC元组。用索引查询SC中满足条件的元组一般会比全表扫描快。&lt;/p&gt;
 &lt;p&gt;  若在等值连接中把目标列中重复的属性列去掉则为&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/#20241116213553CST&#34;&gt;自然连接&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241117141924CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例50&lt;/strong&gt;：对&lt;a class=&#34;link&#34; href=&#34;#20241116202830CST&#34;&gt;例49&lt;/a&gt;用自然连接完成。&lt;/p&gt;
@@ -5287,9 +5391,10 @@ X \xrightarrow{P} Y
 &lt;p&gt;  &lt;span id=&#34;20241116235932CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例52&lt;/strong&gt;：查询每一门课的间接先修课（即先修课的先修课）。&lt;/p&gt;
 &lt;p&gt;  在Course表中只有每门课的直接先修课信息，而没有先修课的先修课。要得到这个信息，必须先对一门课找到其先修课，再按此先修课的课程号查找它的先修课程。这就要将Course表与其自身连接。&lt;br&gt;
   为此，要为Course表取两个别名，一个是&lt;code&gt;FIRST&lt;/code&gt;，另一个是&lt;code&gt;SECOND&lt;/code&gt;。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241117132302CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 806.25 276.5861&#34; style=&#34;max-width:806.25;&#34;&gt;
   &lt;g id=&#34;_layer_1&#34;&gt;
     &lt;g&gt;
@@ -6140,7 +6245,8 @@ X \xrightarrow{P} Y
       &lt;/g&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;Course表的两个别名FIRST和SECOND&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;Course表的两个别名FIRST和SECOND&lt;/p&gt;
 &lt;p&gt;  完成该查询的SQL语句为&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -8497,9 +8603,10 @@ R(A_1,A_2,\cdots,A_n)
 &lt;/h3&gt;&lt;p&gt;  早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为&lt;strong&gt;关系代数(relational algebra)&lt;/strong&gt;‌和&lt;strong&gt;关系演算(relational calculus)&lt;/strong&gt;‌关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为元组关系演算和域关系演算。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数、元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。&lt;br&gt;
   关系代数、元组关系演算和域关系演算均是抽象的查询语言，这些抽象的语言与具体的关系数据库管理系统中实现的实际语言并不完全一样。但它们能用作评估实际系统中查询语言能力的标准或基础。实际的查询语言除了提供关系代数或关系演算的功能外，还提供了许多附加功能，例如聚集函数(aggregation function)。关系赋值、算术运算等，使得目前实际查询语言的功能十分强大。&lt;br&gt;
   另外，还有一种介于关系代数和关系演算之间的结构化查询语言(Structured Query Language,SQL)。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言(Data Control Language,DCL)于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241024185641CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 556.3726 126.4691&#34; style=&#34;max-width:556.3726;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(0 69.1361)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;关系数据语言&lt;/tspan&gt;&lt;/text&gt;
@@ -8565,7 +8672,8 @@ R(A_1,A_2,\cdots,A_n)
     &lt;text transform=&#34;translate(432.2274 87.411)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate; letter-spacing: -.023em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;E&lt;/tspan&gt;&lt;/text&gt;
     &lt;text transform=&#34;translate(443.0452 87.411)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate; letter-spacing: -.955em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;关系数据语言&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;关系数据语言&lt;/p&gt;
 &lt;p&gt;  特别地，SQL语言是一种高度非过程化的语言，用户不必请求数据库管理员为其建立特殊的存取路径，存取路径的选择由关系数据库管理系统的优化机制来完成。例如，在一个存储有几百万条记录的关系中查找符合条件的某一个或某一些记录，从原理上讲可以有多种查找方法。例如，可以顺序扫描这个关系，也可以通过某一种索引来查找。不同的查找路径（或者称为存取路径）的效率是不同的，有的完成某一个查询可能很快，有的可能极慢。关系数据库管理系统中研究和开发了查询优化方法，系统可以自动选择较优的存取路径，提高查询效率。&lt;/p&gt;
 &lt;span id=&#34;20241202180721CST&#34;&gt;&lt;/span&gt;
 &lt;h2 id=&#34;关系的完整性&#34;&gt;关系的完整性
@@ -8607,9 +8715,10 @@ R(A_1,A_2,\cdots,A_n)
 &lt;p&gt;  &lt;span id=&#34;20241025092202CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例3&lt;/strong&gt;：在 \(学生（\underline{学号}，姓名，性别，专业号，年龄，班长）\) 关系中，“学号”属性是主码，“班长”属性表示该学生所在班级的班长的学号，它引用了本关系“学号”属性, 即“班长”必须是确实存在的学生的学号。&lt;/p&gt;
 &lt;p&gt;  这三个例子说明关系与关系之间存在着相互引用、相互约束的情况。下面先引入外码 的概念，然后给出表达关系之间相互引用约束的参照完整性的定义。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241025092415CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义5（参照关系）&lt;/strong&gt;：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的&lt;strong&gt;外码(foreign key)&lt;/strong&gt;，并称基本关系 \(R\) 为&lt;strong&gt;参照关系(referencing relation)&lt;/strong&gt;，基本关系 \(S\) 为被&lt;strong&gt;参照关系(referenced relation)&lt;/strong&gt;‌或&lt;strong&gt;目标关系(target relation)&lt;/strong&gt;，关系 \(R\) 和 \(S\) 不一定是不同的关系。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241025093632CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 349.8593 72.5652&#34; style=&#34;max-width:349.8593;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
@@ -8652,14 +8761,16 @@ R(A_1,A_2,\cdots,A_n)
     &lt;line x1=&#34;78.2828&#34; y1=&#34;63.7381&#34; x2=&#34;166.7893&#34; y2=&#34;63.7381&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;163.9807 67.4413 165.554 63.7381 163.9807 60.035 172.759 63.7381 163.9807 67.4413&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;参照关系与被参照关系&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;参照关系与被参照关系&lt;/p&gt;
 &lt;p&gt;  显然，目标关系 \(S\) 的主码 \(K_s\) 和参照关系 \(S\) 的外码 \(F\) 必须定义在同一个（或同一组） 域上。&lt;/p&gt;
 &lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;中，学生关系的“专业号”属性与专业关系的主码“专业号”相对应，因此“专业号”属性是学生关系的外码。这里专业关系是被参照关系，学生关系为参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(a)所示。&lt;br&gt;
   在&lt;a class=&#34;link&#34; href=&#34;#20241025091438CST&#34;&gt;例2&lt;/a&gt;中，选修关系的“学号”属性与学生关系的主码“学号”相对应：选修关系的“课程号”属性与课程关系的主码“课程号”相对应，因此“学号”和“课程号”属性 是选修关系的外码。这里学生关系和课程关系均为被参照关系，选修关系为参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(b)所示。&lt;br&gt;
   在&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(c)所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241025100110CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 597.8379 194.4097&#34; style=&#34;max-width:597.8379;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
@@ -8734,7 +8845,8 @@ R(A_1,A_2,\cdots,A_n)
       &lt;text transform=&#34;translate(291.9872 190.5397)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;c&lt;/tspan&gt;&lt;tspan x=&#34;9.5762&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;关系的参照图&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;关系的参照图&lt;/p&gt;
 &lt;p&gt;  需要指出的是，外码并不一定要与相应的主码同名，如例2.3中学生关系的主码为学号，外码为班长。不过，在实际应用中为了便于识别，当外码与相应的主码属于不同关系时，往往给它们取相同的名字。&lt;/p&gt;
 &lt;p&gt;  参照完整性规则就是定义外码与主码之间的引用规则。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;参照完整性规则&lt;/strong&gt;：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须： &lt;br&gt;
@@ -8831,9 +8943,10 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 \tag{18}
     \]
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(a)、&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(b)分别为具有三个属性列的关系 \(R\) 、 \(S\) 。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(c)为关系 \(R\) 与 \(S\) 的并。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(d)为关系 \(R\) 与 \(S\) 的交。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(e)为关系 \(R\) 和 \(S\) 的差。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(f)为关系 \(R\) 和 \(S\) 的Cartesian乘积。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241026102728CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 729.9443 643.1951&#34; style=&#34;max-width:729.9443;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
@@ -9369,7 +9482,8 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
     &lt;text transform=&#34;translate(465.7891 639.325)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate; letter-spacing: .097em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;f&lt;/tspan&gt;&lt;/text&gt;
     &lt;text transform=&#34;translate(474.4107 639.325)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;传统集合运算举例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;传统集合运算举例&lt;/p&gt;
 &lt;h3 id=&#34;专门的关系运算&#34;&gt;专门的关系运算
 &lt;/h3&gt;&lt;p&gt;  专门的关系运算包括选择、投影、连接、除运算等。为了叙述上的方便，先引入几个记号。&lt;/p&gt;
 &lt;p&gt;  (1) 设关系模式为 \(R(A_1,A_2,\cdots,A_n)\)，它的一个关系设为 \(R\) 。 \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。 \(t[A_i]\) 则表示元组 \(t\) 中相应于属性 \(i\) 的一个分量。&lt;br&gt;
@@ -9382,9 +9496,10 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
     \]
   它表示 \(R\) 中属性组 \(X\) 上值为 \(x\) 的诸元组在 \(Z\) 上分量的集合。&lt;br&gt;
   例如，&lt;a class=&#34;link&#34; href=&#34;#20241026115500CST&#34;&gt;图5&lt;/a&gt;中， \(x_1\) 在 \(R\) 中的象集为 \(Z_{x_1}=\set{{Z_1,Z_2,Z_3}}\) ， \(x_2\) 在 \(R\) 中的象集为 \(Z_{x_2}=\set{Z_2,Z_3}\) ， \(x_3\) 在 \(R\) 中的象集为 \(Z_{x_3}=\set{Z_1,Z_3}\) 。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241026115500CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 201 317.5239&#34; style=&#34;max-width:201;&#34;&gt;
   &lt;path id=&#34;MJX-8-TEX-I-1D445&#34; d=&#34;M5.8369.8422c-.3296,0-.5249-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3296.0671-.531.2014-.6042.0244-.0122,1.0864-.0183,3.1859-.0183,2.0995.0122,3.2347.0305,3.4056.0549.6836.0977,1.2573.2685,1.7211.5127s.7934.5249.9887.8422.3235.5798.3845.7873.0977.415.1099.6225c0,.5493-.177,1.062-.531,1.538s-.7629.8422-1.2267,1.0986-.8728.4638-1.2267.6225-.5859.238-.6958.238l.1282.0915c.8178.4638,1.2267,1.1352,1.2267,2.0141,0,.1343-.0305.5066-.0915,1.1169s-.0915,1.1108-.0915,1.5014v.1648c0,.2197.0061.3906.0183.5127s.0793.2319.2014.3296.2807.1526.4761.1648c.3418,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5554.4761-.8606.061-.1709.1099-.2746.1465-.3113s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5676-.4394,1.0436-.4638.6958-1.0131,1.0436-1.6479,1.0436h-.1648c-.7446,0-1.361-.1526-1.8493-.4577-.4883-.3052-.7568-.7812-.8056-1.4282,0-.3296.0915-.8422.2746-1.538s.2746-1.1413.2746-1.3366c0-.6225-.2624-1.0742-.7873-1.3549-.1831-.0854-.3357-.1343-.4577-.1465s-.5554-.0244-1.3-.0366h-1.2634l-.5859,2.3803c-.4028,1.6112-.6042,2.4291-.6042,2.4535,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3113.0366.3357,0,.6042.0366h.5676c.0732.0977.1099.1526.1099.1648s-.0183.1221-.0549.3296c-.0488.1587-.1099.2746-.1831.3479h-.2746c-.4394-.0244-1.239-.0366-2.3986-.0366h-1.9957c-.2075,0-.3357.0061-.3845.0183-.2075,0-.3113-.0549-.3113-.1648,0-.0244.0183-.1099.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1099c.3296,0,.6958-.0183,1.0986-.0549.1709-.0366.2869-.1099.3479-.2197.0366-.0488.4761-1.7455,1.3183-5.0901.8422-3.3446,1.2634-5.1084,1.2634-5.2915,0-.0854-.3479-.1404-1.0436-.1648h-.0005ZM13.1608,2.3619c0-.3906-.1282-.7202-.3845-.9887s-.7812-.4394-1.5746-.5127h-.4211c-.2563,0-.4883-.0061-.6958-.0183h-.4028c-.5737,0-.9033.061-.9887.1831-.0122.0366-.2197.8483-.6225,2.4352-.4028,1.5868-.6042,2.3986-.6042,2.4352,0,.0122.4211.0183,1.2634.0183.9521-.0122,1.5868-.0549,1.9042-.1282.7812-.1221,1.3915-.4822,1.831-1.0803.1953-.2807.3601-.6469.4944-1.0986s.2014-.8667.2014-1.2451h-.0002Z&#34;/&gt;
   &lt;g&gt;
@@ -9453,7 +9568,8 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
     &lt;path id=&#34;MJX-14-TEX-I-1D44D-3&#34; d=&#34;M141.8104,302.3301c0-.1831.0366-.3479.1099-.4944,0-.0122,1.6175-1.8372,4.8524-5.475,3.2349-3.6378,4.8646-5.475,4.889-5.5116l-.1831-.0366h-2.0142c-.415,0-.7569.0122-1.0254.0366s-.6043.0916-1.0071.2014-.7324.2686-.9888.4761-.531.5127-.824.9156-.5249.885-.6958,1.4466c-.0122.0366-.0244.0732-.0366.1099s-.0244.0671-.0366.0916-.0183.0549-.0183.0916-.0061.0549-.0183.0549l-.0183.0366c-.0366.061-.1526.0916-.3479.0916-.2075,0-.3296-.061-.3662-.1831l.586-1.9776c.1709-.5493.3357-1.0987.4944-1.648.0977-.3418.1709-.5249.2197-.5493.0366-.0244,1.4649-.0366,4.2848-.0366h4.2298c.061.061.0916.1099.0916.1465,0,.0244-.0366.1831-.1099.4761-6.4455,7.2634-9.6743,10.9073-9.6865,10.9317l-.0549.0549h1.6297c1.1597-.0122,1.7884-.0244,1.886-.0366.9156-.1099,1.6663-.4089,2.2523-.8972s1.0681-1.3855,1.4466-2.6917c.0977-.3052.1648-.4883.2014-.5493s.116-.0916.238-.0916h.0732c.2564,0,.3845.0671.3845.2014-.9888,3.2472-1.5198,4.889-1.5931,4.9257-.0366.0244-1.5076.0366-4.413.0366h-3.2227c-.8057,0-1.2085-.0488-1.2085-.1465v-.0003Z&#34;/&gt;
     &lt;path id=&#34;MJX-14-TEX-N-33-3&#34; d=&#34;M155.5032,299.2293c-.233,0-.4143-.0734-.5437-.2201s-.1985-.3366-.2071-.5696c0-.4747.2071-.8976.6214-1.2687s.9148-.5567,1.5017-.5567c.3021,0,.4919.0043.5696.0129.6387.1036,1.1263.3323,1.4629.6861s.5092.7379.5178,1.1522c0,.4488-.1467.8846-.4402,1.3075s-.6991.7293-1.2169.9192l-.0388.0259c0,.0086.0388.0216.1165.0388s.2028.0561.3754.1165.3366.151.4919.2719c.7077.4574,1.0616,1.0616,1.0616,1.8124,0,.6818-.2675,1.2773-.8026,1.7865-.5351.5092-1.2126.7638-2.0325.7638-.6904,0-1.286-.1856-1.7865-.5567-.5006-.3711-.7509-.8415-.7509-1.4111,0-.2417.0777-.4358.233-.5826s.3495-.2244.5826-.233c.2417,0,.4402.0777.5955.233s.233.3495.233.5826c0,.0949-.0129.1812-.0388.2589s-.0561.1467-.0906.2071-.082.1122-.1424.1554-.1122.0777-.1554.1036-.0863.0432-.1295.0518c-.0432.0086-.0777.0216-.1036.0388l-.0518.0129c.4402.3884.9753.5826,1.6053.5826.4747,0,.8329-.2287,1.0745-.6861.1467-.2848.2201-.7207.2201-1.3075v-.2589c0-.8199-.2762-1.3679-.8285-1.6441-.1295-.0518-.3927-.082-.7897-.0906l-.5437-.0129-.0388-.0259c-.0173-.0259-.0259-.0949-.0259-.2071,0-.1554.0345-.233.1036-.233.2417,0,.4919-.0216.7509-.0647.2934-.0432.561-.2244.8026-.5437s.3625-.8026.3625-1.4499v-.1036c0-.4919-.151-.8329-.4531-1.0227-.1899-.1208-.3927-.1812-.6085-.1812-.2762,0-.5308.0475-.7638.1424s-.397.1942-.4919.2978-.1424.1554-.1424.1554h.0388c.0259.0086.0604.0173.1036.0259s.0863.0302.1295.0647.0949.0647.1554.0906.1036.0734.1295.1424.0604.1338.1036.1942.0561.1467.0388.2589c0,.1899-.0604.3582-.1812.5049s-.315.2244-.5826.233l-.0002-.0002Z&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;象集举例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;象集举例&lt;/p&gt;
 &lt;p&gt;  下面给出这些专门的关系运算的定义。&lt;/p&gt;
 &lt;h4 id=&#34;选择&#34;&gt;选择
 &lt;/h4&gt;&lt;p&gt;  选择又称为&lt;strong&gt;限制(restriction)&lt;/strong&gt;。它是在关系 \(R\) 中选择满足给定条件的诸元组，记作&lt;/p&gt;
@@ -9515,9 +9631,10 @@ X_1\theta Y_1
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表5&lt;/p&gt;
 &lt;p&gt;  选择运算实际上是从关系火中选取使逻辑表达式 \(F\) 为真的元组。这是从行的角度进行的运算。&lt;/p&gt;
 &lt;p&gt;  设有一个学生—课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;所示。下面的多个例子将对这三个关系进行运算。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241026152329CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 715.6612 629.822&#34; style=&#34;max-width:715.6612;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;157.5805&#34; y=&#34;21.2715&#34; width=&#34;400&#34; height=&#34;210.5397&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -9857,7 +9974,8 @@ X_1\theta Y_1
     &lt;text transform=&#34;translate(562.1893 554.3641)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate; letter-spacing: -.025em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;/text&gt;
     &lt;text transform=&#34;translate(568.0394 554.3641)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;c&lt;/tspan&gt;&lt;tspan x=&#34;9.5762&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6&amp;emsp;学生—课程数据库&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6&amp;emsp;学生—课程数据库&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241026152443CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例4&lt;/strong&gt;：查询信息系（IS系）全体学生。&lt;/p&gt;
 &lt;span id=&#34;20241026152508CST&#34;&gt;&lt;/span&gt;\[
 \sigma_{\text{Sdept}=\text{&#39;IS&#39;}}(\text{Student})
@@ -9870,9 +9988,10 @@ X_1\theta Y_1
 \tag{23}
     \]
 &lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026154508CST&#34;&gt;图7&lt;/a&gt;(b)所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241026154508CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 402.364 390.3124&#34; style=&#34;max-width:402.364;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
@@ -10081,7 +10200,8 @@ X_1\theta Y_1
     &lt;text transform=&#34;translate(195.0499 385.5215)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate; letter-spacing: -.018em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;b&lt;/tspan&gt;&lt;/text&gt;
     &lt;text transform=&#34;translate(205.9762 385.5215)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图7&amp;emsp;选择运算举例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图7&amp;emsp;选择运算举例&lt;/p&gt;
 &lt;h4 id=&#34;投影projection&#34;&gt;投影(projection)
 &lt;/h4&gt;&lt;p&gt;  关系 \(R\) 上的投影是从 \(R\) 中选择出若干属性列组成新的关系。记作&lt;/p&gt;
 &lt;span id=&#34;20241026154923CST&#34;&gt;&lt;/span&gt;\[
@@ -10103,9 +10223,10 @@ X_1\theta Y_1
 \tag{26}
     \]
 &lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026160858CST&#34;&gt;图8&lt;/a&gt;(b)所示。Student关系原来有4个元组，而投影结果取消了重复的CS元组，因此只有三个元组。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241026160858CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 470.2858 264.2768&#34; style=&#34;max-width:470.2858;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;.5&#34; y=&#34;.5118&#34; width=&#34;250.8571&#34; height=&#34;240&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -10171,7 +10292,8 @@ X_1\theta Y_1
   &lt;/g&gt;
   &lt;text transform=&#34;translate(95.1203 262.1161)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.045em;&#34;&gt;（a&lt;/tspan&gt;&lt;tspan x=&#34;26.4062&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.501em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
   &lt;text transform=&#34;translate(378.9805 262.1167)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.045em;&#34;&gt;（b&lt;/tspan&gt;&lt;tspan x=&#34;27.8638&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.501em;&#34;&gt;）&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;投影运算举例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;投影运算举例&lt;/p&gt;
 &lt;h4 id=&#34;连接join&#34;&gt;连接(join)
 &lt;/h4&gt;&lt;p&gt;  连接也称为 \(\theta\) 连接。它是从两个关系的Cartesian乘积中选取属性间满足一定条件的元组。记作&lt;/p&gt;
 &lt;span id=&#34;20241026161052CST&#34;&gt;&lt;/span&gt;\[
@@ -10192,9 +10314,10 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
     \]
 &lt;p&gt;  一般的连接操作是从行的角度进行运算，但自然连接还需要取消重复列，所以是同时从行和列的角度进行运算。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027090331CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例8&lt;/strong&gt;：设&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(a)和(b)分别为关系 \(R\) 和关系 \(S\) ，图&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(c)为非等值连接及 \( R \underset{C\lt E}{\Join} S \) 的结果，&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(d)为等值连接 \( R \underset{R.B=S.B}{\Join} S \) 的结果，&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(e)为自然连接 \( R \Join S \) 的结果。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241027101851CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 650.5886 553.9261&#34; style=&#34;max-width:650.5886;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
@@ -10608,12 +10731,14 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
       &lt;text transform=&#34;translate(471.8926 551.766)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;)自然连接&lt;/tspan&gt;&lt;/text&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图9&amp;emsp;连接运算举例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图9&amp;emsp;连接运算举例&lt;/p&gt;
 &lt;p&gt;  两个关系 \(R\) 和 \(S\) 在做自然连接时，选择两个关系在公共属性上值相等的元组构成新的关系。此时，关系 \(R\) 中某些元组有可能在 \(S\) 中不存在公共属性上值相等的元组，从而造成 \(R\) 中这些元组在操作时被舍弃了，同样， \(S\) 中某些元组也可能被舍弃。这些被舍弃的元组称为&lt;strong&gt;悬浮元组(dangling tuple)&lt;/strong&gt;，例如，在&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(e)的自然连接中， \(R\) 中的第 \(4\) 个元组， \(S\) 中的第 \(5\) 个元组都是被舍弃掉的悬浮元组。&lt;br&gt;
   如果把悬浮元组也保存在结果关系中，而在其他属性上填空值(NULL)，那么这种连接就叫做&lt;span id=&#34;20241117142036CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;外连接(outer join)&lt;/strong&gt;，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做&lt;strong&gt;左外连接（left outer join或left join）&lt;/strong&gt;，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做&lt;strong&gt;右外连接（right outer join或right join）&lt;/strong&gt;，记作 \(R⟖S\) 。在&lt;a class=&#34;link&#34; href=&#34;#20241027105236CST&#34;&gt;图10&lt;/a&gt;中，(a)是&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241027105236CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 723.3492 278.6628&#34; style=&#34;max-width:723.3492;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(62.2503 274.7927)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate; letter-spacing: .004em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;/text&gt;
@@ -10879,7 +11004,8 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
     &lt;text transform=&#34;translate(576.0311 274.793)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate; letter-spacing: -.025em;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;(&lt;/tspan&gt;&lt;/text&gt;
     &lt;text transform=&#34;translate(581.8812 274.793)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;c&lt;/tspan&gt;&lt;tspan x=&#34;9.5762&#34; y=&#34;0&#34;&gt;)右外连接&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图10&amp;emsp;外连接运算举例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图10&amp;emsp;外连接运算举例&lt;/p&gt;
 &lt;h4 id=&#34;除运算&#34;&gt;除运算
 &lt;/h4&gt;&lt;p&gt;  设关系 \(R\) 除以关系 \(S\) 的结果为关系 \(T\) ，则 \(T\) 包含所有在 \(R\) 但不在 \(S\) 中的属性及其值，且 \(T\) 的元组与 \(S\) 的元组的所有组合都在 \(R\) 中。&lt;br&gt;
   下面用&lt;a class=&#34;link&#34; href=&#34;#20241027111504CST&#34;&gt;象集&lt;/a&gt;来定义除法：&lt;br&gt;
@@ -10903,9 +11029,10 @@ R\div S=\set{t_r[X]|(t_r\in R)\land(\Pi_Y (S)\sube Y_x)}
 R \div S = \set{a_1}
 \tag{31}
     \]
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241027135213CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 356.635 325.9019&#34; style=&#34;max-width:356.635;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
@@ -11092,13 +11219,15 @@ R \div S = \set{a_1}
       &lt;text transform=&#34;translate(276.4284 322.0316)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.006em;&#34;&gt;c&lt;/tspan&gt;&lt;tspan x=&#34;9.5762&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图11&amp;emsp;除运算举例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图11&amp;emsp;除运算举例&lt;/p&gt;
 &lt;p&gt;  下面再以学生—课程数据库（&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;）为例，给出几个综合应用多种关系代数运算进行查询的例子。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027140259CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例10&lt;/strong&gt;：查询1号课程和3号课程都选秀了的学生的号码。&lt;br&gt;
   首先建立一个临时关系 \(K\) ：&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241027141922CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 121.5714 129.2547&#34; style=&#34;max-width:121.5714;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;.5&#34; y=&#34;23.3053&#34; width=&#34;120.5714&#34; height=&#34;105&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -11117,7 +11246,8 @@ R \div S = \set{a_1}
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(54.3147 15.8396)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;K&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图12&amp;emsp;临时关系 \(\text{K}\)&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图12&amp;emsp;临时关系 \(\text{K}\)&lt;/p&gt;
 &lt;p&gt;  然后求&lt;/p&gt;
 &lt;span id=&#34;20241027142101CST&#34;&gt;&lt;/span&gt;\[
 \Pi_{\text{Sno},\text{Cno}}(\text{SC})\div \text{K}
@@ -11597,9 +11727,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 \tag{45}
     \]
 &lt;p&gt;  则 \(S\) 是 \(\text{dom}(\phi)\) 中各阈值中元素的Cartesian积与 \(R\) 的差集。结果如&lt;a class=&#34;link&#34; href=&#34;#20241105214507CST&#34;&gt;图13&lt;/a&gt;(b)所示。注意，在做Cartesian积时各个域中的元素不能搞混。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241105214507CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 334.227 297.0613&#34; style=&#34;max-width:334.227;&#34;&gt;
   &lt;path id=&#34;MJX-36-TEX-I-1D445&#34; d=&#34;M4.1066,141.5085c-.3296,0-.5249-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3296.0671-.531.2014-.6042.0244-.0122,1.0864-.0183,3.1859-.0183,2.0995.0122,3.2347.0305,3.4056.0549.6836.0977,1.2573.2685,1.7211.5127s.7934.5249.9887.8422.3235.5798.3845.7873.0977.415.1099.6225c0,.5493-.177,1.062-.531,1.538s-.7629.8422-1.2267,1.0986-.8728.4638-1.2267.6225-.5859.238-.6958.238l.1282.0915c.8178.4638,1.2267,1.1352,1.2267,2.0141,0,.1343-.0305.5066-.0915,1.1169s-.0915,1.1108-.0915,1.5014v.1648c0,.2197.0061.3906.0183.5127s.0793.2319.2014.3296.2807.1526.4761.1648c.3418,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5554.4761-.8606.061-.1709.1099-.2746.1465-.3113s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5676-.4394,1.0436-.4638.6958-1.0131,1.0436-1.6479,1.0436h-.1648c-.7446,0-1.361-.1526-1.8493-.4577-.4883-.3052-.7568-.7812-.8056-1.4282,0-.3296.0915-.8422.2746-1.538s.2746-1.1413.2746-1.3366c0-.6225-.2624-1.0742-.7873-1.3549-.1831-.0854-.3357-.1343-.4577-.1465s-.5554-.0244-1.3-.0366h-1.2634l-.5859,2.3803c-.4028,1.6112-.6042,2.4291-.6042,2.4535,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3113.0366.3357,0,.6042.0366h.5676c.0732.0977.1099.1526.1099.1648s-.0183.1221-.0549.3296c-.0488.1587-.1099.2746-.1831.3479h-.2746c-.4394-.0244-1.239-.0366-2.3986-.0366h-1.9957c-.2075,0-.3357.0061-.3845.0183-.2075,0-.3113-.0549-.3113-.1648,0-.0244.0183-.1099.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1099c.3296,0,.6958-.0183,1.0986-.0549.1709-.0366.2869-.1099.3479-.2197.0366-.0488.4761-1.7455,1.3183-5.0901s1.2634-5.1084,1.2634-5.2915c0-.0854-.3479-.1404-1.0436-.1648h-.0005,0ZM11.4305,143.0282c0-.3906-.1282-.7202-.3845-.9887s-.7812-.4394-1.5746-.5127h-.4211c-.2563,0-.4883-.0061-.6958-.0183h-.4028c-.5737,0-.9033.061-.9887.1831-.0122.0366-.2197.8483-.6225,2.4352-.4028,1.5868-.6042,2.3986-.6042,2.4352,0,.0122.4211.0183,1.2634.0183.9521-.0122,1.5868-.0549,1.9042-.1282.7812-.1221,1.3915-.4822,1.831-1.0803.1953-.2807.3601-.6469.4944-1.0986s.2014-.8667.2014-1.2451h-.0002,0Z&#34;/&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -11748,14 +11879,16 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
       &lt;path id=&#34;MJX-13-TEX-N-31-4&#34; d=&#34;M312.852,244.619l-.1683.0647c-.1208.0431-.2934.0863-.5177.1294s-.4746.0733-.7507.0906h-.2459v-.5954h.2459c.4056-.0173.7809-.082,1.1261-.1941s.5868-.2157.7248-.3106.2589-.1898.3624-.2848c.0173-.0259.069-.0388.1553-.0388.0777,0,.151.0259.22.0777v3.87l.0129,3.883c.0604.0604.1122.0992.1553.1165s.1467.0345.3106.0518.4314.0259.8025.0259h.3365v.5954h-.1424c-.1812-.0259-.8672-.0388-2.058-.0388-1.1735,0-1.8509.0129-2.0321.0388h-.1553v-.5954h.8284c.1381,0,.2459-.0043.3236-.0129s.1467-.0216.2071-.0388.0949-.0259.1035-.0259.0345-.0216.0777-.0647.069-.0604.0777-.0518v-6.6917h0Z&#34;/&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图13&amp;emsp;关系演算安全限制示例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图13&amp;emsp;关系演算安全限制示例&lt;/p&gt;
 &lt;h3 id=&#34;域关系演算语言qbe&#34;&gt;域关系演算语言QBE
 &lt;/h3&gt;&lt;p&gt;  关系演算的另一种形式是域关系演算。域关系演算以元组变量的分量（即&lt;strong&gt;域变量&lt;/strong&gt;）作为谓词变元的基本对象。1975年由M.M.Zloof提出的QBE就是一个很有特色的域关系演算语言，该语言于1978年在IBM370上得以实现。&lt;br&gt;
   QBE是Query By Example（即通过例子进行查询）的简称，它最突出的特点是操作方式。它是一种高度非过程化的基于屏幕表格的查询语言，用户通过终端屏幕编辑程序，以填写表格的方式构造查询要求，而查询结果也是以表格形式显示，因此非常直观、易学易用。&lt;br&gt;
   QBE中用示例元素来表示查询结果可能的情况，示例元素实质上就是域变量。QBE操作框架如&lt;a class=&#34;link&#34; href=&#34;#20241105222505CST&#34;&gt;图14&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241105222505CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 480.5714 246.5706&#34; style=&#34;max-width:480.5714;&#34;&gt;
   &lt;g&gt;
     &lt;line y1=&#34;49.5379&#34; x2=&#34;480.5714&#34; y2=&#34;49.5379&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -11809,7 +11942,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;line x1=&#34;281.9674&#34; y1=&#34;215.7602&#34; x2=&#34;184.6099&#34; y2=&#34;174.6536&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;188.6377 172.3346 185.748 175.1342 185.7569 179.1576 179.1103 172.3316 188.6377 172.3346&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图14&amp;emsp;QBE操作框架&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图14&amp;emsp;QBE操作框架&lt;/p&gt;
 &lt;p&gt;  下面以学生—课程数据库为例，说明QBE的用法。&lt;/p&gt;
 &lt;h4 id=&#34;检索操作-1&#34;&gt;检索操作
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;1. 简单查询&lt;/strong&gt;&lt;/p&gt;
@@ -12558,9 +12692,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;数据库系统&lt;/strong&gt;是由数据库、数据库管理系统（及其应用开发工具）、应用程序和数据库管理员(DataBase Administrator,DBA)组成的存储、管理、处理和维护数据的系统。应当指出的是，数据库的建立、使用和维护等工作只靠一个数据库管理系统远远不够，还要有专门的人员来完成，这些人被称为&lt;strong&gt;数据库管理员&lt;/strong&gt;。&lt;br&gt;
   数据库系统可以用&lt;a class=&#34;link&#34; href=&#34;#20241016225051CST&#34;&gt;图1&lt;/a&gt;表示。其中数据库提供数据的存储功能，数据库管理系统提供数据的组织、存取、管理和维护等基础功能，数据库应用系统根据应用需求使用数据库，数据库管理员负责全面管理数据库系统。&lt;a class=&#34;link&#34; href=&#34;#20241016231208CST&#34;&gt;图2&lt;/a&gt;是引入数据库后计算机系统的层次结构。&lt;br&gt;
   在一般不引起混淆的情况下，人们常常把数据库系统简称为&lt;strong&gt;数据库&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;p&gt;&lt;div&gt;
             &lt;span id=&#34;20241016225051CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 456.5 499.1&#34; style=&#34;max-width:456.5;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
@@ -12790,10 +12925,12 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;polyline points=&#34;380.8001 303.8 380.8001 462.6 201.3 462.6&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;204.1 458.9 202.5 462.6 204.1 466.3 195.3 462.6 204.1 458.9&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;数据库系统&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图1&amp;emsp;数据库系统&lt;/p&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241016231208CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 325.755 325.7541&#34; style=&#34;max-width:325.755;&#34;&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(117.8444 122.904)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;操&lt;/tspan&gt;&lt;/text&gt;
@@ -12832,7 +12969,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;text transform=&#34;translate(182.9032 24.8741)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;统&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
   &lt;path d=&#34;M162.878,325.2541C73.3429,325.2541.5,252.4122.5,162.878S73.3429.5,162.878.5s162.377,72.8429,162.377,162.378-72.8419,162.3761-162.377,162.3761h0Z&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;引入数据库后计算机系统的层次结构&lt;/p&gt;&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图2&amp;emsp;引入数据库后计算机系统的层次结构&lt;/p&gt;&lt;/p&gt;
 &lt;h3 id=&#34;数据管理技术的产生和发展&#34;&gt;数据管理技术的产生和发展
 &lt;/h3&gt;&lt;p&gt;  数据库技术是应数据管理任务的需要而产生的。数据管理是指对数据进行分类、组织、编码、存储、检索和维护，它是数据处理的中心问题。而数据的处理是指对各种数据进行收集、存储、加工和传播的一系列活动的总和。&lt;br&gt;
   在应用需求的推动下，在计算机硬件、软件发展的基础上，数据管理技术经历了人工管理、文件系统、数据库系统三个阶段。这三个阶段的特点及其比较如下表所示。&lt;/p&gt;
@@ -12918,9 +13056,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;&lt;strong&gt;4. 数据不具有独立性&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  数据的逻辑结构或物理结构发生变化后，必须对应用程序做相应的修改，数据完全依赖于应用程序，称之为数据缺乏独立性，这就加重了程序员的负担。&lt;br&gt;
   在人工管理阶段，应用程序与数据之间的一一对应关系可用下图表示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241017124034CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 433.3 298.8&#34; style=&#34;max-width:433.3;&#34;&gt;
   &lt;g id=&#34;_layer_1&#34;&gt;
     &lt;g&gt;
@@ -12971,7 +13110,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
       &lt;/g&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;人工管理阶段应用程序与数据之间的一一对应关系&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图3&amp;emsp;人工管理阶段应用程序与数据之间的一一对应关系&lt;/p&gt;
 &lt;h4 id=&#34;文件系统阶段&#34;&gt;文件系统阶段
 &lt;/h4&gt;&lt;p&gt;  20世纪50年代后期到60年代中期，这时硬件方面已有了磁盘、磁鼓等直接存取存储设备：软件方面，操作系统中已经有了专门的数据管理软件，一般称为文件系统；处理方式上不仅有了批处理，而且能够联机实时处理。&lt;br&gt;
   用文件系统管理数据具有如下特点：&lt;/p&gt;
@@ -12982,9 +13122,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  (1) 数据共享性差，冗余度大。在文件系统中，一个(或一组)文件基本上对应于一个应用程序，即文件仍然是面向应用的。当不同的应用程序具有部分相同的数据时，也必须建立各自的文件，而不能共享相同的数据，因此数据的冗余度大，浪费存储空间。同时由于相同数据的重复存储、各自管理，容易造成数据的不一致性，给数据的修改和维护带来了困难。&lt;br&gt;
   (2) 数据独立性差。文件系统中的文件是为某一特定应用服务的，文件的逻辑结构是针对具体的应用来设计和优化的，因此要想对文件中的数据再增加一些新的应用会很困难。而且，当数据的逻辑结构改变时，应用程序中文件结构的定义必须修改，应用程序中对数据的使用也要改变，因此数据依赖于应用程序，缺乏独立性。可见，文件系统仍然是一个不具有弹性的无整体结构的数据集合，即文件之间是孤立的，不能反映现实世界事物之间的内在联系。&lt;/p&gt;
 &lt;p&gt;  文件系统阶段应用程序与数据之间的关系如下图所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241017130053CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 651.3 354.8&#34; style=&#34;max-width:651.3;&#34;&gt;
   &lt;g id=&#34;_layer_1&#34;&gt;
     &lt;g&gt;
@@ -13056,7 +13197,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
       &lt;/g&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;文件系统阶段应用程序与数据之间的对应关系&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;文件系统阶段应用程序与数据之间的对应关系&lt;/p&gt;
 &lt;h4 id=&#34;数据库系统阶段&#34;&gt;数据库系统阶段
 &lt;/h4&gt;&lt;p&gt;  20世纪60年代后期以来，计算机管理的对象规模越来越大，应用范围越来越广泛，数据量急剧增长，同时多种应用、多种语言互相覆盖地共享数据集合的要求越来越强烈。&lt;br&gt;
   这时硬件已有大容量磁盘，硬件价格下降；软件则价格上升，为编制和维护系统软件及应用程序所需的成本相对增加；在处理方式上，联机实时处理要求更多，并开始提出和考虑分布处理。在这种背景下，以文件系统作为数据管理手段已经不能满足应用的需求，于是为解决多用户、多应用共享数据的需求，使数据为尽可能多的应用服务，数据库技术便应运而生，出现了统一管理数据的专门软件系统&amp;mdash;&amp;mdash;数据库管理系统。&lt;br&gt;
@@ -13242,9 +13384,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h4&gt;&lt;p&gt;  数据库系统实现整体数据的结构化，这是数据库的主要特征之一，也是数据库系统与文件系统的本质区别。&lt;br&gt;
   在文件系统中，文件中的记录内部具有结构，但是记录的结构和记录之间的联系被固化在程序中，需要由程序员加以维护。这种工作模式既加重了程序员的负担，又不利于结构的变动。&lt;br&gt;
   所谓“整体”结构化是指数据库中的数据不再仅仅针对某一个应用，而是面向整个组织或企业：不仅数据内部是结构化的，而且整体是结构化的，数据之间是具有联系的。也就是说，不仅要考虑某个应用的数据结构，还要考虑整个组织的数据结构。例如，一个学校的信息系统中不仅要考虑教务处的课程管理、学生选课管理、成绩管理，还要考虑学生处的学生学籍管理，同时还要考虑研究生院的研究生管理、人事处的教员人事管理、科研处的科研管理等。因此，学校信息系统中的学生数据就要面向各个处室的应用，而不仅仅是教务处的一个学生选课应用。可以参照下图为该校的信息系统组织其中的学生数据。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241017145652CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 781.5001 249.4494&#34; style=&#34;max-width:781.5001;&#34;&gt;
   &lt;rect x=&#34;.5&#34; y=&#34;210.1&#34; width=&#34;152.4&#34; height=&#34;38.4&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -13488,7 +13631,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
       &lt;/g&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;某学校信息系统中的学生数据&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图5&amp;emsp;某学校信息系统中的学生数据&lt;/p&gt;
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241017145652CST&#34;&gt;图5&lt;/a&gt;的数据组织方式为各部门的应用提供了必要的记录，使整体数据结构化了。这就要求在描述数据时不仅要描述数据本身，还要描述数据之间的联系。在数据库系统中，记录的结构和记录之间的联系由数据库管理系统维护，从而减轻了程序员的工作量，提高了工作效率。&lt;br&gt;
   在数据库系统中，不仅数据是整体结构化的，而且存取数据的方式也很灵活，可以存取数据库中的某一个或一组数据项、一个记录或一组记录；而在文件系统中，数据的存取单位是记录，粒度不能细到数据项。&lt;/p&gt;
 &lt;h4 id=&#34;数据的共享性高冗余度低且易扩充&#34;&gt;数据的共享性高、冗余度低且易扩充
@@ -13508,9 +13652,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   (3) 并发(concurrency)控制。当多个用户的并发进程同时存取、修改数据库时，可能会发生相互干扰而得到错误的结果或使得数据库的完整性遭到破坏，因此必须对多用户的并发操作加以控制和协调。&lt;br&gt;
   (4) 数据库恢复(recovery)。计算机系统的硬件故障、软件故障、操作员的失误以及故意破坏也会影响数据库中数据的正确性，甚至造成数据库部分或全部数据的丢失。数据库管理系统必须具有将数据库从错误状态恢复到某一己知的正确状态（亦称为完整状态或一致状态）的功能，这就是数据库的恢复功能。&lt;/p&gt;
 &lt;p&gt;  数据库系统阶段应用程序与数据之间的对应关系可用&lt;a class=&#34;link&#34; href=&#34;#20241017164256CST&#34;&gt;图6&lt;/a&gt;表示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241017164256CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 580.1175 235.7&#34; style=&#34;max-width:580.1175;&#34;&gt;
   &lt;polygon points=&#34;357.3176 73.3 281.9176 73.3 244.2175 116.6 281.9176 159.9 357.3176 159.9 395.0176 116.6 357.3176 73.3&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;polygon points=&#34;357.3176 73.3 281.9176 73.3 244.2175 116.6 281.9176 159.9 357.3176 159.9 395.0176 116.6 357.3176 73.3&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -13654,7 +13799,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   &lt;/g&gt;
   &lt;line x1=&#34;395.0176&#34; y1=&#34;116.6&#34; x2=&#34;461.0176&#34; y2=&#34;116.6&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;line x1=&#34;395.0176&#34; y1=&#34;116.6&#34; x2=&#34;461.0176&#34; y2=&#34;116.6&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6&amp;emsp;数据库系统阶段应用程序与数据之间的对应关系&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图6&amp;emsp;数据库系统阶段应用程序与数据之间的对应关系&lt;/p&gt;
 &lt;p&gt;  综上所述，数据库是长期存储在计算机内有组织、大量、共享的数据集合。它可以供各种用户共享，具有最小冗余度和较高的数据独立性。数据库管理系统在数据库建立、运用和维护时对数据库进行统一控制，以保证数据的完整性和安全性，并在多用户同时使用数据库时进行并发控制，在发生故障后对数据库进行恢复。&lt;br&gt;
   数据库系统的出现使信息系统从以加工数据的程序为中心转向围绕共享的数据库为中心的新阶段。这样既便于数据的集中管理，又能简化应用程序的研制和维护，提高了数据的利用率和相容性，提高了决策的可靠性。&lt;br&gt;
   目前，数据库已经成为现代信息系统的重要组成部分。具有数百G、数百T、甚至数百P字节的数据库已经普遍存在于科学技术、工业、农业、商业、服务业和政府部门的信息系统中。&lt;/p&gt;
@@ -13671,9 +13817,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   第二类中的&lt;strong&gt;物理模型&lt;/strong&gt;是对数据最底层的抽象，它描述数据在系统内部的表示方式和存取方法，或在磁盘或磁带上的存储方式和存取方法，是面向计算机系统的。物理模型的具体实现是数据库管理系统的任务，数据库设计人员要了解和选择物理模型，最终用户则不必考虑物理级的细节。&lt;br&gt;
   数据模型是数据库系统的核心和基础。各种机器上实现的数据库管理系统软件都是基于某种数据模型或者说是支持某种数据模型的。&lt;br&gt;
   为了把现实世界中的具体事物抽象、组织为某一数据库管理系统支持的数据模型，人们常常首先将现实世界抽象为信息世界，然后将信息世界转换为机器世界。也就是说，首先把现实世界中的客观对象抽象为某一种信息结构，这种信息结构并不依赖于具体的计算机系统，不是某一个数据库管理系统支持的数据模型，而是概念级的模型；然后再把概念模型转换为计算机上某一数据库管理系统支持的数据模型，这一过程如&lt;a class=&#34;link&#34; href=&#34;#20241017170805CST&#34;&gt;图7&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241017170805CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 417.8 342.7186&#34; style=&#34;max-width:417.8;&#34;&gt;
   &lt;g id=&#34;_layer_1&#34;&gt;
     &lt;g&gt;
@@ -13740,7 +13887,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
       &lt;/g&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图7&amp;emsp;现实世界中客观对象的抽象过程&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图7&amp;emsp;现实世界中客观对象的抽象过程&lt;/p&gt;
 &lt;p&gt;  从现实世界到概念模型的转换是由数据库设计人员完成的；从概念模型到逻辑模型的转换可以由数据库设计人员完成，也可以用数据库设计工具协助设计人员完成；从逻辑模型到物理模型的转换主要是由数据库管理系统完成的。&lt;br&gt;
   下面首先介绍概念模型，数据模型的组成要素，然后介绍三个常用的数据模型。&lt;/p&gt;
 &lt;h3 id=&#34;概念模型&#34;&gt;概念模型
@@ -13789,9 +13937,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  数据结构、数据操作和数据完整性约束条件这三个方面的内容完整地描述了一个数据模型，其中数据结构是刻画模型性质的最基本的方面。为了使读者对数据模型有一个基本认识，下面着重介绍三种模型的数据结构。&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;注&lt;/strong&gt;：这里讲的数据模型都是逻辑上的，也就是说是用户眼中看到的数据范围。同时它们又都是能用某种语言描述，使计算机系统能够理解，被数据库管理系统支持的数据视图。这些数据模型将以一定的方式存储于数据库系统中，这是数据库管理系统的功能，是数据库管理系统中的物理存储模型。&lt;/p&gt;
 &lt;p&gt;  在格式化模型中实体用记录表示，实体的属性对应记录的数据项（或字段）。实体之间的联系在格式化模型中转换成记录之间的两两联系。在格式化模型中数据结构的单位是基本层次联系。所谓基本层次联系是指两个记录以及它们之间的一对多（包括一对一）的联系，如&lt;a class=&#34;link&#34; href=&#34;#20241017192017CST&#34;&gt;图8&lt;/a&gt;所示。图中 \(R_i\) 位于联系 \(L_{ij}\) 的始点，称为&lt;strong&gt;双亲结点(parent)&lt;/strong&gt;， \(R_j\) 位于联系 \(L_{ij}\) 的终点，称为&lt;strong&gt;子女结点(child)&lt;/strong&gt;。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241017192017CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 296.1084 118.3572&#34; style=&#34;max-width:296.1084;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;.5&#34; y=&#34;.5&#34; width=&#34;72.127&#34; height=&#34;28.0152&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -13827,7 +13976,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;/g&gt;
   &lt;/g&gt;
   &lt;text transform=&#34;translate(80.1082 60.4237)&#34; style=&#34;font-family: NotoSerifSC-ExtraLight, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; font-weight: 200; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;一对&lt;/tspan&gt;&lt;tspan x=&#34;36&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;多&lt;/tspan&gt;&lt;tspan x=&#34;45.4141&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;（&lt;/tspan&gt;&lt;tspan x=&#34;63&#34; y=&#34;0&#34;&gt;包括一对&lt;/tspan&gt;&lt;tspan x=&#34;135&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.023em;&#34;&gt;一&lt;/tspan&gt;&lt;tspan x=&#34;152.5859&#34; y=&#34;0&#34; style=&#34;letter-spacing: -.477em;&#34;&gt;）&lt;/tspan&gt;&lt;tspan x=&#34;162&#34; y=&#34;0&#34;&gt;联系名&lt;/tspan&gt;&lt;/text&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;基本层次联系&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;基本层次联系&lt;/p&gt;
 &lt;h4 id=&#34;层次模型&#34;&gt;层次模型
 &lt;/h4&gt;&lt;p&gt;  层次模型是数据库系统中最早出现的数据模型，层次数据库系统采用层次模型作为数据的组织方式。层次数据库系统的典型代表是IBM公司的IMS(Information Management System)，这是1968年IBM公司推出的第一个大型商用数据库管理系统，曾经得到广泛的使用。&lt;br&gt;
   层次模型用树形结构来表示各类实体以及实体间的联系。现实世界中许多实体之间的联系本来就呈现出一种很自然的层次关系，如行政机构、家族关系等。&lt;/p&gt;
@@ -13839,9 +13989,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   每个记录类型可包含若干个字段，这里记录类型描述的是实体，字段描述实体的属性。各个记录类型及其字段都必须命名。各个记录类型、同一记录类型中各个字段不能同名。每个记录类型可以定义一个排序字段，也称为&lt;strong&gt;码字段&lt;/strong&gt;，如果定义该排序字段的值是唯一的，则它能唯一地标识一个记录值。&lt;br&gt;
   一个层次模型在理论上可以包含任意有限个记录类型和字段，但任何实际的系统都会因为存储容量或实现复杂度而限制层次模型中包含的记录类型个数和字段的个数。&lt;br&gt;
   在层次模型中，同一双亲的子女结点称为&lt;strong&gt;兄弟结点（twin或sibling）&lt;/strong&gt;，没有子女结点的结点称为叶结点。&lt;a class=&#34;link&#34; href=&#34;#20241017200708CST&#34;&gt;图9&lt;/a&gt;给出了一个层次模型的例子。其中， \(R_1\) 为根结点； \(R_2\) 和 \(R_3\) 为兄弟结点，是 \(R_1\) 的子女结点； \(R_4\) 和 \(R_5\) 为兄弟结点，是 \(R_2\) 的子女结点； \(R_3\) 、 \(R_4\) 和 \(R_5\) 为叶结点。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241017200708CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 315.2244 200.9767&#34; style=&#34;max-width:315.2244;&#34;&gt;
   &lt;g&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -13942,13 +14093,15 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;polyline points=&#34;111.5234 120.1515 191.2531 120.1515 191.2531 141.2553&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;187.55 138.4467 191.2531 140.0199 194.9562 138.4467 191.2531 147.225 187.55 138.4467&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图9&amp;emsp;一个层次模型的示例&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图9&amp;emsp;一个层次模型的示例&lt;/p&gt;
 &lt;p&gt;  从&lt;a class=&#34;link&#34; href=&#34;#20241017200708CST&#34;&gt;图9&lt;/a&gt;上可以看出层次模型像一棵倒立的树，结点的双亲是唯一的。&lt;br&gt;
   层次模型的一个基本的特点是，任何一个给定的记录值只能按其层次路径查看，没有一个子女记录值能够脱离双亲记录值而独立存在。&lt;/p&gt;
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241021222552CST&#34;&gt;图10&lt;/a&gt;是一个教员学生层次模型。该层次模型有4个记录类型。记录类型系是根结点,由系编号、系名、办公地点三个字段组成。它有两个子女结点教研室和学生。记录类型教研室是系的子女结点，同时又是教员的双亲结点，它由教研室编号、教研室名两个字段组成。记录类型学生由学号、姓名、成绩三个字段组成。记录类型教员由职工号、姓名、研究方向三个字段组成。学生与教员是叶结点，它们没有子女结点。由系到教研室、由教研室到教员、由系到学生均是一对多的联系。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241021222552CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 557.7 228.4438&#34; style=&#34;max-width:557.7;&#34;&gt;
   &lt;g&gt;
     &lt;rect x=&#34;187&#34; y=&#34;.5&#34; width=&#34;249.9&#34; height=&#34;41.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
@@ -14058,11 +14211,13 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;line x1=&#34;156.8&#34; y1=&#34;148.5&#34; x2=&#34;156.8&#34; y2=&#34;180.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;153.1 177.7 156.8 179.2 160.5 177.7 156.8 186.4 153.1 177.7&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图10&amp;emsp;教员学生层次数据库模型&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图10&amp;emsp;教员学生层次数据库模型&lt;/p&gt;
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241021225153CST&#34;&gt;图11&lt;/a&gt;是&lt;a class=&#34;link&#34; href=&#34;#20241021222552CST&#34;&gt;图10&lt;/a&gt;数据模型对应的一个值。该值是D02系（计算机科学系）记录值及其所有后代记录值组成的一棵树。D02系有三个教研室子女记录值R01、R02、R03和三个学生记录值S63871、S63874,S63876。教研室R01有三个教员记录值E2101、E1709,E3501；教研室R03有两个教员记录值E1101、E3102。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241021225153CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 687.7 395.5004&#34; style=&#34;max-width:687.7;&#34;&gt;
   &lt;rect x=&#34;251.4&#34; y=&#34;.5&#34; width=&#34;254.6&#34; height=&#34;41.5&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -14446,7 +14601,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;polyline points=&#34;326.3 211.2 390.1 211.2 390.1 259.4&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
     &lt;polygon points=&#34;386.4 256.5 390.1 258.1 393.8 256.5 390.1 265.3 386.4 256.5&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图11&amp;emsp;教员学生层次数据库的一个值&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图11&amp;emsp;教员学生层次数据库的一个值&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. 层次模型的数据操纵和完整性约束&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  层次模型的数据操纵主要有查询、插入、删除和更新。进行插入、删除、更新操作时要满足层次模型的完整性约束条件。&lt;br&gt;
   进行插入操作时，如果没有相应的双亲结点值就不能插入它的子女结点值。例如在&lt;a class=&#34;link&#34; href=&#34;#20241021225153CST&#34;&gt;图11&lt;/a&gt;的层次数据库中，若新调入一名教员，但尚未分配到某个教研室，这时就不能将新教员插入到数据库中。&lt;br&gt;
@@ -14472,9 +14628,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;p&gt;  网状模型是一种比层次模型更具普遍性的结构。它去掉了层次模型的两个限制，允许多个结点没有双亲结点，允许结点有多个双亲结点；此外它还允许两个结点之间有多种联系（称之为复合联系）。因此，网状模型可以更直接地去描述现实世界。而层次模型实际上是网状模型的一个特例。&lt;br&gt;
   与层次模型一样，网状模型中每个结点表示一个记录类型（实体），每个记录类型可包含若干个字段（实体的属性），结点间的连线表示记录类型（实体）之间一对多的父子联系。&lt;br&gt;
   从定义可以看出，层次模型中子女结点与双亲结点的联系是唯一的，而在网状模型中这种联系可以不唯一。因此要为每个联系命名，并指出与该联系有关的双亲记录和子女记录。例如&lt;a class=&#34;link&#34; href=&#34;#20241023184414CST&#34;&gt;图12&lt;/a&gt;(a)中 \(R_3\) 有两个双亲记录 \(R_1\) 和 \(R_2\) ，因此把 \(R_1\) 与 \(R_3\) 之间的联系命名为 \(L_1\) ， \(R_2\) 与 \(R_3\) 之间的联系命名为 \(L_2\) 。&lt;a class=&#34;link&#34; href=&#34;#20241023184414CST&#34;&gt;图12&lt;/a&gt;(a)、(b)、(c)都是网状模型的例子。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241023184414CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 588.1538 171.4949&#34; style=&#34;max-width:588.1538;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
@@ -14632,13 +14789,15 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
       &lt;text transform=&#34;translate(514.0686 167.6248)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;)&lt;/tspan&gt;&lt;/text&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图12&amp;emsp;网状模型的例子&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图12&amp;emsp;网状模型的例子&lt;/p&gt;
 &lt;p&gt;  下面以学生选课为例，看一看网状数据库是怎样来组织数据的。&lt;br&gt;
   按照常规语义，一个学生可以选修若干门课程，某一课程可以被多个学生选修，因此学生与课程之间是多对多联系。因为DBTG模型中不能表示记录之间多对多的联系，为此引进一个学生选课的连接记录，它由三个数据项组成，即学号、课程号、成绩，表示某个学生选修某一门课程及其成绩。这样，学生选课数据库包括三个记录：学生、课程和选课。&lt;br&gt;
   每个学生可以选修多门课程，显然对学生记录中的一个值，选课记录中可以有多个值与之联系，而选课记录中的一个值，只能与学生记录中的一个值联系。学生与选课之间的联系是一对多的联系，联系名为S-SC。同样，课程与选课之间的联系也是一对多的联系，联系名为C-SC。&lt;a class=&#34;link&#34; href=&#34;#20241023190234CST&#34;&gt;图13&lt;/a&gt;所示为学生选课数据库的网状数据模型。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241023190234CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 507.3494 157.8492&#34; style=&#34;max-width:507.3494;&#34;&gt;
   &lt;rect x=&#34;48.0594&#34; y=&#34;.5&#34; width=&#34;165.7778&#34; height=&#34;32.5714&#34; style=&#34;fill: none; stroke: #000; stroke-miterlimit: 10;&#34;/&gt;
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -14733,7 +14892,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
       &lt;text transform=&#34;translate(374.0827 61.726)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;C&lt;/tspan&gt;&lt;/text&gt;
     &lt;/g&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图13&amp;emsp;学生选课数据库的网状数据模型&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图13&amp;emsp;学生选课数据库的网状数据模型&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. 网状模型的数据操纵与完整性约束&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  网状模型一般来说没有层次模型那样严格的完整性约束条件，但具体的网状数据库系统对数据操纵都加了一些限制，提供了一定的完整性约束。&lt;br&gt;
   例如，DBTG在模式数据定义语言中提供了定义DBTG数据库完整性的若干概念和语句，主要有：&lt;br&gt;
@@ -14917,9 +15077,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 虽然实际的数据库管理系统产品种类很多，它们支持不同的数据模型，使用不同的数据库语言，建立在不同的操作系统之上，数据的存储结构也各不相同，但它们在体系结构上通常都具有相同的特征，即采用三级模式结构（早期微机上的小型数据库系统除外）并提供两级映像功能。&lt;/p&gt;
 &lt;h3 id=&#34;数据库的三级模式模式结构&#34;&gt;数据库的三级模式模式结构
 &lt;/h3&gt;&lt;p&gt;  数据库系统的三级模式结构是指数据库系统是由外模式、模式和内模式三级构成，如&lt;a class=&#34;link&#34; href=&#34;#20241024141816CST&#34;&gt;图14&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241024141816CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 444.7076 348.6786&#34; style=&#34;max-width:444.7076;&#34;&gt;
   &lt;g&gt;
     &lt;g&gt;
@@ -15037,7 +15198,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   &lt;g style=&#34;isolation: isolate;&#34;&gt;
     &lt;text transform=&#34;translate(239.6829 202.9053)&#34; style=&#34;font-family: NotoSerifSC-Regular, &amp;apos;Noto Serif SC&amp;apos;; font-size: 18px; isolation: isolate;&#34;&gt;&lt;tspan x=&#34;0&#34; y=&#34;0&#34;&gt;内模式/模式映像&lt;/tspan&gt;&lt;/text&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图14&amp;emsp;数据库系统的三级模式结构&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图14&amp;emsp;数据库系统的三级模式结构&lt;/p&gt;
 &lt;h4 id=&#34;模式shema&#34;&gt;模式(shema)
 &lt;/h4&gt;&lt;p&gt;  模式也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。它是数据库系统模式结构的中间层，既不涉及数据的物理存储细节和硬件环境，又与具体的应用程序、所使用的应用开发工具及高级程序设计语言无关。&lt;br&gt;
   模式实际上是数据库数据在逻辑级上的视图。一个数据库只有一个模式。数据库模式以某一种数据模型为基础，统一综合地考虑了所有用户的需求，并将这些需求有机地结合成一个逻辑整体。定义模式时不仅要定义数据的逻辑结构，例如数据记录由哪些数据项构成，数据项的名字、类型、取值范围等；而且要定义数据之间的联系，定义与数据有关的安全性、完整性要求。&lt;/p&gt;
@@ -15076,9 +15238,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
   (5) 为特定应用环境开发的数据库应用系统。&lt;/p&gt;
 &lt;h4 id=&#34;人员&#34;&gt;人员
 &lt;/h4&gt;&lt;p&gt;  开发、管理和使用数据库系统的人员主要包括数据库管理员、系统分析员和数据库设计人员、应用程序员和最终用户。不同的人员涉及不同的数据抽象级别，具有不同的数据视图，如&lt;a class=&#34;link&#34; href=&#34;#20241024150835CST&#34;&gt;图15&lt;/a&gt;所示。这些人员分别包括如下职责。&lt;/p&gt;
-&lt;div class=&#34;svg-figure&#34;&gt;
+&lt;div&gt;
             &lt;span id=&#34;20241024150835CST&#34;&gt;&lt;/span&gt;
-            &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+            &lt;div class=&#34;svg-figure&#34;&gt;
+                &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 407.0443 262.2171&#34; style=&#34;max-width:407.0443;&#34;&gt;
   &lt;g&gt;
     &lt;g style=&#34;isolation: isolate;&#34;&gt;
@@ -15218,7 +15381,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     &lt;polygon points=&#34;350.9404 166.0304 354.6435 164.4571 358.3467 166.0304 354.6435 157.2521 350.9404 166.0304&#34;/&gt;
     &lt;polygon points=&#34;350.9404 168.8348 354.6435 170.408 358.3467 168.8348 354.6435 177.6131 350.9404 168.8348&#34;/&gt;
   &lt;/g&gt;
-&lt;/svg&gt;&lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图15&amp;emsp;各种人员的数据视图&lt;/p&gt;
+&lt;/svg&gt;&lt;/div&gt;
+        &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图15&amp;emsp;各种人员的数据视图&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 数据库管理员(Database Administrator,DBA)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  在数据库系统环境下有两类共享资源，一类是数据库，另一类是数据库管理系统软件。因此需要有专门的管理机构来监督和管理数据库系统。数据库管理员则是这个机构的一个（组）人员，负责全面管理和控制数据库系统。具体包括如下职责。&lt;br&gt;
   (1) 决定数据库中的信息内容和结构。数据库中要存放哪些信息，数据库管理员要参与决策。因此，数据库管理员必须参加数据库设计的全过程，并与用户、应用程序员、系统分析员密切合作、共同协商，做好数据库设计。&lt;br&gt;

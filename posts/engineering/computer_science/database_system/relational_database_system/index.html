@@ -1502,9 +1502,10 @@ R(A_1,A_2,\cdots,A_n)
 </h3><p>  早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为<strong>关系代数(relational algebra)</strong>‌和<strong>关系演算(relational calculus)</strong>‌关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为元组关系演算和域关系演算。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数、元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。<br>
   关系代数、元组关系演算和域关系演算均是抽象的查询语言，这些抽象的语言与具体的关系数据库管理系统中实现的实际语言并不完全一样。但它们能用作评估实际系统中查询语言能力的标准或基础。实际的查询语言除了提供关系代数或关系演算的功能外，还提供了许多附加功能，例如聚集函数(aggregation function)。关系赋值、算术运算等，使得目前实际查询语言的功能十分强大。<br>
   另外，还有一种介于关系代数和关系演算之间的结构化查询语言(Structured Query Language,SQL)。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言(Data Control Language,DCL)于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：</p>
-<div class="svg-figure">
+<div>
             <span id="20241024185641CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556.3726 126.4691" style="max-width:556.3726;">
   <g style="isolation: isolate;">
     <text transform="translate(0 69.1361)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">关系数据语言</tspan></text>
@@ -1570,7 +1571,8 @@ R(A_1,A_2,\cdots,A_n)
     <text transform="translate(432.2274 87.411)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: -.023em;"><tspan x="0" y="0">E</tspan></text>
     <text transform="translate(443.0452 87.411)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: -.955em;"><tspan x="0" y="0">）</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;关系数据语言</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;关系数据语言</p>
 <p>  特别地，SQL语言是一种高度非过程化的语言，用户不必请求数据库管理员为其建立特殊的存取路径，存取路径的选择由关系数据库管理系统的优化机制来完成。例如，在一个存储有几百万条记录的关系中查找符合条件的某一个或某一些记录，从原理上讲可以有多种查找方法。例如，可以顺序扫描这个关系，也可以通过某一种索引来查找。不同的查找路径（或者称为存取路径）的效率是不同的，有的完成某一个查询可能很快，有的可能极慢。关系数据库管理系统中研究和开发了查询优化方法，系统可以自动选择较优的存取路径，提高查询效率。</p>
 <span id="20241202180721CST"></span>
 <h2 id="关系的完整性">关系的完整性
@@ -1612,9 +1614,10 @@ R(A_1,A_2,\cdots,A_n)
 <p>  <span id="20241025092202CST"></span><strong>例3</strong>：在 \(学生（\underline{学号}，姓名，性别，专业号，年龄，班长）\) 关系中，“学号”属性是主码，“班长”属性表示该学生所在班级的班长的学号，它引用了本关系“学号”属性, 即“班长”必须是确实存在的学生的学号。</p>
 <p>  这三个例子说明关系与关系之间存在着相互引用、相互约束的情况。下面先引入外码 的概念，然后给出表达关系之间相互引用约束的参照完整性的定义。</p>
 <p>  <span id="20241025092415CST"></span><strong>定义5（参照关系）</strong>：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的<strong>外码(foreign key)</strong>，并称基本关系 \(R\) 为<strong>参照关系(referencing relation)</strong>，基本关系 \(S\) 为被<strong>参照关系(referenced relation)</strong>‌或<strong>目标关系(target relation)</strong>，关系 \(R\) 和 \(S\) 不一定是不同的关系。</p>
-<div class="svg-figure">
+<div>
             <span id="20241025093632CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 349.8593 72.5652" style="max-width:349.8593;">
   <g>
     <g>
@@ -1657,14 +1660,16 @@ R(A_1,A_2,\cdots,A_n)
     <line x1="78.2828" y1="63.7381" x2="166.7893" y2="63.7381" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="163.9807 67.4413 165.554 63.7381 163.9807 60.035 172.759 63.7381 163.9807 67.4413"/>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;参照关系与被参照关系</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;参照关系与被参照关系</p>
 <p>  显然，目标关系 \(S\) 的主码 \(K_s\) 和参照关系 \(S\) 的外码 \(F\) 必须定义在同一个（或同一组） 域上。</p>
 <p>  在<a class="link" href="#20241024190508CST">例1</a>中，学生关系的“专业号”属性与专业关系的主码“专业号”相对应，因此“专业号”属性是学生关系的外码。这里专业关系是被参照关系，学生关系为参照关系。如<a class="link" href="#20241025100110CST">图3</a>(a)所示。<br>
   在<a class="link" href="#20241025091438CST">例2</a>中，选修关系的“学号”属性与学生关系的主码“学号”相对应：选修关系的“课程号”属性与课程关系的主码“课程号”相对应，因此“学号”和“课程号”属性 是选修关系的外码。这里学生关系和课程关系均为被参照关系，选修关系为参照关系。如<a class="link" href="#20241025100110CST">图3</a>(b)所示。<br>
   在<a class="link" href="#20241025092202CST">例3</a>中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如<a class="link" href="#20241025100110CST">图3</a>(c)所示。</p>
-<div class="svg-figure">
+<div>
             <span id="20241025100110CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 597.8379 194.4097" style="max-width:597.8379;">
   <g>
     <g>
@@ -1739,7 +1744,8 @@ R(A_1,A_2,\cdots,A_n)
       <text transform="translate(291.9872 190.5397)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.006em;">c</tspan><tspan x="9.5762" y="0">)</tspan></text>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;关系的参照图</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;关系的参照图</p>
 <p>  需要指出的是，外码并不一定要与相应的主码同名，如例2.3中学生关系的主码为学号，外码为班长。不过，在实际应用中为了便于识别，当外码与相应的主码属于不同关系时，往往给它们取相同的名字。</p>
 <p>  参照完整性规则就是定义外码与主码之间的引用规则。</p>
 <p>  <strong>参照完整性规则</strong>：若属性（或属性组） \(F\) 是基本关系 \(R\) 的外码，它与基本关系 \(S\) 的主码 \(K_s\) 相对应（基本关系 \(R\) 和 \(S\) 不一定是不同的关系），则对于 \(R\) 中每个元组在 \(F\) 上的值必须： <br>
@@ -1836,9 +1842,10 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 \tag{18}
     \]
 <p>  <a class="link" href="#20241026102728CST">图4</a>(a)、<a class="link" href="#20241026102728CST">图4</a>(b)分别为具有三个属性列的关系 \(R\) 、 \(S\) 。<a class="link" href="#20241026102728CST">图4</a>(c)为关系 \(R\) 与 \(S\) 的并。<a class="link" href="#20241026102728CST">图4</a>(d)为关系 \(R\) 与 \(S\) 的交。<a class="link" href="#20241026102728CST">图4</a>(e)为关系 \(R\) 和 \(S\) 的差。<a class="link" href="#20241026102728CST">图4</a>(f)为关系 \(R\) 和 \(S\) 的Cartesian乘积。</p>
-<div class="svg-figure">
+<div>
             <span id="20241026102728CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 729.9443 643.1951" style="max-width:729.9443;">
   <g>
     <g>
@@ -2374,7 +2381,8 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
     <text transform="translate(465.7891 639.325)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: .097em;"><tspan x="0" y="0">f</tspan></text>
     <text transform="translate(474.4107 639.325)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">)</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;传统集合运算举例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;传统集合运算举例</p>
 <h3 id="专门的关系运算">专门的关系运算
 </h3><p>  专门的关系运算包括选择、投影、连接、除运算等。为了叙述上的方便，先引入几个记号。</p>
 <p>  (1) 设关系模式为 \(R(A_1,A_2,\cdots,A_n)\)，它的一个关系设为 \(R\) 。 \(t \in R\) 表示 \(t\) 是 \(R\) 的一个元组。 \(t[A_i]\) 则表示元组 \(t\) 中相应于属性 \(i\) 的一个分量。<br>
@@ -2387,9 +2395,10 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
     \]
   它表示 \(R\) 中属性组 \(X\) 上值为 \(x\) 的诸元组在 \(Z\) 上分量的集合。<br>
   例如，<a class="link" href="#20241026115500CST">图5</a>中， \(x_1\) 在 \(R\) 中的象集为 \(Z_{x_1}=\set{{Z_1,Z_2,Z_3}}\) ， \(x_2\) 在 \(R\) 中的象集为 \(Z_{x_2}=\set{Z_2,Z_3}\) ， \(x_3\) 在 \(R\) 中的象集为 \(Z_{x_3}=\set{Z_1,Z_3}\) 。</p>
-<div class="svg-figure">
+<div>
             <span id="20241026115500CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 201 317.5239" style="max-width:201;">
   <path id="MJX-8-TEX-I-1D445" d="M5.8369.8422c-.3296,0-.5249-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3296.0671-.531.2014-.6042.0244-.0122,1.0864-.0183,3.1859-.0183,2.0995.0122,3.2347.0305,3.4056.0549.6836.0977,1.2573.2685,1.7211.5127s.7934.5249.9887.8422.3235.5798.3845.7873.0977.415.1099.6225c0,.5493-.177,1.062-.531,1.538s-.7629.8422-1.2267,1.0986-.8728.4638-1.2267.6225-.5859.238-.6958.238l.1282.0915c.8178.4638,1.2267,1.1352,1.2267,2.0141,0,.1343-.0305.5066-.0915,1.1169s-.0915,1.1108-.0915,1.5014v.1648c0,.2197.0061.3906.0183.5127s.0793.2319.2014.3296.2807.1526.4761.1648c.3418,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5554.4761-.8606.061-.1709.1099-.2746.1465-.3113s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5676-.4394,1.0436-.4638.6958-1.0131,1.0436-1.6479,1.0436h-.1648c-.7446,0-1.361-.1526-1.8493-.4577-.4883-.3052-.7568-.7812-.8056-1.4282,0-.3296.0915-.8422.2746-1.538s.2746-1.1413.2746-1.3366c0-.6225-.2624-1.0742-.7873-1.3549-.1831-.0854-.3357-.1343-.4577-.1465s-.5554-.0244-1.3-.0366h-1.2634l-.5859,2.3803c-.4028,1.6112-.6042,2.4291-.6042,2.4535,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3113.0366.3357,0,.6042.0366h.5676c.0732.0977.1099.1526.1099.1648s-.0183.1221-.0549.3296c-.0488.1587-.1099.2746-.1831.3479h-.2746c-.4394-.0244-1.239-.0366-2.3986-.0366h-1.9957c-.2075,0-.3357.0061-.3845.0183-.2075,0-.3113-.0549-.3113-.1648,0-.0244.0183-.1099.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1099c.3296,0,.6958-.0183,1.0986-.0549.1709-.0366.2869-.1099.3479-.2197.0366-.0488.4761-1.7455,1.3183-5.0901.8422-3.3446,1.2634-5.1084,1.2634-5.2915,0-.0854-.3479-.1404-1.0436-.1648h-.0005ZM13.1608,2.3619c0-.3906-.1282-.7202-.3845-.9887s-.7812-.4394-1.5746-.5127h-.4211c-.2563,0-.4883-.0061-.6958-.0183h-.4028c-.5737,0-.9033.061-.9887.1831-.0122.0366-.2197.8483-.6225,2.4352-.4028,1.5868-.6042,2.3986-.6042,2.4352,0,.0122.4211.0183,1.2634.0183.9521-.0122,1.5868-.0549,1.9042-.1282.7812-.1221,1.3915-.4822,1.831-1.0803.1953-.2807.3601-.6469.4944-1.0986s.2014-.8667.2014-1.2451h-.0002Z"/>
   <g>
@@ -2458,7 +2467,8 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
     <path id="MJX-14-TEX-I-1D44D-3" d="M141.8104,302.3301c0-.1831.0366-.3479.1099-.4944,0-.0122,1.6175-1.8372,4.8524-5.475,3.2349-3.6378,4.8646-5.475,4.889-5.5116l-.1831-.0366h-2.0142c-.415,0-.7569.0122-1.0254.0366s-.6043.0916-1.0071.2014-.7324.2686-.9888.4761-.531.5127-.824.9156-.5249.885-.6958,1.4466c-.0122.0366-.0244.0732-.0366.1099s-.0244.0671-.0366.0916-.0183.0549-.0183.0916-.0061.0549-.0183.0549l-.0183.0366c-.0366.061-.1526.0916-.3479.0916-.2075,0-.3296-.061-.3662-.1831l.586-1.9776c.1709-.5493.3357-1.0987.4944-1.648.0977-.3418.1709-.5249.2197-.5493.0366-.0244,1.4649-.0366,4.2848-.0366h4.2298c.061.061.0916.1099.0916.1465,0,.0244-.0366.1831-.1099.4761-6.4455,7.2634-9.6743,10.9073-9.6865,10.9317l-.0549.0549h1.6297c1.1597-.0122,1.7884-.0244,1.886-.0366.9156-.1099,1.6663-.4089,2.2523-.8972s1.0681-1.3855,1.4466-2.6917c.0977-.3052.1648-.4883.2014-.5493s.116-.0916.238-.0916h.0732c.2564,0,.3845.0671.3845.2014-.9888,3.2472-1.5198,4.889-1.5931,4.9257-.0366.0244-1.5076.0366-4.413.0366h-3.2227c-.8057,0-1.2085-.0488-1.2085-.1465v-.0003Z"/>
     <path id="MJX-14-TEX-N-33-3" d="M155.5032,299.2293c-.233,0-.4143-.0734-.5437-.2201s-.1985-.3366-.2071-.5696c0-.4747.2071-.8976.6214-1.2687s.9148-.5567,1.5017-.5567c.3021,0,.4919.0043.5696.0129.6387.1036,1.1263.3323,1.4629.6861s.5092.7379.5178,1.1522c0,.4488-.1467.8846-.4402,1.3075s-.6991.7293-1.2169.9192l-.0388.0259c0,.0086.0388.0216.1165.0388s.2028.0561.3754.1165.3366.151.4919.2719c.7077.4574,1.0616,1.0616,1.0616,1.8124,0,.6818-.2675,1.2773-.8026,1.7865-.5351.5092-1.2126.7638-2.0325.7638-.6904,0-1.286-.1856-1.7865-.5567-.5006-.3711-.7509-.8415-.7509-1.4111,0-.2417.0777-.4358.233-.5826s.3495-.2244.5826-.233c.2417,0,.4402.0777.5955.233s.233.3495.233.5826c0,.0949-.0129.1812-.0388.2589s-.0561.1467-.0906.2071-.082.1122-.1424.1554-.1122.0777-.1554.1036-.0863.0432-.1295.0518c-.0432.0086-.0777.0216-.1036.0388l-.0518.0129c.4402.3884.9753.5826,1.6053.5826.4747,0,.8329-.2287,1.0745-.6861.1467-.2848.2201-.7207.2201-1.3075v-.2589c0-.8199-.2762-1.3679-.8285-1.6441-.1295-.0518-.3927-.082-.7897-.0906l-.5437-.0129-.0388-.0259c-.0173-.0259-.0259-.0949-.0259-.2071,0-.1554.0345-.233.1036-.233.2417,0,.4919-.0216.7509-.0647.2934-.0432.561-.2244.8026-.5437s.3625-.8026.3625-1.4499v-.1036c0-.4919-.151-.8329-.4531-1.0227-.1899-.1208-.3927-.1812-.6085-.1812-.2762,0-.5308.0475-.7638.1424s-.397.1942-.4919.2978-.1424.1554-.1424.1554h.0388c.0259.0086.0604.0173.1036.0259s.0863.0302.1295.0647.0949.0647.1554.0906.1036.0734.1295.1424.0604.1338.1036.1942.0561.1467.0388.2589c0,.1899-.0604.3582-.1812.5049s-.315.2244-.5826.233l-.0002-.0002Z"/>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;象集举例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;象集举例</p>
 <p>  下面给出这些专门的关系运算的定义。</p>
 <h4 id="选择">选择
 </h4><p>  选择又称为<strong>限制(restriction)</strong>。它是在关系 \(R\) 中选择满足给定条件的诸元组，记作</p>
@@ -2520,9 +2530,10 @@ X_1\theta Y_1
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表5</p>
 <p>  选择运算实际上是从关系火中选取使逻辑表达式 \(F\) 为真的元组。这是从行的角度进行的运算。</p>
 <p>  设有一个学生—课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如<a class="link" href="#20241026152329CST">图6</a>所示。下面的多个例子将对这三个关系进行运算。</p>
-<div class="svg-figure">
+<div>
             <span id="20241026152329CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 715.6612 629.822" style="max-width:715.6612;">
   <g>
     <rect x="157.5805" y="21.2715" width="400" height="210.5397" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -2862,7 +2873,8 @@ X_1\theta Y_1
     <text transform="translate(562.1893 554.3641)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: -.025em;"><tspan x="0" y="0">(</tspan></text>
     <text transform="translate(568.0394 554.3641)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.006em;">c</tspan><tspan x="9.5762" y="0">)</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图6&emsp;学生—课程数据库</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图6&emsp;学生—课程数据库</p>
 <p>  <span id="20241026152443CST"></span><strong>例4</strong>：查询信息系（IS系）全体学生。</p>
 <span id="20241026152508CST"></span>\[
 \sigma_{\text{Sdept}=\text{'IS'}}(\text{Student})
@@ -2875,9 +2887,10 @@ X_1\theta Y_1
 \tag{23}
     \]
 <p>  结果如<a class="link" href="#20241026154508CST">图7</a>(b)所示。</p>
-<div class="svg-figure">
+<div>
             <span id="20241026154508CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.364 390.3124" style="max-width:402.364;">
   <g>
     <g>
@@ -3086,7 +3099,8 @@ X_1\theta Y_1
     <text transform="translate(195.0499 385.5215)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: -.018em;"><tspan x="0" y="0">b</tspan></text>
     <text transform="translate(205.9762 385.5215)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">)</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图7&emsp;选择运算举例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图7&emsp;选择运算举例</p>
 <h4 id="投影projection">投影(projection)
 </h4><p>  关系 \(R\) 上的投影是从 \(R\) 中选择出若干属性列组成新的关系。记作</p>
 <span id="20241026154923CST"></span>\[
@@ -3108,9 +3122,10 @@ X_1\theta Y_1
 \tag{26}
     \]
 <p>  结果如<a class="link" href="#20241026160858CST">图8</a>(b)所示。Student关系原来有4个元组，而投影结果取消了重复的CS元组，因此只有三个元组。</p>
-<div class="svg-figure">
+<div>
             <span id="20241026160858CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470.2858 264.2768" style="max-width:470.2858;">
   <g>
     <rect x=".5" y=".5118" width="250.8571" height="240" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -3176,7 +3191,8 @@ X_1\theta Y_1
   </g>
   <text transform="translate(95.1203 262.1161)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.045em;">（a</tspan><tspan x="26.4062" y="0" style="letter-spacing: -.501em;">）</tspan></text>
   <text transform="translate(378.9805 262.1167)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.045em;">（b</tspan><tspan x="27.8638" y="0" style="letter-spacing: -.501em;">）</tspan></text>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;投影运算举例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;投影运算举例</p>
 <h4 id="连接join">连接(join)
 </h4><p>  连接也称为 \(\theta\) 连接。它是从两个关系的Cartesian乘积中选取属性间满足一定条件的元组。记作</p>
 <span id="20241026161052CST"></span>\[
@@ -3197,9 +3213,10 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
     \]
 <p>  一般的连接操作是从行的角度进行运算，但自然连接还需要取消重复列，所以是同时从行和列的角度进行运算。</p>
 <p>  <span id="20241027090331CST"></span><strong>例8</strong>：设<a class="link" href="#20241027101851CST">图9</a>(a)和(b)分别为关系 \(R\) 和关系 \(S\) ，图<a class="link" href="#20241027101851CST">图9</a>(c)为非等值连接及 \( R \underset{C\lt E}{\Join} S \) 的结果，<a class="link" href="#20241027101851CST">图9</a>(d)为等值连接 \( R \underset{R.B=S.B}{\Join} S \) 的结果，<a class="link" href="#20241027101851CST">图9</a>(e)为自然连接 \( R \Join S \) 的结果。</p>
-<div class="svg-figure">
+<div>
             <span id="20241027101851CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650.5886 553.9261" style="max-width:650.5886;">
   <g>
     <g>
@@ -3613,12 +3630,14 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
       <text transform="translate(471.8926 551.766)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">)自然连接</tspan></text>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图9&emsp;连接运算举例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图9&emsp;连接运算举例</p>
 <p>  两个关系 \(R\) 和 \(S\) 在做自然连接时，选择两个关系在公共属性上值相等的元组构成新的关系。此时，关系 \(R\) 中某些元组有可能在 \(S\) 中不存在公共属性上值相等的元组，从而造成 \(R\) 中这些元组在操作时被舍弃了，同样， \(S\) 中某些元组也可能被舍弃。这些被舍弃的元组称为<strong>悬浮元组(dangling tuple)</strong>，例如，在<a class="link" href="#20241027101851CST">图9</a>(e)的自然连接中， \(R\) 中的第 \(4\) 个元组， \(S\) 中的第 \(5\) 个元组都是被舍弃掉的悬浮元组。<br>
   如果把悬浮元组也保存在结果关系中，而在其他属性上填空值(NULL)，那么这种连接就叫做<span id="20241117142036CST"></span><strong>外连接(outer join)</strong>，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做<strong>左外连接（left outer join或left join）</strong>，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做<strong>右外连接（right outer join或right join）</strong>，记作 \(R⟖S\) 。在<a class="link" href="#20241027105236CST">图10</a>中，(a)是<a class="link" href="#20241027101851CST">图9</a>中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。</p>
-<div class="svg-figure">
+<div>
             <span id="20241027105236CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 723.3492 278.6628" style="max-width:723.3492;">
   <g style="isolation: isolate;">
     <text transform="translate(62.2503 274.7927)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: .004em;"><tspan x="0" y="0">(</tspan></text>
@@ -3884,7 +3903,8 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
     <text transform="translate(576.0311 274.793)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: -.025em;"><tspan x="0" y="0">(</tspan></text>
     <text transform="translate(581.8812 274.793)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.006em;">c</tspan><tspan x="9.5762" y="0">)右外连接</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图10&emsp;外连接运算举例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图10&emsp;外连接运算举例</p>
 <h4 id="除运算">除运算
 </h4><p>  设关系 \(R\) 除以关系 \(S\) 的结果为关系 \(T\) ，则 \(T\) 包含所有在 \(R\) 但不在 \(S\) 中的属性及其值，且 \(T\) 的元组与 \(S\) 的元组的所有组合都在 \(R\) 中。<br>
   下面用<a class="link" href="#20241027111504CST">象集</a>来定义除法：<br>
@@ -3908,9 +3928,10 @@ R\div S=\set{t_r[X]|(t_r\in R)\land(\Pi_Y (S)\sube Y_x)}
 R \div S = \set{a_1}
 \tag{31}
     \]
-<div class="svg-figure">
+<div>
             <span id="20241027135213CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.635 325.9019" style="max-width:356.635;">
   <g>
     <g>
@@ -4097,13 +4118,15 @@ R \div S = \set{a_1}
       <text transform="translate(276.4284 322.0316)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0" style="letter-spacing: -.006em;">c</tspan><tspan x="9.5762" y="0">)</tspan></text>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图11&emsp;除运算举例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图11&emsp;除运算举例</p>
 <p>  下面再以学生—课程数据库（<a class="link" href="#20241026152329CST">图6</a>）为例，给出几个综合应用多种关系代数运算进行查询的例子。</p>
 <p>  <span id="20241027140259CST"></span><strong>例10</strong>：查询1号课程和3号课程都选秀了的学生的号码。<br>
   首先建立一个临时关系 \(K\) ：</p>
-<div class="svg-figure">
+<div>
             <span id="20241027141922CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121.5714 129.2547" style="max-width:121.5714;">
   <g>
     <rect x=".5" y="23.3053" width="120.5714" height="105" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -4122,7 +4145,8 @@ R \div S = \set{a_1}
   <g style="isolation: isolate;">
     <text transform="translate(54.3147 15.8396)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">K</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图12&emsp;临时关系 \(\text{K}\)</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图12&emsp;临时关系 \(\text{K}\)</p>
 <p>  然后求</p>
 <span id="20241027142101CST"></span>\[
 \Pi_{\text{Sno},\text{Cno}}(\text{SC})\div \text{K}
@@ -4602,9 +4626,10 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 \tag{45}
     \]
 <p>  则 \(S\) 是 \(\text{dom}(\phi)\) 中各阈值中元素的Cartesian积与 \(R\) 的差集。结果如<a class="link" href="#20241105214507CST">图13</a>(b)所示。注意，在做Cartesian积时各个域中的元素不能搞混。</p>
-<div class="svg-figure">
+<div>
             <span id="20241105214507CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.227 297.0613" style="max-width:334.227;">
   <path id="MJX-36-TEX-I-1D445" d="M4.1066,141.5085c-.3296,0-.5249-.0061-.5859-.0183s-.0915-.0793-.0915-.2014c0-.3296.0671-.531.2014-.6042.0244-.0122,1.0864-.0183,3.1859-.0183,2.0995.0122,3.2347.0305,3.4056.0549.6836.0977,1.2573.2685,1.7211.5127s.7934.5249.9887.8422.3235.5798.3845.7873.0977.415.1099.6225c0,.5493-.177,1.062-.531,1.538s-.7629.8422-1.2267,1.0986-.8728.4638-1.2267.6225-.5859.238-.6958.238l.1282.0915c.8178.4638,1.2267,1.1352,1.2267,2.0141,0,.1343-.0305.5066-.0915,1.1169s-.0915,1.1108-.0915,1.5014v.1648c0,.2197.0061.3906.0183.5127s.0793.2319.2014.3296.2807.1526.4761.1648c.3418,0,.6225-.1343.8422-.4028.2197-.2685.3784-.5554.4761-.8606.061-.1709.1099-.2746.1465-.3113s.1282-.0549.2746-.0549c.2441,0,.3662.0732.3662.2197,0,.2197-.1465.5676-.4394,1.0436-.4638.6958-1.0131,1.0436-1.6479,1.0436h-.1648c-.7446,0-1.361-.1526-1.8493-.4577-.4883-.3052-.7568-.7812-.8056-1.4282,0-.3296.0915-.8422.2746-1.538s.2746-1.1413.2746-1.3366c0-.6225-.2624-1.0742-.7873-1.3549-.1831-.0854-.3357-.1343-.4577-.1465s-.5554-.0244-1.3-.0366h-1.2634l-.5859,2.3803c-.4028,1.6112-.6042,2.4291-.6042,2.4535,0,.0488.0061.0793.0183.0915s.0549.0366.1282.0732.177.0488.3113.0366.3357,0,.6042.0366h.5676c.0732.0977.1099.1526.1099.1648s-.0183.1221-.0549.3296c-.0488.1587-.1099.2746-.1831.3479h-.2746c-.4394-.0244-1.239-.0366-2.3986-.0366h-1.9957c-.2075,0-.3357.0061-.3845.0183-.2075,0-.3113-.0549-.3113-.1648,0-.0244.0183-.1099.0549-.2563.061-.2319.1221-.3601.1831-.3845.0488-.0122.1404-.0183.2746-.0183h.1099c.3296,0,.6958-.0183,1.0986-.0549.1709-.0366.2869-.1099.3479-.2197.0366-.0488.4761-1.7455,1.3183-5.0901s1.2634-5.1084,1.2634-5.2915c0-.0854-.3479-.1404-1.0436-.1648h-.0005,0ZM11.4305,143.0282c0-.3906-.1282-.7202-.3845-.9887s-.7812-.4394-1.5746-.5127h-.4211c-.2563,0-.4883-.0061-.6958-.0183h-.4028c-.5737,0-.9033.061-.9887.1831-.0122.0366-.2197.8483-.6225,2.4352-.4028,1.5868-.6042,2.3986-.6042,2.4352,0,.0122.4211.0183,1.2634.0183.9521-.0122,1.5868-.0549,1.9042-.1282.7812-.1221,1.3915-.4822,1.831-1.0803.1953-.2807.3601-.6469.4944-1.0986s.2014-.8667.2014-1.2451h-.0002,0Z"/>
   <g style="isolation: isolate;">
@@ -4753,14 +4778,16 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
       <path id="MJX-13-TEX-N-31-4" d="M312.852,244.619l-.1683.0647c-.1208.0431-.2934.0863-.5177.1294s-.4746.0733-.7507.0906h-.2459v-.5954h.2459c.4056-.0173.7809-.082,1.1261-.1941s.5868-.2157.7248-.3106.2589-.1898.3624-.2848c.0173-.0259.069-.0388.1553-.0388.0777,0,.151.0259.22.0777v3.87l.0129,3.883c.0604.0604.1122.0992.1553.1165s.1467.0345.3106.0518.4314.0259.8025.0259h.3365v.5954h-.1424c-.1812-.0259-.8672-.0388-2.058-.0388-1.1735,0-1.8509.0129-2.0321.0388h-.1553v-.5954h.8284c.1381,0,.2459-.0043.3236-.0129s.1467-.0216.2071-.0388.0949-.0259.1035-.0259.0345-.0216.0777-.0647.069-.0604.0777-.0518v-6.6917h0Z"/>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图13&emsp;关系演算安全限制示例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图13&emsp;关系演算安全限制示例</p>
 <h3 id="域关系演算语言qbe">域关系演算语言QBE
 </h3><p>  关系演算的另一种形式是域关系演算。域关系演算以元组变量的分量（即<strong>域变量</strong>）作为谓词变元的基本对象。1975年由M.M.Zloof提出的QBE就是一个很有特色的域关系演算语言，该语言于1978年在IBM370上得以实现。<br>
   QBE是Query By Example（即通过例子进行查询）的简称，它最突出的特点是操作方式。它是一种高度非过程化的基于屏幕表格的查询语言，用户通过终端屏幕编辑程序，以填写表格的方式构造查询要求，而查询结果也是以表格形式显示，因此非常直观、易学易用。<br>
   QBE中用示例元素来表示查询结果可能的情况，示例元素实质上就是域变量。QBE操作框架如<a class="link" href="#20241105222505CST">图14</a>所示。</p>
-<div class="svg-figure">
+<div>
             <span id="20241105222505CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480.5714 246.5706" style="max-width:480.5714;">
   <g>
     <line y1="49.5379" x2="480.5714" y2="49.5379" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -4814,7 +4841,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
     <line x1="281.9674" y1="215.7602" x2="184.6099" y2="174.6536" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="188.6377 172.3346 185.748 175.1342 185.7569 179.1576 179.1103 172.3316 188.6377 172.3346"/>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图14&emsp;QBE操作框架</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图14&emsp;QBE操作框架</p>
 <p>  下面以学生—课程数据库为例，说明QBE的用法。</p>
 <h4 id="检索操作-1">检索操作
 </h4><p><strong>1. 简单查询</strong></p>
@@ -5739,7 +5767,7 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
             
         
         
-        <span>本图书馆累计发布了19篇文章 共32.1万字</span>
+        <span>本图书馆累计发布了19篇文章 共32.2万字</span>
         
     </section>
 

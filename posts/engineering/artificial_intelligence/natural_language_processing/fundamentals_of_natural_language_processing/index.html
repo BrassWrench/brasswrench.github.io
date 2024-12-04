@@ -1501,9 +1501,10 @@ P(c)=&\frac{C(c)}{\sum_{c'}C(c')}=\frac{\sum_{w'}C(w',c)}{\sum_{w'}\sum_{c'}C(w'
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>  截断奇异值分解结果如<a class="link" href="#20241113224958CST">图1</a>所示，可见：上下文比较相近的词在空间上的距离比较近，如“深度”“学习”等；而“我”和等高频词则与其他词语距离比较远。</p>
-<div class="svg-figure">
+<div>
             <span id="20241113224958CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390.7997 283.5612" style="max-width:390.7997;">
   <g id="axes_1">
     <g id="matplotlib.axis_1">
@@ -1751,7 +1752,8 @@ P(c)=&\frac{C(c)}{\sum_{c'}C(c')}=\frac{\sum_{w'}C(w',c)}{\sum_{w'}\sum_{c'}C(w'
       <path id="SimSun-3002" d="M247.53,114.8524c.2083.0781.3516.2281.4297.45.0781.2208.1172.3833.1172.4875,0,.0781-.026.2151-.0781.4109-.0521.1948-.176.3573-.3719.4875-.1948.1302-.4224.1953-.6828.1953s-.4948-.1042-.7031-.3125c-.2083-.2083-.3193-.4359-.3328-.6828-.0125-.2479.0396-.4693.1563-.6641.1177-.1958.2677-.326.45-.3906.1823-.0656.3385-.0984.4688-.0984.1563,0,.3385.0391.5469.1172h-.0002ZM247.4909,116.3961c.1823-.1177.2667-.326.2531-.625-.0125-.3-.1099-.4953-.2922-.5859-.1823-.0917-.3385-.1375-.4688-.1375-.1563,0-.3193.0589-.4891.1766-.1688.1167-.2531.3182-.2531.6047s.0974.4818.2922.5859c.1958.1042.3458.1563.45.1563.1563,0,.3255-.0583.5078-.175h0Z"/>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;截断奇异值分解结果</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;截断奇异值分解结果</p>
 <p>  在信息检索等领域，也经常通过词与其出现的文档构成“词-文档”共现矩阵，此时也可以通过以上介绍的奇异值分解技术进行降维，并在低维空间（潜在语义空间）内计算词语或者文档之间的相似度，该技术也称<strong>潜在语义索引（Latent Semantic Indexing，LSI）</strong>。<br>
   虽然在基于传统机器学习的方法中，词的分布式表示取得了不错的效果，但是其仍然存在一些问题。首先，当共现矩阵规模较大时，奇异值分解的运行速度非常慢；其次，如果想在原来语料库的基础上增加更多的数据，则需要重新运行奇异值分解算法，代价非常高；另外，分布式表示只能用于表示比较短的单元，如词或短语等，如果待表示的单元比较长，如段落、句子等，由于与其共现的上下文会非常少，则无法获得有效的分布式表示；最后，分布式表示一旦训练完成，则无法修改，也就是说，无法根据具体的任务调整其表示方式。为了解决这些问题，可引入一种新的词表示方式——词嵌入表示。</p>
 <h3 id="词嵌入表示">词嵌入表示
@@ -2069,9 +2071,10 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
 </div><p>  虽然它们只相差一个“的”字，但是表达的语义是截然不同的，这主要是因为两句话的主语不同。其中，第一句话的主语是“文章”，而第二句话的主语是&quot;转&quot;的动作。通过对两句话进行句法分析，就可以准确地获知各自的主语，从而推导出不同的语义。<br>
   典型的句法结构表示方法包含两种——短语结构句法表示和依存结构句法表示。它们的不同点在于依托的文法规则不一样。其中，短语结构句法表示依托上下文无关文法，属于一种层次性的表示方法。而依存结构句法表示依托依存文法。<br>
   <a class="link" href="#20241114184735CST">图2</a>对比了两种句法结构表示方法。在短语结构句法表示中，<code>S</code>代表起始符号，<code>NP</code>和<code>VP</code>分别代表名词短语和动词短语。在依存结构句法表示中，<code>sub</code>和<code>obj</code>分别表示主语和宾语，<code>root</code>表示虚拟根节点，其指向整个句子的核心谓词。</p>
-<div class="svg-figure">
+<div>
             <span id="20241114184735CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 645.0815 266.1458" style="max-width:645.0815;">
   <g>
     <g style="isolation: isolate;">
@@ -2188,7 +2191,8 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
     <text transform="translate(401.6278 263.9856)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: -.018em;"><tspan x="0" y="0">b</tspan></text>
     <text transform="translate(412.5541 263.9856)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">)依存结构句法树</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;两种句法结构表示方法结果对比</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;两种句法结构表示方法结果对比</p>
 <h4 id="语义分析">语义分析
 </h4><p>  自然语言处理的核心任务即是让计算机“理解”自然语言所蕴含的意义，即<strong>语义(Semantic)</strong>。本章前面介绍的文本向量表示，可以被认为隐性地蕴含了很多语义信息。而一般意义上的语义分析指的是通过离散的符号及结构显性地表示语义。根据待表示语言单元粒度以及语义表示方法的不同，语义分析又可以被分为多种形式。<br>
   从词语的粒度考虑，一个词语可能具有多种语义（词义），例如“打”，含义既可能是“攻击”（如“打人”），还可能是“玩”（如“打篮球”），甚至“编织”（如“打毛衣&quot;）等。根据词语出现的不同上下文，确定其具体含义的自然语言处理任务被称为<strong>词义消歧（Word Sense Disambiguation，WSD）</strong>。对于每个词可能具有的词义，往往是通过语义词典确定的，如WordNet等。除了以上一词多义情况，还有多词一义的情况，如“马铃薯”和“土豆”具有相同的词义。<br>
@@ -2223,9 +2227,10 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表2&emsp;语义角色标注示例</p>
 <p>  语义依存分析则利用通用图表示更丰富的语义信息。根据图中节点类型的不同，又可分为两种表示——<strong>语义依存图(Semantic Dependency Graph)</strong>‌表示和<strong>概念语义图(Conceptual Graph)</strong>‌表示。其中，语义依存图中的节点是句子中实际存在的词语，在词与词之间创建语义关系边。而概念语义图首先将句子转化为虚拟的概念节点，然后在概念节点之间创建语义关系边。<a class="link" href="#20241114192135CST">图3</a>展示了一个语义依存图分析结果示例。</p>
-<div class="svg-figure">
+<div>
             <span id="20241114192135CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 645.0815 266.1458" style="max-width:645.0815;">
   <g>
     <g style="isolation: isolate;">
@@ -2342,7 +2347,8 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
     <text transform="translate(401.6278 263.9856)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: -.018em;"><tspan x="0" y="0">b</tspan></text>
     <text transform="translate(412.5541 263.9856)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">)依存结构句法树</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;语义依存图分析结果示例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;语义依存图分析结果示例</p>
 <p>  以上的语义表示方式属于通用语义表示方式，也就是针对各种语言现象，设计统一的语义表示。除此之外，还有另一类语义分析用于专门处理具体的任务，如将自然语言表示的数据库查询转换成结构化查询语言(SQL)。例如，对于如<a class="link" href="#20241114192241CST">表3</a>所示的学生信息表，系统需要将用户的自然语言查询：年龄大于18岁的学生姓名, 转化为 SQL 语句：<code>select name where age &gt; 18</code>。</p>
 <span id="20241114192241CST"></span><div class="normal-table"><div class="table-wrapper"><table>
   <thead>
@@ -2621,9 +2627,10 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
   ◦RL，将栈顶的两棵依存子树采用一个左弧 \(S_1 \curvearrowleft S_0\) 进行合并，然后 \(S_1\) 下栈；<br>
   ◦RR，将栈顶的两棵依存子树采用一个右弧 \(S_1 \curvearrowright S_0\) 进行合并，然后 \(S_0\) 下栈。<br>
   <a class="link" href="#20241114235423CST">图4</a>展示了面向依存句法分析的标准弧转移算法中的三种动作。除了以上三个动作，还定义了一个特殊的完成动作（Finish，FIN）。根据上述的定义，可以使用<a class="link" href="#20241115000931CST">表9</a>中的动作序列逐步生成<a class="link" href="#20241114184735CST">图2</a>(b)所示的依存结构句法树。弧上的句法关系可以在生成弧的时候（采用RL或RR动作），使用额外的句法关系分类器加以预测。</p>
-<div class="svg-figure">
+<div>
             <span id="20241114235423CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 643.6397 154.0742" style="max-width:643.6397;">
   <g>
     <path id="MJX-6-TEX-I-1D446" d="M233.8159,93.1396c.7,0,1.4-.3,2-1,.6-.6.9-1.4.9-2.2s-.3-1.3-1-1.6c-1.3-.3-2.1-.6-2.5-.7s-.6-.2-.8-.4c-.7-.5-1.1-1.3-1.1-2.2s.2-1.4.6-2,.8-1.1,1.2-1.4c.4-.3.8-.5,1.3-.7s.9-.3,1.2-.3h.3c1.2,0,2,.4,2.5,1.2l.2-.2c.2-.2.3-.3.5-.5s.3-.3.4-.4h0c.1334,0,.2.0333.2.1,0,.1-.2.8-.5,2.2s-.5,2.1-.6,2.2-.1,0-.3,0-.4,0-.4-.2v-1c0-.4,0-.8-.2-1.1s-.2-.5-.3-.7-.3-.3-.5-.5c-.4-.3-.9-.4-1.5-.4s-1.3.3-1.9.8-.9,1.2-.9,1.9c0,.4,0,.7.3,1s.4.5.8.6c0,0,.5.1,1.3.3s1.2.3,1.2.3c.4.1.8.4,1.2.9.4.5.6,1.1.6,1.8s0,.7-.1,1c0,.3-.2.6-.3.9s-.4.7-.7,1.1c-.3.4-.7.8-1.2,1.1-.5.3-1.1.6-1.7.7h-.6c-1.2,0-2.1-.3-2.8-1l-.2-.2-.5.6c-.3.3-.5.5-.5.6h-.2c-.1333,0-.2-.0333-.2-.1,0-.1.4-1.5,1.1-4.3,0,0,.1-.1.4-.1h.2s.1.1.1.2v1.2c0,.5.1.9.3,1.2s.5.6.8.7.6.3,1,.3h1l-.1.3h0Z"/>
@@ -2720,7 +2727,8 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
     <text transform="translate(346.8025 109.3088)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate; letter-spacing: -.003em;"><tspan x="0" y="0">S</tspan></text>
     <text transform="translate(356.7385 109.3088)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">H</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;面向依存句法分析的标准弧转移算法中的三种动作</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;面向依存句法分析的标准弧转移算法中的三种动作</p>
 <p>‌</p>
 <span id="20241115000931CST"></span><div class="normal-table"><div class="table-wrapper"><table>
   <thead>
@@ -2881,9 +2889,10 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
 <h3 id="序列到序列问题">序列到序列问题
 </h3><p>  除了文本分类和结构预测问题，还有很多自然语言处理问题可以归为序列到序列（Sequence-to-Sequence，Seq2seq）问题。机器翻译问题就是典型的代表，其中，输入为源语言句子，输出为目标语言句子。将其推广到序列到序列问题，输入就是一个由若干词组成的序列，输出则是一个新的序列，其中，输入和输出的序列不要求等长，同时也不要求词表一致。<br>
   使用传统的机器学习技术解决序列到序列问题是比较困难的，而基于深度学习模型，可以直接将输入序列表示为一个向量，然后，通过该向量生成输出序列。其中，对输入序列进行表示的过程又叫作编码，相应的模型则被称为<strong>编码器(Encoder)</strong>；生成输出序列的过程又叫作解码，相应的模型则被称为<strong>解码器(Decoder)</strong>。 因此，序列到序列模型也被称为<strong>编码器—解码器（Encoder-Decoder）模型</strong>。<a class="link" href="#20241115213118CST">图5</a>以机器翻译问题为例，展示了一个编码器-解码器模型的示例。</p>
-<div class="svg-figure">
+<div>
             <span id="20241115213118CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 657.3811 340.919" style="max-width:657.3811;">
   <rect x=".5" y="247.4629" width="45.9048" height="45.9048" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <g style="isolation: isolate;">
@@ -3007,7 +3016,8 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
   <g style="isolation: isolate;">
     <text transform="translate(475.7525 338.759)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">De</tspan><tspan x="23.7056" y="0" style="letter-spacing: -.001em;">c</tspan><tspan x="33.3716" y="0" style="letter-spacing: .001em;">o</tspan><tspan x="44.1177" y="0">der</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;编码器—解码器模型示例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;编码器—解码器模型示例</p>
 <p>  除了机器翻译，还有很多自然语言处理问题可以被建模为序列到序列问题，如对话系统中，用户话语可被视为输入序列，机器的回复则可被视为输出序列，甚至文本分类问题也可以被建模为序列到序列问题。首先，使用编码器对输入文本进行表示，然后，解码器只输出一个“词”，即文本所属的类别。结构预测问题也类似，首先，也需要使用编码器对输入文本进行表示，然后，在处理序列标注问题时，使用解码器生成输出标签序列（需要保证输出序列与输入序列长度相同）；在处理序列分割问题时，直接输出结果序列；在处理图结构生成问题时，需要将图表示的结果进行序列化，即通过一定的遍历顺序，将图中的节点和边转换为一个序列，然后再执行解码操作。不过，由于输入和输出有较强的对应关系，而序列到序列模型很难保证这种对应关系，所以结构预测问题较少直接使用序列到序列模型加以解决。但是无论如何，由于序列到序列模型具备强大的建模能力，其已成为自然语言处理的大一统框架，越来越多的问题都可以尝试使用该模型加以解决。也就是说，可以将复杂的自然语言处理问题转化为编码、解码两个子问题，然后就可以分别使用独立的模型建模了。</p>
 <h2 id="评价指标">评价指标
 </h2><p>  由于自然语言处理任务的多样性以及评价的主观性，因此很难使用单一的评
@@ -3325,7 +3335,7 @@ R=\frac{\text{正确识别的命名实体数目}}{\text{测试文本中命名实
             
         
         
-        <span>本图书馆累计发布了19篇文章 共32.1万字</span>
+        <span>本图书馆累计发布了19篇文章 共32.2万字</span>
         
     </section>
 

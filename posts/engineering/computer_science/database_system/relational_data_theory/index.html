@@ -131,7 +131,7 @@
 <meta property='og:description' content="关系数据库的数据组织、存储、管理和操作的理论基础">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据理论' /><meta property='article:published_time' content='2024-12-03T10:38:46&#43;08:00'/><meta property='article:modified_time' content='2024-12-04T19:34:10&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='数据库系统' /><meta property='article:tag' content='关系数据理论' /><meta property='article:published_time' content='2024-12-03T10:38:46&#43;08:00'/><meta property='article:modified_time' content='2024-12-04T22:07:25&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="数据库系统（六）：关系数据理论">
 <meta name="twitter:description" content="关系数据库的数据组织、存储、管理和操作的理论基础"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -805,6 +805,9 @@
         <li><a href="#范式">范式</a></li>
         <li><a href="#1nf">1NF</a></li>
         <li><a href="#2nf">2NF</a></li>
+        <li><a href="#3nf">3NF</a></li>
+        <li><a href="#bcnf">BCNF</a></li>
+        <li><a href="#多值依赖">多值依赖</a></li>
       </ol>
     </li>
   </ol>
@@ -1132,7 +1135,7 @@
 </svg>
 
             <time class="article-words">
-                5344 字
+                6835 字
             </time>
         </div>
 
@@ -1147,7 +1150,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 11 分钟
+                    阅读时长: 14 分钟
                 </time>
             </div>
         
@@ -1227,9 +1230,10 @@ U = \set{ \text{Sno}, \text{Sdept}, \text{Mname}, \text{Cno}, \text{Grade}}
 F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\text{Sno},\text{Cno})\rightarrow\text{Grade}}
 \tag{4}
     \]
-<div class="svg-figure">
+<div>
             <span id="20241203151705CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298.1429 130.3702" style="max-width:298.1429;">
   <text transform="translate(29.0365 45.0588)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">Sno</tspan></text>
   <text transform="translate(112.6347 45.0588)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">Cno</tspan></text>
@@ -1254,7 +1258,8 @@ F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\t
     <line x1="83.0978" y1="114.6826" x2="121.8372" y2="114.6826" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="119.0287 118.3858 120.6019 114.6826 119.0287 110.9795 127.807 114.6826 119.0287 118.3858"/>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;Student上的一组函数依赖</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;Student上的一组函数依赖</p>
 <p>  如果只考虑函数依赖这一种数据依赖，可以得到一个描述学生的关系模式 \(\text{Student}\text{<}U,F \text{>} \) 。<a class="link" href="#20241203160635CST">表1</a>是某一时刻关系模式Student的一个实例，即数据表。</p>
 <span id="20241203160635CST"></span><div class="normal-table"><div class="table-wrapper"><table>
   <thead>
@@ -1392,7 +1397,7 @@ F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\t
   下面介绍一些术语和记号。<br>
   ◦ \(X \rightarrow Y\) ，但 \(Y \nsubseteq X\) ，则称 \(X \rightarrow Y\) 是<strong>非平凡的函数依赖</strong>。<br>
   ◦ \(X \rightarrow Y\) ，但 \(Y \subseteq X\) ，则称 \(X \rightarrow Y\) 是<strong>平凡的函数依赖</strong>。对于任一关系模式，平凡函数依赖都是必然成立的，它不反映新的语义。若不特别声明，总是讨论非平凡的函数依赖。<br>
-  ◦若 \(X \rightarrow Y\) ，则 \(X\) 称为这个函数依赖的决定属性组，也称为决定因素(determinant)。<br>
+  ◦若 \(X \rightarrow Y\) ，则 \(X\) 称为这个函数依赖的决定属性组，也称为<strong>决定因素</strong>(determinant)。<br>
   ◦若 \(X \rightarrow Y\) ， \(Y \rightarrow X\) ，则记作 \(X \leftarrow \rightarrow Y\) 。<br>
   ◦若 \(Y\) 不函数依赖于 \(X\) ，则记作 \(X \nrightarrow Y\) 。</p>
 <p>  <span id="20241203215706CST"></span><strong>定义2</strong>：在 \(R(U)\) 中，如果 \(X \rightarrow Y\) ，并且对于 \(X\) 的任何一个真子集 \(X'\) ，都有 \(X' \nrightarrow Y\) ，则称 \(Y\) 对 \(X\) <strong>完全函数依赖</strong>，记作</p>
@@ -1429,9 +1434,10 @@ X \xrightarrow{P} Y
 \tag{7}
     \]
 <p>  成立，如<a class="link" href="#20241204095857CST">图2</a>所示。</p>
-<div class="svg-figure">
+<div>
             <span id="20241204095857CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 347.958 347.959" style="max-width:347.958;">
   <text transform="translate(156.2484 180.4584)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">5</tspan><tspan x="9.8994" y="0" style="letter-spacing: -.005em;">N</tspan><tspan x="24.1377" y="0">F</tspan></text>
   <path d="M173.9785,347.459C78.3223,347.459.5,269.6367.5,173.9795S78.3223.5,173.9785.5s173.4795,77.8223,173.4795,173.4795-77.8223,173.4795-173.4795,173.4795Z" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -1445,7 +1451,8 @@ X \xrightarrow{P} Y
   <text transform="translate(156.2486 76.5848)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">3</tspan><tspan x="9.8994" y="0" style="letter-spacing: -.005em;">N</tspan><tspan x="24.1377" y="0">F</tspan></text>
   <text transform="translate(156.2487 51.0294)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">2</tspan><tspan x="9.8994" y="0" style="letter-spacing: -.005em;">N</tspan><tspan x="24.1377" y="0">F</tspan></text>
   <text transform="translate(156.2495 19.8607)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">1</tspan><tspan x="9.8994" y="0" style="letter-spacing: -.005em;">N</tspan><tspan x="24.1377" y="0">F</tspan></text>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;各种范式之间的关系</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;各种范式之间的关系</p>
 <p>  一个低一级范式的关系模式通过模式分解(schema decomposition)可以转换为若干个高一级范式的关系模式的集合，这种过程就叫<strong>规范化</strong>(normalization)。</p>
 <h3 id="1nf">1NF
 </h3><p>  满足了每一个分量必须是不可分的数据项的关系模式就属于<strong>第一范式(1NF)</strong>。</p>
@@ -1457,9 +1464,10 @@ X \xrightarrow{P} Y
    \(\text{Sno}\rightarrow \text{Sloc},(\text{Sno},\text{Cno})\xrightarrow{P} \text{Sloc}\)<br>
    \( \text{Sdept} \rightarrow \text{Sloc}\) （每个系的学生只住一个地方）<br>
   函数依赖关系如<a class="link" href="#20241204135645CST">图3</a>所示。</p>
-<div class="svg-figure">
+<div>
             <span id="20241204135645CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.8549 140.4286" style="max-width:334.8549;">
   <g>
     <text transform="translate(145.9232 35.8679)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">Sno</tspan></text>
@@ -1510,18 +1518,20 @@ X \xrightarrow{P} Y
     <line x1="119.7993" y1="70.2143" x2="79.2734" y2="70.2143" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="82.082 66.5112 80.5087 70.2143 82.082 73.9174 73.3037 70.2143 82.082 66.5112"/>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;函数依赖示例</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;函数依赖示例</p>
 <p>  图中用虚线表示部分函数依赖。另外 \(\text{Sdept}\) 还函数确定 \(\text{Sloc}\) ，这一点在讨论第二范式时暂不考虑。<br>
   可以看到非主属性 \(\text{Sdept}、\text{Sloc}\) 并不完全函数依赖于码。因此 \(\text{S-L-C}(\text{Sno},\text{Sdept},\text{Sloc},\text{Cno},\text{Grade})\) 不符合 \(2\text{NF}\) 定义，即  \(\text{S-L-C} \notin 2 \text{NF}\) 。<br>
   一个关系模式 \(R\) 不属于 \(2 \text{NF}\) ，就会产生以下几个问题：<br>
   (1)插入异常。假若要插入一个学生 \(\text{Sno}=\text{S7},\text{Sdept}=\text{PHY},\text{Sloc}=\text{BLD2}\) ，但该生还未选课，即这个学生无 \(\text{Cno}\) ，这样的元组就插不进 \(\text{S-L-C}\) 中。因为插入元组时必须给定码值，而这时码值的一部分为空，因而学生的固有信息无法插入。<br>
   (2)删除异常。假定某个学生只选一门课，如 \(\text{S4}\) 就选了一门课 \(\text{C3}\) ，现在 \(\text{C3}\) 这门课他也不选了，那么 \(\text{C3}\) 这个数据项就要删除。而 \(\text{C3}\) 是主属性，删除了 \(\text{C3}\) ，整个元组就必须一起删除，使得 \(\text{S4}\) 的其他信息也被删除了，从而造成删除异常，即不应删除的信息也删除了。<br>
   (3)修改复杂。某个学生从数学系(\(\text{MA}\))转到计算机科学系(\(\text{CS}\))，这本来只需修改此学生元组中的 \(\text{Sdept}\) 分量即可，但因为关系模式 \(\text{S-L-C}\) 中还含有系的住处 \(\text{Sloc}\) 属性，学 生转系将同时改变住处，因而还必须修改元组中的 \(\text{Sloc}\) 分量。另外，如果这个学生选修了 \(k\) 门课， \(\text{Sdept}、\text{Sloc}\) 重复存储了 \(4\) 次，不仅存储冗余度大，而且必须无遗漏地修改后个元组中全部 \(\text{Sdept}、\text{Sloc}\) 信息，造成修改的复杂化。<br>
-  分析上面的例子可以发现问题在于有两类非主属性，一类如 \(\text{Grade}\) ，它对码是完全函数依赖；另一类如 \(\text{Sdept}\) 、 \(\text{Sloc}\) ，它们对码不是完全函数依赖。解决的办法是用投影分解把关系模式  \(\text{S-L-C}\) 分解为两个关系模式：\(\text{SC(Sno,Cno,Grade)}\) 和 \(\text{S-L(Sno,Sdept,Sloc)}\) 。<br>
-  关系模式 \(\text{SC}\) 与 \(\text{S-L}\) 中属性间的函数依赖可以用图6.4、图6.5表示如下。</p>
-<div class="figures-container"><div class="svg-figure">
+  分析上面的例子可以发现问题在于有两类非主属性，一类如 \(\text{Grade}\) ，它对码是完全函数依赖；另一类如 \(\text{Sdept}、\text{Sloc}\) ，它们对码不是完全函数依赖。解决的办法是用投影分解把关系模式  \(\text{S-L-C}\) 分解为两个关系模式：\(\text{SC(Sno,Cno,Grade)}\) 和 \(\text{S-L(Sno,Sdept,Sloc)}\) 。<br>
+  关系模式 \(\text{SC}\) 与 \(\text{S-L}\) 中属性间的函数依赖可以用<a class="link" href="#20241204142005CST">图4</a>、<a class="link" href="#20241204142008CST">图5</a>表示如下。</p>
+<div class="figures-container"><div>
             <span id="20241204142005CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 205.3787 140.4286" style="max-width:205.3787;">
   <g>
     <text transform="translate(145.9232 35.8679)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">Sno</tspan></text>
@@ -1540,10 +1550,12 @@ X \xrightarrow{P} Y
     <line x1="119.7993" y1="70.2143" x2="79.2734" y2="70.2143" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="82.082 66.5112 80.5087 70.2143 82.082 73.9174 73.3037 70.2143 82.082 66.5112"/>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;SC中的函数依赖</p>
-<div class="svg-figure">
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;SC中的函数依赖</p>
+<div>
             <span id="20241204142008CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172.9048 109.6154" style="max-width:172.9048;">
   <g>
     <text transform="translate(12.973 62.8642)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">Sno</tspan></text>
@@ -1569,9 +1581,82 @@ X \xrightarrow{P} Y
     <line x1="29.3889" y1="69.2741" x2="100.6695" y2="95.6693" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="96.7498 98.1667 99.5111 95.2404 99.3217 91.2214 106.2678 97.7424 96.7498 98.1667"/>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;S-L中的函数依赖</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;S-L中的函数依赖</p>
 </div>
-
+<p>  关系模式 \(\text{SC}\) 的码为 \((\text{Sno},\text{Cno})\) ，关系模式 \(\text{S-L}\) 的码为 \(\text{Sno}\) ，这样就使得非主属性对码都是完全函数依赖了。</p>
+<h3 id="3nf">3NF
+</h3><p>  <span id="20241204194628CST"></span><strong>定义7</strong>：设关系模式 \(R \text{<} U,F \text{>} \in 1 \text{NF}\) ，若 \(R\) 中不存在这样的码 \(X\) ，属性组 \(Y\) 及非主属性 \(Z(Z \nsupseteq Y)\)使得 \(X \rightarrow Y, Y \rightarrow Z\) 成立， \(Y \nrightarrow X\) ，则称 \(R \text{<} U,F \text{>} \in 3 \text{NF}\) 。<br>
+  由<a class="link" href="#20241204194628CST">定义7</a>可以证明，若 \(R \in 3 \text{NF}\) ，则每一个非主属性既不传递依赖于码，也不部分依赖于码。也就是说，可以证明如果 \(R\) 属于 \(3 \text{NF}\) ，则必有 \(R\) 属于 \(2 \text{NF}\) 。<br>
+  在<a class="link" href="#20241204142005CST">图4</a>中关系模式 \(\text{SC}\) 没有传递依赖，而<a class="link" href="#20241204142008CST">图5</a>中关系模式 \(\text{S-L}\) 存在非主属性对码的传递依赖。在 \(\text{S-L}\) 中，由 \(\text{Sno} \rightarrow \text{Sdept}(\text{Sdept} \nrightarrow \text{Sno})\) ， \(\text{Sdept} \rightarrow \text{Sloc}\) ，可得 \(\text{Sno}\rightarrow \text{Sloc}\) 。因此 \(\text{SC} \in 3 \text{NF}\) ，而 \( \text{S-L} \notin 3 \text{NF}\) 。<br>
+  一个关系模式 \(R\) 若不是 \(3 \text{NF}\) ，就会产生2NF相类似的问题。解决的办法同样是将 \(\text{S-L}\) 分解为：\(\text{S-D(Sno,Sdept)}\) 和 \(\text{D-L(Sdept,Sloc)}\) 。分解后的关系模式 \(\text{S-D}\) 与 \(\text{D-L}\) 中不再存在传递依赖。</p>
+<h3 id="bcnf">BCNF
+</h3><p>   \(\text{BCNF}\) (Boyce Codd Normal Form)是由Boyce与Codd提出的，比上述的 \(\text{3NF}\) 又进了一步，通常认为 \(\text{BCNF}\) 是修正的第三范式，有时也称为扩充的第三范式。</p>
+<p>  <span id="20241204204622CST"></span><strong>定义8</strong>：关系模式 \(R \text{<} U,F \text{>} \in 1 \text{NF}\) ，若 \(X \rightarrow Y\) 且 \(Y \nsubseteq X\) 时 \(X\) 必含有码，则 \(R \text{<} U,F \text{>} \in \text{BCNF}\) 。</p>
+<p>  也就是说，关系模式 \(R \text{<} U,F \text{>}\) 中，若每一个决定因素都包含码，则 \(R \text{<} U,F \text{>} \in \text{BCNF}\) 。<br>
+  由 \(\text{BCNF}\) 的定义可以得到结论，一个满足 \(\text{BCNF}\) 的关系模式有：<br>
+  ◦所有非主属性对每一个码都是完全函数依赖。<br>
+  ◦所有主属性对每一个不包含它的码也是完全函数依赖。<br>
+  ◦没有任何属性完全函数依赖于非码的任何一组属性。<br>
+  由于 \(R \in \text{BCNF}\) ，按定义排除了任何属性对码的传递依赖与部分依赖，所以 \(R \in \text{3NF}\) 。 但是若 \(R \in \text{3NF}\) ， \(R\) 未必属于 \(\text{BCNF}\) 。<br>
+  下面用几个例子说明属于 \(\text{3NF}\) 的关系模式有的属于 \(\text{BCNF}\) ，但有的不属于 \(\text{BCNF}\) 。</p>
+<p>  <span id="20241204211140CST"></span><strong>例5</strong>：考察关系模式 \(\text{C(Cno, Cname, Pcno)}\) ，它只有一个码 \(\text{Cno}\) ，这里没有任何属性对 \(\text{Cno}\) 部分依赖或传递依赖，所以 \(\text{C} \in \text{3NF}\) 。同时 \(\text{C}\) 中 \(\text{Cno}\) 是唯一的决定因素，所以 \(\text{C} \in \text{BCNF}\) 。对于关系模式 \(\text{C(Sno, Cno, Grade)}\) 可作同样分析。</p>
+<p>  <span id="20241204211945CST"></span><strong>例6</strong>：关系模式 \(\text{S(Sno, Sname, Sdept, Sage)}\) ，假定 \(\text{Sname}\) 也具有唯一性，那么 \(\text{S}\) 就有两个码，这两个码都由单个属性组成，彼此不相交。其他属性不存在对码的传递依赖与部分依赖，所以 \(\text{S} \in \text{3NF}\) 。同时 \(\text{S}\) 中除 \(\text{Sno}、\text{Sname}\) 外没有其他决定因素，所以 \(\text{S}\) 也属于 \(\text{BCNF}\) 。</p>
+<p>  以下再举几个例子。</p>
+<p>  <span id="20241204212155CST"></span><strong>例7</strong>：关系模式 \(\text{SJP(S, J, P)}\) 中，\(\text{S}\) 是学生， \(\text{J}\) 表示课程， \(\text{P}\) 表示名次。每一个学生选修每门课程的成绩有一定的名次，每门课程中每一名次只有一个学生（即没有并列名次）。由语义可得到下面的函数依赖：</p>
+<span id="20241204212354CST"></span>\[
+\text{(S,J)} \rightarrow \text{P}\quad (\text{J},\text{P}) \rightarrow S
+\tag{8}
+    \]
+<p>  所以 \(\text{(S,J)}\) 与 \(\text{(J,P)}\) 都可以作为候选码。这两个码各由两个属性组成，而且它们是相交的。这个关系模式中显然没有属性对码传递依赖或部分依赖。所以 \(\text{SJP} \in \text{3NF}\) ，而且除 \(\text{(S,J)}\) 与 \(\text{(J,P)}\) 以外没有其他决定因素，所以 \(\text{SJP} \in \text{BCNF}\) 。</p>
+<p>  <span id="20241204213227CST"></span><strong>例8</strong>：关系模式 \(\text{STJ(S, T, J)}\) 中， \(\text{S}\) 表示学生， \(\text{T}\) 表示教师， \(\text{J}\) 表示课程。每一教师只教一门课，每门课有若干教师，某一学生选定某门课，就对应一个固定的教师。由语义可得到如下的函数依赖。</p>
+<span id="20241204213304CST"></span>\[
+\text{(S,J)} \rightarrow \text{T}, \text{(S,T)} \rightarrow \text{J}, \text{T} \rightarrow \text{J}
+\tag{9}
+    \]
+<p>  函数依赖关系可以用图6.6表示，这里 \(\text{(S,J)}、\text{(S,T)}\) 都是候选码。</p>
+<div>
+            <span id="20241204215138CST"></span>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.4683 109.9524" style="max-width:284.4683;">
+  <text transform="translate(18.1468 32.4028)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">S</tspan></text>
+  <rect x="13.0079" y="15.8333" width="20.4444" height="20.4444" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(20.1468 90.0144)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">J</tspan></text>
+  <rect x="13.0079" y="74.4449" width="20.4444" height="20.4444" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(109.1941 31.9098)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">T</tspan></text>
+  <rect x="105.0552" y="15.3403" width="20.4444" height="20.4444" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <rect x=".5" y=".5" width="45.8413" height="108.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="46.3413" y1="25.5625" x2="99.0854" y2="25.5625" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="96.2768 29.2656 97.8501 25.5625 96.2768 21.8594 105.0552 25.5625 96.2768 29.2656"/>
+  </g>
+  <g>
+    <line x1="115.2774" y1="35.7847" x2="38.5772" y2="81.6055" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="39.0892 76.9861 39.6378 80.972 42.8875 83.3442 33.4524 84.6671 39.0892 76.9861"/>
+  </g>
+  <text transform="translate(172.638 32.4028)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">S</tspan></text>
+  <rect x="167.4991" y="15.8333" width="20.4444" height="20.4444" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(266.6852 31.132)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">J</tspan></text>
+  <rect x="259.5463" y="15.5625" width="20.4444" height="20.4444" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <text transform="translate(171.6379 91.0144)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">T</tspan></text>
+  <rect x="167.4991" y="74.4449" width="20.4444" height="20.4444" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <rect x="154.9911" y=".5" width="45.8413" height="108.9524" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <g>
+    <line x1="200.8324" y1="25.5625" x2="253.5766" y2="25.5625" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="250.768 29.2656 252.3412 25.5625 250.768 21.8594 259.5463 25.5625 250.768 29.2656"/>
+  </g>
+  <g>
+    <line x1="265.0292" y1="39.0473" x2="187.9435" y2="84.6671" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+    <polygon points="260.7261 37.2909 263.9661 39.6765 264.4981 43.6646 270.1667 36.007 260.7261 37.2909"/>
+  </g>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图6&emsp;STJ中的函数依赖</p>
+<p>   \(\text{STJ}\) 是 \(\text{3NF}\) ，因为没有任何非主属性对码传递依赖或部分依赖，但 \(\text{STJ}\) 不是 \(\text{BCNF}\) 关系，因为 \(\text{T}\) 是决定因素，而 \(\text{T}\) 不包含码。</p>
+<p>  对于不是 \(\text{BCNF}\) 的关系模式，仍然存在不合适的地方。非 \(\text{BCNF}\) 的关系模式也可以通过分解成为 \(\text{BCNF}\) 。例如 \(\text{STJ}\) 可分解为 \(\text{ST(S,T)}\) 与 \(\text{TJ(T,J)}\) ，它们都是 \(\text{BCNF}\) 。</p>
+<p>   \(\text{3NF}\) 和 \(\text{BCNF}\) 是在函数依赖的条件下对模式分解所能达到的分离程度的测度。一个模式中的关系模式如果都属于 \(\text{BCNF}\) ，那么在函数依赖范畴内它已实现了彻底的分离，己消除了插入和删除的异常。 \(\text{3NF}\) 的“不彻底”性表现在可能存在主属性对码的部分依赖和传递依赖。</p>
+<h3 id="多值依赖">多值依赖
+</h3>
     </div>
 </section>
 
@@ -1616,7 +1701,7 @@ X \xrightarrow{P} Y
 
 
         <span>
-            最后更新于 Dec 04, 2024 19:34 CST
+            最后更新于 Dec 04, 2024 22:07 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -1800,7 +1885,7 @@ X \xrightarrow{P} Y
             
         
         
-        <span>本图书馆累计发布了19篇文章 共32.1万字</span>
+        <span>本图书馆累计发布了19篇文章 共32.2万字</span>
         
     </section>
 

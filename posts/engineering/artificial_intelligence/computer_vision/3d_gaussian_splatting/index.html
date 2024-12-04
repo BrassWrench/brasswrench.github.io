@@ -1243,9 +1243,10 @@
   本文将深入探讨3D高斯泼溅算法的基本原理，从其数学基础、实现步骤到应用场景，全面解析这一先进技术的核心优势和技术特点。通过本文的介绍，读者将能够更深入地理解3D高斯泼溅算法的工作原理，并探索其在三维重建、点云渲染、体数据可视化等领域的广泛应用前景。</p>
 <h2 id="算法框架">算法框架
 </h2><p>  3DGS的主要任务有两个：三维重建和渲染。简单来说，就是提供一组某个场景的照片，然后将这个场景实时渲染出来。算法的主要框架如下图所示。</p>
-<div class="svg-figure">
+<div>
             <span id="20241001163933CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 847.8998 196.8803" style="max-width:847.8998;">
   <defs>
     <radialGradient id="_未命名的渐变" data-name="未命名的渐变" cx="588.065" cy="-2738.3768" fx="588.065" fy="-2738.3768" r="13.8878" gradientTransform="translate(1112.4843 -496.463) rotate(90) scale(1 -.3)" gradientUnits="userSpaceOnUse">
@@ -1491,7 +1492,8 @@
       </g>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;3D Gaussian Splatting整体框架</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;3D Gaussian Splatting整体框架</p>
 <p>  由上图可以看出，当拿到一组场景照片以后，我们需要先使用某种<strong>SfM(Structure from Motion)算法</strong>估计出这一组照片的<strong>结构</strong>（位置）和<strong>姿态</strong>（摄像机方向）和一组<strong>稀疏点云(SfM Points)</strong>。然后交给3DGS进行<strong>初始化(Initialization)</strong>‌得到一组初始的<strong>3D高斯球(3D Gaussians)</strong>。然后，我们借助相机外参（结构和姿态）将这一组3D高斯球<strong>投影</strong>到相机平面上（<strong>Projection</strong>），接着再使用<strong>可微分块光栅化(Differentiable Tile Rasterizer)</strong>‌渲染得到图像（<strong>Image</strong>）。得到渲染图像后将其与相机原始的图像(Ground Truth)进行loss比对，然后沿着虚线箭头进行梯度回传。虚线箭头从上回传的时候，更新3D高斯球中的参数，从下回传时会经过<strong>自适应密度控制(Adaptive Density Control)</strong>‌的处理，而后更新3D高斯球中的点云。<br>
   接下来，我们详细讲解算法中的每一个步骤，并给出具体的实现方式。</p>
 <h2 id="算法内容">算法内容
@@ -2106,7 +2108,7 @@ f\left(\bm{x}^\prime|\bm{\mu}^\prime,\bm{\Sigma}^\prime\right)=\frac{1}{\sqrt{\l
             
         
         
-        <span>本图书馆累计发布了19篇文章 共32.1万字</span>
+        <span>本图书馆累计发布了19篇文章 共32.2万字</span>
         
     </section>
 

@@ -1307,9 +1307,10 @@
   (1)检查主码值是否唯一，如果不唯一则拒绝插入或修改。<br>
   (2)检查主码的各个属性是否为空，只要有一个为空就拒绝插入或修改。从而保证了实体完整性。<br>
   检查记录中主码值是否唯一的一种方法是进行全表扫描，依次判断表中每一条记录的主码值与将插入记录的主码值（或者修改的新主码值）是否相同，如<a class="link" href="#20241202193308CST">图1</a>所示。</p>
-<div class="svg-figure">
+<div>
             <span id="20241202193308CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 472.183 264.4653" style="max-width:472.183;">
   <text transform="translate(94.268 119.7855)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0" style="letter-spacing: -.024em;">K</tspan><tspan x="12.7261" y="0" style="letter-spacing: -.002em;">e</tspan><tspan x="22.5361" y="0">y1</tspan></text>
   <g>
@@ -1360,11 +1361,13 @@
     <line x1="48.3814" y1="99.247" x2="48.3814" y2="214.9479" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="44.6783 212.1393 48.3814 213.7126 52.0845 212.1393 48.3814 220.9177 44.6783 212.1393"/>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;用全表扫描方法检查主码唯一性</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;用全表扫描方法检查主码唯一性</p>
 <p>  全表扫描是十分耗时的。为了避免对基本表进行全表扫描，关系数据库管理系统一般都 在主码上自动建立一个索引，如<a class="link" href="#20241202200809CST">图2</a>的B+树索引，通过索引查找基本表中是否已经存在新的主码值将大大提高效率。例如，如果新插入记录的主码值是25，通过主码索引，从B+树的根结点开始查找，只要读取三个结点就可以知道该主码值已经存在，所以不能插入这条记录。这三个结点是根结点(51)、中间结点(12 30)和叶结点(15 20 25)。如果新插入记录的主码值是86，也只要查找三个结点就可以知道该主码值不存在，所以可以插入该记录。</p>
-<div class="svg-figure">
+<div>
             <span id="20241202200809CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 734.9186 349.5059" style="max-width:734.9186;">
   <text transform="translate(121.1542 15.8402)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">新记录的主码值</tspan></text>
   <text transform="translate(174.2542 52.8809)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px;"><tspan x="0" y="0">25</tspan></text>
@@ -1468,7 +1471,8 @@
     <line x1="218.1541" y1="62.8302" x2="349.4165" y2="111.4256" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     <polygon points="345.4969 113.9233 348.258 110.9967 348.0683 106.9778 355.0149 113.4983 345.4969 113.9233"/>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;使用索引检查主码唯一</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;使用索引检查主码唯一</p>
 <h2 id="参照完整性">参照完整性
 </h2><h3 id="定义参照完整性">定义参照完整性
 </h3><p>  关系模型的参照完整性在<code>CREATE TABLE</code>中用<code>FOREIGN KEY</code>短语定义哪些列为外码，用<code>REFERENCES</code>短语指明这些外码参照哪些表的主码。<br>
@@ -2341,7 +2345,7 @@
             
         
         
-        <span>本图书馆累计发布了19篇文章 共32.1万字</span>
+        <span>本图书馆累计发布了19篇文章 共32.2万字</span>
         
     </section>
 

@@ -1366,9 +1366,10 @@
 </h3><p>  操作系统在计算机系统中所起的作用，可以从用户、资源管理及资源抽象等多个不同的角度来进行分析和讨论。</p>
 <h4 id="os作为用户与计算机硬件系统之间的接口">OS作为用户与计算机硬件系统之间的接口
 </h4><p>  OS作为用户与计算机硬件系统之间的接口的含义是：OS处于用户与计算机硬件系统之间，用户通过OS来使用计算机系统。或者说，用户在OS帮助下能够方便、快捷、可靠地操纵计算机硬件和运行自己的程序。<a class="link" href="#20240929215340CST">图1</a>是OS作为接口的示意图。由图可看出，用户可通过三种方式使用计算机，即通过命令方式、系统调用方式和图标&mdash;窗口方式来实现与操作系统的通信，并取得它的服务。</p>
-<div class="svg-figure">
+<div>
             <span id="20240929215340CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 634 193.3322" style="max-width:634;">
   <g style="isolation: isolate;">
     <text transform="translate(299 28.25)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">用户</tspan></text>
@@ -1405,16 +1406,18 @@
   <rect x="114.91" y="42.55" width="164.5" height="43.4" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <rect x="44.51" y="85.95" width="545" height="60.8" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <rect x=".5" y="146.75" width="633" height="44" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;OS作为接口的示意图</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图1&emsp;OS作为接口的示意图</p>
 <h4 id="os作为计算机系统资源的管理者">OS作为计算机系统资源的管理者
 </h4><p><span id="20240930214339CST"></span>
   在一个计算机系统中，通常都含有多种硬件和软件资源。归纳起来可将这些资源分为四类：<strong>处理机、存储器、I/O设备以及文件（数据和程序）</strong>。相应地，OS的主要功能也正是对这四类资源进行有效的管理。处理机管理适用于分配和控制处理机；存储器管理主要负责内存的分配与回收；I/O设备管理是负责I/O设备的分配（回收）与操纵；文件管理适用于实现对文件的存取、共享和保护。可见，OS的确是计算机系统资源的管理者。<br>
   当一台计算机系统供多个用户使用时，诸多用户对系统中共享资源的需求（包括数量和时间）有可能发生冲突。为此，操作系统必须对使用资源的请求进行授权，以协调诸用户对共享资源的使用。</p>
 <h4 id="os实现了对计算机资源的抽象">OS实现了对计算机资源的抽象
 </h4><p>  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如<a class="link" href="#20240929215356CST">图2</a>所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。</p>
-<div class="svg-figure">
+<div>
             <span id="20240929215356CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.3523 343" style="max-width:454.3523;">
   <g id="_layer_1-2">
     <circle cx="72.6424" cy="90.1107" r="37" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
@@ -1548,7 +1551,8 @@
       </g>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;I/O软件隐藏了I/O操作实现的细节</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图2&emsp;I/O软件隐藏了I/O操作实现的细节</p>
 <p>  通常把覆盖了上述软件的机器称为<strong>扩充机器</strong>或者<strong>虚机器</strong>。它向用户提供了一个对硬件操作的抽象模型。用户可利用该模型的接口使用计算机，无需了解物理接口的实现细节，从而使用户更容易地使用计算机硬件资源。亦即，I/O设备管理软件实现了对计算机硬件操作的第一个层次的抽象。<br>
   同理，为了方便用户使用文件系统，又可在第一层软件（I/O管理软件）上再覆盖一层用于文件管理的软件，由它来实现对文件操作的细节，并向上层提供一组实现对文件进行存取操作的数据结构和命令。这样，用户可利用该软件提供的数据结构及命令对文件进行存取。此时用户所看到的是一台功能更强、使用更方便的虚机器。亦即，文件管理软件实现了对硬件资源操作的第二个层次的抽象。以此类推，如果文件管理软件上再覆盖一层面向用户的窗口软件，则用户便可在窗口环境下方便地使用计算机，从而形成一台功能更强的虚机器。<br>
   由此可知，OS是铺设在计算机硬件上的多层软件的集合，它们不仅增强了系统的功能，还隐藏了对硬件操作的具体细节，实现了对计算机硬件操作的多个层次的抽象模型。值得说明的是，不仅可在底层对一个硬件资源加以抽象，还可以在高层对该资源底层已抽象的模型再次进行抽象，称为更高层的抽象模型。随着抽象层次的提高，抽象接口所提供的功能就越强，用户使用起来也越方便。</p>
@@ -1577,9 +1581,10 @@
 <h4 id="脱机输入输出off-line-io方式">脱机输入/输出（Off-Line IO）方式
 </h4><p>  为了解决人机矛盾及CPU和I/O设备之间速度不匹配的矛盾，20世纪50年代末出现了<strong>脱机I/O技术</strong>。该技术是实现将装有用户程序和数据的纸带装入纸带输入机，在一台外围机的控制下，把纸带（卡片）上的数据（程序）输入到磁带上。当CPU需要这些程序和数据时，再从磁带上高速地调入内存。<br>
   类似地，当CPU需要输出时，可先由CPU把数据直接从内存高速地输送到磁带上，然后在另一台外围机的控制下，再将此大地上的结果通过相应地输出设备输出。<a class="link" href="#20240929215418CST">图3</a>示出了脱机输入/输出的过程。</p>
-<div class="svg-figure">
+<div>
             <span id="20240929215418CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326.64 239.4221" style="max-width:326.64;">
   <g style="isolation: isolate;">
     <text transform="translate(7.17 44.5705)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">输入设备</tspan></text>
@@ -1624,7 +1629,8 @@
     <text transform="translate(250.09 217.6905)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">输出设备</tspan></text>
   </g>
   <path d="M243.5,228.5406v-30.81h82.64v30.77c-9.47,4.02-23.22,7.82-36.64,2.27-2.02-.84-2.85-1.48-4.68-2.23-15.79-6.51-31.69-3.17-41.32,0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;脱机I/O示意图</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图3&emsp;脱机I/O示意图</p>
 <p>  由于程序和数据的输入和输出都是在外围机的控制下完成的，或者说，它们是在脱离主机的情况下进行的，故称为<strong>脱机输入/输出方式</strong>。反之，把在主机的直接控制下进行输入/输出的方式称为<strong>联机输入/输出（On-Line I/O）</strong> 方式。这种脱机I/O方式的主要优点为：<br>
   (1) 减少了CPU的空闲时间。装带、卸带，以及将数据从低俗I/O设备送到高速磁带上（或反之）的操作，都是在脱机情况下由外围机万郴个，并不占用主机时间，从而有效地减少了CPU的空闲时间。<br>
   (2) 提高了I/O速度。当CPU在运行中需要输入数据时，是直接从高速的磁带上将数据输入到内存的，这便极大地提高了I/O速度，从而进一步减少了CPU的空闲时间。</p>
@@ -1632,9 +1638,10 @@
 </h3><p>  20世纪50年代中期出现了第二代晶体管计算机，此时计算机虽已具有推广应用的价值，但计算机系统仍然非常昂贵，为了能充分地提高它的利用率，应尽量保持系统的连接运行，即在处理完一个作业后，紧接着处理下一个作业，以减少机器的空闲等待时间。</p>
 <h4 id="单道批处理系统的处理过程">单道批处理系统的处理过程
 </h4><p>  为了实现对作业的连续处理，需要先把一批作业以脱机方式输入到磁带上，并在系统中配上<strong>监督程序(Monitor)</strong>，在它的控制下，使这批作业能一个接一个连续处理。其处理过程是：首先由监督程序将磁带上的第一个作业装入内存，并把运行控制权交给该作业；当该作业处理完成时，又把控制权交给监督程序，再由监督程序把磁带上的第二个作业调入内存。计算机系统就这样自动地一个作业紧接着一个作业地进行处理，直至磁带上的所有作业全部完成，这样便形成了早期的批处理系统。虽然系统对作业的处理是成批进行的，但在内存中时终止保持一道作业，故称为<strong>单道批处理系统</strong>。<a class="link" href="#20240929215439CST">图4</a>示出了单道批处理系统的处理流程。</p>
-<div class="svg-figure">
+<div>
             <span id="20240929215439CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 462.1815 312.7604" style="max-width:462.1815;">
   <path d="M169.76.781c-5.82,2.99-67.97,34.96-72.57,37.32.06.03.1.05.1.05l73.28,37.69s67.66-35.06,72.46-37.55l-.1-.05L170.19.561l-.44.22h.01Z" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
   <g style="isolation: isolate;">
@@ -1742,12 +1749,14 @@
   <g style="isolation: isolate;">
     <text transform="translate(151.78 128.111)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">停止</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;单道批处理系统的处理流程</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;单道批处理系统的处理流程</p>
 <h4 id="单道批处理系统的缺点">单道批处理系统的缺点
 </h4><p>  单道批处理系统最主要的缺点是，系统中的资源得不到充分的利用。这是因为在内存中仅有一道程序，每逢该程序在运行中发出I/O请求后，CPU便处于等待状态，必须在其I/O完成后才继续运行。又因I/O设备的低速性，更使CPU的利用率显著降低。<a class="link" href="#20240929215455CST">图5</a>示出了单道程序的运行情况，从图可以看出：在 $t_2$ ~ $t_3$ 、 $t_6$ ~ $t_7$ 时间间隔内CPU空闲。</p>
-<div class="svg-figure">
+<div>
             <span id="20240929215455CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 744.1543 265.5487" style="max-width:744.1543;">
   <g style="isolation: isolate;">
     <g style="isolation: isolate;">
@@ -1844,16 +1853,18 @@
     <path id="MJX-89-TEX-N-38" d="M661.8578,223.6068v-.9966c0-.6644.233-1.1993.6989-1.6049s1.0009-.6126,1.6049-.6212c.6126,0,1.1562.1812,1.6308.5436s.7118.8326.7118,1.4107c0,.2588-.0475.5004-.1424.7248s-.2071.4055-.3365.5436-.2632.2588-.4012.3624-.2502.1812-.3365.233-.1337.0863-.1424.1035l.1812.1165c.1208.0863.2416.1726.3624.2588s.1898.1337.2071.1424c.6471.5091.9707,1.1519.9707,1.9284,0,.6816-.2502,1.2727-.7507,1.7731-.5004.5004-1.1476.755-1.9414.7636-.7765,0-1.415-.22-1.9155-.6601-.5004-.44-.7507-.9836-.7507-1.6308,0-.9319.5565-1.7084,1.6696-2.3296l-.233-.1683c-.1812-.1122-.2977-.1985-.3494-.2588-.4918-.4228-.7377-.9664-.7377-1.6308v.9966h-.0002ZM664.6533,224.008l.0777-.0518c.0518-.0345.0906-.0604.1165-.0777s.069-.0475.1294-.0906.1122-.0863.1553-.1294.0906-.0949.1424-.1553.0992-.1165.1424-.1683.0863-.1208.1294-.2071.082-.1596.1165-.22.0561-.1467.0647-.2588.0173-.2071.0259-.2847c0-.371-.1251-.686-.3753-.9448s-.5393-.4228-.8671-.4918c-.0604-.0086-.2028-.0129-.4271-.0129-.3538,0-.686.1122-.9966.3365s-.4702.5048-.4789.8413c0,.1985.0561.3796.1683.5436s.2243.289.3365.3753.3279.2243.6471.4142c.0604.0431.1079.0733.1424.0906l.7507.4918h0ZM664.1874,228.732c.5004,0,.9319-.1467,1.2942-.44.3624-.2934.5436-.6471.5436-1.0613,0-.1467-.0216-.2847-.0647-.4142s-.0949-.2373-.1553-.3236-.1553-.1812-.2847-.2847-.2287-.1812-.2977-.233-.1941-.1337-.3753-.2459-.2977-.1855-.3494-.22c-.1208-.0777-.2502-.1596-.3883-.2459s-.2502-.1596-.3365-.22l-.1035-.0647c-.0518,0-.1769.0733-.3753.22s-.4055.384-.6212.7118c-.2157.3279-.3279.6816-.3365,1.0613,0,.5091.1855.9275.5565,1.2554.371.3279.8024.4961,1.2942.5048h0Z"/>
   </g>
   <path id="MJX-90-TEX-I-1D461" d="M738.5883,258.2982c-.0854-.0854-.1282-.1465-.1282-.1831,0-.0488.0183-.1465.0549-.2929s.0671-.2319.0915-.2563c.0244-.061.0793-.0915.1648-.0915s.3967-.0061.9338-.0183h.9704l.3479-1.4647c.0366-.1343.0793-.3113.1282-.531s.0915-.3784.1282-.476.0732-.2197.1099-.3662.0854-.2502.1465-.3113.1221-.1343.1831-.2197.1465-.1404.2563-.1648.2197-.0366.3296-.0366c.2197.0122.3723.0793.4577.2014s.1282.238.1282.3479c0,.0854-.0549.3723-.1648.8605s-.2319.9704-.3662,1.4464l-.1831.6774c0,.0244.3052.0366.9155.0366h.9338c.0854.0854.1282.1526.1282.2014,0,.2685-.0793.4821-.238.6408h-1.9591l-.6591,2.6548c-.476,1.953-.7141,3.0027-.7141,3.1492,0,.5127.1648.769.4944.769.4272,0,.8422-.2075,1.245-.6225s.7263-.9277.9704-1.538c.0244-.0732.0549-.116.0915-.1282s.1282-.0244.2746-.0366h.0732c.1831,0,.2746.0488.2746.1465,0,.0366-.0183.1099-.0549.2197-.061.1953-.1709.4272-.3296.6958s-.3662.5554-.6225.8605c-.2563.3052-.5676.5615-.9338.769-.3662.2075-.7385.3113-1.1169.3113-.3662,0-.7141-.0915-1.0436-.2746s-.5676-.5005-.7141-.9521c-.0244-.0976-.0366-.2624-.0366-.4944v-.3296l.6408-2.5633c.4272-1.7211.6469-2.5877.6591-2.5999,0-.0244-.3113-.0366-.9338-.0366h-.9338.0002Z"/>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;单道程序的运行情况</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图5&emsp;单道程序的运行情况</p>
 <p>  为了能在系统中运行较大的作业，通常在计算机中都配置了较大容量的内存，但实际情况是有80%以上的作业都属于中小型，因此在单道程序环境下，也必定造成内存的浪费。类似地，为了满足各种类型的作业需要，在系统中将会配置多种类型的I/O设备。显然在单道程序环境下也不能充分利用系统资源。</p>
 <span id="20240930213239CST"></span>
 <h3 id="多道批处理系统multiprogrammed-batch-processing-system">多道批处理系统(Multiprogrammed Batch Processing System)
 </h3><p>  20世纪60年代中期，IBM公司生产了第一台小规模集成电路计算机IBM 360（第三代计算机系统）。由于它较之于晶体管计算机无论在体积、功耗、速度和可靠性上都有了显著的改善，因而获得了极大的成功。IBM公司为该机开发的OS/360操作系统是第一个能运行多道程序的批处理系统。</p>
 <h4 id="多道程序设计的基本概念">多道程序设计的基本概念
 </h4><p>  为了进一步提高资源的利用率和系统吞吐量，在20世纪60年代中期引入了<strong>多道程序设计技术</strong>，由此形成了<strong>多道批处理系统</strong>。在该系统中，用户所提交的作业先存放在外存上，并排成一个队列，称为“后备队列”。然后由<strong>作业调度程序</strong>按一定的算法，从后备队列中选择若干个作业调入内存，使它们共享CPU和系统中的各种资源。由于同时在内存中装有若干道程序，这样便可以在运行程序A时，利用其因I/O操作而暂停执行时的CPU空挡时间，再调度另一道程序B运行，同样可以利用程序B在I/O操作时的空档时间，再调度程序C运行，使多道程序交替地运行，这样便可以保持CPU处于忙碌状态。<a class="link" href="#20240929215511CST">图6</a>示出了四道程序时的运行情况。</p>
-<div class="svg-figure">
+<div>
             <span id="20240929215511CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840.7378 486.1498" style="max-width:840.7378;">
   <g style="isolation: isolate;">
     <text transform="translate(22.7299 98.8098)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">程序A</tspan></text>
@@ -2057,7 +2068,8 @@
   <g style="isolation: isolate;">
     <text transform="translate(728.6299 401.6398)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">调度</tspan></text>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图6&emsp;多道程序的运行情况</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图6&emsp;多道程序的运行情况</p>
 <h4 id="多道批处理系统的优缺点">多道批处理系统的优缺点
 </h4><p>  多道批处理系统的优点如下：<br>
   (1) 资源利用率高。引入多道批处理能使多道程序交替运行，以保持CPU处于忙碌状态；在内存中装入多道程序可提高内存的利用率；此外还可以提高I/O设备的利用率。<br>
@@ -2271,9 +2283,10 @@
 <h4 id="模块化结构操作系统">模块化结构操作系统
 </h4><p><strong>1. 模块化程序设计技术的基本概念</strong></p>
 <p>  <strong>模块化程序设计技术</strong>是20世纪60年代出现的一种结构化程序设计技术。该技术基于&quot;分解&quot;和“模块化”的原则来控制大型软件的复杂度。为使OS具有较清晰的结构，OS不再是由众多的过程直接构成的，而是按其功能精心地划分为若干个具有一定独立性和大小的模块。每个模块具有某方面的管理功能，如进程管理模块、存储器管理模块、I/O设备管理模块等，并仔细地规定好各模块间的接口，使各模块之间能通过接口实现交互。然后再进一步将各模块细分为若干个具有一定功能的子模块，如把进程管理模块又分为进程控制、进程同步等子模块，同样也规定好各子模块之间的接口。若子模块较大，可再进一步将它细分。我们把这种设计方法称为<strong>模块-接口法</strong>，由此构成的操作系统就是<strong>具有模块化结构的操作系统</strong>。<a class="link" href="#20241014103700CST">图7</a>示出了由模块、子模块等组成的模块化OS结构。</p>
-<div class="svg-figure">
+<div>
             <span id="20241014103700CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 767.4001 274.3994" style="max-width:767.4001;">
   <g id="_layer_1">
     <g>
@@ -2369,7 +2382,8 @@
       <text transform="translate(0 230.9)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">子模块</tspan></text>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图7&emsp;模块化结构的操作系统</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图7&emsp;模块化结构的操作系统</p>
 <p><strong>2. 模块独立性</strong></p>
 <p>  在模块&mdash;接口法中，关键问题是模块的划分和规定好模块之间的接口。如果我们在划分模块时将模块划分得太小，虽然可以降低模块本身的复杂性，但会引起模块之间的联系过多，从而会造成系统比较混乱；如果将模块划分得过大，又会增加模块内部的复杂性，使内部的联系增加，因此在划分模块时，应在两者间进行权衡。<br>
   另外，在划分模块时，必须充分注意模块的独立性问题，因为模块独立性越高，各模块间的交互就越少，系统的结构也就越清晰。衡量模块的独立性有以下两个标准：
@@ -2424,9 +2438,10 @@
 </h4><p>  <strong>面向对象技术</strong>是20世纪80年代初提出并很快流行起来的。该技术是基于&quot;抽象&quot;和&quot;隐蔽”原则来控制大型软件的复杂度的。所谓<strong>对象</strong>，是指在现实世界中具有相同属性、服从相同规则的一系列事物（事物可以是一个物理实体、一个概念或一个软件模块等）的抽象，而把其中的具体事物称为对象的实例。如果在OS中的各类实体如进程、线程、消息、存储器和文件等都使用了对象这一概念，相应地，便有了进程对象、线程对象、消息对象、存储器对象和文件对象等。</p>
 <p><strong>1. 对象</strong></p>
 <p>  在面向对象的技术中，是利用被封装的数据结构（变量）和一组对它进行操作的过程（方法）来表示系统中的某个对象的，如<a class="link" href="#20241014132525CST">图8</a>所示。对象中的变量（数据）也称为属性，它可以是单个标量或一张表。面向对象中的方法是用于执行某种功能的过程，它可以改变对象的状态，更新对象中的某些数据值或作用于对象所要访问的外部资源。如果把一个文件作为一个对象<a class="link" href="#20241014132606CST">图9</a>,该对象的变量便是文件类型、文件大小、文件的创建者等。对象中的方法包含对文件的操作，如创建文件、打开文件、读文件、写文件、关闭文件等。</p>
-<div class="svg-figure">
+<div>
             <span id="20241014132525CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132.4 145.2771" style="max-width:132.4;">
   <g id="_layer_1">
     <g>
@@ -2448,11 +2463,13 @@
       </g>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;一个对象的示意图</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;一个对象的示意图</p>
 <p>  对象中的变量（数据）对外是隐蔽的，因而外界不能对它直接进行访问，必须通过该对象中的一组方法（操作函数）对它进行访问。例如要想对<a class="link" href="#20241014132606CST">图9</a>所示的文件A执行打开操作，必须用该对象中的打开过程去打开它。同样地，对象中的一组方法的实现细节也是隐蔽的，因此对象中的变量可以得到很好的保护，而不会允许未经受权者使用和对它进行不正确的操作。</p>
-<div class="svg-figure">
+<div>
             <span id="20241014132606CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 569.1 235.9597" style="max-width:569.1;">
   <g id="_layer_1">
     <g>
@@ -2542,15 +2559,17 @@
       <line x1="460.4" y1="35.4" x2="545.9" y2="35.4" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图9&emsp;类和对象的关系</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图9&emsp;类和对象的关系</p>
 <p><strong>2. 对象类</strong></p>
 <p>  在实践中，有许多对象可能表示的是同一类事物，每个对象具有自己的变量集合，而它们所具有的方法是相同的。如果为每一个相似的对象都定义一组变量和方法，显然是低效的，由此产生了“<strong>对象类</strong>”的概念，利用&quot;对象类”来定义一组大体相似的对象。一个类同样定义了一组变量和针对该变量的一组方法，用它们来描述一组对象的共同属性和行为。类是在对象上的抽象，对象则是类的实例。对象类中所定义的变量在实例中均有具体的值。<br>
   例如，我们将文件设计成一个类，类的变量同样是文件类型、文件大小和创建者等。类中的方法是文件的创建、打开、读写、关闭等。<a class="link" href="#20241014132606CST">图9</a>示出了一个文件类，在类的变量中没有具体数值，一旦被赋予了具体数值就成了文件A对象。对象类的概念非常有用，因为它极大地提高了创建多个相似对象的效率。</p>
 <p><strong>3. 继承</strong></p>
 <p>  在面向对象的技术中，可以根据已有类来定义一个新的类，新类被称为子类(B),原来的类被称为父类(A),见<a class="link" href="#20241014153331CST">图10</a>所示。<strong>继承</strong>是父类和子类之间共享变量和方法的机制，该机制规定子类自动继承父类中定义的变量和方法，并允许子类再增加新的内容。继承特性可使定义子类变得更容易。一个父类可以定义多个子类，它们分别是父类的某种特例，父类描述了这些子类的公共变量和方法。类似地，这些子类又可以定义自己的子类，通过此途经可以生成一个继承的层次。另外，也允许一个子类有两个父类或多个父类，它可以从多个父类获得继承，此时称为&quot;多重继承”。</p>
-<div class="svg-figure">
+<div>
             <span id="20241014153331CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 318.6162 174.5" style="max-width:318.6162;">
   <g id="_layer_1">
     <g>
@@ -2578,7 +2597,8 @@
       </g>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图10&emsp;类和继承的关系</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图10&emsp;类和继承的关系</p>
 <h4 id="面向对象技术的优点">面向对象技术的优点
 </h4><p>  在操作系统设计时，将计算机中的实体作为对象来处理，可带来如下好处:
   (1) 通过“重用”提高产品质量和生产率。在面向对象技术中可通过“重用”以前项目中经过精心测试的对象或“重用”由其他人编写、测试和维护的对象类来构建新的系统，这不仅可大大降低开发成本，而且能获得更好的系统质量。<br>
@@ -2593,9 +2613,10 @@
 <p>  在微内核操作系统中，内核是指精心设计的、能实现现代OS最基本核心功能的小型内核，微内核并非是一个完整的OS,而只是将操作系统中最基本的部分放入微内核，通常包含有：①与硬件处理紧密相关的部分：②一些较基本的功能；③客户和服务器之间的通信。这些OS最基本的部分只是为构建通用OS提供一个重要基础，这样就可以确保把操作系统内核做得很小。</p>
 <p><strong>2. 基于客户/服务器模式</strong></p>
 <p>  由于客户/服务器模式具有非常多的优点，故在单机微内核操作系统中几乎无一例外地都采用客户/服务器模式，将操作系统中最基本的部分放入内核中，而把操作系统的绝大部分功能都放在微内核外面的一组服务器（进程）中实现，如用于提供对进程（线程）进行管理的进程（线程）服务器、提供虚拟存储器管理功能的虚拟存储器服务器、提供I/O设备管理的I/O设备管理服务器等，它们都是被作为进程来实现的，运行在用户态，客户与服务器之间是借助微内核提供的消息传递机制来实现信息交互的。<a class="link" href="#20241014160927CST">图11</a>示出了在单机环境下的客户/服务器模式。</p>
-<div class="svg-figure">
+<div>
             <span id="20241014160927CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 538.3 136.5" style="max-width:538.3;">
   <g id="_layer_1">
     <g>
@@ -2664,7 +2685,8 @@
       <text transform="translate(466.3 103.9)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">核心方式</tspan></text>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图11&emsp;在单机环境下的客户/服务器模式</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图11&emsp;在单机环境下的客户/服务器模式</p>
 <p><strong>3. 应用“机制与策略分离”原理</strong></p>
 <p>  在现在操作系统的结构设计中，经常利用“<strong>机制与策略分离</strong>”的原理来构造OS结构。所谓机制，是指实现某一功能的具体执行机构。而策略，则是在机制的基础上借助于某些参数和算法来实现该功能的优化，或达到不同的功能目标。通常，机制处于一个系统的基层，而策略则处于系统的高层。在传统的OS中，将机制放在OS的内核的较低层，把策略放在内核的较高层次中。而在微内核操作系统中，通常将机制放在OS的微内核中。正因为如此，才有可能将内核做得很小。</p>
 <p><strong>4. 采用面向对象技术</strong></p>
@@ -2695,9 +2717,10 @@
   效率降低最主要的原因是，在完成一次客户对操作系统提出的服务请求时，需要利用消息实现多次交互和进行用户/内核模式与上下文的多次切换。然而，在早期的OS中，用户进程在请求取得OS服务时，一般只需进行两次上下文的切换：一次是在执行系统调用后由用户态转向系统态时：另一次是在系统完成用户请求的服务后，由系统态返回用户态时。<br>
   在微内核OS中，由于客户和服务器、服务器和服务器之间的通信都需通过微内核，致使同样的服务请求至少需要进行四次上下文切换。第一次是发生在客户发送请求消息给内核，以请求取得某服务器特定的服务时；第二次是发生在由内核把客户的请求消息发往服务器时；第三次是当服务器完成客户请求后，把响应消息发送到内核时；第四次是在内核将响应消息发送给客户时。<br>
   实际情况是往往还会引起更多的上下文切换。例如，当某个服务器自身尚无能力完成客户请求而需要其它服务器的帮助时，如<a class="link" href="#20241014164813CST">图12</a>所示，其中的文件服务器还需要磁盘服务器的帮助，这时就需要进行8次上下文的切换。</p>
-<div class="svg-figure">
+<div>
             <span id="20241014164813CST"></span>
-            <?xml version="1.0" encoding="UTF-8"?>
+            <div class="svg-figure">
+                <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 658.3 424.7602" style="max-width:658.3;">
   <g id="_layer_1">
     <g>
@@ -2813,7 +2836,8 @@
       <text transform="translate(171.5 422.6)" style="font-family: NotoSerifSC-Regular, &apos;Noto Serif SC&apos;; font-size: 18px; isolation: isolate;"><tspan x="0" y="0">(</tspan><tspan x="6.5518" y="0" style="letter-spacing: -.02em;">b</tspan><tspan x="17.6758" y="0" style="letter-spacing: 0em;">)在微内核中等价操作中的上下文切换</tspan></text>
     </g>
   </g>
-</svg></div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图12&emsp;在传统OS和微内核OS中的上下文切换</p>
+</svg></div>
+        </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图12&emsp;在传统OS和微内核OS中的上下文切换</p>
 <p>  为了改善运行效率，可以重新把一些常用的操作系统基本功能由服务器移入微内核中。这样可使客户对常用操作系统功能的请求所发生的用户/内核模式和上下文的切换的次数由4次或8次降为2次。但这又会使微内核的容量明显地增大，在小型接口定义和适应性方面的优点也有所下降，并提高了微内核的设计代价。</p>
 <blockquote>
     <p>
@@ -3062,7 +3086,7 @@
             
         
         
-        <span>本图书馆累计发布了19篇文章 共32.1万字</span>
+        <span>本图书馆累计发布了19篇文章 共32.2万字</span>
         
     </section>
 
