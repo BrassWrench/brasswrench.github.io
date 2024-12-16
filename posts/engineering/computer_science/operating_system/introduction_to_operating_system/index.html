@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/operating_system/introduction_to_operating_system/'>
 
-<link rel="stylesheet" href="/scss/style.min.e6d37722a692aec993f7d315fc851ed2e7132deba5f78e32e565ff1df5401399.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.8ee9258ea74171a9980a3f41f00cc014a30bfcf77894cbb4daa1bd26dda202a9.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -1366,8 +1366,8 @@
 </h3><p>  操作系统在计算机系统中所起的作用，可以从用户、资源管理及资源抽象等多个不同的角度来进行分析和讨论。</p>
 <h4 id="os作为用户与计算机硬件系统之间的接口">OS作为用户与计算机硬件系统之间的接口
 </h4><p>  OS作为用户与计算机硬件系统之间的接口的含义是：OS处于用户与计算机硬件系统之间，用户通过OS来使用计算机系统。或者说，用户在OS帮助下能够方便、快捷、可靠地操纵计算机硬件和运行自己的程序。<a class="link" href="#20240929215340CST">图1</a>是OS作为接口的示意图。由图可看出，用户可通过三种方式使用计算机，即通过命令方式、系统调用方式和图标&mdash;窗口方式来实现与操作系统的通信，并取得它的服务。</p>
-<div>
-            <span id="20240929215340CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20240929215340CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 634 193.3322" style="max-width:634;">
@@ -1414,8 +1414,8 @@
   当一台计算机系统供多个用户使用时，诸多用户对系统中共享资源的需求（包括数量和时间）有可能发生冲突。为此，操作系统必须对使用资源的请求进行授权，以协调诸用户对共享资源的使用。</p>
 <h4 id="os实现了对计算机资源的抽象">OS实现了对计算机资源的抽象
 </h4><p>  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如<a class="link" href="#20240929215356CST">图2</a>所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。</p>
-<div>
-            <span id="20240929215356CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20240929215356CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.3523 343" style="max-width:454.3523;">
@@ -1581,8 +1581,8 @@
 <h4 id="脱机输入输出off-line-io方式">脱机输入/输出（Off-Line IO）方式
 </h4><p>  为了解决人机矛盾及CPU和I/O设备之间速度不匹配的矛盾，20世纪50年代末出现了<strong>脱机I/O技术</strong>。该技术是实现将装有用户程序和数据的纸带装入纸带输入机，在一台外围机的控制下，把纸带（卡片）上的数据（程序）输入到磁带上。当CPU需要这些程序和数据时，再从磁带上高速地调入内存。<br>
   类似地，当CPU需要输出时，可先由CPU把数据直接从内存高速地输送到磁带上，然后在另一台外围机的控制下，再将此大地上的结果通过相应地输出设备输出。<a class="link" href="#20240929215418CST">图3</a>示出了脱机输入/输出的过程。</p>
-<div>
-            <span id="20240929215418CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20240929215418CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326.64 239.4221" style="max-width:326.64;">
@@ -1638,8 +1638,8 @@
 </h3><p>  20世纪50年代中期出现了第二代晶体管计算机，此时计算机虽已具有推广应用的价值，但计算机系统仍然非常昂贵，为了能充分地提高它的利用率，应尽量保持系统的连接运行，即在处理完一个作业后，紧接着处理下一个作业，以减少机器的空闲等待时间。</p>
 <h4 id="单道批处理系统的处理过程">单道批处理系统的处理过程
 </h4><p>  为了实现对作业的连续处理，需要先把一批作业以脱机方式输入到磁带上，并在系统中配上<strong>监督程序(Monitor)</strong>，在它的控制下，使这批作业能一个接一个连续处理。其处理过程是：首先由监督程序将磁带上的第一个作业装入内存，并把运行控制权交给该作业；当该作业处理完成时，又把控制权交给监督程序，再由监督程序把磁带上的第二个作业调入内存。计算机系统就这样自动地一个作业紧接着一个作业地进行处理，直至磁带上的所有作业全部完成，这样便形成了早期的批处理系统。虽然系统对作业的处理是成批进行的，但在内存中时终止保持一道作业，故称为<strong>单道批处理系统</strong>。<a class="link" href="#20240929215439CST">图4</a>示出了单道批处理系统的处理流程。</p>
-<div>
-            <span id="20240929215439CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20240929215439CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 462.1815 312.7604" style="max-width:462.1815;">
@@ -1753,8 +1753,8 @@
         </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;单道批处理系统的处理流程</p>
 <h4 id="单道批处理系统的缺点">单道批处理系统的缺点
 </h4><p>  单道批处理系统最主要的缺点是，系统中的资源得不到充分的利用。这是因为在内存中仅有一道程序，每逢该程序在运行中发出I/O请求后，CPU便处于等待状态，必须在其I/O完成后才继续运行。又因I/O设备的低速性，更使CPU的利用率显著降低。<a class="link" href="#20240929215455CST">图5</a>示出了单道程序的运行情况，从图可以看出：在 $t_2$ ~ $t_3$ 、 $t_6$ ~ $t_7$ 时间间隔内CPU空闲。</p>
-<div>
-            <span id="20240929215455CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20240929215455CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 744.1543 265.5487" style="max-width:744.1543;">
@@ -1861,8 +1861,8 @@
 </h3><p>  20世纪60年代中期，IBM公司生产了第一台小规模集成电路计算机IBM 360（第三代计算机系统）。由于它较之于晶体管计算机无论在体积、功耗、速度和可靠性上都有了显著的改善，因而获得了极大的成功。IBM公司为该机开发的OS/360操作系统是第一个能运行多道程序的批处理系统。</p>
 <h4 id="多道程序设计的基本概念">多道程序设计的基本概念
 </h4><p>  为了进一步提高资源的利用率和系统吞吐量，在20世纪60年代中期引入了<strong>多道程序设计技术</strong>，由此形成了<strong>多道批处理系统</strong>。在该系统中，用户所提交的作业先存放在外存上，并排成一个队列，称为“后备队列”。然后由<strong>作业调度程序</strong>按一定的算法，从后备队列中选择若干个作业调入内存，使它们共享CPU和系统中的各种资源。由于同时在内存中装有若干道程序，这样便可以在运行程序A时，利用其因I/O操作而暂停执行时的CPU空挡时间，再调度另一道程序B运行，同样可以利用程序B在I/O操作时的空档时间，再调度程序C运行，使多道程序交替地运行，这样便可以保持CPU处于忙碌状态。<a class="link" href="#20240929215511CST">图6</a>示出了四道程序时的运行情况。</p>
-<div>
-            <span id="20240929215511CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20240929215511CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840.7378 486.1498" style="max-width:840.7378;">
@@ -2283,8 +2283,8 @@
 <h4 id="模块化结构操作系统">模块化结构操作系统
 </h4><p><strong>1. 模块化程序设计技术的基本概念</strong></p>
 <p>  <strong>模块化程序设计技术</strong>是20世纪60年代出现的一种结构化程序设计技术。该技术基于&quot;分解&quot;和“模块化”的原则来控制大型软件的复杂度。为使OS具有较清晰的结构，OS不再是由众多的过程直接构成的，而是按其功能精心地划分为若干个具有一定独立性和大小的模块。每个模块具有某方面的管理功能，如进程管理模块、存储器管理模块、I/O设备管理模块等，并仔细地规定好各模块间的接口，使各模块之间能通过接口实现交互。然后再进一步将各模块细分为若干个具有一定功能的子模块，如把进程管理模块又分为进程控制、进程同步等子模块，同样也规定好各子模块之间的接口。若子模块较大，可再进一步将它细分。我们把这种设计方法称为<strong>模块-接口法</strong>，由此构成的操作系统就是<strong>具有模块化结构的操作系统</strong>。<a class="link" href="#20241014103700CST">图7</a>示出了由模块、子模块等组成的模块化OS结构。</p>
-<div>
-            <span id="20241014103700CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241014103700CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 767.4001 274.3994" style="max-width:767.4001;">
@@ -2438,8 +2438,8 @@
 </h4><p>  <strong>面向对象技术</strong>是20世纪80年代初提出并很快流行起来的。该技术是基于&quot;抽象&quot;和&quot;隐蔽”原则来控制大型软件的复杂度的。所谓<strong>对象</strong>，是指在现实世界中具有相同属性、服从相同规则的一系列事物（事物可以是一个物理实体、一个概念或一个软件模块等）的抽象，而把其中的具体事物称为对象的实例。如果在OS中的各类实体如进程、线程、消息、存储器和文件等都使用了对象这一概念，相应地，便有了进程对象、线程对象、消息对象、存储器对象和文件对象等。</p>
 <p><strong>1. 对象</strong></p>
 <p>  在面向对象的技术中，是利用被封装的数据结构（变量）和一组对它进行操作的过程（方法）来表示系统中的某个对象的，如<a class="link" href="#20241014132525CST">图8</a>所示。对象中的变量（数据）也称为属性，它可以是单个标量或一张表。面向对象中的方法是用于执行某种功能的过程，它可以改变对象的状态，更新对象中的某些数据值或作用于对象所要访问的外部资源。如果把一个文件作为一个对象<a class="link" href="#20241014132606CST">图9</a>,该对象的变量便是文件类型、文件大小、文件的创建者等。对象中的方法包含对文件的操作，如创建文件、打开文件、读文件、写文件、关闭文件等。</p>
-<div>
-            <span id="20241014132525CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241014132525CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132.4 145.2771" style="max-width:132.4;">
@@ -2466,8 +2466,8 @@
 </svg></div>
         </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图8&emsp;一个对象的示意图</p>
 <p>  对象中的变量（数据）对外是隐蔽的，因而外界不能对它直接进行访问，必须通过该对象中的一组方法（操作函数）对它进行访问。例如要想对<a class="link" href="#20241014132606CST">图9</a>所示的文件A执行打开操作，必须用该对象中的打开过程去打开它。同样地，对象中的一组方法的实现细节也是隐蔽的，因此对象中的变量可以得到很好的保护，而不会允许未经受权者使用和对它进行不正确的操作。</p>
-<div>
-            <span id="20241014132606CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241014132606CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 569.1 235.9597" style="max-width:569.1;">
@@ -2566,8 +2566,8 @@
   例如，我们将文件设计成一个类，类的变量同样是文件类型、文件大小和创建者等。类中的方法是文件的创建、打开、读写、关闭等。<a class="link" href="#20241014132606CST">图9</a>示出了一个文件类，在类的变量中没有具体数值，一旦被赋予了具体数值就成了文件A对象。对象类的概念非常有用，因为它极大地提高了创建多个相似对象的效率。</p>
 <p><strong>3. 继承</strong></p>
 <p>  在面向对象的技术中，可以根据已有类来定义一个新的类，新类被称为子类(B),原来的类被称为父类(A),见<a class="link" href="#20241014153331CST">图10</a>所示。<strong>继承</strong>是父类和子类之间共享变量和方法的机制，该机制规定子类自动继承父类中定义的变量和方法，并允许子类再增加新的内容。继承特性可使定义子类变得更容易。一个父类可以定义多个子类，它们分别是父类的某种特例，父类描述了这些子类的公共变量和方法。类似地，这些子类又可以定义自己的子类，通过此途经可以生成一个继承的层次。另外，也允许一个子类有两个父类或多个父类，它可以从多个父类获得继承，此时称为&quot;多重继承”。</p>
-<div>
-            <span id="20241014153331CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241014153331CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 318.6162 174.5" style="max-width:318.6162;">
@@ -2613,8 +2613,8 @@
 <p>  在微内核操作系统中，内核是指精心设计的、能实现现代OS最基本核心功能的小型内核，微内核并非是一个完整的OS,而只是将操作系统中最基本的部分放入微内核，通常包含有：①与硬件处理紧密相关的部分：②一些较基本的功能；③客户和服务器之间的通信。这些OS最基本的部分只是为构建通用OS提供一个重要基础，这样就可以确保把操作系统内核做得很小。</p>
 <p><strong>2. 基于客户/服务器模式</strong></p>
 <p>  由于客户/服务器模式具有非常多的优点，故在单机微内核操作系统中几乎无一例外地都采用客户/服务器模式，将操作系统中最基本的部分放入内核中，而把操作系统的绝大部分功能都放在微内核外面的一组服务器（进程）中实现，如用于提供对进程（线程）进行管理的进程（线程）服务器、提供虚拟存储器管理功能的虚拟存储器服务器、提供I/O设备管理的I/O设备管理服务器等，它们都是被作为进程来实现的，运行在用户态，客户与服务器之间是借助微内核提供的消息传递机制来实现信息交互的。<a class="link" href="#20241014160927CST">图11</a>示出了在单机环境下的客户/服务器模式。</p>
-<div>
-            <span id="20241014160927CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241014160927CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 538.3 136.5" style="max-width:538.3;">
@@ -2717,8 +2717,8 @@
   效率降低最主要的原因是，在完成一次客户对操作系统提出的服务请求时，需要利用消息实现多次交互和进行用户/内核模式与上下文的多次切换。然而，在早期的OS中，用户进程在请求取得OS服务时，一般只需进行两次上下文的切换：一次是在执行系统调用后由用户态转向系统态时：另一次是在系统完成用户请求的服务后，由系统态返回用户态时。<br>
   在微内核OS中，由于客户和服务器、服务器和服务器之间的通信都需通过微内核，致使同样的服务请求至少需要进行四次上下文切换。第一次是发生在客户发送请求消息给内核，以请求取得某服务器特定的服务时；第二次是发生在由内核把客户的请求消息发往服务器时；第三次是当服务器完成客户请求后，把响应消息发送到内核时；第四次是在内核将响应消息发送给客户时。<br>
   实际情况是往往还会引起更多的上下文切换。例如，当某个服务器自身尚无能力完成客户请求而需要其它服务器的帮助时，如<a class="link" href="#20241014164813CST">图12</a>所示，其中的文件服务器还需要磁盘服务器的帮助，这时就需要进行8次上下文的切换。</p>
-<div>
-            <span id="20241014164813CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241014164813CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 658.3 424.7602" style="max-width:658.3;">

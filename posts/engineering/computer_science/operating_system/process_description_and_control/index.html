@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/operating_system/process_description_and_control/'>
 
-<link rel="stylesheet" href="/scss/style.min.e6d37722a692aec993f7d315fc851ed2e7132deba5f78e32e565ff1df5401399.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.8ee9258ea74171a9980a3f41f00cc014a30bfcf77894cbb4daa1bd26dda202a9.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -1408,8 +1408,8 @@
    \(=\set{(P_1,P_2),(P_1,P_3),(P_1,P_4),(P_2,P_5),(P_3,P_5),(P_4,P_6),(P_4,P_7),(P_5,P_8),(P_6,P_8),(P_7,P_9),(P_8,P_9)}\)<br>
   应当注意，前趋图中是不允许有循环的，否则必然会产生不可能实现的前趋关系。如<a class="link" href="#20241106181930CST">图1</a>(b)所示的前趋关系中就存在着循环。它一方面要求在 \(S_3\) 开始执行之前， \(S_2\) 必须完成，另一方面又要求在 \(S_2\) 开始执行之前， \(S_1\) 必须完成。显然，这种关系是不可能实现的。<br>
   \(S_2\to S_3,S_3\to S_2\)</p>
-<div>
-            <span id="20241106181930CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106181930CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 641.4699 314.4322" style="max-width:641.4699;">
@@ -1571,8 +1571,8 @@
 <h3 id="程序顺序执行">程序顺序执行
 </h3><h4 id="程序的顺序执行">程序的顺序执行
 </h4><p>  通常，一个应用程序由若干个程序段组成，每一个程序段完成特定的功能，它们在执行时，都需要按照某种先后次序顺序执行，仅当前一程序段执行完后，才运行后一程序段。例如，在进行计算时，应先运行输入程序，用于输入用户的程序和数据；然后运行计算程序，对所输入的数据进行计算；最后才是运行打印程序，打印计算结果。我们用<strong>结点(Node)</strong>‌代表各程序段的操作（在<a class="link" href="#20241106181930CST">图1</a>中用圆圈表示），其中 \(I\) 代表输入操作， \(C\) 代表计算操作， \(P\) 为打印操作，用箭头指示操作的先后次序。这样，上述的三个程序段间就存在着这样的前趋关系： \(I_i\to C_i \to P_i\) ，其执行的顺序可用前趋图<a class="link" href="#20241106190822CST">图2</a>(a)描述。</p>
-<div>
-            <span id="20241106190822CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106190822CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 646.6229 103.1817" style="max-width:646.6229;">
@@ -1678,8 +1678,8 @@
 <h4 id="程序的并发执行">程序的并发执行
 </h4><p>  我们通过一个常见的例子来说明程序的顺序执行和并发执行。<a class="link" href="#20241106190822CST">图2</a>中的输入程序、计算程序和打印程序三者之间，存在着 \(I_i\to C_i\to P_i\) 这样的前趋关系，以至对一个作业的输入、计算和打印三个程序段必须顺序执行。但若是对一批作业进行处理时，每道作业的输入、计算和打印程序段的执行情况如<a class="link" href="#20241106194040CST">图3</a>所示。输入程序 \(I_1\) 在输入第一次数据后，由计算程序 \(C_1\) 对该数据进行计算的同时，输入程序 \(I_2\) 可再输入第二次数据，从而使第一个计算程序 \(C_1\) 可与第二个输入程序 \(I_2\) 并发执行。事实上，正是由于 \(C_1\) 和 \(I_2\) 之间并不存在前趋关系，因此它们之间可以并发执行。一般来说，输入程序 \(I_{i+1}\) 在输入第 \(i+1\) 次数据时，计算程序 \(C_i\) 可能正在对程序 \(I_i\) 的第 \(i\) 次输入的数据进行计算，而打印程序 \(P_{i-1}\) 正在打印程序 \(C{i-1}\) 的计算结果。<br>
   由<a class="link" href="#20241106194040CST">图3</a>可以看出，存在前趋关系 \(I_i \to C_i,I_i \to I_{i+1},C_i \to P_i, C_i \to C_{i+1},P_i\to P_{i+1}\) 而 \(I_{i+1}\) 和 \(C_i\) 及 \(P_{i-1}\) 是重叠的，即在 \(P_{i-1}\) 和 \(C_i\) 以及 \(I_{i+1}\) 之间，不存在前趋关系，可以并发执行。</p>
-<div>
-            <span id="20241106194040CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106194040CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 584.1156 248.2846" style="max-width:584.1156;">
@@ -1855,8 +1855,8 @@
   \(S_3\) : c :=a+b<br>
   \(S_4\) : d :=c+b<br>
   可画出<a class="link" href="#20241106194815CST">图4</a>所示的前趋关系。可以看出： \(S_3\) 必须在a和b被赋值后方能执行； \(S_4\) 必须在 \(S_3\) 之后执行；但 \(S_1\) 和 \(S_2\) 则可以并发执行，因为它们彼此互不依赖。</p>
-<div>
-            <span id="20241106194815CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106194815CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 383.7584 179.3129" style="max-width:383.7584;">
@@ -1941,8 +1941,8 @@
   (3) 阻塞(Block)状态。这是指正在执行的进程由于发生某事件（如I/O请求、申请缓冲区失败等）暂时无法继续执行时的状态，亦即进程的执行受到阻塞。此时引起进程调度，OS把处理机分配给另一个就绪进程，而让受阻进程处于暂停状态，一般将这种暂停状态称为<strong>阻塞状态</strong>，有时也称为等待状态或封锁状态。通常系统将处于阻塞状态的进程也排成一个队列，称该队列为<strong>阻塞队列</strong>。实际上，在较大的系统中，为了减少队列操作的开销，提高系统效率，根据阻塞原因的不同，会设置多个阻塞队列。</p>
 <h4 id="三种基本状态的转换">三种基本状态的转换
 </h4><p>  进程在运行过程中会经常发生状态的转换。例如，处于就绪状态的进程，在调度程序为之分配了处理机之后便可执行，相应地，其状态就由就绪态转变为执行态；正在执行的进程（当前进程）如果因分配给它的时间片己完而被剥夺处理机暂停执行时，其状态便由执行转为就绪：如果因发生某事件，致使当前进程的执行受阻（例如进程访问某临界资源，而该资源正被其它进程访问时），使之无法继续执行，则该进程状态将由执行转变为阻塞。<a class="link" href="#20241106211555CST">图5</a>示出了进程的三种基本状态，以及各状态之间的转换关系。</p>
-<div>
-            <span id="20241106211555CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106211555CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 346.1981 221.3979" style="max-width:346.1981;">
@@ -2008,8 +2008,8 @@
   但如果进程所需的资源尚不能得到满足，比如系统尚无足够的内存使进程无法装入其中，此时创建工作尚未完成，进程不能被调度运行，于是把此时进程所处的状态称为<strong>创建状态</strong>。引入创建状态是为了保证进程的调度必须在创建工作完成后进行，以确保对进程控制块操作的完整性。同时，创建状态的引入也增加了管理的灵活性，OS可以根据系统性能或主存容量的限制推迟新进程的提交（创建状态）。对于处于创建状态的进程，当其获得了所需的资源以及对其PCB的初始化工作完成后，便可由创建状态转入就绪状态。</p>
 <p><strong>2. 终止状态</strong></p>
 <p>  进程的终止也要通过两个步骤：首先，是等待操作系统进行善后处理，最后将其PCB清零，并将PCB空间返还系统。当一个进程到达了自然结束点，或是出现了无法克服的错误，或是被操作系统所终结，或是被其他有终止权的进程所终结，它将进入终止状态。进入终止态的进程以后不能再执行，但在操作系统中依然保留一个记录，其中保存状态码和一些计时统计数据，供其他进程收集。一旦其他进程完成了对其信息的提取之后，操作系统将删除该进程，即将其PCB清零，并将该空白PCB返还系统。<a class="link" href="#20241106212101CST">图6</a>示出了增加了创建状态和终止状态后进程的五种状态及转换关系图。</p>
-<div>
-            <span id="20241106212101CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106212101CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470.0866 221.413" style="max-width:470.0866;">
@@ -2118,8 +2118,8 @@
   (2) 活动阻塞🠖静止阻塞。当进程处于未被挂起的阻塞状态时，称它是处于活动阻塞状态，表示为<code>Blockeda</code>。当用<code>Suspend</code>原语将它挂起后，进程便转变为静止阻塞状态，表示为<code>Blockeds</code>，处于该状态的进程在其所期待的事件出现后，它将从静止阻塞变为静止就绪<code>Readys</code>状态。<br>
   (3) 静止就绪🠖活动就绪。处于<code>Readys</code>状态的进程若用激活原语<code>Active</code>激活后，该进程将转变为<code>Readya</code>状态。<br>
   (4) 静止阻塞🠖活动阻塞。处于<code>Blockeds</code>状态的进程若用激活原语<code>Active</code>激活后，进程将转变为<code>Blockeda</code>状态。<a class="link" href="#20241106215410CST">图7</a>示出了具有挂起状态的进程状态图。</p>
-<div>
-            <span id="20241106215410CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106215410CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.378 333.8614" style="max-width:359.378;">
@@ -2323,8 +2323,8 @@
   (2) 创建🠖活动就绪：在当前系统的性能和内存的容量均允许的情况下，完成对进程创建的必要操作后，相应的系统进程将进程的状态转换为活动就绪状态。<br>
   (3) 创建🠖静止就绪：考虑到系统当前资源状况和性能的要求，不分配给新建进程所需资源，主要是主存，相应的系统将进程状态转为静止就绪状态，被安置在外存，不参与，调度，此时进程创建工作尚未完成。<br>
   (4) 执行🠖终止：当一个进程已完成任务时，或是出现了无法克服的错误，或是被OS，或是被其他进程所终结，此时将进程的状态转换为终止状态。</p>
-<div>
-            <span id="20241106221112CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106221112CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450.5 334.2602" style="max-width:450.5;">
@@ -2575,8 +2575,8 @@
 </h3><p>  如<a class="link" href="/posts/engineering/computer_science/operating_system/introduction_to_operating_system/#20241106221347CST">操作系统概论-操作系统的目标和作用</a>所述，一方面，为了便于对计算机中的各类资源（包括硬件和信息）的使用和管理，OS将它们抽象为相应的各种数据结构，以及提供一组对资源进行操作的命令，用户可利用这些数据结构及操作命令来执行相关的操作，而无需关心其实现的具体细节。另一方面，操作系统作为计算机资源的管理者，尤其是为了协调诸多用户对系统中共享资源的使用，它还必须记录和查询各种资源的使用及各类进程运行情况的信息。OS对于这些信息的组织和维护也是通过建立和维护各种数据结构的方式来实现的。</p>
 <h4 id="操作系统中用于管理控制的数据结构">操作系统中用于管理控制的数据结构
 </h4><p>  在计算机系统中，对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为<strong>资源信息表</strong>或<strong>进程信息表</strong>，其中包含了资源或进程的标识、描述、状态等信息以及一批指针。通过这些指针，可以将同类资源或进程的信息表，或者同一进程所占用的资源信息表分类链接成不同的队列，便于操作系统进行查找。如<a class="link" href="#20241106223515CST">图9</a>所示，OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。本节着重介绍PCB，其它的表将在后面的篇章中陆续介绍。</p>
-<div>
-            <span id="20241106223515CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106223515CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 671.9157 330.7275" style="max-width:671.9157;">
@@ -2703,8 +2703,8 @@
 <h4 id="进程控制块的组织方式">进程控制块的组织方式
 </h4><p>  在一个系统中，通常可拥有数十个、数百个乃至数千个PCB。为了能对它们加以有效的管理，应该用适当的方式将这些PCB组织起来。目前常用的组织方式有以下三种。<br>
   (1) 线性方式，即将系统中所有的PCB都组织在一张线性表中，将该表的首址存放在内存的一个专用区域中。该方式实现简单、开销小，但每次查找时都需要扫描整张表，因此适合进程数目不多的系统。<a class="link" href="#20241106225847CST">图10</a>示出了线性表的PCB组织方式。</p>
-<div>
-            <span id="20241106225847CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106225847CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 176.2469" style="max-width:101;">
@@ -2735,8 +2735,8 @@
 </svg></div>
         </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图10&emsp;PCB线性表示意图</p>
 <p>  (2) 链接方式，即把具有相同状态进程的PCB分别通过PCB中的链接字链接成一个队列。这样，可以形成就绪队列、若干个阻塞队列和空白队列等。对就绪队列而言，往往按进程的优先级将PCB从高到低进行排列，将优先级高的进程PCB排在队列的前面。同样，也可把处于阻塞状态进程的PCB根据其阻塞原因的不同，排成多个阻塞队列，如等待I/O操作完成的队列和等待分配内存的队列等。<a class="link" href="#20241106232851CST">图11</a>示出了一种链接队列的组织方式。</p>
-<div>
-            <span id="20241106232851CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241106232851CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 491.154 251.5118" style="max-width:491.154;">
@@ -2884,8 +2884,8 @@
 </svg></div>
         </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图11&emsp;PCB连接队列示意图</p>
 <p>  (3) 索引方式，即系统根据所有进程状态的不同，建立几张索引表，例如，就绪索引表、阻塞索引表等，并把各索引表在内存的首地址记录在内存的一些专用单元中。在每个索引表的表目中，记录具有相应状态的某个PCB在PCB表中的地址。<a class="link" href="#20241107110135CST">图12</a>示出了索引方式的PCB组织。</p>
-<div>
-            <span id="20241107110135CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241107110135CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580.2377 280.5" style="max-width:580.2377;">
@@ -3032,8 +3032,8 @@
   值得注意的是，在Windows中不存在任何进程层次结构的概念，所有的进程都具有相同的地位。如果一个进程创建另外的进程时创建进程获得了一个句柄，其作用相当于一个令牌，可以用来控制被创建的进程。但是，这个句柄是可以进行传递的，也就是说，获得了句柄的进程就拥有控制其它进程的权力，因此，进程之间的关系不再是层次关系了，而是获得句柄与否、控制与被控制的简单关系。</p>
 <h4 id="进程图">进程图
 </h4><p>  为了形象地描述一个进程的家族关系而引入了<strong>进程图(Process Graph)</strong>。所谓进程图就是用于描述进程间关系的一棵有向树，如<a class="link" href="#20241107125722CST">图13</a>所示。图中的结点代表进程。在进程 \(P_i\) 创建了进程 \(P_j\) 之后，称 \(P_i\) 是 \(P_j\) 的<strong>父进程(Parent Process)</strong>， \(P_j\) 是 \(P_i\) 的<strong>子进程(Progeny Process)</strong>。这里可用一条由进程 \(P_i\) 指向进程 \(P_j\) 的有向边来描述它们之间的父子关系。创建父进程的进程称为<strong>祖先进程</strong>，这样便形成了一棵进程树，把树的根结点作为进程家族的<strong>祖先(Ancestor)</strong>。</p>
-<div>
-            <span id="20241107125722CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241107125722CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400.5025 322.3819" style="max-width:400.5025;">
@@ -3758,8 +3758,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>‌</p>
-<div>
-            <span id="20241110145609CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241110145609CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368.989 325.2603" style="max-width:368.989;">
@@ -3887,8 +3887,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>‌</p>
-<div>
-            <span id="20241110163451CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241110163451CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474.4346 360.5978" style="max-width:474.4346;">
@@ -4495,8 +4495,8 @@
   (1)信箱头，用以存放有关信箱的描述信息，如信箱标识符、信箱的拥有者、信箱口令、信箱的空格数等。<br>
   (2)信箱体，由若干个可以存放消息（或消息头）的信箱格组成，信箱格的数目以及每格的大小是在创建信箱时确定的。<br>
   在消息传递方式上，最简单的情况是单向传递。消息的传递也可以是双向的。<a class="link" href="#20241111000058CST">图16</a>示出了双向通信链路的通信方式。</p>
-<div>
-            <span id="20241111000058CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241111000058CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 517.5082 162.9048" style="max-width:517.5082;">
@@ -4628,8 +4628,8 @@
 </div>
 </div><h4 id="发送原语">发送原语
 </h4><p>  发送进程在利用发送原语发送消息之前，应先在自己的内存空间设置一发送区<code>a</code>，如<a class="link" href="#20241111134540CST">图17</a>所示，把待发送的消息正文、发送进程标识符、消息长度等信息填入其中，然后调用发送原语，把消息发送给目标（接收）进程。发送原语首先根据发送区<code>a</code>中所设置的消息长度<code>a.size</code>来申请一缓冲区<code>i</code>，接着，把发送区<code>a</code>中的信息复制到缓冲区<code>i</code>中。为了能将<code>i</code>挂在接收进程的消息队列<code>mq</code>上，应先获得接收进程的内部标识符<code>j</code>，然后将<code>i</code>挂在<code>j.mq</code>上。由于该队列属于临界资源，故在执行<code>insert</code>操作的前后都要执行<code>wait</code>和<code>signal</code>操作。最后，释放信号量<code>sm</code>表示消息发送完毕。</p>
-<div>
-            <span id="20241111134540CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241111134540CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 733.5584 400.0273" style="max-width:733.5584;">
@@ -4960,8 +4960,8 @@
   (1)多对一模型，即将用户线程映射到一个内核控制线程。如<a class="link" href="#20241111151915CST">图18</a>(a)所示，这些用户线程一般属于一个进程，运行在该进程的用户空间，对这些线程的调度和管理也是在该进程的用户空间中完成。仅当用户线程需要访问内核时，才将其映射到一个内核控制线程上，但每次只允许一个线程进行映射。该模型的主要优点是线程管理的开销小，效率高；其主要缺点在于，如果一个线程在访问内核时发生阻塞，则整个进程都会被阻塞；此外，在任一时刻，只有一个线程能够访问内核，多个线程不能同时在多个处理机上运行。<br>
   (2)一对一模型，即将每一个用户级线程映射到一个内核支持线程。如<a class="link" href="#20241111151915CST">图18</a>(b)所示，为每一个用户线程都设置一个内核控制线程与之连接。该模型的主要优点是：当一个线程阻塞时，允许调度另一个线程运行，所以它提供了比多对一模型更好的并发功能。此外，在多处理机系统中，它允许多个线程并行地运行在多处理机系统上。该模型的唯一缺点是:每创建一个用户线程，相应地就需要创建一个内核线程，开销较大，因此需要限制整个系统的线程数。Windows2000、WindowsNT、OS/2等系统上都实现了该模型。<br>
   (3)多对多模型，即将许多用户线程映射到同样数量或更少数量的内核线程上。如<a class="link" href="#20241111151915CST">图18</a>(c)所示，内核控制线程的数目可以根据应用进程和系统的不同而变化，可以比用户线程少，也可以与之相同。该模型结合上述两种模型的优点，它可以像一对一模型那样，使一个进程的多个线程并行地运行在多处理机系统上，也可像多对一模型那样，减少线程的管理开销和提高效率。</p>
-<div>
-            <span id="20241111151915CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241111151915CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 811.2975 306.2694" style="max-width:811.2975;">
@@ -5197,8 +5197,8 @@
 </h3><p>  不论是进程还是线程，都必须直接或间接地取得内核的支持。由于内核支持线程可以直接利用系统调用为它服务，故线程的控制相当简单；而用户级线程必须借助于某种形式的中间系统的帮助方能取得内核的服务，故在对线程的控制上要稍复杂些。</p>
 <h4 id="内核支持线程的实现">内核支持线程的实现
 </h4><p>  在仅设置了内核支持线程的OS中，一种可能的线程控制方法是，系统在建一个新进程时，便为它分配一个<strong>任务数据区PTDA(Per Task Data Area)</strong>，其中包括若干个线程控制块TCB空间，如<a class="link" href="#20241111152443CST">图19</a>所示。在每一个TCB中可保存线程标识符、优先级、线程运行的CPU状态等信息。虽然这些信息与用户级线程TCB中的信息相同，但现在却是被保存在内核空间中。</p>
-<div>
-            <span id="20241111152443CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241111152443CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288.4286 116.1676" style="max-width:288.4286;">
@@ -5238,8 +5238,8 @@
 <p>  这种线程又称为<strong>轻型进程（LWP，Light Weight Process）</strong>。每一个进程都可拥有多个LWP，同用户级线程一样，每个LWP都有自己的数据结构（如TCB）,其中包括线程标识符、优先级、状态，另外还有栈和局部存储区等。LWP也可以共享进程所拥有的资源。LWP可通过系统调用来获得内核提供的服务，这样，当一个用户级线程运行时，只须将它连接到一个LWP上，此时它便具有了内核支持线程的所有属性。这种线程实现方式就是组合方式。<br>
   在一个系统中的用户级线程数量可能很大，为了节省系统开销，不可能设置太多的LWP，而是把这些LWP做成一个缓冲池，称为“线程池”。用户进程中的任一用户线程都可以连接到LWP池中的任何一个LWP上。为使每一用户级线程都能利用LWP与内核通信,可以使多个用户级线程多路复用一个LWP,但只有当前连接到LWP上的线程才能与内核通信，其余进程或者阻塞，或者等待LWP。而每一个LWP都要连接到一个内核级线程上,这样，通过LWP可把用户级线程与内核线程连接起来，用户级线程可通过LWP来访问内核，但内核所看到的总是多个LWP而看不到用户级线程。亦即，由LWP实现了内核与用户级线程之间的隔离，从而使用户级线程与内核无关。<a class="link" href="#20241111155236CST">图20</a>示出了利用轻型进程作为中
 间系统时用户级线程的实现方法。</p>
-<div>
-            <span id="20241111155236CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241111155236CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 658.6279 393.1754" style="max-width:658.6279;">

@@ -148,8 +148,8 @@
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;SQL的动词&lt;/p&gt;
 &lt;h3 id=&#34;sql的基本概念&#34;&gt;SQL的基本概念
 &lt;/h3&gt;&lt;p&gt;  支持SQL的关系数据库管理系统同样支持关系数据库三级模式结构。如&lt;a class=&#34;link&#34; href=&#34;#20241111211554CST&#34;&gt;图1&lt;/a&gt;所示，其中外模式包括若干&lt;strong&gt;视图(view)&lt;/strong&gt;‌和部分&lt;strong&gt;基本表(base table)&lt;/strong&gt;，数据库模式包括若干基本表，内模式包括若干&lt;strong&gt;存储文件(stored file)&lt;/strong&gt;。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241111211554CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241111211554CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 545.6296 318.5327&#34; style=&#34;max-width:545.6296;&#34;&gt;
@@ -449,8 +449,8 @@
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;SQL的数据定义语句&lt;/p&gt;
 &lt;p&gt;  SQL标准不提供修改模式定义和修改视图定义的操作。用户如果想修改这些对象，只能先将它们删除然后再重建。SQL标准也没有提供索引相关的语句，但为了提高查询效率，商用关系数据库管理系统通常都提供了索引机制和相关的语句，如&lt;a class=&#34;link&#34; href=&#34;#20241111221858CST&#34;&gt;表6&lt;/a&gt;中创建、删除和修改索引等。&lt;br&gt;
   在早期的数据库系统中，所有数据库对象都属于一个数据库，也就是说只有一个命名空间。现代的关系数据库管理系统提供了一个层次化的数据库对象命名机制，如&lt;a class=&#34;link&#34; href=&#34;#20241111231124CST&#34;&gt;图2&lt;/a&gt;所示。一个关系数据库管理系统的&lt;strong&gt;实例(instance)&lt;/strong&gt;‌中可以建立多个数据库,一个数据库中可以建立多个模式，一个模式下通常包括多个表、视图和索引等数据库对象。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241111231124CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241111231124CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 340.8095 184.1746&#34; style=&#34;max-width:340.8095;&#34;&gt;
@@ -1969,8 +1969,8 @@
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表17&lt;/p&gt;
 &lt;p&gt;  本例中，&lt;code&gt;SELECT&lt;/code&gt;子句与&lt;code&gt;WHERE&lt;/code&gt;子句中的属性名前都加上了表名前缀，这是为了避免混淆。如果属性名在参加连接的各表中是唯一的，则可以省略表名前缀。&lt;br&gt;
   关系数据库管理系统执行该连接操作的一种可能过程是：首先在表&lt;code&gt;Student&lt;/code&gt;中找到第一个元组，然后从头开始扫描&lt;code&gt;SC&lt;/code&gt;表，逐一查找与&lt;code&gt;Student&lt;/code&gt;第一个元组的&lt;code&gt;Sno&lt;/code&gt;相等的&lt;code&gt;SC&lt;/code&gt;元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第一个元组与该元组拼接起来，形成结果表中一个元组。&lt;code&gt;SC&lt;/code&gt;全部查找完后，再找&lt;code&gt;Student&lt;/code&gt;中第二个元组，然后再从头开始扫描&lt;code&gt;SC&lt;/code&gt;，逐一查找满足连接条件的元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到&lt;code&gt;Student&lt;/code&gt;中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如&lt;a class=&#34;link&#34; href=&#34;#20241116211750CST&#34;&gt;图3&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241116211750CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241116211750CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 236.9314&#34; style=&#34;max-width:863.7;&#34;&gt;
@@ -2382,8 +2382,8 @@
 &lt;p&gt;  &lt;span id=&#34;20241116235932CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例52&lt;/strong&gt;：查询每一门课的间接先修课（即先修课的先修课）。&lt;/p&gt;
 &lt;p&gt;  在Course表中只有每门课的直接先修课信息，而没有先修课的先修课。要得到这个信息，必须先对一门课找到其先修课，再按此先修课的课程号查找它的先修课程。这就要将Course表与其自身连接。&lt;br&gt;
   为此，要为Course表取两个别名，一个是&lt;code&gt;FIRST&lt;/code&gt;，另一个是&lt;code&gt;SECOND&lt;/code&gt;。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241117132302CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241117132302CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 806.25 276.5861&#34; style=&#34;max-width:806.25;&#34;&gt;

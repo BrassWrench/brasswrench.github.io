@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/fundamentals_of_natural_language_processing/'>
 
-<link rel="stylesheet" href="/scss/style.min.e6d37722a692aec993f7d315fc851ed2e7132deba5f78e32e565ff1df5401399.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.8ee9258ea74171a9980a3f41f00cc014a30bfcf77894cbb4daa1bd26dda202a9.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -1501,8 +1501,8 @@ P(c)=&\frac{C(c)}{\sum_{c'}C(c')}=\frac{\sum_{w'}C(w',c)}{\sum_{w'}\sum_{c'}C(w'
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>  截断奇异值分解结果如<a class="link" href="#20241113224958CST">图1</a>所示，可见：上下文比较相近的词在空间上的距离比较近，如“深度”“学习”等；而“我”和等高频词则与其他词语距离比较远。</p>
-<div>
-            <span id="20241113224958CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241113224958CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390.7997 283.5612" style="max-width:390.7997;">
@@ -2071,8 +2071,8 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
 </div><p>  虽然它们只相差一个“的”字，但是表达的语义是截然不同的，这主要是因为两句话的主语不同。其中，第一句话的主语是“文章”，而第二句话的主语是&quot;转&quot;的动作。通过对两句话进行句法分析，就可以准确地获知各自的主语，从而推导出不同的语义。<br>
   典型的句法结构表示方法包含两种——短语结构句法表示和依存结构句法表示。它们的不同点在于依托的文法规则不一样。其中，短语结构句法表示依托上下文无关文法，属于一种层次性的表示方法。而依存结构句法表示依托依存文法。<br>
   <a class="link" href="#20241114184735CST">图2</a>对比了两种句法结构表示方法。在短语结构句法表示中，<code>S</code>代表起始符号，<code>NP</code>和<code>VP</code>分别代表名词短语和动词短语。在依存结构句法表示中，<code>sub</code>和<code>obj</code>分别表示主语和宾语，<code>root</code>表示虚拟根节点，其指向整个句子的核心谓词。</p>
-<div>
-            <span id="20241114184735CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241114184735CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 645.0815 266.1458" style="max-width:645.0815;">
@@ -2227,8 +2227,8 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
 </table></div>
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表2&emsp;语义角色标注示例</p>
 <p>  语义依存分析则利用通用图表示更丰富的语义信息。根据图中节点类型的不同，又可分为两种表示——<strong>语义依存图(Semantic Dependency Graph)</strong>‌表示和<strong>概念语义图(Conceptual Graph)</strong>‌表示。其中，语义依存图中的节点是句子中实际存在的词语，在词与词之间创建语义关系边。而概念语义图首先将句子转化为虚拟的概念节点，然后在概念节点之间创建语义关系边。<a class="link" href="#20241114192135CST">图3</a>展示了一个语义依存图分析结果示例。</p>
-<div>
-            <span id="20241114192135CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241114192135CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 645.0815 266.1458" style="max-width:645.0815;">
@@ -2627,8 +2627,8 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
   ◦RL，将栈顶的两棵依存子树采用一个左弧 \(S_1 \curvearrowleft S_0\) 进行合并，然后 \(S_1\) 下栈；<br>
   ◦RR，将栈顶的两棵依存子树采用一个右弧 \(S_1 \curvearrowright S_0\) 进行合并，然后 \(S_0\) 下栈。<br>
   <a class="link" href="#20241114235423CST">图4</a>展示了面向依存句法分析的标准弧转移算法中的三种动作。除了以上三个动作，还定义了一个特殊的完成动作（Finish，FIN）。根据上述的定义，可以使用<a class="link" href="#20241115000931CST">表9</a>中的动作序列逐步生成<a class="link" href="#20241114184735CST">图2</a>(b)所示的依存结构句法树。弧上的句法关系可以在生成弧的时候（采用RL或RR动作），使用额外的句法关系分类器加以预测。</p>
-<div>
-            <span id="20241114235423CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241114235423CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 643.6397 154.0742" style="max-width:643.6397;">
@@ -2889,8 +2889,8 @@ P(\mathbb{D}^{\text{test}})=&P(w_1w_2 \cdots w_N)\\[5pt]
 <h3 id="序列到序列问题">序列到序列问题
 </h3><p>  除了文本分类和结构预测问题，还有很多自然语言处理问题可以归为序列到序列（Sequence-to-Sequence，Seq2seq）问题。机器翻译问题就是典型的代表，其中，输入为源语言句子，输出为目标语言句子。将其推广到序列到序列问题，输入就是一个由若干词组成的序列，输出则是一个新的序列，其中，输入和输出的序列不要求等长，同时也不要求词表一致。<br>
   使用传统的机器学习技术解决序列到序列问题是比较困难的，而基于深度学习模型，可以直接将输入序列表示为一个向量，然后，通过该向量生成输出序列。其中，对输入序列进行表示的过程又叫作编码，相应的模型则被称为<strong>编码器(Encoder)</strong>；生成输出序列的过程又叫作解码，相应的模型则被称为<strong>解码器(Decoder)</strong>。 因此，序列到序列模型也被称为<strong>编码器—解码器（Encoder-Decoder）模型</strong>。<a class="link" href="#20241115213118CST">图5</a>以机器翻译问题为例，展示了一个编码器-解码器模型的示例。</p>
-<div>
-            <span id="20241115213118CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241115213118CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 657.3811 340.919" style="max-width:657.3811;">

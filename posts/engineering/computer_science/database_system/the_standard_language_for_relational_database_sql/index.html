@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/database_system/the_standard_language_for_relational_database_sql/'>
 
-<link rel="stylesheet" href="/scss/style.min.e6d37722a692aec993f7d315fc851ed2e7132deba5f78e32e565ff1df5401399.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.8ee9258ea74171a9980a3f41f00cc014a30bfcf77894cbb4daa1bd26dda202a9.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -1433,8 +1433,8 @@
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表2&emsp;SQL的动词</p>
 <h3 id="sql的基本概念">SQL的基本概念
 </h3><p>  支持SQL的关系数据库管理系统同样支持关系数据库三级模式结构。如<a class="link" href="#20241111211554CST">图1</a>所示，其中外模式包括若干<strong>视图(view)</strong>‌和部分<strong>基本表(base table)</strong>，数据库模式包括若干基本表，内模式包括若干<strong>存储文件(stored file)</strong>。</p>
-<div>
-            <span id="20241111211554CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241111211554CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 545.6296 318.5327" style="max-width:545.6296;">
@@ -1734,8 +1734,8 @@
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表6&emsp;SQL的数据定义语句</p>
 <p>  SQL标准不提供修改模式定义和修改视图定义的操作。用户如果想修改这些对象，只能先将它们删除然后再重建。SQL标准也没有提供索引相关的语句，但为了提高查询效率，商用关系数据库管理系统通常都提供了索引机制和相关的语句，如<a class="link" href="#20241111221858CST">表6</a>中创建、删除和修改索引等。<br>
   在早期的数据库系统中，所有数据库对象都属于一个数据库，也就是说只有一个命名空间。现代的关系数据库管理系统提供了一个层次化的数据库对象命名机制，如<a class="link" href="#20241111231124CST">图2</a>所示。一个关系数据库管理系统的<strong>实例(instance)</strong>‌中可以建立多个数据库,一个数据库中可以建立多个模式，一个模式下通常包括多个表、视图和索引等数据库对象。</p>
-<div>
-            <span id="20241111231124CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241111231124CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340.8095 184.1746" style="max-width:340.8095;">
@@ -3254,8 +3254,8 @@
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表17</p>
 <p>  本例中，<code>SELECT</code>子句与<code>WHERE</code>子句中的属性名前都加上了表名前缀，这是为了避免混淆。如果属性名在参加连接的各表中是唯一的，则可以省略表名前缀。<br>
   关系数据库管理系统执行该连接操作的一种可能过程是：首先在表<code>Student</code>中找到第一个元组，然后从头开始扫描<code>SC</code>表，逐一查找与<code>Student</code>第一个元组的<code>Sno</code>相等的<code>SC</code>元组，找到后就将<code>Student</code>中的第一个元组与该元组拼接起来，形成结果表中一个元组。<code>SC</code>全部查找完后，再找<code>Student</code>中第二个元组，然后再从头开始扫描<code>SC</code>，逐一查找满足连接条件的元组，找到后就将<code>Student</code>中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到<code>Student</code>中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如<a class="link" href="#20241116211750CST">图3</a>所示。</p>
-<div>
-            <span id="20241116211750CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241116211750CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 863.7 236.9314" style="max-width:863.7;">
@@ -3667,8 +3667,8 @@
 <p>  <span id="20241116235932CST"></span><strong>例52</strong>：查询每一门课的间接先修课（即先修课的先修课）。</p>
 <p>  在Course表中只有每门课的直接先修课信息，而没有先修课的先修课。要得到这个信息，必须先对一门课找到其先修课，再按此先修课的课程号查找它的先修课程。这就要将Course表与其自身连接。<br>
   为此，要为Course表取两个别名，一个是<code>FIRST</code>，另一个是<code>SECOND</code>。</p>
-<div>
-            <span id="20241117132302CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241117132302CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 806.25 276.5861" style="max-width:806.25;">

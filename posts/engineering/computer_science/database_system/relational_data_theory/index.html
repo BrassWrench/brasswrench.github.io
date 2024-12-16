@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_data_theory/'>
 
-<link rel="stylesheet" href="/scss/style.min.e6d37722a692aec993f7d315fc851ed2e7132deba5f78e32e565ff1df5401399.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.8ee9258ea74171a9980a3f41f00cc014a30bfcf77894cbb4daa1bd26dda202a9.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -1230,8 +1230,8 @@ U = \set{ \text{Sno}, \text{Sdept}, \text{Mname}, \text{Cno}, \text{Grade}}
 F=\set{\text{Sno}\rightarrow\text{Sdept},\text{Sdept}\rightarrow\text{Mname},(\text{Sno},\text{Cno})\rightarrow\text{Grade}}
 \tag{4}
     \]
-<div>
-            <span id="20241203151705CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241203151705CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298.1429 130.3702" style="max-width:298.1429;">
@@ -1434,8 +1434,8 @@ X \xrightarrow{P} Y
 \tag{7}
     \]
 <p>  成立，如<a class="link" href="#20241204095857CST">图2</a>所示。</p>
-<div>
-            <span id="20241204095857CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241204095857CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 347.958 347.959" style="max-width:347.958;">
@@ -1464,8 +1464,8 @@ X \xrightarrow{P} Y
    \(\text{Sno}\rightarrow \text{Sloc},(\text{Sno},\text{Cno})\xrightarrow{P} \text{Sloc}\)<br>
    \( \text{Sdept} \rightarrow \text{Sloc}\) （每个系的学生只住一个地方）<br>
   函数依赖关系如<a class="link" href="#20241204135645CST">图3</a>所示。</p>
-<div>
-            <span id="20241204135645CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241204135645CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.8549 140.4286" style="max-width:334.8549;">
@@ -1528,8 +1528,8 @@ X \xrightarrow{P} Y
   (3)修改复杂。某个学生从数学系(\(\text{MA}\))转到计算机科学系(\(\text{CS}\))，这本来只需修改此学生元组中的 \(\text{Sdept}\) 分量即可，但因为关系模式 \(\text{S-L-C}\) 中还含有系的住处 \(\text{Sloc}\) 属性，学 生转系将同时改变住处，因而还必须修改元组中的 \(\text{Sloc}\) 分量。另外，如果这个学生选修了 \(k\) 门课， \(\text{Sdept}、\text{Sloc}\) 重复存储了 \(4\) 次，不仅存储冗余度大，而且必须无遗漏地修改后个元组中全部 \(\text{Sdept}、\text{Sloc}\) 信息，造成修改的复杂化。<br>
   分析上面的例子可以发现问题在于有两类非主属性，一类如 \(\text{Grade}\) ，它对码是完全函数依赖；另一类如 \(\text{Sdept}、\text{Sloc}\) ，它们对码不是完全函数依赖。解决的办法是用投影分解把关系模式  \(\text{S-L-C}\) 分解为两个关系模式：\(\text{SC(Sno,Cno,Grade)}\) 和 \(\text{S-L(Sno,Sdept,Sloc)}\) 。<br>
   关系模式 \(\text{SC}\) 与 \(\text{S-L}\) 中属性间的函数依赖可以用<a class="link" href="#20241204142005CST">图4</a>、<a class="link" href="#20241204142008CST">图5</a>表示如下。</p>
-<div class="figures-container"><div>
-            <span id="20241204142005CST"></span>
+<div class="figures-container"><div class="figure_container">
+            <span class="anchor" id="20241204142005CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 205.3787 140.4286" style="max-width:205.3787;">
@@ -1552,8 +1552,8 @@ X \xrightarrow{P} Y
   </g>
 </svg></div>
         </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图4&emsp;SC中的函数依赖</p>
-<div>
-            <span id="20241204142008CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241204142008CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172.9048 109.6154" style="max-width:172.9048;">
@@ -1615,8 +1615,8 @@ X \xrightarrow{P} Y
 \tag{9}
     \]
 <p>  函数依赖关系可以用图6.6表示，这里 \(\text{(S,J)}、\text{(S,T)}\) 都是候选码。</p>
-<div>
-            <span id="20241204215138CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241204215138CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.4683 109.9524" style="max-width:284.4683;">

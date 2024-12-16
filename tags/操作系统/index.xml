@@ -140,8 +140,8 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
   (1)排队器。为了提高进程调度的效率，应事先将系统中的所有就绪进程按照一定的策略排成一个或多个队列，以便调度程序能最快地找到它。以后每当有一个进程转变为就绪状态时，排队器便将它插入到相应的就绪队列。&lt;br&gt;
   (2)分派器。分派器依据进程调度程序所选定的进程，将其从就绪队列中取出，然后进行从分派器到新选出进程间的上下文切换，将处理机分配给新选出的进程。&lt;br&gt;
   (3)上下文切换器。在对处理机进行切换时，会发生两对上下文的切换操作：①第一对上下文切换时，OS将保存当前进程的上下文，即把当前进程的处理机寄存器内容保存到该进程的进程控制块内的相应单元，再装入分派程序的上下文，以便分派程序运行；②第二对上下文切换是移出分派程序的上下文，而把新选进程的CPU现场信息装入到处理机的各个相应寄存器中，以便新选进程运行。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241126193146CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241126193146CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 641.4449 289.7468&#34; style=&#34;max-width:641.4449;&#34;&gt;
@@ -248,8 +248,8 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 &lt;/h4&gt;&lt;p&gt;  在RR调度算法中，应在何时进行进程的切换，可分为两种情况：①若一个时间片尚未用完，正在运行的进程便已经完成，就立即激活调度程序，将它从就绪队列中删除，再调度就绪队列中队首的进程运行，并启动一个新的时间片。②在一个时间片用完时，计时器中断处理程序被激活。如果进程尚未运行完毕，调度程序将把它送往就绪队列的末尾。&lt;/p&gt;
 &lt;h4 id=&#34;时间片大小的确定&#34;&gt;时间片大小的确定
 &lt;/h4&gt;&lt;p&gt;  在轮转算法中，时间片的大小对系统性能有很大的影响。若选择很小的时间片，将有利于短作业，因为它能在该时间片内完成。但时间片小，意味着会频繁地执行进程调度和进程上下文的切换，这无疑会增加系统的开销。反之，若时间片选择得太长，且为使每个进程都能在一个时间片内完成，RR算法便退化为FCFS算法，无法满足短作业和交互式用户的需求。一个较为可取的时间片大小是略大于一次典型的交互所需要的时间，使大多数交互式进程能在一个时间片内完成，从而可以获得很小的响应时间。&lt;a class=&#34;link&#34; href=&#34;#20241126220213CST&#34;&gt;图2&lt;/a&gt;示出了时间片大小对响应时间的影响，其中&lt;a class=&#34;link&#34; href=&#34;#20241126220213CST&#34;&gt;图2&lt;/a&gt;(a)是时间片略大于典型交互的时间，而&lt;a class=&#34;link&#34; href=&#34;#20241126220213CST&#34;&gt;图2&lt;/a&gt;(b)是时间片小于典型交互的时间。&lt;a class=&#34;link&#34; href=&#34;#20241126220833CST&#34;&gt;表1&lt;/a&gt;示出了时间片分别为 \(q=1\) 和 \(q=4\) 时对平均周转时间的影响。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241126220213CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241126220213CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 759.2051 449.5583&#34; style=&#34;max-width:759.2051;&#34;&gt;
@@ -554,8 +554,8 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 &lt;h4 id=&#34;调度机制&#34;&gt;调度机制
 &lt;/h4&gt;&lt;p&gt;  多级反馈队列调度算法的调度机制可描述如下：&lt;br&gt;
   (1)设置多个就绪队列。在系统中设置多个就绪队列，并为每个队列赋予不同的优先级。第一个队列的优先级最高，第二个次之，其余队列的优先级逐个降低。该算法为不同队列中的进程所赋予的执行时间片的大小也各不相同，在优先级愈高的队列中，其时间片就愈小。例如第二个队列的时间片要比第一个的时间片长一倍，···，第i+1个队列的时间片要比第i个的时间片长一倍。&lt;a class=&#34;link&#34; href=&#34;#20241127085141CST&#34;&gt;图3&lt;/a&gt;是多级反馈队列算法的示意图。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241127085141CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241127085141CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 397.3185 252.8858&#34; style=&#34;max-width:397.3185;&#34;&gt;
@@ -753,8 +753,8 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 &lt;/h4&gt;&lt;p&gt;  可根据抢占发生时间的不同而进一步分成以下两种调度算法：&lt;br&gt;
   (1)基于时钟中断的抢占式优先级调度算法。在某实时任务到达后，如果它的优先级高于当前任务的优先级，这时并不立即抢占当前任务的处理机，而是等到时钟中断发生时，调度程序才剥夺当前任务的执行，将处理机分配给新到的高优先级任务。该算法能获得较好的响应效果，其调度延迟可降为几十至几毫秒，可用于大多数的实时系统中。&lt;br&gt;
   (2)立即抢占(Immediate Preemption)的优先级调度算法。在这种调度策略中，要求操作系统具有快速响应外部事件中断的能力。一旦出现外部中断，只要当前任务未处于临界区，便能立即剥夺当前任务的执行，把处理机分配给请求中断的紧迫任务。这种算法能获得非常快的响应，可把调度延迟降低到几毫秒至100微秒，甚至更低。&lt;a class=&#34;link&#34; href=&#34;#20241127194407CST&#34;&gt;图4&lt;/a&gt;中的(a)、(b)、(c)、(d)分别示出了四种情况的调度时间。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241127194407CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241127194407CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 824.9204 319.3763&#34; style=&#34;max-width:824.9204;&#34;&gt;
@@ -962,8 +962,8 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 &lt;/h3&gt;&lt;p&gt;  该算法是根据任务的截止时间确定任务的优先级，任务的截止时间愈早，其优先级愈高，具有最早截止时间的任务排在队列的队首。调度程序在选择任务时，总是选择就绪队列中的第一个任务，为之分配处理机。最早截止时间优先算法既可用于抢占式调度方式中，也可用于非抢占式调度方式中。&lt;/p&gt;
 &lt;h4 id=&#34;非抢占式调度方式用于非周期实时任务&#34;&gt;非抢占式调度方式用于非周期实时任务
 &lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241127203504CST&#34;&gt;图5&lt;/a&gt;示出了将该算法用于非抢占调度方式之例。该例中具有四个非周期任务，它们先后到达。系统先调度任务1执行，在任务1执行期间，任务2、3又先后到达。由于任务3的开始截止时间早于任务2的，故系统在任务1后将先调度任务3执行。在此期间又到达作业4,其开始截止时间仍是早于任务2的，故在任务3执行完后，系统又先调度任务4执行，最后才调度任务2执行。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241127203504CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241127203504CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 583.2812 145.5338&#34; style=&#34;max-width:583.2812;&#34;&gt;
@@ -1060,8 +1060,8 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 &lt;h4 id=&#34;抢占式调度方式用于周期实时任务&#34;&gt;抢占式调度方式用于周期实时任务
 &lt;/h4&gt;&lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241128084411CST&#34;&gt;图6&lt;/a&gt;示出了将该算法用于抢占调度方式之例。在该例中有两个周期任务，任务A和任务B的周期时间分别为 \(20 \text{ms}\) 和 \(50 \text{ms}\) ，每个周期的处理时间分别为 \(10 \text{ms}\) 和 \(25 \text{ms}\) 。&lt;br&gt;
   &lt;a class=&#34;link&#34; href=&#34;#20241128084411CST&#34;&gt;图6&lt;/a&gt;示出了将最早截止时间（最后期限）优先算法用于抢占调度的示意图。图中的第一行示出了两个任务的到达时间、截止时间和执行时间图。其中任务A的到达时间为 \(0\) 、 \(20 \text{ms}\) 、 \(40 \text{ms}\) ···，任务A的最后期限为 \(20 \text{ms}\) 、 \(40 \text{ms}\) 、 \(60 \text{ms}\) ···，任务B的到达时间为 \(0\) 、 \(50 \text{ms}\) 、 \(100 \text{ms}\) ···，任务B的最后期限为 \(50 \text{ms}\) 、 \(100 \text{ms}\) ···。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241128084411CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241128084411CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 803.6338 528.157&#34; style=&#34;max-width:803.6338;&#34;&gt;
@@ -1633,8 +1633,8 @@ R_p=\frac{等待时间+要求服务时间}{要求服务时间}=\frac{响应时�
 &lt;h3 id=&#34;最低松弛度优先llfleast-laxity-first算法&#34;&gt;最低松弛度优先LLF(Least Laxity First)算法
 &lt;/h3&gt;&lt;p&gt;  该算法在确定任务的优先级时，根据的是任务的紧急(或松弛)程度。任务紧急程度愈高，赋予该任务的优先级就愈高，以使之优先执行。例如，一个任务在 \(200 \text{ms}\) 时必须完成，而它本身所需的运行时间是 \(100 \text{ms}\) ,因此调度程序必须在 \(100 \text{ms}\) 之前调度执行，该任务的紧急程度(松弛程度)为 \(100 \text{ms}\) 。又如另一任务在 \(400 \text{ms}\) 时必须完成，它本身需要运行 \(150 \text{ms}\) ,则其松弛程度为 \(250 \text{ms}\) 。在实现该算法时要求系统中有一个按松弛度排序的实时任务就绪队列，松弛度最低的任务排在最前面，调度程序选择队列中的队首任务执行。&lt;br&gt;
   该算法主要用于可抢占调度方式中。假如在一个实时系统中有两个周期性实时任务A和B,任务A要求每 \(20 \text{ms}\) 执行一次，执行时间为 \(10 \text{ms}\) ，任务B要求每 \(50 \text{ms}\) 执行一次，执行时间为 \(25 \text{ms}\) 。由此可知，任务A和B每次必须完成的时间分别为： \(A_1\) 、 \(A_2\) 、 \(A_3\) 、···和 \(B_1\) 、 \(B_2\) 、 \(B_3\) 、···，见&lt;a class=&#34;link&#34; href=&#34;#20241128101517CST&#34;&gt;图7&lt;/a&gt;。为保证不遗漏任何一次截止时间，应采用最低松弛度优先的抢占调度策略。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241128101517CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241128101517CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 647.1503 162.7222&#34; style=&#34;max-width:647.1503;&#34;&gt;
@@ -1746,8 +1746,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 \tag{8}
     \]
 &lt;p&gt;  类似地，可算出 \(B_1\) 的松弛度为 \(15 \text{ms}\) ,故调度程序应选择 \(B_1\) 运行。在 \(t_3 = 30 \text{ms}\) 时， \(A_2\) 的松弛度已减为 \(0\) （即 \(40-10-30\) ），而 \(B_1\) 的松弛度为 \(15 \text{ms}\) （即 \(50-5-30\) ），于是调度程序应抢占 \(B_1\) 的处理机而调度 \(A_2\) 运行。在 \(Q = 40 \text{ms}\) 时， \(A_3\) 的松弛度为 \(10 \text{ms}\) （即 \(60-10-40\) ），而 \(B_1\) 的松弛度仅为 \(5 \text{ms}\) （即 \(50-5-40\) ），故又应重新调度为执行。在\(t_5 = 45 \text{ms}\) 时， \(B_1\) 执行完成，而此时 \(A_3\) 的松弛度已减为 \(5 \text{ms}\) （即 \(60-10-45\) ），而 \(B_2\) 的松弛度为 \(30 \text{ms}\) （即 \(100-25-45\) ），于是又应调度 \(A_3\) 执行。在\(t_6 = 55 \text{ms}\) 时，任务A尚未进入第4周期，而任务B已进入第2周期，故再调度 \(B_2\) 执行。在 \(t_7 = 70 \text{ms}\) 时， \(A_4\) 的松弛度已减至 \(0 \text{ms}\) （即 \(80-10-70\) ），而 \(B_2\) 的松弛度为 \(20 \text{ms}\) （即 \(100-10-70\) ），故此时调度程序又应抢占 \(B_2\) 的处理机而调度 \(A_4\) 执行。&lt;a class=&#34;link&#34; href=&#34;#20241128111519CST&#34;&gt;图8&lt;/a&gt;示出了具有两个周期性实时任务的调度情况。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241128111519CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241128111519CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 651.2819 137.7095&#34; style=&#34;max-width:651.2819;&#34;&gt;
@@ -1936,8 +1936,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
    \(P_3\) ：&lt;code&gt;... P(mutex); CS-3; V(mutex); ...&lt;/code&gt;&lt;br&gt;
   假如 \(P_3\) 最先执行，在执行了&lt;code&gt;P(mutex)&lt;/code&gt;操作后，进入到临界区&lt;code&gt;CS-3&lt;/code&gt;。在时刻 \(a\) ， \(P_2\) 就绪，因为它比 \(P_3\) 的优先级高， \(P_2\) 抢占了 \(P_3\) 的处理机而运行，如图3-10所示。在时刻 \(b\) ， \(P_1\) 就绪，因为它又比 \(P_2\) 的优先级高， \(P_1\) 抢占了 \(P_2\) 的处理机而运行。在时刻 \(c\) ， \(P_1\) 执行&lt;code&gt;P(mutex)&lt;/code&gt;操作，试图进入临界区&lt;code&gt;CS-1&lt;/code&gt;，但因为相应的临界资源已被 \(P_3\) 占用，故 \(P_1\) 将被阻塞。由 \(P_2\) 继续运行，直到时刻 \(d\) 运行结束。然后由 \(P_3\) 接着运行，到时刻 \(e\) 时 \(P_3\) 退出临界区，并唤醒 \(P_1\) 。因为它比 \(P_3\) 的优先级高，故它抢占了 \(P_3\) 的处理机而运行。&lt;br&gt;
   根据优先级原则，高优先级进程应当能优先执行，但在此例中， \(P_1\) 和 \(P_3\) 共享着“临界资源”，而出现了不合常理的现象，高优先级进程 \(P_1\) 因 \(P_3\) 进程被阻塞了，又因为 \(P_2\) 进程的存在而延长了 \(P_1\) 被阻塞的时间，而且被延长的时间是不可预知和无法限定的。由此所产生的“优先级倒置”的现象是非常有害的，它不应出现在实时系统中。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241128173049CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241128173049CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 680.1387 277.5834&#34; style=&#34;max-width:680.1387;&#34;&gt;
@@ -2107,8 +2107,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;h4 id=&#34;优先级倒置的解决办法&#34;&gt;优先级倒置的解决办法
 &lt;/h4&gt;&lt;p&gt;  一种简单的解决方法是规定：假如进程 \(P_3\) 在进入临界区后 \(P_3\) 所占用的处理机就不允许被抢占。由&lt;a class=&#34;link&#34; href=&#34;#20241128173049CST&#34;&gt;图9&lt;/a&gt;可以看出， \(P_2\) 即使优先级高于 \(P_3\) 也不能执行。于是 \(P_3\) 就有可能会较快地退出临界区，不会出现上述情况。如果系统中的临界区都较短且不多，该方法是可行的。反之，如果 \(P_3\) 临界区非常长，则高优先级进程 \(P_1\) 仍会等待很长的时间，其效果是无法令人满意的。&lt;br&gt;
   一个比较实用的方法是建立在动态优先级继承基础上的。该方法规定，当高优先级进程 \(P_1\) 要进入临界区，去使用临界资源 \(R\) ，如果已有一个低优先级进程 \(P_3\) 正在使用该资源，此时一方面 \(P_1\) 被阻塞，另一方面由 \(P_3\) 继承 \(P_1\) 的优先级，并一直保持到 \(P_3\) 退出临界区。这样做的目的在于不让比 \(P_3\) 优先级稍高，但比 \(P_1\) 优先级低的进程如 \(P_2\) 进程插进来，导致延缓 \(P_3\) 退出临界区。&lt;a class=&#34;link&#34; href=&#34;#20241128175339CST&#34;&gt;图10&lt;/a&gt;示出了采用动态优先级继承方法后， \(P_1\) 、 \(P_2\) 、 \(P_3\) 三个进程的运行情况。由图可以看出，在时刻 \(c\) ， \(P_1\) 被阻塞，但由于 \(P_3\) 已继承了 \(P_1\) 的优先级，它比 \(P_2\) 优先级高，这样就避免了 \(P_2\) 的插入，使 \(P_1\) 在时刻 \(d\) 进入临界区。该方法已在一些操作系统中得到应用，而在实时操作系统中是必须的。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241128175339CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241128175339CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 680.1387 280.964&#34; style=&#34;max-width:680.1387;&#34;&gt;
@@ -2311,8 +2311,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   但如果在 \(P_1\) 打开 \(F_1\) 的同时， \(P_2\) 去打开 \(F_2\) ，每个进程都占有一个打开的文件，此时就可能出现问题。因为当 \(P_1\) 试图去打开 \(F_2\) ，而 \(P_2\) 试图去打开 \(F_1\) 时，这两个进程都会因文件
 已被打开而阻塞，它们希望对方关闭自己所需要的文件，但谁也无法运行，因此这两个进程将会无限期地等待下去，而形成死锁。&lt;br&gt;
   我们可将上面的问题利用资源分配图进行描述，用方块代表可重用的资源（文件），用圆圈代表进程，见&lt;a class=&#34;link&#34; href=&#34;#20241128211052CST&#34;&gt;图11&lt;/a&gt;所示。当箭头从进程指向文件时，表示进程请求资源（打开文件）；当箭头从资源指向进程时，表示该资源已被分配给该进程（已被进程打开）。从中可以看出，这时在 \(P_1\) 、 \(P_2\) 及 \(F_1\) 和 \(F_2\) 之间，已经形成了一个环路，说明已进入死锁状态。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241128211052CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241128211052CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 285.9281 262.4815&#34; style=&#34;max-width:285.9281;&#34;&gt;
@@ -2364,8 +2364,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
    \(P_2\) ：&lt;code&gt;···receive(p1,m1);send(p3,m2);···&lt;/code&gt;&lt;br&gt;
    \(P_3\) ：&lt;code&gt;···receive(p2,m2);send(p1,m3);···&lt;/code&gt;&lt;br&gt;
   则这三个进程就会永远阻塞在它们的&lt;code&gt;receive&lt;/code&gt;操作上，等待一条永远不会发出的消息，于是发生了死锁。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241128215701CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241128215701CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 280.8284 259.2932&#34; style=&#34;max-width:280.8284;&#34;&gt;
@@ -2437,8 +2437,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;p&gt;  在进程 \(P_1\) 和 \(P_2\) 并发执行时，如果按&lt;a class=&#34;link&#34; href=&#34;#20241128224056CST&#34;&gt;图13&lt;/a&gt;中的曲线①所示的顺序推进:：&lt;code&gt;P1:Request(R1)&lt;/code&gt;→&lt;code&gt;P1:Request(R2)&lt;/code&gt;→&lt;code&gt;P1:Release(R2)&lt;/code&gt;→&lt;code&gt;P1:Release(R2)&lt;/code&gt;→&lt;code&gt;P2:Request(R2)&lt;/code&gt;→&lt;code&gt;P2:Request(R1)&lt;/code&gt;→&lt;code&gt;P2:Release(R2)&lt;/code&gt;→&lt;code&gt;P2:Release(R1)&lt;/code&gt;，两个进程可顺利完成。类似地，若按图中曲线②和③所示的顺序推进，两进程也可以顺利完成。我们称这种不会引起进程死锁的推进顺序是合法的。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. 进程推进顺序非法&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  若并发进程 \(P_1\) 和 \(P_2\) 按&lt;a class=&#34;link&#34; href=&#34;#20241128224056CST&#34;&gt;图13&lt;/a&gt;中曲线④所示的顺序推进，它们将进入不安全区 \(D\) 内。此时 \(P_1\) 保持了资源 \(R_1\) ， \(P_2\) 保持了资源 \(R_2\) ，系统处于不安全状态。此刻，如果两个进程继续向前推进，就可能发生死锁。例如，当 \(P_1\) 运行到&lt;code&gt;P1:Request(R2)&lt;/code&gt;时，将因 \(R_2\) 已被 \(P_2\) 占用而阻塞：当 \(P_2\) 运行到&lt;code&gt;P2:Request(R1)&lt;/code&gt;时，也将因 \(R_1\) 已被 \(P_1\) 占用而阻塞，于是发生了进程死锁，这样的进程推进顺序就是非法的。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241128224056CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241128224056CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 562.5899 375.6675&#34; style=&#34;max-width:562.5899;&#34;&gt;
@@ -2703,8 +2703,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
    \(=\set{(P_1,P_2),(P_1,P_3),(P_1,P_4),(P_2,P_5),(P_3,P_5),(P_4,P_6),(P_4,P_7),(P_5,P_8),(P_6,P_8),(P_7,P_9),(P_8,P_9)}\)&lt;br&gt;
   应当注意，前趋图中是不允许有循环的，否则必然会产生不可能实现的前趋关系。如&lt;a class=&#34;link&#34; href=&#34;#20241106181930CST&#34;&gt;图1&lt;/a&gt;(b)所示的前趋关系中就存在着循环。它一方面要求在 \(S_3\) 开始执行之前， \(S_2\) 必须完成，另一方面又要求在 \(S_2\) 开始执行之前， \(S_1\) 必须完成。显然，这种关系是不可能实现的。&lt;br&gt;
   \(S_2\to S_3,S_3\to S_2\)&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106181930CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106181930CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 641.4699 314.4322&#34; style=&#34;max-width:641.4699;&#34;&gt;
@@ -2866,8 +2866,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;h3 id=&#34;程序顺序执行&#34;&gt;程序顺序执行
 &lt;/h3&gt;&lt;h4 id=&#34;程序的顺序执行&#34;&gt;程序的顺序执行
 &lt;/h4&gt;&lt;p&gt;  通常，一个应用程序由若干个程序段组成，每一个程序段完成特定的功能，它们在执行时，都需要按照某种先后次序顺序执行，仅当前一程序段执行完后，才运行后一程序段。例如，在进行计算时，应先运行输入程序，用于输入用户的程序和数据；然后运行计算程序，对所输入的数据进行计算；最后才是运行打印程序，打印计算结果。我们用&lt;strong&gt;结点(Node)&lt;/strong&gt;‌代表各程序段的操作（在&lt;a class=&#34;link&#34; href=&#34;#20241106181930CST&#34;&gt;图1&lt;/a&gt;中用圆圈表示），其中 \(I\) 代表输入操作， \(C\) 代表计算操作， \(P\) 为打印操作，用箭头指示操作的先后次序。这样，上述的三个程序段间就存在着这样的前趋关系： \(I_i\to C_i \to P_i\) ，其执行的顺序可用前趋图&lt;a class=&#34;link&#34; href=&#34;#20241106190822CST&#34;&gt;图2&lt;/a&gt;(a)描述。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106190822CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106190822CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 646.6229 103.1817&#34; style=&#34;max-width:646.6229;&#34;&gt;
@@ -2973,8 +2973,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;h4 id=&#34;程序的并发执行&#34;&gt;程序的并发执行
 &lt;/h4&gt;&lt;p&gt;  我们通过一个常见的例子来说明程序的顺序执行和并发执行。&lt;a class=&#34;link&#34; href=&#34;#20241106190822CST&#34;&gt;图2&lt;/a&gt;中的输入程序、计算程序和打印程序三者之间，存在着 \(I_i\to C_i\to P_i\) 这样的前趋关系，以至对一个作业的输入、计算和打印三个程序段必须顺序执行。但若是对一批作业进行处理时，每道作业的输入、计算和打印程序段的执行情况如&lt;a class=&#34;link&#34; href=&#34;#20241106194040CST&#34;&gt;图3&lt;/a&gt;所示。输入程序 \(I_1\) 在输入第一次数据后，由计算程序 \(C_1\) 对该数据进行计算的同时，输入程序 \(I_2\) 可再输入第二次数据，从而使第一个计算程序 \(C_1\) 可与第二个输入程序 \(I_2\) 并发执行。事实上，正是由于 \(C_1\) 和 \(I_2\) 之间并不存在前趋关系，因此它们之间可以并发执行。一般来说，输入程序 \(I_{i+1}\) 在输入第 \(i+1\) 次数据时，计算程序 \(C_i\) 可能正在对程序 \(I_i\) 的第 \(i\) 次输入的数据进行计算，而打印程序 \(P_{i-1}\) 正在打印程序 \(C{i-1}\) 的计算结果。&lt;br&gt;
   由&lt;a class=&#34;link&#34; href=&#34;#20241106194040CST&#34;&gt;图3&lt;/a&gt;可以看出，存在前趋关系 \(I_i \to C_i,I_i \to I_{i+1},C_i \to P_i, C_i \to C_{i+1},P_i\to P_{i+1}\) 而 \(I_{i+1}\) 和 \(C_i\) 及 \(P_{i-1}\) 是重叠的，即在 \(P_{i-1}\) 和 \(C_i\) 以及 \(I_{i+1}\) 之间，不存在前趋关系，可以并发执行。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106194040CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106194040CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 584.1156 248.2846&#34; style=&#34;max-width:584.1156;&#34;&gt;
@@ -3150,8 +3150,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   \(S_3\) : c :=a+b&lt;br&gt;
   \(S_4\) : d :=c+b&lt;br&gt;
   可画出&lt;a class=&#34;link&#34; href=&#34;#20241106194815CST&#34;&gt;图4&lt;/a&gt;所示的前趋关系。可以看出： \(S_3\) 必须在a和b被赋值后方能执行； \(S_4\) 必须在 \(S_3\) 之后执行；但 \(S_1\) 和 \(S_2\) 则可以并发执行，因为它们彼此互不依赖。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106194815CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106194815CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 383.7584 179.3129&#34; style=&#34;max-width:383.7584;&#34;&gt;
@@ -3236,8 +3236,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   (3) 阻塞(Block)状态。这是指正在执行的进程由于发生某事件（如I/O请求、申请缓冲区失败等）暂时无法继续执行时的状态，亦即进程的执行受到阻塞。此时引起进程调度，OS把处理机分配给另一个就绪进程，而让受阻进程处于暂停状态，一般将这种暂停状态称为&lt;strong&gt;阻塞状态&lt;/strong&gt;，有时也称为等待状态或封锁状态。通常系统将处于阻塞状态的进程也排成一个队列，称该队列为&lt;strong&gt;阻塞队列&lt;/strong&gt;。实际上，在较大的系统中，为了减少队列操作的开销，提高系统效率，根据阻塞原因的不同，会设置多个阻塞队列。&lt;/p&gt;
 &lt;h4 id=&#34;三种基本状态的转换&#34;&gt;三种基本状态的转换
 &lt;/h4&gt;&lt;p&gt;  进程在运行过程中会经常发生状态的转换。例如，处于就绪状态的进程，在调度程序为之分配了处理机之后便可执行，相应地，其状态就由就绪态转变为执行态；正在执行的进程（当前进程）如果因分配给它的时间片己完而被剥夺处理机暂停执行时，其状态便由执行转为就绪：如果因发生某事件，致使当前进程的执行受阻（例如进程访问某临界资源，而该资源正被其它进程访问时），使之无法继续执行，则该进程状态将由执行转变为阻塞。&lt;a class=&#34;link&#34; href=&#34;#20241106211555CST&#34;&gt;图5&lt;/a&gt;示出了进程的三种基本状态，以及各状态之间的转换关系。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106211555CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106211555CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 346.1981 221.3979&#34; style=&#34;max-width:346.1981;&#34;&gt;
@@ -3303,8 +3303,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   但如果进程所需的资源尚不能得到满足，比如系统尚无足够的内存使进程无法装入其中，此时创建工作尚未完成，进程不能被调度运行，于是把此时进程所处的状态称为&lt;strong&gt;创建状态&lt;/strong&gt;。引入创建状态是为了保证进程的调度必须在创建工作完成后进行，以确保对进程控制块操作的完整性。同时，创建状态的引入也增加了管理的灵活性，OS可以根据系统性能或主存容量的限制推迟新进程的提交（创建状态）。对于处于创建状态的进程，当其获得了所需的资源以及对其PCB的初始化工作完成后，便可由创建状态转入就绪状态。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. 终止状态&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  进程的终止也要通过两个步骤：首先，是等待操作系统进行善后处理，最后将其PCB清零，并将PCB空间返还系统。当一个进程到达了自然结束点，或是出现了无法克服的错误，或是被操作系统所终结，或是被其他有终止权的进程所终结，它将进入终止状态。进入终止态的进程以后不能再执行，但在操作系统中依然保留一个记录，其中保存状态码和一些计时统计数据，供其他进程收集。一旦其他进程完成了对其信息的提取之后，操作系统将删除该进程，即将其PCB清零，并将该空白PCB返还系统。&lt;a class=&#34;link&#34; href=&#34;#20241106212101CST&#34;&gt;图6&lt;/a&gt;示出了增加了创建状态和终止状态后进程的五种状态及转换关系图。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106212101CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106212101CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 470.0866 221.413&#34; style=&#34;max-width:470.0866;&#34;&gt;
@@ -3413,8 +3413,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   (2) 活动阻塞🠖静止阻塞。当进程处于未被挂起的阻塞状态时，称它是处于活动阻塞状态，表示为&lt;code&gt;Blockeda&lt;/code&gt;。当用&lt;code&gt;Suspend&lt;/code&gt;原语将它挂起后，进程便转变为静止阻塞状态，表示为&lt;code&gt;Blockeds&lt;/code&gt;，处于该状态的进程在其所期待的事件出现后，它将从静止阻塞变为静止就绪&lt;code&gt;Readys&lt;/code&gt;状态。&lt;br&gt;
   (3) 静止就绪🠖活动就绪。处于&lt;code&gt;Readys&lt;/code&gt;状态的进程若用激活原语&lt;code&gt;Active&lt;/code&gt;激活后，该进程将转变为&lt;code&gt;Readya&lt;/code&gt;状态。&lt;br&gt;
   (4) 静止阻塞🠖活动阻塞。处于&lt;code&gt;Blockeds&lt;/code&gt;状态的进程若用激活原语&lt;code&gt;Active&lt;/code&gt;激活后，进程将转变为&lt;code&gt;Blockeda&lt;/code&gt;状态。&lt;a class=&#34;link&#34; href=&#34;#20241106215410CST&#34;&gt;图7&lt;/a&gt;示出了具有挂起状态的进程状态图。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106215410CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106215410CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 359.378 333.8614&#34; style=&#34;max-width:359.378;&#34;&gt;
@@ -3618,8 +3618,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   (2) 创建🠖活动就绪：在当前系统的性能和内存的容量均允许的情况下，完成对进程创建的必要操作后，相应的系统进程将进程的状态转换为活动就绪状态。&lt;br&gt;
   (3) 创建🠖静止就绪：考虑到系统当前资源状况和性能的要求，不分配给新建进程所需资源，主要是主存，相应的系统将进程状态转为静止就绪状态，被安置在外存，不参与，调度，此时进程创建工作尚未完成。&lt;br&gt;
   (4) 执行🠖终止：当一个进程已完成任务时，或是出现了无法克服的错误，或是被OS，或是被其他进程所终结，此时将进程的状态转换为终止状态。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106221112CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106221112CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 450.5 334.2602&#34; style=&#34;max-width:450.5;&#34;&gt;
@@ -3870,8 +3870,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/h3&gt;&lt;p&gt;  如&lt;a class=&#34;link&#34; href=&#34;https://www.brasswrench.com/posts/engineering/computer_science/operating_system/introduction_to_operating_system/#20241106221347CST&#34;&gt;操作系统概论-操作系统的目标和作用&lt;/a&gt;所述，一方面，为了便于对计算机中的各类资源（包括硬件和信息）的使用和管理，OS将它们抽象为相应的各种数据结构，以及提供一组对资源进行操作的命令，用户可利用这些数据结构及操作命令来执行相关的操作，而无需关心其实现的具体细节。另一方面，操作系统作为计算机资源的管理者，尤其是为了协调诸多用户对系统中共享资源的使用，它还必须记录和查询各种资源的使用及各类进程运行情况的信息。OS对于这些信息的组织和维护也是通过建立和维护各种数据结构的方式来实现的。&lt;/p&gt;
 &lt;h4 id=&#34;操作系统中用于管理控制的数据结构&#34;&gt;操作系统中用于管理控制的数据结构
 &lt;/h4&gt;&lt;p&gt;  在计算机系统中，对于每个资源和每个进程都设置了一个数据结构，用于表征其实体，我们称之为&lt;strong&gt;资源信息表&lt;/strong&gt;或&lt;strong&gt;进程信息表&lt;/strong&gt;，其中包含了资源或进程的标识、描述、状态等信息以及一批指针。通过这些指针，可以将同类资源或进程的信息表，或者同一进程所占用的资源信息表分类链接成不同的队列，便于操作系统进行查找。如&lt;a class=&#34;link&#34; href=&#34;#20241106223515CST&#34;&gt;图9&lt;/a&gt;所示，OS管理的这些数据结构一般分为以下四类：内存表、设备表、文件表和用于进程管理的进程表，通常进程表又被称为进程控制块PCB。本节着重介绍PCB，其它的表将在后面的篇章中陆续介绍。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106223515CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106223515CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 671.9157 330.7275&#34; style=&#34;max-width:671.9157;&#34;&gt;
@@ -3998,8 +3998,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;h4 id=&#34;进程控制块的组织方式&#34;&gt;进程控制块的组织方式
 &lt;/h4&gt;&lt;p&gt;  在一个系统中，通常可拥有数十个、数百个乃至数千个PCB。为了能对它们加以有效的管理，应该用适当的方式将这些PCB组织起来。目前常用的组织方式有以下三种。&lt;br&gt;
   (1) 线性方式，即将系统中所有的PCB都组织在一张线性表中，将该表的首址存放在内存的一个专用区域中。该方式实现简单、开销小，但每次查找时都需要扫描整张表，因此适合进程数目不多的系统。&lt;a class=&#34;link&#34; href=&#34;#20241106225847CST&#34;&gt;图10&lt;/a&gt;示出了线性表的PCB组织方式。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106225847CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106225847CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 101 176.2469&#34; style=&#34;max-width:101;&#34;&gt;
@@ -4030,8 +4030,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/svg&gt;&lt;/div&gt;
         &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图10&amp;emsp;PCB线性表示意图&lt;/p&gt;
 &lt;p&gt;  (2) 链接方式，即把具有相同状态进程的PCB分别通过PCB中的链接字链接成一个队列。这样，可以形成就绪队列、若干个阻塞队列和空白队列等。对就绪队列而言，往往按进程的优先级将PCB从高到低进行排列，将优先级高的进程PCB排在队列的前面。同样，也可把处于阻塞状态进程的PCB根据其阻塞原因的不同，排成多个阻塞队列，如等待I/O操作完成的队列和等待分配内存的队列等。&lt;a class=&#34;link&#34; href=&#34;#20241106232851CST&#34;&gt;图11&lt;/a&gt;示出了一种链接队列的组织方式。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241106232851CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241106232851CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 491.154 251.5118&#34; style=&#34;max-width:491.154;&#34;&gt;
@@ -4179,8 +4179,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/svg&gt;&lt;/div&gt;
         &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图11&amp;emsp;PCB连接队列示意图&lt;/p&gt;
 &lt;p&gt;  (3) 索引方式，即系统根据所有进程状态的不同，建立几张索引表，例如，就绪索引表、阻塞索引表等，并把各索引表在内存的首地址记录在内存的一些专用单元中。在每个索引表的表目中，记录具有相应状态的某个PCB在PCB表中的地址。&lt;a class=&#34;link&#34; href=&#34;#20241107110135CST&#34;&gt;图12&lt;/a&gt;示出了索引方式的PCB组织。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241107110135CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241107110135CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 580.2377 280.5&#34; style=&#34;max-width:580.2377;&#34;&gt;
@@ -4327,8 +4327,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   值得注意的是，在Windows中不存在任何进程层次结构的概念，所有的进程都具有相同的地位。如果一个进程创建另外的进程时创建进程获得了一个句柄，其作用相当于一个令牌，可以用来控制被创建的进程。但是，这个句柄是可以进行传递的，也就是说，获得了句柄的进程就拥有控制其它进程的权力，因此，进程之间的关系不再是层次关系了，而是获得句柄与否、控制与被控制的简单关系。&lt;/p&gt;
 &lt;h4 id=&#34;进程图&#34;&gt;进程图
 &lt;/h4&gt;&lt;p&gt;  为了形象地描述一个进程的家族关系而引入了&lt;strong&gt;进程图(Process Graph)&lt;/strong&gt;。所谓进程图就是用于描述进程间关系的一棵有向树，如&lt;a class=&#34;link&#34; href=&#34;#20241107125722CST&#34;&gt;图13&lt;/a&gt;所示。图中的结点代表进程。在进程 \(P_i\) 创建了进程 \(P_j\) 之后，称 \(P_i\) 是 \(P_j\) 的&lt;strong&gt;父进程(Parent Process)&lt;/strong&gt;， \(P_j\) 是 \(P_i\) 的&lt;strong&gt;子进程(Progeny Process)&lt;/strong&gt;。这里可用一条由进程 \(P_i\) 指向进程 \(P_j\) 的有向边来描述它们之间的父子关系。创建父进程的进程称为&lt;strong&gt;祖先进程&lt;/strong&gt;，这样便形成了一棵进程树，把树的根结点作为进程家族的&lt;strong&gt;祖先(Ancestor)&lt;/strong&gt;。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241107125722CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241107125722CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 400.5025 322.3819&#34; style=&#34;max-width:400.5025;&#34;&gt;
@@ -5053,8 +5053,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;‌&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241110145609CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241110145609CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 368.989 325.2603&#34; style=&#34;max-width:368.989;&#34;&gt;
@@ -5182,8 +5182,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;‌&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241110163451CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241110163451CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 474.4346 360.5978&#34; style=&#34;max-width:474.4346;&#34;&gt;
@@ -5790,8 +5790,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   (1)信箱头，用以存放有关信箱的描述信息，如信箱标识符、信箱的拥有者、信箱口令、信箱的空格数等。&lt;br&gt;
   (2)信箱体，由若干个可以存放消息（或消息头）的信箱格组成，信箱格的数目以及每格的大小是在创建信箱时确定的。&lt;br&gt;
   在消息传递方式上，最简单的情况是单向传递。消息的传递也可以是双向的。&lt;a class=&#34;link&#34; href=&#34;#20241111000058CST&#34;&gt;图16&lt;/a&gt;示出了双向通信链路的通信方式。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241111000058CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241111000058CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 517.5082 162.9048&#34; style=&#34;max-width:517.5082;&#34;&gt;
@@ -5923,8 +5923,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;发送原语&#34;&gt;发送原语
 &lt;/h4&gt;&lt;p&gt;  发送进程在利用发送原语发送消息之前，应先在自己的内存空间设置一发送区&lt;code&gt;a&lt;/code&gt;，如&lt;a class=&#34;link&#34; href=&#34;#20241111134540CST&#34;&gt;图17&lt;/a&gt;所示，把待发送的消息正文、发送进程标识符、消息长度等信息填入其中，然后调用发送原语，把消息发送给目标（接收）进程。发送原语首先根据发送区&lt;code&gt;a&lt;/code&gt;中所设置的消息长度&lt;code&gt;a.size&lt;/code&gt;来申请一缓冲区&lt;code&gt;i&lt;/code&gt;，接着，把发送区&lt;code&gt;a&lt;/code&gt;中的信息复制到缓冲区&lt;code&gt;i&lt;/code&gt;中。为了能将&lt;code&gt;i&lt;/code&gt;挂在接收进程的消息队列&lt;code&gt;mq&lt;/code&gt;上，应先获得接收进程的内部标识符&lt;code&gt;j&lt;/code&gt;，然后将&lt;code&gt;i&lt;/code&gt;挂在&lt;code&gt;j.mq&lt;/code&gt;上。由于该队列属于临界资源，故在执行&lt;code&gt;insert&lt;/code&gt;操作的前后都要执行&lt;code&gt;wait&lt;/code&gt;和&lt;code&gt;signal&lt;/code&gt;操作。最后，释放信号量&lt;code&gt;sm&lt;/code&gt;表示消息发送完毕。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241111134540CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241111134540CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 733.5584 400.0273&#34; style=&#34;max-width:733.5584;&#34;&gt;
@@ -6255,8 +6255,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   (1)多对一模型，即将用户线程映射到一个内核控制线程。如&lt;a class=&#34;link&#34; href=&#34;#20241111151915CST&#34;&gt;图18&lt;/a&gt;(a)所示，这些用户线程一般属于一个进程，运行在该进程的用户空间，对这些线程的调度和管理也是在该进程的用户空间中完成。仅当用户线程需要访问内核时，才将其映射到一个内核控制线程上，但每次只允许一个线程进行映射。该模型的主要优点是线程管理的开销小，效率高；其主要缺点在于，如果一个线程在访问内核时发生阻塞，则整个进程都会被阻塞；此外，在任一时刻，只有一个线程能够访问内核，多个线程不能同时在多个处理机上运行。&lt;br&gt;
   (2)一对一模型，即将每一个用户级线程映射到一个内核支持线程。如&lt;a class=&#34;link&#34; href=&#34;#20241111151915CST&#34;&gt;图18&lt;/a&gt;(b)所示，为每一个用户线程都设置一个内核控制线程与之连接。该模型的主要优点是：当一个线程阻塞时，允许调度另一个线程运行，所以它提供了比多对一模型更好的并发功能。此外，在多处理机系统中，它允许多个线程并行地运行在多处理机系统上。该模型的唯一缺点是:每创建一个用户线程，相应地就需要创建一个内核线程，开销较大，因此需要限制整个系统的线程数。Windows2000、WindowsNT、OS/2等系统上都实现了该模型。&lt;br&gt;
   (3)多对多模型，即将许多用户线程映射到同样数量或更少数量的内核线程上。如&lt;a class=&#34;link&#34; href=&#34;#20241111151915CST&#34;&gt;图18&lt;/a&gt;(c)所示，内核控制线程的数目可以根据应用进程和系统的不同而变化，可以比用户线程少，也可以与之相同。该模型结合上述两种模型的优点，它可以像一对一模型那样，使一个进程的多个线程并行地运行在多处理机系统上，也可像多对一模型那样，减少线程的管理开销和提高效率。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241111151915CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241111151915CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 811.2975 306.2694&#34; style=&#34;max-width:811.2975;&#34;&gt;
@@ -6492,8 +6492,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/h3&gt;&lt;p&gt;  不论是进程还是线程，都必须直接或间接地取得内核的支持。由于内核支持线程可以直接利用系统调用为它服务，故线程的控制相当简单；而用户级线程必须借助于某种形式的中间系统的帮助方能取得内核的服务，故在对线程的控制上要稍复杂些。&lt;/p&gt;
 &lt;h4 id=&#34;内核支持线程的实现&#34;&gt;内核支持线程的实现
 &lt;/h4&gt;&lt;p&gt;  在仅设置了内核支持线程的OS中，一种可能的线程控制方法是，系统在建一个新进程时，便为它分配一个&lt;strong&gt;任务数据区PTDA(Per Task Data Area)&lt;/strong&gt;，其中包括若干个线程控制块TCB空间，如&lt;a class=&#34;link&#34; href=&#34;#20241111152443CST&#34;&gt;图19&lt;/a&gt;所示。在每一个TCB中可保存线程标识符、优先级、线程运行的CPU状态等信息。虽然这些信息与用户级线程TCB中的信息相同，但现在却是被保存在内核空间中。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241111152443CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241111152443CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 288.4286 116.1676&#34; style=&#34;max-width:288.4286;&#34;&gt;
@@ -6533,8 +6533,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;p&gt;  这种线程又称为&lt;strong&gt;轻型进程（LWP，Light Weight Process）&lt;/strong&gt;。每一个进程都可拥有多个LWP，同用户级线程一样，每个LWP都有自己的数据结构（如TCB）,其中包括线程标识符、优先级、状态，另外还有栈和局部存储区等。LWP也可以共享进程所拥有的资源。LWP可通过系统调用来获得内核提供的服务，这样，当一个用户级线程运行时，只须将它连接到一个LWP上，此时它便具有了内核支持线程的所有属性。这种线程实现方式就是组合方式。&lt;br&gt;
   在一个系统中的用户级线程数量可能很大，为了节省系统开销，不可能设置太多的LWP，而是把这些LWP做成一个缓冲池，称为“线程池”。用户进程中的任一用户线程都可以连接到LWP池中的任何一个LWP上。为使每一用户级线程都能利用LWP与内核通信,可以使多个用户级线程多路复用一个LWP,但只有当前连接到LWP上的线程才能与内核通信，其余进程或者阻塞，或者等待LWP。而每一个LWP都要连接到一个内核级线程上,这样，通过LWP可把用户级线程与内核线程连接起来，用户级线程可通过LWP来访问内核，但内核所看到的总是多个LWP而看不到用户级线程。亦即，由LWP实现了内核与用户级线程之间的隔离，从而使用户级线程与内核无关。&lt;a class=&#34;link&#34; href=&#34;#20241111155236CST&#34;&gt;图20&lt;/a&gt;示出了利用轻型进程作为中
 间系统时用户级线程的实现方法。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241111155236CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241111155236CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 658.6279 393.1754&#34; style=&#34;max-width:658.6279;&#34;&gt;
@@ -6696,8 +6696,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/h3&gt;&lt;p&gt;  操作系统在计算机系统中所起的作用，可以从用户、资源管理及资源抽象等多个不同的角度来进行分析和讨论。&lt;/p&gt;
 &lt;h4 id=&#34;os作为用户与计算机硬件系统之间的接口&#34;&gt;OS作为用户与计算机硬件系统之间的接口
 &lt;/h4&gt;&lt;p&gt;  OS作为用户与计算机硬件系统之间的接口的含义是：OS处于用户与计算机硬件系统之间，用户通过OS来使用计算机系统。或者说，用户在OS帮助下能够方便、快捷、可靠地操纵计算机硬件和运行自己的程序。&lt;a class=&#34;link&#34; href=&#34;#20240929215340CST&#34;&gt;图1&lt;/a&gt;是OS作为接口的示意图。由图可看出，用户可通过三种方式使用计算机，即通过命令方式、系统调用方式和图标&amp;mdash;窗口方式来实现与操作系统的通信，并取得它的服务。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20240929215340CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20240929215340CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 634 193.3322&#34; style=&#34;max-width:634;&#34;&gt;
@@ -6744,8 +6744,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   当一台计算机系统供多个用户使用时，诸多用户对系统中共享资源的需求（包括数量和时间）有可能发生冲突。为此，操作系统必须对使用资源的请求进行授权，以协调诸用户对共享资源的使用。&lt;/p&gt;
 &lt;h4 id=&#34;os实现了对计算机资源的抽象&#34;&gt;OS实现了对计算机资源的抽象
 &lt;/h4&gt;&lt;p&gt;  对一台完全无软件的计算机系统（即裸机），由于它向用户提供的仅是硬件接口（物理接口），因此，用户必须对物理接口的实现细节有充分的了解，这就致使该物理机器难于广泛使用。为了方便用户使用I/O设备，人们在裸机上覆盖上一层I/O设备管理软件，如&lt;a class=&#34;link&#34; href=&#34;#20240929215356CST&#34;&gt;图2&lt;/a&gt;所示，由它来实现对I/O设备操作的细节，并向上将I/O设备抽象为一组数据结构以及一组I/O操作命令，如read或write命令，这样用户即可利用这些数据结构及操作命令来进行数据输入或输出，而无需关心I/O是如何具体实现的。此时用户所看到的机器是一台比裸机功能更强、使用更方便的机器。换言之，在裸机上铺设的I/O软件隐藏了I/O设备的具体细节，向上提供了一组抽象的I/O设备。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20240929215356CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20240929215356CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 454.3523 343&#34; style=&#34;max-width:454.3523;&#34;&gt;
@@ -6911,8 +6911,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;h4 id=&#34;脱机输入输出off-line-io方式&#34;&gt;脱机输入/输出（Off-Line IO）方式
 &lt;/h4&gt;&lt;p&gt;  为了解决人机矛盾及CPU和I/O设备之间速度不匹配的矛盾，20世纪50年代末出现了&lt;strong&gt;脱机I/O技术&lt;/strong&gt;。该技术是实现将装有用户程序和数据的纸带装入纸带输入机，在一台外围机的控制下，把纸带（卡片）上的数据（程序）输入到磁带上。当CPU需要这些程序和数据时，再从磁带上高速地调入内存。&lt;br&gt;
   类似地，当CPU需要输出时，可先由CPU把数据直接从内存高速地输送到磁带上，然后在另一台外围机的控制下，再将此大地上的结果通过相应地输出设备输出。&lt;a class=&#34;link&#34; href=&#34;#20240929215418CST&#34;&gt;图3&lt;/a&gt;示出了脱机输入/输出的过程。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20240929215418CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20240929215418CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 326.64 239.4221&#34; style=&#34;max-width:326.64;&#34;&gt;
@@ -6968,8 +6968,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/h3&gt;&lt;p&gt;  20世纪50年代中期出现了第二代晶体管计算机，此时计算机虽已具有推广应用的价值，但计算机系统仍然非常昂贵，为了能充分地提高它的利用率，应尽量保持系统的连接运行，即在处理完一个作业后，紧接着处理下一个作业，以减少机器的空闲等待时间。&lt;/p&gt;
 &lt;h4 id=&#34;单道批处理系统的处理过程&#34;&gt;单道批处理系统的处理过程
 &lt;/h4&gt;&lt;p&gt;  为了实现对作业的连续处理，需要先把一批作业以脱机方式输入到磁带上，并在系统中配上&lt;strong&gt;监督程序(Monitor)&lt;/strong&gt;，在它的控制下，使这批作业能一个接一个连续处理。其处理过程是：首先由监督程序将磁带上的第一个作业装入内存，并把运行控制权交给该作业；当该作业处理完成时，又把控制权交给监督程序，再由监督程序把磁带上的第二个作业调入内存。计算机系统就这样自动地一个作业紧接着一个作业地进行处理，直至磁带上的所有作业全部完成，这样便形成了早期的批处理系统。虽然系统对作业的处理是成批进行的，但在内存中时终止保持一道作业，故称为&lt;strong&gt;单道批处理系统&lt;/strong&gt;。&lt;a class=&#34;link&#34; href=&#34;#20240929215439CST&#34;&gt;图4&lt;/a&gt;示出了单道批处理系统的处理流程。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20240929215439CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20240929215439CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 462.1815 312.7604&#34; style=&#34;max-width:462.1815;&#34;&gt;
@@ -7083,8 +7083,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
         &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图4&amp;emsp;单道批处理系统的处理流程&lt;/p&gt;
 &lt;h4 id=&#34;单道批处理系统的缺点&#34;&gt;单道批处理系统的缺点
 &lt;/h4&gt;&lt;p&gt;  单道批处理系统最主要的缺点是，系统中的资源得不到充分的利用。这是因为在内存中仅有一道程序，每逢该程序在运行中发出I/O请求后，CPU便处于等待状态，必须在其I/O完成后才继续运行。又因I/O设备的低速性，更使CPU的利用率显著降低。&lt;a class=&#34;link&#34; href=&#34;#20240929215455CST&#34;&gt;图5&lt;/a&gt;示出了单道程序的运行情况，从图可以看出：在 $t_2$ ~ $t_3$ 、 $t_6$ ~ $t_7$ 时间间隔内CPU空闲。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20240929215455CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20240929215455CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 744.1543 265.5487&#34; style=&#34;max-width:744.1543;&#34;&gt;
@@ -7191,8 +7191,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/h3&gt;&lt;p&gt;  20世纪60年代中期，IBM公司生产了第一台小规模集成电路计算机IBM 360（第三代计算机系统）。由于它较之于晶体管计算机无论在体积、功耗、速度和可靠性上都有了显著的改善，因而获得了极大的成功。IBM公司为该机开发的OS/360操作系统是第一个能运行多道程序的批处理系统。&lt;/p&gt;
 &lt;h4 id=&#34;多道程序设计的基本概念&#34;&gt;多道程序设计的基本概念
 &lt;/h4&gt;&lt;p&gt;  为了进一步提高资源的利用率和系统吞吐量，在20世纪60年代中期引入了&lt;strong&gt;多道程序设计技术&lt;/strong&gt;，由此形成了&lt;strong&gt;多道批处理系统&lt;/strong&gt;。在该系统中，用户所提交的作业先存放在外存上，并排成一个队列，称为“后备队列”。然后由&lt;strong&gt;作业调度程序&lt;/strong&gt;按一定的算法，从后备队列中选择若干个作业调入内存，使它们共享CPU和系统中的各种资源。由于同时在内存中装有若干道程序，这样便可以在运行程序A时，利用其因I/O操作而暂停执行时的CPU空挡时间，再调度另一道程序B运行，同样可以利用程序B在I/O操作时的空档时间，再调度程序C运行，使多道程序交替地运行，这样便可以保持CPU处于忙碌状态。&lt;a class=&#34;link&#34; href=&#34;#20240929215511CST&#34;&gt;图6&lt;/a&gt;示出了四道程序时的运行情况。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20240929215511CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20240929215511CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 840.7378 486.1498&#34; style=&#34;max-width:840.7378;&#34;&gt;
@@ -7613,8 +7613,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;h4 id=&#34;模块化结构操作系统&#34;&gt;模块化结构操作系统
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;1. 模块化程序设计技术的基本概念&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;模块化程序设计技术&lt;/strong&gt;是20世纪60年代出现的一种结构化程序设计技术。该技术基于&amp;quot;分解&amp;quot;和“模块化”的原则来控制大型软件的复杂度。为使OS具有较清晰的结构，OS不再是由众多的过程直接构成的，而是按其功能精心地划分为若干个具有一定独立性和大小的模块。每个模块具有某方面的管理功能，如进程管理模块、存储器管理模块、I/O设备管理模块等，并仔细地规定好各模块间的接口，使各模块之间能通过接口实现交互。然后再进一步将各模块细分为若干个具有一定功能的子模块，如把进程管理模块又分为进程控制、进程同步等子模块，同样也规定好各子模块之间的接口。若子模块较大，可再进一步将它细分。我们把这种设计方法称为&lt;strong&gt;模块-接口法&lt;/strong&gt;，由此构成的操作系统就是&lt;strong&gt;具有模块化结构的操作系统&lt;/strong&gt;。&lt;a class=&#34;link&#34; href=&#34;#20241014103700CST&#34;&gt;图7&lt;/a&gt;示出了由模块、子模块等组成的模块化OS结构。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241014103700CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241014103700CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 767.4001 274.3994&#34; style=&#34;max-width:767.4001;&#34;&gt;
@@ -7768,8 +7768,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/h4&gt;&lt;p&gt;  &lt;strong&gt;面向对象技术&lt;/strong&gt;是20世纪80年代初提出并很快流行起来的。该技术是基于&amp;quot;抽象&amp;quot;和&amp;quot;隐蔽”原则来控制大型软件的复杂度的。所谓&lt;strong&gt;对象&lt;/strong&gt;，是指在现实世界中具有相同属性、服从相同规则的一系列事物（事物可以是一个物理实体、一个概念或一个软件模块等）的抽象，而把其中的具体事物称为对象的实例。如果在OS中的各类实体如进程、线程、消息、存储器和文件等都使用了对象这一概念，相应地，便有了进程对象、线程对象、消息对象、存储器对象和文件对象等。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 对象&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  在面向对象的技术中，是利用被封装的数据结构（变量）和一组对它进行操作的过程（方法）来表示系统中的某个对象的，如&lt;a class=&#34;link&#34; href=&#34;#20241014132525CST&#34;&gt;图8&lt;/a&gt;所示。对象中的变量（数据）也称为属性，它可以是单个标量或一张表。面向对象中的方法是用于执行某种功能的过程，它可以改变对象的状态，更新对象中的某些数据值或作用于对象所要访问的外部资源。如果把一个文件作为一个对象&lt;a class=&#34;link&#34; href=&#34;#20241014132606CST&#34;&gt;图9&lt;/a&gt;,该对象的变量便是文件类型、文件大小、文件的创建者等。对象中的方法包含对文件的操作，如创建文件、打开文件、读文件、写文件、关闭文件等。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241014132525CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241014132525CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 132.4 145.2771&#34; style=&#34;max-width:132.4;&#34;&gt;
@@ -7796,8 +7796,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;/svg&gt;&lt;/div&gt;
         &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图8&amp;emsp;一个对象的示意图&lt;/p&gt;
 &lt;p&gt;  对象中的变量（数据）对外是隐蔽的，因而外界不能对它直接进行访问，必须通过该对象中的一组方法（操作函数）对它进行访问。例如要想对&lt;a class=&#34;link&#34; href=&#34;#20241014132606CST&#34;&gt;图9&lt;/a&gt;所示的文件A执行打开操作，必须用该对象中的打开过程去打开它。同样地，对象中的一组方法的实现细节也是隐蔽的，因此对象中的变量可以得到很好的保护，而不会允许未经受权者使用和对它进行不正确的操作。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241014132606CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241014132606CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 569.1 235.9597&#34; style=&#34;max-width:569.1;&#34;&gt;
@@ -7896,8 +7896,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   例如，我们将文件设计成一个类，类的变量同样是文件类型、文件大小和创建者等。类中的方法是文件的创建、打开、读写、关闭等。&lt;a class=&#34;link&#34; href=&#34;#20241014132606CST&#34;&gt;图9&lt;/a&gt;示出了一个文件类，在类的变量中没有具体数值，一旦被赋予了具体数值就成了文件A对象。对象类的概念非常有用，因为它极大地提高了创建多个相似对象的效率。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;3. 继承&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  在面向对象的技术中，可以根据已有类来定义一个新的类，新类被称为子类(B),原来的类被称为父类(A),见&lt;a class=&#34;link&#34; href=&#34;#20241014153331CST&#34;&gt;图10&lt;/a&gt;所示。&lt;strong&gt;继承&lt;/strong&gt;是父类和子类之间共享变量和方法的机制，该机制规定子类自动继承父类中定义的变量和方法，并允许子类再增加新的内容。继承特性可使定义子类变得更容易。一个父类可以定义多个子类，它们分别是父类的某种特例，父类描述了这些子类的公共变量和方法。类似地，这些子类又可以定义自己的子类，通过此途经可以生成一个继承的层次。另外，也允许一个子类有两个父类或多个父类，它可以从多个父类获得继承，此时称为&amp;quot;多重继承”。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241014153331CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241014153331CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 318.6162 174.5&#34; style=&#34;max-width:318.6162;&#34;&gt;
@@ -7943,8 +7943,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
 &lt;p&gt;  在微内核操作系统中，内核是指精心设计的、能实现现代OS最基本核心功能的小型内核，微内核并非是一个完整的OS,而只是将操作系统中最基本的部分放入微内核，通常包含有：①与硬件处理紧密相关的部分：②一些较基本的功能；③客户和服务器之间的通信。这些OS最基本的部分只是为构建通用OS提供一个重要基础，这样就可以确保把操作系统内核做得很小。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. 基于客户/服务器模式&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  由于客户/服务器模式具有非常多的优点，故在单机微内核操作系统中几乎无一例外地都采用客户/服务器模式，将操作系统中最基本的部分放入内核中，而把操作系统的绝大部分功能都放在微内核外面的一组服务器（进程）中实现，如用于提供对进程（线程）进行管理的进程（线程）服务器、提供虚拟存储器管理功能的虚拟存储器服务器、提供I/O设备管理的I/O设备管理服务器等，它们都是被作为进程来实现的，运行在用户态，客户与服务器之间是借助微内核提供的消息传递机制来实现信息交互的。&lt;a class=&#34;link&#34; href=&#34;#20241014160927CST&#34;&gt;图11&lt;/a&gt;示出了在单机环境下的客户/服务器模式。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241014160927CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241014160927CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 538.3 136.5&#34; style=&#34;max-width:538.3;&#34;&gt;
@@ -8047,8 +8047,8 @@ A2的松弛度=&amp;必须完成时间-其本身的运行时间-当前时间\\
   效率降低最主要的原因是，在完成一次客户对操作系统提出的服务请求时，需要利用消息实现多次交互和进行用户/内核模式与上下文的多次切换。然而，在早期的OS中，用户进程在请求取得OS服务时，一般只需进行两次上下文的切换：一次是在执行系统调用后由用户态转向系统态时：另一次是在系统完成用户请求的服务后，由系统态返回用户态时。&lt;br&gt;
   在微内核OS中，由于客户和服务器、服务器和服务器之间的通信都需通过微内核，致使同样的服务请求至少需要进行四次上下文切换。第一次是发生在客户发送请求消息给内核，以请求取得某服务器特定的服务时；第二次是发生在由内核把客户的请求消息发往服务器时；第三次是当服务器完成客户请求后，把响应消息发送到内核时；第四次是在内核将响应消息发送给客户时。&lt;br&gt;
   实际情况是往往还会引起更多的上下文切换。例如，当某个服务器自身尚无能力完成客户请求而需要其它服务器的帮助时，如&lt;a class=&#34;link&#34; href=&#34;#20241014164813CST&#34;&gt;图12&lt;/a&gt;所示，其中的文件服务器还需要磁盘服务器的帮助，这时就需要进行8次上下文的切换。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241014164813CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241014164813CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; data-name=&#34;图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 658.3 424.7602&#34; style=&#34;max-width:658.3;&#34;&gt;

@@ -148,8 +148,8 @@
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表2&amp;emsp;SQL的动词&lt;/p&gt;
 &lt;h3 id=&#34;sql的基本概念&#34;&gt;SQL的基本概念
 &lt;/h3&gt;&lt;p&gt;  支持SQL的关系数据库管理系统同样支持关系数据库三级模式结构。如&lt;a class=&#34;link&#34; href=&#34;#20241111211554CST&#34;&gt;图1&lt;/a&gt;所示，其中外模式包括若干&lt;strong&gt;视图(view)&lt;/strong&gt;‌和部分&lt;strong&gt;基本表(base table)&lt;/strong&gt;，数据库模式包括若干基本表，内模式包括若干&lt;strong&gt;存储文件(stored file)&lt;/strong&gt;。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241111211554CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241111211554CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 545.6296 318.5327&#34; style=&#34;max-width:545.6296;&#34;&gt;
@@ -449,8 +449,8 @@
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表6&amp;emsp;SQL的数据定义语句&lt;/p&gt;
 &lt;p&gt;  SQL标准不提供修改模式定义和修改视图定义的操作。用户如果想修改这些对象，只能先将它们删除然后再重建。SQL标准也没有提供索引相关的语句，但为了提高查询效率，商用关系数据库管理系统通常都提供了索引机制和相关的语句，如&lt;a class=&#34;link&#34; href=&#34;#20241111221858CST&#34;&gt;表6&lt;/a&gt;中创建、删除和修改索引等。&lt;br&gt;
   在早期的数据库系统中，所有数据库对象都属于一个数据库，也就是说只有一个命名空间。现代的关系数据库管理系统提供了一个层次化的数据库对象命名机制，如&lt;a class=&#34;link&#34; href=&#34;#20241111231124CST&#34;&gt;图2&lt;/a&gt;所示。一个关系数据库管理系统的&lt;strong&gt;实例(instance)&lt;/strong&gt;‌中可以建立多个数据库,一个数据库中可以建立多个模式，一个模式下通常包括多个表、视图和索引等数据库对象。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241111231124CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241111231124CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 340.8095 184.1746&#34; style=&#34;max-width:340.8095;&#34;&gt;
@@ -1969,8 +1969,8 @@
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表17&lt;/p&gt;
 &lt;p&gt;  本例中，&lt;code&gt;SELECT&lt;/code&gt;子句与&lt;code&gt;WHERE&lt;/code&gt;子句中的属性名前都加上了表名前缀，这是为了避免混淆。如果属性名在参加连接的各表中是唯一的，则可以省略表名前缀。&lt;br&gt;
   关系数据库管理系统执行该连接操作的一种可能过程是：首先在表&lt;code&gt;Student&lt;/code&gt;中找到第一个元组，然后从头开始扫描&lt;code&gt;SC&lt;/code&gt;表，逐一查找与&lt;code&gt;Student&lt;/code&gt;第一个元组的&lt;code&gt;Sno&lt;/code&gt;相等的&lt;code&gt;SC&lt;/code&gt;元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第一个元组与该元组拼接起来，形成结果表中一个元组。&lt;code&gt;SC&lt;/code&gt;全部查找完后，再找&lt;code&gt;Student&lt;/code&gt;中第二个元组，然后再从头开始扫描&lt;code&gt;SC&lt;/code&gt;，逐一查找满足连接条件的元组，找到后就将&lt;code&gt;Student&lt;/code&gt;中的第二个元组与该元组拼接起来，形成结果表中一个元组。重复上述操作，直到&lt;code&gt;Student&lt;/code&gt;中的全部元组都处理完毕为止。这就是嵌套循环连接算法的基本思想。如&lt;a class=&#34;link&#34; href=&#34;#20241116211750CST&#34;&gt;图3&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241116211750CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241116211750CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 863.7 236.9314&#34; style=&#34;max-width:863.7;&#34;&gt;
@@ -2382,8 +2382,8 @@
 &lt;p&gt;  &lt;span id=&#34;20241116235932CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例52&lt;/strong&gt;：查询每一门课的间接先修课（即先修课的先修课）。&lt;/p&gt;
 &lt;p&gt;  在Course表中只有每门课的直接先修课信息，而没有先修课的先修课。要得到这个信息，必须先对一门课找到其先修课，再按此先修课的课程号查找它的先修课程。这就要将Course表与其自身连接。&lt;br&gt;
   为此，要为Course表取两个别名，一个是&lt;code&gt;FIRST&lt;/code&gt;，另一个是&lt;code&gt;SECOND&lt;/code&gt;。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241117132302CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241117132302CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_图层_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; viewBox=&#34;0 0 806.25 276.5861&#34; style=&#34;max-width:806.25;&#34;&gt;
@@ -5594,8 +5594,8 @@ R(A_1,A_2,\cdots,A_n)
 &lt;/h3&gt;&lt;p&gt;  早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为&lt;strong&gt;关系代数(relational algebra)&lt;/strong&gt;‌和&lt;strong&gt;关系演算(relational calculus)&lt;/strong&gt;‌关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为元组关系演算和域关系演算。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数、元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。&lt;br&gt;
   关系代数、元组关系演算和域关系演算均是抽象的查询语言，这些抽象的语言与具体的关系数据库管理系统中实现的实际语言并不完全一样。但它们能用作评估实际系统中查询语言能力的标准或基础。实际的查询语言除了提供关系代数或关系演算的功能外，还提供了许多附加功能，例如聚集函数(aggregation function)。关系赋值、算术运算等，使得目前实际查询语言的功能十分强大。&lt;br&gt;
   另外，还有一种介于关系代数和关系演算之间的结构化查询语言(Structured Query Language,SQL)。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言(Data Control Language,DCL)于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241024185641CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241024185641CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 556.3726 126.4691&#34; style=&#34;max-width:556.3726;&#34;&gt;
@@ -5706,8 +5706,8 @@ R(A_1,A_2,\cdots,A_n)
 &lt;p&gt;  &lt;span id=&#34;20241025092202CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例3&lt;/strong&gt;：在 \(学生（\underline{学号}，姓名，性别，专业号，年龄，班长）\) 关系中，“学号”属性是主码，“班长”属性表示该学生所在班级的班长的学号，它引用了本关系“学号”属性, 即“班长”必须是确实存在的学生的学号。&lt;/p&gt;
 &lt;p&gt;  这三个例子说明关系与关系之间存在着相互引用、相互约束的情况。下面先引入外码 的概念，然后给出表达关系之间相互引用约束的参照完整性的定义。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241025092415CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;定义5（参照关系）&lt;/strong&gt;：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的&lt;strong&gt;外码(foreign key)&lt;/strong&gt;，并称基本关系 \(R\) 为&lt;strong&gt;参照关系(referencing relation)&lt;/strong&gt;，基本关系 \(S\) 为被&lt;strong&gt;参照关系(referenced relation)&lt;/strong&gt;‌或&lt;strong&gt;目标关系(target relation)&lt;/strong&gt;，关系 \(R\) 和 \(S\) 不一定是不同的关系。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241025093632CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241025093632CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 349.8593 72.5652&#34; style=&#34;max-width:349.8593;&#34;&gt;
@@ -5758,8 +5758,8 @@ R(A_1,A_2,\cdots,A_n)
 &lt;p&gt;  在&lt;a class=&#34;link&#34; href=&#34;#20241024190508CST&#34;&gt;例1&lt;/a&gt;中，学生关系的“专业号”属性与专业关系的主码“专业号”相对应，因此“专业号”属性是学生关系的外码。这里专业关系是被参照关系，学生关系为参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(a)所示。&lt;br&gt;
   在&lt;a class=&#34;link&#34; href=&#34;#20241025091438CST&#34;&gt;例2&lt;/a&gt;中，选修关系的“学号”属性与学生关系的主码“学号”相对应：选修关系的“课程号”属性与课程关系的主码“课程号”相对应，因此“学号”和“课程号”属性 是选修关系的外码。这里学生关系和课程关系均为被参照关系，选修关系为参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(b)所示。&lt;br&gt;
   在&lt;a class=&#34;link&#34; href=&#34;#20241025092202CST&#34;&gt;例3&lt;/a&gt;中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如&lt;a class=&#34;link&#34; href=&#34;#20241025100110CST&#34;&gt;图3&lt;/a&gt;(c)所示。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241025100110CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241025100110CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 597.8379 194.4097&#34; style=&#34;max-width:597.8379;&#34;&gt;
@@ -5934,8 +5934,8 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 \tag{18}
     \]
 &lt;p&gt;  &lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(a)、&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(b)分别为具有三个属性列的关系 \(R\) 、 \(S\) 。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(c)为关系 \(R\) 与 \(S\) 的并。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(d)为关系 \(R\) 与 \(S\) 的交。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(e)为关系 \(R\) 和 \(S\) 的差。&lt;a class=&#34;link&#34; href=&#34;#20241026102728CST&#34;&gt;图4&lt;/a&gt;(f)为关系 \(R\) 和 \(S\) 的Cartesian乘积。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241026102728CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241026102728CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 729.9443 643.1951&#34; style=&#34;max-width:729.9443;&#34;&gt;
@@ -6487,8 +6487,8 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
     \]
   它表示 \(R\) 中属性组 \(X\) 上值为 \(x\) 的诸元组在 \(Z\) 上分量的集合。&lt;br&gt;
   例如，&lt;a class=&#34;link&#34; href=&#34;#20241026115500CST&#34;&gt;图5&lt;/a&gt;中， \(x_1\) 在 \(R\) 中的象集为 \(Z_{x_1}=\set{{Z_1,Z_2,Z_3}}\) ， \(x_2\) 在 \(R\) 中的象集为 \(Z_{x_2}=\set{Z_2,Z_3}\) ， \(x_3\) 在 \(R\) 中的象集为 \(Z_{x_3}=\set{Z_1,Z_3}\) 。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241026115500CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241026115500CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 201 317.5239&#34; style=&#34;max-width:201;&#34;&gt;
@@ -6622,8 +6622,8 @@ X_1\theta Y_1
 &lt;/div&gt;&lt;p class=&#34;table-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;表5&lt;/p&gt;
 &lt;p&gt;  选择运算实际上是从关系火中选取使逻辑表达式 \(F\) 为真的元组。这是从行的角度进行的运算。&lt;/p&gt;
 &lt;p&gt;  设有一个学生—课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;所示。下面的多个例子将对这三个关系进行运算。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241026152329CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241026152329CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 715.6612 629.822&#34; style=&#34;max-width:715.6612;&#34;&gt;
@@ -6979,8 +6979,8 @@ X_1\theta Y_1
 \tag{23}
     \]
 &lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026154508CST&#34;&gt;图7&lt;/a&gt;(b)所示。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241026154508CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241026154508CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 402.364 390.3124&#34; style=&#34;max-width:402.364;&#34;&gt;
@@ -7214,8 +7214,8 @@ X_1\theta Y_1
 \tag{26}
     \]
 &lt;p&gt;  结果如&lt;a class=&#34;link&#34; href=&#34;#20241026160858CST&#34;&gt;图8&lt;/a&gt;(b)所示。Student关系原来有4个元组，而投影结果取消了重复的CS元组，因此只有三个元组。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241026160858CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241026160858CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 470.2858 264.2768&#34; style=&#34;max-width:470.2858;&#34;&gt;
@@ -7305,8 +7305,8 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
     \]
 &lt;p&gt;  一般的连接操作是从行的角度进行运算，但自然连接还需要取消重复列，所以是同时从行和列的角度进行运算。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027090331CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例8&lt;/strong&gt;：设&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(a)和(b)分别为关系 \(R\) 和关系 \(S\) ，图&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(c)为非等值连接及 \( R \underset{C\lt E}{\Join} S \) 的结果，&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(d)为等值连接 \( R \underset{R.B=S.B}{\Join} S \) 的结果，&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(e)为自然连接 \( R \Join S \) 的结果。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241027101851CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241027101851CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 650.5886 553.9261&#34; style=&#34;max-width:650.5886;&#34;&gt;
@@ -7726,8 +7726,8 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
         &lt;/div&gt;&lt;p class=&#34;svg-title&#34; style=&#34;text-align:center; margin-top: 0; margin-bottom:0&#34;&gt;图9&amp;emsp;连接运算举例&lt;/p&gt;
 &lt;p&gt;  两个关系 \(R\) 和 \(S\) 在做自然连接时，选择两个关系在公共属性上值相等的元组构成新的关系。此时，关系 \(R\) 中某些元组有可能在 \(S\) 中不存在公共属性上值相等的元组，从而造成 \(R\) 中这些元组在操作时被舍弃了，同样， \(S\) 中某些元组也可能被舍弃。这些被舍弃的元组称为&lt;strong&gt;悬浮元组(dangling tuple)&lt;/strong&gt;，例如，在&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;(e)的自然连接中， \(R\) 中的第 \(4\) 个元组， \(S\) 中的第 \(5\) 个元组都是被舍弃掉的悬浮元组。&lt;br&gt;
   如果把悬浮元组也保存在结果关系中，而在其他属性上填空值(NULL)，那么这种连接就叫做&lt;span id=&#34;20241117142036CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;外连接(outer join)&lt;/strong&gt;，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做&lt;strong&gt;左外连接（left outer join或left join）&lt;/strong&gt;，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做&lt;strong&gt;右外连接（right outer join或right join）&lt;/strong&gt;，记作 \(R⟖S\) 。在&lt;a class=&#34;link&#34; href=&#34;#20241027105236CST&#34;&gt;图10&lt;/a&gt;中，(a)是&lt;a class=&#34;link&#34; href=&#34;#20241027101851CST&#34;&gt;图9&lt;/a&gt;中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241027105236CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241027105236CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 723.3492 278.6628&#34; style=&#34;max-width:723.3492;&#34;&gt;
@@ -8020,8 +8020,8 @@ R\div S=\set{t_r[X]|(t_r\in R)\land(\Pi_Y (S)\sube Y_x)}
 R \div S = \set{a_1}
 \tag{31}
     \]
-&lt;div&gt;
-            &lt;span id=&#34;20241027135213CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241027135213CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 356.635 325.9019&#34; style=&#34;max-width:356.635;&#34;&gt;
@@ -8215,8 +8215,8 @@ R \div S = \set{a_1}
 &lt;p&gt;  下面再以学生—课程数据库（&lt;a class=&#34;link&#34; href=&#34;#20241026152329CST&#34;&gt;图6&lt;/a&gt;）为例，给出几个综合应用多种关系代数运算进行查询的例子。&lt;/p&gt;
 &lt;p&gt;  &lt;span id=&#34;20241027140259CST&#34;&gt;&lt;/span&gt;&lt;strong&gt;例10&lt;/strong&gt;：查询1号课程和3号课程都选秀了的学生的号码。&lt;br&gt;
   首先建立一个临时关系 \(K\) ：&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241027141922CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241027141922CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 121.5714 129.2547&#34; style=&#34;max-width:121.5714;&#34;&gt;
@@ -8718,8 +8718,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 \tag{45}
     \]
 &lt;p&gt;  则 \(S\) 是 \(\text{dom}(\phi)\) 中各阈值中元素的Cartesian积与 \(R\) 的差集。结果如&lt;a class=&#34;link&#34; href=&#34;#20241105214507CST&#34;&gt;图13&lt;/a&gt;(b)所示。注意，在做Cartesian积时各个域中的元素不能搞混。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241105214507CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241105214507CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 334.227 297.0613&#34; style=&#34;max-width:334.227;&#34;&gt;
@@ -8876,8 +8876,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 &lt;/h3&gt;&lt;p&gt;  关系演算的另一种形式是域关系演算。域关系演算以元组变量的分量（即&lt;strong&gt;域变量&lt;/strong&gt;）作为谓词变元的基本对象。1975年由M.M.Zloof提出的QBE就是一个很有特色的域关系演算语言，该语言于1978年在IBM370上得以实现。&lt;br&gt;
   QBE是Query By Example（即通过例子进行查询）的简称，它最突出的特点是操作方式。它是一种高度非过程化的基于屏幕表格的查询语言，用户通过终端屏幕编辑程序，以填写表格的方式构造查询要求，而查询结果也是以表格形式显示，因此非常直观、易学易用。&lt;br&gt;
   QBE中用示例元素来表示查询结果可能的情况，示例元素实质上就是域变量。QBE操作框架如&lt;a class=&#34;link&#34; href=&#34;#20241105222505CST&#34;&gt;图14&lt;/a&gt;所示。&lt;/p&gt;
-&lt;div&gt;
-            &lt;span id=&#34;20241105222505CST&#34;&gt;&lt;/span&gt;
+&lt;div class=&#34;figure_container&#34;&gt;
+            &lt;span class=&#34;anchor&#34; id=&#34;20241105222505CST&#34;&gt;&lt;/span&gt;
             &lt;div class=&#34;svg-figure&#34;&gt;
                 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;svg id=&#34;_layer_1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 480.5714 246.5706&#34; style=&#34;max-width:480.5714;&#34;&gt;

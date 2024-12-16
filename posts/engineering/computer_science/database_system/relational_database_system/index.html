@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://www.brasswrench.com/posts/engineering/computer_science/database_system/relational_database_system/'>
 
-<link rel="stylesheet" href="/scss/style.min.e6d37722a692aec993f7d315fc851ed2e7132deba5f78e32e565ff1df5401399.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+<link rel="stylesheet" href="/scss/style.min.8ee9258ea74171a9980a3f41f00cc014a30bfcf77894cbb4daa1bd26dda202a9.css"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -1502,8 +1502,8 @@ R(A_1,A_2,\cdots,A_n)
 </h3><p>  早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为<strong>关系代数(relational algebra)</strong>‌和<strong>关系演算(relational calculus)</strong>‌关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为元组关系演算和域关系演算。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数、元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。<br>
   关系代数、元组关系演算和域关系演算均是抽象的查询语言，这些抽象的语言与具体的关系数据库管理系统中实现的实际语言并不完全一样。但它们能用作评估实际系统中查询语言能力的标准或基础。实际的查询语言除了提供关系代数或关系演算的功能外，还提供了许多附加功能，例如聚集函数(aggregation function)。关系赋值、算术运算等，使得目前实际查询语言的功能十分强大。<br>
   另外，还有一种介于关系代数和关系演算之间的结构化查询语言(Structured Query Language,SQL)。SQL不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是集查询、数据定义语言、数据操纵语言和数据控制语言(Data Control Language,DCL)于一体的关系数据语言。它充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。因此，关系数据语言可以分为三类：</p>
-<div>
-            <span id="20241024185641CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241024185641CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556.3726 126.4691" style="max-width:556.3726;">
@@ -1614,8 +1614,8 @@ R(A_1,A_2,\cdots,A_n)
 <p>  <span id="20241025092202CST"></span><strong>例3</strong>：在 \(学生（\underline{学号}，姓名，性别，专业号，年龄，班长）\) 关系中，“学号”属性是主码，“班长”属性表示该学生所在班级的班长的学号，它引用了本关系“学号”属性, 即“班长”必须是确实存在的学生的学号。</p>
 <p>  这三个例子说明关系与关系之间存在着相互引用、相互约束的情况。下面先引入外码 的概念，然后给出表达关系之间相互引用约束的参照完整性的定义。</p>
 <p>  <span id="20241025092415CST"></span><strong>定义5（参照关系）</strong>：设 \(F\) 是基本关系 \(R\) 的一个或一组属性，但不是关系 \(R\) 的码， \(K_s\) 是基本关系 \(S\) 的主码。如果 \(F\) 与 \(K_s\) 相对应，则称 \(F\) 是 \(R\) 的<strong>外码(foreign key)</strong>，并称基本关系 \(R\) 为<strong>参照关系(referencing relation)</strong>，基本关系 \(S\) 为被<strong>参照关系(referenced relation)</strong>‌或<strong>目标关系(target relation)</strong>，关系 \(R\) 和 \(S\) 不一定是不同的关系。</p>
-<div>
-            <span id="20241025093632CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241025093632CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 349.8593 72.5652" style="max-width:349.8593;">
@@ -1666,8 +1666,8 @@ R(A_1,A_2,\cdots,A_n)
 <p>  在<a class="link" href="#20241024190508CST">例1</a>中，学生关系的“专业号”属性与专业关系的主码“专业号”相对应，因此“专业号”属性是学生关系的外码。这里专业关系是被参照关系，学生关系为参照关系。如<a class="link" href="#20241025100110CST">图3</a>(a)所示。<br>
   在<a class="link" href="#20241025091438CST">例2</a>中，选修关系的“学号”属性与学生关系的主码“学号”相对应：选修关系的“课程号”属性与课程关系的主码“课程号”相对应，因此“学号”和“课程号”属性 是选修关系的外码。这里学生关系和课程关系均为被参照关系，选修关系为参照关系。如<a class="link" href="#20241025100110CST">图3</a>(b)所示。<br>
   在<a class="link" href="#20241025092202CST">例3</a>中，“班长”属性与本身的主码“学号”属性相对应，因此“班长”是外码。这里，学生关系既是参照关系也是被参照关系。如<a class="link" href="#20241025100110CST">图3</a>(c)所示。</p>
-<div>
-            <span id="20241025100110CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241025100110CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 597.8379 194.4097" style="max-width:597.8379;">
@@ -1842,8 +1842,8 @@ R\times S=\set{\overgroup{t_rt_s}|t_r \in R \land t_s \in S}
 \tag{18}
     \]
 <p>  <a class="link" href="#20241026102728CST">图4</a>(a)、<a class="link" href="#20241026102728CST">图4</a>(b)分别为具有三个属性列的关系 \(R\) 、 \(S\) 。<a class="link" href="#20241026102728CST">图4</a>(c)为关系 \(R\) 与 \(S\) 的并。<a class="link" href="#20241026102728CST">图4</a>(d)为关系 \(R\) 与 \(S\) 的交。<a class="link" href="#20241026102728CST">图4</a>(e)为关系 \(R\) 和 \(S\) 的差。<a class="link" href="#20241026102728CST">图4</a>(f)为关系 \(R\) 和 \(S\) 的Cartesian乘积。</p>
-<div>
-            <span id="20241026102728CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241026102728CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 729.9443 643.1951" style="max-width:729.9443;">
@@ -2395,8 +2395,8 @@ Z_x=\set{t[Z]|t \in R, t[X]=x}
     \]
   它表示 \(R\) 中属性组 \(X\) 上值为 \(x\) 的诸元组在 \(Z\) 上分量的集合。<br>
   例如，<a class="link" href="#20241026115500CST">图5</a>中， \(x_1\) 在 \(R\) 中的象集为 \(Z_{x_1}=\set{{Z_1,Z_2,Z_3}}\) ， \(x_2\) 在 \(R\) 中的象集为 \(Z_{x_2}=\set{Z_2,Z_3}\) ， \(x_3\) 在 \(R\) 中的象集为 \(Z_{x_3}=\set{Z_1,Z_3}\) 。</p>
-<div>
-            <span id="20241026115500CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241026115500CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 201 317.5239" style="max-width:201;">
@@ -2530,8 +2530,8 @@ X_1\theta Y_1
 </div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表5</p>
 <p>  选择运算实际上是从关系火中选取使逻辑表达式 \(F\) 为真的元组。这是从行的角度进行的运算。</p>
 <p>  设有一个学生—课程数据库，包括学生关系Student，课程关系Course和选修关系SC。如<a class="link" href="#20241026152329CST">图6</a>所示。下面的多个例子将对这三个关系进行运算。</p>
-<div>
-            <span id="20241026152329CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241026152329CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 715.6612 629.822" style="max-width:715.6612;">
@@ -2887,8 +2887,8 @@ X_1\theta Y_1
 \tag{23}
     \]
 <p>  结果如<a class="link" href="#20241026154508CST">图7</a>(b)所示。</p>
-<div>
-            <span id="20241026154508CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241026154508CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.364 390.3124" style="max-width:402.364;">
@@ -3122,8 +3122,8 @@ X_1\theta Y_1
 \tag{26}
     \]
 <p>  结果如<a class="link" href="#20241026160858CST">图8</a>(b)所示。Student关系原来有4个元组，而投影结果取消了重复的CS元组，因此只有三个元组。</p>
-<div>
-            <span id="20241026160858CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241026160858CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470.2858 264.2768" style="max-width:470.2858;">
@@ -3213,8 +3213,8 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
     \]
 <p>  一般的连接操作是从行的角度进行运算，但自然连接还需要取消重复列，所以是同时从行和列的角度进行运算。</p>
 <p>  <span id="20241027090331CST"></span><strong>例8</strong>：设<a class="link" href="#20241027101851CST">图9</a>(a)和(b)分别为关系 \(R\) 和关系 \(S\) ，图<a class="link" href="#20241027101851CST">图9</a>(c)为非等值连接及 \( R \underset{C\lt E}{\Join} S \) 的结果，<a class="link" href="#20241027101851CST">图9</a>(d)为等值连接 \( R \underset{R.B=S.B}{\Join} S \) 的结果，<a class="link" href="#20241027101851CST">图9</a>(e)为自然连接 \( R \Join S \) 的结果。</p>
-<div>
-            <span id="20241027101851CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241027101851CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650.5886 553.9261" style="max-width:650.5886;">
@@ -3634,8 +3634,8 @@ R \Join S=\set{\overgroup{t_rt_s}|(t_r \in R) \land (t_s \in S) \land (t_r[B]=t_
         </div><p class="svg-title" style="text-align:center; margin-top: 0; margin-bottom:0">图9&emsp;连接运算举例</p>
 <p>  两个关系 \(R\) 和 \(S\) 在做自然连接时，选择两个关系在公共属性上值相等的元组构成新的关系。此时，关系 \(R\) 中某些元组有可能在 \(S\) 中不存在公共属性上值相等的元组，从而造成 \(R\) 中这些元组在操作时被舍弃了，同样， \(S\) 中某些元组也可能被舍弃。这些被舍弃的元组称为<strong>悬浮元组(dangling tuple)</strong>，例如，在<a class="link" href="#20241027101851CST">图9</a>(e)的自然连接中， \(R\) 中的第 \(4\) 个元组， \(S\) 中的第 \(5\) 个元组都是被舍弃掉的悬浮元组。<br>
   如果把悬浮元组也保存在结果关系中，而在其他属性上填空值(NULL)，那么这种连接就叫做<span id="20241117142036CST"></span><strong>外连接(outer join)</strong>，记作 \(R⟗S\) ；如果只保留左边关系 \(R\) 中的悬浮元组就叫做<strong>左外连接（left outer join或left join）</strong>，记作 \(R⟕S\) ；如果只保留右边关系 \(S\) 中的悬浮元组就叫做<strong>右外连接（right outer join或right join）</strong>，记作 \(R⟖S\) 。在<a class="link" href="#20241027105236CST">图10</a>中，(a)是<a class="link" href="#20241027101851CST">图9</a>中的关系 \(R\) 和关系 \(S\) 的外连接，(b)是左外连接，(c)是右外连接。</p>
-<div>
-            <span id="20241027105236CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241027105236CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 723.3492 278.6628" style="max-width:723.3492;">
@@ -3928,8 +3928,8 @@ R\div S=\set{t_r[X]|(t_r\in R)\land(\Pi_Y (S)\sube Y_x)}
 R \div S = \set{a_1}
 \tag{31}
     \]
-<div>
-            <span id="20241027135213CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241027135213CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.635 325.9019" style="max-width:356.635;">
@@ -4123,8 +4123,8 @@ R \div S = \set{a_1}
 <p>  下面再以学生—课程数据库（<a class="link" href="#20241026152329CST">图6</a>）为例，给出几个综合应用多种关系代数运算进行查询的例子。</p>
 <p>  <span id="20241027140259CST"></span><strong>例10</strong>：查询1号课程和3号课程都选秀了的学生的号码。<br>
   首先建立一个临时关系 \(K\) ：</p>
-<div>
-            <span id="20241027141922CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241027141922CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121.5714 129.2547" style="max-width:121.5714;">
@@ -4626,8 +4626,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 \tag{45}
     \]
 <p>  则 \(S\) 是 \(\text{dom}(\phi)\) 中各阈值中元素的Cartesian积与 \(R\) 的差集。结果如<a class="link" href="#20241105214507CST">图13</a>(b)所示。注意，在做Cartesian积时各个域中的元素不能搞混。</p>
-<div>
-            <span id="20241105214507CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241105214507CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.227 297.0613" style="max-width:334.227;">
@@ -4784,8 +4784,8 @@ S_1=\set{t^{(2)}|(\exist u)(\text{Student}(u)\land(t[1]=u[2])\land(t[2]=u[5]))}
 </h3><p>  关系演算的另一种形式是域关系演算。域关系演算以元组变量的分量（即<strong>域变量</strong>）作为谓词变元的基本对象。1975年由M.M.Zloof提出的QBE就是一个很有特色的域关系演算语言，该语言于1978年在IBM370上得以实现。<br>
   QBE是Query By Example（即通过例子进行查询）的简称，它最突出的特点是操作方式。它是一种高度非过程化的基于屏幕表格的查询语言，用户通过终端屏幕编辑程序，以填写表格的方式构造查询要求，而查询结果也是以表格形式显示，因此非常直观、易学易用。<br>
   QBE中用示例元素来表示查询结果可能的情况，示例元素实质上就是域变量。QBE操作框架如<a class="link" href="#20241105222505CST">图14</a>所示。</p>
-<div>
-            <span id="20241105222505CST"></span>
+<div class="figure_container">
+            <span class="anchor" id="20241105222505CST"></span>
             <div class="svg-figure">
                 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="_layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480.5714 246.5706" style="max-width:480.5714;">
