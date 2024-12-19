@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Wed, 18 Dec 2024 21:18:29 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E9%9B%86/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 19 Dec 2024 20:37:35 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E9%9B%86/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（三）：基础工具集与常用数据集</title>
         <link>https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/base_toolsets_and_common_datasets/</link>
         <pubDate>Wed, 18 Dec 2024 17:43:45 +0800</pubDate>
@@ -45,7 +45,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Console&#34; data-lang=&#34;Console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gp&#34;&gt;$&lt;/span&gt; pip install nltk
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install nltk
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  接下来简要介绍NLTK提供的常用语料库、词典资源及自然语言处理工具。&lt;/p&gt;
@@ -103,27 +103,29 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Console&#34; data-lang=&#34;Console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;[&amp;#39;i&amp;#39;, &amp;#39;me&amp;#39;, &amp;#39;my&amp;#39;, &amp;#39;myself&amp;#39;, &amp;#39;we&amp;#39;, &amp;#39;our&amp;#39;, &amp;#39;ours&amp;#39;, &amp;#39;ourselves&amp;#39;, &amp;#39;you&amp;#39;, &amp;#34;you&amp;#39;re&amp;#34;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#34;you&amp;#39;ve&amp;#34;, &amp;#34;you&amp;#39;ll&amp;#34;, &amp;#34;you&amp;#39;d&amp;#34;, &amp;#39;your&amp;#39;, &amp;#39;yours&amp;#39;, &amp;#39;yourself&amp;#39;, &amp;#39;yourselves&amp;#39;, &amp;#39;he&amp;#39;, &amp;#39;him&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;his&amp;#39;, &amp;#39;himself&amp;#39;, &amp;#39;she&amp;#39;, &amp;#34;she&amp;#39;s&amp;#34;, &amp;#39;her&amp;#39;, &amp;#39;hers&amp;#39;, &amp;#39;herself&amp;#39;, &amp;#39;it&amp;#39;, &amp;#34;it&amp;#39;s&amp;#34;, &amp;#39;its&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;itself&amp;#39;, &amp;#39;they&amp;#39;, &amp;#39;them&amp;#39;, &amp;#39;their&amp;#39;, &amp;#39;theirs&amp;#39;, &amp;#39;themselves&amp;#39;, &amp;#39;what&amp;#39;, &amp;#39;which&amp;#39;, &amp;#39;who&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;whom&amp;#39;, &amp;#39;this&amp;#39;, &amp;#39;that&amp;#39;, &amp;#34;that&amp;#39;ll&amp;#34;, &amp;#39;these&amp;#39;, &amp;#39;those&amp;#39;, &amp;#39;am&amp;#39;, &amp;#39;is&amp;#39;, &amp;#39;are&amp;#39;, &amp;#39;was&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;were&amp;#39;, &amp;#39;be&amp;#39;, &amp;#39;been&amp;#39;, &amp;#39;being&amp;#39;, &amp;#39;have&amp;#39;, &amp;#39;has&amp;#39;, &amp;#39;had&amp;#39;, &amp;#39;having&amp;#39;, &amp;#39;do&amp;#39;, &amp;#39;does&amp;#39;, &amp;#39;did&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;doing&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;an&amp;#39;, &amp;#39;the&amp;#39;, &amp;#39;and&amp;#39;, &amp;#39;but&amp;#39;, &amp;#39;if&amp;#39;, &amp;#39;or&amp;#39;, &amp;#39;because&amp;#39;, &amp;#39;as&amp;#39;, &amp;#39;until&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;while&amp;#39;, &amp;#39;of&amp;#39;, &amp;#39;at&amp;#39;, &amp;#39;by&amp;#39;, &amp;#39;for&amp;#39;, &amp;#39;with&amp;#39;, &amp;#39;about&amp;#39;, &amp;#39;against&amp;#39;, &amp;#39;between&amp;#39;, &amp;#39;into&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;through&amp;#39;, &amp;#39;during&amp;#39;, &amp;#39;before&amp;#39;, &amp;#39;after&amp;#39;, &amp;#39;above&amp;#39;, &amp;#39;below&amp;#39;, &amp;#39;to&amp;#39;, &amp;#39;from&amp;#39;, &amp;#39;up&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;down&amp;#39;, &amp;#39;in&amp;#39;, &amp;#39;out&amp;#39;, &amp;#39;on&amp;#39;, &amp;#39;off&amp;#39;, &amp;#39;over&amp;#39;, &amp;#39;under&amp;#39;, &amp;#39;again&amp;#39;, &amp;#39;further&amp;#39;, &amp;#39;then&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;once&amp;#39;, &amp;#39;here&amp;#39;, &amp;#39;there&amp;#39;, &amp;#39;when&amp;#39;, &amp;#39;where&amp;#39;, &amp;#39;why&amp;#39;, &amp;#39;how&amp;#39;, &amp;#39;all&amp;#39;, &amp;#39;any&amp;#39;, &amp;#39;both&amp;#39;, &amp;#39;each&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;few&amp;#39;, &amp;#39;more&amp;#39;, &amp;#39;most&amp;#39;, &amp;#39;other&amp;#39;, &amp;#39;some&amp;#39;, &amp;#39;such&amp;#39;, &amp;#39;no&amp;#39;, &amp;#39;nor&amp;#39;, &amp;#39;not&amp;#39;, &amp;#39;only&amp;#39;, &amp;#39;own&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;same&amp;#39;, &amp;#39;so&amp;#39;, &amp;#39;than&amp;#39;, &amp;#39;too&amp;#39;, &amp;#39;very&amp;#39;, &amp;#39;s&amp;#39;, &amp;#39;t&amp;#39;, &amp;#39;can&amp;#39;, &amp;#39;will&amp;#39;, &amp;#39;just&amp;#39;, &amp;#39;don&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#34;don&amp;#39;t&amp;#34;, &amp;#39;should&amp;#39;, &amp;#34;should&amp;#39;ve&amp;#34;, &amp;#39;now&amp;#39;, &amp;#39;d&amp;#39;, &amp;#39;ll&amp;#39;, &amp;#39;m&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;re&amp;#39;, &amp;#39;ve&amp;#39;, &amp;#39;y&amp;#39;, &amp;#39;ain&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;aren&amp;#39;, &amp;#34;aren&amp;#39;t&amp;#34;, &amp;#39;couldn&amp;#39;, &amp;#34;couldn&amp;#39;t&amp;#34;, &amp;#39;didn&amp;#39;, &amp;#34;didn&amp;#39;t&amp;#34;, &amp;#39;doesn&amp;#39;, &amp;#34;doesn&amp;#39;t&amp;#34;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;hadn&amp;#39;, &amp;#34;hadn&amp;#39;t&amp;#34;, &amp;#39;hasn&amp;#39;, &amp;#34;hasn&amp;#39;t&amp;#34;, &amp;#39;haven&amp;#39;, &amp;#34;haven&amp;#39;t&amp;#34;, &amp;#39;isn&amp;#39;, &amp;#34;isn&amp;#39;t&amp;#34;, &amp;#39;ma&amp;#39;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;mightn&amp;#39;, &amp;#34;mightn&amp;#39;t&amp;#34;, &amp;#39;mustn&amp;#39;, &amp;#34;mustn&amp;#39;t&amp;#34;, &amp;#39;needn&amp;#39;, &amp;#34;needn&amp;#39;t&amp;#34;, &amp;#39;shan&amp;#39;, &amp;#34;shan&amp;#39;t&amp;#34;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;shouldn&amp;#39;, &amp;#34;shouldn&amp;#39;t&amp;#34;, &amp;#39;wasn&amp;#39;, &amp;#34;wasn&amp;#39;t&amp;#34;, &amp;#39;weren&amp;#39;, &amp;#34;weren&amp;#39;t&amp;#34;, &amp;#39;won&amp;#39;, &amp;#34;won&amp;#39;t&amp;#34;, 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;wouldn&amp;#39;, &amp;#34;wouldn&amp;#39;t&amp;#34;]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#34;you&amp;#39;ve&amp;#34;, &amp;#34;you&amp;#39;ll&amp;#34;, &amp;#34;you&amp;#39;d&amp;#34;, &amp;#39;your&amp;#39;, &amp;#39;yours&amp;#39;, &amp;#39;yourself&amp;#39;,&amp;#39;yourselves&amp;#39;, &amp;#39;he&amp;#39;, 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;him&amp;#39;, &amp;#39;his&amp;#39;, &amp;#39;himself&amp;#39;, &amp;#39;she&amp;#39;, &amp;#34;she&amp;#39;s&amp;#34;, &amp;#39;her&amp;#39;, &amp;#39;hers&amp;#39;, &amp;#39;herself&amp;#39;, &amp;#39;it&amp;#39;, &amp;#34;it&amp;#39;s&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;its&amp;#39;, &amp;#39;itself&amp;#39;, &amp;#39;they&amp;#39;, &amp;#39;them&amp;#39;, &amp;#39;their&amp;#39;, &amp;#39;theirs&amp;#39;, &amp;#39;themselves&amp;#39;, &amp;#39;what&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;which&amp;#39;, &amp;#39;who&amp;#39;, &amp;#39;whom&amp;#39;, &amp;#39;this&amp;#39;, &amp;#39;that&amp;#39;, &amp;#34;that&amp;#39;ll&amp;#34;, &amp;#39;these&amp;#39;, &amp;#39;those&amp;#39;, &amp;#39;am&amp;#39;, &amp;#39;is&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;are&amp;#39;, &amp;#39;was&amp;#39;, &amp;#39;were&amp;#39;, &amp;#39;be&amp;#39;, &amp;#39;been&amp;#39;, &amp;#39;being&amp;#39;, &amp;#39;have&amp;#39;, &amp;#39;has&amp;#39;, &amp;#39;had&amp;#39;, &amp;#39;having&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;do&amp;#39;, &amp;#39;does&amp;#39;, &amp;#39;did&amp;#39;, &amp;#39;doing&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;an&amp;#39;, &amp;#39;the&amp;#39;, &amp;#39;and&amp;#39;, &amp;#39;but&amp;#39;, &amp;#39;if&amp;#39;, &amp;#39;or&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;because&amp;#39;, &amp;#39;as&amp;#39;, &amp;#39;until&amp;#39;, &amp;#39;while&amp;#39;, &amp;#39;of&amp;#39;, &amp;#39;at&amp;#39;, &amp;#39;by&amp;#39;, &amp;#39;for&amp;#39;, &amp;#39;with&amp;#39;, &amp;#39;about&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;against&amp;#39;, &amp;#39;between&amp;#39;, &amp;#39;into&amp;#39;, &amp;#39;through&amp;#39;, &amp;#39;during&amp;#39;, &amp;#39;before&amp;#39;, &amp;#39;after&amp;#39;, &amp;#39;above&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;below&amp;#39;, &amp;#39;to&amp;#39;, &amp;#39;from&amp;#39;, &amp;#39;up&amp;#39;, &amp;#39;down&amp;#39;, &amp;#39;in&amp;#39;, &amp;#39;out&amp;#39;, &amp;#39;on&amp;#39;, &amp;#39;off&amp;#39;, &amp;#39;over&amp;#39;, &amp;#39;under&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;again&amp;#39;, &amp;#39;further&amp;#39;, &amp;#39;then&amp;#39;, &amp;#39;once&amp;#39;, &amp;#39;here&amp;#39;, &amp;#39;there&amp;#39;, &amp;#39;when&amp;#39;, &amp;#39;where&amp;#39;, &amp;#39;why&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;how&amp;#39;, &amp;#39;all&amp;#39;, &amp;#39;any&amp;#39;, &amp;#39;both&amp;#39;, &amp;#39;each&amp;#39;, &amp;#39;few&amp;#39;, &amp;#39;more&amp;#39;, &amp;#39;most&amp;#39;, &amp;#39;other&amp;#39;, &amp;#39;some&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;such&amp;#39;, &amp;#39;no&amp;#39;, &amp;#39;nor&amp;#39;, &amp;#39;not&amp;#39;, &amp;#39;only&amp;#39;, &amp;#39;own&amp;#39;, &amp;#39;same&amp;#39;, &amp;#39;so&amp;#39;, &amp;#39;than&amp;#39;, &amp;#39;too&amp;#39;, &amp;#39;very&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;s&amp;#39;, &amp;#39;t&amp;#39;, &amp;#39;can&amp;#39;, &amp;#39;will&amp;#39;, &amp;#39;just&amp;#39;, &amp;#39;don&amp;#39;, &amp;#34;don&amp;#39;t&amp;#34;, &amp;#39;should&amp;#39;, &amp;#34;should&amp;#39;ve&amp;#34;, &amp;#39;now&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;d&amp;#39;, &amp;#39;ll&amp;#39;, &amp;#39;m&amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;re&amp;#39;, &amp;#39;ve&amp;#39;, &amp;#39;y&amp;#39;, &amp;#39;ain&amp;#39;, &amp;#39;aren&amp;#39;, &amp;#34;aren&amp;#39;t&amp;#34;, &amp;#39;couldn&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#34;couldn&amp;#39;t&amp;#34;, &amp;#39;didn&amp;#39;, &amp;#34;didn&amp;#39;t&amp;#34;, &amp;#39;doesn&amp;#39;, &amp;#34;doesn&amp;#39;t&amp;#34;, &amp;#39;hadn&amp;#39;, &amp;#34;hadn&amp;#39;t&amp;#34;, &amp;#39;hasn&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#34;hasn&amp;#39;t&amp;#34;, &amp;#39;haven&amp;#39;, &amp;#34;haven&amp;#39;t&amp;#34;, &amp;#39;isn&amp;#39;, &amp;#34;isn&amp;#39;t&amp;#34;, &amp;#39;ma&amp;#39;, &amp;#39;mightn&amp;#39;, &amp;#34;mightn&amp;#39;t&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;mustn&amp;#39;, &amp;#34;mustn&amp;#39;t&amp;#34;, &amp;#39;needn&amp;#39;, &amp;#34;needn&amp;#39;t&amp;#34;, &amp;#39;shan&amp;#39;, &amp;#34;shan&amp;#39;t&amp;#34;, &amp;#39;shouldn&amp;#39;, 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#34;shouldn&amp;#39;t&amp;#34;, &amp;#39;wasn&amp;#39;, &amp;#34;wasn&amp;#39;t&amp;#34;, &amp;#39;weren&amp;#39;, &amp;#34;weren&amp;#39;t&amp;#34;, &amp;#39;won&amp;#39;, &amp;#34;won&amp;#39;t&amp;#34;, &amp;#39;wouldn&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#34;wouldn&amp;#39;t&amp;#34;]
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;常用语料库&#34;&gt;常用语料库
@@ -139,7 +141,288 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gutenberg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;raw&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;austen-emma.txt&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;  (2)人工标注语料库。人工标注的关于某项任务的结果。如在句子极性语料库（sentence-polarity）中，包含了10662条来自电影领域的用户评论句子以及相应的极性信息（褒义或贬义）。通过以下命令，可以获得该语料库，其中，褒贬各5331句（经过了小写转换、简单的标记解析等预处理后）。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;  (2)人工标注语料库。人工标注的关于某项任务的结果。如在句子极性语料库（&lt;code&gt;sentence_polarity&lt;/code&gt;）中，包含了10662条来自电影领域的用户评论句子以及相应的极性信息（褒义或贬义）。通过以下命令，可以获得该语料库，其中，褒贬各5331句（经过了小写转换、简单的标记解析等预处理后）。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nltk.corpus&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sentence_polarity&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  &lt;code&gt;sentence_polarity&lt;/code&gt;提供了基本的数据访问方法，如&lt;code&gt;sentence_polarity.categories()&lt;/code&gt;返回褒贬类别列表，即&lt;code&gt;[&#39;neg&#39;, &#39;pos&#39;]&lt;/code&gt;; &lt;code&gt;sentence_polarity.words()&lt;/code&gt;返回语料库中全部单词的列表，如果调用时提供类别参数(&lt;code&gt;categories =&amp;quot;pos&amp;quot;或&amp;quot;neg&amp;quot;&lt;/code&gt;),则会返回相应类别的全部单词列表；&lt;code&gt;sentence_polarity.sents()&lt;/code&gt;返回语料库中全部句子的列表，调用时同样可以提供类别参数。可以使用以上方法的组合，构造出一个大列表，其中每个元素为一个句子的单词列表及其对应的褒贬类别构成的元组。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sentence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;category&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;category&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sentence_polarity&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;categories&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sentence&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sentence&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;polarity&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sents&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;categories&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;category&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;常用词典&#34;&gt;常用词典
+&lt;/h4&gt;&lt;p&gt;  (1)&lt;strong&gt;WordNet&lt;/strong&gt;。WordNet是普林斯顿大学构建的英文语义词典(也称作辞典，Thesaurus)，其主要特色是定义了同义词集合(Synset)，每个同义词集合由具 有相同意义的词义组成。此外，WordNet为每一个同义词集合提供了简短的释义 (Gloss)，同时，不同同义词集合之间还具有一定的语义关系。下面演示WordNet的简单使用示例。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nltk.corpus&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;wordnet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;syns&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;wordnet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;synsets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;bank&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 返回&amp;#34;bank&amp;#34;的全部18个词义的synset&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;syns&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#返回&amp;#34;bank&amp;#34;第1个词义的名称，其中&amp;#34;n&amp;#34;表示名词(Noun)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;syns&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;definition&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#返回&amp;#34;bank&amp;#34;第1个词义的定义，即&amp;#34;河岸&amp;#34;的定义 &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;syns&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;definition&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#返回&amp;#34;bank&amp;#34;第2个词义的定义，即&amp;#34;银行&amp;#34;的定义&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;syns&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;examples&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#返回“bank&amp;#34;第1个词义的使用示例&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;syns&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hypernyms&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;())&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#返回“bank”第1个词义的上位同义词集合&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;dog&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;wordnet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;synset&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;dog.n.01&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;cat&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;wordnet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;synset&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;cat.n.01&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dog&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wup_similarity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#计算两个同义词集合之间的Wu-Palmer相似度&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Console&#34; data-lang=&#34;Console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;bank.n.01
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;sloping land (especially the slope beside a body of water)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;a financial institution that accepts deposits and channels the money into lending 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;activities
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;[&amp;#39;they pulled the canoe up on the bank&amp;#39;, &amp;#39;he sat on the bank of the river and 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;watched the currents&amp;#39;]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;[Synset(&amp;#39;slope.n.01&amp;#39;)]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;0.8571428571428571
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  (2)&lt;strong&gt;SentiWordNet&lt;/strong&gt;。SentiWordNet (Sentiment WordNet)是基于WordNet标注的词语（更准确地说是同义词集合）情感倾向性词典，它为WordNet中每个同义词集合人工标注了三个情感值，依次是褒义、贬义和中性。通过该词典，可以实现一个简单的情感分析系统。仍然通过一个例子演示SentiWordNet的使用方法。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nltk.corpus&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sentiwordnet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sentiwordnet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;senti_synset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;good.a.01&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#词good在形容词(Adjective)下的第1号语义 &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Console&#34; data-lang=&#34;Console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;lt;good.a.01: PosScore=0.75 NegScore=0.0&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;常用自然语言处理工具集&#34;&gt;常用自然语言处理工具集
+&lt;/h3&gt;&lt;p&gt;  NLTK提供了多种常用的自然语言处理基础工具，如分句、标记解析和词性
+标注等，下面简要介绍这些工具的使用方法。&lt;/p&gt;
+&lt;h4 id=&#34;分句&#34;&gt;分句
+&lt;/h4&gt;&lt;p&gt;  通常一个句子能够表达完整的语义信息，因此在进行更深入的自然语言处理之前，往往需要将较长的文档切分成若干句子，这一过程被称为分句。一般来讲，一个句子结尾具有明显的标志，如句号、问号和感叹号等，因此可以使用简单的规则进行分句。然而，往往存在大量的例外情况，如在英文中，句号除了可以作为句尾标志，还可以作为单词的一部分（如“Mr.”）。NLTK提供的分句功能可以较好地解决此问题。下面演示如何使用该功能。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nltk.corpus&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;gutenberg&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nltk.tokenize&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sent_tokenize&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;gutenberg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;raw&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;austen-emma.txt&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;sentences&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sent_tokenize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 对Emma小说全文进行分句&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sentences&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 显示其中一个句子&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Console&#34; data-lang=&#34;Console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;Mr. Knightley loves to find fault with me, you know--
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;in a joke--it is all a joke.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;标记解析&#34;&gt;标记解析
+&lt;/h4&gt;&lt;p&gt;  一个句子是由若干标记(Token)按顺序构成的，其中标记既可以是一个词，
+也可以是标点符号等，这些标记是自然语言处理最基本的输入单元。将句子分割为标记的过程叫作标记解析(Tokenization)。英文中的单词之间通常使用空格进行分割，不过标点符号通常和前面的单词连在一起，因此标记解析的一项主要工 作是将标点符号和前面的单词进行拆分。和分句一样，也无法使用简单的规则进 行标记解析，仍以符号为例，它既可作为句号，也可以作为标记的一部分，如不能简单地将“Mr.”分成两个标记。同样，NLTK提供了标记解析功能，也称作标记解析器(Tokenizer)。下面演示如何使用该功能。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nltk.tokenize&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;word_tokenize&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;word_tokenize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sentences&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Console&#34; data-lang=&#34;Console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;[&amp;#39;Mr.&amp;#39;, &amp;#39;Knightley&amp;#39;, &amp;#39;loves&amp;#39;, &amp;#39;to&amp;#39;, &amp;#39;find&amp;#39;, &amp;#39;fault&amp;#39;, &amp;#39;with&amp;#39;, &amp;#39;me&amp;#39;, &amp;#39;,&amp;#39;, &amp;#39;you&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;know&amp;#39;, &amp;#39;--&amp;#39;, &amp;#39;in&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;joke&amp;#39;, &amp;#39;--&amp;#39;, &amp;#39;it&amp;#39;, &amp;#39;is&amp;#39;, &amp;#39;all&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;joke&amp;#39;, &amp;#39;.&amp;#39;]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;词性标注&#34;&gt;词性标注
+&lt;/h4&gt;&lt;p&gt;  词性是词语所承担的语法功能类别，如名词、动词和形容词等，因此词性也
+被称为词类。很多词语往往具有多种词性，如“fire”，即可以作名词(“火”)，也可
+以作动词(“开火”)词性标注就是根据词语所处的上下文，确定其具体的词性。如在“They sat by the fire.”中，“fire”是名词，而在“They fire a gun.”中，“fire”就是动词。NLTK提供了词性标注器(POS Tagger)，下面演示其使用方法。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nltk&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pos_tag&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pos_tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;word_tokenize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;They sat by the fire.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#对句子标记解析后再进行词性标注&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;pos_tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;word_tokenize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;They fire a gun.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Console&#34; data-lang=&#34;Console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;[(&amp;#39;They&amp;#39;, &amp;#39;PRP&amp;#39;), (&amp;#39;fire&amp;#39;, &amp;#39;VBP&amp;#39;), (&amp;#39;a&amp;#39;, &amp;#39;DT&amp;#39;), (&amp;#39;gun&amp;#39;, &amp;#39;NN&amp;#39;), (&amp;#39;.&amp;#39;, &amp;#39;.&amp;#39;)]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;其它工具&#34;&gt;其它工具
+&lt;/h4&gt;&lt;p&gt;  除了以上介绍的分句、标记解析和词性标注，NLTK还提供了其他丰富的自 然语言处理工具，包括命名实体识别、组块分析(Chunking)和句法分析等。&lt;br&gt;
+  另外，除了NLTK,还有很多其他优秀的自然语言处理基础工具集可供使用， 如斯坦福大学使用Java开发的CoreNLP、基于Python/Cython开发的spaCy等，它们的使用方法本书不再进行详细的介绍，感兴趣的读者可以自行查阅相关的参考资料。&lt;/p&gt;
+&lt;h2 id=&#34;ltp工具集&#34;&gt;LTP工具集
+&lt;/h2&gt;&lt;p&gt;  以上介绍的工具集主要用于英文的处理，而以中文为代表的汉藏语系与以英
+语为代表的印欧语系不同，一个显著的区别在于词语之间不存在明显的分隔符，句子一般是由一串连续的字符构成的，因此在处理中文时，需要使用更有针对性的分析工具。&lt;br&gt;
+  &lt;strong&gt;语言技术平台&lt;/strong&gt;（Language Technology Platform, LTP）是哈尔滨工业大学社会计算与信息检索研究中心（HIT-SCIR）历时多年研发的一整套高效、高精度的
+中文自然语言处理开源基础技术平台。该平台集词法分析（分词、词性标注和命名实体识别）、句法分析（依存句法分析）和语义分析（语义角色标注和语义依存分析）等多项自然语言处理技术于一体。最新发布的LTP4.0版本使用Python语言编写，采用预训练模型以及多任务学习机制，能够以较小的模型获得非常高的分析精度。&lt;br&gt;
+  LTP的安装也非常简单，可以直接使用pip包管理工具，具体方法为，首先进入操作系统的控制台，然后执行以下命令。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ pip install ltp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  下面对LTP的使用方法进行简要的介绍。&lt;/p&gt;
+&lt;h3 id=&#34;中文分词&#34;&gt;中文分词
+&lt;/h3&gt;&lt;p&gt;  如上所述，由于中文词语之间没有空格进行分割，而自然语言处理中通常以
+词为最小的处理单位，因此需要对中文进行分词处理。中文的分词与英文的标记解析功能类似，只是中文分词更强调识别句子中的词语信息，因此往往不被称为标记解析。另外，与标记解析相比，由于一个句子往往有多种可能的分词结果，因分词任务的难度更高，精度也更低。使用LTP进行分词非常容易，具体示例如下。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;ltp&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LTP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ltp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LTP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;words&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ltp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pipeline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;南京市长江大桥。&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tasks&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;cws&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;return_dict&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;words&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Console&#34; data-lang=&#34;Console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;[[&amp;#39;南京市&amp;#39;, &amp;#39;长江&amp;#39;, &amp;#39;大桥&amp;#39;, &amp;#39;。&amp;#39;]]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;其他自然语言处理功能&#34;&gt;其他自然语言处理功能
+&lt;/h3&gt;&lt;p&gt;  除了分词功能，LTP还提供了分句、词性标注、命名实体识别、依存句法分析和语义角色标注等功能。与NLTK类似，在此只演示如何使用LTP进行分句和词性标注，关于更多其他功能的使用方法，请参见LTP的官方文档。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;ltp&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;StnSplit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;sents&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;StnSplit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch_split&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;南京市长江大桥。&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;汤姆生病了。他去了医院。&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sents&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;ltp&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LTP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ltp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LTP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;words&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ltp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pipeline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sents&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tasks&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;cws&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;return_dict&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;words&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ltp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pipeline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sents&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tasks&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;cws&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;pos&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pos&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Console&#34; data-lang=&#34;Console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;[&amp;#39;南京市长江大桥。&amp;#39;, &amp;#39;汤姆生病了。&amp;#39;, &amp;#39;他去了医院。&amp;#39;]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;([[&amp;#39;南京市&amp;#39;, &amp;#39;长江&amp;#39;, &amp;#39;大桥&amp;#39;, &amp;#39;。&amp;#39;], [&amp;#39;汤姆&amp;#39;, &amp;#39;生病&amp;#39;, &amp;#39;了&amp;#39;, &amp;#39;。&amp;#39;], [&amp;#39;他&amp;#39;, &amp;#39;去&amp;#39;, &amp;#39;了&amp;#39;, 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;&amp;#39;医院&amp;#39;, &amp;#39;。&amp;#39;]],)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;[[&amp;#39;ns&amp;#39;, &amp;#39;ns&amp;#39;, &amp;#39;n&amp;#39;, &amp;#39;wp&amp;#39;], [&amp;#39;nh&amp;#39;, &amp;#39;v&amp;#39;, &amp;#39;u&amp;#39;, &amp;#39;wp&amp;#39;], [&amp;#39;r&amp;#39;, &amp;#39;v&amp;#39;, &amp;#39;u&amp;#39;, &amp;#39;n&amp;#39;, &amp;#39;wp&amp;#39;]]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;pytorch基础&#34;&gt;Pytorch基础
+&lt;/h2&gt;&lt;p&gt;  现代深度学习系统的模型结构变得越来越复杂，若要从头开始搭建则极其耗时耗力，而且非常容易出错。幸好，看似纷繁复杂的深度学习模型，都可以分解为一些同构的简单网络结构，通过将这些简单网络结构连接在一起，就可构成复杂的模型。因此，很多深度学习库应运而生，它们可以帮助用户快速搭建一个深度学习模型，并完成模型的训练（也称学习或优化）、预测和部署等功能。&lt;br&gt;
+  本书使用的是PyTorch开源深度学习库,它由Facebook人工智能研究院(Facebook AI Research, FAIR)于2017年推出，可以使用Python语言调用。严格来 讲，PyTorch是一个基于张量(Tensor)的数学运算工具包，提供了两个高级功能：(1)具有强大的GPU（图形处理单元，也叫显卡）加速的张量计算功能；(2)能够自动进行微分计算，从而可以使用基于梯度的方法对模型参数进行优化。基于这些特点，它特别适合作为一个灵活、高效的深度学习平台。与其他深度学习库相比，PyTorch具有如下优点：&lt;br&gt;
+  ◦框架简洁；&lt;br&gt;
+  ◦入门简单，容易上手；&lt;br&gt;
+  ◦支持动态神经网络构建；&lt;br&gt;
+  ◦与Python语言无缝结合；&lt;br&gt;
+  ◦调试方便。&lt;br&gt;
+  因此，PyTorch获得了越来越多的用户，尤其是研究人员的青睐。本节将简要介绍PyTorch的基本功能，主要包括基本的数据存储结构——张量，张量的基本操作以及通过反向传播技术自动计算梯度。&lt;br&gt;
+  首先，仍然可以使用pip包管理工具安装PyTorch，具体方法为，首先进入操
+作系统的控制台，然后执行以下命令。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install torch
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  本站更推荐使用Conda虚拟环境安装和运行PyTorch，具体安装方法可以参 见PyTorch官网。&lt;/p&gt;
+&lt;h3 id=&#34;张量的基本概念&#34;&gt;张量的基本概念
+&lt;/h3&gt;&lt;p&gt;  &lt;/p&gt;
 </description>
         </item>
         
