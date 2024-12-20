@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>黄铜扳手</copyright>
-        <lastBuildDate>Fri, 20 Dec 2024 17:26:55 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 20 Dec 2024 17:30:00 +0800</lastBuildDate><atom:link href="https://www.brasswrench.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>自然语言处理（三）：基础工具集与常用数据集</title>
         <link>https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/base_toolsets_and_common_datasets/</link>
         <pubDate>Wed, 18 Dec 2024 17:43:45 +0800</pubDate>
@@ -842,9 +842,11 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  实际上，这个平均聚合运算可以用数学直观表示为&lt;/p&gt;
 &lt;span id=&#34;20241220132516CST&#34;&gt;&lt;/span&gt;\[
-x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][i_{k+1}]\cdots[i_{n-1}][i_n]=\frac{1}{x.\text{shape}[k]}\sum_{l=0}^{x.\text{shape}[k]}x[i_1][i_2]\cdots[i_{k-1}][l][i_{k+1}]\cdots[i_{n-1}][i_n]\\[10pt]
-\forall i_1,\cdots,i_{k-1},i_{k+1},\cdots,i_n
-\tag{2}
+\begin{aligned}
+&amp;x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][i_{k+1}]\cdots[i_{n-1}][i_n]\\[5pt]
+=&amp;\frac{1}{x.\text{shape}[k]}\sum_{l=0}^{x.\text{shape}[k]}x[i_1][i_2]\cdots[i_{k-1}][l][i_{k+1}]\cdots[i_{n-1}][i_n]\quad\forall i_1,\cdots,i_{k-1},i_{k+1},\cdots,i_n
+\end{aligned}
+\tag{1}
     \]
 &lt;p&gt;  因此，对于一个形状为 \((i_1,i_2,\cdots,i_n)\) 的张量，对第 \(k\) 维进行聚合之后，可得到一个形状为 \((i_1,i_2,\cdots,i_{k-1},i_{k+1},\cdots,i_{n-1},i_n)\) 的张量。&lt;br&gt;
   某些时候我们希望结果保持正确的维度，聚合操作还提供了keepdim参数，默认设置为False，需要显式地设为True。&lt;/p&gt;
@@ -885,9 +887,11 @@ x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][i_{k+1}]\cdots[i_{n-1}][i_n
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  此时的聚合运算可用数学直观表示为&lt;/p&gt;
-&lt;span id=&#34;20241220132516CST&#34;&gt;&lt;/span&gt;\[
-x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][0][i_{k+1}]\cdots[i_{n-1}][i_n]=\frac{1}{x.\text{shape}[k]}\sum_{l=0}^{x.\text{shape}[k]}x[i_1][i_2]\cdots[i_{k-1}][l][i_{k+1}]\cdots[i_{n-1}][i_n]\\[10pt]
-\forall i_1,\cdots,i_{k-1},i_{k+1},\cdots,i_n
+&lt;span id=&#34;20241220132517CST&#34;&gt;&lt;/span&gt;\[
+\begin{aligned}
+&amp;x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][0][i_{k+1}]\cdots[i_{n-1}][i_n]\\[5pt]
+=&amp;\frac{1}{x.\text{shape}[k]}\sum_{l=0}^{x.\text{shape}[k]}x[i_1][i_2]\cdots[i_{k-1}][l][i_{k+1}]\cdots[i_{n-1}][i_n]\quad\forall i_1,\cdots,i_{k-1},i_{k+1},\cdots,i_n
+\end{aligned}
 \tag{2}
     \]
 &lt;p&gt;  因此，对于一个形状为 \((i_1,i_2,\cdots,i_n)\) 的张量，对第 \(k\) 维进行聚合之后，可得到一个形状为 \((i_1,i_2,\cdots,i_{k-1},i_{k+1},\cdots,i_{n-1},i_n)\) 的张量。&lt;/p&gt;
@@ -939,8 +943,8 @@ x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][0][i_{k+1}]\cdots[i_{n-1}][
 &lt;/div&gt;&lt;p&gt;  拼接操作的数学直观表示为&lt;/p&gt;
 &lt;span id=&#34;20241220152207CST&#34;&gt;&lt;/span&gt;\[
 \begin{aligned}
-&amp;\text{torch.cat}((x_1,x_2,\cdots),\text{dim}=k)[i_1][i_2]\cdots[i_k]\cdots[i_n]=\\[5pt]
-&amp;\begin{cases}
+&amp;\text{torch.cat}((x_1,x_2,\cdots),\text{dim}=k)[i_1][i_2]\cdots[i_k]\cdots[i_n]\\[5pt]
+=&amp;\begin{cases}
 x_1[i_1][i_2]\cdots[i_k]\cdots[i_n] &amp; \text{if } 0 \le i_k &lt;  x_1.\text{shape}[k] \\[5pt]
 x_2[i_1][i_2]\cdots[i_k]\cdots[i_n] &amp; \text{if } x_1.\text{shape}[k] \le i_k &lt; x_1.\text{shape}[k] + x_2.\text{shape}[k] \\[5pt]
 \hspace{5em}\vdots

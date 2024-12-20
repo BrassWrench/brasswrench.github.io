@@ -131,7 +131,7 @@
 <meta property='og:description' content="自然语言处理使用的基础工具集和常用的数据集">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/base_toolsets_and_common_datasets/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='人工智能' /><meta property='article:tag' content='自然语言处理' /><meta property='article:tag' content='自然语言处理工具集' /><meta property='article:tag' content='自然语言处理数据集' /><meta property='article:published_time' content='2024-12-18T17:43:45&#43;08:00'/><meta property='article:modified_time' content='2024-12-20T17:26:55&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='人工智能' /><meta property='article:tag' content='自然语言处理' /><meta property='article:tag' content='自然语言处理工具集' /><meta property='article:tag' content='自然语言处理数据集' /><meta property='article:published_time' content='2024-12-18T17:43:45&#43;08:00'/><meta property='article:modified_time' content='2024-12-20T17:30:00&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="自然语言处理（三）：基础工具集与常用数据集">
 <meta name="twitter:description" content="自然语言处理使用的基础工具集和常用的数据集"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -1153,7 +1153,7 @@
 </svg>
 
             <time class="article-words">
-                7197 字
+                7201 字
             </time>
         </div>
 
@@ -2012,9 +2012,11 @@
 </div>
 </div><p>  实际上，这个平均聚合运算可以用数学直观表示为</p>
 <span id="20241220132516CST"></span>\[
-x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][i_{k+1}]\cdots[i_{n-1}][i_n]=\frac{1}{x.\text{shape}[k]}\sum_{l=0}^{x.\text{shape}[k]}x[i_1][i_2]\cdots[i_{k-1}][l][i_{k+1}]\cdots[i_{n-1}][i_n]\\[10pt]
-\forall i_1,\cdots,i_{k-1},i_{k+1},\cdots,i_n
-\tag{2}
+\begin{aligned}
+&x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][i_{k+1}]\cdots[i_{n-1}][i_n]\\[5pt]
+=&\frac{1}{x.\text{shape}[k]}\sum_{l=0}^{x.\text{shape}[k]}x[i_1][i_2]\cdots[i_{k-1}][l][i_{k+1}]\cdots[i_{n-1}][i_n]\quad\forall i_1,\cdots,i_{k-1},i_{k+1},\cdots,i_n
+\end{aligned}
+\tag{1}
     \]
 <p>  因此，对于一个形状为 \((i_1,i_2,\cdots,i_n)\) 的张量，对第 \(k\) 维进行聚合之后，可得到一个形状为 \((i_1,i_2,\cdots,i_{k-1},i_{k+1},\cdots,i_{n-1},i_n)\) 的张量。<br>
   某些时候我们希望结果保持正确的维度，聚合操作还提供了keepdim参数，默认设置为False，需要显式地设为True。</p>
@@ -2055,9 +2057,11 @@ x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][i_{k+1}]\cdots[i_{n-1}][i_n
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  此时的聚合运算可用数学直观表示为</p>
-<span id="20241220132516CST"></span>\[
-x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][0][i_{k+1}]\cdots[i_{n-1}][i_n]=\frac{1}{x.\text{shape}[k]}\sum_{l=0}^{x.\text{shape}[k]}x[i_1][i_2]\cdots[i_{k-1}][l][i_{k+1}]\cdots[i_{n-1}][i_n]\\[10pt]
-\forall i_1,\cdots,i_{k-1},i_{k+1},\cdots,i_n
+<span id="20241220132517CST"></span>\[
+\begin{aligned}
+&x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][0][i_{k+1}]\cdots[i_{n-1}][i_n]\\[5pt]
+=&\frac{1}{x.\text{shape}[k]}\sum_{l=0}^{x.\text{shape}[k]}x[i_1][i_2]\cdots[i_{k-1}][l][i_{k+1}]\cdots[i_{n-1}][i_n]\quad\forall i_1,\cdots,i_{k-1},i_{k+1},\cdots,i_n
+\end{aligned}
 \tag{2}
     \]
 <p>  因此，对于一个形状为 \((i_1,i_2,\cdots,i_n)\) 的张量，对第 \(k\) 维进行聚合之后，可得到一个形状为 \((i_1,i_2,\cdots,i_{k-1},i_{k+1},\cdots,i_{n-1},i_n)\) 的张量。</p>
@@ -2109,8 +2113,8 @@ x.\text{mean}(\text{dim}=k)[i_1][i_2]\cdots[i_{k-1}][0][i_{k+1}]\cdots[i_{n-1}][
 </div><p>  拼接操作的数学直观表示为</p>
 <span id="20241220152207CST"></span>\[
 \begin{aligned}
-&\text{torch.cat}((x_1,x_2,\cdots),\text{dim}=k)[i_1][i_2]\cdots[i_k]\cdots[i_n]=\\[5pt]
-&\begin{cases}
+&\text{torch.cat}((x_1,x_2,\cdots),\text{dim}=k)[i_1][i_2]\cdots[i_k]\cdots[i_n]\\[5pt]
+=&\begin{cases}
 x_1[i_1][i_2]\cdots[i_k]\cdots[i_n] & \text{if } 0 \le i_k <  x_1.\text{shape}[k] \\[5pt]
 x_2[i_1][i_2]\cdots[i_k]\cdots[i_n] & \text{if } x_1.\text{shape}[k] \le i_k < x_1.\text{shape}[k] + x_2.\text{shape}[k] \\[5pt]
 \hspace{5em}\vdots
@@ -2168,7 +2172,7 @@ x_2[i_1][i_2]\cdots[i_k]\cdots[i_n] & \text{if } x_1.\text{shape}[k] \le i_k < x
 
 
         <span>
-            最后更新于 Dec 20, 2024 17:26 CST
+            最后更新于 Dec 20, 2024 17:30 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
