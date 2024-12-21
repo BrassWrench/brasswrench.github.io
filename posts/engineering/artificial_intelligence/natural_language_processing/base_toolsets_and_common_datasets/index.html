@@ -131,7 +131,7 @@
 <meta property='og:description' content="自然语言处理使用的基础工具集和常用的数据集">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/base_toolsets_and_common_datasets/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='人工智能' /><meta property='article:tag' content='自然语言处理' /><meta property='article:tag' content='自然语言处理工具集' /><meta property='article:tag' content='自然语言处理数据集' /><meta property='article:published_time' content='2024-12-18T17:43:45&#43;08:00'/><meta property='article:modified_time' content='2024-12-20T19:43:34&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='人工智能' /><meta property='article:tag' content='自然语言处理' /><meta property='article:tag' content='自然语言处理工具集' /><meta property='article:tag' content='自然语言处理数据集' /><meta property='article:published_time' content='2024-12-18T17:43:45&#43;08:00'/><meta property='article:modified_time' content='2024-12-21T09:02:07&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="自然语言处理（三）：基础工具集与常用数据集">
 <meta name="twitter:description" content="自然语言处理使用的基础工具集和常用的数据集"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -829,6 +829,8 @@
         <li><a href="#自动微分">自动微分</a></li>
         <li><a href="#调整张量形状">调整张量形状</a></li>
         <li><a href="#广播机制">广播机制</a></li>
+        <li><a href="#索引与切片">索引与切片</a></li>
+        <li><a href="#降维与升维">降维与升维</a></li>
       </ol>
     </li>
   </ol>
@@ -1156,7 +1158,7 @@
 </svg>
 
             <time class="article-words">
-                8866 字
+                10079 字
             </time>
         </div>
 
@@ -1171,7 +1173,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 18 分钟
+                    阅读时长: 21 分钟
                 </time>
             </div>
         
@@ -2329,7 +2331,7 @@ x[m'_1]\cdots[m'_{n-1}][0],x[m'_1]\cdots[m'_{n-1}][1],x[m'_1]\cdots[m'_{n-1}][2]
 m_1\times m_2 \times \cdots \times m_n = m'_1\times m'_2 \times \cdots \times m'_n
 \tag{7}
     \]
-<p>  进行<code>view</code>操作的张量要求是连续的(Contiguous),可以调用<code>is_contiguous</code>函数判断一个张量是否为连续的。如果张量非连续，则需要先调用<code>contiguous</code>函数将其变为连续的，才能调用<code>view</code>函数。好在PyTorch提供了新的<code>reshape</code>函数，可以直接对非连续张量进行形状调整。除此之外，<code>reshape</code>函数与<code>view</code>函数功能一致。在此不再赘述。<br>
+<p>  进行<code>view</code>操作的张量要求是连续的(Contiguous)，可以调用<code>is_contiguous</code>函数判断一个张量是否为连续的。如果张量非连续，则需要先调用<code>contiguous</code>函数将其变为连续的，才能调用<code>view</code>函数。好在PyTorch提供了新的<code>reshape</code>函数，可以直接对非连续张量进行形状调整。除此之外，<code>reshape</code>函数与<code>view</code>函数功能一致。在此不再赘述。<br>
   <code>transpose</code>(转置)函数用于交换张量中的两个维度，参数分别为相应的维。如下所示。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2423,7 +2425,281 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 \tag{9}
     \]
 <h3 id="广播机制">广播机制
-</h3>
+</h3><p>  在上面介绍的张量运算中，都是假设两个参与运算的张量形状相同。在有些情
+况下，即使两个张量的形状不同，也可以通过<strong>广播机制</strong>(Broadcasting Mechanism)执行按元素计算。具体的执行规则是，首先，对其中一个或同时对两个张量的元素进行复制，使得这两个张量的形状相同；然后，在扩展之后的张量上再执行按元素运算。通常是沿着长度为1的维度进行扩展，下面通过一个具体的例子进行说明。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">aremge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [2],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [3]])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[4, 5]])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  生成两个张量，形状分别为(3,1)和(1,2),显然，它们不能直接执行按元素 运算。因此，在执行按元素运算之前，需要将它们扩展（广播）为形状(3, 2)的张量，具体扩展的方法为将x的第1列复制到第2列，将y的第1行复制到第2、3行。如下所示，可以直接进行加法运算，PyTorch会自动执行广播和按元素相加。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[5, 6],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [6, 7], 
+</span></span></span><span class="line"><span class="cl"><span class="go">        [7, 8]])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="索引与切片">索引与切片
+</h3><p>  与Python的列表类似，PyTorch中也可以对张量进行索引和切片操作，规则
+也与Python语言基本一致，即索引值是从0开始的，切片的范围是从m开始，至n的前一个元素结束。与Python语言不同的是，PyTorch可以对张量的任意一个维度进行索引或切片。下面演示一些简单的示例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[0, 1, 2, 3],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [4, 5, 6, 7],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [8, 9, 10, 11]])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="c1">#x的第2行，第4列的元素(7)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor(7)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#第2行全部元素</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([4, 5, 6, 7])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span> <span class="c1">#第2、3两行元素</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[ 4, 5, 6, 7],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [8, 9, 10, 11]])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span> <span class="c1">#第3列全部元素</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([2, 6, 10])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span> <span class="c1">#第3、4两列元素</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[2, 3],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [6, 7],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [10, 11]])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">x</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#第3、4两列元素全部赋值为100</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[0, 1, 100, 100],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [4, 5, 100, 100],
+</span></span></span><span class="line"><span class="cl"><span class="go">        [8, 9, 100, 100]])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="降维与升维">降维与升维
+</h3><p>  有时为了适配某些运算，需要对一个张量进行降维或升维。如很多神经网络模块在调用时，需要同时输入一个批次，即多个样例，如果此时只输入1个输入样例，则需要将某一个维度提升，以适配该模块的调用要求。<br>
+  具体来讲，所谓升维，就是通过调用<code>torch.unsqueeze(input, dim, out=None)</code>函数，对输入张量的<code>dim</code>位置后面插入维度1，并返回一个新的张量。与索引相同，<code>dim</code>的值也可以为负数。<br>
+  降维恰好相反，使用<code>torch.squeeze(input, dim=None, out=None)</code>函数，在不指定<code>dim</code>时，张量中形状为1的所有维都将被除去。如输入形状为<code>(A, 1, B, 1, C, 1, D)</code>的张量，那么输出形状就为<code>(A, B, C, D)</code>。当给定<code>dim</code>时，那么降维操作只在给定维度上。例如，输入形状为<code>(A, 1, B)</code>，<code>squeeze(input, dim=0)</code>函数将会保持张量不变，只有用<code>squeeze(input, dim=1)</code>函数时，形状才会变成<code>(A, B)</code>。下面给出调用示例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">torch.Size([4])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#将a的第1维升高</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1">#打印b以及b的形状</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor( [[1., 2., 3., 4.]]) torch.Size([1, 4])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#unsqueeze函数的另一种等价调用方式</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1., 2., 3., 4.]]) torch.Size([1, 4])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> <span class="c1">#对b进行降维，去掉所有形状中为1的维</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([1., 2., 3., 4.]) torch.Size([4])
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
 </section>
 
@@ -2472,7 +2748,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 
 
         <span>
-            最后更新于 Dec 20, 2024 19:43 CST
+            最后更新于 Dec 21, 2024 09:02 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2659,7 +2935,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
             
         
         
-        <span>本图书馆累计发布了20篇文章 共33.1万字</span>
+        <span>本图书馆累计发布了20篇文章 共33.2万字</span>
         
     </section>
 
