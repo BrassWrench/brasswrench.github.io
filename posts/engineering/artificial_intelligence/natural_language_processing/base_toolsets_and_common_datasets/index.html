@@ -131,7 +131,7 @@
 <meta property='og:description' content="自然语言处理使用的基础工具集和常用的数据集">
 <meta property='og:url' content='https://www.brasswrench.com/posts/engineering/artificial_intelligence/natural_language_processing/base_toolsets_and_common_datasets/'>
 <meta property='og:site_name' content='黄铜扳手的图书馆'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='人工智能' /><meta property='article:tag' content='自然语言处理' /><meta property='article:tag' content='自然语言处理工具集' /><meta property='article:tag' content='自然语言处理数据集' /><meta property='article:published_time' content='2024-12-18T17:43:45&#43;08:00'/><meta property='article:modified_time' content='2024-12-21T09:02:07&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='工程学' /><meta property='article:tag' content='计算机科学' /><meta property='article:tag' content='人工智能' /><meta property='article:tag' content='自然语言处理' /><meta property='article:tag' content='NLTK' /><meta property='article:tag' content='LTP' /><meta property='article:tag' content='Pytorch' /><meta property='article:tag' content='维基百科数据' /><meta property='article:published_time' content='2024-12-18T17:43:45&#43;08:00'/><meta property='article:modified_time' content='2024-12-22T21:18:52&#43;08:00'/><meta property='og:image' content='https://www.brasswrench.com/true' />
 <meta name="twitter:title" content="自然语言处理（三）：基础工具集与常用数据集">
 <meta name="twitter:description" content="自然语言处理使用的基础工具集和常用的数据集"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://www.brasswrench.com/true' />
@@ -833,6 +833,22 @@
         <li><a href="#降维与升维">降维与升维</a></li>
       </ol>
     </li>
+    <li><a href="#大规模预训练数据">大规模预训练数据</a>
+      <ol>
+        <li><a href="#维基百科数据">维基百科数据</a></li>
+        <li><a href="#原始数据的获取">原始数据的获取</a></li>
+        <li><a href="#语料处理方法">语料处理方法</a>
+          <ol>
+            <li><a href="#纯文本语料抽取">纯文本语料抽取</a></li>
+            <li><a href="#中文繁简体切换">中文繁简体切换</a></li>
+            <li><a href="#数据清洗">数据清洗</a></li>
+          </ol>
+        </li>
+        <li><a href="#commoncrawl数据">CommonCrawl数据</a></li>
+      </ol>
+    </li>
+    <li><a href="#更多数据集">更多数据集</a></li>
+    <li><a href="#小结">小结</a></li>
   </ol>
 </nav>
         </div>
@@ -1086,8 +1102,6 @@
                 
             
             
-                <a id="draft-tag" href="/draft/">草稿</a>
-            
         </header>
     
 
@@ -1158,7 +1172,7 @@
 </svg>
 
             <time class="article-words">
-                10079 字
+                14142 字
             </time>
         </div>
 
@@ -1173,7 +1187,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 21 分钟
+                    阅读时长: 29 分钟
                 </time>
             </div>
         
@@ -1281,7 +1295,7 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">[&#39;i&#39;, &#39;me&#39;, &#39;my&#39;, &#39;myself&#39;, &#39;we&#39;, &#39;our&#39;, &#39;ours&#39;, &#39;ourselves&#39;, &#39;you&#39;, &#34;you&#39;re&#34;, 
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">[&#39;i&#39;, &#39;me&#39;, &#39;my&#39;, &#39;myself&#39;, &#39;we&#39;, &#39;our&#39;, &#39;ours&#39;, &#39;ourselves&#39;, &#39;you&#39;, &#34;you&#39;re&#34;, 
 </span></span></span><span class="line"><span class="cl"><span class="go">&#34;you&#39;ve&#34;, &#34;you&#39;ll&#34;, &#34;you&#39;d&#34;, &#39;your&#39;, &#39;yours&#39;, &#39;yourself&#39;,&#39;yourselves&#39;, &#39;he&#39;, 
 </span></span></span><span class="line"><span class="cl"><span class="go">&#39;him&#39;, &#39;his&#39;, &#39;himself&#39;, &#39;she&#39;, &#34;she&#39;s&#34;, &#39;her&#39;, &#39;hers&#39;, &#39;herself&#39;, &#39;it&#39;, &#34;it&#39;s&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="go">&#39;its&#39;, &#39;itself&#39;, &#39;they&#39;, &#39;them&#39;, &#39;their&#39;, &#39;theirs&#39;, &#39;themselves&#39;, &#39;what&#39;,
@@ -1357,7 +1371,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">bank.n.01
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">bank.n.01
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1373,7 +1387,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">sloping land (especially the slope beside a body of water)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">sloping land (especially the slope beside a body of water)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1390,7 +1404,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">a financial institution that accepts deposits and channels the money into lending 
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">a financial institution that accepts deposits and channels the money into lending 
 </span></span></span><span class="line"><span class="cl"><span class="go">activities
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1408,7 +1422,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">[&#39;they pulled the canoe up on the bank&#39;, &#39;he sat on the bank of the river and 
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">[&#39;they pulled the canoe up on the bank&#39;, &#39;he sat on the bank of the river and 
 </span></span></span><span class="line"><span class="cl"><span class="go">watched the currents&#39;]
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1425,7 +1439,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">[Synset(&#39;slope.n.01&#39;)]
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">[Synset(&#39;slope.n.01&#39;)]
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1445,7 +1459,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">0.8571428571428571
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">0.8571428571428571
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  (2)<strong>SentiWordNet</strong>。SentiWordNet (Sentiment WordNet)是基于WordNet标注的词语（更准确地说是同义词集合）情感倾向性词典，它为WordNet中每个同义词集合人工标注了三个情感值，依次是褒义、贬义和中性。通过该词典，可以实现一个简单的情感分析系统。仍然通过一个例子演示SentiWordNet的使用方法。</p>
@@ -1466,7 +1480,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">&lt;good.a.01: PosScore=0.75 NegScore=0.0&gt;
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">&lt;good.a.01: PosScore=0.75 NegScore=0.0&gt;
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="常用自然语言处理工具集">常用自然语言处理工具集
@@ -1495,7 +1509,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">Mr. Knightley loves to find fault with me, you know--in a joke--it is all a joke.
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">Mr. Knightley loves to find fault with me, you know--in a joke--it is all a joke.
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="标记解析">标记解析
@@ -1517,7 +1531,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">[&#39;Mr.&#39;, &#39;Knightley&#39;, &#39;loves&#39;, &#39;to&#39;, &#39;find&#39;, &#39;fault&#39;, &#39;with&#39;, &#39;me&#39;, &#39;,&#39;, &#39;you&#39;,
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">[&#39;Mr.&#39;, &#39;Knightley&#39;, &#39;loves&#39;, &#39;to&#39;, &#39;find&#39;, &#39;fault&#39;, &#39;with&#39;, &#39;me&#39;, &#39;,&#39;, &#39;you&#39;,
 </span></span></span><span class="line"><span class="cl"><span class="go">&#39;know&#39;, &#39;--&#39;, &#39;in&#39;, &#39;a&#39;, &#39;joke&#39;, &#39;--&#39;, &#39;it&#39;, &#39;is&#39;, &#39;all&#39;, &#39;a&#39;, &#39;joke&#39;, &#39;.&#39;]
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1543,7 +1557,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">[(&#39;They&#39;, &#39;PRP&#39;), (&#39;sat&#39;, &#39;VBP&#39;), (&#39;by&#39;, &#39;IN&#39;), (&#39;the&#39;, &#39;DT&#39;), (&#39;fire&#39;, &#39;NN&#39;), 
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">[(&#39;They&#39;, &#39;PRP&#39;), (&#39;sat&#39;, &#39;VBP&#39;), (&#39;by&#39;, &#39;IN&#39;), (&#39;the&#39;, &#39;DT&#39;), (&#39;fire&#39;, &#39;NN&#39;), 
 </span></span></span><span class="line"><span class="cl"><span class="go">(&#39;.&#39;, &#39;.&#39;)]
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1560,7 +1574,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">[(&#39;They&#39;, &#39;PRP&#39;), (&#39;fire&#39;, &#39;VBP&#39;), (&#39;a&#39;, &#39;DT&#39;), (&#39;gun&#39;, &#39;NN&#39;), (&#39;.&#39;, &#39;.&#39;)]
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">[(&#39;They&#39;, &#39;PRP&#39;), (&#39;fire&#39;, &#39;VBP&#39;), (&#39;a&#39;, &#39;DT&#39;), (&#39;gun&#39;, &#39;NN&#39;), (&#39;.&#39;, &#39;.&#39;)]
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="其它工具">其它工具
@@ -1603,7 +1617,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">[[&#39;南京市&#39;, &#39;长江&#39;, &#39;大桥&#39;, &#39;。&#39;]]
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">[[&#39;南京市&#39;, &#39;长江&#39;, &#39;大桥&#39;, &#39;。&#39;]]
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="其他自然语言处理功能">其他自然语言处理功能
@@ -1625,7 +1639,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">[&#39;南京市长江大桥。&#39;, &#39;汤姆生病了。&#39;, &#39;他去了医院。&#39;]
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">[&#39;南京市长江大桥。&#39;, &#39;汤姆生病了。&#39;, &#39;他去了医院。&#39;]
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1648,7 +1662,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">([[&#39;南京市&#39;, &#39;长江&#39;, &#39;大桥&#39;, &#39;。&#39;], [&#39;汤姆&#39;, &#39;生病&#39;, &#39;了&#39;, &#39;。&#39;], [&#39;他&#39;, &#39;去&#39;, &#39;了&#39;, 
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">([[&#39;南京市&#39;, &#39;长江&#39;, &#39;大桥&#39;, &#39;。&#39;], [&#39;汤姆&#39;, &#39;生病&#39;, &#39;了&#39;, &#39;。&#39;], [&#39;他&#39;, &#39;去&#39;, &#39;了&#39;, 
 </span></span></span><span class="line"><span class="cl"><span class="go">&#39;医院&#39;, &#39;。&#39;]],)
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1667,7 +1681,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">[[&#39;ns&#39;, &#39;ns&#39;, &#39;n&#39;, &#39;wp&#39;], [&#39;nh&#39;, &#39;v&#39;, &#39;u&#39;, &#39;wp&#39;], [&#39;r&#39;, &#39;v&#39;, &#39;u&#39;, &#39;n&#39;, &#39;wp&#39;]]
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">[[&#39;ns&#39;, &#39;ns&#39;, &#39;n&#39;, &#39;wp&#39;], [&#39;nh&#39;, &#39;v&#39;, &#39;u&#39;, &#39;wp&#39;], [&#39;r&#39;, &#39;v&#39;, &#39;u&#39;, &#39;n&#39;, &#39;wp&#39;]]
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="pytorch基础">Pytorch基础
@@ -1709,7 +1723,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[0.0000e+00, 3.6893e+19, 0.0000e+00],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[0.0000e+00, 3.6893e+19, 0.0000e+00],
 </span></span></span><span class="line"><span class="cl"><span class="go">[3.6893e+19, 6.3424e-28, 1.4013e-45]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1729,7 +1743,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[0.4181, 0.3817, 0.6418],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[0.4181, 0.3817, 0.6418],
 </span></span></span><span class="line"><span class="cl"><span class="go">[0.7468, 0.4991, 0.2972]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1749,7 +1763,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[ 1.2760, 0.4784, -0.9421],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[ 1.2760, 0.4784, -0.9421],
 </span></span></span><span class="line"><span class="cl"><span class="go">[0.0435, -0.2632, -0.7315]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1769,7 +1783,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[0, 0, 0],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[0, 0, 0],
 </span></span></span><span class="line"><span class="cl"><span class="go">[0, 0, 0]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1789,7 +1803,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[0., 0., 0.],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[0., 0., 0.],
 </span></span></span><span class="line"><span class="cl"><span class="go">[0., 0., 0.]], dtype=torch.float64)
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1807,7 +1821,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1.0000, 3.8000, 2.1000],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[1.0000, 3.8000, 2.1000],
 </span></span></span><span class="line"><span class="cl"><span class="go">[8.6000, 4.0000, 2.4000]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -1824,7 +1838,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  以上张量都存储在内存中，并使用CPU进行运算。若要在GPU中创建和计算张量，则需要显式地将其存入GPU中，具体可以采用下列方法之一（前提是本机已经配置了 NVIDIA的GPU并且正确地安装了相应的CUDA库）。</p>
@@ -1859,7 +1873,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([5., 7., 9.], dtype=torch.float64)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([5., 7., 9.], dtype=torch.float64)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1875,7 +1889,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([-3., -3., -3.], dtype=torch.float64)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([-3., -3., -3.], dtype=torch.float64)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1891,7 +1905,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([ 4., 10., 18.], dtype=torch.float64)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([ 4., 10., 18.], dtype=torch.float64)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1907,7 +1921,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([0.2500, 0.4000, 0.5000], dtype=torch.float64)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([0.2500, 0.4000, 0.5000], dtype=torch.float64)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  更多的运算方式可以通过<code>torch</code>中的函数实现，如向量点积(<code>torch.dot</code>)、矩阵相乘(<code>torch.mm</code>)、三角函数和各种数学函数等。具体示例如下。</p>
@@ -1924,7 +1938,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor(32., dtype=torch.float64)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor(32., dtype=torch.float64)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1940,7 +1954,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([0.8415, 0.9093, 0.1411], dtype=torch.float64)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([0.8415, 0.9093, 0.1411], dtype=torch.float64)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1956,7 +1970,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([2.7183, 7.3891, 20.0855], dtype=torch.float64)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([2.7183, 7.3891, 20.0855], dtype=torch.float64)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  除了以上常用的数学运算，PyTorch还提供了更多的张量操作功能，如聚合操 作(Aggregation)、拼接(Concatenation)操作、比较操作、随机采样和序列化等, 详细的功能列表和使用方法可以参考PyTorch官方文档。<br>
@@ -1976,7 +1990,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor(3.5000)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor(3.5000)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  可见，直接调用<code>mean</code>函数获得的是全部6个数字的平均值。然而，有时需要
@@ -1996,7 +2010,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([2.5000, 3.5000, 4.5000])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([2.5000, 3.5000, 4.5000])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2040,7 +2054,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[2.5000, 3.5000, 4.5000]])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[2.5000, 3.5000, 4.5000]])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2057,7 +2071,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[2.],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[2.],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [5.]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -2091,7 +2105,7 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1. ,2. , 3.],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[1. ,2. , 3.],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [4. ,5. , 6.],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [7. ,8. , 9.],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [10. , 11., 12.]])
@@ -2111,7 +2125,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor( [[1., 2., 3., 7., 8., 9.],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor( [[1., 2., 3., 7., 8., 9.],
 </span></span></span><span class="line"><span class="cl"><span class="go">         [4., 5., 6., 10., 11., 12.]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -2153,7 +2167,7 @@ z=(x+y)\times(y-2)
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">5.0
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">5.0
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  那么，使用PyTorch如何计算 \(z\) 的值呢？其实PyTorch程序和Python非常类似，唯一不同之处在于数据使用张量进行保存。具体代码如下所示。</p>
@@ -2176,7 +2190,7 @@ z=(x+y)\times(y-2)
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([5.])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([5.])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  通过上面的例子可以看到，PyTorch的编程方式与Python非常相似，因此，当具备了Python编程基础后，学习和使用PyTorch都非常容易。而PyTorch带来的一个好处是更高效的执行速度，尤其是当张量存储的数据比较多，同时机器还装有GPU时，效率的提升是极其显著的。</p>
@@ -2204,7 +2218,7 @@ z=(x+y)\times(y-2)
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([5.], grad_fn=&lt;MulBackwardO&gt;)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([5.], grad_fn=&lt;MulBackwardO&gt;)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2222,7 +2236,7 @@ z=(x+y)\times(y-2)
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([1.]) tensor([6.])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([1.]) tensor([6.])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  也可手工求解，即： \(\displaystyle\frac{\partial z}{\partial
@@ -2245,7 +2259,7 @@ z=(x+y)\times(y-2)
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([1., 2., 3., 4., 5., 6.]) torch.Size([6])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([1., 2., 3., 4., 5., 6.]) torch.Size([6])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2262,7 +2276,7 @@ z=(x+y)\times(y-2)
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1., 2., 3.],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[1., 2., 3.],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [4., 5., 6.]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -2281,7 +2295,7 @@ z=(x+y)\times(y-2)
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1., 2.],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[1., 2.],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [3., 4.],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [5., 6.]])
 </span></span></span></code></pre></td></tr></table>
@@ -2300,7 +2314,7 @@ z=(x+y)\times(y-2)
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1., 2., 3.],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[1., 2., 3.],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [4., 5., 6.]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -2349,7 +2363,7 @@ m_1\times m_2 \times \cdots \times m_n = m'_1\times m'_2 \times \cdots \times m'
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1, 2, 3],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[1, 2, 3],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [4, 5, 6]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -2368,7 +2382,7 @@ m_1\times m_2 \times \cdots \times m_n = m'_1\times m'_2 \times \cdots \times m'
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1, 4],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[1, 4],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [2, 5],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [3, 6]])
 </span></span></span></code></pre></td></tr></table>
@@ -2395,7 +2409,7 @@ x.\text{transpose}(j,k)[i_1]\cdots[i_j]\cdots[i_k]\cdots[i_n]=x[i_1]\cdots[i_k]\
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[[1, 2, 3],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[[1, 2, 3],
 </span></span></span><span class="line"><span class="cl"><span class="go">         [4, 5, 6]]]) torch.Size( [1, 2, 3])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -2414,7 +2428,7 @@ x.\text{transpose}(j,k)[i_1]\cdots[i_j]\cdots[i_k]\cdots[i_n]=x[i_1]\cdots[i_k]\
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[[1, 4]],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[[1, 4]],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [[2, 5]],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [[3, 6]]]) torch.Size([3, 1, 2])
 </span></span></span></code></pre></td></tr></table>
@@ -2446,7 +2460,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[1],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [2],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [3]])
 </span></span></span></code></pre></td></tr></table>
@@ -2464,7 +2478,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[4, 5]])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[4, 5]])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>  生成两个张量，形状分别为(3,1)和(1,2),显然，它们不能直接执行按元素 运算。因此，在执行按元素运算之前，需要将它们扩展（广播）为形状(3, 2)的张量，具体扩展的方法为将x的第1列复制到第2列，将y的第1行复制到第2、3行。如下所示，可以直接进行加法运算，PyTorch会自动执行广播和按元素相加。</p>
@@ -2483,7 +2497,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[5, 6],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[5, 6],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [6, 7], 
 </span></span></span><span class="line"><span class="cl"><span class="go">        [7, 8]])
 </span></span></span></code></pre></td></tr></table>
@@ -2508,7 +2522,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[0, 1, 2, 3],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[0, 1, 2, 3],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [4, 5, 6, 7],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [8, 9, 10, 11]])
 </span></span></span></code></pre></td></tr></table>
@@ -2526,7 +2540,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor(7)
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor(7)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2542,7 +2556,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([4, 5, 6, 7])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([4, 5, 6, 7])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2559,7 +2573,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[ 4, 5, 6, 7],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[ 4, 5, 6, 7],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [8, 9, 10, 11]])
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -2576,7 +2590,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([2, 6, 10])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([2, 6, 10])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2594,7 +2608,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[2, 3],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[2, 3],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [6, 7],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [10, 11]])
 </span></span></span></code></pre></td></tr></table>
@@ -2616,7 +2630,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[0, 1, 100, 100],
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[0, 1, 100, 100],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [4, 5, 100, 100],
 </span></span></span><span class="line"><span class="cl"><span class="go">        [8, 9, 100, 100]])
 </span></span></span></code></pre></td></tr></table>
@@ -2642,7 +2656,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">torch.Size([4])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">torch.Size([4])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2660,7 +2674,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor( [[1., 2., 3., 4.]]) torch.Size([1, 4])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor( [[1., 2., 3., 4.]]) torch.Size([1, 4])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2678,7 +2692,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([[1., 2., 3., 4.]]) torch.Size([1, 4])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([[1., 2., 3., 4.]]) torch.Size([1, 4])
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -2696,10 +2710,440 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Console" data-lang="Console"><span class="line"><span class="cl"><span class="go">tensor([1., 2., 3., 4.]) torch.Size([4])
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">tensor([1., 2., 3., 4.]) torch.Size([4])
 </span></span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="大规模预训练数据">大规模预训练数据
+</h2><p>  预训练语言模型需要通过海量文本学习语义信息，随着语料规模的增大，得到的统计信息将更加精准，更利于文本表示的学习。例如，在小型语料库中，单词“包袱”只出现在“他背着包袱就走了”这句话中，则模型只能学习到“包袱”作为一种“布包起来的衣物包裹”的含义。而随着语料库的增大，单词“包袱”可能出现在更多不同的上下文中，如“你不要有太大的思想包袱”“那位相声演员 的包袱很有趣”，则能够赋予“包袱”更多不同的含义。因此，为了训练效果更好的预训练模型，高质量、大规模的预训练数据是必不可少的。在本节中，将主要介绍典型的语料资源——维基百科数据的获取和基本处理方法。</p>
+<h3 id="维基百科数据">维基百科数据
+</h3><p>  维基百科(Wikipedia)是一部用不同语言写成的网络百科全书，由吉米•威尔士与拉里•桑格两人合作创建，于2001年1月13日在互联网上推出网站服务，并在2001年1月15日正式展开网络百科全书的项目。维基百科内容由人工编辑，因此作为预训练的原始数据非常适合。接下来，将介绍维基百科数据的获取以及原始数据的处理方法。</p>
+<h3 id="原始数据的获取">原始数据的获取
+</h3><p>  维基百科官方会以一定的时间间隔，对整个维基百科的内容进行快照并压缩，用户可以直接下载相应的压缩包，获取到某一时刻的维基百科数据。如以中文维基百科数据为例，存在比较重要的几个文件，如<a class="link" href="#20241221090851CST">表1</a>所示。</p>
+<span id="20241221090851CST"></span><div class="normal-table"><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">文件名</th>
+          <th style="text-align: left">内容</th>
+          <th style="text-align: left">大小/MB</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">zhwiki-latest-abstract.xml.gz</td>
+          <td style="text-align: left">所有词条摘要</td>
+          <td style="text-align: left">≈147</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">zhwiki-latest-all-titles.gz</td>
+          <td style="text-align: left">所有词条标题</td>
+          <td style="text-align: left">≈33</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">zhwiki-latest-page.sql.gz</td>
+          <td style="text-align: left">所有词条标题及摘要</td>
+          <td style="text-align: left">≈204</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">zhwiki-latest-pagelinks.sql.gz</td>
+          <td style="text-align: left">所有词条外链</td>
+          <td style="text-align: left">≈890</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">zhwiki-latest-pages-articles.xml.bz2</td>
+          <td style="text-align: left">所有词条正文</td>
+          <td style="text-align: left">≈1952</td>
+      </tr>
+  </tbody>
+</table></div>
+</div><p class="table-title" style="text-align:center; margin-top: 0; margin-bottom:0">表1&emsp;中文维基百科快照内容</p>
+<p>  预训练语言模型主要使用的是维基百科的正文内容，因此这里选择&quot;zhwiki-latest-pages-articles.xml.bz2&quot;，以下载最新快照的词条正文压缩包。以2020年10月23日的快照为例，该压缩包的大小约为1.95GB。由于后续进行处理时会直接对压缩包进行处理，这里不再进行解压缩操作。</p>
+<h3 id="语料处理方法">语料处理方法
+</h3><h4 id="纯文本语料抽取">纯文本语料抽取
+</h4><p>  处理维基百科快照的方法相对比较成熟，这里以WikiExtractor为例进行介绍。WikiExtractor是一款基于Python的工具包，专门用于处理维基百科的快照。为了方便安装工具包的相关依赖程序，这里推荐使用pip命令安装WikiExtractor。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install wikiextractor
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>  接下来，直接通过一行命令即可对维基百科的快照压缩包进行处理，去除其中的图片、表格、引用和列表等非常规文本信息，最终得到纯文本的语料。需要注意的是，这一部分的处理需要花费一定处理时间，视系统配置不同可能耗费几十分钟至数小时不等。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python -m wikiextractor.WikiExtractor zhwiki-latest-pages-articles.xml.bz2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  对于WikiExtractor工具包的使用参数，可通过如下命令获取（普通用户使用默认参数即可）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> python -m wikiextractor.WikiExtractor -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  处理完毕后，可以获得纯文本语料文件，其目录结构如下所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">./text
+</span></span><span class="line"><span class="cl"> |- AA
+</span></span><span class="line"><span class="cl">  |- wiki_00
+</span></span><span class="line"><span class="cl">  |- wiki_01 
+</span></span><span class="line"><span class="cl">  |-...
+</span></span><span class="line"><span class="cl">  |- wiki_99
+</span></span><span class="line"><span class="cl"> |- AB
+</span></span><span class="line"><span class="cl"> |- ...
+</span></span><span class="line"><span class="cl"> |- AO
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  text文件夹由AA到AO子文件夹构成，而每个子文件夹包含了wiki_00至 wiki_99共100个文件。每个文件包含多个维基百科词条，其内容如下所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&lt;doc id=&#34;13&#34; url=&#34;https://zh.wikipedia.org/wiki?curid=13&#34; title=&#34;数学&#34;&gt;
+</span></span><span class="line"><span class="cl">数学
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">数学是利用符号语言研究數量、结构、变化以及空间等概念的一門学科，从某种角度看屬於形式科學
+</span></span><span class="line"><span class="cl">的一種。數學透過抽象化和邏輯推理的使用，由計數、計算、量度和對物體形狀及運動的觀察而产生
+</span></span><span class="line"><span class="cl">。數學家們拓展這些概念，为了公式化新的猜想以及從選定的公理及定義中建立起嚴謹推導出的定理
+</span></span><span class="line"><span class="cl">。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">......
+</span></span><span class="line"><span class="cl">&lt;/doc&gt;
+</span></span><span class="line"><span class="cl">&lt;doc id=&#34;18&#34; url=&#34;https://zh.wikipedia.org/wiki?curid=18&#34; title=&#34;哲学&#34;&gt;
+</span></span><span class="line"><span class="cl">哲学
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">......
+</span></span><span class="line"><span class="cl">&lt;/doc&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可见，每个词条均由<code>&lt;doc&gt;</code>标签开始并以<code>&lt;/doc&gt;</code>结尾。</p>
+<h4 id="中文繁简体切换">中文繁简体切换
+</h4><p>  中文维基百科中同时包含了简体中文和繁体中文的数据，如果使用者只需要 获得简体中文数据，需要将纯文本语料中的繁体中文内容转换为简体中文。这里使用一款较为成熟的中文繁简体转换工具——OpenCC。OpenCC工具可将简体中文、繁体中文(其中包括中国香港地区、中国台湾地区使用的繁体)和日本新字体等中文进行互转。OpenCC工具同样可以通过pip命令安装。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install opencc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  安装完毕后，可以通过如下Python脚本进行中文繁简转换。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python convert_t2s.py input_file &gt; output_file
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  其中，转换脚本<code>convert_t2s.py</code>的内容如下所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">opencc</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">converter</span> <span class="o">=</span> <span class="n">opencc</span><span class="o">.</span><span class="n">OpenCC</span><span class="p">(</span><span class="s2">&#34;t2s.json&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">f_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_in</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">line_t2s</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">line_t2s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  其中要用到的配置文件<code>t2s.json</code>的内容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Traditional Chinese to Simplified Chinese&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="nt">&#34;segmentation&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;mmseg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;dict&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;ocd2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="s2">&#34;TSPhrases.ocd2&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl"> <span class="nt">&#34;conversion_chain&#34;</span><span class="p">:</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;dict&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;group&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;dicts&#34;</span><span class="p">:</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;ocd2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="s2">&#34;TSPhrases.ocd2&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;ocd2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="s2">&#34;TSCharacters.ocd2&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  经过处理后，原始语料中的繁体中文将全部转换为简体中文。读者可根据实 际情况进行简繁体或繁简体的转换。</p>
+<h4 id="数据清洗">数据清洗
+</h4><p>  经过上述处理后，可以得到包含简体中文的纯文本语料。然而，在从维基百科快照里抽取纯文本数据的过程中可能因文本编码、损坏的HTML标签等问题导致纯文本中包含一些乱码或机器字符。因此，在最后需要通过一个简单的后处理操作对纯文本语料进行二次过滤，进一步提升预训练语料的质量。需要注意的是，这里仅处理语料中的一些明显错误，而对于一般类型的错误则不会处理(如标点不统一等问题)，因为一般类型的错误在日常的文本中也会出现。这里的处理方式主要包括如下几类：<br>
+  ◦删除空的成对符号，例如“()”“《》”“【】”“[]”等；<br>
+  ◦删除&lt;br&gt;等残留的HTML标签。需要注意的是，这里不删除以“&lt;doc id”和“&lt;/doc&gt;”为开始的行，因其表示文档的开始和结束，能为某些预训练语言模型的数据处理提供至关重要的信息；<br>
+  ◦删除不可见控制字符，避免意外导致数据处理中断。<br>
+  所以，数据清洗将最大限度地保留自然文本的统计特征，对于其中的“对”与“错”二则交由模型来进行学习，而非通过人工进行过多干预。<br>
+  通过如下脚本启动数据清洗过程。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python wikidata.cleaning.py input.file &gt; output_file
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  其中，数据清洗脚本<code>wikidata_cleaning.py</code>的内容如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">remove_empty_paired_punc</span><span class="p">(</span><span class="n">in_str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">in_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;（）&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;《》&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;【】&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;[]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">remove_html_tags</span><span class="p">(</span><span class="n">in_str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">html_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;[^&gt;]+&gt;&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">html_pattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">in_str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">remove_control_chars</span><span class="p">(</span><span class="n">in_str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">control_chars</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">chr</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">127</span><span class="p">,</span> <span class="mi">160</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">control_chars</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">control_chars</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">control_chars</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">in_str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_in</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^(&lt;doc id)|(&lt;/doc&gt;)&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">    <span class="n">line</span> <span class="o">=</span> <span class="n">remove_empty_paired_punc</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">line</span> <span class="o">=</span> <span class="n">remove_html_tags</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">line</span> <span class="o">=</span> <span class="n">remove_control_chars</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="commoncrawl数据">CommonCrawl数据
+</h3><p>  Common Crawl包含了超过7年的网络爬虫数据集，包含原始网页数据、元数据提取和文本提取。数据存储在Amazon Web服务的公共数据集和遍布全球的 多个学术云平台上，拥有PB级规模。Common Crawl的数据非常庞大，因此想处理好如此庞大的数据并不是一件容易的事情。Facebook提出的CC-Net工具可用于获取Common Crawl数据，并且提供了一套相对完整的数据处理流程。其应用方法较为简单。</p>
+<h2 id="更多数据集">更多数据集
+</h2><p>  本节介绍的NLTK工具集提供了少量的自然语言处理数据集，可用于模型演示和简单的系统测试。近期，HuggingFace公司发布了更大规模的语料库集合——HuggingFace Datasets，与其他自然语言处理数据集相比，具有如下的特点：<br>
+  ◦数据集数目多：截至2021年3月，共收录了近200种语言的700多个数据集，涵盖了文本分类、机器翻译和阅读理解等众多自然语言处理任务。之所以能有如此多的数据，主要依赖于社区的贡献，任何用户都可以共享相关的数据集。除了支持用户可以直接使用这些公开的数据集，还支持其方便地调用自己私有的数据集。<br>
+  ◦兼容性好：可以直接被PyTorch、TensorFlow等深度学习框架，以及pandas、NumPy等数据处理工具调用，同时支持CSV、JSON等数据格式的读取，并提供了丰富、灵活的调用接口和数据处理接口。<br>
+  ◦数据读取效率高：可以在仅占用少量内存的条件下，高速地读取大量的丰富的评价方法：如2.4节介绍的，由于自然语言处理任务类型众多，需要多种不同的评价指标对它们进行评价。为此，HuggingFace Datasets除了提供多种通用的评价方法，还针对不同的数据集提供了更有针对性的评价方法。<br>
+  在使用HuggingFace Datasets之前，首先需要使用以下命令安装datasets包。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install datasets
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面通过一些示例，演示如何调用datasets提供的数据集以及评价方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+</span></span><span class="line"><span class="cl"><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;sst&#39;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 加载SST(Stanford Sentiment</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Treebank)数据集(训练数据部分)。在第一次执行时，程序会自动下载相应的</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据集并放入本地的缓存目录中，当下次再运行时，会直接从本地加载</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">))</span> <span class="c1">#数据集中的样本数目</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">8544
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">pprint</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#打印以字典对象存储的第1个样本，字典中存储了4个键值对</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 分别为标签(label： 0〜1的实数值，指示属于正例的可能性)、原始句子</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (sentence)、标记序列(tokens：各标记之间使用|分隔)以及句法分析树(tree) </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">{&#39;label&#39;: 0.6944400072097778,
+</span></span></span><span class="line"><span class="cl"><span class="go"> &#39;sentence&#39;: &#34;The Rock is destined to be the 21st Century &#39;s new `` Conan &#39;&#39; &#34;
+</span></span></span><span class="line"><span class="cl"><span class="go">             &#34;and that he &#39;s going to make a splash even greater than Arnold &#34;
+</span></span></span><span class="line"><span class="cl"><span class="go">             &#39;Schwarzenegger , Jean-Claud Van Damme or Steven Segal .&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="go"> &#39;tokens&#39;: &#34;The|Rock|is|destined|to|be|the|21st|Century|&#39;s|new|``|Conan|&#39;&#39;|and
+</span></span></span><span class="line"><span class="cl"><span class="go">  |that|he|&#39;s|going|to|make|a|splash|even|greater|than|Arnold|Schwarzenegger|,
+</span></span></span><span class="line"><span class="cl"><span class="go">  |Jean-Claud|Van|Damme|or|Steven|Segal|.&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="go"> &#39;tree&#39;: &#39;70|70|68|67|63|62|61|60|58|58|57|56|56|64|65|55|54|53|52|51|49|47|47
+</span></span></span><span class="line"><span class="cl"><span class="go">  |46|46|45|40|40|41|39|38|38|43|37|37|69|44|39|42|41|42|43|44|45|50|48|48|49|50
+</span></span></span><span class="line"><span class="cl"><span class="go">  |51|52|53|54|55|66|57|59|59|60|61|62|63|64|65|66|67|68|69|71|71|0&#39;}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>  datasets还提供了一些额外的函数，用于对数据进行处理或转换为PyTorch、TensorFlow等工具集能够处理的格式，具体调用方法见相应的使用文档。<br>
+  Hugging Face还提供了evaluate库以提供评价方法。通过如下命令安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install evaluate
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  使用方法如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">evaluate</span>
+</span></span><span class="line"><span class="cl"><span class="n">accuracy</span> <span class="o">=</span> <span class="n">evaluate</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&#34;accuracy&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">results</span> <span class="o">=</span> <span class="n">accuracy</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">references</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">predictions</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">{&#39;accuracy&#39;: 0.6666666666666666}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="小结">小结
+</h2><p>  本章介绍了三种常用的自然语言处理基础以及神经网络工具集，分别为：英文自然语言处理基础工具NLTK、中文自然语言处理基础工具LTP，以及本书所使用的深度学习框架PyTorch。另外，还介绍了预训练模型的基础之&mdash;&mdash;大规模文本数据的获取和简单处理方式，以及使用HuggingFace Datasets获取更多数据集的方法。本部分后续章节内容都紧密依赖这些工具和数据。</p>
+<blockquote>
+    <p>
+
+<div style="text-align: center;">
+靠近你就靠近了痛苦，远离你就远离了幸福。
+</div>
+
+</p><span class="cite"><span>― </span><span>安德烈·纪德, </span><cite>《窄门》</cite></span></blockquote>
+
     </div>
 </section>
 
@@ -2719,9 +3163,13 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
         
             <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">自然语言处理</a>
         
-            <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7%E9%9B%86/">自然语言处理工具集</a>
+            <a href="/tags/nltk/">NLTK</a>
         
-            <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E9%9B%86/">自然语言处理数据集</a>
+            <a href="/tags/ltp/">LTP</a>
+        
+            <a href="/tags/pytorch/">Pytorch</a>
+        
+            <a href="/tags/%E7%BB%B4%E5%9F%BA%E7%99%BE%E7%A7%91%E6%95%B0%E6%8D%AE/">维基百科数据</a>
         
     </section>
 
@@ -2748,7 +3196,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
 
 
         <span>
-            最后更新于 Dec 21, 2024 09:02 CST
+            最后更新于 Dec 22, 2024 21:18 CST
         </span>
     </section><section class="page-visit-count">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -2935,7 +3383,7 @@ x.\text{permute}(a_1,a_2,\cdots,a_n)[i_1]\cdots[i_n]=x[i_{a_1}][i_{a_2}]\cdots[i
             
         
         
-        <span>本图书馆累计发布了20篇文章 共33.2万字</span>
+        <span>本图书馆累计发布了20篇文章 共33.6万字</span>
         
     </section>
 
